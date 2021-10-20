@@ -1,0 +1,2 @@
+Create the IInvitable interface, which represents classes of users which can be invited via invitations.
+Create the IncompleteCompanyRepresentative class, which represents a company representative which isn't fully signed up in the platform, since it has to give certain information.
