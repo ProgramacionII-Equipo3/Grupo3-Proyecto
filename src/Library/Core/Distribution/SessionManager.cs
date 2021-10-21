@@ -37,7 +37,7 @@ namespace Library.Core.Distribution
         /// Returns the <see cref="UserSession" /> whose id equals to the given one.
         /// </summary>
         /// <param name="id">The given id.</param>
-        /// <returns>Its corresponding UserSession.</returns>
+        /// <returns>Its corresponding <see cref="UserSession" />.</returns>
         public static UserSession GetById(UserId id) =>
             sessions.Where(session => session.Id.Equals(id)).FirstOrDefault();
     }

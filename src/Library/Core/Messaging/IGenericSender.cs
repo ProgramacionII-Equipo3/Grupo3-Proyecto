@@ -8,7 +8,7 @@ namespace Library.Core.Messaging
     public interface IGenericSender
     {
         /// <summary>
-        /// Send a message.
+        /// Sends a message.
         /// </summary>
         /// <param name="msg">The message to send.</param>
         public void SendMessage(Message msg);

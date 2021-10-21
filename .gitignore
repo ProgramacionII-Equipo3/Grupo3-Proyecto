@@ -608,3 +608,6 @@ lcov.info
 
 # Documents
 docs/html
+
+# Extras
+secret.txt

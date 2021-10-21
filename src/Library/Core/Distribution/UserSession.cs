@@ -3,6 +3,9 @@ using Library.Core.Processing;
 
 namespace Library.Core.Distribution
 {
+    /// <summary>
+    /// This class represent a user's session, being the highest-level class which represents it.
+    /// </summary>
     public class UserSession
     {
         /// <summary>
@@ -18,9 +21,15 @@ namespace Library.Core.Distribution
         /// <summary>
         /// The current state of the user's session.
         /// </summary>
-        private IState state;
+        private State state;
 
-        public UserSession(UserId id, UserData userData, IState state)
+        /// <summary>
+        /// Creates a UserSession.
+        /// </summary>
+        /// <param name="id">The session's user's id.</param>
+        /// <param name="userData">The session's user's data.</param>
+        /// <param name="state">The session's initial state.</param>
+        public UserSession(UserId id, UserData userData, State state)
         {
             this.Id = id;
             this.userData = userData;

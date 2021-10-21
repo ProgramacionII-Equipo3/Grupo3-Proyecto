@@ -1,15 +1,15 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Library.Platforms.Telegram;
-using System.IO;
-using System.Text;
 
 namespace Program
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {

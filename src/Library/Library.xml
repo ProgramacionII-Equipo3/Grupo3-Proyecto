@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Core.ContactInfo">
+            <summary>
+            This class represent contact information data associated with a user,
+            a company, or another entity with contact information.
+            </summary>
+        </member>
+        <member name="F:Library.Core.ContactInfo.Email">
+            <summary>
+            The entity's email (null if non-existent).
+            </summary>
+        </member>
+        <member name="F:Library.Core.ContactInfo.PhoneNumber">
+            <summary>
+            The entity's phone number (-1 if non-existent).
+            </summary>
+        </member>
+        <member name="T:Library.Core.Distribution.MessageManager">
+            <summary>
+            This class represents the highest level of encapsulation in message processing.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Distribution.MessageManager.ProcessMessage(Library.Core.Message)">
+            <summary>
+            Processes a received message, returning the text of the response message.
+            </summary>
+            <param name="msg">The received message.</param>
+            <returns>The response message's text.</returns>
+        </member>
+        <member name="T:Library.Core.Distribution.SessionManager">
+            <summary>
+            This class handles the creation and selection of user sessions.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Distribution.SessionManager.sessions">
+            <summary>
+            The list of current sessions.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Distribution.SessionManager.GetById(Library.Core.UserId)">
+            <summary>
+            Returns the <see cref="T:Library.Core.Distribution.UserSession" /> whose id equals to the given one.
+            </summary>
+            <param name="id">The given id.</param>
+            <returns>Its corresponding UserSession.</returns>
+        </member>
+        <member name="F:Library.Core.Distribution.UserSession.Id">
+            <summary>
+            The id of the user.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Distribution.UserSession.userData">
+            <summary>
+            Data associated with the user.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Distribution.UserSession.state">
+            <summary>
+            The current state of the user's session.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Distribution.UserSession.ProcessMessage(System.String)">
+            <summary>
+            Process the received message text, returning the response message text.
+            </summary>
+            <param name="msg">The received message text.</param>
+            <returns>The response message text.</returns>
+        </member>
+        <member name="T:Library.Core.ISenderToSpecificUser">
+            <summary>
+            This interface represents an object which knows how to send a message to a particular user in the bot.
+            </summary>
+        </member>
+        <member name="M:Library.Core.ISenderToSpecificUser.SendMessage(System.String)">
+            <summary>
+            Send a message to a concrete user.
+            </summary>
+            <param name="msg">The message.</param>
+        </member>
+        <member name="T:Library.Core.Message">
+            <summary>
+            Represents a message (either received from a messaging platform or sent to one)
+            </summary>
+        </member>
+        <member name="F:Library.Core.Message.Text">
+            <summary>
+            The content of the image.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Message.Id">
+            <summary>
+            The id of the user who sent the image.
+            </summary>
+        </member>
+        <member name="T:Library.Core.Messaging.GenericMessagingPlatform">
+            <summary>
+            This class represents the highest level of encapsulation in receiving and sending messages.
+            </summary>
+        </member>
+        <member name="T:Library.Core.Messaging.IGenericReceiver">
+            <summary>
+            This interface represents the responsibility of handling the event of receiving a message.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Messaging.IGenericReceiver.OnGetMessage(Library.Core.Message)">
+            <summary>
+            Handle a received message.
+            </summary>
+            <param name="msg">The received message.</param>
+        </member>
+        <member name="T:Library.Core.Messaging.IGenericSender">
+            <summary>
+            This interface represents the responsibility of sending a message.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Messaging.IGenericSender.SendMessage(Library.Core.Message)">
+            <summary>
+            Send a message.
+            </summary>
+            <param name="msg">The message to send.</param>
+        </member>
+        <member name="T:Library.Core.UserData">
+            <summary>
+            This class represents additional data that all users must have.
+            </summary>
+        </member>
+        <member name="F:Library.Core.UserData.Name">
+            <summary>
+            The user's name.
+            </summary>
+        </member>
+        <member name="F:Library.Core.UserData.ContactInfo">
+            <summary>
+            The user's contact information.
+            </summary>
+        </member>
+        <member name="T:Library.Core.UserId">
+            <summary>
+            This class acts as a unique identifier for each user in the platform.
+            Different subclasses of this class represent ids of user of different messaging platforms.
+            </summary>
+        </member>
+        <member name="M:Library.Core.UserId.Equals(Library.Core.UserId)">
+            <summary>
+            Compares equality of two user ids.
+            </summary>
+            <param name="other">The other id.</param>
+            <returns>Whether the two ids are equal or not.</returns>
+        </member>
+        <member name="M:Library.Platforms.Telegram.TelegramBot.ReceiveMessages(System.Action)">
+            <summary>
+            Starts receiving messages until a certain function (which blocks the thread) returns.
+            </summary>
+            <param name="blockingAction">The function which blocks the thread.</param>
+        </member>
+    </members>
+</doc>

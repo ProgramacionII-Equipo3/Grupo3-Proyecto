@@ -3,9 +3,13 @@ using Library.Core.Processing;
 
 namespace Library.States
 {
-    public class InitialMenuState : IState
+    /// <summary>
+    /// This class represents a mock user state, in which the bot returns every message it receives.
+    /// </summary>
+    public class InitialMenuState : State
     {
-        public (IState, string) ProcessMessage(UserId id, UserData data, string msg)
+        /// <inheritdoc />
+        public override (State, string) ProcessMessage(UserId id, UserData data, string msg)
         {
             return (this, $"Message sent: {msg}");
         }

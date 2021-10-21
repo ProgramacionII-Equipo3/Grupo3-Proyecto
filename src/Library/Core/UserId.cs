@@ -9,12 +9,16 @@ namespace Library.Core
     public abstract class UserId : IEquatable<UserId>, ISenderToSpecificUser
     {
         /// <summary>
-        /// Compares equality of two user ids.
+        /// Compares the equality of two <see cref="UserId" />s.
         /// </summary>
         /// <param name="other">The other id.</param>
         /// <returns>Whether the two ids are equal or not.</returns>
         public abstract bool Equals(UserId other);
 
+        /// <summary>
+        /// Sends a message to a concrete user.
+        /// </summary>
+        /// <param name="msg">The message to send.</param>
         public abstract void SendMessage(string msg);
     }
 }

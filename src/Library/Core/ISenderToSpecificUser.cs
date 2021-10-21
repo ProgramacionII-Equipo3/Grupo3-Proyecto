@@ -6,7 +6,7 @@ namespace Library.Core
     public interface ISenderToSpecificUser
     {
         /// <summary>
-        /// Send a message to a concrete user.
+        /// Sends a message to a concrete user.
         /// </summary>
         /// <param name="msg">The message.</param>
         public void SendMessage(string msg);

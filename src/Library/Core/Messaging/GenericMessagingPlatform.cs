@@ -9,11 +9,19 @@ namespace Library.Core.Messaging
     /// </summary>
     public class GenericMessagingPlatform : IGenericSender, IGenericReceiver
     {
+        /// <summary>
+        /// Sends a message.
+        /// </summary>
+        /// <param name="msg">The message to send.</param>
         public void SendMessage(Message msg)
         {
             msg.Id.SendMessage(msg.Text);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msg"></param>
         public void OnGetMessage(Message msg)
         {
             Message newMsg = new Message(MessageManager.ProcessMessage(msg), msg.Id);

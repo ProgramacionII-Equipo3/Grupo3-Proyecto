@@ -6,6 +6,9 @@ using Library.Core.Messaging;
 
 namespace Library.Platforms.Telegram
 {
+    /// <summary>
+    /// This class represents the program's telegram bot.
+    /// </summary>
     public class TelegramBot
     {
 
@@ -24,6 +27,9 @@ namespace Library.Platforms.Telegram
             };
         }
 
+        /// <summary>
+        /// The <see cref="ITelegramBotClient" /> which is used to send and receive messages.
+        /// </summary>
         public ITelegramBotClient Client
         {
             get
@@ -40,6 +46,9 @@ namespace Library.Platforms.Telegram
             }
         }
 
+        /// <summary>
+        /// The bot's Telegram id.
+        /// </summary>
         public long BotId
         {
             get
@@ -48,6 +57,9 @@ namespace Library.Platforms.Telegram
             }
         }
 
+        /// <summary>
+        /// The bot's Telegram name.
+        /// </summary>
         public string BotName
         {
             get
@@ -56,6 +68,9 @@ namespace Library.Platforms.Telegram
             }
         }
 
+        /// <summary>
+        /// The <see cref="TelegramBot" /> class' single instance.
+        /// </summary>
         public static TelegramBot Instance
         {
             get
