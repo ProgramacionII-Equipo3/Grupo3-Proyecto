@@ -47,7 +47,12 @@
             Returns the <see cref="T:Library.Core.Distribution.UserSession" /> whose id equals to the given one.
             </summary>
             <param name="id">The given id.</param>
-            <returns>Its corresponding UserSession.</returns>
+            <returns>Its corresponding <see cref="T:Library.Core.Distribution.UserSession" />.</returns>
+        </member>
+        <member name="T:Library.Core.Distribution.UserSession">
+            <summary>
+            This class represent a user's session, being the highest-level class which represents it.
+            </summary>
         </member>
         <member name="F:Library.Core.Distribution.UserSession.Id">
             <summary>
@@ -64,6 +69,14 @@
             The current state of the user's session.
             </summary>
         </member>
+        <member name="M:Library.Core.Distribution.UserSession.#ctor(Library.Core.UserId,Library.Core.UserData,Library.Core.Processing.State)">
+            <summary>
+            Creates a UserSession.
+            </summary>
+            <param name="id">The session's user's id.</param>
+            <param name="userData">The session's user's data.</param>
+            <param name="state">The session's initial state.</param>
+        </member>
         <member name="M:Library.Core.Distribution.UserSession.ProcessMessage(System.String)">
             <summary>
             Process the received message text, returning the response message text.
@@ -78,7 +91,7 @@
         </member>
         <member name="M:Library.Core.ISenderToSpecificUser.SendMessage(System.String)">
             <summary>
-            Send a message to a concrete user.
+            Sends a message to a concrete user.
             </summary>
             <param name="msg">The message.</param>
         </member>
@@ -97,10 +110,29 @@
             The id of the user who sent the image.
             </summary>
         </member>
+        <member name="M:Library.Core.Message.#ctor(System.String,Library.Core.UserId)">
+            <summary>
+            Creates a message.
+            </summary>
+            <param name="text">The message's text.</param>
+            <param name="id">The message's id.</param>
+        </member>
         <member name="T:Library.Core.Messaging.GenericMessagingPlatform">
             <summary>
             This class represents the highest level of encapsulation in receiving and sending messages.
             </summary>
+        </member>
+        <member name="M:Library.Core.Messaging.GenericMessagingPlatform.SendMessage(Library.Core.Message)">
+            <summary>
+            Sends a message.
+            </summary>
+            <param name="msg">The message to send.</param>
+        </member>
+        <member name="M:Library.Core.Messaging.GenericMessagingPlatform.OnGetMessage(Library.Core.Message)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
         </member>
         <member name="T:Library.Core.Messaging.IGenericReceiver">
             <summary>
@@ -120,9 +152,23 @@
         </member>
         <member name="M:Library.Core.Messaging.IGenericSender.SendMessage(Library.Core.Message)">
             <summary>
-            Send a message.
+            Sends a message.
             </summary>
             <param name="msg">The message to send.</param>
+        </member>
+        <member name="T:Library.Core.Processing.State">
+            <summary>
+            This class represents a state of a user session.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Processing.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <summary>
+            Processes a received message, returning the next state and the response message.
+            </summary>
+            <param name="id">The user's id.</param>
+            <param name="data">The user's data.</param>
+            <param name="msg">The message's text.</param>
+            <returns>The next state and the response message.</returns>
         </member>
         <member name="T:Library.Core.UserData">
             <summary>
@@ -147,16 +193,105 @@
         </member>
         <member name="M:Library.Core.UserId.Equals(Library.Core.UserId)">
             <summary>
-            Compares equality of two user ids.
+            Compares the equality of two <see cref="T:Library.Core.UserId" />s.
             </summary>
             <param name="other">The other id.</param>
             <returns>Whether the two ids are equal or not.</returns>
+        </member>
+        <member name="M:Library.Core.UserId.SendMessage(System.String)">
+            <summary>
+            Sends a message to a concrete user.
+            </summary>
+            <param name="msg">The message to send.</param>
+        </member>
+        <member name="T:Library.Platforms.Telegram.Secret">
+            <summary>
+            This class stores secret data whose access has to be carefully manipulated.
+            </summary>
+        </member>
+        <member name="F:Library.Platforms.Telegram.Secret.TELEGRAM_BOT_TOKEN">
+            <summary>
+            The bot's secret token.
+            </summary>
+        </member>
+        <member name="T:Library.Platforms.Telegram.TelegramBot">
+            <summary>
+            This class represents the program's telegram bot.
+            </summary>
+        </member>
+        <member name="P:Library.Platforms.Telegram.TelegramBot.Client">
+            <summary>
+            The <see cref="T:Telegram.Bot.ITelegramBotClient" /> which is used to send and receive messages.
+            </summary>
+        </member>
+        <member name="P:Library.Platforms.Telegram.TelegramBot.BotId">
+            <summary>
+            The bot's Telegram id.
+            </summary>
+        </member>
+        <member name="P:Library.Platforms.Telegram.TelegramBot.BotName">
+            <summary>
+            The bot's Telegram name.
+            </summary>
+        </member>
+        <member name="P:Library.Platforms.Telegram.TelegramBot.Instance">
+            <summary>
+            The <see cref="T:Library.Platforms.Telegram.TelegramBot" /> class' single instance.
+            </summary>
         </member>
         <member name="M:Library.Platforms.Telegram.TelegramBot.ReceiveMessages(System.Action)">
             <summary>
             Starts receiving messages until a certain function (which blocks the thread) returns.
             </summary>
             <param name="blockingAction">The function which blocks the thread.</param>
+        </member>
+        <member name="T:Library.Platforms.Telegram.TelegramId">
+            <summary>
+            This class represents <see cref="T:Library.Core.UserId" />s of Telegram users.
+            </summary>
+        </member>
+        <member name="P:Library.Platforms.Telegram.TelegramId.ChatId">
+            <summary>
+            The id of the user.
+            </summary>
+        </member>
+        <member name="M:Library.Platforms.Telegram.TelegramId.#ctor(System.Int64)">
+            <summary>
+            Creates a <see cref="T:Library.Platforms.Telegram.TelegramId" />.
+            </summary>
+            <param name="chatId">The Telegram id.</param>
+        </member>
+        <member name="M:Library.Platforms.Telegram.TelegramId.Equals(Library.Core.UserId)">
+            <summary>
+            Compares the equality of two <see cref="T:Library.Core.UserId" />s.
+            </summary>
+            <param name="other">The other id.</param>
+            <returns>Whether the two ids are equal or not.</returns>
+        </member>
+        <member name="M:Library.Platforms.Telegram.TelegramId.SendMessage(System.String)">
+            <summary>
+            Sends a message to a concrete Telegram user.
+            </summary>
+            <param name="msg">The message.</param>
+        </member>
+        <member name="T:Library.Singleton`1">
+            <summary>
+            This class represents classes which are supposed to have only one instance.
+            </summary>
+            <typeparam name="T">The class which has only one instance.</typeparam>
+        </member>
+        <member name="F:Library.Singleton`1.Instance">
+            <summary>
+            The instance.
+            </summary>
+        </member>
+        <member name="T:Library.States.InitialMenuState">
+            <summary>
+            This class represents a mock user state, in which the bot returns every message it receives.
+            </summary>
+        </member>
+        <member name="M:Library.States.InitialMenuState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <inheritdoc />
         </member>
     </members>
 </doc>

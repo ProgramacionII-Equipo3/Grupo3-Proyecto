@@ -1,24 +1,29 @@
-﻿using System;
+﻿//
+
+using Library.Platforms.Telegram;
+using System;
 using System.IO;
 using System.Text;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Library.Platforms.Telegram;
 
-namespace Program
+namespace Grupo3_Proyecto
 {
-    public class Program
+    public static class Program
     {
         public static void Main()
         {
             TelegramBot telegramBot = TelegramBot.Instance;
             Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
-            telegramBot.ReceiveMessages(() => {
-                Console.WriteLine("Escribe una línea para terminar");
-                Console.ReadLine();
-            });
+            telegramBot.ReceiveMessages(
+                () =>
+                {
+                    Console.WriteLine("Escribe una línea para terminar");
+                    Console.ReadLine();
+                }
+            );
         }
     }
 }

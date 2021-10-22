@@ -43,10 +43,9 @@ namespace Library.Platforms.Telegram
         /// <param name="msg">The message.</param>
         public override async void SendMessage(string msg)
         {
-            await TelegramBot.Instance.Client.SendTextMessageAsync(
-                chatId: this.telegramId,
-                text: msg
-            );
+            await TelegramBot.Instance.Client
+                .SendTextMessageAsync(chatId: this.telegramId, text: msg)
+                .ConfigureAwait(true);
         }
     }
 }

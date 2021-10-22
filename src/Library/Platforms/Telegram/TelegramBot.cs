@@ -89,9 +89,9 @@ namespace Library.Platforms.Telegram
         /// <param name="blockingAction">The function which blocks the thread.</param>
         public void ReceiveMessages(Action blockingAction)
         {
-            bot.StartReceiving();
+            this.bot.StartReceiving();
             blockingAction();
-            bot.StopReceiving();
+            this.bot.StopReceiving();
         }
     }
 }
