@@ -1,4 +1,5 @@
 using System;
+using Library.Core.Invitations;
 
 namespace Library.Core.Distribution
 {
@@ -19,11 +20,30 @@ namespace Library.Core.Distribution
                 return session.ProcessMessage(msg.Text);
             } else
             {
-                // TODO: Write code for non-registered users
-                if(msg.Id is Library.Platforms.Telegram.TelegramId telegramId)
-                    Console.WriteLine(telegramId.ChatId);
-                return "You are not a user in this bot 😐";
+                return processMessageFromUnknownUser(msg);
             }
+        }
+
+        private static string processMessageFromUnknownUser(Message msg)
+        {
+            return processValidateInvitationCommand(msg);
+        }
+
+        private static string processValidateInvitationCommand(Message msg)
+        {
+            string[] args = msg.Text.Split(' ');
+
+            if(
+                msg.Text.Length != 2 ||
+                args[0] != "\\start" ||
+                string.IsNullOrWhiteSpace(args[1])
+            )
+                return "Send the message \\start <invitation-code> to register to the platform.";
+            
+            string invitationCode = args[1];
+            return InvitationManager.ValidateInvitation(invitationCode, msg.Id) is string result
+                ? result
+                : "Invalid invitation code";
         }
     }
 }
