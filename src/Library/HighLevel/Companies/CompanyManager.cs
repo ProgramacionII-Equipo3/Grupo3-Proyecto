@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
 
-namespace Library.Companies
+namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents the highest level of encapsulation in handling companies.

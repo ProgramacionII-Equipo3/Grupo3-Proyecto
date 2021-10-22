@@ -1,6 +1,10 @@
-Create the IInvitable interface, which represents classes of users which can be invited via invitations.
-What if the types of users aren't represented by subclasses of User, but by external structures which
-    determine whether a user is of a concrete type (eg: a company stores its representatives, and a
-    user who wants to use the responsibilites of a company has to belong to its list of representatives)
-Correct names of IGenericSender and IGenericReceiver
-Remove IMessageManager on method IGenericReceiver.OnGetMessage
+Diagram:
+    Create the IInvitable interface, which represents classes of users which can be invited via invitations.
+    What if the types of users aren't represented by subclasses of User, but by external structures which
+        determine whether a user is of a concrete type (eg: a company stores its representatives, and a
+        user who wants to use the responsibilites of a company has to belong to its list of representatives)
+    Correct names of IGenericSender and IGenericReceiver
+    Remove IMessageManager on method IGenericReceiver.OnGetMessage
+
+Code:
+    Clean field declaration in classes

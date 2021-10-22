@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Library.HighLevel.Materials;
 
-namespace Library.Companies
+namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents the responsibility of managing material publications.
@@ -8,11 +10,6 @@ namespace Library.Companies
     /// <typeparam name="TId"> The type for the ids of the publications </typeparam>
     public interface IPublisher<TId>
     {
-        /// <summary>
-        /// A protected list of the publications.
-        /// </summary>
-        protected List<MaterialPublication> publications { get; set; }
-
         /// <summary>
         /// A public read-only list of the publications.
         /// </summary>
