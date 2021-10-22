@@ -22,7 +22,7 @@ namespace Library.Core.Distribution
                 // TODO: Write code for non-registered users
                 if(msg.Id is Library.Platforms.Telegram.TelegramId telegramId)
                     Console.WriteLine(telegramId.ChatId);
-                return "You are not a user in this bot 😐";
+                return "You are not a user in this bot.\nUse the command \\start <invitation-code> to register using an invitation.";
             }
         }
     }

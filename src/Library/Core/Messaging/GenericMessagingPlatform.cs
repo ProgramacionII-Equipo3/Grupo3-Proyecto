@@ -19,9 +19,9 @@ namespace Library.Core.Messaging
         }
 
         /// <summary>
-        /// 
+        /// Handles a received message.
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="msg">The received message</param>
         public void OnGetMessage(Message msg)
         {
             Message newMsg = new Message(MessageManager.ProcessMessage(msg), msg.Id);
