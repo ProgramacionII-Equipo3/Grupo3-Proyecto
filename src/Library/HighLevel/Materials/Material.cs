@@ -44,7 +44,7 @@ namespace Library.HighLevel.Materials
         }
 
         /// <summary>
-        /// Creates a <see cref="Material" /> instance, adding it to the collection of materials of its category in the process.
+        /// Creates an instance of <see cref="Material" />, adding it to the collection of materials of its category in the process.
         /// </summary>
         /// <param name="name">The material's name.</param>
         /// <param name="measure">The material's measure.</param>

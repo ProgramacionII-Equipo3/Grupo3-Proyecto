@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
+using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 
 namespace Library.HighLevel.Companies
@@ -9,7 +10,7 @@ namespace Library.HighLevel.Companies
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
     /// </summary>
-    public class Company : IPublisher<uint>, ISentMaterialReportCreator
+    public class Company : IPublisher, ISentMaterialReportCreator
     {
         /// <summary>
         /// The company's name.
@@ -39,24 +40,8 @@ namespace Library.HighLevel.Companies
         public bool HasUser(UserId id) =>
             this.representants.Any(repId => repId == id);
 
-        /// <summary>
-        /// A private list of the company's active publications in the platform.
-        /// </summary>
-        private List<MaterialPublication> publications { get; set; } = new List<MaterialPublication>();
+        List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 
-        /// <summary>
-        /// A public read-only list of the company's active publications in the platform.
-        /// </summary>
-        public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
-
-        public override bool PublishMaterial(Material material, Amount amount, Price price, Location location)
-        {
-//            this.publications.Add(MaterialPublication.)
-        }
-
-        public override bool RemovePublication(uint id)
-        {
-
-        }
+        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
     }
 }

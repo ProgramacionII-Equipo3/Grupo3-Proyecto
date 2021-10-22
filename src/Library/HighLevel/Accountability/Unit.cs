@@ -11,17 +11,17 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The unit's name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
 
         /// <summary>
         /// The unit's abbreviation.
         /// </summary>
-        public string Abbreviation { get; set; }
+        public string Abbreviation { get; }
 
         /// <summary>
         /// A weight associated to the unit to perform conversions with other units of the same measure.
         /// </summary>
-        private double weight { get; set; }
+        private double weight { get; }
 
         /// <summary>
         /// The measure form which the unit is.
@@ -33,11 +33,12 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         internal static List<Unit> values = new List<Unit>();
 
-        private Unit(string name, string abbreviation, Measure measure)
+        internal Unit(string name, string abbreviation, double weight, Measure measure)
         {
             this.Name = name;
             this.Abbreviation = abbreviation;
             this.Measure = measure;
+            this.weight = weight;
 
             values.Add(this);
         }
@@ -49,5 +50,16 @@ namespace Library.HighLevel.Accountability
         /// <returns></returns>
         public Unit GetByAbbr(string abbreviation) =>
             values.Where(unit => unit.Abbreviation == abbreviation).FirstOrDefault();
+
+        /// <summary>
+        /// Calculates the conversion factor to translate measures from a unit to another.
+        /// </summary>
+        /// <param name="fromUnit">The unit of the initial measure.</param>
+        /// <param name="toUnit">The unit of the final measure.</param>
+        /// <returns>The number to multiply to the initial measure's numeric value to get the final measure's numeric value, or null if the units belong to different measures.</returns>
+        public static double? GetConversionFactor(Unit fromUnit, Unit toUnit) =>
+            fromUnit.Measure == toUnit.Measure
+                ? fromUnit.weight / toUnit.weight
+                : null;
     }
 }

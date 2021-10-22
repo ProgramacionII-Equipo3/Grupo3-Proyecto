@@ -19,7 +19,7 @@ namespace Library.Platforms.Telegram
         public long ChatId => this.telegramId;
 
         /// <summary>
-        /// Creates a <see cref="TelegramId" />.
+        /// Creates an instance of <see cref="TelegramId" />.
         /// </summary>
         /// <param name="chatId">The Telegram id.</param>
         public TelegramId(long chatId)
@@ -28,14 +28,12 @@ namespace Library.Platforms.Telegram
         }
 
         /// <summary>
-        /// Compares the equality of two <see cref="UserId" />s.
+        /// Checks the equality two <see cref="UserId" />s.
         /// </summary>
         /// <param name="other">The other id.</param>
         /// <returns>Whether the two ids are equal or not.</returns>
-        public override bool Equals(UserId other)
-        {
-            return other is TelegramId otherTelegram && otherTelegram.telegramId == this.telegramId;
-        }
+        public override bool Equals(UserId other) =>
+            other is TelegramId otherTelegram && otherTelegram.telegramId == this.telegramId;
 
         /// <summary>
         /// Sends a message to a concrete Telegram user.
