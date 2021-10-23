@@ -16,20 +16,8 @@ namespace Library.Core.Messaging
         /// <summary>
         /// Handles the event of receiving a message.
         /// </summary>
-        /// <param name="msg">The message.</param>
-        public void OnGetMessage(Message msg)
-        {
-            Singleton<GenericMessagingPlatform>.Instance.OnGetMessage(msg);
-        }
-
-        /// <summary>
-        /// Handles the event of receiving a message.
-        /// </summary>
         /// <param name="msg">The message's text.</param>
         /// <param name="id">The message's id.</param>
-        public void OnGetMessage(string msg, TId id)
-        {
-            this.OnGetMessage(new Message(msg, this.GetUserId(id)));
-        }
+        public void OnGetMessage(string msg, TId id);
     }
 }

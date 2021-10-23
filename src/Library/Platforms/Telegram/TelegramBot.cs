@@ -9,11 +9,13 @@ namespace Library.Platforms.Telegram
     /// <summary>
     /// This class represents the program's telegram bot.
     /// </summary>
-    public class TelegramBot : IMessageReceiver<long>, IMessageSender<long>
+    public class TelegramBot : MessagingPlatform<long>
     {
-        UserId IMessageReceiver<long>.GetUserId(long id) => new TelegramId(id);
+        /// <inheritdoc />
+        public override UserId GetUserId(long id) => new TelegramId(id);
 
-        async void IMessageSender<long>.SendMessage(string msg, long id)
+        /// <inheritdoc />
+        public override async void SendMessage(string msg, long id)
         {
             await TelegramBot.Instance.Client
                 .SendTextMessageAsync(chatId: id, text: msg)
@@ -24,7 +26,7 @@ namespace Library.Platforms.Telegram
         {
             this.Client = new TelegramBotClient(Secret.TELEGRAM_BOT_TOKEN);
             this.Client.OnMessage += (sender, messageEventArgs) =>
-                (this as IMessageReceiver<long>).OnGetMessage(
+                this.ReceiveMessage(
                     messageEventArgs.Message.Text,
                     messageEventArgs.Message.Chat.Id
                 );
