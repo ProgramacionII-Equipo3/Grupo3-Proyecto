@@ -15,7 +15,7 @@ namespace Library.Platforms.Telegram
         /// <summary>
         /// The id of the user.
         /// </summary>
-        public long ChatId { get; }
+        public readonly long ChatId;
 
         /// <summary>
         /// Creates an instance of <see cref="TelegramId" />.

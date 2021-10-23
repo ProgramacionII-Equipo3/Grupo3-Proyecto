@@ -10,7 +10,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The list of material sales.
         /// </summary>
-        public ReadOnlyCollection<MaterialSalesLine> Lines { get; }
+        public readonly ReadOnlyCollection<MaterialSalesLine> Lines;
 
         /// <summary>
         /// Creates an instance of <see cref="SentMaterialReport"/>.

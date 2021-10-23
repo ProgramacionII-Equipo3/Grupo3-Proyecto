@@ -11,22 +11,22 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The unit's name.
         /// </summary>
-        public string Name { get; }
+        public readonly string Name;
 
         /// <summary>
         /// The unit's abbreviation.
         /// </summary>
-        public string Abbreviation { get; }
+        public readonly string Abbreviation;
 
         /// <summary>
         /// A weight associated to the unit to perform conversions with other units of the same measure.
         /// </summary>
-        private double weight { get; }
+        private readonly double weight;
 
         /// <summary>
         /// The measure form which the unit is.
         /// </summary>
-        public Measure Measure { get; }
+        public readonly Measure Measure;
 
         /// <summary>
         /// The list of available units.

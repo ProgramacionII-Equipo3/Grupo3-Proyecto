@@ -11,22 +11,22 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The sold material.
         /// </summary>
-        public Material Material { get; }
+        public readonly Material Material;
 
         /// <summary>
         /// The amount of sold material.
         /// </summary>
-        public Amount Amount { get; }
+        public readonly Amount Amount;
 
         /// <summary>
         /// The price of the sold material.
         /// </summary>
-        public Price Price { get; }
+        public readonly Price Price;
 
         /// <summary>
         /// The moment the sale happened.
         /// </summary>
-        public DateTime DateTime { get; }
+        public readonly DateTime DateTime;
 
         /// <summary>
         /// The amount of money made from this sale.

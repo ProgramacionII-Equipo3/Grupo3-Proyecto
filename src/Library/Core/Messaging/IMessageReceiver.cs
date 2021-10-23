@@ -1,7 +1,7 @@
 namespace Library.Core.Messaging
 {
     /// <summary>
-    /// This class represents a platform from which the program can receive messages.
+    /// This interface represents a platform from which the program can receive messages.
     /// </summary>
     /// <typeparam name="TId">The type of the ids which identify the users who send the messages.</typeparam>
     public interface IMessageReceiver<TId>

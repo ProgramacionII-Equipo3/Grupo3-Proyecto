@@ -8,12 +8,12 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The numeric value.
         /// </summary>
-        public float Quantity { get; private set; }
+        public readonly float Quantity;
 
         /// <summary>
         /// The currency.
         /// </summary>
-        public Currency Currency { get; private set; }
+        public readonly Currency Currency;
 
         /// <summary>
         /// Creates an instance of <see cref="MoneyQuantity" />

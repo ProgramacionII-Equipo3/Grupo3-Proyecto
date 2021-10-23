@@ -12,12 +12,12 @@ namespace Library.HighLevel.Accountability
         /// The measure's name.
         /// </summary>
         /// <value></value>
-        public string Name { get; }
+        public readonly string Name;
 
         /// <summary>
         /// The measure's available units.
         /// </summary>
-        private Unit[] units { get; }
+        private readonly Unit[] units;
 
         /// <summary>
         /// Creates an instance of <see cref="Measure" />, assigning its units in the process.

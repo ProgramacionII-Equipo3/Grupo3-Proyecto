@@ -12,7 +12,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The category's name.
         /// </summary>
-        public string Name { get; }
+        public readonly string Name;
 
         /// <summary>
         /// The list of existent categories.
@@ -21,7 +21,7 @@ namespace Library.HighLevel.Materials
         public static ReadOnlyCollection<MaterialCategory> Categories = new string[]
         {
             "A", "B", "C"
-        }.Select(name => new MaterialCategory(name)).ToList().AsReadOnly();
+        }.Select(name => new MaterialCategory(name.ToLowerInvariant())).ToList().AsReadOnly();
 
         private List<Material> materials = new List<Material>();
 
@@ -39,6 +39,17 @@ namespace Library.HighLevel.Materials
         internal void addMaterial(Material material)
         {
             this.materials.Add(material);
+        }
+
+        /// <summary>
+        /// Gets a concrete <see cref="MaterialCategory" /> given its name.
+        /// </summary>
+        /// <param name="name">The category's name.</param>
+        /// <returns>An instance of <see cref="MaterialCategory" />.</returns>
+        public Material GetByName(string name)
+        {
+            name = name.ToLowerInvariant();
+            return this.materials.Where(material => material.Name.Equals(name)).FirstOrDefault();
         }
     }
 }
