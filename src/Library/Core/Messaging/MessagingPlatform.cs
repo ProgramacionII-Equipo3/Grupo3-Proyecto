@@ -5,7 +5,7 @@ namespace Library.Core.Messaging
     /// <summary>
     /// This class represents a platform from which the program can send and receive messages.
     /// </summary>
-    /// <typeparam name="TId"></typeparam>
+    /// <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
     public abstract class MessagingPlatform<TId> : IMessageReceiver<TId>, IMessageSender<TId>
     {
         /// <inheritdoc />
