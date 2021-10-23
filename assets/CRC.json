@@ -41,7 +41,7 @@
       "subclasses": "",
       "type": 2,
       "responsibilities": [
-        "Represent a user's state in the program",
+        "Represent a user's state in the program.",
         "Determine the next state and the response message to a received one."
       ],
       "collaborators": [
@@ -55,7 +55,8 @@
       "subclasses": "",
       "type": 1,
       "responsibilities": [
-        "Store information about a program's user (id, current state and additional data)"
+        "Represent the session of a user in the bot.",
+        "Store the information of a program's user (id, current state and additional data)."
       ],
       "collaborators": [
         "UserId",
@@ -69,7 +70,8 @@
       "subclasses": "",
       "type": 2,
       "responsibilities": [
-        "Store the code of an invitation.",
+        "Represent an invitation into the platform.",
+        "Store the code of the invitation.",
         "Handle the event of being validated."
       ],
       "collaborators": [
@@ -108,7 +110,8 @@
       "subclasses": "",
       "type": 1,
       "responsibilities": [
-        "Store the information for a message received from a messaging platform."
+        "Represent a message received from a messaging platform.",
+        "Store the message's text and the id of the user who sent it."
       ],
       "collaborators": [
         "UserId"
@@ -185,10 +188,245 @@
       "subclasses": "",
       "type": 2,
       "responsibilities": [
-        "Store an amount of data pieces that's being given by user input little by little."
+        "Represent a complex form-like set of data through which certain forms of data can be received from user input easily.",
+        "Store an amount of data pieces that are given by user input little by little."
       ],
       "collaborators": [
         "IFromInput"
+      ]
+    },
+    
+    {
+      "name": "Unit",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a measurement unit, with which a certain amount of material can be indicated.",
+        "Store the unit's name and abbreviation.",
+        "Convert units from the same measure."
+      ],
+      "collaborators": [
+        "Measure"
+      ]
+    },
+    {
+      "name": "Measure",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a measure, with which certain materials can be measured.",
+        "Store the measure's name and units."
+      ],
+      "collaborators": [
+        "Unit"
+      ]
+    },
+    {
+      "name": "Habilitation",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent an habilitation of an entrepreneur, with which they gain access to certain materials."
+      ],
+      "collaborators": [
+        "Requirement"
+      ]
+    },
+    {
+      "name": "Requirement",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a requirement to manipulate certain materials.",
+        "Check whether an habilitation meets the requirement or not.",
+        "Check whether a certain set of habilitations meet a certain set of requirements."
+      ],
+      "collaborators": [
+        "Habilitation"
+      ]
+    },
+
+    {
+      "name": "MaterialCategory",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a category of materials."
+      ],
+      "collaborators": [
+        "Material"
+      ]
+    },
+    {
+      "name": "Material",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a material which can be sold by companies and purchased by entrepreneurs.",
+        "Store the material's name, requirements, category, and measure."
+      ],
+      "collaborators": [
+        "Measure",
+        "Requirement",
+        "MaterialCategory"
+      ]
+    },
+    {
+      "name": "Amount",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent an amount of material.",
+        "Store the numeric value and the unit of the amount of material."
+      ],
+      "collaborators": [
+        "Unit"
+      ]
+    },
+    {
+      "name": "Currency",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a currency, with which transactions can be made.",
+        "Store the currency's name and symbol."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "Price",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent the price of a material.",
+        "Store the price's numeric value, currency and unit."
+      ],
+      "collaborators": [
+        "Unit",
+        "Currency"
+      ]
+    },
+    {
+      "name": "Location",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a location in the world.",
+        "Calculate the distance between two locations."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+
+    {
+      "name": "MaterialPublication",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a material publication.",
+        "Store the publication's material, stock, price and pick-up location."
+      ],
+      "collaborators": [
+        "Material",
+        "Amount",
+        "Price",
+        "Location"
+      ]
+    },
+
+    {
+      "name": "MoneyQuantity",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent an amount of money.",
+        "Store its numeric value and currency."
+      ],
+      "collaborators": [
+        "Currency"
+      ]
+    },
+    {
+      "name": "MaterialSalesLine",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a single material sale.",
+        "Store the sale's material, amount, price, moment, and income."
+      ],
+      "collaborators": [
+        "Material",
+        "Amount",
+        "Price",
+        "MoneyQuantity"
+      ]
+    },
+    {
+      "name": "SentMaterialReport",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a report of several material sales."
+      ],
+      "collaborators": [
+        "MaterialSalesLine"
+      ]
+    },
+
+    {
+      "name": "IPublisher",
+      "superclasses": "",
+      "subclasses": "Company",
+      "type": 3,
+      "responsibilities": [
+        "Publish materials into the platform."
+      ],
+      "collaborators": [
+        "MaterialPublication"
+      ]
+    },
+    {
+      "name": "ISentMaterialReportCreator",
+      "superclasses": "",
+      "subclasses": "Company",
+      "type": 3,
+      "responsibilities": [
+        "Create reports of sent materials."
+      ],
+      "collaborators": [
+        "SentMaterialReport",
+        "MaterialSalesLine"
+      ]
+    },
+    {
+      "name": "Company",
+      "superclasses": "IPublisher, ISentMaterialReportCreator",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a company",
+        "Store the company's name, contact information, heading and representants."
+      ],
+      "collaborators": [
+        "UserId",
+        "ContactInfo"
       ]
     }
 ]
