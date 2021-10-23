@@ -33,14 +33,5 @@ namespace Library.Platforms.Telegram
         /// <returns>Whether the two ids are equal or not.</returns>
         public override bool Equals(UserId other) =>
             other is TelegramId otherTelegram && otherTelegram.ChatId == this.ChatId;
-
-        /// <summary>
-        /// Sends a message to a concrete Telegram user.
-        /// </summary>
-        /// <param name="msg">The message.</param>
-        public override void SendMessage(string msg)
-        {
-            (TelegramBot.Instance as IMessageSender<long>).SendMessage(msg, this.ChatId);
-        }
     }
 }

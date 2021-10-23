@@ -5,77 +5,48 @@
       "subclasses": "",
       "type": 2,
       "responsibilities": [
-        "Act as an identifier for a concrete user",
-        "Compare two ids to check if they are equal",
-        "Determine the user who has a concrete id"
+        "Act as a unique identifier for the program's users."
       ],
       "collaborators": [
+        ""
       ]
     },
     {
-      "name": "User",
-      "superclasses": "",
-      "subclasses": "",
-      "type": 2,
-      "responsibilities": [
-        "Store generic information about an user (type and name)",
-        "Store a list of all users",
-        "Send messages to the correspondent user in the platform",
-        "Get the user which corresponds to a certain id"
-      ],
-      "collaborators": [
-        "UserId"
-      ]
-    },
-    {
-      "name": "Message",
-      "superclasses": "",
-      "subclasses": "",
-      "type": 2,
-      "responsibilities": [
-        "Store the text of a message, as well as the sender's id",
-        "Determine which user sent the message"
-      ],
-      "collaborators": [
-        "UserId"
-      ]
-    },
-    {
-      "name": "IState",
-      "superclasses": "",
-      "subclasses": "",
-      "type": 3,
-      "responsibilities": [
-        "Establishes the state of the user in the bot, which determines what to do when they send a message (the state after the message, as well as a message to respond to the user)"
-      ],
-      "collaborators": [
-        "User",
-        "IMessage",
-        "NotificationManager"
-      ]
-    },
-    {
-      "name": "INotification",
-      "superclasses": "",
-      "subclasses": "",
-      "type": 3,
-      "responsibilities": [
-        "Represent information that an user wants to notify to another. For example, if an admin has to be notified that an enterprise they invited has registered successfully, that information is represented as an INotification"
-      ],
-      "collaborators": [
-        "User"
-      ]
-    },
-    {
-      "name": "NotificationManager",
+      "name": "ContactInfo",
       "superclasses": "",
       "subclasses": "",
       "type": 1,
       "responsibilities": [
-        "Organize the sending of notifications between users"
+        "Store an email and telephone number (both optional)."
       ],
       "collaborators": [
-        "INotification"
+        ""
+      ]
+    },
+    {
+      "name": "UserData",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Store a user's name and contact information."
+      ],
+      "collaborators": [
+        "ContactInfo"
+      ]
+    },
+    {
+      "name": "State",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a user's state in the program",
+        "Determine the next state and the response message to a received one."
+      ],
+      "collaborators": [
+        "UserId",
+        "UserData"
       ]
     },
     {
@@ -84,46 +55,63 @@
       "subclasses": "",
       "type": 1,
       "responsibilities": [
-        "Receive the messages from an user, modifying the user's current state and sending notifications to other users when it happens",
-        "Determine which session corresponds to a certain user"
+        "Store information about a program's user (id, current state and additional data)"
       ],
       "collaborators": [
-        "IState",
-        "NotificationManager",
-        "User"
+        "UserId",
+        "UserData",
+        "State"
       ]
     },
     {
-      "name": "IMessageReceiver",
+      "name": "Invitation",
       "superclasses": "",
-      "subclasses": "MessagingPlatform",
-      "type": 3,
-      "responsibilities": [
-        "Handle a message received from a concrete messaging platform"
-      ],
-      "collaborators": [
-      ]
-    },
-    {
-      "name": "IMessageSender",
-      "superclasses": "",
-      "subclasses": "MessagingPlatform",
-      "type": 3,
-      "responsibilities": [
-        "Send a message created by the program through a concrete messaging platform"
-      ],
-      "collaborators": [
-      ]
-    },
-    {
-      "name": "MessagingPlatform",
-      "superclasses": "IMessageReceiver, IMessageSender",
       "subclasses": "",
       "type": 2,
       "responsibilities": [
-        "Represent a messaging platform, through which the program can send and receive messages"
+        "Store the code of an invitation.",
+        "Handle the event of being validated."
       ],
       "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "InvitationManager",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Encapsulate the handling of the program's invitations."
+      ],
+      "collaborators": [
+        "Invitation",
+        "UserId"
+      ]
+    },
+    {
+      "name": "SessionManager",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Encapsulate the handling of the program's user sessions."
+      ],
+      "collaborators": [
+        "UserSession",
+        "UserId"
+      ]
+    },
+    {
+      "name": "Message",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Store the information for a message received from a messaging platform."
+      ],
+      "collaborators": [
+        "UserId"
       ]
     },
     {
@@ -132,11 +120,49 @@
       "subclasses": "",
       "type": 1,
       "responsibilities": [
-        "Send each message to its corresponding UserSession"
+        "Process a received message and determine the response."
       ],
       "collaborators": [
-        "IMessage",
-        "UserSession"
+        "UserSession",
+        "SessionManager",
+        "InvitationManager",
+        "Message"
+      ]
+    },
+    {
+      "name": "IMessageSender",
+      "superclasses": "",
+      "subclasses": "MessagingPlatform",
+      "type": 3,
+      "responsibilities": [
+        "Send messages via a messaging platform."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "IMessageSender",
+      "superclasses": "",
+      "subclasses": "MessagingPlatform",
+      "type": 3,
+      "responsibilities": [
+        "Receive messages via a messaging platform."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "MessagingPlatform",
+      "superclasses": "IMessageSender, IMessageReceiver",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a messaging platform, through which messages can be sent and received."
+      ],
+      "collaborators": [
+        "MessageManager"
       ]
     }
 ]
