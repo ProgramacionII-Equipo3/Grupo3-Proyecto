@@ -1,0 +1,32 @@
+Create a chatbot which offers the service of organizing agreements of recyclable materiales and waste between companies and entrepreneurs.
+
+The chatbot must:
+    Allow admins to:
+        Invite companies to the platform
+    
+    Allow company representatives to:
+        Accept an invitation, giving this information:
+            Name
+            Location
+            Title
+        Publish material offers, giving this information:
+            Stock (and stock unit)
+            Value per unit
+            Pickup location
+            Required habilitations
+            Associated keywords for search
+            Restock expectations:
+                Whether it'll be restocked
+                When it'll be restocked
+        Classify materials
+        Receive a report of all given materials over a period of time
+    
+    Allow entrepreneurs to:
+        Sign up to the platform, giving this information:
+            Name
+            Location
+            Title
+            Habilitations
+            Specializations
+        Search materials via keywords, categories, or locations
+        Receive a report of all received materials over a period of time

@@ -1,6 +1,21 @@
+Design:
+    Which kind of user creates companies into the platform, admins or company representatives?
+        If it's company representatives, how do we determine whether the company they represent exists yet?
+            (Possible answer:
+                Ask for the company name
+                Compare it with the names of existing companies, and gather them in a list
+                For all of the found companies:
+                    Ask whether that company is the one the user represents
+                    If they answer "yes":
+                        Assign them to that company
+                        END
+                Ask for additional data to create a new company
+                Create a new company
+                END
+            )
+
 Diagram:
-    Correct names of IGenericSender and IGenericReceiver
-    Remove IMessageManager on method IGenericReceiver.OnGetMessage
+    Add Admin classes
 
 Code:
-    Clean field declaration in classes
+    ...
