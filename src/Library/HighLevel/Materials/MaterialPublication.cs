@@ -25,7 +25,7 @@ namespace Library.HighLevel.Materials
         /// The publication's pick-up location of material.
         /// </summary>
         public Location PickupLocation { get; private set; }
-
+        
         private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation)
         {
             this.Material = material;
