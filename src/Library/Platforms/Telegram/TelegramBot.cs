@@ -1,30 +1,38 @@
 ﻿using System;
 using Telegram.Bot;
-using Telegram.Bot.Args;
 using Telegram.Bot.Types;
+using Library.Core;
 using Library.Core.Messaging;
+using Message = Library.Core.Message;
 
 namespace Library.Platforms.Telegram
 {
     /// <summary>
     /// This class represents the program's telegram bot.
     /// </summary>
-    public class TelegramBot
+    public class TelegramBot : IMessageReceiver<long>, IMessageSender<long>
     {
 
         private static TelegramBot instance;
         private ITelegramBotClient bot;
 
+        UserId IMessageReceiver<long>.GetUserId(long id) => new TelegramId(id);
+
+        async void IMessageSender<long>.SendMessage(string msg, long id)
+        {
+            await TelegramBot.Instance.Client
+                .SendTextMessageAsync(chatId: id, text: msg)
+                .ConfigureAwait(true);
+        }
+
         private TelegramBot()
         {
             this.bot = new TelegramBotClient(Secret.TELEGRAM_BOT_TOKEN);
-            bot.OnMessage += (sender, messageEventArgs) => {
-                long chatId = messageEventArgs.Message.Chat.Id;
-                string text = messageEventArgs.Message.Text;
-                Singleton<GenericMessagingPlatform>.Instance.OnGetMessage(
-                    new Library.Core.Message(text, new TelegramId(chatId))
+            bot.OnMessage += (sender, messageEventArgs) =>
+                (this as IMessageReceiver<long>).OnGetMessage(
+                    messageEventArgs.Message.Text,
+                    messageEventArgs.Message.Chat.Id
                 );
-            };
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 using Library.Core;
+using Library.Core.Messaging;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
@@ -11,12 +12,10 @@ namespace Library.Platforms.Telegram
     /// </summary>
     public class TelegramId: UserId
     {
-        private long telegramId;
-
         /// <summary>
         /// The id of the user.
         /// </summary>
-        public long ChatId => this.telegramId;
+        public long ChatId { get; }
 
         /// <summary>
         /// Creates an instance of <see cref="TelegramId" />.
@@ -24,7 +23,7 @@ namespace Library.Platforms.Telegram
         /// <param name="chatId">The Telegram id.</param>
         public TelegramId(long chatId)
         {
-            this.telegramId = chatId;
+            this.ChatId = chatId;
         }
 
         /// <summary>
@@ -33,17 +32,15 @@ namespace Library.Platforms.Telegram
         /// <param name="other">The other id.</param>
         /// <returns>Whether the two ids are equal or not.</returns>
         public override bool Equals(UserId other) =>
-            other is TelegramId otherTelegram && otherTelegram.telegramId == this.telegramId;
+            other is TelegramId otherTelegram && otherTelegram.ChatId == this.ChatId;
 
         /// <summary>
         /// Sends a message to a concrete Telegram user.
         /// </summary>
         /// <param name="msg">The message.</param>
-        public override async void SendMessage(string msg)
+        public override void SendMessage(string msg)
         {
-            await TelegramBot.Instance.Client
-                .SendTextMessageAsync(chatId: this.telegramId, text: msg)
-                .ConfigureAwait(true);
+            (TelegramBot.Instance as IMessageSender<long>).SendMessage(msg, this.ChatId);
         }
     }
 }
