@@ -175,7 +175,7 @@
       "subclasses": "",
       "type": 3,
       "responsibilities": [
-        "Represent a data piece which can be given by the user",
+        "Represent a data piece which can be given by the user.",
         "Convert the input into that data piece, process which could result in an error or an interrupt signal."
       ],
       "collaborators": [
@@ -421,7 +421,7 @@
       "subclasses": "",
       "type": 1,
       "responsibilities": [
-        "Represent a company",
+        "Represent a company.",
         "Store the company's name, contact information, heading and representants."
       ],
       "collaborators": [
