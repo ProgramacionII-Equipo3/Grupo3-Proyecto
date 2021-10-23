@@ -13,6 +13,8 @@ Design:
                 Create a new company
                 END
             )
+    
+    Update CRC cards
 
 Diagram:
     Add Admin classes

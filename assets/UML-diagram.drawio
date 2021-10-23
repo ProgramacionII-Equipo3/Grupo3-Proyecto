@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-        <mxGraphModel dx="4295" dy="3758" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="4022" dy="3375" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-0"/>
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0"/>
@@ -342,12 +342,6 @@
                         <mxPoint x="-685" y="-907" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="466" value="" style="endArrow=open;endSize=12;dashed=1;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="549" target="550" edge="1">
-                    <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="158" y="-2279" as="sourcePoint"/>
-                        <mxPoint x="247" y="-2279" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="467" value="" style="endArrow=classic;html=1;jumpSize=6;strokeWidth=20;startArrow=none;startFill=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-186" y="-1956" as="sourcePoint"/>
@@ -400,8 +394,8 @@
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="519" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Static&amp;gt;&amp;gt;&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;CompanyManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;- companies: List&amp;lt;Company&amp;gt;&lt;/u&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ GetCompanyOf(UserId): Company?&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ GetCompaniesWithNamesSimilarTo(string): List&amp;lt;Company&amp;gt;&lt;/u&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="-1215" y="-935" width="341" height="108" as="geometry"/>
+                <mxCell id="519" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Static&amp;gt;&amp;gt;&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;CompanyManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;- companies: List&amp;lt;Company&amp;gt;&lt;/u&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ GetCompanyOf(UserId): Company?&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ GetCompaniesWithNamesSimilarTo(string): List&amp;lt;Company&amp;gt;&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ GetByName(string): Company?&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ CreateCompany(string, ContactInfo, string): Company?&lt;/u&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="-1215" y="-945" width="341" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="520" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="519" target="523" edge="1">
                     <mxGeometry x="0.0045" y="105" width="160" relative="1" as="geometry">
@@ -482,11 +476,8 @@
                 <mxCell id="548" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Unit&lt;/b&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
                     <mxGeometry x="-1667" y="-1192" width="56" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="549" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;IncompleteCompanyRepresentativeState&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- step: ubyte&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: string&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- title: string&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- location: Location&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- phoneNumber: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- email: string&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="-108" y="-2345.5" width="262" height="133" as="geometry"/>
-                </mxCell>
-                <mxCell id="550" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;CompanyRepresentative&lt;/b&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="258" y="-2292" width="156" height="26" as="geometry"/>
+                <mxCell id="549" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;IncompleteCompanyRepresentativeState&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- step: MiddleState&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: string&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="-108" y="-2316" width="262" height="74" as="geometry"/>
                 </mxCell>
                 <mxCell id="551" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;ContactInfo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Email: string&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ PhoneNumber: int&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
                     <mxGeometry x="-413" y="521.38" width="132" height="75.25" as="geometry"/>
@@ -572,6 +563,24 @@
                         <mxPoint x="2494" y="-2149" as="sourcePoint"/>
                         <mxPoint x="2654" y="-2149" as="targetPoint"/>
                         <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="595" value="" style="endArrow=open;endSize=12;dashed=1;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="596" target="597">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="-722.5" y="-2591" as="sourcePoint"/>
+                        <mxPoint x="-722.5" y="-2699" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="596" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Abstract&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;FormState&amp;lt;T&amp;gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- formData: IFormInput[ ]&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ ProcessMessage(UserId, UserData, string): (T, string)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+                    <mxGeometry x="-471" y="-2326.5" width="309" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="597" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IFromInput&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ new()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ GetInput(string): string&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+                    <mxGeometry x="-389.5" y="-2159" width="146" height="112" as="geometry"/>
+                </mxCell>
+                <mxCell id="598" value="" style="endArrow=open;endSize=12;dashed=1;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="549" target="596">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="-306.49999999999955" y="-2221.5" as="sourcePoint"/>
+                        <mxPoint x="-306.50000000000045" y="-2149" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>

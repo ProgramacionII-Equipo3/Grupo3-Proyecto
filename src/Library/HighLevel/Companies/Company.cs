@@ -32,6 +32,14 @@ namespace Library.HighLevel.Companies
         /// </summary>
         private List<UserId> representants = new List<UserId>();
 
+        ///
+        public Company(string name, ContactInfo contactInfo, string heading)
+        {
+            this.Name = name;
+            this.contactInfo = contactInfo;
+            this.Heading = heading;
+        }
+
         /// <summary>
         /// Returns whether a user represents this company.
         /// </summary>
@@ -39,6 +47,13 @@ namespace Library.HighLevel.Companies
         /// <returns>Whether it belongs to the company.</returns>
         public bool HasUser(UserId id) =>
             this.representants.Any(repId => repId == id);
+
+        /// <summary>
+        /// Adds a user into the list of representants.
+        /// </summary>
+        /// <param name="id">The user's id.</param>
+        public void AddUser(UserId id) =>
+            this.representants.Add(id);
 
         List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 

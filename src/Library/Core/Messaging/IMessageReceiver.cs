@@ -18,6 +18,6 @@ namespace Library.Core.Messaging
         /// </summary>
         /// <param name="msg">The message's text.</param>
         /// <param name="id">The message's id.</param>
-        public void OnGetMessage(string msg, TId id);
+        public void ReceiveMessage(string msg, TId id);
     }
 }
