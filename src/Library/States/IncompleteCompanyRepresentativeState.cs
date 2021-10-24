@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
+using Library.Core.States;
 using Library.HighLevel.Companies;
 
 namespace Library.States
@@ -37,6 +38,17 @@ namespace Library.States
 
             company.AddUser(id);
             return (new CompanyRepresentativeState(), "Welcome to the platform. What do you want to do?");
+        }
+
+        public override string GetDefaultResponse()
+        {
+            if(this.middleState == null)
+            {
+                return "Please insert the company's name.";
+            } else
+            {
+                return this.middleState.
+            }
         }
 
         private (MiddleState, string) nextStateGivenCompanyName(string name)

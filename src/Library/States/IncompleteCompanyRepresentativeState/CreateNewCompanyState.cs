@@ -6,7 +6,7 @@ namespace Library.States
 {
     public partial class IncompleteCompanyRepresentativeState
     {
-        private class CreateNewCompanyState : MiddleState
+        private class CreateNewCompanyState : FormState
         {
 
             private byte step = 0;

@@ -1,4 +1,4 @@
-namespace Library.Core
+namespace Library.Core.States
 {
     /// <summary>
     /// This class represents a state of a user session.
