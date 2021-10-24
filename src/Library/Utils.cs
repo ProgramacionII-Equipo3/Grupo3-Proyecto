@@ -7,10 +7,12 @@ namespace Library
     {
         public static bool AreSimilar(string s1, string s2)
         {
+            return true;
         }
 
         public static bool IsValidEmail(string s)
         {
+            return true;
         }
     }
 }

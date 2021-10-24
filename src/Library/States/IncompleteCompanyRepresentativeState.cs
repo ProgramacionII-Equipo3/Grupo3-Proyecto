@@ -10,33 +10,33 @@ namespace Library.States
     /// </summary>
     public partial class IncompleteCompanyRepresentativeState : State
     {
-        private MiddleState step = null;
+        private MiddleState middleState = null;
         private string name;
 
         /// <inheritdoc />
         public override (State, string) ProcessMessage(UserId id, UserData data, string msg)
         {
-            if(this.step == null)
+            if(this.middleState == null)
             {
                 this.name = msg.Trim();
                 var (newStep, response) = this.nextStateGivenCompanyName(this.name);
-                this.step = newStep;
+                this.middleState = newStep;
                 return (this, response);
             }
 
-            var (company, response2) = step.processMessage(msg);
+            var (company, response2) = middleState.processMessage(msg);
             if(company == null)
             {
                 if(response2 == null)
                 {
-                    this.step = null;
+                    this.middleState = null;
                     return (this, "Please insert the name of the company you represent.");
                 }
                 return (this, response2);
             }
 
             company.AddUser(id);
-            return (null, "Welcome to the platform. What do you want to do?");
+            return (new CompanyRepresentativeState(), "Welcome to the platform. What do you want to do?");
         }
 
         private (MiddleState, string) nextStateGivenCompanyName(string name)
@@ -50,7 +50,7 @@ namespace Library.States
                 if(companies.Count > 0)
                     return (new AssignExistingCompanyInListState(this, companies), "The following are a list of companies with a similar name. Which is the one you represent?" + companies.Select(company => "\n" + company.Name));
                 else
-                    return (new CreateNewCompanyState(this), "");
+                    return (new CreateNewCompanyState(this), "Insert the company's heading.");
             }
         }
     }

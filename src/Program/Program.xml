@@ -4,5 +4,15 @@
         <name>Program</name>
     </assembly>
     <members>
+        <member name="T:Grupo3_Proyecto.Program">
+            <summary>
+            The main program.
+            </summary>
+        </member>
+        <member name="M:Grupo3_Proyecto.Program.Main">
+            <summary>
+            Executes the program.
+            </summary>
+        </member>
     </members>
 </doc>

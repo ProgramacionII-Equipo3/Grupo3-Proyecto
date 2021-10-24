@@ -10,6 +10,12 @@ namespace Library.Core.Invitations
         /// </summary>
         public string Code { get; private set; }
 
+        ///
+        public Invitation(string code)
+        {
+            this.Code = code;
+        }
+
         /// <summary>
         /// Validates the invitation, returning the response string for that activity.
         /// </summary>

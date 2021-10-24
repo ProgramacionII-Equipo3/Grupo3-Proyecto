@@ -14,24 +14,24 @@ namespace Library.Core.Distribution
         /// </summary>
         private static List<UserSession> sessions = new List<UserSession>();
 
-        static SessionManager()
-        {
-            sessions.Add(
-                new UserSession(
-                    id: new Library.Platforms.Telegram.TelegramId(1883636472),
-                    userData: new UserData
-                    {
-                        Name = "Santiago De Olivera",
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = "santiagodeolivera@gmail.com",
-                            PhoneNumber = 098553946
-                        }
-                    },
-                    state: new Library.States.InitialMenuState()
-                )
-            );
-        }
+        // static SessionManager()
+        // {
+        //     sessions.Add(
+        //         new UserSession(
+        //             id: new Library.Platforms.Telegram.TelegramId(1883636472),
+        //             userData: new UserData
+        //             {
+        //                 Name = "Santiago De Olivera",
+        //                 ContactInfo = new ContactInfo
+        //                 {
+        //                     Email = "santiagodeolivera@gmail.com",
+        //                     PhoneNumber = 098553946
+        //                 }
+        //             },
+        //             state: new Library.States.InitialMenuState()
+        //         )
+        //     );
+        // }
 
         /// <summary>
         /// Returns the <see cref="UserSession" /> whose id equals to the given one.
@@ -40,5 +40,20 @@ namespace Library.Core.Distribution
         /// <returns>Its corresponding <see cref="UserSession" />, or null if there isn't.</returns>
         public static UserSession GetById(UserId id) =>
             sessions.Where(session => session.Id.Equals(id)).FirstOrDefault();
+
+        /// <summary>
+        /// Adds a new user into the platform.
+        /// </summary>
+        /// <param name="id">The user's id.</param>
+        /// <param name="userData">The user's data.</param>
+        /// <param name="state">The user's initial state.</param>
+        /// <returns>The resulting <see cref="UserSession" />, or null if there's already one.</returns>
+        public static UserSession NewUser(UserId id, UserData userData, State state)
+        {
+            if(GetById(id) != null) return null;
+            UserSession result = new UserSession(id, userData, state);
+            sessions.Add(result);
+            return result;
+        }
     }
 }
