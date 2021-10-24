@@ -10,7 +10,7 @@ namespace Library.Platforms.Telegram
     /// <summary>
     /// This class represents <see cref="UserId" />s of Telegram users.
     /// </summary>
-    public class TelegramId: UserId
+    public class TelegramId : UserId
     {
         /// <summary>
         /// The id of the user.

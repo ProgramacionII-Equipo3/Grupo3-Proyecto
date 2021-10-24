@@ -1,27 +1,38 @@
+using Library.Core;
+using Library.Core.Processing;
 using Library.HighLevel.Companies;
 
 namespace Library.States
 {
     public partial class IncompleteCompanyRepresentativeState
     {
-        private class AssignExistingCompanyState : MiddleState
+        private class AssignExistingCompanyState : IInputProcessor<Company>
         {
             private Company company;
 
-            public AssignExistingCompanyState(IncompleteCompanyRepresentativeState parent, Company company): base(parent)
+            public AssignExistingCompanyState(Company company)
             {
                 this.company = company;
             }
 
-            public override (Company, string) processMessage(string msg)
+            public string GetDefaultResponse() =>
+                $"There's already a company called {this.company.Name}. Is this the company you want to assign to?";
+
+            (Company, string) IInputProcessor<Company>.getResult() => (this.company, null);
+
+            (bool, string) IInputProcessor<Company>.getInput(string msg)
             {
                 msg = msg.Trim().ToLowerInvariant();
                 if(msg == "yes" || msg == "y")
-                    return (company, null);
+                    return (true, null);
                 else if(msg == "no" || msg == "n")
-                    return (null, null);
+                    return (false, null);
                 
-                return (null, "Please answer \"yes\" (\"y\") or \"no\" (\"n\").");
+                return (default, "Please answer \"yes\" (\"y\") or \"no\" (\"n\").");
+            }
+
+            void IInputProcessor<Company>.Reset()
+            {
             }
         }
     }

@@ -14,5 +14,10 @@ namespace Library
         {
             return true;
         }
+
+        public static bool IsValidPhoneNumber(int number)
+        {
+            return true;
+        }
     }
 }

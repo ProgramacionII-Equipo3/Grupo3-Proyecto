@@ -1,4 +1,4 @@
-namespace Library.Core.States
+namespace Library.Core
 {
     /// <summary>
     /// This class represents a state of a user session.
@@ -13,11 +13,5 @@ namespace Library.Core.States
         /// <param name="msg">The message's text.</param>
         /// <returns>The next state and the response message.</returns>
         public abstract (State, string) ProcessMessage(UserId id, UserData data, string msg);
-
-        /// <summary>
-        /// Returns the default response string for this state.
-        /// </summary>
-        /// <returns>A response string.</returns>
-        public abstract string GetDefaultResponse();
     }
 }

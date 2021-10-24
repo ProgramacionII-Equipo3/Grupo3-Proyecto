@@ -207,6 +207,119 @@
             <param name="msg">The received message's text.</param>
             <param name="id">The received message's user id.</param>
         </member>
+        <member name="T:Library.Core.Processing.FormProcessor`1">
+            <summary>
+            Represent a complex form-like set of data through which certain forms of data can be received from user input easily.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Processing.FormProcessor`1.inputHandlers">
+            <summary>
+            The list of input handlers.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Processing.FormProcessor`1.GetDefaultResponse">
+            <summary>
+            Represents the functionality of handling one or more message input until realizing a certain operation successfully,
+            or until the user indicates to stop trying.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Processing.FormProcessor`1.getResult">
+            <summary>
+            Generates the resulting object with the obtained input.
+            </summary>
+            <returns>The resulting object.</returns>
+        </member>
+        <member name="M:Library.Core.Processing.FormProcessor`1.Library#Core#Processing#IInputProcessor{T}#getInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.Core.Processing.IInputHandler">
+            <summary>
+            Represents the functionality of handling one or more message input until realizing a certain operation successfully,
+            or until the user indicates to stop trying.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Processing.IInputHandler.GetInput(System.String)">
+            <summary>
+            Handles a received input message, returning a success signal,
+            a response string (indicating it's not done yet), or an interrupt signal.
+            </summary>
+            <param name="msg">The input message.</param>
+            <returns>
+            (..., response), being response a response string, <br />
+            (true, null) for a success signal, or <br />
+            (false, null) for an interrupt signal.
+            </returns>
+        </member>
+        <member name="M:Library.Core.Processing.IInputHandler.GetDefaultResponse">
+            <summary>
+            Returns the first message the object uses to indicate what kind of input it wants.
+            </summary>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Library.Core.Processing.IInputHandler.Reset">
+            <summary>
+            Resets the processor, so it can be used again.
+            </summary>
+        </member>
+        <member name="T:Library.Core.Processing.IInputProcessor`1">
+            <summary>
+            Represents the functionality of receiving one or more input messages, and generating an object with that input.
+            </summary>
+            <typeparam name="T">The type of the resulting object.</typeparam>
+        </member>
+        <member name="M:Library.Core.Processing.IInputProcessor`1.Reset">
+            <summary>
+            Resets the processor, so it can be used again.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Processing.IInputProcessor`1.GetDefaultResponse">
+            <summary>
+            Returns the first message the object uses to indicate what kind of input it wants.
+            </summary>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Library.Core.Processing.IInputProcessor`1.getInput(System.String)">
+            <summary>
+            Handles a received input message, <br />
+            returning a response string if it's not ready yet, <br />
+            a ready-to-process-signal if it is, or <br />
+            an interrupt signal if the user wants to interrupt the process.
+            </summary>
+            <remarks>
+            After the function returns (true, null) once,
+            it's recommended that it does nothing and always returns (true, null) on subsequent calls.
+            </remarks>
+            <param name="msg">The input message.</param>
+            <returns>
+            (..., response), being response a response string, <br />
+            (true, null) for a ready-to-process signal, or <br />
+            (false, null) for an interrupt signal.
+            </returns>
+        </member>
+        <member name="M:Library.Core.Processing.IInputProcessor`1.getResult">
+            <summary>
+            Generates the resulting object with the obtained input.
+            </summary>
+            <remarks>
+            This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputProcessor`1.getInput(System.String)" /> returns (true, null),
+            which is a signal that the object's ready to produce the result.
+            </remarks>
+            <returns>
+            (result, null), being result the resulting object, or<br />
+            (null, error), being error an error string.
+            </returns>
+        </member>
+        <member name="M:Library.Core.Processing.IInputProcessor`1.ProcessInput(System.String)">
+            <summary>
+            Receives an input message, returning the resulting object if it's ready.
+            </summary>
+            <param name="msg">The input message.</param>
+            <returns>
+            (result, null), being result the resulting object, <br />
+            (null, response), being response a response string, or <br />
+            (null, null) for an interrupt signal.
+            </returns>
+        </member>
         <member name="T:Library.Core.State">
             <summary>
             This class represents a state of a user session.
@@ -781,6 +894,80 @@
             <param name="habilitations">The habilitations to compare with.</param>
             <returns>Whether all the given requirements are satisfied by the given habilitations.</returns>
         </member>
+        <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
+            <summary>
+            This class represents an input processor which takes the result of another one and applies a transformation to it.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,System.ValueTuple{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Creates a pipe processor.
+            </summary>
+            <param name="func">The transformation function.</param>
+            <param name="processor">The inner <see cref="T:Library.Core.Processing.IInputProcessor`1" />.</param>
+            <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.IInputProcessor`1" /> returns.</typeparam>
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1">
+            <summary>
+            Act as a type wrapper for a specific type of <see cref="T:Library.Core.Processing.IInputProcessor`1" />
+            </summary>
+            <typeparam name="T">The type the inner processor returns.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.#ctor(Library.Core.Processing.IInputProcessor{`0})">
+            
+        </member>
+        <member name="T:Library.InputHandlers.BasicInputHandler">
+            <summary>
+            Represents an <see cref="T:Library.Core.Processing.IInputHandler" /> which uses an input processor, and a function to be given its result.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.BasicInputHandler.#ctor(System.Func{System.String,System.ValueTuple{System.Boolean,System.String}},System.Func{System.String},System.Action)">
+            
+        </member>
+        <member name="M:Library.InputHandlers.BasicInputHandler.CreateInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Creates a <see cref="T:Library.InputHandlers.BasicInputHandler" />.
+            </summary>
+            <param name="action">The operation to do with the resulting input.</param>
+            <param name="processor">The input processor.</param>
+            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
+        </member>
+        <member name="T:Library.InputHandlers.BasicStringProcessor">
+            <summary>
+            Generates a string from a single input message, after trimming it.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.BasicStringProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Creates an instance of <see cref="T:Library.InputHandlers.BasicStringProcessor" /> with the given default response getter.
+            </summary>
+            <param name="initialResponseGetter">The default response getter.</param>
+        </member>
+        <member name="T:Library.InputHandlers.EmailProcessor">
+            <summary>
+            Represents a processor who parses an email from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.EmailProcessor.#ctor(System.Func{System.String})">
+            
+        </member>
+        <member name="T:Library.InputHandlers.PhoneNumberProcessor">
+            <summary>
+            Represent an input processor with processes a phone number from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.PhoneNumberProcessor.#ctor(System.Func{System.String})">
+            
+        </member>
+        <member name="T:Library.InputHandlers.UnsignedInt32Processor">
+            <summary>
+            Represent an input processor with processes an integer from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedInt32Processor.#ctor(System.Func{System.String})">
+            
+        </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
@@ -851,6 +1038,21 @@
             <param name="other">The other id.</param>
             <returns>Whether the two ids are equal or not.</returns>
         </member>
+        <member name="T:Library.RefWrapper`1">
+            <summary>
+            This class acts as a boxed wrapped around a valued type,
+            so it can be used in contexts where a class type is expected.
+            </summary>
+            <typeparam name="T">The valued type.</typeparam>
+        </member>
+        <member name="F:Library.RefWrapper`1.value">
+            <summary>
+            The inner value;
+            </summary>
+        </member>
+        <member name="M:Library.RefWrapper`1.#ctor(`0)">
+            
+        </member>
         <member name="T:Library.Singleton`1">
             <summary>
             This class represents classes which are supposed to have only one instance.
@@ -869,17 +1071,6 @@
         </member>
         <member name="M:Library.States.IncompleteCompanyRepresentativeState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
             <inheritdoc />
-        </member>
-        <member name="M:Library.States.IncompleteCompanyRepresentativeState.MiddleState.processMessage(System.String)">
-            <summary>
-            Processes a message, returning a company, a response string, or an interrupt signal.
-            </summary>
-            <param name="msg">The message's text.</param>
-            <returns>
-            (company, null), being company the resulting company,<br/>
-            (null, response), being response the response string, or<br/>
-            (null, null) for an interrupt signal.
-            </returns>
         </member>
         <member name="T:Library.States.InitialMenuState">
             <summary>

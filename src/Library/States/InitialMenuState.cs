@@ -1,5 +1,4 @@
 using Library.Core;
-using Library.Core.States;
 
 namespace Library.States
 {
@@ -12,12 +11,6 @@ namespace Library.States
         public override (State, string) ProcessMessage(UserId id, UserData data, string msg)
         {
             return (this, $"Message sent: {msg}");
-        }
-
-        /// <inheritdoc />
-        public override string GetDefaultResponse()
-        {
-            return "";
         }
     }
 }
