@@ -14,10 +14,10 @@ Design:
                 END
             )
     
-    Update CRC cards
+    Update CRC cards (add result, remove message)
 
 Diagram:
     Add Admin classes
 
 Code:
-    ...
+    Remove Message class

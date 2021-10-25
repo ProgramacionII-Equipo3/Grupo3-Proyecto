@@ -1,3 +1,5 @@
+using System;
+
 namespace Library
 {
     /// <summary>
@@ -38,5 +40,16 @@ namespace Library
         /// <returns>An instance of <see cref="Result{T, E}"/></returns>
         public static Result<T, E> Ok(T successValue) =>
             new Result<T, E>(true, successValue, default);
+
+        /// <summary>
+        /// Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="Result{U, F}" />.
+        /// </summary>
+        /// <param name="successFunc">The function for the success value.</param>
+        /// <param name="errFunc">The function for the error value.</param>
+        /// <typeparam name="U">The type returned by the success function.</typeparam>
+        /// <typeparam name="F">The type returned by the error function.</typeparam>
+        /// <returns></returns>
+        public Result<U, F> Switch<U, F>(Func<T, U> successFunc, Func<E, F> errFunc) =>
+            this.Success ? Result<U, F>.Ok(successFunc(this.successValue)) : Result<U, F>.Err(errFunc(this.errorValue));
     }
 }
