@@ -39,6 +39,6 @@ namespace Library.Core.Distribution
         /// <param name="id">The given id.</param>
         /// <returns>Its corresponding <see cref="UserSession" />, or null if there isn't.</returns>
         public static UserSession GetById(UserId id) =>
-            sessions.Where(session => session.Id.Equals(id)).FirstOrDefault();
+            sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
     }
 }

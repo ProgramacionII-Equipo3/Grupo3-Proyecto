@@ -1,4 +1,5 @@
 using Library.Core;
+using Library.Core.Messaging;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
@@ -11,41 +12,26 @@ namespace Library.Platforms.Telegram
     /// </summary>
     public class TelegramId: UserId
     {
-        private long telegramId;
-
         /// <summary>
         /// The id of the user.
         /// </summary>
-        public long ChatId => this.telegramId;
+        public readonly long ChatId;
 
         /// <summary>
-        /// Creates a <see cref="TelegramId" />.
+        /// Creates an instance of <see cref="TelegramId" />.
         /// </summary>
         /// <param name="chatId">The Telegram id.</param>
         public TelegramId(long chatId)
         {
-            this.telegramId = chatId;
+            this.ChatId = chatId;
         }
 
         /// <summary>
-        /// Compares the equality of two <see cref="UserId" />s.
+        /// Checks the equality two <see cref="UserId" />s.
         /// </summary>
         /// <param name="other">The other id.</param>
         /// <returns>Whether the two ids are equal or not.</returns>
-        public override bool Equals(UserId other)
-        {
-            return other is TelegramId otherTelegram && otherTelegram.telegramId == this.telegramId;
-        }
-
-        /// <summary>
-        /// Sends a message to a concrete Telegram user.
-        /// </summary>
-        /// <param name="msg">The message.</param>
-        public override async void SendMessage(string msg)
-        {
-            await TelegramBot.Instance.Client
-                .SendTextMessageAsync(chatId: this.telegramId, text: msg)
-                .ConfigureAwait(true);
-        }
+        public override bool Equals(UserId other) =>
+            other is TelegramId otherTelegram && otherTelegram.ChatId == this.ChatId;
     }
 }

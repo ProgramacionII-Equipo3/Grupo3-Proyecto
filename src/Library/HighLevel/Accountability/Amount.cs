@@ -8,14 +8,19 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The numeric value in the amount.
         /// </summary>
-        public float Quantity { get; private set; }
+        public readonly float Quantity;
 
         /// <summary>
         /// The unit used in the amount.
         /// </summary>
         /// <value></value>
-        public Unit Unit { get; private set; }
+        public readonly Unit Unit;
 
+        /// <summary>
+        /// Creates an instance of <see cref="Amount" />.
+        /// </summary>
+        /// <param name="quantity">The numeric value.</param>
+        /// <param name="unit">The unit.</param>
         public Amount(float quantity, Unit unit)
         {
             this.Quantity = quantity;

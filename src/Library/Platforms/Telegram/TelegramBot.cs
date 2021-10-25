@@ -1,7 +1,7 @@
 ﻿using System;
 using Telegram.Bot;
-using Telegram.Bot.Args;
 using Telegram.Bot.Types;
+using Library.Core;
 using Library.Core.Messaging;
 
 namespace Library.Platforms.Telegram
@@ -9,79 +9,50 @@ namespace Library.Platforms.Telegram
     /// <summary>
     /// This class represents the program's telegram bot.
     /// </summary>
-    public class TelegramBot
+    public class TelegramBot : MessagingPlatform<long>
     {
+        /// <inheritdoc />
+        public override UserId GetUserId(long id) => new TelegramId(id);
 
-        private static TelegramBot instance;
-        private ITelegramBotClient bot;
+        /// <inheritdoc />
+        public override async void SendMessage(string msg, long id)
+        {
+            await TelegramBot.Instance.Client
+                .SendTextMessageAsync(chatId: id, text: msg)
+                .ConfigureAwait(true);
+        }
 
         private TelegramBot()
         {
-            this.bot = new TelegramBotClient(Secret.TELEGRAM_BOT_TOKEN);
-            bot.OnMessage += (sender, messageEventArgs) => {
-                long chatId = messageEventArgs.Message.Chat.Id;
-                string text = messageEventArgs.Message.Text;
-                Singleton<GenericMessagingPlatform>.Instance.OnGetMessage(
-                    new Library.Core.Message(text, new TelegramId(chatId))
+            this.Client = new TelegramBotClient(Secret.TELEGRAM_BOT_TOKEN);
+            this.Client.OnMessage += (sender, messageEventArgs) =>
+                this.ReceiveMessage(
+                    messageEventArgs.Message.Text,
+                    messageEventArgs.Message.Chat.Id
                 );
-            };
         }
 
         /// <summary>
         /// The <see cref="ITelegramBotClient" /> which is used to send and receive messages.
         /// </summary>
-        public ITelegramBotClient Client
-        {
-            get
-            {
-                return this.bot;
-            }
-        }
+        public readonly ITelegramBotClient Client;
 
-        private User BotInfo
-        {
-            get
-            {
-                return this.Client.GetMeAsync().Result;
-            }
-        }
+        private User BotInfo => this.Client.GetMeAsync().Result;
 
         /// <summary>
         /// The bot's Telegram id.
         /// </summary>
-        public long BotId
-        {
-            get
-            {
-                return this.BotInfo.Id;
-            }
-        }
+        public long BotId => this.BotInfo.Id;
 
         /// <summary>
         /// The bot's Telegram name.
         /// </summary>
-        public string BotName
-        {
-            get
-            {
-                return this.BotInfo.FirstName;
-            }
-        }
+        public string BotName => this.BotInfo.FirstName;
 
         /// <summary>
         /// The <see cref="TelegramBot" /> class' single instance.
         /// </summary>
-        public static TelegramBot Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new TelegramBot();
-                }
-                return instance;
-            }
-        }
+        public static readonly TelegramBot Instance = new TelegramBot();
 
         /// <summary>
         /// Starts receiving messages until a certain function (which blocks the thread) returns.
@@ -89,9 +60,9 @@ namespace Library.Platforms.Telegram
         /// <param name="blockingAction">The function which blocks the thread.</param>
         public void ReceiveMessages(Action blockingAction)
         {
-            this.bot.StartReceiving();
+            this.Client.StartReceiving();
             blockingAction();
-            this.bot.StopReceiving();
+            this.Client.StopReceiving();
         }
     }
 }

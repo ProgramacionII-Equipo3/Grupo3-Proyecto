@@ -18,10 +18,10 @@
     "subclasses": "",
     "type": 1,
     "responsibilities": [
-      "Store data about a company's material sending, as well as the entrepeneur who received it"
+      "Store data about a company's material sending, as well as the entrepreneur who received it"
     ],
     "collaborators": [
-      "Entrepeneur",
+      "Entrepreneur",
       "Location"
     ]
   },
@@ -31,7 +31,7 @@
     "subclasses": "",
     "type": 1,
     "responsibilities": [
-      "Store data about an entrepeneur's material reception, as well as the company who sent it"
+      "Store data about an entrepreneur's material reception, as well as the company who sent it"
     ],
     "collaborators": [
       "Company",
@@ -39,12 +39,12 @@
     ]
   },
   {
-    "name": "EntrepeneurReport",
+    "name": "EntrepreneurReport",
     "superclasses": "",
     "subclasses": "",
     "type": 1,
     "responsibilities": [
-      "Store a list of materials received by an entrepeneur"
+      "Store a list of materials received by an entrepreneur"
     ],
     "collaborators": [
       "ReceivedMaterialReport"
@@ -88,18 +88,18 @@
     ]
   },
   {
-    "name": "Entrepeneur",
+    "name": "Entrepreneur",
     "superclasses": "",
     "subclasses": "",
     "type": 1,
     "responsibilities": [
-      "Store data about an entrepeneur (name, location, title, habilitations, and specializations)",
-      "Create a report of all materials the entrepeneur received over a period of time"
+      "Store data about an entrepreneur (name, location, title, habilitations, and specializations)",
+      "Create a report of all materials the entrepreneur received over a period of time"
     ],
     "collaborators": [
       "Location",
       "Habilitation",
-      "EntrepeneurReport"
+      "EntrepreneurReport"
     ]
   },
   {
@@ -200,7 +200,7 @@
     ],
     "collaborators": [
       "Material",
-      "Entrepeneur"
+      "Entrepreneur"
     ]
   },
   {
