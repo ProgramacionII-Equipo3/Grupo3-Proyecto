@@ -58,5 +58,11 @@ namespace Library.HighLevel.Materials
             category.addMaterial(result);
             return result;
         }
+
+        /// <summary>
+        /// Checks whether this material has a concrete name.
+        /// </summary>
+        /// <param name="name">The name to compare with.</param>
+        public bool MatchesName(string name) => this.Name == name;
     }
 }

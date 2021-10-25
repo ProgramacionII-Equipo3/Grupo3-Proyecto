@@ -49,7 +49,7 @@ namespace Library.HighLevel.Materials
         public Material GetByName(string name)
         {
             name = name.ToLowerInvariant();
-            return this.materials.Where(material => material.Name.Equals(name)).FirstOrDefault();
+            return this.materials.Where(material => material.MatchesName(name)).FirstOrDefault();
         }
     }
 }

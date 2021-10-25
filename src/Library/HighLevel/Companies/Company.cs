@@ -46,7 +46,7 @@ namespace Library.HighLevel.Companies
         /// <param name="id">The user's id.</param>
         /// <returns>Whether it belongs to the company.</returns>
         public bool HasUser(UserId id) =>
-            this.representants.Any(repId => repId == id);
+            this.representants.Any(repId => repId.Equals(id));
 
         /// <summary>
         /// Adds a user into the list of representants.
