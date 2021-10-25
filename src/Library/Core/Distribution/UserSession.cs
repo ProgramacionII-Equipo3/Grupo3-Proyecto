@@ -47,5 +47,11 @@ namespace Library.Core.Distribution
             this.state = newState;
             return res;
         }
+
+        /// <summary>
+        /// Checks whether this <see cref="UserSession" /> has a concrete <see cref="UserId" />.
+        /// </summary>
+        /// <param name="id">The id to compare with.</param>
+        public bool MatchesId(UserId id) => this.Id.Equals(id);
     }
 }
