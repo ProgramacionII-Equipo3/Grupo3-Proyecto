@@ -20,9 +20,9 @@ namespace Library.InputHandlers
             this.initialResponseGetter = initialResponseGetter;
         }
 
-        string IInputProcessor<BoxedInt>.GetDefaultResponse() => (this.initialResponseGetter)();
+        string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
-        (bool, string) IInputProcessor<BoxedInt>.getInput(string msg)
+        (bool, string) IInputHandler.GetInput(string msg)
         {
             if(string.IsNullOrWhiteSpace(msg)) return (default, "A number was expected.");
             int result;
@@ -36,7 +36,7 @@ namespace Library.InputHandlers
 
         (BoxedInt, string) IInputProcessor<BoxedInt>.getResult() => (this.result, null);
 
-        void IInputProcessor<BoxedInt>.Reset()
+        void IInputHandler.Reset()
         {
             this.result = null;
         }

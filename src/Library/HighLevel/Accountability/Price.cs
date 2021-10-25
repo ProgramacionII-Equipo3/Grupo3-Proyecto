@@ -18,7 +18,6 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The unit of material measurement with which the price is determined.
         /// </summary>
-        /// <value></value>
         public Unit Unit { get; private set; }
 
         /// <summary>

@@ -20,7 +20,6 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The publication's price of the material.
         /// </summary>
-        /// <value></value>
         public Price Price { get; private set; }
 
         /// <summary>

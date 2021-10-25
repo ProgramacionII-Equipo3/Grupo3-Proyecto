@@ -17,9 +17,9 @@ namespace Library.InputHandlers.Abstractions
             this.innerProcessor = innerProcessor;
         }
 
-        string IInputProcessor<T>.GetDefaultResponse() => this.innerProcessor.GetDefaultResponse();
+        string IInputHandler.GetDefaultResponse() => this.innerProcessor.GetDefaultResponse();
 
-        (bool, string) IInputProcessor<T>.getInput(string msg)
+        (bool, string) IInputHandler.GetInput(string msg)
         {
             if(this.result != null) return (true, null);
 
@@ -32,7 +32,7 @@ namespace Library.InputHandlers.Abstractions
 
         (T, string) IInputProcessor<T>.getResult() => (this.result, null);
 
-        void IInputProcessor<T>.Reset()
+        void IInputHandler.Reset()
         {
             this.result = null;
             this.innerProcessor.Reset();

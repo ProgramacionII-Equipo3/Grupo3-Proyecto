@@ -27,7 +27,7 @@ namespace Library.Core.Processing
         /// <returns>The resulting object.</returns>
         protected abstract (T, string) getResult();
 
-        void IInputProcessor<T>.Reset()
+        void IInputHandler.Reset()
         {
             foreach(IInputHandler handler in this.inputHandlers)
                 handler.Reset();
@@ -37,7 +37,7 @@ namespace Library.Core.Processing
         (T, string) IInputProcessor<T>.getResult() => this.getResult();
         
         /// <inheritdoc />
-        (bool, string) IInputProcessor<T>.getInput(string msg)
+        (bool, string) IInputHandler.GetInput(string msg)
         {
             var (ready, response) = this.currentHandler.GetInput(msg);
             if(response != null) return (default, response);

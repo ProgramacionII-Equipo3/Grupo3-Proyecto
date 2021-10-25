@@ -17,7 +17,6 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The list of existent categories.
         /// </summary>
-        /// <value></value>
         public static ReadOnlyCollection<MaterialCategory> Categories = new string[]
         {
             "A", "B", "C"

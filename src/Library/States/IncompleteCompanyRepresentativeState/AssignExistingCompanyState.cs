@@ -20,7 +20,7 @@ namespace Library.States
 
             (Company, string) IInputProcessor<Company>.getResult() => (this.company, null);
 
-            (bool, string) IInputProcessor<Company>.getInput(string msg)
+            (bool, string) IInputHandler.GetInput(string msg)
             {
                 msg = msg.Trim().ToLowerInvariant();
                 if(msg == "yes" || msg == "y")
@@ -31,7 +31,7 @@ namespace Library.States
                 return (default, "Please answer \"yes\" (\"y\") or \"no\" (\"n\").");
             }
 
-            void IInputProcessor<Company>.Reset()
+            void IInputHandler.Reset()
             {
             }
         }

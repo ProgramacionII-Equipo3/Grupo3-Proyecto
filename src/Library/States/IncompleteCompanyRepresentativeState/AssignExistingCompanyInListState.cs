@@ -24,7 +24,7 @@ namespace Library.States
 
             (Company, string) IInputProcessor<Company>.getResult() => (this.chosenCompany, null);
 
-            (bool, string) IInputProcessor<Company>.getInput(string msg)
+            (bool, string) IInputHandler.GetInput(string msg)
             {
                 if(msg == "/esc")
                     return (false, null);
@@ -40,7 +40,7 @@ namespace Library.States
                 return (default, "That name is not on the list.");
             }
 
-            void IInputProcessor<Company>.Reset()
+            void IInputHandler.Reset()
             {
                 this.chosenCompany = null;
             }
