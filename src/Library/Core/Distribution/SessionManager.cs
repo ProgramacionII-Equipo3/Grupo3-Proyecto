@@ -40,8 +40,7 @@ namespace Library.Core.Distribution
         /// <param name="id">The given id.</param>
         /// <returns>Its corresponding <see cref="UserSession" />, or null if there isn't.</returns>
         public static UserSession GetById(UserId id) =>
-<<<<<<< HEAD
-            sessions.Where(session => session.Id.Equals(id)).FirstOrDefault();
+            sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
 
         /// <summary>
         /// Adds a new user into the platform.
@@ -57,8 +56,5 @@ namespace Library.Core.Distribution
             sessions.Add(result);
             return result;
         }
-=======
-            sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
->>>>>>> b2a920e097eca6c9536beffc29a0154d437e95fe
     }
 }
