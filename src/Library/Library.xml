@@ -869,15 +869,15 @@
             <summary>
             This method returns True if both strings are equals.
             </summary>
-            <param name="s1">String to compare</param>
-            <param name="s2">Other String to compare</param>
+            <param name="s1">String to compare.</param>
+            <param name="s2">Other String to compare.</param>
             <returns></returns>
         </member>
         <member name="M:Library.Utils.IsValidEmail(System.String)">
             <summary>
             This method check if a email is valid.
             </summary>
-            <param name="s">The email to check</param>
+            <param name="s">The email to check.</param>
             <returns></returns>
         </member>
     </members>

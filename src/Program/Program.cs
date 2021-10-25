@@ -24,7 +24,7 @@ namespace Grupo3_Proyecto
                     Console.ReadLine();
                 }
             ); */
-            Console.WriteLine(Utils.IsValidEmail("martin.caraballo@correo.ucu.edu....uy"));
+            Console.WriteLine($"El email es: {Utils.IsValidEmail("martin.caraballo@correo.ucu.edu.uy")}");
         }
     }
 }
