@@ -871,14 +871,14 @@
             </summary>
             <param name="s1">String to compare.</param>
             <param name="s2">Other String to compare.</param>
-            <returns></returns>
+            <returns>Boolean.</returns>
         </member>
         <member name="M:Library.Utils.IsValidEmail(System.String)">
             <summary>
             This method check if a email is valid.
             </summary>
             <param name="s">The email to check.</param>
-            <returns></returns>
+            <returns>Boolean.</returns>
         </member>
     </members>
 </doc>

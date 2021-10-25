@@ -1,4 +1,3 @@
-using System;
 namespace Library
 {
     /// <summary>
@@ -11,7 +10,7 @@ namespace Library
         /// </summary>
         /// <param name="s1">String to compare.</param>
         /// <param name="s2">Other String to compare.</param>
-        /// <returns></returns>
+        /// <returns>Boolean.</returns>
         public static bool AreSimilar(string s1, string s2)
         {
             bool areEqual = string.Equals(s1, s2, System.StringComparison.OrdinalIgnoreCase);
@@ -22,7 +21,7 @@ namespace Library
         /// This method check if a email is valid.
         /// </summary>
         /// <param name="s">The email to check.</param>
-        /// <returns></returns>
+        /// <returns>Boolean.</returns>
         public static bool IsValidEmail(string s)
         {
             if (s.Contains("@"))
@@ -30,7 +29,7 @@ namespace Library
                 string[] mailSplitted = s.Split("@");
                 string[] invalids = { "!", "¡" ,"¿", "?", "#", "´", "+", "-", "<", ">", "&", "/", "*", "[", "]", "{", "}", "$", "|", "°", ";", ":", "=", "," };
                 char[] invalidFirst = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-                if(mailSplitted.Length == 2)
+                if (mailSplitted.Length == 2)
                 {
                     // This verificates the string before the "@"
                     foreach (var invalidCaracter in invalids)
@@ -67,13 +66,12 @@ namespace Library
                     }
 
                     // This verificates the string after the "@".
-                    foreach(var invalidCaracter in invalids)
+                    foreach (var invalidCaracter in invalids)
                     {
-                        if(mailSplitted[1].Contains(invalidCaracter))
+                        if (mailSplitted[1].Contains(invalidCaracter))
                         {
                             return false;
                         }
-
                     }
 
                     return true;
