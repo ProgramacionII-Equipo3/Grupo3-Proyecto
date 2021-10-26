@@ -55,5 +55,22 @@ namespace Library
                 v => v,
                 () => throw new ArgumentNullException("value", "attempting to retrieve value from None")
             );
+
+        /// <summary>
+        /// Passes the inner value (if there is), and returns the result in a new <see cref="Option{T}" />.
+        /// </summary>
+        /// <param name="someFunc">The function for the value.</param>
+        /// <typeparam name="U">The type returned by the function.</typeparam>
+        public Option<U> MapValue<U>(Func<T, U> someFunc) =>
+            this.Map(
+                v => Option<U>.From(someFunc(v)),
+                () => Option<U>.None
+            );
+        
+        ///
+        public static implicit operator Option<NotNull<T>>(Option<T> option) => NotNull<T>.FromOption(option);
+
+        ///
+        public static implicit operator Option<T>(Option<NotNull<T>> option) => option.MapValue<T>(v => v.Value);
     }
 }
