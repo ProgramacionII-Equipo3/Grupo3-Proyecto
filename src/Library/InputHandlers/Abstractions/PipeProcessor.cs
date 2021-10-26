@@ -6,6 +6,7 @@ namespace Library.InputHandlers.Abstractions
     /// <summary>
     /// This class represents an input processor which takes the result of another one and applies a transformation to it.
     /// </summary>
+    /// <typeparam name="T">The type of the resulting object.</typeparam>
     public class PipeProcessor<T> : IInputProcessor<T>
     {
         private readonly Func<string> initialResponseGetter;

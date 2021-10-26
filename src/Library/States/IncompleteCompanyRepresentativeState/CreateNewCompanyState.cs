@@ -25,19 +25,19 @@ namespace Library.States
                 this.parent = parent;
                 this.inputHandlers = new IInputHandler[]
                 {
-                    BasicInputHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInstance<string>(
                         s => this.heading = s,
                         new BasicStringProcessor(() => "Please insert the company's heading.")
                     ),
-                    BasicInputHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInstance<string>(
                         s => this.location = s,
                         new BasicStringProcessor(() => "Please insert the company's location.")
                     ),
-                    BasicInputHandler.CreateInstance<BoxedInt>(
+                    ProcessorHandler.CreateInstance<BoxedInt>(
                         n => this.phoneNumber = n.value,
                         new UnsignedInt32Processor(() => "Please insert the company's phone number.")
                     ),
-                    BasicInputHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInstance<string>(
                         s => this.email = s,
                         new EmailProcessor(() => "Please insert the company's email.")
                     )
