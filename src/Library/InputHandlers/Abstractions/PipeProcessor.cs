@@ -10,11 +10,11 @@ namespace Library.InputHandlers.Abstractions
     public class PipeProcessor<T> : IInputProcessor<T>
     {
         private readonly Func<string> initialResponseGetter;
-        private Func<string, Result<T, string>?> inputHandler;
+        private Func<string, Option<Result<T, string>>> inputHandler;
         private Action resetter;
         private T result = default;
 
-        private PipeProcessor(Func<string> initialResponseGetter, Func<string, Result<T, string>?> inputHandler, Action resetter)
+        private PipeProcessor(Func<string> initialResponseGetter, Func<string, Option<Result<T, string>>> inputHandler, Action resetter)
         {
             this.initialResponseGetter = initialResponseGetter;
             this.inputHandler = inputHandler;
@@ -63,20 +63,22 @@ namespace Library.InputHandlers.Abstractions
                 {
                     if (processor.GenerateFromInput(s) is Result<U, string> midResult)
                     {
-                        return midResult.AndThen<T>(
-                            result => func(result).Switch(
-                                v => v,
-                                e =>
-                                {
-                                    processor.Reset();
-                                    return $"{e}\n{processor.GetDefaultResponse()}";
-                                }
+                        return Option<Result<T, string>>.From(
+                            midResult.AndThen<T>(
+                                result => func(result).Switch(
+                                    v => v,
+                                    e =>
+                                    {
+                                        processor.Reset();
+                                        return $"{e}\n{processor.GetDefaultResponse()}";
+                                    }
+                                )
                             )
                         );
                     }
                     else
                     {
-                        return null;
+                        return Option<Result<T, string>>.None();
                     }
                 },
                 resetter: processor.Reset

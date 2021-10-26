@@ -25,21 +25,21 @@ namespace Library.States
                 return (this, response);
             }
 
-            if(companyGetter.GenerateFromInput(msg) is Result<Company, string> result)
-            {
-                return result.Map(
+            return companyGetter.GenerateFromInput(msg).Map(
+                result => result.Map(
                     company =>
                     {
                         company.AddUser(id);
                         return (null, "Welcome to the platform. What do you want to do?");
                     },
                     e => (this, e)
-                );
-            } else
-            {
-                this.companyGetter = null;
-                return (this, this.getDefaultResponse());
-            }
+                ),
+                () =>
+                {
+                    this.companyGetter = null;
+                    return (this, this.getDefaultResponse());
+                }
+            );
         }
 
         private string getDefaultResponse()

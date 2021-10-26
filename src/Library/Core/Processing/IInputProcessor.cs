@@ -28,25 +28,27 @@ namespace Library.Core.Processing
         /// (null, response), being response a response string, or <br />
         /// (null, null) for an interrupt signal.
         /// </returns>
-        public Result<T, string>? GenerateFromInput(string msg) =>
-            this.ProcessInput(msg).Map<Result<T, string>?>(
+        public Option<Result<T, string>> GenerateFromInput(string msg) =>
+            this.ProcessInput(msg).Map<Option<Result<T, string>>>(
                 ready =>
                 {
                     if (ready)
                     {
                         Result<T, string> result = this.getResult();
-                        return result.Map(
-                            result => Result<T, string>.Ok(result),
-                            error =>
-                            {
-                                this.Reset();
-                                return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
-                            }
+                        return Option<Result<T, string>>.From(
+                            result.Map(
+                                result => Result<T, string>.Ok(result),
+                                error =>
+                                {
+                                    this.Reset();
+                                    return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
+                                }
+                            )
                         );
                     }
-                    else return null;
+                    else return Option<Result<T, string>>.None();
                 },
-                e => Result<T, string>.Err(e)
+                e => Option<Result<T, string>>.From(Result<T, string>.Err(e))
             );
     }
 }

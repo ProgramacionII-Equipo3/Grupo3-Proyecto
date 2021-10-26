@@ -31,7 +31,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The amount of money made from this sale.
         /// </summary>
-        public MoneyQuantity Income => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Value;
+        public MoneyQuantity Income => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
 
         /// <summary>
         /// Creates an instance of <see cref="MaterialSalesLine" />.
