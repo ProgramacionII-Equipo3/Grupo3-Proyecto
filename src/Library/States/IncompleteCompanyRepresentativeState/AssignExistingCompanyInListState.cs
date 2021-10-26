@@ -22,22 +22,22 @@ namespace Library.States
                 "The following are a list of companies with a similar name. Which is the one you represent?"
                 + this.companies.Select(company => "\n" + company.Name);
 
-            (Company, string) IInputProcessor<Company>.getResult() => (this.chosenCompany, null);
+            Result<Company, string> IInputProcessor<Company>.getResult() => Result<Company, string>.Ok(this.chosenCompany);
 
-            (bool, string) IInputHandler.ProcessInput(string msg)
+            Result<bool, string> IInputHandler.ProcessInput(string msg)
             {
                 if(msg == "/esc")
-                    return (false, null);
+                    return Result<bool, string>.Ok(false);
 
                 msg = msg.Trim();
 
                 if(companies.Where(company => company.Name == msg).FirstOrDefault() is Company result)
                 {
                     this.chosenCompany = result;
-                    return (true, null);
+                    return Result<bool, string>.Ok(true);
                 }
                 
-                return (default, "That name is not on the list.");
+                return Result<bool, string>.Err("That name is not on the list.");
             }
 
             void IInputHandler.Reset()

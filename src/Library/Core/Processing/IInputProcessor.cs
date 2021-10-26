@@ -17,7 +17,7 @@ namespace Library.Core.Processing
         /// (result, null), being result the resulting object, or<br />
         /// (null, error), being error an error string.
         /// </returns>
-        protected (T, string) getResult();
+        protected Result<T, string> getResult();
 
         /// <summary>
         /// Receives an input message, returning the resulting object if it's ready.
@@ -34,13 +34,15 @@ namespace Library.Core.Processing
                 {
                     if (ready)
                     {
-                        var (result, error) = this.getResult();
-                        if (error != null)
-                        {
-                            this.Reset();
-                            return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
-                        }
-                        return Result<T, string>.Ok(result);
+                        Result<T, string> result = this.getResult();
+                        return result.Map(
+                            result => Result<T, string>.Ok(result),
+                            error =>
+                            {
+                                this.Reset();
+                                return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
+                            }
+                        );
                     }
                     else return null;
                 },

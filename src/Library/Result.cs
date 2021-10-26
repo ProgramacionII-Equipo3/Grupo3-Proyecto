@@ -64,9 +64,19 @@ namespace Library
                 e => Result<U, F>.Err(errFunc(e))
             );
 
+        /// <summary>
+        /// Passes the success value through a function if there is, returning a new <see cref="Result{U, E}" /> with it.
+        /// </summary>
+        /// <param name="successFunc">The function for the success value.</param>
+        /// <typeparam name="U">The type of the new success value.</typeparam>
         public Result<U, E> SwitchOk<U>(Func<T, U> successFunc) =>
             this.Switch(successFunc, e => e);
 
+        /// <summary>
+        /// Passes the error value through a function if there is, returning a new <see cref="Result{T, F}" /> with it.
+        /// </summary>
+        /// <param name="errFunc">The function for the error value.</param>
+        /// <typeparam name="F">The type of the new error value.</typeparam>
         public Result<T, F> SwitchErr<F>(Func<E, F> errFunc) =>
             this.Switch(v => v, errFunc);
 

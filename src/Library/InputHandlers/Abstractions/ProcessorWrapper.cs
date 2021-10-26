@@ -37,7 +37,7 @@ namespace Library.InputHandlers.Abstractions
             }
         }
 
-        (T, string) IInputProcessor<T>.getResult() => (this.result, null);
+        Result<T, string> IInputProcessor<T>.getResult() => Result<T, string>.Ok(this.result);
 
         void IInputHandler.Reset()
         {

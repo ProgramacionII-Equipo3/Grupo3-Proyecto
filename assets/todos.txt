@@ -1,11 +1,15 @@
 Design:
-
+    Add a class which implements IInputProcessor<T>, and generates the object from only one message.
+    Add a way to generalize the process of processing multiple-option input.
+    
 Diagram:
-    Create CRC cards and diagrams for classes related to entrepreneur and admin
+    Create CRC cards and diagrams for classes related to entrepreneur and admin.
 
 Code:
-    Finish creating Result struct
+    Finish creating Result struct.
         Modify IInputHandler, IInputProcessor, and FormProcessor, so they utilize the new Result struct instead of a tuple of nullables.
+    Finish creating Optional struct
+        Modify the code so they utilize Optional.
     Elaborate unit tests for every class in the program:
         UserId
         ContactInfo

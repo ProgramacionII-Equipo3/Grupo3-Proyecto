@@ -39,7 +39,7 @@ namespace Library.InputHandlers.Abstractions
             }
         }
 
-        (T, string) IInputProcessor<T>.getResult() => (this.result, null);
+        Result<T, string> IInputProcessor<T>.getResult() => Result<T, string>.Ok(this.result);
 
         string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
@@ -55,7 +55,7 @@ namespace Library.InputHandlers.Abstractions
         /// <param name="func">The transformation function.</param>
         /// <param name="processor">The inner <see cref="IInputProcessor{T}" />.</param>
         /// <typeparam name="U">The type of the objects the inner <see cref="IInputProcessor{T}" /> returns.</typeparam>
-        public static PipeProcessor<T> CreateInstance<U>(Func<U, Result<T, string>> func, IInputProcessor<U> processor) where U : class
+        public static PipeProcessor<T> CreateInstance<U>(Func<U, Result<T, string>> func, IInputProcessor<U> processor)
         {
             return new PipeProcessor<T>(
                 initialResponseGetter: processor.GetDefaultResponse,

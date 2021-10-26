@@ -26,7 +26,7 @@ namespace Library.InputHandlers
         /// <param name="action">The operation to do with the resulting input.</param>
         /// <param name="processor">The input processor.</param>
         /// <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
-        public static ProcessorHandler CreateInstance<T>(Action<T> action, IInputProcessor<T> processor) where T: class
+        public static ProcessorHandler CreateInstance<T>(Action<T> action, IInputProcessor<T> processor)
         {
             return new ProcessorHandler (
                 inputHandler: s =>

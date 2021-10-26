@@ -22,14 +22,14 @@ namespace Library.InputHandlers
 
         string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
-        (bool, string) IInputHandler.ProcessInput(string msg)
+        Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
-            if(string.IsNullOrWhiteSpace(msg)) return (default, "A valid string was expected.");
+            if(string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A valid string was expected.");
             this.result = msg.Trim();
-            return (true, null);
+            return Result<bool, string>.Ok(true);
         }
 
-        (string, string) IInputProcessor<string>.getResult() => (this.result, null);
+        Result<string, string> IInputProcessor<string>.getResult() => Result<string, string>.Ok(this.result);
 
         void IInputHandler.Reset()
         {

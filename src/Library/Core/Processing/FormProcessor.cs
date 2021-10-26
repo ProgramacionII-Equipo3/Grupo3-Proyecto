@@ -25,7 +25,7 @@ namespace Library.Core.Processing
         /// Generates the resulting object with the obtained input.
         /// </summary>
         /// <returns>The resulting object.</returns>
-        protected abstract (T, string) getResult();
+        protected abstract Result<T, string> getResult();
 
         void IInputHandler.Reset()
         {
@@ -34,7 +34,7 @@ namespace Library.Core.Processing
             this.index = 0;
         }
 
-        (T, string) IInputProcessor<T>.getResult() => this.getResult();
+        Result<T, string> IInputProcessor<T>.getResult() => this.getResult();
 
         /// <inheritdoc />
         Result<bool, string> IInputHandler.ProcessInput(string msg)

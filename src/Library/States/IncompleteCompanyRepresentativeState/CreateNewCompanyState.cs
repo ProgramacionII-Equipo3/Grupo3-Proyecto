@@ -3,7 +3,6 @@ using System.Globalization;
 using Library.InputHandlers;
 using Library.HighLevel.Companies;
 using Library.Core.Processing;
-using BoxedInt = Library.RefWrapper<int>;
 
 namespace Library.States
 {
@@ -33,8 +32,8 @@ namespace Library.States
                         s => this.location = s,
                         new BasicStringProcessor(() => "Please insert the company's location.")
                     ),
-                    ProcessorHandler.CreateInstance<BoxedInt>(
-                        n => this.phoneNumber = n.value,
+                    ProcessorHandler.CreateInstance<int>(
+                        n => this.phoneNumber = n,
                         new UnsignedInt32Processor(() => "Please insert the company's phone number.")
                     ),
                     ProcessorHandler.CreateInstance<string>(
@@ -44,7 +43,7 @@ namespace Library.States
                 };
             }
 
-            protected override (Company, string) getResult()
+            protected override Result<Company, string> getResult()
             {
                 Company result = CompanyManager.CreateCompany(
                     name: this.parent.name,
@@ -55,8 +54,8 @@ namespace Library.States
                     },
                     heading: this.heading
                 );
-                if(result == null) return (null, "There's already a company with the same name.");
-                else return (result, null);
+                if(result == null) return Result<Company, string>.Err("There's already a company with the same name.");
+                else return Result<Company, string>.Ok(result);
             }
         }
     }

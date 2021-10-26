@@ -18,17 +18,17 @@ namespace Library.States
             public string GetDefaultResponse() =>
                 $"There's already a company called {this.company.Name}. Is this the company you want to assign to?";
 
-            (Company, string) IInputProcessor<Company>.getResult() => (this.company, null);
+            Result<Company, string> IInputProcessor<Company>.getResult() => Result<Company, string>.Ok(this.company);
 
-            (bool, string) IInputHandler.ProcessInput(string msg)
+            Result<bool, string> IInputHandler.ProcessInput(string msg)
             {
                 msg = msg.Trim().ToLowerInvariant();
                 if(msg == "yes" || msg == "y")
-                    return (true, null);
+                    return Result<bool, string>.Ok(true);
                 else if(msg == "no" || msg == "n")
-                    return (false, null);
+                    return Result<bool, string>.Ok(false);
                 
-                return (default, "Please answer \"yes\" (\"y\") or \"no\" (\"n\").");
+                return Result<bool, string>.Err("Please answer \"yes\" (\"y\") or \"no\" (\"n\").");
             }
 
             void IInputHandler.Reset()
