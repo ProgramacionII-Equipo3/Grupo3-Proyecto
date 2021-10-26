@@ -6,8 +6,6 @@ Diagram:
     Create CRC cards and diagrams for classes related to entrepreneur and admin.
 
 Code:
-    Finish creating Result struct.
-        Modify IInputHandler, IInputProcessor, and FormProcessor, so they utilize the new Result struct instead of a tuple of nullables.
     Finish creating Optional struct
         Modify the code so they utilize Optional.
     Elaborate unit tests for every class in the program:
