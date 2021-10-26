@@ -20,7 +20,7 @@ namespace Library.States
 
             (Company, string) IInputProcessor<Company>.getResult() => (this.company, null);
 
-            (bool, string) IInputHandler.GetInput(string msg)
+            (bool, string) IInputHandler.ProcessInput(string msg)
             {
                 msg = msg.Trim().ToLowerInvariant();
                 if(msg == "yes" || msg == "y")

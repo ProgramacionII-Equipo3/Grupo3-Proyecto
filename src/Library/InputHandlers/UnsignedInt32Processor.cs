@@ -22,7 +22,7 @@ namespace Library.InputHandlers
 
         string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
-        (bool, string) IInputHandler.GetInput(string msg)
+        (bool, string) IInputHandler.ProcessInput(string msg)
         {
             if(string.IsNullOrWhiteSpace(msg)) return (default, "A number was expected.");
             int result;

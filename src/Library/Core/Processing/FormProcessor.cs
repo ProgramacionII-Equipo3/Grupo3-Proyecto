@@ -10,7 +10,6 @@ namespace Library.Core.Processing
         /// </summary>
         protected IInputHandler[] inputHandlers;
         private int index = 0;
-        private bool done = false;
 
         private IInputHandler currentHandler => this.inputHandlers[this.index];
 
@@ -37,9 +36,9 @@ namespace Library.Core.Processing
         (T, string) IInputProcessor<T>.getResult() => this.getResult();
         
         /// <inheritdoc />
-        (bool, string) IInputHandler.GetInput(string msg)
+        (bool, string) IInputHandler.ProcessInput(string msg)
         {
-            var (ready, response) = this.currentHandler.GetInput(msg);
+            var (ready, response) = this.currentHandler.ProcessInput(msg);
             if(response != null) return (default, response);
 
             if(!ready) return (false, null);

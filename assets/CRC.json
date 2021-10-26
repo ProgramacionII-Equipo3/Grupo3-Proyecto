@@ -436,7 +436,8 @@
         "subclasses": "",
         "type": 3,
         "responsibilities": [
-            "Process input messages and alter the program's state accordingly."
+            "Process input messages and alter the program's state accordingly.",
+            "Determine the message to sent to the user in order to ask for information."
         ],
         "collaborators": [
             ""
@@ -448,7 +449,7 @@
         "subclasses": "",
         "type": 3,
         "responsibilities": [
-            "Process input messages and return an object from them."
+            "Process input messages and generate an object from them."
         ],
         "collaborators": [
             ""

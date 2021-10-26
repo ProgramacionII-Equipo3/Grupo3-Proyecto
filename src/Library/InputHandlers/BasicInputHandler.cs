@@ -31,7 +31,7 @@ namespace Library.InputHandlers
             return new BasicInputHandler (
                 inputHandler: s =>
                 {
-                    var (result, response) = processor.ProcessInput(s);
+                    var (result, response) = processor.GenerateFromInput(s);
                     if(result != null)
                     {
                         action(result);
@@ -46,7 +46,7 @@ namespace Library.InputHandlers
 
         string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
-        (bool, string) IInputHandler.GetInput(string msg) => (this.inputHandler)(msg);
+        (bool, string) IInputHandler.ProcessInput(string msg) => (this.inputHandler)(msg);
 
         void IInputHandler.Reset() => (this.resetter)();
     }

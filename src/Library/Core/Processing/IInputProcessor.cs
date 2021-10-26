@@ -10,7 +10,7 @@ namespace Library.Core.Processing
         /// Generates the resulting object with the obtained input.
         /// </summary>
         /// <remarks>
-        /// This function should be called only after a call to <see cref="IInputHandler.GetInput(string)" /> returns (true, null),
+        /// This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns (true, null),
         /// which is a signal that the object's ready to produce the result.
         /// </remarks>
         /// <returns>
@@ -28,9 +28,9 @@ namespace Library.Core.Processing
         /// (null, response), being response a response string, or <br />
         /// (null, null) for an interrupt signal.
         /// </returns>
-        public (T, string) ProcessInput(string msg)
+        public (T, string) GenerateFromInput(string msg)
         {
-            var (ready, response) = this.GetInput(msg);
+            var (ready, response) = this.ProcessInput(msg);
             if(response != null) return (null, response);
             if(ready)
             {

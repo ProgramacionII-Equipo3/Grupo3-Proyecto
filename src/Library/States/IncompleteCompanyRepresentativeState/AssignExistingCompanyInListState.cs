@@ -24,7 +24,7 @@ namespace Library.States
 
             (Company, string) IInputProcessor<Company>.getResult() => (this.chosenCompany, null);
 
-            (bool, string) IInputHandler.GetInput(string msg)
+            (bool, string) IInputHandler.ProcessInput(string msg)
             {
                 if(msg == "/esc")
                     return (false, null);

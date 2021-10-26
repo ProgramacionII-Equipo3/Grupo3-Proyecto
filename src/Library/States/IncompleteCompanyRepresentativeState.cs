@@ -25,7 +25,7 @@ namespace Library.States
                 return (this, response);
             }
 
-            var (company, response2) = companyGetter.ProcessInput(msg);
+            var (company, response2) = companyGetter.GenerateFromInput(msg);
             if(response2 != null) return (this, response2);
             if(company == null)
             {

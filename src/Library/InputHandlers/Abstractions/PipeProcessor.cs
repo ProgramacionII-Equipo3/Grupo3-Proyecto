@@ -21,7 +21,7 @@ namespace Library.InputHandlers.Abstractions
             this.resetter = resetter;
         }
 
-        (bool, string) IInputHandler.GetInput(string msg)
+        (bool, string) IInputHandler.ProcessInput(string msg)
         {
             var (result, response) = (this.inputHandler)(msg);
             if(response != null) return (default, response);
@@ -52,7 +52,7 @@ namespace Library.InputHandlers.Abstractions
                 initialResponseGetter: processor.GetDefaultResponse,
                 inputHandler: s =>
                 {
-                    var (midResult, response) = processor.ProcessInput(s);
+                    var (midResult, response) = processor.GenerateFromInput(s);
                     if(response != null) return (default, response);
                     if(midResult == null) return (null, null);
                     var (result, response2) = func(midResult);

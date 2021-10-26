@@ -16,7 +16,7 @@ namespace Library.Core.Processing
         /// (true, null) for a success signal, or <br />
         /// (false, null) for an interrupt signal.
         /// </returns>
-        public (bool, string) GetInput(string msg);
+        public (bool, string) ProcessInput(string msg);
 
         /// <summary>
         /// Returns the first message the object uses to indicate what kind of input it wants.

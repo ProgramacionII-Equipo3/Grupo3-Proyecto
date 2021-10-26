@@ -19,11 +19,11 @@ namespace Library.InputHandlers.Abstractions
 
         string IInputHandler.GetDefaultResponse() => this.innerProcessor.GetDefaultResponse();
 
-        (bool, string) IInputHandler.GetInput(string msg)
+        (bool, string) IInputHandler.ProcessInput(string msg)
         {
             if(this.result != null) return (true, null);
 
-            var (result, response) = this.innerProcessor.ProcessInput(msg);
+            var (result, response) = this.innerProcessor.GenerateFromInput(msg);
             if(response != null) return (default, response);
             if(result == null) return (false, null);
             this.result = result;
