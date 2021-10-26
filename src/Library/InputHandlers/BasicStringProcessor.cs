@@ -20,9 +20,9 @@ namespace Library.InputHandlers
             this.initialResponseGetter = initialResponseGetter;
         }
 
-        string IInputProcessor<string>.GetDefaultResponse() => (this.initialResponseGetter)();
+        string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
-        (bool, string) IInputProcessor<string>.getInput(string msg)
+        (bool, string) IInputHandler.GetInput(string msg)
         {
             if(string.IsNullOrWhiteSpace(msg)) return (default, "A valid string was expected.");
             this.result = msg.Trim();
@@ -31,7 +31,7 @@ namespace Library.InputHandlers
 
         (string, string) IInputProcessor<string>.getResult() => (this.result, null);
 
-        void IInputProcessor<string>.Reset()
+        void IInputHandler.Reset()
         {
             this.result = null;
         }

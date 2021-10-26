@@ -145,7 +145,7 @@
       ]
     },
     {
-      "name": "IMessageSender",
+      "name": "IMessageReceiver",
       "superclasses": "",
       "subclasses": "MessagingPlatform",
       "type": 3,
@@ -428,5 +428,42 @@
         "UserId",
         "ContactInfo"
       ]
+    },
+
+    {
+        "name": "IInputHandler",
+        "superclasses": "",
+        "subclasses": "",
+        "type": 3,
+        "responsibilities": [
+            "Process input messages and alter the program's state accordingly."
+        ],
+        "collaborators": [
+            ""
+        ]
+    },
+    {
+        "name": "IInputProcessor",
+        "superclasses": "IInputHandler",
+        "subclasses": "",
+        "type": 3,
+        "responsibilities": [
+            "Process input messages and return an object from them."
+        ],
+        "collaborators": [
+            ""
+        ]
+    },
+    {
+        "name": "FormProcessor",
+        "superclasses": "FormProcessor",
+        "subclasses": "",
+        "type": 1,
+        "responsibilities": [
+            "Process several input messages in a form-like manner, and generate an object with that input."
+        ],
+        "collaborators": [
+            ""
+        ]
     }
 ]

@@ -11,7 +11,6 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The measure's name.
         /// </summary>
-        /// <value></value>
         public readonly string Name;
 
         /// <summary>
