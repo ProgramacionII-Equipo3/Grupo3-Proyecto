@@ -6,28 +6,36 @@ namespace Library.InputHandlers.Abstractions
     /// <summary>
     /// This class represents an input processor which takes the result of another one and applies a transformation to it.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class PipeProcessor<T> : IInputProcessor<T> where T: class
+    public class PipeProcessor<T> : IInputProcessor<T>
     {
         private readonly Func<string> initialResponseGetter;
-        private Func<string, (T, string)> inputHandler;
+        private Func<string, Result<T, string>?> inputHandler;
         private Action resetter;
-        private T result = null;
+        private T result = default;
 
-        private PipeProcessor(Func<string> initialResponseGetter, Func<string, (T, string)> inputHandler, Action resetter)
+        private PipeProcessor(Func<string> initialResponseGetter, Func<string, Result<T, string>?> inputHandler, Action resetter)
         {
             this.initialResponseGetter = initialResponseGetter;
             this.inputHandler = inputHandler;
             this.resetter = resetter;
         }
 
-        (bool, string) IInputHandler.ProcessInput(string msg)
+        Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
-            var (result, response) = (this.inputHandler)(msg);
-            if(response != null) return (default, response);
-            if(result == null) return (false, null);
-            this.result = result;
-            return (true, null);
+            if ((this.inputHandler)(msg) is Result<T, string> processResult)
+            {
+                return processResult.AndThen(
+                    result =>
+                    {
+                        this.result = result;
+                        return Result<bool, string>.Ok(true);
+                    }
+                );
+            }
+            else
+            {
+                return Result<bool, string>.Ok(false);
+            }
         }
 
         (T, string) IInputProcessor<T>.getResult() => (this.result, null);
@@ -36,7 +44,7 @@ namespace Library.InputHandlers.Abstractions
 
         void IInputHandler.Reset()
         {
-            this.result = null;
+            this.result = default;
             (this.resetter)();
         }
 
@@ -46,23 +54,29 @@ namespace Library.InputHandlers.Abstractions
         /// <param name="func">The transformation function.</param>
         /// <param name="processor">The inner <see cref="IInputProcessor{T}" />.</param>
         /// <typeparam name="U">The type of the objects the inner <see cref="IInputProcessor{T}" /> returns.</typeparam>
-        public static PipeProcessor<T> CreateInstance<U>(Func<U, (T, string)> func, IInputProcessor<U> processor) where U: class
+        public static PipeProcessor<T> CreateInstance<U>(Func<U, Result<T, string>> func, IInputProcessor<U> processor) where U : class
         {
             return new PipeProcessor<T>(
                 initialResponseGetter: processor.GetDefaultResponse,
                 inputHandler: s =>
                 {
-                    var (midResult, response) = processor.GenerateFromInput(s);
-                    if(response != null) return (default, response);
-                    if(midResult == null) return (null, null);
-                    var (result, response2) = func(midResult);
-                    if(response2 != null)
+                    if (processor.GenerateFromInput(s) is Result<U, string> midResult)
                     {
-                        processor.Reset();
-                        return (default, $"{response2}\n{processor.GetDefaultResponse()}");
+                        return midResult.AndThen<T>(
+                            result => func(result).Switch(
+                                v => v,
+                                e =>
+                                {
+                                    processor.Reset();
+                                    return $"{e}\n{processor.GetDefaultResponse()}";
+                                }
+                            )
+                        );
                     }
-                    if(result == null) return (null, null);
-                    return (result, null);
+                    else
+                    {
+                        return null;
+                    }
                 },
                 resetter: processor.Reset
             );

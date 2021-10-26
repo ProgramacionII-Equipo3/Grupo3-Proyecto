@@ -26,14 +26,6 @@ namespace Library
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="Result{T, E}"/> which represents an error.
-        /// </summary>
-        /// <param name="errorValue">The error value.</param>
-        /// <returns>An instance of <see cref="Result{T, E}"/></returns>
-        public static Result<T, E> Err(E errorValue) =>
-            new Result<T, E>(false, default, errorValue);
-
-        /// <summary>
         /// Creates an instance of <see cref="Result{T, E}"/> which represents a success.
         /// </summary>
         /// <param name="successValue">The success value.</param>
@@ -42,14 +34,52 @@ namespace Library
             new Result<T, E>(true, successValue, default);
 
         /// <summary>
+        /// Creates an instance of <see cref="Result{T, E}"/> which represents an error.
+        /// </summary>
+        /// <param name="errorValue">The error value.</param>
+        /// <returns>An instance of <see cref="Result{T, E}"/></returns>
+        public static Result<T, E> Err(E errorValue) =>
+            new Result<T, E>(false, default, errorValue);
+
+        /// <summary>
+        /// Passes either the success value or the error value through a function, returning the result.
+        /// </summary>
+        /// <param name="successFunc">The function for the success value.</param>
+        /// <param name="errFunc">The function for the error value.</param>
+        /// <typeparam name="U">The type returned by the functions.</typeparam>
+        public U Map<U>(Func<T, U> successFunc, Func<E, U> errFunc) =>
+            this.Success ? successFunc(this.successValue) : errFunc(this.errorValue);
+        
+
+        /// <summary>
         /// Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="Result{U, F}" />.
         /// </summary>
         /// <param name="successFunc">The function for the success value.</param>
         /// <param name="errFunc">The function for the error value.</param>
         /// <typeparam name="U">The type returned by the success function.</typeparam>
         /// <typeparam name="F">The type returned by the error function.</typeparam>
-        /// <returns></returns>
         public Result<U, F> Switch<U, F>(Func<T, U> successFunc, Func<E, F> errFunc) =>
-            this.Success ? Result<U, F>.Ok(successFunc(this.successValue)) : Result<U, F>.Err(errFunc(this.errorValue));
+            this.Map(
+                v => Result<U, F>.Ok(successFunc(v)),
+                e => Result<U, F>.Err(errFunc(e))
+            );
+
+        public Result<U, E> SwitchOk<U>(Func<T, U> successFunc) =>
+            this.Switch(successFunc, e => e);
+
+        public Result<T, F> SwitchErr<F>(Func<E, F> errFunc) =>
+            this.Switch(v => v, errFunc);
+
+        /// <summary>
+        /// If the result is a success, returns the result of the given function.
+        /// If it's an error, returns that error.
+        /// </summary>
+        /// <param name="successFunc">The function for the success value.</param>
+        /// <typeparam name="U">The success type</typeparam>
+        public Result<U, E> AndThen<U>(Func<T, Result<U, E>> successFunc) =>
+            this.Map(
+                v => successFunc(v),
+                Result<U, E>.Err
+            );
     }
 }

@@ -3,7 +3,8 @@ namespace Library.Core.Processing
     /// <summary>
     /// Represent a complex form-like set of data through which certain forms of data can be received from user input easily.
     /// </summary>
-    public abstract class FormProcessor<T> : IInputProcessor<T> where T: class
+    /// <typeparam name="T">The type of the resulting object.</typeparam>
+    public abstract class FormProcessor<T> : IInputProcessor<T>
     {
         /// <summary>
         /// The list of input handlers.
@@ -28,24 +29,28 @@ namespace Library.Core.Processing
 
         void IInputHandler.Reset()
         {
-            foreach(IInputHandler handler in this.inputHandlers)
+            foreach (IInputHandler handler in this.inputHandlers)
                 handler.Reset();
             this.index = 0;
         }
 
         (T, string) IInputProcessor<T>.getResult() => this.getResult();
-        
+
         /// <inheritdoc />
-        (bool, string) IInputHandler.ProcessInput(string msg)
+        Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
-            var (ready, response) = this.currentHandler.ProcessInput(msg);
-            if(response != null) return (default, response);
+            Result<bool, string> processResult = this.currentHandler.ProcessInput(msg);
+            return processResult.Map(
+                ready =>
+                {
+                    if (!ready) return Result<bool, string>.Ok(false);
 
-            if(!ready) return (false, null);
-
-            this.index++;
-            if(this.index >= this.inputHandlers.Length) return (true, null);
-            else return (default, this.currentHandler.GetDefaultResponse());
+                    this.index++;
+                    if (this.index >= this.inputHandlers.Length) return Result<bool, string>.Ok(true);
+                    else return Result<bool, string>.Err(this.currentHandler.GetDefaultResponse());
+                },
+                e => Result<bool, string>.Err(e)
+            );
         }
     }
 }

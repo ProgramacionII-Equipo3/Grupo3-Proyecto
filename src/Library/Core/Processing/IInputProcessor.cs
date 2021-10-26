@@ -4,7 +4,7 @@ namespace Library.Core.Processing
     /// Represents the functionality of receiving one or more input messages, and generating an object with that input.
     /// </summary>
     /// <typeparam name="T">The type of the resulting object.</typeparam>
-    public interface IInputProcessor<T> : IInputHandler where T: class
+    public interface IInputProcessor<T> : IInputHandler
     {
         /// <summary>
         /// Generates the resulting object with the obtained input.
@@ -28,21 +28,23 @@ namespace Library.Core.Processing
         /// (null, response), being response a response string, or <br />
         /// (null, null) for an interrupt signal.
         /// </returns>
-        public (T, string) GenerateFromInput(string msg)
-        {
-            var (ready, response) = this.ProcessInput(msg);
-            if(response != null) return (null, response);
-            if(ready)
-            {
-                var (result, error) = this.getResult();
-                if(error != null)
+        public Result<T, string>? GenerateFromInput(string msg) =>
+            this.ProcessInput(msg).Map<Result<T, string>?>(
+                ready =>
                 {
-                    this.Reset();
-                    return (null, $"{error}\n{this.GetDefaultResponse()}");
-                }
-                return (result, null);
-            }
-            else return (null, null);
-        }
+                    if (ready)
+                    {
+                        var (result, error) = this.getResult();
+                        if (error != null)
+                        {
+                            this.Reset();
+                            return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
+                        }
+                        return Result<T, string>.Ok(result);
+                    }
+                    else return null;
+                },
+                e => Result<T, string>.Err(e)
+            );
     }
 }
