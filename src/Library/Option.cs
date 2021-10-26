@@ -11,7 +11,6 @@ namespace Library
         /// <summary>
         /// Whether there is a value.
         /// </summary>
-        /// <value></value>
         public bool HasValue { get; }
 
         private T value { get; }
@@ -23,9 +22,9 @@ namespace Library
         }
 
         /// <summary>
-        /// Returns an empty <see cref="Option{T}" />
+        /// An empty <see cref="Option{T}" />
         /// </summary>
-        public static Option<T> None() =>
+        public static Option<T> None =>
             new Option<T>(false, default);
 
         /// <summary>

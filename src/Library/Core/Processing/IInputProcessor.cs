@@ -46,7 +46,7 @@ namespace Library.Core.Processing
                             )
                         );
                     }
-                    else return Option<Result<T, string>>.None();
+                    else return Option<Result<T, string>>.None;
                 },
                 e => Option<Result<T, string>>.From(Result<T, string>.Err(e))
             );

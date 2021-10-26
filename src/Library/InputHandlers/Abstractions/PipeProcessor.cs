@@ -78,7 +78,7 @@ namespace Library.InputHandlers.Abstractions
                     }
                     else
                     {
-                        return Option<Result<T, string>>.None();
+                        return Option<Result<T, string>>.None;
                     }
                 },
                 resetter: processor.Reset

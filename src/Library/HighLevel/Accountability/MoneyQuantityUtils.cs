@@ -19,7 +19,7 @@ namespace Library.HighLevel.Accountability
                         price.Currency
                     )
                 ),
-                () => Option<MoneyQuantity>.None()
+                () => Option<MoneyQuantity>.None
             );
     }
 }

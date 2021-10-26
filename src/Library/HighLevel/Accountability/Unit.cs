@@ -60,7 +60,7 @@ namespace Library.HighLevel.Accountability
         public static Option<double> GetConversionFactor(Unit fromUnit, Unit toUnit) =>
             Unit.AreCompatible(fromUnit, toUnit)
                 ? Option<double>.From(fromUnit.weight / toUnit.weight)
-                : Option<double>.None();
+                : Option<double>.None;
 
         /// <summary>
         /// Checks whether two units are compatible with each other.

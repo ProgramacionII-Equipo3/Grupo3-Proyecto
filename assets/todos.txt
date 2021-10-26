@@ -6,8 +6,6 @@ Diagram:
     Create CRC cards and diagrams for classes related to entrepreneur and admin.
 
 Code:
-    Modify the code so they utilize Optional.
-    Make IResult and IOption interfaces to replace Result and Option structs.
     Elaborate unit tests for every class in the program:
         UserId
         ContactInfo
