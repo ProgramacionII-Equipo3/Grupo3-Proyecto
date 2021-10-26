@@ -145,7 +145,7 @@
       ]
     },
     {
-      "name": "IMessageSender",
+      "name": "IMessageReceiver",
       "superclasses": "",
       "subclasses": "MessagingPlatform",
       "type": 3,
