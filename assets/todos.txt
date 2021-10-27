@@ -6,8 +6,7 @@ Diagram:
     Create CRC cards and diagrams for classes related to entrepreneur and admin.
 
 Code:
-    Finish creating Optional struct
-        Modify the code so they utilize Optional.
+    Update documentation in classes that now use Option and Result
     Elaborate unit tests for every class in the program:
         UserId
         ContactInfo

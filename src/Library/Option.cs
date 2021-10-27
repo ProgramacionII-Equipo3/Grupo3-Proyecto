@@ -11,7 +11,6 @@ namespace Library
         /// <summary>
         /// Whether there is a value.
         /// </summary>
-        /// <value></value>
         public bool HasValue { get; }
 
         private T value { get; }
@@ -23,9 +22,9 @@ namespace Library
         }
 
         /// <summary>
-        /// Returns an empty <see cref="Option{T}" />
+        /// An empty <see cref="Option{T}" />
         /// </summary>
-        public static Option<T> None() =>
+        public static Option<T> None =>
             new Option<T>(false, default);
 
         /// <summary>
@@ -45,5 +44,33 @@ namespace Library
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> someFunc, Func<U> noneFunc) =>
             this.HasValue ? someFunc(this.value) : noneFunc();
+        
+        /// <summary>
+        /// Attempts to retrieve the value from this <see cref="Option{T}" />, throwing an error if not possible.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">This option doesn't have a value.</exception>
+        /// <returns>The option's inner value.</returns>
+        public T Unwrap() =>
+            this.Map(
+                v => v,
+                () => throw new ArgumentNullException("value", "attempting to retrieve value from None")
+            );
+
+        /// <summary>
+        /// Passes the inner value (if there is), and returns the result in a new <see cref="Option{T}" />.
+        /// </summary>
+        /// <param name="someFunc">The function for the value.</param>
+        /// <typeparam name="U">The type returned by the function.</typeparam>
+        public Option<U> MapValue<U>(Func<T, U> someFunc) =>
+            this.Map(
+                v => Option<U>.From(someFunc(v)),
+                () => Option<U>.None
+            );
+        
+        ///
+//        public static implicit operator Option<NotNull<T>>(Option<T> option) => NotNull<T>.FromOption(option);
+
+        ///
+//        public static implicit operator Option<T>(Option<NotNull<T>> option) => option.MapValue<T>(v => v);
     }
 }

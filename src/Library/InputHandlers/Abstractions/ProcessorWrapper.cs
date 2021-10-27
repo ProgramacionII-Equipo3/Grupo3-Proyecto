@@ -22,19 +22,16 @@ namespace Library.InputHandlers.Abstractions
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
             if(this.result != null) return Result<bool, string>.Ok(true);
-            if(this.innerProcessor.GenerateFromInput(msg) is Result<T, string> result)
-            {
-                return result.SwitchOk(
+            return this.innerProcessor.GenerateFromInput(msg).Map(
+                result => result.SwitchOk(
                     v => 
                     {
                         this.result = v;
                         return true;
                     }
-                );
-            } else
-            {
-                return Result<bool, string>.Ok(false);
-            }
+                ),
+                () => Result<bool, string>.Ok(false)
+            );
         }
 
         Result<T, string> IInputProcessor<T>.getResult() => Result<T, string>.Ok(this.result);

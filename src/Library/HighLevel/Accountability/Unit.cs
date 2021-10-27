@@ -57,10 +57,10 @@ namespace Library.HighLevel.Accountability
         /// <param name="fromUnit">The unit of the initial measure.</param>
         /// <param name="toUnit">The unit of the final measure.</param>
         /// <returns>The number to multiply to the initial measure's numeric value to get the final measure's numeric value, or null if the units belong to different measures.</returns>
-        public static double? GetConversionFactor(Unit fromUnit, Unit toUnit) =>
+        public static Option<double> GetConversionFactor(Unit fromUnit, Unit toUnit) =>
             Unit.AreCompatible(fromUnit, toUnit)
-                ? fromUnit.weight / toUnit.weight
-                : null;
+                ? Option<double>.From(fromUnit.weight / toUnit.weight)
+                : Option<double>.None;
 
         /// <summary>
         /// Checks whether two units are compatible with each other.
