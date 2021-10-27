@@ -4,6 +4,11 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:Library.Core.Company.CompanyInvitation">
+            <summary>
+            This class verificates the invitation code of a company
+            </summary>
+        </member>
         <member name="T:Library.Core.ContactInfo">
             <summary>
             This class represent contact information data associated with a user,
@@ -102,9 +107,10 @@
             <summary>
             The invitation's code.
             </summary>
+            <param name="invitationCode">The invitation's code.</param>
+            <param name="f">A function which creates the invitation taking the code.</param>
         </member>
-        <member name="M:Library.Core.Invitations.Invitation.#ctor(System.String)">
-            
+        <member name="M:Library.Core.Invitations.Invitation.#ctor(System.String)">  
         </member>
         <member name="M:Library.Core.Invitations.Invitation.Validate(Library.Core.UserId)">
             <summary>
@@ -183,7 +189,7 @@
         </member>
         <member name="M:Library.Core.Messaging.IMessageSender`1.SendMessage(System.String,`0)">
             <summary>
-            Sends a message.
+            Converts a valid id of the platform into a <see cref="T:Library.Core.UserId" />.
             </summary>
             <param name="msg">The message's text.</param>
             <param name="id">The message's id.</param>
@@ -216,6 +222,10 @@
             <summary>
             The list of input handlers.
             </summary>
+            <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
+        </member>
+        <member name="M:Library.Core.Messaging.MessagingPlatform`1.SendMessage(System.String,`0)">
+            <inheritdoc />
         </member>
         <member name="M:Library.Core.Processing.FormProcessor`1.GetDefaultResponse">
             <summary>
@@ -334,12 +344,12 @@
             <param name="msg">The message's text.</param>
             <returns>The next state and the response message.</returns>
         </member>
-        <member name="T:Library.Core.Processing.State">
+        <member name="T:Library.Core.State">
             <summary>
             This class represents a state of a user session.
             </summary>
         </member>
-        <member name="M:Library.Core.Processing.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+        <member name="M:Library.Core.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
             </summary>
@@ -980,7 +990,6 @@
             </summary>
         </member>
         <member name="M:Library.InputHandlers.UnsignedInt32Processor.#ctor(System.Func{System.String})">
-            
         </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
