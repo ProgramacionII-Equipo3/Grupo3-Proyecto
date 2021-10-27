@@ -334,6 +334,20 @@
             <param name="msg">The message's text.</param>
             <returns>The next state and the response message.</returns>
         </member>
+        <member name="T:Library.Core.Processing.State">
+            <summary>
+            This class represents a state of a user session.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Processing.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <summary>
+            Processes a received message, returning the next state and the response message.
+            </summary>
+            <param name="id">The user's id.</param>
+            <param name="data">The user's data.</param>
+            <param name="msg">The message's text.</param>
+            <returns>The next state and the response message.</returns>
+        </member>
         <member name="T:Library.Core.UserData">
             <summary>
             This class represents additional data that all users must have.
@@ -1051,7 +1065,6 @@
             </summary>
         </member>
         <member name="M:Library.RefWrapper`1.#ctor(`0)">
-            
         </member>
         <member name="T:Library.Singleton`1">
             <summary>
