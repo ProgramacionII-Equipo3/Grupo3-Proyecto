@@ -1,10 +1,47 @@
+Design:
+    Add a class which implements IInputProcessor<T>, and generates the object from only one message.
+    Add a way to generalize the process of processing multiple-option input.
+    
 Diagram:
-    Create the IInvitable interface, which represents classes of users which can be invited via invitations.
-    What if the types of users aren't represented by subclasses of User, but by external structures which
-        determine whether a user is of a concrete type (eg: a company stores its representatives, and a
-        user who wants to use the responsibilites of a company has to belong to its list of representatives)
-    Correct names of IGenericSender and IGenericReceiver
-    Remove IMessageManager on method IGenericReceiver.OnGetMessage
+    Create CRC cards and diagrams for classes related to entrepreneur and admin.
 
 Code:
-    Clean field declaration in classes
+    Finish creating Optional struct
+        Modify the code so they utilize Optional.
+    Elaborate unit tests for every class in the program:
+        UserId
+        ContactInfo
+        UserData
+        State
+        UserSession
+        Invitation
+        InvitationManager
+        SessionManager
+        Message
+        MessageManager
+        IMessageSender
+        IMessageReceiver
+        MessagingPlatform
+        IFromInput
+        FormState
+        Unit
+        Measure
+        Habilitation
+        Requirement
+        MaterialCategory
+        Material
+        Amount
+        Currency
+        Price
+        Location
+        MaterialPublication
+        MoneyQuantity
+        MaterialSalesLine
+        SentMaterialReport
+        IPublisher
+        ISentMaterialReportCreator
+        Company
+        IInputHandler
+        IInputProcessor
+        FormProcessor
+        

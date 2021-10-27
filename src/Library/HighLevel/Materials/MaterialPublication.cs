@@ -1,3 +1,5 @@
+using Library.HighLevel.Accountability;
+
 namespace Library.HighLevel.Materials
 {
     /// <summary>
@@ -18,7 +20,6 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The publication's price of the material.
         /// </summary>
-        /// <value></value>
         public Price Price { get; private set; }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace Library.HighLevel.Materials
         /// <param name="price">The price of the material.</param>
         /// <param name="pickupLocation">The pick-up location of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation) =>
+        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation) =>
             CheckMaterialFields(material, amount, price)
                 ? new MaterialPublication(material, amount, price, pickupLocation)
                 : null;

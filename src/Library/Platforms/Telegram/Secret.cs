@@ -3,7 +3,7 @@ using System.IO;
 namespace Library.Platforms.Telegram
 {
     /// <summary>
-    /// This class stores secret data whose access has to be carefully manipulated.
+    /// This class stores secret data whose access has to be carefully managed.
     /// </summary>
     public static class Secret
     {

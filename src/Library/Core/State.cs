@@ -1,4 +1,4 @@
-namespace Library.Core.Processing
+namespace Library.Core
 {
     /// <summary>
     /// This class represents a state of a user session.

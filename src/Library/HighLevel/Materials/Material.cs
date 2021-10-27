@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Library.HighLevel.Accountability;
 
 namespace Library.HighLevel.Materials
 {
@@ -22,20 +23,20 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// A private list of the requirements which are needed to manipulate this material.
         /// </summary>
-        private List<IRequirement> requirements = new List<IRequirement>();
+        private List<Requirement> requirements = new List<Requirement>();
 
         /// <summary>
         /// A public read-only list of the requirements which are needed to manipulate this material.
         /// </summary>
         /// <returns></returns>
-        public ReadOnlyCollection<IRequirement> Requirements => this.requirements.AsReadOnly();
+        public ReadOnlyCollection<Requirement> Requirements => this.requirements.AsReadOnly();
 
         /// <summary>
         /// The category the material belongs to.
         /// </summary>
         public MaterialCategory Category;
 
-        private Material(string name, Measure measure, IEnumerable<IRequirement> requirements, MaterialCategory category)
+        private Material(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category)
         {
             this.Name = name;
             this.Measure = measure;
@@ -44,18 +45,24 @@ namespace Library.HighLevel.Materials
         }
 
         /// <summary>
-        /// Creates a <see cref="Material" /> instance, adding it to the collection of materials of its category in the process.
+        /// Creates an instance of <see cref="Material" />, adding it to the collection of materials of its category in the process.
         /// </summary>
         /// <param name="name">The material's name.</param>
         /// <param name="measure">The material's measure.</param>
         /// <param name="requirements">The material's requirements.</param>
         /// <param name="category">The material's category</param>
         /// <returns>A <see cref="Material" /> instance.</returns>
-        public Material CreateInstance(string name, Measure measure, IEnumerable<IRequirement> requirements, MaterialCategory category)
+        public Material CreateInstance(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category)
         {
             Material result = new Material(name, measure, requirements, category);
-            category.AddMaterial(result);
+            category.addMaterial(result);
             return result;
         }
+
+        /// <summary>
+        /// Checks whether this material has a concrete name.
+        /// </summary>
+        /// <param name="name">The name to compare with.</param>
+        public bool MatchesName(string name) => this.Name == name;
     }
 }

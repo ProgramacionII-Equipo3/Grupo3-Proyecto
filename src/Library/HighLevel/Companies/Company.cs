@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
+using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 
 namespace Library.HighLevel.Companies
@@ -9,7 +10,7 @@ namespace Library.HighLevel.Companies
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
     /// </summary>
-    public class Company : IPublisher<uint>, ISentMaterialReportCreator
+    public class Company : IPublisher, ISentMaterialReportCreator
     {
         /// <summary>
         /// The company's name.
@@ -31,32 +32,31 @@ namespace Library.HighLevel.Companies
         /// </summary>
         private List<UserId> representants = new List<UserId>();
 
+        ///
+        public Company(string name, ContactInfo contactInfo, string heading)
+        {
+            this.Name = name;
+            this.contactInfo = contactInfo;
+            this.Heading = heading;
+        }
+
         /// <summary>
         /// Returns whether a user represents this company.
         /// </summary>
         /// <param name="id">The user's id.</param>
         /// <returns>Whether it belongs to the company.</returns>
         public bool HasUser(UserId id) =>
-            this.representants.Any(repId => repId == id);
+            this.representants.Any(repId => repId.Equals(id));
 
         /// <summary>
-        /// A private list of the company's active publications in the platform.
+        /// Adds a user into the list of representants.
         /// </summary>
-        private List<MaterialPublication> publications { get; set; } = new List<MaterialPublication>();
+        /// <param name="id">The user's id.</param>
+        public void AddUser(UserId id) =>
+            this.representants.Add(id);
 
-        /// <summary>
-        /// A public read-only list of the company's active publications in the platform.
-        /// </summary>
-        public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
+        List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 
-        public override bool PublishMaterial(Material material, Amount amount, Price price, Location location)
-        {
-//            this.publications.Add(MaterialPublication.)
-        }
-
-        public override bool RemovePublication(uint id)
-        {
-
-        }
+        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
     }
 }
