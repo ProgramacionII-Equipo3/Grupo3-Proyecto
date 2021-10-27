@@ -13,13 +13,8 @@ namespace Library.HighLevel.Materials
 
         private List <Unit> values = new List<Unit>();
 
-        private void GetByAbby (string abbr)
-        {
-            if (abbr == this.Abreviation)
-            {
-                
-            }
-        }
+        private void GetByAbby (string abbr) {}
+        
         
 
     }

@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-namespace Library.HighLevel.Materials
-{
-    public class MaterialCategory
-    {
-        public string Name {get; private set;}
-        
-        public MaterialCategory Categories {get; private set;}
-         
-    }
-}
-=======
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -65,4 +53,4 @@ namespace Library.HighLevel.Materials
         }
     }
 }
->>>>>>> b2a920e097eca6c9536beffc29a0154d437e95fe
+
