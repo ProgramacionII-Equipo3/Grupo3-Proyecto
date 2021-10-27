@@ -4,14 +4,14 @@
         <name>Program</name>
     </assembly>
     <members>
-        <member name="T:ConsoleApplication.Program">
+        <member name="T:Grupo3_Proyecto.Program">
             <summary>
-            Programa de consola de demostración.
+            The main program.
             </summary>
         </member>
-        <member name="M:ConsoleApplication.Program.Main">
+        <member name="M:Grupo3_Proyecto.Program.Main">
             <summary>
-            Punto de entrada al programa principal.
+            Executes the program.
             </summary>
         </member>
     </members>

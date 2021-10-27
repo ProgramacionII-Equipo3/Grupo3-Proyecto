@@ -1,27 +1,35 @@
-﻿//--------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Universidad Católica del Uruguay">
-//     Copyright (c) Programación II. Derechos reservados.
-// </copyright>
-//--------------------------------------------------------------------------------
+﻿//
 
+using Library.Platforms.Telegram;
 using System;
-using ClassLibrary;
+using System.IO;
+using System.Text;
+using Telegram.Bot;
+using Telegram.Bot.Args;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
-namespace ConsoleApplication
+namespace Grupo3_Proyecto
 {
     /// <summary>
-    /// Programa de consola de demostración.
+    /// The main program.
     /// </summary>
     public static class Program
     {
         /// <summary>
-        /// Punto de entrada al programa principal.
+        /// Executes the program.
         /// </summary>
         public static void Main()
         {
-            var train = new Train();
-            train.StartEngines();
-            Console.WriteLine("Hello World!");
+            TelegramBot telegramBot = TelegramBot.Instance;
+            Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
+            telegramBot.ReceiveMessages(
+                () =>
+                {
+                    Console.WriteLine("Escribe una línea para terminar");
+                    Console.ReadLine();
+                }
+            );
         }
     }
 }
