@@ -1,96 +1,61 @@
 using System;
 using System.Globalization;
+using Library.InputHandlers;
 using Library.HighLevel.Companies;
+using Library.Core.Processing;
 
 namespace Library.States
 {
     public partial class IncompleteCompanyRepresentativeState
     {
-        private class CreateNewCompanyState : MiddleState
+        private class CreateNewCompanyState : FormProcessor<Company>
         {
 
-            private byte step = 0;
+            private IncompleteCompanyRepresentativeState parent;
             private string heading;
             private string location;
             private int phoneNumber;
             private string email;
 
-            public CreateNewCompanyState(IncompleteCompanyRepresentativeState parent): base(parent) {}
+            private Company result = null;
 
-            public override (Company, string) processMessage(string msg)
+            public CreateNewCompanyState(IncompleteCompanyRepresentativeState parent)
             {
-                if(msg == "/esc")
-                    return (null, null);
-                
-                msg = msg.Trim();
-                switch(step)
+                this.parent = parent;
+                this.inputHandlers = new IInputHandler[]
                 {
-                    case 0:
-                    return getInput(
-                        msg,
-                        s => string.IsNullOrWhiteSpace(msg)
-                             ? (null, "Please insert the company's heading.")
-                             : (s, null),
-                        ref this.heading,
-                        () => (null, "Please insert the company's location.")
-                    );
-                    case 1:
-                    return getInput(
-                        msg,
-                        s => string.IsNullOrWhiteSpace(msg)
-                             ? (null, "Please insert the company's location.")
-                             : (s, null),
-                        ref this.location,
-                        () => (null, "Please insert the company's phone number.")
-                    );
-                    case 2:
-                    return getInput(
-                        msg,
-                        s => 
-                        {
-                            int phoneNumber;
-                            if(int.TryParse(msg, NumberStyles.AllowThousands, CultureInfo.InvariantCulture.NumberFormat, out phoneNumber))
-                            {
-                                return (phoneNumber, null);
-                            }
-                            return (-1, "Insert a valid phone number.");
-                        },
-                        ref this.phoneNumber,
-                        () => (null, "Please insert the company's email")
-                    );
-                    case 3:
-                    return getInput(
-                        msg,
-                        s => Utils.IsValidEmail(s) ? (s, null) : (null, "Please insert a valid email."),
-                        ref this.email,
-                        () =>
-                        {
-                            Company result = CompanyManager.CreateCompany(
-                                name: this.parent.name,
-                                contactInfo: new Library.Core.ContactInfo
-                                {
-                                    Email = this.email,
-                                    PhoneNumber = this.phoneNumber
-                                },
-                                heading: this.heading
-                            );
-                            return (result, null);
-                        }
-                    );
-                    default: throw new Exception();
-                }
+                    ProcessorHandler.CreateInstance<string>(
+                        s => this.heading = s,
+                        new BasicStringProcessor(() => "Please insert the company's heading.")
+                    ),
+                    ProcessorHandler.CreateInstance<string>(
+                        s => this.location = s,
+                        new BasicStringProcessor(() => "Please insert the company's location.")
+                    ),
+                    ProcessorHandler.CreateInstance<int>(
+                        n => this.phoneNumber = n,
+                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")
+                    ),
+                    ProcessorHandler.CreateInstance<string>(
+                        s => this.email = s,
+                        new EmailProcessor(() => "Please insert the company's email.")
+                    )
+                };
             }
 
-            private (Company, string) getInput<T>(string input, Func<string, (T, string)> convert, ref T reference, Func<(Company, string)> func)
+            protected override Result<Company, string> getResult()
             {
-                var (val, errMsg) = convert(input);
-                if(errMsg == null)
-                {
-                    reference = val;
-                    this.step++;
-                    return func();
-                }
-                return (null, errMsg);
+                Company result = CompanyManager.CreateCompany(
+                    name: this.parent.name,
+                    contactInfo: new Library.Core.ContactInfo
+                    {
+                        Email = this.email,
+                        PhoneNumber = this.phoneNumber
+                    },
+                    heading: this.heading
+                );
+                if(result == null) return Result<Company, string>.Err("There's already a company with the same name.");
+                else return Result<Company, string>.Ok(result);
             }
         }
     }

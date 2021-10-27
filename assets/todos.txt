@@ -1,23 +1,47 @@
 Design:
-    Which kind of user creates companies into the platform, admins or company representatives?
-        If it's company representatives, how do we determine whether the company they represent exists yet?
-            (Possible answer:
-                Ask for the company name
-                Compare it with the names of existing companies, and gather them in a list
-                For all of the found companies:
-                    Ask whether that company is the one the user represents
-                    If they answer "yes":
-                        Assign them to that company
-                        END
-                Ask for additional data to create a new company
-                Create a new company
-                END
-            )
+    Add a class which implements IInputProcessor<T>, and generates the object from only one message.
+    Add a way to generalize the process of processing multiple-option input.
     
-    Update CRC cards
-
 Diagram:
-    Add Admin classes
+    Create CRC cards and diagrams for classes related to entrepreneur and admin.
 
 Code:
-    ...
+    Finish creating Optional struct
+        Modify the code so they utilize Optional.
+    Elaborate unit tests for every class in the program:
+        UserId
+        ContactInfo
+        UserData
+        State
+        UserSession
+        Invitation
+        InvitationManager
+        SessionManager
+        Message
+        MessageManager
+        IMessageSender
+        IMessageReceiver
+        MessagingPlatform
+        IFromInput
+        FormState
+        Unit
+        Measure
+        Habilitation
+        Requirement
+        MaterialCategory
+        Material
+        Amount
+        Currency
+        Price
+        Location
+        MaterialPublication
+        MoneyQuantity
+        MaterialSalesLine
+        SentMaterialReport
+        IPublisher
+        ISentMaterialReportCreator
+        Company
+        IInputHandler
+        IInputProcessor
+        FormProcessor
+        

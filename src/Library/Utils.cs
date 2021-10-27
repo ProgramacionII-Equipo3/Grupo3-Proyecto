@@ -80,7 +80,12 @@ namespace Library
                 return false;
             }
 
-            return false;
+            return false;   
+        }
+
+        public static bool IsValidPhoneNumber(int number)
+        {
+            return true;
         }
 
     }

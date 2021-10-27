@@ -17,7 +17,6 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The list of existent categories.
         /// </summary>
-        /// <value></value>
         public static ReadOnlyCollection<MaterialCategory> Categories = new string[]
         {
             "A", "B", "C"
@@ -49,7 +48,7 @@ namespace Library.HighLevel.Materials
         public Material GetByName(string name)
         {
             name = name.ToLowerInvariant();
-            return this.materials.Where(material => material.Name.Equals(name)).FirstOrDefault();
+            return this.materials.Where(material => material.MatchesName(name)).FirstOrDefault();
         }
     }
 }

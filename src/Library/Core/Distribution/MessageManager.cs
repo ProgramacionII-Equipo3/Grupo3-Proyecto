@@ -34,11 +34,11 @@ namespace Library.Core.Distribution
             string[] args = msg.Text.Split(' ');
 
             if(
-                msg.Text.Length != 2 ||
-                args[0] != "\\start" ||
+                args.Length != 2 ||
+                args[0] != "/start" ||
                 string.IsNullOrWhiteSpace(args[1])
             )
-                return "Send the message \\start <invitation-code> to register to the platform.";
+                return "Send the message /start <invitation-code> to register to the platform.";
             
             string invitationCode = args[1];
             return InvitationManager.ValidateInvitation(invitationCode, msg.Id) is string result

@@ -11,8 +11,14 @@ using Telegram.Bot.Types.Enums;
 
 namespace Grupo3_Proyecto
 {
+    /// <summary>
+    /// The main program.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// Executes the program.
+        /// </summary>
         public static void Main()
         {
             /* TelegramBot telegramBot = TelegramBot.Instance;

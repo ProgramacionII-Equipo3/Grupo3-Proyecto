@@ -58,8 +58,14 @@ namespace Library.HighLevel.Accountability
         /// <param name="toUnit">The unit of the final measure.</param>
         /// <returns>The number to multiply to the initial measure's numeric value to get the final measure's numeric value, or null if the units belong to different measures.</returns>
         public static double? GetConversionFactor(Unit fromUnit, Unit toUnit) =>
-            fromUnit.Measure == toUnit.Measure
+            Unit.AreCompatible(fromUnit, toUnit)
                 ? fromUnit.weight / toUnit.weight
                 : null;
+
+        /// <summary>
+        /// Checks whether two units are compatible with each other.
+        /// That is, whether they belong to the same measure.
+        /// </summary>
+        public static bool AreCompatible(Unit u1, Unit u2) => u1.Measure == u2.Measure;
     }
 }

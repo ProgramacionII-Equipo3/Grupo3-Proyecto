@@ -13,7 +13,6 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The unit used in the amount.
         /// </summary>
-        /// <value></value>
         public readonly Unit Unit;
 
         /// <summary>
