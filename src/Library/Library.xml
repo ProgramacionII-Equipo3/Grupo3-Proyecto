@@ -4,11 +4,6 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="T:Library.Core.Company.CompanyInvitation">
-            <summary>
-            This class verificates the invitation code of a company
-            </summary>
-        </member>
         <member name="T:Library.Core.ContactInfo">
             <summary>
             This class represent contact information data associated with a user,
@@ -113,10 +108,9 @@
             <summary>
             The invitation's code.
             </summary>
-            <param name="invitationCode">The invitation's code.</param>
-            <param name="f">A function which creates the invitation taking the code.</param>
         </member>
-        <member name="M:Library.Core.Invitations.Invitation.#ctor(System.String)">  
+        <member name="M:Library.Core.Invitations.Invitation.#ctor(System.String)">
+            
         </member>
         <member name="M:Library.Core.Invitations.Invitation.Validate(Library.Core.UserId)">
             <summary>
@@ -195,7 +189,7 @@
         </member>
         <member name="M:Library.Core.Messaging.IMessageSender`1.SendMessage(System.String,`0)">
             <summary>
-            Converts a valid id of the platform into a <see cref="T:Library.Core.UserId" />.
+            Sends a message.
             </summary>
             <param name="msg">The message's text.</param>
             <param name="id">The message's id.</param>
@@ -229,10 +223,6 @@
             <summary>
             The list of input handlers.
             </summary>
-            <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
-        </member>
-        <member name="M:Library.Core.Messaging.MessagingPlatform`1.SendMessage(System.String,`0)">
-            <inheritdoc />
         </member>
         <member name="M:Library.Core.Processing.FormProcessor`1.GetDefaultResponse">
             <summary>
@@ -307,20 +297,6 @@
             (null, response), being response a response string, or <br />
             (null, null) for an interrupt signal.
             </returns>
-        </member>
-        <member name="T:Library.Core.State">
-            <summary>
-            This class represents a state of a user session.
-            </summary>
-        </member>
-        <member name="M:Library.Core.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
-            <summary>
-            Processes a received message, returning the next state and the response message.
-            </summary>
-            <param name="id">The user's id.</param>
-            <param name="data">The user's data.</param>
-            <param name="msg">The message's text.</param>
-            <returns>The next state and the response message.</returns>
         </member>
         <member name="T:Library.Core.State">
             <summary>
@@ -424,45 +400,6 @@
             <param name="l2">The second location.</param>
             <returns>The distance between the two locations, in kilometers.</returns>
         </member>
-        <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
-            <summary>
-            This class represents a concrete material sale.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Material">
-            <summary>
-            The sold material.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Amount">
-            <summary>
-            The amount of sold material.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Price">
-            <summary>
-            The price of the sold material.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.DateTime">
-            <summary>
-            The moment the sale happened.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
-            <summary>
-            The amount of money made from this sale.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime)">
-            <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" />.
-            </summary>
-            <param name="material">The sold material.</param>
-            <param name="amount">The amount of sold material.</param>
-            <param name="price">The price of the sold material.</param>
-            <param name="dateTime">The moment the sale happened.</param>
-        </member>
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
             This class represents a measure through which a certain amount of material can be measured.
@@ -557,6 +494,45 @@
             <param name="quantity"></param>
             <param name="currency"></param>
             <param name="unit"></param>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
+            <summary>
+            This class represents a concrete material sale.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Material">
+            <summary>
+            The sold material.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Amount">
+            <summary>
+            The amount of sold material.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Price">
+            <summary>
+            The price of the sold material.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.DateTime">
+            <summary>
+            The moment the sale happened.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
+            <summary>
+            The amount of money made from this sale.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime)">
+            <summary>
+            Creates an instance of <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" />.
+            </summary>
+            <param name="material">The sold material.</param>
+            <param name="amount">The amount of sold material.</param>
+            <param name="price">The price of the sold material.</param>
+            <param name="dateTime">The moment the sale happened.</param>
         </member>
         <member name="T:Library.HighLevel.Accountability.SentMaterialReport">
             <summary>
@@ -975,6 +951,7 @@
             </summary>
         </member>
         <member name="M:Library.InputHandlers.UnsignedInt32Processor.#ctor(System.Func{System.String})">
+            
         </member>
         <member name="T:Library.NotNull`1">
             <summary>
@@ -1202,6 +1179,21 @@
             <summary>
             This class stores context-generic static methods.
             </summary>
+        </member>
+        <member name="M:Library.Utils.AreSimilar(System.String,System.String)">
+            <summary>
+            This method returns True if both strings are equals.
+            </summary>
+            <param name="s1">String to compare.</param>
+            <param name="s2">Other String to compare.</param>
+            <returns>Boolean.</returns>
+        </member>
+        <member name="M:Library.Utils.IsValidEmail(System.String)">
+            <summary>
+            This method check if a email is valid.
+            </summary>
+            <param name="s">The email to check.</param>
+            <returns>Boolean.</returns>
         </member>
     </members>
 </doc>
