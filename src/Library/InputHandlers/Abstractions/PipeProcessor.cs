@@ -21,23 +21,17 @@ namespace Library.InputHandlers.Abstractions
             this.resetter = resetter;
         }
 
-        Result<bool, string> IInputHandler.ProcessInput(string msg)
-        {
-            if ((this.inputHandler)(msg) is Result<T, string> processResult)
-            {
-                return processResult.AndThen(
+        Result<bool, string> IInputHandler.ProcessInput(string msg) =>
+            (this.inputHandler)(msg).Map(
+                processResult => processResult.AndThen(
                     result =>
                     {
                         this.result = result;
                         return Result<bool, string>.Ok(true);
                     }
-                );
-            }
-            else
-            {
-                return Result<bool, string>.Ok(false);
-            }
-        }
+                ),
+                () => Result<bool, string>.Ok(false)
+            );
 
         Result<T, string> IInputProcessor<T>.getResult() => Result<T, string>.Ok(this.result);
 
@@ -60,27 +54,18 @@ namespace Library.InputHandlers.Abstractions
             return new PipeProcessor<T>(
                 initialResponseGetter: processor.GetDefaultResponse,
                 inputHandler: s =>
-                {
-                    if (processor.GenerateFromInput(s) is Result<U, string> midResult)
-                    {
-                        return Option<Result<T, string>>.From(
-                            midResult.AndThen<T>(
-                                result => func(result).Switch(
-                                    v => v,
-                                    e =>
-                                    {
-                                        processor.Reset();
-                                        return $"{e}\n{processor.GetDefaultResponse()}";
-                                    }
-                                )
+                    processor.GenerateFromInput(s).MapValue(
+                        midResult => midResult.AndThen<T>(
+                            result => func(result).Switch(
+                                v => v,
+                                e =>
+                                {
+                                    processor.Reset();
+                                    return $"{e}\n{processor.GetDefaultResponse()}";
+                                }
                             )
-                        );
-                    }
-                    else
-                    {
-                        return Option<Result<T, string>>.None;
-                    }
-                },
+                        )
+                    ),
                 resetter: processor.Reset
             );
         }

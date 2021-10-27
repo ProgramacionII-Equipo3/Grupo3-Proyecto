@@ -93,6 +93,12 @@
             <param name="msg">The received message text.</param>
             <returns>The response message text.</returns>
         </member>
+        <member name="M:Library.Core.Distribution.UserSession.MatchesId(Library.Core.UserId)">
+            <summary>
+            Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete <see cref="T:Library.Core.UserId" />.
+            </summary>
+            <param name="id">The id to compare with.</param>
+        </member>
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
             This class represents invitations, through which admins can invite other non-registered users into the platform.
@@ -211,6 +217,7 @@
             <summary>
             Represent a complex form-like set of data through which certain forms of data can be received from user input easily.
             </summary>
+            <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
         <member name="F:Library.Core.Processing.FormProcessor`1.inputHandlers">
             <summary>
@@ -229,7 +236,7 @@
             </summary>
             <returns>The resulting object.</returns>
         </member>
-        <member name="M:Library.Core.Processing.FormProcessor`1.Library#Core#Processing#IInputProcessor{T}#getInput(System.String)">
+        <member name="M:Library.Core.Processing.FormProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Core.Processing.IInputHandler">
@@ -238,7 +245,7 @@
             or until the user indicates to stop trying.
             </summary>
         </member>
-        <member name="M:Library.Core.Processing.IInputHandler.GetInput(System.String)">
+        <member name="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)">
             <summary>
             Handles a received input message, returning a success signal,
             a response string (indicating it's not done yet), or an interrupt signal.
@@ -267,41 +274,12 @@
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
-        <member name="M:Library.Core.Processing.IInputProcessor`1.Reset">
-            <summary>
-            Resets the processor, so it can be used again.
-            </summary>
-        </member>
-        <member name="M:Library.Core.Processing.IInputProcessor`1.GetDefaultResponse">
-            <summary>
-            Returns the first message the object uses to indicate what kind of input it wants.
-            </summary>
-            <returns>A string.</returns>
-        </member>
-        <member name="M:Library.Core.Processing.IInputProcessor`1.getInput(System.String)">
-            <summary>
-            Handles a received input message, <br />
-            returning a response string if it's not ready yet, <br />
-            a ready-to-process-signal if it is, or <br />
-            an interrupt signal if the user wants to interrupt the process.
-            </summary>
-            <remarks>
-            After the function returns (true, null) once,
-            it's recommended that it does nothing and always returns (true, null) on subsequent calls.
-            </remarks>
-            <param name="msg">The input message.</param>
-            <returns>
-            (..., response), being response a response string, <br />
-            (true, null) for a ready-to-process signal, or <br />
-            (false, null) for an interrupt signal.
-            </returns>
-        </member>
         <member name="M:Library.Core.Processing.IInputProcessor`1.getResult">
             <summary>
             Generates the resulting object with the obtained input.
             </summary>
             <remarks>
-            This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputProcessor`1.getInput(System.String)" /> returns (true, null),
+            This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns (true, null),
             which is a signal that the object's ready to produce the result.
             </remarks>
             <returns>
@@ -309,7 +287,7 @@
             (null, error), being error an error string.
             </returns>
         </member>
-        <member name="M:Library.Core.Processing.IInputProcessor`1.ProcessInput(System.String)">
+        <member name="M:Library.Core.Processing.IInputProcessor`1.GenerateFromInput(System.String)">
             <summary>
             Receives an input message, returning the resulting object if it's ready.
             </summary>
@@ -376,7 +354,6 @@
             <summary>
             The unit used in the amount.
             </summary>
-            <value></value>
         </member>
         <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Single,Library.HighLevel.Accountability.Unit)">
             <summary>
@@ -471,7 +448,6 @@
             <summary>
             The measure's name.
             </summary>
-            <value></value>
         </member>
         <member name="F:Library.HighLevel.Accountability.Measure.units">
             <summary>
@@ -549,7 +525,6 @@
             <summary>
             The unit of material measurement with which the price is determined.
             </summary>
-            <value></value>
         </member>
         <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
             <summary>
@@ -619,6 +594,12 @@
             <param name="fromUnit">The unit of the initial measure.</param>
             <param name="toUnit">The unit of the final measure.</param>
             <returns>The number to multiply to the initial measure's numeric value to get the final measure's numeric value, or null if the units belong to different measures.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Unit.AreCompatible(Library.HighLevel.Accountability.Unit,Library.HighLevel.Accountability.Unit)">
+            <summary>
+            Checks whether two units are compatible with each other.
+            That is, whether they belong to the same measure.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Companies.Company">
             <summary>
@@ -800,6 +781,12 @@
             <param name="category">The material's category</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.Material" /> instance.</returns>
         </member>
+        <member name="M:Library.HighLevel.Materials.Material.MatchesName(System.String)">
+            <summary>
+            Checks whether this material has a concrete name.
+            </summary>
+            <param name="name">The name to compare with.</param>
+        </member>
         <member name="T:Library.HighLevel.Materials.MaterialCategory">
             <summary>
             This class represents a category of materials, through which they can be easily classified.
@@ -814,7 +801,6 @@
             <summary>
             The list of existent categories.
             </summary>
-            <value></value>
         </member>
         <member name="F:Library.HighLevel.Materials.MaterialCategory.Materials">
             <summary>
@@ -847,7 +833,6 @@
             <summary>
             The publication's price of the material.
             </summary>
-            <value></value>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.PickupLocation">
             <summary>
@@ -898,9 +883,9 @@
             <summary>
             This class represents an input processor which takes the result of another one and applies a transformation to it.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,System.ValueTuple{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,Library.Result{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
             <summary>
             Creates a pipe processor.
             </summary>
@@ -916,22 +901,6 @@
         </member>
         <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.#ctor(Library.Core.Processing.IInputProcessor{`0})">
             
-        </member>
-        <member name="T:Library.InputHandlers.BasicInputHandler">
-            <summary>
-            Represents an <see cref="T:Library.Core.Processing.IInputHandler" /> which uses an input processor, and a function to be given its result.
-            </summary>
-        </member>
-        <member name="M:Library.InputHandlers.BasicInputHandler.#ctor(System.Func{System.String,System.ValueTuple{System.Boolean,System.String}},System.Func{System.String},System.Action)">
-            
-        </member>
-        <member name="M:Library.InputHandlers.BasicInputHandler.CreateInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
-            <summary>
-            Creates a <see cref="T:Library.InputHandlers.BasicInputHandler" />.
-            </summary>
-            <param name="action">The operation to do with the resulting input.</param>
-            <param name="processor">The input processor.</param>
-            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
@@ -960,6 +929,22 @@
         <member name="M:Library.InputHandlers.PhoneNumberProcessor.#ctor(System.Func{System.String})">
             
         </member>
+        <member name="T:Library.InputHandlers.ProcessorHandler">
+            <summary>
+            Represents an <see cref="T:Library.Core.Processing.IInputHandler" /> which uses an input processor, and a function to be given its result.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.ProcessorHandler.#ctor(System.Func{System.String,Library.Result{System.Boolean,System.String}},System.Func{System.String},System.Action)">
+            
+        </member>
+        <member name="M:Library.InputHandlers.ProcessorHandler.CreateInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Creates an instance of <see cref="T:Library.InputHandlers.ProcessorHandler" />.
+            </summary>
+            <param name="action">The operation to do with the resulting input.</param>
+            <param name="processor">The input processor.</param>
+            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
+        </member>
         <member name="T:Library.InputHandlers.UnsignedInt32Processor">
             <summary>
             Represent an input processor with processes an integer from input.
@@ -967,6 +952,66 @@
         </member>
         <member name="M:Library.InputHandlers.UnsignedInt32Processor.#ctor(System.Func{System.String})">
             
+        </member>
+        <member name="T:Library.NotNull`1">
+            <summary>
+            This class represents a not nullable value.
+            </summary>
+        </member>
+        <member name="P:Library.NotNull`1.Value">
+            
+        </member>
+        <member name="M:Library.NotNull`1.FromOption(Library.Option{`0})">
+            
+        </member>
+        <member name="M:Library.NotNull`1.op_Implicit(Library.NotNull{`0})~`0">
+            
+        </member>
+        <member name="T:Library.Option`1">
+            <summary>
+            This class represents a nullable value.
+            </summary>
+            <typeparam name="T">The type contained in the option.</typeparam>
+        </member>
+        <member name="P:Library.Option`1.HasValue">
+            <summary>
+            Whether there is a value.
+            </summary>
+        </member>
+        <member name="P:Library.Option`1.None">
+            <summary>
+            An empty <see cref="T:Library.Option`1" />
+            </summary>
+        </member>
+        <member name="M:Library.Option`1.From(`0)">
+            <summary>
+            Returns an <see cref="T:Library.Option`1" /> with the given value, <br />
+            or an empty one if the value's null.
+            </summary>
+            <param name="value">The given value.</param>
+        </member>
+        <member name="M:Library.Option`1.Map``1(System.Func{`0,``0},System.Func{``0})">
+            <summary>
+            Returns the result of a function which receives the given value if there is, <br />,
+            or the result of a function which doesn't receive anything if there isn't.
+            </summary>
+            <param name="someFunc">The function for the success value.</param>
+            <param name="noneFunc">The function for the error value.</param>
+            <typeparam name="U">The type returned by the functions.</typeparam>
+        </member>
+        <member name="M:Library.Option`1.Unwrap">
+            <summary>
+            Attempts to retrieve the value from this <see cref="T:Library.Option`1" />, throwing an error if not possible.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">This option doesn't have a value.</exception>
+            <returns>The option's inner value.</returns>
+        </member>
+        <member name="M:Library.Option`1.MapValue``1(System.Func{`0,``0})">
+            <summary>
+            Passes the inner value (if there is), and returns the result in a new <see cref="T:Library.Option`1" />.
+            </summary>
+            <param name="someFunc">The function for the value.</param>
+            <typeparam name="U">The type returned by the function.</typeparam>
         </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
@@ -1038,20 +1083,70 @@
             <param name="other">The other id.</param>
             <returns>Whether the two ids are equal or not.</returns>
         </member>
-        <member name="T:Library.RefWrapper`1">
+        <member name="T:Library.Result`2">
             <summary>
-            This class acts as a boxed wrapped around a valued type,
-            so it can be used in contexts where a class type is expected.
+            This struct represents a value which could be a success (with a success value) or an error (with an error value).
             </summary>
-            <typeparam name="T">The valued type.</typeparam>
+            <typeparam name="T">The type of success value.</typeparam>
+            <typeparam name="E">The type of error value.</typeparam>
         </member>
-        <member name="F:Library.RefWrapper`1.value">
+        <member name="P:Library.Result`2.Success">
             <summary>
-            The inner value;
+            Whether the value is a success or not.
             </summary>
         </member>
-        <member name="M:Library.RefWrapper`1.#ctor(`0)">
-            
+        <member name="M:Library.Result`2.Ok(`0)">
+            <summary>
+            Creates an instance of <see cref="T:Library.Result`2"/> which represents a success.
+            </summary>
+            <param name="successValue">The success value.</param>
+            <returns>An instance of <see cref="T:Library.Result`2"/></returns>
+        </member>
+        <member name="M:Library.Result`2.Err(`1)">
+            <summary>
+            Creates an instance of <see cref="T:Library.Result`2"/> which represents an error.
+            </summary>
+            <param name="errorValue">The error value.</param>
+            <returns>An instance of <see cref="T:Library.Result`2"/></returns>
+        </member>
+        <member name="M:Library.Result`2.Map``1(System.Func{`0,``0},System.Func{`1,``0})">
+            <summary>
+            Passes either the success value or the error value through a function, returning the result.
+            </summary>
+            <param name="successFunc">The function for the success value.</param>
+            <param name="errFunc">The function for the error value.</param>
+            <typeparam name="U">The type returned by the functions.</typeparam>
+        </member>
+        <member name="M:Library.Result`2.Switch``2(System.Func{`0,``0},System.Func{`1,``1})">
+            <summary>
+            Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="T:Library.Result`2" />.
+            </summary>
+            <param name="successFunc">The function for the success value.</param>
+            <param name="errFunc">The function for the error value.</param>
+            <typeparam name="U">The type returned by the success function.</typeparam>
+            <typeparam name="F">The type returned by the error function.</typeparam>
+        </member>
+        <member name="M:Library.Result`2.SwitchOk``1(System.Func{`0,``0})">
+            <summary>
+            Passes the success value through a function if there is, returning a new <see cref="T:Library.Result`2" /> with it.
+            </summary>
+            <param name="successFunc">The function for the success value.</param>
+            <typeparam name="U">The type of the new success value.</typeparam>
+        </member>
+        <member name="M:Library.Result`2.SwitchErr``1(System.Func{`1,``0})">
+            <summary>
+            Passes the error value through a function if there is, returning a new <see cref="T:Library.Result`2" /> with it.
+            </summary>
+            <param name="errFunc">The function for the error value.</param>
+            <typeparam name="F">The type of the new error value.</typeparam>
+        </member>
+        <member name="M:Library.Result`2.AndThen``1(System.Func{`0,Library.Result{``0,`1}})">
+            <summary>
+            If the result is a success, returns the result of the given function.
+            If it's an error, returns that error.
+            </summary>
+            <param name="successFunc">The function for the success value.</param>
+            <typeparam name="U">The success type</typeparam>
         </member>
         <member name="T:Library.Singleton`1">
             <summary>

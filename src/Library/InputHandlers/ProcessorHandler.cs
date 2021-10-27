@@ -29,22 +29,16 @@ namespace Library.InputHandlers
         public static ProcessorHandler CreateInstance<T>(Action<T> action, IInputProcessor<T> processor)
         {
             return new ProcessorHandler (
-                inputHandler: s =>
-                {
-                    if(processor.GenerateFromInput(s) is Result<T, string> result)
-                    {
-                        return result.SwitchOk(
-                            v =>
-                            {
-                                action(v);
-                                return true;
-                            }
-                        );
-                    } else
-                    {
-                        return Result<bool, string>.Ok(false);
-                    }
-                },
+                inputHandler: s => processor.GenerateFromInput(s).Map(
+                    result => result.SwitchOk(
+                        v =>
+                        {
+                            action(v);
+                            return true;
+                        }
+                    ),
+                    () => Result<bool, string>.Ok(false)
+                ),
                 initialResponseGetter: processor.GetDefaultResponse,
                 resetter: processor.Reset
             );

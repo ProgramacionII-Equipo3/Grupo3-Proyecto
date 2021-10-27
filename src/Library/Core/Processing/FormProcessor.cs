@@ -40,7 +40,7 @@ namespace Library.Core.Processing
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
             Result<bool, string> processResult = this.currentHandler.ProcessInput(msg);
-            return processResult.Map(
+            return processResult.AndThen(
                 ready =>
                 {
                     if (!ready) return Result<bool, string>.Ok(false);
@@ -48,8 +48,7 @@ namespace Library.Core.Processing
                     this.index++;
                     if (this.index >= this.inputHandlers.Length) return Result<bool, string>.Ok(true);
                     else return Result<bool, string>.Err(this.currentHandler.GetDefaultResponse());
-                },
-                e => Result<bool, string>.Err(e)
+                }
             );
         }
     }
