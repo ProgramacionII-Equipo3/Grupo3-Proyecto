@@ -66,11 +66,5 @@ namespace Library
                 v => Option<U>.From(someFunc(v)),
                 () => Option<U>.None
             );
-        
-        ///
-//        public static implicit operator Option<NotNull<T>>(Option<T> option) => NotNull<T>.FromOption(option);
-
-        ///
-//        public static implicit operator Option<T>(Option<NotNull<T>> option) => option.MapValue<T>(v => v);
     }
 }
