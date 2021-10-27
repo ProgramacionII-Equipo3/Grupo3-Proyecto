@@ -15,10 +15,7 @@ namespace Library.HighLevel.Materials
 
         private void GetByAbby (string abbr)
         {
-            if (abbr == this.Abreviation)
-            {
-                
-            }
+  
         }
         
 
