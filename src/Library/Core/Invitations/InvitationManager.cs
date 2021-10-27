@@ -11,6 +11,11 @@ namespace Library.Core.Invitations
     {
         private static List<Invitation> invitations = new List<Invitation>();
 
+        static InvitationManager()
+        {
+            invitations.Add(new Library.HighLevel.Companies.CompanyInvitation("12345"));
+        }
+
         /// <summary>
         /// Creates an invitation.
         /// </summary>

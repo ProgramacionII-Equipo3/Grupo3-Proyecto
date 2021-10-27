@@ -4,7 +4,7 @@ namespace Library.Core
     /// This class represent contact information data associated with a user,
     /// a company, or another entity with contact information.
     /// </summary>
-    public class ContactInfo
+    public struct ContactInfo
     {
         /// <summary>
         /// The entity's email (null if non-existent).

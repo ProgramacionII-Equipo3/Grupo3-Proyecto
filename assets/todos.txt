@@ -1,0 +1,47 @@
+Design:
+    Add a class which implements IInputProcessor<T>, and generates the object from only one message.
+    Add a way to generalize the process of processing multiple-option input.
+    
+Diagram:
+    Create CRC cards and diagrams for classes related to entrepreneur and admin.
+
+Code:
+    Finish creating Optional struct
+        Modify the code so they utilize Optional.
+    Elaborate unit tests for every class in the program:
+        UserId
+        ContactInfo
+        UserData
+        State
+        UserSession
+        Invitation
+        InvitationManager
+        SessionManager
+        Message
+        MessageManager
+        IMessageSender
+        IMessageReceiver
+        MessagingPlatform
+        IFromInput
+        FormState
+        Unit
+        Measure
+        Habilitation
+        Requirement
+        MaterialCategory
+        Material
+        Amount
+        Currency
+        Price
+        Location
+        MaterialPublication
+        MoneyQuantity
+        MaterialSalesLine
+        SentMaterialReport
+        IPublisher
+        ISentMaterialReportCreator
+        Company
+        IInputHandler
+        IInputProcessor
+        FormProcessor
+        

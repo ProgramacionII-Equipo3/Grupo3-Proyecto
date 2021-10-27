@@ -1,286 +1,470 @@
 [
-  {
-    "name": "MaterialReport",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data that always goes in a material report (the material itself and pickup location)"
-    ],
-    "collaborators": [
-      "Location",
-      "MaterialAmount"
-    ]
-  },
-  {
-    "name": "SentMaterialReport",
-    "superclasses": "MaterialReport",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data about a company's material sending, as well as the entrepeneur who received it"
-    ],
-    "collaborators": [
-      "Entrepeneur",
-      "Location"
-    ]
-  },
-  {
-    "name": "ReceivedMaterialReport",
-    "superclasses": "MaterialReport",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data about an entrepeneur's material reception, as well as the company who sent it"
-    ],
-    "collaborators": [
-      "Company",
-      "Location"
-    ]
-  },
-  {
-    "name": "EntrepeneurReport",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store a list of materials received by an entrepeneur"
-    ],
-    "collaborators": [
-      "ReceivedMaterialReport"
-    ]
-  },
-  {
-    "name": "CompanyReport",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store the list of materials sent by a company"
-    ],
-    "collaborators": [
-      "SentMaterialReport"
-    ]
-  },
-  {
-    "name": "Admin",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store "
-    ]
-  },
-  {
-    "name": "Company",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data about a company (name, location...)",
-      "Create a report of all materials the company sent over a period of time",
-      "Accept or reject an invitation"
-    ],
-    "collaborators": [
-      "Location",
-      "CompanyReport",
-      "Invitation"
-    ]
-  },
-  {
-    "name": "Entrepeneur",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data about an entrepeneur (name, location, title, habilitations, and specializations)",
-      "Create a report of all materials the entrepeneur received over a period of time"
-    ],
-    "collaborators": [
-      "Location",
-      "Habilitation",
-      "EntrepeneurReport"
-    ]
-  },
-  {
-    "name": "Habilitation",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store information about an habilitation (type and level)",
-      "Check if the habilitation satisfies a concrete requirement"
-    ],
-    "collaborators": [
-      "Requirement"
-    ]
-  },
-  {
-    "name": "Requirement",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store information about a requirement (type and level)",
-      "Check if a concrete set of habilitations satisfy a concrete set of requirements"
-    ],
-    "collaborators": [
-      "Habilitation"
-    ]
-  },
-  {
-    "name": "Material",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data about the material (name, appropiate measures, and requirements)"
-    ],
-    "collaborators": [
-      "Measure",
-      "Requirement"
-    ]
-  },
-  {
-    "name": "MaterialAmount",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store data about a certain amount of a certain material",
-      "Create objects of itself, checking the given unit is valid for the given material"
-    ],
-    "collaborators": [
-      "Material",
-      "Unit"
-    ]
-  },
-  {
-    "name": "Measure",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Represent a concrete type of measure (weight, length...) through which a certain quantity of material can be determined"
-    ]
-  },
-  {
-    "name": "Unit",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Represent a concrete unit of a measure",
-      "Convert from one unit to another of the same measure"
-    ],
-    "collaborators": [
-      "Measure"
-    ]
-  },
-  {
-    "name": "Currency",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Represent a concrete currency",
-      "Convert from one currency into another"
-    ],
-    "collaborators": [
+    {
+      "name": "UserId",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Act as a unique identifier for the program's users."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "ContactInfo",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Store an email and telephone number (both optional)."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "UserData",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Store a user's name and contact information."
+      ],
+      "collaborators": [
+        "ContactInfo"
+      ]
+    },
+    {
+      "name": "State",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a user's state in the program.",
+        "Determine the next state and the response message to a received one."
+      ],
+      "collaborators": [
+        "UserId",
+        "UserData"
+      ]
+    },
+    {
+      "name": "UserSession",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent the session of a user in the bot.",
+        "Store the information of a program's user (id, current state and additional data)."
+      ],
+      "collaborators": [
+        "UserId",
+        "UserData",
+        "State"
+      ]
+    },
+    {
+      "name": "Invitation",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent an invitation into the platform.",
+        "Store the code of the invitation.",
+        "Handle the event of being validated."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "InvitationManager",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Encapsulate the handling of the program's invitations."
+      ],
+      "collaborators": [
+        "Invitation",
+        "UserId"
+      ]
+    },
+    {
+      "name": "SessionManager",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Encapsulate the handling of the program's user sessions."
+      ],
+      "collaborators": [
+        "UserSession",
+        "UserId"
+      ]
+    },
+    {
+      "name": "Message",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a message received from a messaging platform.",
+        "Store the message's text and the id of the user who sent it."
+      ],
+      "collaborators": [
+        "UserId"
+      ]
+    },
+    {
+      "name": "MessageManager",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Process a received message and determine the response."
+      ],
+      "collaborators": [
+        "UserSession",
+        "SessionManager",
+        "InvitationManager",
+        "Message"
+      ]
+    },
+    {
+      "name": "IMessageSender",
+      "superclasses": "",
+      "subclasses": "MessagingPlatform",
+      "type": 3,
+      "responsibilities": [
+        "Send messages via a messaging platform."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "IMessageReceiver",
+      "superclasses": "",
+      "subclasses": "MessagingPlatform",
+      "type": 3,
+      "responsibilities": [
+        "Receive messages via a messaging platform."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "MessagingPlatform",
+      "superclasses": "IMessageSender, IMessageReceiver",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a messaging platform, through which messages can be sent and received."
+      ],
+      "collaborators": [
+        "MessageManager"
+      ]
+    },
 
-    ]
-  },
-  {
-    "name": "Location",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Guarda la ubicación de un material y calcula la distancia entre el material y el receptor del mismo"
-    ],
-    "collaborators": [
-      "Material",
-      "Entrepeneur"
-    ]
-  },
-  {
-    "name": "Price",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store the price of a material, in a concrete currency ($, U$S) per a concrete quantity unit (kg, g, L, mL)"
-    ],
-    "collaborators": [
-      "Material",
-      "Currency",
-      "Unit"
-    ]
-  },
-  {
-    "name": "User",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store information about a program user (type and name)"
-    ],
-    "collaborators": [
-      "UserType"
-    ]
-  },
-  {
-    "name": "Invitation",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Store information about an invitation (the admin who sent the invitation, the company who receives it, the offer it's suggested to make)",
-      "Store its current state (pending, accepted, or rejected)",
-      "Change its state when the company validates or rejects the invitation"
-    ],
-    "collaborators": [
-      "User",
-      "Offer",
-      "InvitationState"
-    ]
-  },
-  {
-    "name": "Offer",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Stores information about an offer of materials (the material and amount, the price, and the location of the materials)"
-    ],
-    "collaborators": [
-      "MaterialAmount",
-      "Price",
-      "Location"
-    ]
-  },
-  {
-    "name": "Client",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Communicate with the user via the I/O system"
-    ],
-    "collaborators": [
-      ""
-    ]
-  },
-  {
-    "name": "Memory",
-    "superclasses": "",
-    "subclasses": "",
-    "type": 1,
-    "responsibilities": [
-      "Communicate with the permanent memory of the program (which can be, among other things, a file or a database)"
-    ],
-    "collaborators": [
-      ""
-    ]
-  }
+    {
+      "name": "IFromInput",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 3,
+      "responsibilities": [
+        "Represent a data piece which can be given by the user.",
+        "Convert the input into that data piece, process which could result in an error or an interrupt signal."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "FormState",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a complex form-like set of data through which certain forms of data can be received from user input easily.",
+        "Store an amount of data pieces that are given by user input little by little."
+      ],
+      "collaborators": [
+        "IFromInput"
+      ]
+    },
+    
+    {
+      "name": "Unit",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a measurement unit, with which a certain amount of material can be indicated.",
+        "Store the unit's name and abbreviation.",
+        "Convert units from the same measure."
+      ],
+      "collaborators": [
+        "Measure"
+      ]
+    },
+    {
+      "name": "Measure",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a measure, with which certain materials can be measured.",
+        "Store the measure's name and units."
+      ],
+      "collaborators": [
+        "Unit"
+      ]
+    },
+    {
+      "name": "Habilitation",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent an habilitation of an entrepreneur, with which they gain access to certain materials."
+      ],
+      "collaborators": [
+        "Requirement"
+      ]
+    },
+    {
+      "name": "Requirement",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Represent a requirement to manipulate certain materials.",
+        "Check whether an habilitation meets the requirement or not.",
+        "Check whether a certain set of habilitations meet a certain set of requirements."
+      ],
+      "collaborators": [
+        "Habilitation"
+      ]
+    },
+
+    {
+      "name": "MaterialCategory",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a category of materials."
+      ],
+      "collaborators": [
+        "Material"
+      ]
+    },
+    {
+      "name": "Material",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a material which can be sold by companies and purchased by entrepreneurs.",
+        "Store the material's name, requirements, category, and measure."
+      ],
+      "collaborators": [
+        "Measure",
+        "Requirement",
+        "MaterialCategory"
+      ]
+    },
+    {
+      "name": "Amount",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent an amount of material.",
+        "Store the numeric value and the unit of the amount of material."
+      ],
+      "collaborators": [
+        "Unit"
+      ]
+    },
+    {
+      "name": "Currency",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a currency, with which transactions can be made.",
+        "Store the currency's name and symbol."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "Price",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent the price of a material.",
+        "Store the price's numeric value, currency and unit."
+      ],
+      "collaborators": [
+        "Unit",
+        "Currency"
+      ]
+    },
+    {
+      "name": "Location",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a location in the world.",
+        "Calculate the distance between two locations."
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+
+    {
+      "name": "MaterialPublication",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a material publication.",
+        "Store the publication's material, stock, price and pick-up location."
+      ],
+      "collaborators": [
+        "Material",
+        "Amount",
+        "Price",
+        "Location"
+      ]
+    },
+
+    {
+      "name": "MoneyQuantity",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent an amount of money.",
+        "Store its numeric value and currency."
+      ],
+      "collaborators": [
+        "Currency"
+      ]
+    },
+    {
+      "name": "MaterialSalesLine",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a single material sale.",
+        "Store the sale's material, amount, price, moment, and income."
+      ],
+      "collaborators": [
+        "Material",
+        "Amount",
+        "Price",
+        "MoneyQuantity"
+      ]
+    },
+    {
+      "name": "SentMaterialReport",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a report of several material sales."
+      ],
+      "collaborators": [
+        "MaterialSalesLine"
+      ]
+    },
+
+    {
+      "name": "IPublisher",
+      "superclasses": "",
+      "subclasses": "Company",
+      "type": 3,
+      "responsibilities": [
+        "Publish materials into the platform."
+      ],
+      "collaborators": [
+        "MaterialPublication"
+      ]
+    },
+    {
+      "name": "ISentMaterialReportCreator",
+      "superclasses": "",
+      "subclasses": "Company",
+      "type": 3,
+      "responsibilities": [
+        "Create reports of sent materials."
+      ],
+      "collaborators": [
+        "SentMaterialReport",
+        "MaterialSalesLine"
+      ]
+    },
+    {
+      "name": "Company",
+      "superclasses": "IPublisher, ISentMaterialReportCreator",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a company.",
+        "Store the company's name, contact information, heading and representants."
+      ],
+      "collaborators": [
+        "UserId",
+        "ContactInfo"
+      ]
+    },
+
+    {
+        "name": "IInputHandler",
+        "superclasses": "",
+        "subclasses": "",
+        "type": 3,
+        "responsibilities": [
+            "Process input messages and alter the program's state accordingly.",
+            "Determine the message to sent to the user in order to ask for information."
+        ],
+        "collaborators": [
+            ""
+        ]
+    },
+    {
+        "name": "IInputProcessor",
+        "superclasses": "IInputHandler",
+        "subclasses": "",
+        "type": 3,
+        "responsibilities": [
+            "Process input messages and generate an object from them."
+        ],
+        "collaborators": [
+            ""
+        ]
+    },
+    {
+        "name": "FormProcessor",
+        "superclasses": "FormProcessor",
+        "subclasses": "",
+        "type": 1,
+        "responsibilities": [
+            "Process several input messages in a form-like manner, and generate an object with that input."
+        ],
+        "collaborators": [
+            ""
+        ]
+    }
 ]
