@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="nPQ2nc9rfcbbBthlRRQ-" name="Page-1">
-        <mxGraphModel dx="2175" dy="2032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1636" dy="1687" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Entrepreneur&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Id : string&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Name : string&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Age : byte&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Location: Location&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+Heading : string&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&amp;nbsp;+&lt;span style=&quot;font-weight: 700 ; text-align: center&quot;&gt;EntrepreneurHabilitation&lt;/span&gt;: List&amp;lt;entrepreneurhabilitation&amp;gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Specialization : List&amp;lt;specialization&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ method(): Type&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="230" y="-410" width="330" height="140" as="geometry"/>
+                <mxCell id="2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Entrepreneur&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Id : string&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Name : string&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Age : byte&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Location: Location&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+Heading : string&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&amp;nbsp;+&lt;span style=&quot;font-weight: 700 ; text-align: center&quot;&gt;EntrepreneurHabilitation&lt;/span&gt;: List&amp;lt;entrepreneurhabilitation&amp;gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+Specialization : List&amp;lt;specialization&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ ListEntrepreneurs: List&amp;lt;UserId&amp;gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ method(): Type&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="-410" width="340" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MaterialPublication...&lt;/b&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
                     <mxGeometry x="700" y="-424" width="141" height="34" as="geometry"/>
@@ -25,7 +25,7 @@
                     <mxGeometry y="48" width="220" height="32" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="ReceivedMaterialReport" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-                    <mxGeometry x="237" y="-910" width="365" height="52" as="geometry">
+                    <mxGeometry x="533" y="-910" width="365" height="52" as="geometry">
                         <mxRectangle x="45" y="-131" width="160" height="26" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -40,53 +40,43 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="32" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MaterialBoughtsLine&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Material: Material&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Amount: Amount&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Price: Price&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ DateTime: DateTime&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Spent: MoneyQuantity&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="349" y="-750" width="170" height="116" as="geometry"/>
+                    <mxGeometry x="645" y="-750" width="170" height="116" as="geometry"/>
                 </mxCell>
                 <mxCell id="34" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MoneyQuantity&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Quantity: float&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Currency: Currency&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="602" y="-726" width="251" height="76" as="geometry"/>
+                    <mxGeometry x="898" y="-726" width="251" height="76" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MoneyQuantityUtils&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;+ Calculate(Amount, Price): MoneyQuantity?&lt;/u&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="622.5" y="-616" width="257.5" height="56" as="geometry"/>
+                    <mxGeometry x="918.5" y="-616" width="257.5" height="56" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="" style="endArrow=open;endSize=12;dashed=1;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1.011;exitY=0.672;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="32" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="569.49" y="-546.78" as="sourcePoint"/>
-                        <mxPoint x="598.5" y="-672" as="targetPoint"/>
+                        <mxPoint x="865.49" y="-546.78" as="sourcePoint"/>
+                        <mxPoint x="894.5" y="-672" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="39" value="" style="endArrow=open;endSize=12;dashed=1;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" parent="1" source="32" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="438" y="-518" as="sourcePoint"/>
-                        <mxPoint x="619" y="-600" as="targetPoint"/>
+                        <mxPoint x="734" y="-518" as="sourcePoint"/>
+                        <mxPoint x="915" y="-600" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="41" value="" style="endArrow=open;endSize=12;dashed=1;html=1;" parent="1" edge="1" source="22">
+                <mxCell id="41" value="" style="endArrow=open;endSize=12;dashed=1;html=1;" parent="1" source="22" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="429" y="-630" as="sourcePoint"/>
-                        <mxPoint x="422" y="-750" as="targetPoint"/>
+                        <mxPoint x="725" y="-630" as="sourcePoint"/>
+                        <mxPoint x="718" y="-750" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="43" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ISentMaterialReportCreator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+materialBoughts: List&amp;lt;MaterialBoughtsLine&amp;gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ GetMaterialReport(DateTime): SentMaterialReport&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-116" y="-734" width="295" height="102" as="geometry"/>
+                    <mxGeometry x="180" y="-734" width="295" height="102" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="184" y="-685" as="sourcePoint"/>
-                        <mxPoint x="348" y="-682" as="targetPoint"/>
+                        <mxPoint x="480" y="-685" as="sourcePoint"/>
+                        <mxPoint x="644" y="-682" as="targetPoint"/>
                         <Array as="points"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="48" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Entrepreneurs&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ ListofEntrepreneurs: List&amp;lt;Entrepreneur&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ AddEntrepreneur(Entrepreneur): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+RemoveEntrepreneur(Entrepreneur): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-50" y="-240" width="290" height="90" as="geometry"/>
-                </mxCell>
-                <mxCell id="49" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" source="48" target="2" edge="1">
-                    <mxGeometry x="0.0045" y="105" width="160" relative="1" as="geometry">
-                        <mxPoint x="360" y="-270" as="sourcePoint"/>
-                        <mxPoint x="460" y="-270" as="targetPoint"/>
-                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="52" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;abstract&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SearchOffer&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+SearchOffer() : List&amp;lt;T&amp;gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
@@ -147,7 +137,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="70" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Material...&lt;/b&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="64" y="-828" width="141" height="34" as="geometry"/>
+                    <mxGeometry x="360" y="-828" width="141" height="34" as="geometry"/>
                 </mxCell>
                 <mxCell id="90" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="52" target="55" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
@@ -167,17 +157,17 @@
                         <mxPoint x="800" y="-106" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="93" value="" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="32" target="70">
+                <mxCell id="93" value="" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="32" target="70" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="529" y="-624" as="sourcePoint"/>
-                        <mxPoint x="210" y="-780" as="targetPoint"/>
+                        <mxPoint x="825" y="-624" as="sourcePoint"/>
+                        <mxPoint x="506" y="-780" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="102" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="43">
+                <mxCell id="102" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.553;exitY=1.029;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="43" edge="1">
                     <mxGeometry x="0.0045" y="105" width="160" relative="1" as="geometry">
                         <mxPoint x="480.19000000000005" y="-753.9999999999999" as="sourcePoint"/>
-                        <mxPoint x="480" y="-410" as="targetPoint"/>
+                        <mxPoint x="340" y="-390" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
