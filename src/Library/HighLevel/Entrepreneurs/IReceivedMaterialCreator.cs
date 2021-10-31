@@ -19,10 +19,9 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="dateTime">It is the time when the entrepreneur bought the material</param>
         /// <returns></returns>
-        ReceivedMaterialReport MaterialReport(DateTime dateTime)
-        {
+        public ReceivedMaterialReport GetMaterialReport(DateTime dateTime) =>
+        
             new ReceivedMaterialReport(this.materialBought.ToList().AsReadOnly());
-        }
-
+        
     }
 }
