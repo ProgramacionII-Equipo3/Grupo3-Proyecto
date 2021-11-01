@@ -46,21 +46,21 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// The entrepreneur's habilitation needed to buy certain materials
         /// </summary>
-        /// <typeparam name="Habilitation"></typeparam>
+        /// <typeparam name="Habilitation">The type of the list</typeparam>
         /// <returns></returns>
         private List<Habilitation> entrepreneurHabilitation = new List<Habilitation>();
 
         /// <summary>
         /// The entrepreneur's specialization
         /// </summary>
-        /// <typeparam name="EntrepreneurSpecialization"></typeparam>
+        /// <typeparam name="EntrepreneurSpecialization">The type of the list</typeparam>
         /// <returns></returns>
         private List<EntrepreneurSpecialization> specialization = new List<EntrepreneurSpecialization>();
 
         /// <summary>
         /// The entrepreneur's users in the platform
         /// </summary>
-        /// <typeparam name="UserId"></typeparam>
+        /// <typeparam name="UserId">The type of the list</typeparam>
         /// <returns></returns>
         private List<UserId> entrepeneurList = new List<UserId>();
 

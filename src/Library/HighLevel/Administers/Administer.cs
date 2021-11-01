@@ -7,9 +7,8 @@ namespace Library.HighLevel.Administers
 {
     public class Administer
     {
-        private List<UserId> administerList = new List<UserId>;
+        private List<UserId> administerList = new List<UserId>();
 
-        
         public void GenerateInvitation()
         {
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrsteuvwxyz0123456789";
@@ -24,8 +23,16 @@ namespace Library.HighLevel.Administers
             {
                 result += item; 
             }
-            InvitationManager.CreateInvitation(result, );
+
+            public static Invitation CreateInvitationInstance (string code)
+            {
+                Invitation invitation = new Invitation()
+            }
+
+            InvitationManager.CreateInvitation(result, CreateInvitationInstance);
         }
+
+
        
     }
 }

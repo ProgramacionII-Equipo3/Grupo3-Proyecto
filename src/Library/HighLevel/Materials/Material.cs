@@ -36,12 +36,19 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public MaterialCategory Category;
 
-        private Material(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category)
+        /// <summary>
+        /// Saves all the keyword's related to the publication
+        /// </summary>
+        /// <typeparam name="string"></typeparam>
+        /// <returns></returns>
+        public List<string> Keyword = new List<string>();
+        private Material(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category, List<string> keyword)
         {
             this.Name = name;
             this.Measure = measure;
             this.requirements = requirements.ToList();
             this.Category = category;
+            this.Keyword = keyword;
         }
 
         /// <summary>
@@ -52,9 +59,9 @@ namespace Library.HighLevel.Materials
         /// <param name="requirements">The material's requirements.</param>
         /// <param name="category">The material's category</param>
         /// <returns>A <see cref="Material" /> instance.</returns>
-        public Material CreateInstance(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category)
+        public Material CreateInstance(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category, List<string> keyword)
         {
-            Material result = new Material(name, measure, requirements, category);
+            Material result = new Material(name, measure, requirements, category, keyword);
             category.addMaterial(result);
             return result;
         }

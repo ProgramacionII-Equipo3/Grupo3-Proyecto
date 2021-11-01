@@ -3,8 +3,20 @@ using Library.HighLevel.Materials;
 
 namespace Library.HighLevel.Entrepreneurs
 {
-    public class SearchByKeyWord
+    public class SearchByKeyword
     {
-        public static List<KeyWord> keyWordSearcher = new List<KeyWord>();
+        string Keyword;
+        public static List<MaterialPublication> keywordSearcher = new List<MaterialPublication>();
+
+        public void Search(List<MaterialPublication> materialList)
+        {
+           foreach (var item in materialList)
+           {
+               if (item.Material.Keyword.Contains(Keyword))
+               {
+                   keywordSearcher.Add(item);
+               }
+           }
+        }
     }
 }
