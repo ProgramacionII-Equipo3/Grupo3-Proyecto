@@ -1,4 +1,0 @@
-namespace Library.HighLevel.Entrepreneurs
-{
-    
-}

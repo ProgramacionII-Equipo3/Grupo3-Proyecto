@@ -17,19 +17,18 @@ namespace Library.HighLevel.Entrepreneurs
         /// The Id to identify the entrepreneur
         /// </summary>
         /// <value></value>
-        
         public string Id { get; private set; }
+        
         /// <summary>
         /// The entrepeneur's name
         /// </summary>
         /// <value></value>
-        
         public string Name { get; private set; }
+       
         /// <summary>
         /// The entrepreneur's age
         /// </summary>
         /// <value></value>
-        
         public byte Age { get; private set; }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// The entrepreneur's specialization
         /// </summary>
-        /// <typeparam name="specialization"></typeparam>
+        /// <typeparam name="EntrepreneurSpecialization"></typeparam>
         /// <returns></returns>
         private List<EntrepreneurSpecialization> specialization = new List<EntrepreneurSpecialization>();
 
@@ -76,17 +75,5 @@ namespace Library.HighLevel.Entrepreneurs
             this.Location = location;
             this.Heading = heading;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-
-        public bool HasUser(UserId id) =>
-            this.entrepeneurList.Any(repId => repId.Equals(id));
-        
-        public void AddUser (UserId id) =>
-            this.entrepeneurList.Add(id);
     }
 }

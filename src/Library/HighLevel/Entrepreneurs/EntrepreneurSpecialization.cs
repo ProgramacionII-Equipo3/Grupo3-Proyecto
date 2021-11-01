@@ -1,9 +1,15 @@
 namespace Library.HighLevel.Entrepreneurs
 {
-    public class EntrepreneurSpecialization
+    /// <summary>
+    /// This class has the responsibility 
+    /// </summary>
+    public class EntrepreneurSpecialization 
     {
-        public readonly string Name;
+        public string Specialization { get; private set; }
 
-        
+        public EntrepreneurSpecialization (string specialization)
+        {
+            this.Specialization = specialization;
+        }
     }
 }
