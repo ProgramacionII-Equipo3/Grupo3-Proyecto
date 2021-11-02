@@ -22,7 +22,7 @@ namespace Library
         }
 
         /// <summary>
-        /// An empty <see cref="Option{T}" />
+        /// An empty <see cref="Option{T}" />.
         /// </summary>
         public static Option<T> None =>
             new Option<T>(false, default);
@@ -40,7 +40,7 @@ namespace Library
         /// or the result of a function which doesn't receive anything if there isn't.
         /// </summary>
         /// <param name="someFunc">The function for the success value.</param>
-        /// <param name="noneFunc">The function for the error value.</param>
+        /// <param name="noneFunc">The function for when there's no value.</param>
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> someFunc, Func<U> noneFunc) =>
             this.HasValue ? someFunc(this.value) : noneFunc();
@@ -57,7 +57,7 @@ namespace Library
             );
 
         /// <summary>
-        /// Passes the inner value (if there is), and returns the result in a new <see cref="Option{T}" />.
+        /// Passes the inner value through a function (if there is), and returns the result in a new <see cref="Option{T}" />.
         /// </summary>
         /// <param name="someFunc">The function for the value.</param>
         /// <typeparam name="U">The type returned by the function.</typeparam>
