@@ -1,4 +1,5 @@
 using Library.HighLevel.Accountability;
+using System.Collections.Generic;
 
 namespace Library.HighLevel.Materials
 {
@@ -26,6 +27,12 @@ namespace Library.HighLevel.Materials
         /// The publication's pick-up location of material.
         /// </summary>
         public Location PickupLocation { get; private set; }
+        
+        /// <summary>
+        /// Create's a list to save all the publication's
+        /// </summary>
+
+        public static List<MaterialPublication> publications = new List<MaterialPublication>();
         
         private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation)
         {
@@ -58,5 +65,14 @@ namespace Library.HighLevel.Materials
             CheckMaterialFields(material, amount, price)
                 ? new MaterialPublication(material, amount, price, pickupLocation)
                 : null;
+
+        /// <summary>
+        /// This method add's all created publication's to the previously created publication's list
+        /// </summary>
+        public void AddPublication()
+        {
+            publications.Add(this);
+        }
     }
+
 }

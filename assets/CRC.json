@@ -227,9 +227,10 @@
       "name": "Habilitation",
       "superclasses": "",
       "subclasses": "",
-      "type": 2,
+      "type": 1,
       "responsibilities": [
-        "Represent an habilitation of an entrepreneur, with which they gain access to certain materials."
+        "Stores a link with the habilitations document",
+        "Check if the habilitation satisfies a concrete requirement"
       ],
       "collaborators": [
         "Requirement"
@@ -466,5 +467,109 @@
         "collaborators": [
             ""
         ]
+    },
+    {
+      "name": "Entrepreneur",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represents a entrepreneur",
+        "Store the information about an entrepreneur",
+        "Creates a list of users with the rol of entrepreneur"
+      ],
+      "collaborators": [
+        "UserData",
+        "EntrepreneurHabilitation"
+      ]
+    },
+    {
+      "name": "SearchOffer",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 2,
+      "responsibilities": [
+        "Creates a list from MaterialPublication"
+      ],
+      "collaborators": [
+        "MaterialPublication"
+      ]
+    },
+    {
+      "name": "SearchByLocation",
+      "superclasses": "SearchOffer",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Returns a list of material publications according to a specific location"
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "SearchByCategory",
+      "superclasses": "SearchOffer",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Returns a list of material publications according to a specific category"
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "SearchByKeyWord",
+      "superclasses": "SearchOffer",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Returns a list of material publications according to a specific key word"
+      ],
+      "collaborators": [
+        ""
+      ]
+    },
+    {
+      "name": "IBoughtMaterialReportCreator",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 3,
+      "responsibilities": [
+        "It creates reports of bought materials"
+      ],
+      "collaborators": [
+        "MaterialBoughtsLine"
+      ]
+    },
+    {
+      "name": "MaterialBoughtsLine",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a bought material",
+        "Stores the amount, price, date time of the bought material"
+      ],
+      "collaborators": [
+        "Material",
+        "Amount",
+        "Price",
+        "MoneyQuantity",
+        "MoneyQuantityUtils"
+      ]
+    },
+    {
+      "name": "ReceivedMaterialReport",
+      "superclasses": "",
+      "subclasses": "",
+      "type": 1,
+      "responsibilities": [
+        "Represent a report of bought materials"
+      ],
+      "collaborators": [
+        "MaterialBoughtsLine"
+      ]
     }
 ]

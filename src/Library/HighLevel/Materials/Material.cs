@@ -29,11 +29,17 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public MaterialCategory Category;
 
-        private Material(string name, Measure measure, MaterialCategory category)
+        /// <summary>
+        /// Saves all the keyword's related to the publication
+        /// </summary>
+        public List<string> Keyword = new List<string>();
+
+        private Material(string name, Measure measure, MaterialCategory category, List<string> keyword)
         {
             this.Name = name;
             this.Measure = measure;
             this.Category = category;
+            this.Keyword = keyword;
         }
 
         /// <summary>
@@ -42,10 +48,12 @@ namespace Library.HighLevel.Materials
         /// <param name="name">The material's name.</param>
         /// <param name="measure">The material's measure.</param>
         /// <param name="category">The material's category</param>
+        /// <param name="keyword">The material's keyword's</param>
         /// <returns>A <see cref="Material" /> instance.</returns>
-        public static Material CreateInstance(string name, Measure measure, MaterialCategory category)
+
+        public static Material CreateInstance(string name, Measure measure, MaterialCategory category, List<string> keyword)
         {
-            Material result = new Material(name, measure, category);
+            Material result = new Material(name, measure, category, keyword);
             category.addMaterial(result);
             return result;
         }
