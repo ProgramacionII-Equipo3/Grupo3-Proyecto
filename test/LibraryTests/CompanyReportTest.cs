@@ -30,7 +30,10 @@ namespace ProgramTests
             Unit unit = new Unit("Centímetros", "cm", 1, Measure.Length);
             Price price = new Price(300, Currency.Peso, unit);
             Amount amount = new Amount(3, unit);
-            Material soldMaterial = Material.CreateInstance("Palet Plástico", Measure.Length, category);
+            List<string> keyword = new List<string>();
+            keyword.Add("palet");
+            keyword.Add("plástico");
+            Material soldMaterial = Material.CreateInstance("Palet Plástico", Measure.Length, category, keyword);
             DateTime sold = new DateTime(2021, 10, 3, 15, 30, 16);
             MaterialSalesLine materialSale = new MaterialSalesLine(soldMaterial, amount, price, sold);
             var list = new List<MaterialSalesLine>();
