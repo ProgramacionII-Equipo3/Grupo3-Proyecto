@@ -813,6 +813,7 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
+
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents a entrepreneur
@@ -935,6 +936,7 @@
             are near a specified location
             </summary>
             <typeparam name="MaterialPublication">The type of the list</typeparam>
+
             <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
