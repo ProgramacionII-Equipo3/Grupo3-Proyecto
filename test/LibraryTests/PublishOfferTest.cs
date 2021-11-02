@@ -30,7 +30,9 @@ namespace ProgramTests
             Amount amount = new Amount(10, unit);
             Price price = new Price(100, Currency.Peso, unit);
             Location location = new Location();
-            Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
+            List<string> keyword = new List<string>();
+            keyword.Add("cámara");
+            Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category, keyword);
 
             MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location);   
         }
