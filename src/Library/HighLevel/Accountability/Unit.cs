@@ -33,7 +33,14 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         internal static List<Unit> values = new List<Unit>();
 
-        internal Unit(string name, string abbreviation, double weight, Measure measure)
+        /// <summary>
+        /// Creates and instance of Unit.
+        /// </summary>
+        /// <param name="name">Unit´s name.</param>
+        /// <param name="abbreviation">Unit´s abbreviation.</param>
+        /// <param name="weight">Unit´s associated weight.</param>
+        /// <param name="measure">Unit´s measure.</param>
+        public Unit(string name, string abbreviation, double weight, Measure measure)
         {
             this.Name = name;
             this.Abbreviation = abbreviation;
