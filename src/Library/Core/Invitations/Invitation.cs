@@ -3,6 +3,7 @@ namespace Library.Core.Invitations
     /// <summary>
     /// This class represents invitations, through which admins can invite other non-registered users into the platform.
     /// </summary>
+    
     public abstract class Invitation
     {
         /// <summary>

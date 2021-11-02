@@ -28,16 +28,23 @@ namespace Library.HighLevel.Companies
         public string Heading { get; private set; }
 
         /// <summary>
+        /// Tge company´s location.
+        /// </summary>
+        /// <value></value>
+        public Location location { get; private set; }
+
+        /// <summary>
         /// The company's representants in the platform.
         /// </summary>
         private List<UserId> representants = new List<UserId>();
 
         ///
-        public Company(string name, ContactInfo contactInfo, string heading)
+        public Company(string name, ContactInfo contactInfo, string heading, Location location)
         {
             this.Name = name;
             this.contactInfo = contactInfo;
             this.Heading = heading;
+            this.location = location;
         }
 
         /// <summary>

@@ -3,7 +3,7 @@ using Library.Core.Processing;
 namespace Library.InputHandlers.Abstractions
 {
     /// <summary>
-    /// Act as a type wrapper for a specific type of <see cref="IInputProcessor{T}" />
+    /// Act as a type wrapper for a specific type of <see cref="IInputProcessor{T}" />.
     /// </summary>
     /// <typeparam name="T">The type the inner processor returns.</typeparam>
     public abstract class ProcessorWrapper<T> : IInputProcessor<T>

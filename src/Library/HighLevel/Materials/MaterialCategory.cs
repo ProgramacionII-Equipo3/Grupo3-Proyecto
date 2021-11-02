@@ -20,7 +20,7 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public static ReadOnlyCollection<MaterialCategory> Categories = new string[]
         {
-            "A", "B", "C"
+            "Metales", "Plásticos", "Materiales Técnicos"
         }.Select(name => new MaterialCategory(name.ToLowerInvariant())).ToList().AsReadOnly();
 
         private List<Material> materials = new List<Material>();
@@ -30,7 +30,11 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public readonly ReadOnlyCollection<Material> Materials;
 
-        private MaterialCategory(string name)
+        /// <summary>
+        /// Creates and instance of MaterialCategory.
+        /// </summary>
+        /// <param name="name"></param>
+        public MaterialCategory(string name)
         {
             this.Name = name;
             this.Materials = materials.AsReadOnly();

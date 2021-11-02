@@ -12,9 +12,9 @@ namespace Library.Core.Processing
         /// </summary>
         /// <param name="msg">The input message.</param>
         /// <returns>
-        /// (..., response), being response a response string, <br />
-        /// (true, null) for a success signal, or <br />
-        /// (false, null) for an interrupt signal.
+        /// Result.Err(response), being response a response string, <br />
+        /// Result.Ok(true) for a success signal, or <br />
+        /// Result.Ok(false) for an interrupt signal.
         /// </returns>
         public Result<bool, string> ProcessInput(string msg);
 

@@ -6,6 +6,11 @@ namespace Library.HighLevel.Accountability
     public class Location
     {
         /// <summary>
+        /// Location input string.
+        /// </summary>
+        public string location;
+
+        /// <summary>
         /// Calculates the distance between two <see cref="Location" />s.
         /// </summary>
         /// <param name="l1">The first location.</param>
