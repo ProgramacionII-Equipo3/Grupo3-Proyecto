@@ -1,4 +1,7 @@
 using NUnit.Framework;
+using Library.Core;
+using Library.HighLevel.Accountability;
+using Library.HighLevel.Companies;
 
 namespace ProgramTests
 {
@@ -22,7 +25,11 @@ namespace ProgramTests
         [Test]
         public void AcceptInvitation()
         {
-            
+            ContactInfo contactInfo;
+            contactInfo.Email = "companysa@gmail.com";
+            contactInfo.PhoneNumber = 098765432;
+            Location location = new Location();
+            Company company = new Company("Company.SA", contactInfo, "Arroz", location);
         }
     }
 }

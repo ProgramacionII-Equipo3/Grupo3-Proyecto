@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Library;
 using Library.Core;
+using Library.HighLevel.Accountability;
 
 namespace Library.HighLevel.Companies
 {
@@ -40,11 +41,11 @@ namespace Library.HighLevel.Companies
         /// Creates an instance of <see cref="Company" />, adding it to the list.
         /// </summary>
         /// <returns>The created instance, or null if there's already a company with the same name.</returns>
-        public static Company CreateCompany(string name, ContactInfo contactInfo, string heading)
+        public static Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
             if(GetByName(name) != null) return null;
 
-            Company result = new Company(name, contactInfo, heading);
+            Company result = new Company(name, contactInfo, heading, location);
             companies.Add(result);
             return result;
         }
