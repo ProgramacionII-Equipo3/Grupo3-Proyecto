@@ -52,7 +52,11 @@ namespace Library.States
                         Email = this.email,
                         PhoneNumber = this.phoneNumber
                     },
-                    heading: this.heading
+                    heading: this.heading,
+                    location: new Library.HighLevel.Accountability.Location
+                    {
+                        location = this.location,
+                    }
                 );
                 if(result == null) return Result<Company, string>.Err("There's already a company with the same name.");
                 else return Result<Company, string>.Ok(result);

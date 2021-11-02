@@ -83,9 +83,31 @@ namespace Library
             return false;   
         }
 
+        /// <summary>
+        /// This method check if a phone number is valid.
+        /// </summary>
+        /// <param name="number">The phone number input.</param>
+        /// <returns>True if the number is valid and false if it not does.</returns>
         public static bool IsValidPhoneNumber(int number)
         {
-            return true;
+            string numberString = number.ToString();
+            if (numberString.Length == 9)
+            {
+                if (numberString[0] == '0' && numberString[1] == '9')
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
     }

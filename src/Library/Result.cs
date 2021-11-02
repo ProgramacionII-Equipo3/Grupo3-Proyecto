@@ -85,7 +85,7 @@ namespace Library
         /// If it's an error, returns that error.
         /// </summary>
         /// <param name="successFunc">The function for the success value.</param>
-        /// <typeparam name="U">The success type</typeparam>
+        /// <typeparam name="U">The success type of the result returned by the function.</typeparam>
         public Result<U, E> AndThen<U>(Func<T, Result<U, E>> successFunc) =>
             this.Map(
                 v => successFunc(v),
