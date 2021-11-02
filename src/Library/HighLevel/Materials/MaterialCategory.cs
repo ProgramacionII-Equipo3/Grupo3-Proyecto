@@ -30,7 +30,11 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public readonly ReadOnlyCollection<Material> Materials;
 
-        private MaterialCategory(string name)
+        /// <summary>
+        /// Creates and instance of MaterialCategory.
+        /// </summary>
+        /// <param name="name"></param>
+        public MaterialCategory(string name)
         {
             this.Name = name;
             this.Materials = materials.AsReadOnly();

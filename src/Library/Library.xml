@@ -392,6 +392,11 @@
             This class represents a location in the world.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Accountability.Location.location">
+            <summary>
+            Location input string.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Accountability.Location.Distance(Library.HighLevel.Accountability.Location,Library.HighLevel.Accountability.Location)">
             <summary>
             Calculates the distance between two <see cref="T:Library.HighLevel.Accountability.Location" />s.
@@ -399,6 +404,46 @@
             <param name="l1">The first location.</param>
             <param name="l2">The second location.</param>
             <returns>The distance between the two locations, in kilometers.</returns>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.MaterialBoughtLine">
+            <summary>
+            this class represents a material bought by the entrepreneur
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialBoughtLine.Material">
+            <summary>
+            Is the purchased material
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialBoughtLine.DateTime">
+            <summary>
+            It is the date of when the purchase was made
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialBoughtLine.Price">
+            <summary>
+            It is the cost of the material
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialBoughtLine.Amount">
+            <summary>
+            It is the amount of the purchased material
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.MaterialBoughtLine.Spent">
+            <summary>
+            Is the amount of money spent
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialBoughtLine.#ctor(Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
+            <summary>
+            It is the constructor of MaterialBoughtLine 
+            </summary>
+            <param name="material">It is the purchased material</param>
+            <param name="dateTime">It is the date of when the purchase was made</param>
+            <param name="price">It is the cost of the material</param>
+            <param name="amount">It is the amount of the pruchased material</param>
         </member>
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
@@ -495,6 +540,22 @@
             <param name="currency"></param>
             <param name="unit"></param>
         </member>
+        <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
+            <summary>
+            This class represents a reports of all material purchased by the entrepreneur
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.ReceivedMaterialReport.Materials">
+            <summary>
+            Is the list of purchased materials
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.ReceivedMaterialReport.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Accountability.MaterialBoughtLine})">
+            <summary>
+            Is the constructor of ReceivedMaterialReport
+            </summary>
+            <param name="materials">Is the collection of purchased materials</param>
+        </member>
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
             <summary>
             This class represents a concrete material sale.
@@ -580,6 +641,15 @@
             The list of available units.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Accountability.Unit.#ctor(System.String,System.String,System.Double,Library.HighLevel.Accountability.Measure)">
+            <summary>
+            Creates and instance of Unit.
+            </summary>
+            <param name="name">Unit´s name.</param>
+            <param name="abbreviation">Unit´s abbreviation.</param>
+            <param name="weight">Unit´s associated weight.</param>
+            <param name="measure">Unit´s measure.</param>
+        </member>
         <member name="M:Library.HighLevel.Accountability.Unit.GetByAbbr(System.String)">
             <summary>
             Gets the unit which has a concrete abbreviation.
@@ -621,12 +691,18 @@
             The company's heading.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Companies.Company.location">
+            <summary>
+            Tge company´s location.
+            </summary>
+            <value></value>
+        </member>
         <member name="F:Library.HighLevel.Companies.Company.representants">
             <summary>
             The company's representants in the platform.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String)">
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Library.HighLevel.Accountability.Location)">
             
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(Library.Core.UserId)">
@@ -679,7 +755,7 @@
             <param name="name">The company's name.</param>
             <returns>A company, or null if there is no company with that name.</returns>
         </member>
-        <member name="M:Library.HighLevel.Companies.CompanyManager.CreateCompany(System.String,Library.Core.ContactInfo,System.String)">
+        <member name="M:Library.HighLevel.Companies.CompanyManager.CreateCompany(System.String,Library.Core.ContactInfo,System.String,Library.HighLevel.Accountability.Location)">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
@@ -734,6 +810,19 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
+        <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
+            <summary>
+            It is the collection of bought materials 
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
+            <summary>
+            It creates a reports of the purchase made by the entrepreneur
+            </summary>
+            <param name="dateTime">It is the time when the entrepreneur bought the material</param>
+            <returns></returns>
+        </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
             This abstract class represents habilitations entrepreneurs can possess,
@@ -755,29 +844,17 @@
             The measure with which the amounts of the material are measured.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Materials.Material.requirements">
-            <summary>
-            A private list of the requirements which are needed to manipulate this material.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Materials.Material.Requirements">
-            <summary>
-            A public read-only list of the requirements which are needed to manipulate this material.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="F:Library.HighLevel.Materials.Material.Category">
             <summary>
             The category the material belongs to.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,System.Collections.Generic.IEnumerable{Library.HighLevel.Materials.Requirement},Library.HighLevel.Materials.MaterialCategory)">
+        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.Material" />, adding it to the collection of materials of its category in the process.
             </summary>
             <param name="name">The material's name.</param>
             <param name="measure">The material's measure.</param>
-            <param name="requirements">The material's requirements.</param>
             <param name="category">The material's category</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.Material" /> instance.</returns>
         </member>
@@ -806,6 +883,12 @@
             <summary>
             The list of materials which belong to this category.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialCategory.#ctor(System.String)">
+            <summary>
+            Creates and instance of MaterialCategory.
+            </summary>
+            <param name="name"></param>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialCategory.GetByName(System.String)">
             <summary>
@@ -1194,6 +1277,13 @@
             </summary>
             <param name="s">The email to check.</param>
             <returns>Boolean.</returns>
+        </member>
+        <member name="M:Library.Utils.IsValidPhoneNumber(System.Int32)">
+            <summary>
+            This method check if a phone number is valid.
+            </summary>
+            <param name="number">The phone number input.</param>
+            <returns>True if the number is valid and false if it not does.</returns>
         </member>
     </members>
 </doc>
