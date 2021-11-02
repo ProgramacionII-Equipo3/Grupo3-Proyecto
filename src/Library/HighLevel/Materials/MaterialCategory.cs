@@ -20,7 +20,7 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public static ReadOnlyCollection<MaterialCategory> Categories = new string[]
         {
-            "A", "B", "C"
+            "Metales", "Plásticos", "Materiales Técnicos"
         }.Select(name => new MaterialCategory(name.ToLowerInvariant())).ToList().AsReadOnly();
 
         private List<Material> materials = new List<Material>();

@@ -39,8 +39,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// Saves all the keyword's related to the publication
         /// </summary>
-        /// <typeparam name="string"></typeparam>
-        /// <returns></returns>
+
         public List<string> Keyword = new List<string>();
         private Material(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category, List<string> keyword)
         {
@@ -58,6 +57,7 @@ namespace Library.HighLevel.Materials
         /// <param name="measure">The material's measure.</param>
         /// <param name="requirements">The material's requirements.</param>
         /// <param name="category">The material's category</param>
+        /// <param name="keyword">The material's keyword's</param>
         /// <returns>A <see cref="Material" /> instance.</returns>
         public Material CreateInstance(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category, List<string> keyword)
         {
