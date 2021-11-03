@@ -37,8 +37,15 @@ namespace Library.HighLevel.Companies
         /// The company's representants in the platform.
         /// </summary>
         private List<UserId> representants = new List<UserId>();
+        private List<string> companiesCreated = new List<string>();
 
-        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="contactInfo"></param>
+        /// <param name="heading"></param>
+        /// <param name="location"></param>
         public Company(string name, ContactInfo contactInfo, string heading, Location location)
         {
             this.Name = name;

@@ -29,17 +29,22 @@ namespace Library.HighLevel.Materials
         public Location PickupLocation { get; private set; }
         
         /// <summary>
-        /// Create's a list to save all the publication's
+        /// List to save all the publication's.
         /// </summary>
-
         public static List<MaterialPublication> publications = new List<MaterialPublication>();
+
+        /// <summary>
+        /// List of the keywords of the publication material.
+        /// </summary>
+        public List<string> Keywords = new List<string>();
         
-        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation)
+        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, List<string> keywords)
         {
             this.Material = material;
             this.Amount = amount;
             this.Price = price;
             this.PickupLocation = pickupLocation;
+            this.Keywords = keywords;
         }
 
         /// <summary>
@@ -60,10 +65,11 @@ namespace Library.HighLevel.Materials
         /// <param name="amount">The amount of material.</param>
         /// <param name="price">The price of the material.</param>
         /// <param name="pickupLocation">The pick-up location of the material.</param>
+        /// <param name ="keywords">The keywords of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation) =>
+        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, List<string> keywords) =>
             CheckMaterialFields(material, amount, price)
-                ? new MaterialPublication(material, amount, price, pickupLocation)
+                ? new MaterialPublication(material, amount, price, pickupLocation, keywords)
                 : null;
 
         /// <summary>

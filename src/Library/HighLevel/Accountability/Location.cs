@@ -1,3 +1,5 @@
+using Ucu.Poo.Locations.Client;
+using System.Threading.Tasks;
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
@@ -5,10 +7,13 @@ namespace Library.HighLevel.Accountability
     /// </summary>
     public class Location
     {
-        /// <summary>
-        /// Location input string.
-        /// </summary>
-        public string location;
+        Task<Location> Localization { get; set; }
+        public Location(string address, string city, string department, string country)
+        {
+            LocationApiClient client = new LocationApiClient();
+            this.Localization = client.GetLocationAsync(address, city, department, country);
+        }
+        
 
         /// <summary>
         /// Calculates the distance between two <see cref="Location" />s.

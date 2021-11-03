@@ -35,10 +35,10 @@ namespace Library.HighLevel.Administers
         }
 
         /// <summary>
-        /// This method has the responsibility of validating the entrepreneurs habilitations
+        /// This method has the responsibility of validating the entrepreneurs habilitations.
         /// </summary>
         /// <param name="userId"></param>
-        public void ValidateHabilitation(UserId userId)
+        public void ValidateHabilitation()
         {
 
         }

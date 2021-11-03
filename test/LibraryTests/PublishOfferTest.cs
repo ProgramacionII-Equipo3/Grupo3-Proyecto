@@ -29,12 +29,16 @@ namespace ProgramTests
             Unit unit = new Unit("Centimeters", "cm", 0.1, Measure.Length);
             Amount amount = new Amount(10, unit);
             Price price = new Price(100, Currency.Peso, unit);
-            Location location = new Location();
+            Location location = new Location("Luis Alberto de Herrera", "Minas", "Lavalleja", "Uruguay");
             List<string> keyword = new List<string>();
             keyword.Add("cámara");
-            Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category, keyword);
+            Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
 
-            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location);   
+            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location, keyword);   
+            MaterialPublication.publications.Add(publication);
+
+            var expected = MaterialPublication.publications[0];
+            Assert.AreEqual(publication, expected);
         }
     }
 }

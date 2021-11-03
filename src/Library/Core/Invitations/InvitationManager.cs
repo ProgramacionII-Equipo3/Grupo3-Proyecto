@@ -12,7 +12,10 @@ namespace Library.Core.Invitations
     /// </summary>
     public static class InvitationManager
     {
-        private static List<Invitation> invitations = new List<Invitation>();
+        /// <summary>
+        /// Stores all invitations generated.
+        /// </summary>
+        public static List<Invitation> invitations = new List<Invitation>();
 
         static InvitationManager()
         {

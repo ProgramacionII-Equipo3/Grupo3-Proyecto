@@ -27,7 +27,7 @@ namespace Library.HighLevel.Entrepreneurs
         {
            foreach (var item in materialList)
            {
-               if (item.Material.Keyword.Contains(Keyword))
+               if (item.Keywords.Contains(Keyword))
                {
                    keywordSearcher.Add(item);
                }

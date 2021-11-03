@@ -17,7 +17,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// The Id to identify the entrepreneur
         /// </summary>
         /// <value></value>
-        public string Id { get; private set; }
+        public UserId Id { get; set; }
         
         /// <summary>
         /// The entrepeneur's name
@@ -46,12 +46,12 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// The entrepreneur's habilitation needed to buy certain materials
         /// </summary>
-        private List<Habilitation> entrepreneurHabilitation = new List<Habilitation>();
+        private List<Habilitation> Habilitation = new List<Habilitation>();
 
         /// <summary>
         /// The entrepreneur's specialization
         /// </summary>
-        private List<EntrepreneurSpecialization> specialization = new List<EntrepreneurSpecialization>();
+        private List<EntrepreneurSpecialization> Specialization = new List<EntrepreneurSpecialization>();
 
         /// <summary>
         /// The entrepreneur's users in the platform
@@ -61,13 +61,16 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Entrepreneur's Constructor
         /// </summary>
-        public Entrepreneur(string id, string name, byte age, Location location, string heading)
+        public Entrepreneur(UserId id, string name, byte age, Location location, string heading, List<Habilitation> habilitation, List<EntrepreneurSpecialization> specialization)
         {
             this.Id = id;
             this.Name = name;
             this.Age = age;
             this.Location = location;
             this.Heading = heading;
+            this.Habilitation = habilitation;
+            this.Specialization = specialization;
+
         }
     }
 }
