@@ -10,24 +10,23 @@ namespace Library.HighLevel.Entrepreneurs
     /// </summary>
     public class SearchByKeyword
     {
-        string Keyword;
 
         /// <summary>
         /// This list is created to contain all the publication's that
         /// are from the specified keyword
         /// </summary>
-
         public static List<MaterialPublication> keywordSearcher = new List<MaterialPublication>();
         
         /// <summary>
         /// This method has the responsibility of searching all the publication's
         /// </summary>
-        /// <param name="materialList"></param>
-        public void Search(ReadOnlyCollection<MaterialPublication> materialList)
+        /// <param name="publications"></param>
+        /// /// <param name="keyword"></param>
+        public void Search(List<MaterialPublication> publications, string keyword)
         {
-           foreach (var item in materialList)
+           foreach (var item in publications)
            {
-               if (item.Material.Keyword.Contains(Keyword))
+               if (item.Material.Keyword.Contains(keyword))
                {
                    keywordSearcher.Add(item);
                }

@@ -124,6 +124,11 @@
             This class acts as the highest level of abstraccion in invitation handling.
             </summary>
         </member>
+        <member name="F:Library.Core.Invitations.InvitationManager.invitations">
+            <summary>
+            Creates a list to save the invitations
+            </summary>
+        </member>
         <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation">
             <summary>
             Creates an invitation.
@@ -250,9 +255,9 @@
             </summary>
             <param name="msg">The input message.</param>
             <returns>
-            (..., response), being response a response string, <br />
-            (true, null) for a success signal, or <br />
-            (false, null) for an interrupt signal.
+            Result.Err(response), being response a response string, <br />
+            Result.Ok(true) for a success signal, or <br />
+            Result.Ok(false) for an interrupt signal.
             </returns>
         </member>
         <member name="M:Library.Core.Processing.IInputHandler.GetDefaultResponse">
@@ -281,8 +286,8 @@
             which is a signal that the object's ready to produce the result.
             </remarks>
             <returns>
-            (result, null), being result the resulting object, or<br />
-            (null, error), being error an error string.
+            Result.Ok(result), being result the resulting object, or<br />
+            Result.Err(error), being error an error string.
             </returns>
         </member>
         <member name="M:Library.Core.Processing.IInputProcessor`1.GenerateFromInput(System.String)">
@@ -669,10 +674,21 @@
             That is, whether they belong to the same measure.
             </summary>
         </member>
+        <member name="T:Library.HighLevel.Administers.Administer">
+            <summary>
+            This class represents a Administer
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Administers.Administer.GenerateInvitation">
             <summary>
             This method create's a invitation code
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation(Library.Core.UserId)">
+            <summary>
+            This method has the responsibility of validating the entrepreneurs habilitations
+            </summary>
+            <param name="userId"></param>
         </member>
         <member name="T:Library.HighLevel.Companies.Company">
             <summary>
@@ -813,6 +829,19 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
+        <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
+            <summary>
+            It is the collection of bought materials 
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
+            <summary>
+            It creates a reports of the purchase made by the entrepreneur
+            </summary>
+            <param name="dateTime">It is the time when the entrepreneur bought the material</param>
+            <returns></returns>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents a entrepreneur
@@ -897,11 +926,12 @@
             are from the specified category
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Materials.MaterialPublication})">
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's
             </summary>
-            <param name="materialList"></param>
+            <param name="publications"></param>
+            <param name="category"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByKeyword">
             <summary>
@@ -914,14 +944,13 @@
             This list is created to contain all the publication's that
             are from the specified keyword
             </summary>
-            <typeparam name="MaterialPublication">The type of the list</typeparam>
-            <returns></returns>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Materials.MaterialPublication})">
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
             This method has the responsibility of searching all the publication's
             </summary>
-            <param name="materialList"></param>
+            <param name="publications"></param>
+            /// <param name="keyword"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByLocation">
             <summary>
@@ -934,8 +963,6 @@
             This list is created to contain all the publication's that
             are near a specified location
             </summary>
-            <typeparam name="MaterialPublication">The type of the list</typeparam>
-            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
@@ -967,16 +994,15 @@
             <summary>
             Saves all the keyword's related to the publication
             </summary>
-            <typeparam name="string"></typeparam>
-            <returns></returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,System.Collections.Generic.IEnumerable{Library.HighLevel.Materials.Requirement},Library.HighLevel.Materials.MaterialCategory,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory,System.Collections.Generic.List{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.Material" />, adding it to the collection of materials of its category in the process.
             </summary>
             <param name="name">The material's name.</param>
             <param name="measure">The material's measure.</param>
             <param name="category">The material's category</param>
+            <param name="keyword">The material's keyword's</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.Material" /> instance.</returns>
         </member>
         <member name="M:Library.HighLevel.Materials.Material.MatchesName(System.String)">
@@ -1047,8 +1073,6 @@
             <summary>
             Create's a list to save all the publication's
             </summary>
-            <typeparam name="MaterialPublication">The type of the list is from material publication's</typeparam>
-            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
             <summary>
@@ -1070,7 +1094,7 @@
             <param name="pickupLocation">The pick-up location of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
             <summary>
             This method add's all created publication's to the previously created publication's list
             </summary>
@@ -1111,7 +1135,7 @@
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1">
             <summary>
-            Act as a type wrapper for a specific type of <see cref="T:Library.Core.Processing.IInputProcessor`1" />
+            Act as a type wrapper for a specific type of <see cref="T:Library.Core.Processing.IInputProcessor`1" />.
             </summary>
             <typeparam name="T">The type the inner processor returns.</typeparam>
         </member>
@@ -1196,7 +1220,7 @@
         </member>
         <member name="P:Library.Option`1.None">
             <summary>
-            An empty <see cref="T:Library.Option`1" />
+            An empty <see cref="T:Library.Option`1" />.
             </summary>
         </member>
         <member name="M:Library.Option`1.From(`0)">
@@ -1212,7 +1236,7 @@
             or the result of a function which doesn't receive anything if there isn't.
             </summary>
             <param name="someFunc">The function for the success value.</param>
-            <param name="noneFunc">The function for the error value.</param>
+            <param name="noneFunc">The function for when there's no value.</param>
             <typeparam name="U">The type returned by the functions.</typeparam>
         </member>
         <member name="M:Library.Option`1.Unwrap">
@@ -1224,7 +1248,7 @@
         </member>
         <member name="M:Library.Option`1.MapValue``1(System.Func{`0,``0})">
             <summary>
-            Passes the inner value (if there is), and returns the result in a new <see cref="T:Library.Option`1" />.
+            Passes the inner value through a function (if there is), and returns the result in a new <see cref="T:Library.Option`1" />.
             </summary>
             <param name="someFunc">The function for the value.</param>
             <typeparam name="U">The type returned by the function.</typeparam>
@@ -1362,7 +1386,7 @@
             If it's an error, returns that error.
             </summary>
             <param name="successFunc">The function for the success value.</param>
-            <typeparam name="U">The success type</typeparam>
+            <typeparam name="U">The success type of the result returned by the function.</typeparam>
         </member>
         <member name="T:Library.Singleton`1">
             <summary>
