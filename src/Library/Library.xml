@@ -124,6 +124,11 @@
             This class acts as the highest level of abstraccion in invitation handling.
             </summary>
         </member>
+        <member name="F:Library.Core.Invitations.InvitationManager.invitations">
+            <summary>
+            Creates a list to save the invitations
+            </summary>
+        </member>
         <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation">
             <summary>
             Creates an invitation.
@@ -825,15 +830,19 @@
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
 
+
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
             <summary>
             It is the collection of bought materials.
+
             </summary>
             <value></value>
         </member>
         <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
             <summary>
+
             It creates a reports of the purchase made by the entrepreneur.
+
             </summary>
             <param name="dateTime">It is the time when the entrepreneur bought the material</param>
             <returns></returns>
@@ -906,11 +915,12 @@
             are from the specified category.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Materials.MaterialPublication})">
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's.
             </summary>
-            <param name="materialList"></param>
+            <param name="publications"></param>
+            <param name="category"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByKeyword">
             <summary>
@@ -924,11 +934,12 @@
             are from the specified keyword.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Materials.MaterialPublication})">
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
             This method has the responsibility of searching all the publication's.
             </summary>
-            <param name="materialList"></param>
+            <param name="publications"></param>
+            /// <param name="keyword"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByLocation">
             <summary>
@@ -941,6 +952,7 @@
             This list is created to contain all the publication's that.
             are near a specified location.
             </summary>
+
 
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Specialization">
@@ -959,6 +971,7 @@
             The EntrepreneurSpecialization's Constructor.
             </summary>
             <param name="specialization"></param>
+
 
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
@@ -1113,7 +1126,7 @@
             <param name="pickupLocation">The pick-up location of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
             <summary>
             This method add's all created publication's to the previously created publication's list
             </summary>

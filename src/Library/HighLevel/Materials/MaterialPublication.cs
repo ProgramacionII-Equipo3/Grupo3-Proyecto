@@ -69,9 +69,9 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// This method add's all created publication's to the previously created publication's list
         /// </summary>
-        public void AddPublication()
+        public static void AddPublication(MaterialPublication publication)
         {
-            publications.Add(this);
+            publications.Add(publication);
         }
     }
 
