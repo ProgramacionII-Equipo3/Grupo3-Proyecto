@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Materials;
-using Library.HighLevel.Accountability;
+using Ucu.Poo.Locations.Client;
 using Library.Core;
 
 
@@ -17,8 +17,8 @@ namespace Library.HighLevel.Entrepreneurs
         /// The Id to identify the entrepreneur.
         /// </summary>
         /// <value></value>
-        public UserId Id { get; private set; }
-        
+        public UserId Id { get; set; }
+
         /// <summary>
         /// The entrepeneur's name.
         /// </summary>
@@ -61,7 +61,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Entrepreneur's Constructor.
         /// </summary>
-        public Entrepreneur(UserId id, string name, string age, string location, string heading,List<Habilitation> habilitations, List<Specialization> specializations)
+        public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<Specialization> specializations)
         {
             this.Id = id;
             this.Name = name;

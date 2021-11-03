@@ -390,24 +390,6 @@
             The american dollar.
             </summary>
         </member>
-        <member name="T:Library.HighLevel.Accountability.Location">
-            <summary>
-            This class represents a location in the world.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.Location.location">
-            <summary>
-            Location input string.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.Location.Distance(Library.HighLevel.Accountability.Location,Library.HighLevel.Accountability.Location)">
-            <summary>
-            Calculates the distance between two <see cref="T:Library.HighLevel.Accountability.Location" />s.
-            </summary>
-            <param name="l1">The first location.</param>
-            <param name="l2">The second location.</param>
-            <returns>The distance between the two locations, in kilometers.</returns>
-        </member>
         <member name="T:Library.HighLevel.Accountability.MaterialBoughtLine">
             <summary>
             this class represents a material bought by the entrepreneur
@@ -721,8 +703,14 @@
             The company's representants in the platform.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Library.HighLevel.Accountability.Location)">
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
+            <summary>
             
+            </summary>
+            <param name="name"></param>
+            <param name="contactInfo"></param>
+            <param name="heading"></param>
+            <param name="location"></param>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(Library.Core.UserId)">
             <summary>
@@ -774,7 +762,7 @@
             <param name="name">The company's name.</param>
             <returns>A company, or null if there is no company with that name.</returns>
         </member>
-        <member name="M:Library.HighLevel.Companies.CompanyManager.CreateCompany(System.String,Library.Core.ContactInfo,System.String,Library.HighLevel.Accountability.Location)">
+        <member name="M:Library.HighLevel.Companies.CompanyManager.CreateCompany(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
@@ -795,7 +783,7 @@
             A public read-only list of the publications.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Location)">
+        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
             <summary>
             Publishes a material.
             </summary>
@@ -803,6 +791,7 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="location">The pick-up location of the material.</param>
+            <param name ="keywords">The keywords of the material.</param>
             <returns>Whether the operation was successful.</returns>
         </member>
         <member name="M:Library.HighLevel.Companies.IPublisher.RemovePublication(System.Int32)">
@@ -829,25 +818,19 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
-
-
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
             <summary>
             It is the collection of bought materials.
-
             </summary>
             <value></value>
         </member>
         <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
             <summary>
-
             It creates a reports of the purchase made by the entrepreneur.
-
             </summary>
             <param name="dateTime">It is the time when the entrepreneur bought the material</param>
             <returns></returns>
         </member>
-
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents a entrepreneur.
@@ -895,12 +878,27 @@
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.entrepeneurList">
             <summary>
-            The entrepreneur's users in the platform.
+            The entrepreneur's users in the platform
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.Byte,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.EntrepreneurSpecialization})">
+            <summary>
+            Entrepreneur's Constructor
+            </summary>
+        </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurSpecialization">
+            <summary>
+            This class represents the specialization's of a entrepreneur
             </summary>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,System.String,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
             <summary>
             Entrepreneur's Constructor.
+            </summary>
+        </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
@@ -952,8 +950,6 @@
             This list is created to contain all the publication's that.
             are near a specified location.
             </summary>
-
-
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Specialization">
             <summary>
@@ -971,7 +967,6 @@
             The EntrepreneurSpecialization's Constructor.
             </summary>
             <param name="specialization"></param>
-
 
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
@@ -1103,7 +1098,12 @@
         </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.publications">
             <summary>
-            Create's a list to save all the publication's
+            List to save all the publication's.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
+            <summary>
+            List of the keywords of the publication material.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1116,7 +1116,7 @@
             <param name="price">The price of the material.</param>
             <returns>Whether the data is valid with itself.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Location)">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, validating the data beforehand.
             </summary>
@@ -1124,6 +1124,7 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="pickupLocation">The pick-up location of the material.</param>
+            <param name ="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
@@ -1187,15 +1188,26 @@
         </member>
         <member name="T:Library.InputHandlers.EmailProcessor">
             <summary>
-            Represents a processor who parses an email from input.
+            Represents a processor which parses an email from input.
             </summary>
         </member>
         <member name="M:Library.InputHandlers.EmailProcessor.#ctor(System.Func{System.String})">
             
         </member>
+        <member name="T:Library.InputHandlers.LocationProcessor">
+            <summary>
+            Represents a processor which generates a location from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.LocationProcessor.#ctor(System.String)">
+            <param name="locationName">The name of the object of which the program wants the location.</param>
+        </member>
+        <member name="M:Library.InputHandlers.LocationProcessor.getResult">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.PhoneNumberProcessor">
             <summary>
-            Represent an input processor with processes a phone number from input.
+            Represent an input processor which processes a phone number from input.
             </summary>
         </member>
         <member name="M:Library.InputHandlers.PhoneNumberProcessor.#ctor(System.Func{System.String})">
@@ -1219,7 +1231,7 @@
         </member>
         <member name="T:Library.InputHandlers.UnsignedInt32Processor">
             <summary>
-            Represent an input processor with processes an integer from input.
+            Represent an input processor which processes an integer from input.
             </summary>
         </member>
         <member name="M:Library.InputHandlers.UnsignedInt32Processor.#ctor(System.Func{System.String})">
@@ -1451,6 +1463,16 @@
             <summary>
             This class stores context-generic static methods.
             </summary>
+        </member>
+        <member name="M:Library.Utils.GetLocation(System.String,System.String,System.String,System.String)">
+            <summary>
+            This method returns the coordinates of a specific address using the LocationAPI.
+            </summary>
+            <param name="address">The site address.</param>
+            <param name="city">The city where is the site.</param>
+            <param name="department">The department where is the site.</param>
+            <param name="country">The country where is the site.</param>
+            <returns>The site´s coordinates.</returns>
         </member>
         <member name="M:Library.Utils.AreSimilar(System.String,System.String)">
             <summary>

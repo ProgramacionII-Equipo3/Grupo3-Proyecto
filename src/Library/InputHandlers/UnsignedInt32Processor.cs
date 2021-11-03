@@ -5,7 +5,7 @@ using Library.Core.Processing;
 namespace Library.InputHandlers
 {
     /// <summary>
-    /// Represent an input processor with processes an integer from input.
+    /// Represent an input processor which processes an integer from input.
     /// </summary>
     public class UnsignedInt32Processor : IInputProcessor<int>
     {

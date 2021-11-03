@@ -25,7 +25,7 @@ namespace Library.HighLevel.Entrepreneurs
         {
            foreach (var item in publications)
            {
-               if (item.Material.Keyword.Contains(keyword))
+               if (item.Keywords.Contains(Keyword))
                {
                    keywordSearcher.Add(item);
                }

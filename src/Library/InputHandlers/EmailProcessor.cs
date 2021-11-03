@@ -5,7 +5,7 @@ using Library.InputHandlers.Abstractions;
 namespace Library.InputHandlers
 {
     /// <summary>
-    /// Represents a processor who parses an email from input.
+    /// Represents a processor which parses an email from input.
     /// </summary>
     public class EmailProcessor : ProcessorWrapper<string>
     {

@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace Library.HighLevel.Companies
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IReceivedMaterialCreator
     {
         /// <summary>

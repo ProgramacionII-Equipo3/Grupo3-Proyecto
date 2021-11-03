@@ -26,12 +26,12 @@
         </member>
         <member name="M:ProgramTests.CompanyReportTest.Setup">
             <summary>
-            
+            Necessary configuration.
             </summary>
         </member>
         <member name="M:ProgramTests.CompanyReportTest.CompanyReport">
             <summary>
-            
+            Tests if the company can see the report of the sealed materials.
             </summary>
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
@@ -69,17 +69,22 @@
         </member>
         <member name="T:ProgramTests.PublishOfferTest">
             <summary>
-            
+            Tests if a company can publish an offer for entrepreneurs.
             </summary>
         </member>
         <member name="M:ProgramTests.PublishOfferTest.Setup">
             <summary>
-            
+            Setup config test.
             </summary>
         </member>
         <member name="M:ProgramTests.PublishOfferTest.PublishOffer">
             <summary>
-            
+            Test if the company publish the offer, the entrepreneur can see it.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.NotPublishOffer">
+            <summary>
+            Test when a company not publish other offer.
             </summary>
         </member>
         <member name="T:ProgramTests.SearchOffersTest">

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {
@@ -27,10 +28,11 @@ namespace Library.HighLevel.Companies
         /// <param name="amount">The amount of material.</param>
         /// <param name="price">The price of the material.</param>
         /// <param name="location">The pick-up location of the material.</param>
+        /// <param name ="keywords">The keywords of the material.</param>
         /// <returns>Whether the operation was successful.</returns>
-        public bool PublishMaterial(Material material, Amount amount, Price price, Location location)
+        public bool PublishMaterial(Material material, Amount amount, Price price, Location location, List<string> keywords)
         {
-            if(MaterialPublication.CreateInstance(material, amount, price, location) is MaterialPublication publication)
+            if(MaterialPublication.CreateInstance(material, amount, price, location, keywords) is MaterialPublication publication)
             {
                 this.publications.Add(publication);
                 return true;
