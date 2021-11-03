@@ -12,16 +12,23 @@ namespace ProgramTests
     public class CompanyReportTest
     {
         MaterialCategory category;
+        MaterialCategory category2;
         Unit unit;
+        Unit unit2;
         Price price;
+        Price price2;
         Amount amount;
+        Amount amount2;
         Material soldMaterial;
+        Material soldMaterial2;
         DateTime sold;
+        DateTime sold2;
         SentMaterialReport report;
+        SentMaterialReport report2;
 
 
         /// <summary>
-        /// 
+        /// Necessary configuration.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -32,6 +39,13 @@ namespace ProgramTests
             amount = new Amount(3, unit);
             soldMaterial = Material.CreateInstance("Palet Plástico", Measure.Length, category);
             sold = new DateTime(2021, 10, 3, 15, 30, 16);
+
+            category2 = new MaterialCategory("Cartón");
+            unit2 = new Unit("Centímetros", "cm", 1, Measure.Length);
+            price2 = new Price(10, Currency.Dollar, unit);
+            amount2 = new Amount(40, unit);
+            soldMaterial2 = Material.CreateInstance("Bujes de cartón", Measure.Length, category2);
+            sold2 = new DateTime(2021, 11, 1, 16, 21, 15);
         }
 
         /// <summary>
@@ -42,25 +56,15 @@ namespace ProgramTests
         {
             
             MaterialSalesLine materialSale = new MaterialSalesLine(soldMaterial, amount, price, sold);
-            var list = new List<MaterialSalesLine>();
-            List<MaterialSalesLine> result = new List<MaterialSalesLine>();
-            list.Add(materialSale);
+            MaterialSalesLine materialSale2 = new MaterialSalesLine(soldMaterial2, amount2, price2, sold2);
+            List<MaterialSalesLine> sales = new List<MaterialSalesLine> { materialSale, materialSale2 };
+           
 
-            // The period of time to show the report.
-            int time = 3;
-            foreach (var item in list)
-            {
-                if (item.DateTime.Month < time)
-                {
-                    result.Add(item);
-                }
-
-            }
-            report = new SentMaterialReport(result.AsReadOnly());
             
-            MaterialSalesLine expected = report.Lines[0];
 
-            Assert.AreEqual(materialSale, expected);
+    
+           
+            
 
         }
     }
