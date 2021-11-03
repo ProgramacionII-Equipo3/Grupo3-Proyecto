@@ -66,7 +66,7 @@ namespace Library.HighLevel.Entrepreneurs
             this.Id = id;
             this.Name = name;
             this.Age = age;
-            this.Location = location;
+            this.Location = Location;
             this.Heading = heading;
         }
     }
