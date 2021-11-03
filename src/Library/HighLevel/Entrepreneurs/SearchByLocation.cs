@@ -15,14 +15,14 @@ namespace Library.HighLevel.Entrepreneurs
         //Location LocationSpecified;
 
         /// <summary>
-        /// This list is created to contain all the publication's that
-        /// are near a specified location
+        /// This list is created to contain all the publication's that.
+        /// are near a specified location.
         /// </summary>
 
         public static List<MaterialPublication> locationSearcher = new List<MaterialPublication>();
 
         /// <summary>
-        /// This method has the responsibility of searching all the publication's
+        /// This method has the responsibility of searching all the publication's.
         /// </summary>
         /// <param name="materialList"></param>
         /// <returns></returns>

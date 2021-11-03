@@ -13,14 +13,9 @@ namespace Library.Core.Invitations
     public static class InvitationManager
     {
         /// <summary>
-        /// Stores all invitations generated.
+        /// Creates a list to save the invitations
         /// </summary>
         public static List<Invitation> invitations = new List<Invitation>();
-
-        static InvitationManager()
-        {
-            invitations.Add(new Library.HighLevel.Companies.CompanyInvitation("12345"));
-        }
 
         /// <summary>
         /// Creates an invitation.

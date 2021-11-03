@@ -34,21 +34,6 @@
             Tests if the company can see the report of the sealed materials.
             </summary>
         </member>
-        <member name="T:ProgramTests.EntrepreneurRegisterTest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
             
@@ -61,7 +46,7 @@
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
             <summary>
-            
+            This test evaluate if the material was added in the report of purchased materials.
             </summary>
         </member>
         <member name="T:ProgramTests.InviteCompanyTest">
@@ -76,7 +61,10 @@
         </member>
         <member name="M:ProgramTests.InviteCompanyTest.InviteCompany">
             <summary>
-            
+            This test proves that as an admin I can create an invitation
+            As we can't expect a certain invitation code because it's
+            generated randomly, we check if the list of invitations has 
+            the same number of invitations as expected.
             </summary>
         </member>
         <member name="T:ProgramTests.PublishOfferTest">
@@ -101,27 +89,45 @@
         </member>
         <member name="T:ProgramTests.SearchOffersTest">
             <summary>
-            
+            This test proves that a entrepreneur can search material 
+            publication's using a keyword, category or zone.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.Setup">
             <summary>
-            
+            In the Setup there are some material publication's created to use.
             </summary>
         </member>
-        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategory">
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategoryFound">
             <summary>
-            
+            This test checks that an entrepreneur is able to
+            search material publication's by the category.
             </summary>
         </member>
-        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywords">
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategoryNotFound">
             <summary>
-            
+            This test checks that if an entrepreneur searches
+            for a category that didn't exist it returns a list
+            with 0 elements.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywordsFound">
+            <summary>
+            This test checks that an entrepreneur is able to
+            search material publication's with a keyword.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywordsNotFound">
+            <summary>
+            This test checks that if an entrepreneur searches
+            for a keyword that isn't included in a publication 
+            it returns a list with 0 elements.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyZone">
             <summary>
-            
+            This test checks that an entrepreneur is able to
+            search material publication's by the zone.
             </summary>
         </member>
     </members>

@@ -126,7 +126,7 @@
         </member>
         <member name="F:Library.Core.Invitations.InvitationManager.invitations">
             <summary>
-            Stores all invitations generated.
+            Creates a list to save the invitations
             </summary>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation">
@@ -666,9 +666,9 @@
             This method create's a invitation code
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation">
+        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation(Library.Core.UserId)">
             <summary>
-            This method has the responsibility of validating the entrepreneurs habilitations.
+            This method has the responsibility of validating the entrepreneurs habilitations
             </summary>
             <param name="userId"></param>
         </member>
@@ -818,67 +818,62 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
-        <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
             <summary>
-            It is the collection of bought materials 
+            It is the collection of bought materials.
             </summary>
             <value></value>
         </member>
         <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
             <summary>
-            It creates a reports of the purchase made by the entrepreneur
+            It creates a reports of the purchase made by the entrepreneur.
             </summary>
             <param name="dateTime">It is the time when the entrepreneur bought the material</param>
             <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
-            This class represents a entrepreneur
+            This class represents a entrepreneur.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Id">
             <summary>
-            The Id to identify the entrepreneur
+            The Id to identify the entrepreneur.
             </summary>
             <value></value>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Name">
             <summary>
-            The entrepeneur's name
+            The entrepeneur's name.
             </summary>
             <value></value>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Age">
             <summary>
-            The entrepreneur's age
+            The entrepreneur's age.
             </summary>
             <value></value>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Location">
             <summary>
-            The entrepreneur's location
+            The entrepreneur's location.
             </summary>
             <value></value>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Heading">
             <summary>
-            The entrepreneur's heading
+            The entrepreneur's heading.
             </summary>
             <value></value>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Habilitation">
             <summary>
-            The entrepreneur's habilitation needed to buy certain materials
+            The entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Specialization">
             <summary>
-            The entrepreneur's specialization
+            The entrepreneur's specialization.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.entrepeneurList">
@@ -896,17 +891,10 @@
             This class represents the specialization's of a entrepreneur
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Entrepreneurs.EntrepreneurSpecialization.Specialization">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,System.String,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
             <summary>
-            The specialization of entrepreneur's
+            Entrepreneur's Constructor.
             </summary>
-            <value></value>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurSpecialization.#ctor(System.String)">
-            <summary>
-            The EntrepreneurSpecialization's Constructor
-            </summary>
-            <param name="specialization"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
             <summary>
@@ -915,21 +903,22 @@
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
             <summary>
-            This class has the responsibility of searching material
-            publication´s according to a specified category
+            This class has the responsibility of searching material.
+            publication´s according to a specified category.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.SearchByCategory.categorySearcher">
             <summary>
-            This list is created to contain all the publication's that
-            are from the specified category
+            This list is created to contain all the publication's that.
+            are from the specified category.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Materials.MaterialPublication})">
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
-            This method has the responsibility of searching all the publication's
+            This method has the responsibility of searching all the publication's.
             </summary>
-            <param name="materialList"></param>
+            <param name="publications"></param>
+            <param name="category"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByKeyword">
             <summary>
@@ -939,15 +928,16 @@
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.SearchByKeyword.keywordSearcher">
             <summary>
-            This list is created to contain all the publication's that
-            are from the specified keyword
+            This list is created to contain all the publication's that.
+            are from the specified keyword.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Materials.MaterialPublication})">
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
-            This method has the responsibility of searching all the publication's
+            This method has the responsibility of searching all the publication's.
             </summary>
-            <param name="materialList"></param>
+            <param name="publications"></param>
+            /// <param name="keyword"></param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByLocation">
             <summary>
@@ -957,15 +947,55 @@
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.locationSearcher">
             <summary>
-            This list is created to contain all the publication's that
-            are near a specified location
+            This list is created to contain all the publication's that.
+            are near a specified location.
             </summary>
+        </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.Specialization">
+            <summary>
+            This class represents the specialization's of a entrepreneur.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.Specialization.Specializations">
+            <summary>
+            The specialization of entrepreneur's.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Specialization.#ctor(System.String)">
+            <summary>
+            The EntrepreneurSpecialization's Constructor.
+            </summary>
+            <param name="specialization"></param>
+
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
-            This abstract class represents habilitations entrepreneurs can possess,
+            This class represents habilitations entrepreneurs can possess,
             which are necessary to meet certain material manipulation requirements.
             </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.Habilitation.DocLink">
+            <summary>
+            It is a document with the necessary habilitations to manipulate a material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.Habilitation.IsCorrect">
+            <summary>
+            Its a boolean value which evaluate if the requirements are satisfies.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String)">
+            <summary>
+            Its create a habilitation.
+            </summary>
+            <param name="DocLink">It is a document with the necessary habilitations to manipulate a material</param>
+        </member>
+        <member name="M:Library.HighLevel.Materials.Habilitation.Validate(Library.HighLevel.Materials.Habilitation)">
+            <summary>
+            This method validate the necessary requirements.
+            </summary>
+            <param name="habilitation"></param>
         </member>
         <member name="T:Library.HighLevel.Materials.Material">
             <summary>
@@ -987,13 +1017,19 @@
             The category the material belongs to.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory)">
+        <member name="F:Library.HighLevel.Materials.Material.Keyword">
+            <summary>
+            Saves all the keyword's related to the publication
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory,System.Collections.Generic.List{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.Material" />, adding it to the collection of materials of its category in the process.
             </summary>
             <param name="name">The material's name.</param>
             <param name="measure">The material's measure.</param>
             <param name="category">The material's category</param>
+            <param name="keyword">The material's keyword's</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.Material" /> instance.</returns>
         </member>
         <member name="M:Library.HighLevel.Materials.Material.MatchesName(System.String)">
