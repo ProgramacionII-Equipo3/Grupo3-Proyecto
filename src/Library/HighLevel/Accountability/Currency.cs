@@ -7,6 +7,9 @@ namespace Library.HighLevel.Accountability
     {
         /// <summary>
         /// The currency's name.
+        /// Because of the OCP principle we use tha attributes are
+        /// readonly, in that way this class is open to extension
+        /// but closed to modifications.
         /// </summary>
         public readonly string Name;
 
