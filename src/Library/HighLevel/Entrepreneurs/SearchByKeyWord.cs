@@ -13,14 +13,14 @@ namespace Library.HighLevel.Entrepreneurs
         string Keyword;
 
         /// <summary>
-        /// This list is created to contain all the publication's that
-        /// are from the specified keyword
+        /// This list is created to contain all the publication's that.
+        /// are from the specified keyword.
         /// </summary>
 
         public static List<MaterialPublication> keywordSearcher = new List<MaterialPublication>();
         
         /// <summary>
-        /// This method has the responsibility of searching all the publication's
+        /// This method has the responsibility of searching all the publication's.
         /// </summary>
         /// <param name="materialList"></param>
         public void Search(ReadOnlyCollection<MaterialPublication> materialList)
