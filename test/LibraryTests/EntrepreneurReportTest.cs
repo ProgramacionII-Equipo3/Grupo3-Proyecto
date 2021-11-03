@@ -16,7 +16,6 @@ namespace ProgramTests
         [SetUp]
         public void Setup()
         {
-            
         }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace ProgramTests
             List<string> keyword = new List<string>();
             keyword.Add("ruleman");
             keyword.Add("metal");
-            Material boughtMaterial = Material.CreateInstance("Ruleman Metal", Measure.Weight, category, keyword);
+            Material boughtMaterial = Material.CreateInstance("Ruleman Metal", Measure.Weight, category);
             DateTime date = new DateTime(2021, 9, 2, 23, 20, 18);
             MaterialBoughtLine materialbought1 = new MaterialBoughtLine(boughtMaterial, date, price, amount);
             var list = new List<MaterialBoughtLine>();
@@ -47,7 +46,7 @@ namespace ProgramTests
             List<string> keyword2 = new List<string>();
             keyword2.Add("Botella");
             keyword2.Add("plástico");
-            Material boughtMaterial2 = Material.CreateInstance("Botella plástico",Measure.Weight,category2,keyword);
+            Material boughtMaterial2 = Material.CreateInstance("Botella plástico",Measure.Weight,category2);
             DateTime date2 = new DateTime(2021,7,8,20,17,19);
             MaterialBoughtLine materialbought2 = new MaterialBoughtLine(boughtMaterial2,date2,price2,amount2);
             list.Add(materialbought2);

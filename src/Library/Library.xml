@@ -666,9 +666,9 @@
             This method create's a invitation code
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation(Library.Core.UserId)">
+        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation">
             <summary>
-            This method has the responsibility of validating the entrepreneurs habilitations
+            This method has the responsibility of validating the entrepreneurs habilitations.
             </summary>
             <param name="userId"></param>
         </member>
@@ -818,6 +818,11 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
+        <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
             <summary>
             It is the collection of bought materials.
@@ -878,20 +883,10 @@
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.entrepeneurList">
             <summary>
-            The entrepreneur's users in the platform
+            The entrepreneur's users in the platform.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.Byte,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.EntrepreneurSpecialization})">
-            <summary>
-            Entrepreneur's Constructor
-            </summary>
-        </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurSpecialization">
-            <summary>
-            This class represents the specialization's of a entrepreneur
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,System.String,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
             <summary>
             Entrepreneur's Constructor.
             </summary>
@@ -967,7 +962,6 @@
             The EntrepreneurSpecialization's Constructor.
             </summary>
             <param name="specialization"></param>
-
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
@@ -1017,19 +1011,13 @@
             The category the material belongs to.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Materials.Material.Keyword">
-            <summary>
-            Saves all the keyword's related to the publication
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.Material" />, adding it to the collection of materials of its category in the process.
             </summary>
             <param name="name">The material's name.</param>
             <param name="measure">The material's measure.</param>
             <param name="category">The material's category</param>
-            <param name="keyword">The material's keyword's</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.Material" /> instance.</returns>
         </member>
         <member name="M:Library.HighLevel.Materials.Material.MatchesName(System.String)">
