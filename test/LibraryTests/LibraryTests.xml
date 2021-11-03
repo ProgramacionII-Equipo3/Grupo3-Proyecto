@@ -39,9 +39,14 @@
             
             </summary>
         </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
+            <summary>
+            It´s create a message with the information correspondent.
+            </summary>       
+        </member>
         <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
             <summary>
-            This test evaluate if the entrepreneur is register and all description are correct.
+            This test evaluate if the entrepreneur is registered with their correct information.
             </summary>
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
@@ -56,7 +61,7 @@
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
             <summary>
-            This test evaluate if the material was added in the report of purchased materials
+            This test evaluate if the material was added in the report of purchased materials.
             </summary>
         </member>
         <member name="T:ProgramTests.InviteCompanyTest">
