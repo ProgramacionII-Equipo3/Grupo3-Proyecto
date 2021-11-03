@@ -818,6 +818,11 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
+        <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
             <summary>
             It is the collection of bought materials 
@@ -902,6 +907,11 @@
             The EntrepreneurSpecialization's Constructor
             </summary>
             <param name="specialization"></param>
+        </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
             <summary>
@@ -1081,7 +1091,7 @@
             <param name ="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
             <summary>
             This method add's all created publication's to the previously created publication's list
             </summary>
@@ -1417,6 +1427,16 @@
             <summary>
             This class stores context-generic static methods.
             </summary>
+        </member>
+        <member name="M:Library.Utils.GetLocation(System.String,System.String,System.String,System.String)">
+            <summary>
+            This method returns the coordinates of a specific address using the LocationAPI.
+            </summary>
+            <param name="address">The site address.</param>
+            <param name="city">The city where is the site.</param>
+            <param name="department">The department where is the site.</param>
+            <param name="country">The country where is the site.</param>
+            <returns>The site´s coordinates.</returns>
         </member>
         <member name="M:Library.Utils.AreSimilar(System.String,System.String)">
             <summary>

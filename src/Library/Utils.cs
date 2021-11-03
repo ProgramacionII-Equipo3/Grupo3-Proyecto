@@ -9,6 +9,14 @@ namespace Library
     {
         private static LocationApiClient locationClient = new LocationApiClient();
 
+        /// <summary>
+        /// This method returns the coordinates of a specific address using the LocationAPI.
+        /// </summary>
+        /// <param name="address">The site address.</param>
+        /// <param name="city">The city where is the site.</param>
+        /// <param name="department">The department where is the site.</param>
+        /// <param name="country">The country where is the site.</param>
+        /// <returns>The site´s coordinates.</returns>
         public static Location GetLocation(string address, string city, string department, string country)
         {
             return locationClient.GetLocationAsync(address, city, department, country).Result;
