@@ -20,7 +20,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test evaluate if the material was added in the report of purchased materials
+        /// This test evaluate if the material was added in the report of purchased materials.
         /// </summary>
         [Test]
         public void EntrepreneurReport()
