@@ -34,21 +34,6 @@
             
             </summary>
         </member>
-        <member name="T:ProgramTests.EntrepreneurRegisterTest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
-            <summary>
-            It´s create a message with the information correspondent.
-            </summary>       
-        </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
-            <summary>
-            This test evaluate if the entrepreneur is registered with their correct information.
-            </summary>
-        </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
             
