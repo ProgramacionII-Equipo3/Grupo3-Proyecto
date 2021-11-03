@@ -346,6 +346,8 @@
         <member name="T:Library.HighLevel.Accountability.Amount">
             <summary>
             This struct represents an amount of material.
+            We used the OCP principle to create this class, we used "readonly"
+            to prevent modifications, but it's still open to extension.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Amount.Quantity">
@@ -373,6 +375,9 @@
         <member name="F:Library.HighLevel.Accountability.Currency.Name">
             <summary>
             The currency's name.
+            Because of the OCP principle we use tha attributes are
+            readonly, in that way this class is open to extension
+            but closed to modifications.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Symbol">
@@ -393,6 +398,8 @@
         <member name="T:Library.HighLevel.Accountability.MaterialBoughtLine">
             <summary>
             this class represents a material bought by the entrepreneur
+            We used the SRP principle, in that way material, datetime, 
+            price, amount are all attributes
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.MaterialBoughtLine.Material">

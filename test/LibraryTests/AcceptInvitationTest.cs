@@ -17,9 +17,7 @@ namespace ProgramTests
         /// </summary>
         [SetUp]
         public void Setup()
-        {
-            InvitationManager.CreateInvitation();
-           
+        {           
         }
 
         /// <summary>
@@ -28,6 +26,7 @@ namespace ProgramTests
         [Test]
         public void AcceptInvitation()
         {
+            InvitationManager.CreateInvitation();
             TelegramId id = new TelegramId(2066298868);
             Message message = new Message("1234567", id);
             LocationApiClient provider = new LocationApiClient();
