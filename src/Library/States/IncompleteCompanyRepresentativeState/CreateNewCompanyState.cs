@@ -14,7 +14,7 @@ namespace Library.States
 
             private IncompleteCompanyRepresentativeState parent;
             private string heading;
-            private string location;
+            private Location location;
             private int phoneNumber;
             private string email;
 
@@ -29,9 +29,9 @@ namespace Library.States
                         s => this.heading = s,
                         new BasicStringProcessor(() => "Please insert the company's heading.")
                     ),
-                    ProcessorHandler.CreateInstance<string>(
-                        s => this.location = s,
-                        new BasicStringProcessor(() => "Please insert the company's location.")
+                    ProcessorHandler.CreateInstance<Location>(
+                        l => this.location = l,
+                        new LocationProcessor("company")
                     ),
                     ProcessorHandler.CreateInstance<int>(
                         n => this.phoneNumber = n,
@@ -54,10 +54,7 @@ namespace Library.States
                         PhoneNumber = this.phoneNumber
                     },
                     heading: this.heading,
-                    location: new Ucu.Poo.Locations.Client.Location
-                    {
-                        location = this.location,
-                    }
+                    location: this.location
                 );
                 if(result == null) return Result<Company, string>.Err("There's already a company with the same name.");
                 else return Result<Company, string>.Ok(result);

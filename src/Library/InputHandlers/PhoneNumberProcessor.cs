@@ -4,7 +4,7 @@ using Library.InputHandlers.Abstractions;
 namespace Library.InputHandlers
 {
     /// <summary>
-    /// Represent an input processor with processes a phone number from input.
+    /// Represent an input processor which processes a phone number from input.
     /// </summary>
     public class PhoneNumberProcessor : ProcessorWrapper<int>
     {
