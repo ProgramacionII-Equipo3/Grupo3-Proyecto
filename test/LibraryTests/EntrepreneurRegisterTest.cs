@@ -19,7 +19,9 @@ namespace ProgramTests
         Message habilitationsMessage;
         Message specializationsMessage;
 
-       
+        /// <summary>
+        /// It´s create a message with the information correspondent.
+        /// </summary>       
         [SetUp]
         public void Setup()
         {
