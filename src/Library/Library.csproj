@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PII_LocationApiClient\src\Library\APILibrary.csproj" />
+    <ProjectReference Include="..\..\PII_LocationApiClient\src\Library\APILibrary.csproj" />
   </ItemGroup>
 
 </Project>
