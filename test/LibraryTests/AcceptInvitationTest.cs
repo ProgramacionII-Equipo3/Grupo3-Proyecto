@@ -29,7 +29,7 @@ namespace ProgramTests
         public async void AcceptInvitation()
         {
             TelegramId id = new TelegramId(2066298868);
-            Message message = new Message(InvitationManager.invitations[0].Code, id);
+            Message message = new Message("1234567", id);
             LocationApiClient provider = new LocationApiClient();
             if (message.Text.Equals(InvitationManager.invitations[0].Code))
             {

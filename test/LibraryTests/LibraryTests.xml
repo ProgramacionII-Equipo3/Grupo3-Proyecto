@@ -81,6 +81,41 @@
         </member>
         <member name="T:ProgramTests.PublishOfferTest">
             <summary>
+            Tests if a company can publish an offer for entrepreneurs.
+            </summary>
+        </member>
+        <member name="P:ProgramTests.PublishOfferTest.provider">
+            <summary>
+            Sets the LocationApli client.
+            </summary>
+        </member>
+        <member name="F:ProgramTests.PublishOfferTest.category">
+            <summary>
+            Material´s category.
+            </summary>
+        </member>
+        <member name="F:ProgramTests.PublishOfferTest.unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ProgramTests.PublishOfferTest.amount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ProgramTests.PublishOfferTest.price">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ProgramTests.PublishOfferTest.location">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ProgramTests.PublishOfferTest.keyword">
+            <summary>
             
             </summary>
         </member>
@@ -90,6 +125,11 @@
             </summary>
         </member>
         <member name="M:ProgramTests.PublishOfferTest.PublishOffer">
+            <summary>
+            If the company publish the offer the entrepreneur can see it.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.NotPublishOffer">
             <summary>
             
             </summary>
