@@ -1,0 +1,6 @@
+Juan - Create Habilitation class
+Martin - Modify Location class
+Create Tests 
+Juan - EntrepreneurRegisterTest, EntrepreneurReportTest
+Martin - PublishOfferTest, CompanyReportTest, AcceptInvitationTest
+Bianca - InviteCompanyTest, SearchOfferTest

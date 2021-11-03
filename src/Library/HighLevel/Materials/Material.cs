@@ -20,28 +20,26 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public Measure Measure { get; private set; }
 
-        /// <summary>
-        /// A private list of the requirements which are needed to manipulate this material.
-        /// </summary>
-        private List<Requirement> requirements = new List<Requirement>();
-
-        /// <summary>
-        /// A public read-only list of the requirements which are needed to manipulate this material.
-        /// </summary>
-        /// <returns></returns>
-        public ReadOnlyCollection<Requirement> Requirements => this.requirements.AsReadOnly();
+        
+        //private List<Requirement> requirements = new List<Requirement>();
+        //public ReadOnlyCollection<Requirement> Requirements => this.requirements.AsReadOnly();
 
         /// <summary>
         /// The category the material belongs to.
         /// </summary>
         public MaterialCategory Category;
 
-        private Material(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category)
+        /// <summary>
+        /// Saves all the keyword's related to the publication
+        /// </summary>
+        public List<string> Keyword = new List<string>();
+
+        private Material(string name, Measure measure, MaterialCategory category, List<string> keyword)
         {
             this.Name = name;
             this.Measure = measure;
-            this.requirements = requirements.ToList();
             this.Category = category;
+            this.Keyword = keyword;
         }
 
         /// <summary>
@@ -49,12 +47,13 @@ namespace Library.HighLevel.Materials
         /// </summary>
         /// <param name="name">The material's name.</param>
         /// <param name="measure">The material's measure.</param>
-        /// <param name="requirements">The material's requirements.</param>
         /// <param name="category">The material's category</param>
+        /// <param name="keyword">The material's keyword's</param>
         /// <returns>A <see cref="Material" /> instance.</returns>
-        public Material CreateInstance(string name, Measure measure, IEnumerable<Requirement> requirements, MaterialCategory category)
+
+        public static Material CreateInstance(string name, Measure measure, MaterialCategory category, List<string> keyword)
         {
-            Material result = new Material(name, measure, requirements, category);
+            Material result = new Material(name, measure, category, keyword);
             category.addMaterial(result);
             return result;
         }

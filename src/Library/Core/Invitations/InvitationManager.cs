@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Library.HighLevel.Companies;
+using Library.HighLevel.Administers;
+
 
 namespace Library.Core.Invitations
 {
@@ -19,11 +22,11 @@ namespace Library.Core.Invitations
         /// <summary>
         /// Creates an invitation.
         /// </summary>
-        /// <param name="invitationCode">The invitation's code.</param>
-        /// <param name="f">A function which creates the invitation taking the code.</param>
-        public static void CreateInvitation(string invitationCode, Func<string, Invitation> f)
+        public static void CreateInvitation()
         {
-            invitations.Add(f(invitationCode));
+            string code = Administer.GenerateInvitation();
+            Invitation invitation = new CompanyInvitation(code); 
+            invitations.Add(invitation);
         }
 
         /// <summary>

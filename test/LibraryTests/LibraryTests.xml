@@ -4,5 +4,120 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:ProgramTests.AcceptInvitationTest">
+            <summary>
+            This Test is for verificates if a Company can accept an invitation to the platform.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.AcceptInvitationTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.AcceptInvitationTest.AcceptInvitation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ProgramTests.CompanyReportTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyReportTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyReportTest.CompanyReport">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ProgramTests.EntrepreneurRegisterTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ProgramTests.EntrepreneurReportTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurReportTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ProgramTests.InviteCompanyTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.InviteCompanyTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.InviteCompanyTest.InviteCompany">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ProgramTests.PublishOfferTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.PublishOffer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ProgramTests.SearchOffersTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywords">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyZone">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

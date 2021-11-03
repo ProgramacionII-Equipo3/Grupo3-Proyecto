@@ -14,8 +14,8 @@ namespace Library.Core.Processing
         /// which is a signal that the object's ready to produce the result.
         /// </remarks>
         /// <returns>
-        /// (result, null), being result the resulting object, or<br />
-        /// (null, error), being error an error string.
+        /// Result.Ok(result), being result the resulting object, or<br />
+        /// Result.Err(error), being error an error string.
         /// </returns>
         protected Result<T, string> getResult();
 
