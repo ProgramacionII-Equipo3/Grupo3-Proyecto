@@ -887,7 +887,7 @@
             The entrepreneur's users in the platform
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.Byte,Library.HighLevel.Accountability.Location,System.String)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.Byte,System.String,System.String)">
             <summary>
             Entrepreneur's Constructor
             </summary>
