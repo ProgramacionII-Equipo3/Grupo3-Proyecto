@@ -1,3 +1,5 @@
+using Ucu.Poo.Locations.Client;
+
 namespace Library
 {
     /// <summary>
@@ -5,6 +7,13 @@ namespace Library
     /// </summary>
     public static class Utils
     {
+        private static LocationApiClient locationClient = new LocationApiClient();
+
+        public static Location GetLocation(string address, string city, string department, string country)
+        {
+            return locationClient.GetLocationAsync(address, city, department, country).Result;
+        }
+
         /// <summary>
         /// This method returns True if both strings are equals.
         /// </summary>

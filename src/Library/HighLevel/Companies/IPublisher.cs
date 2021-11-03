@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {

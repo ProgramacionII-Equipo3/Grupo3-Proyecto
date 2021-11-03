@@ -3,6 +3,7 @@ using System.Globalization;
 using Library.InputHandlers;
 using Library.HighLevel.Companies;
 using Library.Core.Processing;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.States
 {
@@ -53,7 +54,7 @@ namespace Library.States
                         PhoneNumber = this.phoneNumber
                     },
                     heading: this.heading,
-                    location: new Library.HighLevel.Accountability.Location
+                    location: new Ucu.Poo.Locations.Client.Location
                     {
                         location = this.location,
                     }

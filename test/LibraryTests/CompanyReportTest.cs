@@ -20,6 +20,9 @@ namespace ProgramTests
         SentMaterialReport report;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {

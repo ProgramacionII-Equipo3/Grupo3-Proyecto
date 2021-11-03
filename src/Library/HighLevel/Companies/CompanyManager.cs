@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Library;
 using Library.Core;
-using Library.HighLevel.Accountability;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {
