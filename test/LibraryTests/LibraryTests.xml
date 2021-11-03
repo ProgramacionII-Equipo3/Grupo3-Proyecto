@@ -34,21 +34,6 @@
             
             </summary>
         </member>
-        <member name="T:ProgramTests.EntrepreneurRegisterTest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
             
@@ -61,7 +46,7 @@
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
             <summary>
-            
+            This test evaluate if the material was added in the report of purchased materials.
             </summary>
         </member>
         <member name="T:ProgramTests.InviteCompanyTest">

@@ -4,20 +4,20 @@ using Library.HighLevel.Materials;
 namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
-    /// This class has the responsibility of searching material
-    /// publication´s according to a specified category
+    /// This class has the responsibility of searching material.
+    /// publication´s according to a specified category.
     /// </summary>
     public class SearchByCategory
     {
 
         /// <summary>
-        /// This list is created to contain all the publication's that
-        /// are from the specified category
+        /// This list is created to contain all the publication's that.
+        /// are from the specified category.
         /// </summary>
         public static List<MaterialPublication> categorySearcher = new List<MaterialPublication>();
 
         /// <summary>
-        /// This method has the responsibility of searching all the publication's
+        /// This method has the responsibility of searching all the publication's.
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="category"></param>
