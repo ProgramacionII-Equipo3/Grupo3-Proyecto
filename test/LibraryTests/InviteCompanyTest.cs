@@ -18,10 +18,10 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test proves that as an admin I can create an invitation.
-        /// As we can't expect a certain invitation code because it's 
+        /// This test proves that as an admin I can create an invitation
+        /// As we can't expect a certain invitation code because it's
         /// generated randomly, we check if the list of invitations has 
-        /// the same number of invitations as expected
+        /// the same number of invitations as expected.
         /// </summary>
         [Test]
         public void InviteCompany()

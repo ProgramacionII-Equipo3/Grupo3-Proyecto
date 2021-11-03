@@ -1,14 +1,14 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using Library.HighLevel.Materials;
 using Library.HighLevel.Accountability;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Library.HighLevel.Entrepreneurs;
 
 namespace ProgramTests
 {
     /// <summary>
-    /// 
+    /// This test proves that a entrepreneur can search material 
+    /// publication's using a keyword, category or zone.
     /// </summary>
     public class SearchOffersTest
     {        
@@ -20,7 +20,6 @@ namespace ProgramTests
         Location pickupLocation1;
         MaterialPublication publication1;
 
-
         MaterialCategory category2;
         Material material2;
         Unit unit2;
@@ -30,7 +29,7 @@ namespace ProgramTests
         MaterialPublication publication2;
         
         /// <summary>
-        /// 
+        /// In the Setup there are some material publication's created to use.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -62,7 +61,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test proves that an entrepreneur is able to
+        /// This test checks that an entrepreneur is able to
         /// search material publication's by the category.
         /// </summary>
         [Test]
@@ -80,7 +79,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test proves that if an entrepreneur searches
+        /// This test checks that if an entrepreneur searches
         /// for a category that didn't exist it returns a list
         /// with 0 elements.
         /// </summary>
@@ -97,7 +96,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test proves that an entrepreneur is able to
+        /// This test checks that an entrepreneur is able to
         /// search material publication's with a keyword.
         /// </summary>
         [Test]
@@ -113,7 +112,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test proves that if an entrepreneur searches
+        /// This test checks that if an entrepreneur searches
         /// for a keyword that isn't included in a publication 
         /// it returns a list with 0 elements.
         /// </summary>
@@ -129,7 +128,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// This test proves that an entrepreneur is able to
+        /// This test checks that an entrepreneur is able to
         /// search material publication's by the zone.
         /// </summary>
         [Test]

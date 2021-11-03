@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Library.HighLevel.Materials;
-using System.Collections.ObjectModel;
 
 namespace Library.HighLevel.Entrepreneurs
 {
