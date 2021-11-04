@@ -613,6 +613,14 @@
             </summary>
             <param name="lines">The report's list of material sales.</param>
         </member>
+        <member name="M:Library.HighLevel.Accountability.SentMaterialReport.GetSentReport(System.Collections.Generic.List{Library.HighLevel.Accountability.MaterialSalesLine},System.Int32)">
+            <summary>
+            This method returns a list of materials that were sold in a certain period of time.
+            </summary>
+            <param name="materialSales">The list of materials sold.</param>
+            <param name="time">The period of time to search.</param>
+            <returns></returns>
+        </member>
         <member name="T:Library.HighLevel.Accountability.Unit">
             <summary>
             This class represent a unit used for measuring amounts of material.
@@ -725,14 +733,19 @@
             The company's representants in the platform.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Companies.Company.companiesCreated">
+            <summary>
+            A list with all companies in the platform.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
             <summary>
-            
+            Creates an instance of Company.
             </summary>
-            <param name="name"></param>
-            <param name="contactInfo"></param>
-            <param name="heading"></param>
-            <param name="location"></param>
+            <param name="name">The company´s name.</param>
+            <param name="contactInfo">The company´s contact info.</param>
+            <param name="heading">The company´s heading.</param>
+            <param name="location">The company´s location.</param>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(Library.Core.UserId)">
             <summary>
@@ -746,6 +759,12 @@
             Adds a user into the list of representants.
             </summary>
             <param name="id">The user's id.</param>
+        </member>
+        <member name="M:Library.HighLevel.Companies.Company.AddCompany(Library.HighLevel.Companies.Company)">
+            <summary>
+            This method adds a company to the list with all companies created.
+            </summary>
+            <param name="company">The company to add.</param>
         </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
@@ -923,7 +942,12 @@
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
             <summary>
-            
+            Class to find what materials are constantly generated.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated.GetReport">
+            <summary>
+            This method returns all the materials that are constantly generated.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
