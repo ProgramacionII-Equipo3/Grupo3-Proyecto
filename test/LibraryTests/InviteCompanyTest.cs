@@ -13,8 +13,7 @@ namespace ProgramTests
         /// </summary>
         [SetUp]
         public void Setup()
-        {
-            
+        {      
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace ProgramTests
             InvitationManager.CreateInvitation();
             InvitationManager.CreateInvitation();
             int expected = 3;
-            int invitationsLength = InvitationManager.invitations.ToArray().Length;
+            int invitationsLength = InvitationManager.invitations.Count;
             Assert.AreEqual(invitationsLength, expected);
         }
     }
