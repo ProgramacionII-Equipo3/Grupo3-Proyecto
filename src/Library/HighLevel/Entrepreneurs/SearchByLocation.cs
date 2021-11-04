@@ -19,6 +19,8 @@ namespace Library.HighLevel.Entrepreneurs
 
         public static List<MaterialPublication> locationSearcher = new List<MaterialPublication>();
 
+        public static LocationApiClient client = new LocationApiClient();
+
         /// <summary>
         /// This method has the responsibility of searching all the publication's.
         /// </summary>
@@ -26,13 +28,12 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
         /// <returns></returns>
-        public async void Search(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public void Search(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
         {
-           LocationApiClient client = new LocationApiClient();
            foreach (var item in publications)
            {
                Distance distance;
-               distance = await client.GetDistanceAsync(locationSpecified, item.PickupLocation);
+               distance = client.GetDistanceAsync(locationSpecified, item.PickupLocation).Result;
                if(distance.TravelDistance <= distanceSpecified)
                {
                    locationSearcher.Add(item);

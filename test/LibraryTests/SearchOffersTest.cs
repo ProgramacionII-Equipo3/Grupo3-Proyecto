@@ -176,7 +176,7 @@ namespace ProgramTests
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
             Assert.AreEqual(SearchByKeyword.keywordSearcher, expected4);
-        }/*
+        }
 
         /// <summary>
         /// This test checks that an entrepreneur is able to
@@ -210,13 +210,13 @@ namespace ProgramTests
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("Av. Gral. San Martín 2909").Result;
-            double distanceSpecified = 100;
+            double distanceSpecified = 4;
             searchByLocation.Search(publicationsToSearchIn, locationSpecified, distanceSpecified);
 
             List<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(publication2);
 
             Assert.AreEqual(SearchByLocation.locationSearcher, expected5);
-        }*/
+        }
     }
 }
