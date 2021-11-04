@@ -51,10 +51,7 @@ namespace ProgramTests
             MaterialBoughtLine materialbought2 = new MaterialBoughtLine(boughtMaterial2,date2,price2,amount2);
             list.Add(materialbought2);
             MaterialBoughtLine expected2 = list[1];
-            Assert.AreEqual(materialbought2,expected2);
-
-
-
+            Assert.AreEqual(materialbought2, expected2);
         }
     }
 }

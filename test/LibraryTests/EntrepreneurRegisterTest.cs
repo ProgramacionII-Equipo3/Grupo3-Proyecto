@@ -1,21 +1,23 @@
-/*
 using NUnit.Framework;
 using System.Collections.Generic;
 using Library.HighLevel.Entrepreneurs;
 using Library.Core;
 using Library.HighLevel.Materials;
 using Library.Platforms.Telegram;
+using Ucu.Poo.Locations.Client;
+
 namespace ProgramTests
 {
     /// <summary>
-    /// 
+    /// Test if an Entrepreneur can register into the platform.
     /// </summary>
     public class EntrepreneurRegisterTest
     {
         TelegramId juanId;
         Message nameMessage;
         Message ageMessage;
-        Message locationMessage;
+        LocationApiClient provider;
+        Location location;
         Message headingMessage;
         Message habilitationsMessage;
         Message specializationsMessage;
@@ -29,10 +31,11 @@ namespace ProgramTests
             juanId =  new TelegramId(2567104974);
             nameMessage = new Message("Juan", juanId);
             ageMessage = new Message("23", juanId);
-            locationMessage = new Message("montecaseros", juanId);
             headingMessage = new Message("carpintero", juanId);
             habilitationsMessage = new Message("/command link1 link2",juanId);
             specializationsMessage = new Message("/command specialization1, specialization2", juanId);
+            provider = new LocationApiClient();
+            location = provider.GetLocationAsync("Av. 8 de Octubre 2738").Result;
 
 
         }
@@ -61,7 +64,7 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(juanId, nameMessage.Text, ageMessage.Text, locationMessage.Text, headingMessage.Text, habilitations, specializations );
+            Entrepreneur juan = new Entrepreneur(juanId, nameMessage.Text, ageMessage.Text, location, headingMessage.Text, habilitations, specializations );
             Entrepreneur.entrepeneurList.Add(juanId);
 
             /// <summary>
@@ -80,11 +83,7 @@ namespace ProgramTests
             Assert.AreEqual(habilitations, juan.Habilitation);
             Assert.AreEqual(specializations,juan.Specialization);
             Assert.AreEqual(nameExpected,juan.Name);
-
-
-
         }
     }
 
 }
-*/

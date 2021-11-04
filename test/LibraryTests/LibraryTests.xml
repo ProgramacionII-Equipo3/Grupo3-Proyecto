@@ -11,12 +11,17 @@
         </member>
         <member name="M:ProgramTests.AcceptInvitationTest.Setup">
             <summary>
-            
+            Test setup.
             </summary>
         </member>
         <member name="M:ProgramTests.AcceptInvitationTest.AcceptInvitation">
             <summary>
-            
+            Test if a company can accept an invitation and register.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.AcceptInvitationTest.NotAcceptInvitation">
+            <summary>
+            If the user don´t have a code, it´s user is an Entrepreneur.
             </summary>
         </member>
         <member name="T:ProgramTests.CompanyReportTest">
@@ -32,6 +37,26 @@
         <member name="M:ProgramTests.CompanyReportTest.CompanyReport">
             <summary>
             Tests if the company can see the report of the sealed materials.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyReportTest.CompanyReportOutOfTime">
+            <summary>
+            Test if the materials sold are out of time.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.EntrepreneurRegisterTest">
+            <summary>
+            Test if an Entrepreneur can register into the platform.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
+            <summary>
+            It´s create a message with the information correspondent.
+            </summary>       
+        </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
+            <summary>
+            This test evaluate if the entrepreneur is registered with their correct information.
             </summary>
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
