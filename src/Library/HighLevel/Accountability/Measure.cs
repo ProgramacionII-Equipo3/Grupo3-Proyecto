@@ -5,6 +5,8 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a measure through which a certain amount of material can be measured.
+    /// We used the pattern Creator, we assigned the method Length and Weigth to Measure because
+    /// it's the class that knows about it.
     /// </summary>
     public class Measure
     {

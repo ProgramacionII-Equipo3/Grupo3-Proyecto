@@ -7,6 +7,7 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This class represents a type of material which can be sold by companies and purchased by entrepreneurs.
+    /// We used the principle Creator, Material is the class in charge of creating instance of itself.
     /// </summary>
     public class Material
     {

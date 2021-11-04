@@ -9,7 +9,9 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
-    /// </summary>
+    /// We used the ISP principle, this class does not depend of types that don't 
+    /// use.
+    /// /// </summary>
     public class Company : IPublisher, ISentMaterialReportCreator
     {
         /// <summary>

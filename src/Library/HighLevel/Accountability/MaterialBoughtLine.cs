@@ -5,8 +5,8 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// this class represents a material bought by the entrepreneur
-    /// We used the SRP principle, in that way material, datetime, 
-    /// price, amount are all attributes
+    /// We used the SRP principle, that way material, datetime, 
+    /// price, amount are all objects created by his respective class.
     /// </summary>
     public class MaterialBoughtLine
     {

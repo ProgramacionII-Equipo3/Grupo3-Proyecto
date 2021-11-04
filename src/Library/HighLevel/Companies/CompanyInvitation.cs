@@ -7,6 +7,7 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// Represents an invitation to the platform for a company representative.
+    /// We used the DIP pattern, CompanyInvitation depends of an abstract class.
     /// </summary>
     public class CompanyInvitation : Invitation
     {

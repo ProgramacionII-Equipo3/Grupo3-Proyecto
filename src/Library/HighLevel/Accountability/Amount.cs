@@ -3,7 +3,7 @@ namespace Library.HighLevel.Accountability
     /// <summary>
     /// This struct represents an amount of material.
     /// We used the OCP principle to create this class, we used "readonly"
-    /// to prevent modifications, but it's still open to extension.
+    /// to prevent modifications, but it's still open to extension. 
     /// </summary>
     public struct Amount
     {

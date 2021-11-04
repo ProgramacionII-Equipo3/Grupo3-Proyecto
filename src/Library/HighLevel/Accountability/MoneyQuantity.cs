@@ -2,6 +2,7 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents an amount of money.
+    /// Created because of SRP.
     /// </summary>
     public struct MoneyQuantity
     {

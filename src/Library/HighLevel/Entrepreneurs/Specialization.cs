@@ -2,6 +2,7 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class represents the specialization's of a entrepreneur.
+    /// Created because of SRP.
     /// </summary>
     public class Specialization 
     {
