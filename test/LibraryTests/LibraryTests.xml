@@ -117,5 +117,18 @@
             search material publication's with a keyword.
             </summary>
         </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywordsNotFound">
+            <summary>
+            This test checks that if an entrepreneur searches
+            for a keyword that isn't included in a publication 
+            it returns a list with 0 elements.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyZoneFound">
+            <summary>
+            This test checks that an entrepreneur is able to
+            search material publication's by the zone.
+            </summary>
+        </member>
     </members>
 </doc>
