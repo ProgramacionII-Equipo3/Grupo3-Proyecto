@@ -26,7 +26,7 @@ namespace ProgramTests
         /// 
         /// </summary>
         [Test]
-        public async void AcceptInvitation()
+        public void AcceptInvitation()
         {
             TelegramId id = new TelegramId(2066298868);
             Message message = new Message("1234567", id);
@@ -38,7 +38,7 @@ namespace ProgramTests
                 ContactInfo contactInfo;
                 contactInfo.Email = "companysa@gmail.com";
                 contactInfo.PhoneNumber = 098765432;
-                Location location = await provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
+                Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
                 Company company = new Company("Company.SA", contactInfo, "Arroz", location);
                 company.AddUser(message.Id);
 

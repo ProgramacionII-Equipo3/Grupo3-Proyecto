@@ -1,5 +1,4 @@
-//using Ucu.Poo.Locations.Client;
-using System.Collections.ObjectModel;
+using Ucu.Poo.Locations.Client;
 using Library.HighLevel.Materials;
 using System.Collections.Generic;
 using Library.HighLevel.Accountability;
@@ -13,8 +12,6 @@ namespace Library.HighLevel.Entrepreneurs
     /// </summary>
     public class SearchByLocation
     {
-        //Location LocationSpecified;
-
         /// <summary>
         /// This list is created to contain all the publication's that.
         /// are near a specified location.
@@ -25,20 +22,22 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// This method has the responsibility of searching all the publication's.
         /// </summary>
-        /// <param name="materialList"></param>
+        /// <param name="publications"></param>
+        /// <param name="locationSpecified"></param>
+        /// <param name="distanceSpecified"></param>
         /// <returns></returns>
-        /*public async void Search(ReadOnlyCollection<MaterialPublication> materialList)
+        public async void Search(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
         {
-            LocationApiClient client = new LocationApiClient();
-           foreach (var item in materialList)
+           LocationApiClient client = new LocationApiClient();
+           foreach (var item in publications)
            {
-               float distance;
-               distance = await client.GetDistanceAsync(LocationSpecified, item.PickupLocation);
-               if(distance <= 5)
+               Distance distance;
+               distance = await client.GetDistanceAsync(locationSpecified, item.PickupLocation);
+               if(distance.TravelDistance <= distanceSpecified)
                {
                    locationSearcher.Add(item);
                }
            }
-        }*/
+        }
     }
 }

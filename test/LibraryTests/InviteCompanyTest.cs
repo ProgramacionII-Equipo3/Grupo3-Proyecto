@@ -28,7 +28,7 @@ namespace ProgramTests
         {
             InvitationManager.CreateInvitation();
             InvitationManager.CreateInvitation();
-            int expected = 2;
+            int expected = 3;
             int invitationsLength = InvitationManager.invitations.ToArray().Length;
             Assert.AreEqual(invitationsLength, expected);
         }
