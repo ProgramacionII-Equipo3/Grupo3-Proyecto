@@ -922,7 +922,7 @@
             Class to find what materials are constantly generated.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated.GetMaterials">
+        <member name="M:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated.GetReport">
             <summary>
             This method returns all the materials that are constantly generated.
             </summary>

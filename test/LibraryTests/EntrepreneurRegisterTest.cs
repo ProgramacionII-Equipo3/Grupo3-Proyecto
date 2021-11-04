@@ -49,7 +49,7 @@ namespace ProgramTests
             string[] habilitationsMessageSplitted = habilitationsMessage.Text.Trim().Split();
             List<Habilitation> habilitations = new List<Habilitation>();
             
-            for (int i=1;i<habilitationsMessageSplitted.Length -1 ;i++)
+            for (int i = 1; i < habilitationsMessageSplitted.Length; i++)
             {
                 Habilitation habilitation =  new Habilitation(habilitationsMessageSplitted[i]);
                 habilitations.Add(habilitation);
