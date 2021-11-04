@@ -7,6 +7,7 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This class represents a category of materials, through which they can be easily classified.
+    /// Created because of SRP and LSP, the category can be used by any class without problems.
     /// </summary>
     public class MaterialCategory
     {

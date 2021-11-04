@@ -5,6 +5,7 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This class represents a requirement to manipulate certain materials.
+    /// Created because of SRP.
     /// </summary>
     public abstract class Requirement
     {

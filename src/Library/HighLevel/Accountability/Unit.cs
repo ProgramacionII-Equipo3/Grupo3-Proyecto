@@ -5,6 +5,7 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represent a unit used for measuring amounts of material.
+    /// Created because of SRP.
     /// </summary>
     public class Unit
     {

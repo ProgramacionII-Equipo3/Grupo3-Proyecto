@@ -8,6 +8,7 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents the responsibility of managing material publications.
+    /// We used OCP and Creator.
     /// </summary>
     public interface IPublisher
     {

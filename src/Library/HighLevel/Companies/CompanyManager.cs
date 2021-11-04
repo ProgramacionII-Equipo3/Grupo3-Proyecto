@@ -7,6 +7,9 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents the highest level of encapsulation in handling companies.
+    /// Created because of SRP and Don't talk to Strangers,
+    /// that way the class CompanyManager is the one responsible of creating the list
+    /// of companies and getting the companies and not Company by itself.
     /// </summary>
     public static class CompanyManager
     {

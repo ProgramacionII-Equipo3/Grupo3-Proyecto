@@ -8,6 +8,8 @@ namespace Library.HighLevel.Administers
 {
     /// <summary>
     /// This class represents a Administer
+    /// We used the Creator principle, this class is the one that 
+    /// generates the invitations code.
     /// </summary>
     public class Administer
     {

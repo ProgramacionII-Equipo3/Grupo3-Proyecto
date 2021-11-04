@@ -5,7 +5,8 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class has the responsibility of searching material
-    /// publication´s according to a specified keyword
+    /// publication´s according to a specified keyword.
+    /// It was created because of polymorphism.
     /// </summary>
     public class SearchByKeyword
     {

@@ -5,6 +5,8 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a concrete material sale.
+    /// Created because of SRP and LSP, so we can use a specific line
+    /// without modifying the report.
     /// </summary>
     public class MaterialSalesLine
     {

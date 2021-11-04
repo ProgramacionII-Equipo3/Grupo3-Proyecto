@@ -6,6 +6,8 @@ namespace Library.HighLevel.Entrepreneurs
     /// <summary>
     /// This class has the responsibility of searching material.
     /// publication´s according to a specified category.
+    /// It was created because of polymorphism, we separated the 
+    /// classes according to what they search.
     /// </summary>
     public class SearchByCategory
     {

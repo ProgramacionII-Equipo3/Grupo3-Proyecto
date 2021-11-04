@@ -376,7 +376,7 @@
             <summary>
             The currency's name.
             Because of the OCP principle we use tha attributes are
-            readonly, in that way this class is open to extension
+            readonly, that way this class is open to extension
             but closed to modifications.
             </summary>
         </member>
@@ -440,6 +440,8 @@
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
             This class represents a measure through which a certain amount of material can be measured.
+            We used the pattern Creator, we assigned the method Length and Weigth to Measure because
+            it's the class that knows about it.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Measure.Name">
@@ -472,6 +474,7 @@
         <member name="T:Library.HighLevel.Accountability.MoneyQuantity">
             <summary>
             This class represents an amount of money.
+            Created because of SRP.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.MoneyQuantity.Quantity">
@@ -494,6 +497,7 @@
         <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
             <summary>
             This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
+            We created this class because of the Polymorphism pattern. 
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -507,6 +511,7 @@
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
+            Created because of SRP.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.Price.Quantity">
@@ -535,6 +540,8 @@
         <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
             <summary>
             This class represents a reports of all material purchased by the entrepreneur
+            We used the pattern Creator and the SRP principle, that is
+            why this class creates a report.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.ReceivedMaterialReport.Materials">
@@ -551,6 +558,8 @@
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
             <summary>
             This class represents a concrete material sale.
+            Created because of SRP and LSP, so we can use a specific line
+            without modifying the report.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Material">
@@ -590,6 +599,7 @@
         <member name="T:Library.HighLevel.Accountability.SentMaterialReport">
             <summary>
             This class represents a report of all materials a company sold over a certain period of time.
+            Created because of SRP. 
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.SentMaterialReport.Lines">
@@ -606,6 +616,7 @@
         <member name="T:Library.HighLevel.Accountability.Unit">
             <summary>
             This class represent a unit used for measuring amounts of material.
+            Created because of SRP.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Unit.Name">
@@ -666,6 +677,8 @@
         <member name="T:Library.HighLevel.Administers.Administer">
             <summary>
             This class represents a Administer
+            We used the Creator principle, this class is the one that 
+            generates the invitations code.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Administers.Administer.GenerateInvitation">
@@ -682,7 +695,9 @@
         <member name="T:Library.HighLevel.Companies.Company">
             <summary>
             This class represents a company which can sell materials to entrepreneurs.
-            </summary>
+            We used the ISP principle, this class does not depend of types that don't 
+            use.
+            /// </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Name">
             <summary>
@@ -735,6 +750,7 @@
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
             Represents an invitation to the platform for a company representative.
+            We used the DIP pattern, CompanyInvitation depends of an abstract class.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyInvitation.#ctor(System.String)">
@@ -746,6 +762,9 @@
         <member name="T:Library.HighLevel.Companies.CompanyManager">
             <summary>
             This class represents the highest level of encapsulation in handling companies.
+            Created because of SRP and Don't talk to Strangers,
+            that way the class CompanyManager is the one responsible of creating the list
+            of companies and getting the companies and not Company by itself.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
@@ -778,6 +797,7 @@
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
             This class represents the responsibility of managing material publications.
+            We used OCP and Creator.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IPublisher.publications">
@@ -811,6 +831,7 @@
         <member name="T:Library.HighLevel.Companies.ISentMaterialReportCreator">
             <summary>
             This interface represents the responsibility of creating material reports.
+            Created because of SRP.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
@@ -827,7 +848,7 @@
         </member>
         <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
             <summary>
-            
+            This interface was created because of SRP and OCP.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
@@ -846,6 +867,8 @@
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents a entrepreneur.
+            We used the principle Expert to create this
+            class. 
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Id">
@@ -907,6 +930,8 @@
             <summary>
             This class has the responsibility of searching material.
             publication´s according to a specified category.
+            It was created because of polymorphism, we separated the 
+            classes according to what they search.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.SearchByCategory.categorySearcher">
@@ -925,7 +950,8 @@
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByKeyword">
             <summary>
             This class has the responsibility of searching material
-            publication´s according to a specified keyword
+            publication´s according to a specified keyword.
+            It was created because of polymorphism.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.SearchByKeyword.keywordSearcher">
@@ -944,7 +970,8 @@
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByLocation">
             <summary>
             This class has the responsibility of searching material 
-            publication's near a specified location
+            publication's near a specified location.
+            It was created because of polymorphism.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.locationSearcher">
@@ -953,9 +980,19 @@
             are near a specified location.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.SearchByLocation.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+            <summary>
+            This method has the responsibility of searching all the publication's.
+            </summary>
+            <param name="publications"></param>
+            <param name="locationSpecified"></param>
+            <param name="distanceSpecified"></param>
+            <returns></returns>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Specialization">
             <summary>
             This class represents the specialization's of a entrepreneur.
+            Created because of SRP.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Specialization.Specializations">
@@ -974,6 +1011,7 @@
             <summary>
             This class represents habilitations entrepreneurs can possess,
             which are necessary to meet certain material manipulation requirements.
+            We used the principle Expert to create this class.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Materials.Habilitation.DocLink">
@@ -1001,6 +1039,7 @@
         <member name="T:Library.HighLevel.Materials.Material">
             <summary>
             This class represents a type of material which can be sold by companies and purchased by entrepreneurs.
+            We used the principle Creator, Material is the class in charge of creating instance of itself.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.Material.Name">
@@ -1036,6 +1075,7 @@
         <member name="T:Library.HighLevel.Materials.MaterialCategory">
             <summary>
             This class represents a category of materials, through which they can be easily classified.
+            Created because of SRP and LSP, the category can be used by any class without problems.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Materials.MaterialCategory.Name">
@@ -1069,6 +1109,7 @@
         <member name="T:Library.HighLevel.Materials.MaterialPublication">
             <summary>
             This class represents a publication of a material from a company.
+            We used the principle Expert to create this class.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Material">
@@ -1130,6 +1171,7 @@
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
             This class represents a requirement to manipulate certain materials.
+            Created because of SRP.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.Requirement.IsSatisfiedBy(Library.HighLevel.Materials.Habilitation)">

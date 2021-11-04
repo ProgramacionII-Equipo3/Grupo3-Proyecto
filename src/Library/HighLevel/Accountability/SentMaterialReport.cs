@@ -4,6 +4,7 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a report of all materials a company sold over a certain period of time.
+    /// Created because of SRP. 
     /// </summary>
     public class SentMaterialReport
     {
