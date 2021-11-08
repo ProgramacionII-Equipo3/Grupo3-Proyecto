@@ -20,7 +20,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The company's contact information.
         /// </summary>
-        public ContactInfo contactInfo { get; private set; }
+        public ContactInfo ContactInfo { get; private set; }
 
         /// <summary>
         /// The company's heading.
@@ -30,8 +30,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Tge company´s location.
         /// </summary>
-        /// <value></value>
-        public Location location { get; private set; }
+        public Location Location { get; private set; }
 
         /// <summary>
         /// The company's representants in the platform.
@@ -40,18 +39,18 @@ namespace Library.HighLevel.Companies
         private List<string> companiesCreated = new List<string>();
 
         /// <summary>
-        /// 
+        /// Creates a company.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="contactInfo"></param>
-        /// <param name="heading"></param>
-        /// <param name="location"></param>
+        /// <param name="name">The company's name.</param>
+        /// <param name="contactInfo">The company's contact information.</param>
+        /// <param name="heading">The company's heading.</param>
+        /// <param name="location">The company's location.</param>
         public Company(string name, ContactInfo contactInfo, string heading, Location location)
         {
             this.Name = name;
-            this.contactInfo = contactInfo;
+            this.ContactInfo = contactInfo;
             this.Heading = heading;
-            this.location = location;
+            this.Location = location;
         }
 
         /// <summary>

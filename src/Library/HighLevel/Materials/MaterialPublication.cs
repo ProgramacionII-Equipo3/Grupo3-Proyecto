@@ -74,7 +74,7 @@ namespace Library.HighLevel.Materials
                 : null;
 
         /// <summary>
-        /// This method add's all created publication's to the previously created publication's list
+        /// This method adds all created publications to the previously created publication's list.
         /// </summary>
         public void AddPublication()
         {

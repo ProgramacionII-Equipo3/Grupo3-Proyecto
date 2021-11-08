@@ -34,7 +34,7 @@ namespace Library.HighLevel.Accountability
         internal static List<Unit> values = new List<Unit>();
 
         /// <summary>
-        /// Creates and instance of Unit.
+        /// Creates an instance of Unit.
         /// </summary>
         /// <param name="name">Unit´s name.</param>
         /// <param name="abbreviation">Unit´s abbreviation.</param>
@@ -54,7 +54,6 @@ namespace Library.HighLevel.Accountability
         /// Gets the unit which has a concrete abbreviation.
         /// </summary>
         /// <param name="abbreviation">The unit's abbreviation.</param>
-        /// <returns></returns>
         public Unit GetByAbbr(string abbreviation) =>
             values.Where(unit => unit.Abbreviation == abbreviation).FirstOrDefault();
 

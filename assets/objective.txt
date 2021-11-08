@@ -1,4 +1,4 @@
-Create a chatbot which offers the service of organizing agreements of recyclable materiales and waste between companies and entrepreneurs.
+Create a chatbot which offers the service of organizing agreements of recyclable materials and waste between companies and entrepreneurs.
 
 The chatbot must:
     Allow admins to:

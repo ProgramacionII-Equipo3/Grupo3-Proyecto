@@ -5,20 +5,19 @@ using System.Collections.Generic;
 
 namespace Library.HighLevel.Companies
 {
+    ///
     public interface IReceivedMaterialCreator
     {
         /// <summary>
-        /// It is the collection of bought materials 
+        /// It is the collection of bought materials.
         /// </summary>
-        /// <value></value>
-        protected List<MaterialBoughtLine> materialBought { get; }
+        protected List<BoughtMaterialLine> materialBought { get; }
 
 
         /// <summary>
-        /// It creates a reports of the purchase made by the entrepreneur
+        /// It creates a report of the purchase made by the entrepreneur.
         /// </summary>
-        /// <param name="dateTime">It is the time when the entrepreneur bought the material</param>
-        /// <returns></returns>
+        /// <param name="dateTime">The time when the entrepreneur bought the materials.</param>
         public ReceivedMaterialReport GetMaterialReport(DateTime dateTime) =>
         
             new ReceivedMaterialReport(this.materialBought.ToList().AsReadOnly());

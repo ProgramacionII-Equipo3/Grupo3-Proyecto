@@ -6,7 +6,7 @@ namespace Library.HighLevel.Accountability
     /// <summary>
     /// this class represents a material bought by the entrepreneur
     /// </summary>
-    public class MaterialBoughtLine
+    public class BoughtMaterialLine
     {
         /// <summary>
         /// Is the purchased material
@@ -27,20 +27,20 @@ namespace Library.HighLevel.Accountability
         /// It is the amount of the purchased material
         /// </summary>
         public readonly Amount Amount;
+        
         /// <summary>
         /// Is the amount of money spent
         /// </summary>
-        /// <returns></returns>
         public MoneyQuantity Spent => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
         
         /// <summary>
-        /// It is the constructor of MaterialBoughtLine 
+        /// Creates a <see cref="BoughtMaterialLine" />.
         /// </summary>
-        /// <param name="material">It is the purchased material</param>
-        /// <param name="dateTime">It is the date of when the purchase was made</param>
-        /// <param name="price">It is the cost of the material</param>
-        /// <param name="amount">It is the amount of the pruchased material</param>
-        public MaterialBoughtLine (Material material, DateTime dateTime, Price price, Amount amount)
+        /// <param name="material">The purchased material.</param>
+        /// <param name="dateTime">The date of when the purchase was made.</param>
+        /// <param name="price">The cost of the material.</param>
+        /// <param name="amount">The amount of the purchased material.</param>
+        public BoughtMaterialLine (Material material, DateTime dateTime, Price price, Amount amount)
         {
             this.Material = material;
             this.DateTime = dateTime;

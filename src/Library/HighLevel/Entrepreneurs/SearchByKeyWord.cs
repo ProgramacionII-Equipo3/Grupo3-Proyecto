@@ -6,7 +6,7 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class has the responsibility of searching material
-    /// publication´s according to a specified keyword
+    /// publications according to a specified keyword.
     /// </summary>
     public class SearchByKeyword
     {
@@ -14,13 +14,12 @@ namespace Library.HighLevel.Entrepreneurs
 
         /// <summary>
         /// This list is created to contain all the publication's that
-        /// are from the specified keyword
+        /// are from the specified keyword.
         /// </summary>
-
         public static List<MaterialPublication> keywordSearcher = new List<MaterialPublication>();
         
         /// <summary>
-        /// This method has the responsibility of searching all the publication's
+        /// This method has the responsibility of searching all the publications.
         /// </summary>
         /// <param name="materialList"></param>
         public void Search(ReadOnlyCollection<MaterialPublication> materialList)

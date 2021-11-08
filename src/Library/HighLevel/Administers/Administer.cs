@@ -7,14 +7,14 @@ using System;
 namespace Library.HighLevel.Administers
 {
     /// <summary>
-    /// This class represents a Administer
+    /// This class represents an Administer.
     /// </summary>
     public class Administer
     {
         private List<UserId> administerList = new List<UserId>();
 
         /// <summary>
-        /// This method create's a invitation code
+        /// Create an invitation code.
         /// </summary>
         public static string GenerateInvitation()
         {
@@ -35,7 +35,7 @@ namespace Library.HighLevel.Administers
         }
 
         /// <summary>
-        /// This method has the responsibility of validating the entrepreneurs habilitations.
+        /// Validate the entrepreneurs habilitations.
         /// </summary>
         /// <param name="userId"></param>
         public void ValidateHabilitation()

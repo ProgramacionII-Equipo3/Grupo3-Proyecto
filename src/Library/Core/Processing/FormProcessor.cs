@@ -23,8 +23,15 @@ namespace Library.Core.Processing
 
         /// <summary>
         /// Generates the resulting object with the obtained input.
+        /// <remarks>
+        /// This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns (true, null),
+        /// which is a signal that the object's ready to produce the result.
+        /// </remarks>
         /// </summary>
-        /// <returns>The resulting object.</returns>
+        /// <returns>
+        /// Result.Ok(result), being result the resulting object, or<br />
+        /// Result.Err(error), being error an error string.
+        /// </returns>
         protected abstract Result<T, string> getResult();
 
         void IInputHandler.Reset()

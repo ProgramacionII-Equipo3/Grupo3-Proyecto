@@ -21,12 +21,13 @@ namespace Library.HighLevel.Entrepreneurs
 
         public static List<MaterialPublication> locationSearcher = new List<MaterialPublication>();
 
+        /*
         /// <summary>
         /// This method has the responsibility of searching all the publication's
         /// </summary>
         /// <param name="materialList"></param>
         /// <returns></returns>
-        /*public async void Search(ReadOnlyCollection<MaterialPublication> materialList)
+        public async void Search(ReadOnlyCollection<MaterialPublication> materialList)
         {
             LocationApiClient client = new LocationApiClient();
            foreach (var item in materialList)

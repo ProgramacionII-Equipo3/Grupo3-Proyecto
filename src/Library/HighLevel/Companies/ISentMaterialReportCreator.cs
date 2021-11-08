@@ -16,7 +16,7 @@ namespace Library.HighLevel.Companies
         protected List<MaterialSalesLine> materialSales { get; }
 
         /// <summary>
-        /// Builds a <see cref="SentMaterialReport" /> with the material sales that occured after a certain <see cref="DateTime" />.
+        /// Builds a <see cref="SentMaterialReport" /> with the material sales that occurred after a certain <see cref="DateTime" />.
         /// </summary>
         /// <param name="dateTime">The lower limit of the moment the sales happened.</param>
         /// <returns>The <see cref="SentMaterialReport" /></returns>

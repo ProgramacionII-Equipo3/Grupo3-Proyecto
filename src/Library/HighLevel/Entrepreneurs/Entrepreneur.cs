@@ -8,33 +8,29 @@ using Library.Core;
 namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
-    /// This class represents a entrepreneur
+    /// This class represents an entrepreneur.
     /// </summary>
     public class Entrepreneur 
     {
 
         /// <summary>
-        /// The Id to identify the entrepreneur
+        /// The entrepreneur's id.
         /// </summary>
-        /// <value></value>
         public UserId Id { get; set; }
         
         /// <summary>
-        /// The entrepeneur's name
+        /// The entrepeneur's name.
         /// </summary>
-        /// <value></value>
         public string Name { get; private set; }
        
         /// <summary>
-        /// The entrepreneur's age
+        /// The entrepreneur's age.
         /// </summary>
-        /// <value></value>
         public byte Age { get; private set; }
 
         /// <summary>
-        /// The entrepreneur's location
+        /// The entrepreneur's location.
         /// </summary>
-        /// <value></value>
         public Location Location { get; private set; }
 
         /// <summary>

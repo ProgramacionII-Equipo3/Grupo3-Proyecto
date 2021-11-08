@@ -9,6 +9,7 @@ namespace Library
     {
         private static LocationApiClient locationClient = new LocationApiClient();
 
+        ///
         public static Location GetLocation(string address, string city, string department, string country)
         {
             return locationClient.GetLocationAsync(address, city, department, country).Result;
