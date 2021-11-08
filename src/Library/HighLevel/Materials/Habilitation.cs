@@ -8,33 +8,32 @@ namespace Library.HighLevel.Materials
     public class Habilitation
     {
         /// <summary>
-        /// It is a document with the necessary habilitations to manipulate a material.
+        /// A link to a document with the necessary habilitations to manipulate a material.
         /// </summary>
         readonly string DocLink;
 
         /// <summary>
-        /// Its a boolean value which evaluate if the requirements are satisfies.
+        /// A boolean value which evaluates if the habilitation is validated.
         /// </summary>
-      
-        public bool IsCorrect {get; private set;}
+        public bool IsCorrect { get; private set; }
 
         /// <summary>
-        /// Its create a habilitation.
+        /// Creates an habilitation.
         /// </summary>
-        /// <param name="DocLink">It is a document with the necessary habilitations to manipulate a material</param>
-        public Habilitation (string DocLink)
+        /// <param name="DocLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+        public Habilitation(string DocLink)
         {
-            this.DocLink= DocLink;
-            this.IsCorrect=false;
+            this.DocLink = DocLink;
+            this.IsCorrect = false;
         }
 
         /// <summary>
-        /// This method validate the necessary requirements.
+        /// Validates the given habilitation.
         /// </summary>
-        /// <param name="habilitation"></param>
-        public static void Validate (Habilitation habilitation)
+        /// <param name="habilitation">The habilitation to validate.</param>
+        public static void Validate(Habilitation habilitation)
         {
-            habilitation.IsCorrect= true;
+            habilitation.IsCorrect = true;
         }
     }
 }

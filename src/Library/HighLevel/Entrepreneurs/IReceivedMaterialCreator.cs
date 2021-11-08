@@ -13,18 +13,15 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// It is the collection of bought materials.
         /// </summary>
-        /// <value></value>
-        protected List<MaterialBoughtLine> materialBought { get; }
-
+        protected List<BoughtMaterialLine> boughtMaterials { get; }
 
         /// <summary>
         /// It creates a reports of the purchase made by the entrepreneur.
         /// </summary>
         /// <param name="dateTime">It is the time when the entrepreneur bought the material</param>
-        /// <returns></returns>
+        /// <returns>A <see cref="ReceivedMaterialReport" />.</returns>
         public ReceivedMaterialReport GetMaterialReport(DateTime dateTime) =>
-        
-            new ReceivedMaterialReport(this.materialBought.ToList().AsReadOnly());
+            new ReceivedMaterialReport(this.boughtMaterials.ToList().AsReadOnly());
         
     }
 }

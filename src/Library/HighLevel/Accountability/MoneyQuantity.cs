@@ -17,7 +17,7 @@ namespace Library.HighLevel.Accountability
         public readonly Currency Currency;
 
         /// <summary>
-        /// Creates an instance of <see cref="MoneyQuantity" />
+        /// Creates an instance of <see cref="MoneyQuantity" />.
         /// </summary>
         /// <param name="quantity">The numeric value.</param>
         /// <param name="currency">The currency.</param>

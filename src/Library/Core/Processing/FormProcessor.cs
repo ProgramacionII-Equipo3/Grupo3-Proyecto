@@ -1,7 +1,7 @@
 namespace Library.Core.Processing
 {
     /// <summary>
-    /// Represent a complex form-like set of data through which certain forms of data can be received from user input easily.
+    /// Represent a complex form-like set of data through which certain types of data can be received from user input easily.
     /// </summary>
     /// <typeparam name="T">The type of the resulting object.</typeparam>
     public abstract class FormProcessor<T> : IInputProcessor<T>
@@ -15,16 +15,20 @@ namespace Library.Core.Processing
         private IInputHandler currentHandler => this.inputHandlers[this.index];
 
 
-        /// <summary>
-        /// Represents the functionality of handling one or more message input until realizing a certain operation successfully,
-        /// or until the user indicates to stop trying.
-        /// </summary>
+        /// <inheritdoc />
         public string GetDefaultResponse() => this.currentHandler.GetDefaultResponse();
 
         /// <summary>
         /// Generates the resulting object with the obtained input.
+        /// <remarks>
+        /// This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns (true, null),
+        /// which is a signal that the object's ready to produce the result.
+        /// </remarks>
         /// </summary>
-        /// <returns>The resulting object.</returns>
+        /// <returns>
+        /// Result.Ok(result), being result the resulting object, or<br />
+        /// Result.Err(error), being error an error string.
+        /// </returns>
         protected abstract Result<T, string> getResult();
 
         void IInputHandler.Reset()

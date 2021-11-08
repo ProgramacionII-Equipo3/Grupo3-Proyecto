@@ -9,9 +9,9 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
-    /// We used the ISP principle, this class does not depend of types that don't 
+    /// We used the ISP principle, this class does not depend of types it doesn't 
     /// use.
-    /// /// </summary>
+    /// </summary>
     public class Company : IPublisher, ISentMaterialReportCreator
     {
         /// <summary>
@@ -30,10 +30,9 @@ namespace Library.HighLevel.Companies
         public string Heading { get; private set; }
 
         /// <summary>
-        /// Tge company´s location.
+        /// The company's location.
         /// </summary>
-        /// <value></value>
-        public Location location { get; private set; }
+        public Location Location { get; private set; }
 
         /// <summary>
         /// The company's representants in the platform.
@@ -57,7 +56,7 @@ namespace Library.HighLevel.Companies
             this.Name = name;
             this.contactInfo = contactInfo;
             this.Heading = heading;
-            this.location = location;
+            this.Location = location;
         }
 
         /// <summary>

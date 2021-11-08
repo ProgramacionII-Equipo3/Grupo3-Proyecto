@@ -8,41 +8,41 @@ namespace Library.HighLevel.Accountability
     /// We used the SRP principle, that way material, datetime, 
     /// price, amount are all objects created by his respective class.
     /// </summary>
-    public class MaterialBoughtLine
+    public class BoughtMaterialLine
     {
         /// <summary>
-        /// Is the purchased material
+        /// The purchased material.
         /// </summary>
         public readonly Material Material;
         
         /// <summary>
-        /// It is the date of when the purchase was made
+        /// The date of when the purchase was made.
         /// </summary>
         public readonly DateTime DateTime;
         
         /// <summary>
-        /// It is the cost of the material
+        /// The cost of the material.
         /// </summary>
         public readonly Price Price;
 
         /// <summary>
-        /// It is the amount of the purchased material
+        /// The amount of the purchased material.
         /// </summary>
         public readonly Amount Amount;
+
         /// <summary>
-        /// Is the amount of money spent
+        /// The amount of money spent.
         /// </summary>
-        /// <returns></returns>
         public MoneyQuantity Spent => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
         
         /// <summary>
-        /// It is the constructor of MaterialBoughtLine 
+        /// Creates an instance of <see cref="BoughtMaterialLine" />. 
         /// </summary>
-        /// <param name="material">It is the purchased material</param>
-        /// <param name="dateTime">It is the date of when the purchase was made</param>
-        /// <param name="price">It is the cost of the material</param>
-        /// <param name="amount">It is the amount of the pruchased material</param>
-        public MaterialBoughtLine (Material material, DateTime dateTime, Price price, Amount amount)
+        /// <param name="material">The purchased material.</param>
+        /// <param name="dateTime">The date of when the purchase was made.</param>
+        /// <param name="price">The cost of the material.</param>
+        /// <param name="amount">The amount of the pruchased material.</param>
+        public BoughtMaterialLine (Material material, DateTime dateTime, Price price, Amount amount)
         {
             this.Material = material;
             this.DateTime = dateTime;

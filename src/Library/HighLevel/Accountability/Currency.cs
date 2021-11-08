@@ -7,7 +7,7 @@ namespace Library.HighLevel.Accountability
     {
         /// <summary>
         /// The currency's name.
-        /// Because of the OCP principle we use tha attributes are
+        /// Because of the OCP principle, the attributes are
         /// readonly, that way this class is open to extension
         /// but closed to modifications.
         /// </summary>
@@ -32,6 +32,6 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The american dollar.
         /// </summary>
-        public static Currency Dollar = new Currency("american dollar(s)", "U$S");
+        public static Currency Dollar = new Currency("american dollar(s)", "US$");
     }
 }

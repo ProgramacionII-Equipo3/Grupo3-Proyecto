@@ -29,7 +29,7 @@ namespace Library.HighLevel.Companies
         /// <param name="amount">The amount of material.</param>
         /// <param name="price">The price of the material.</param>
         /// <param name="location">The pick-up location of the material.</param>
-        /// <param name ="keywords">The keywords of the material.</param>
+        /// <param name="keywords">The keywords of the material.</param>
         /// <returns>Whether the operation was successful.</returns>
         public bool PublishMaterial(Material material, Amount amount, Price price, Location location, List<string> keywords)
         {
