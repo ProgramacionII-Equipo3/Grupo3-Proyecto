@@ -818,6 +818,7 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /></returns>
         </member>
+<<<<<<< HEAD
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.materialBought">
             <summary>
             It is the collection of bought materials 
@@ -831,6 +832,9 @@
             <param name="dateTime">It is the time when the entrepreneur bought the material</param>
             <returns></returns>
         </member>
+=======
+
+>>>>>>> master
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents a entrepreneur
@@ -950,6 +954,12 @@
             This list is created to contain all the publication's that
             are near a specified location
             </summary>
+<<<<<<< HEAD
+=======
+            <typeparam name="MaterialPublication">The type of the list</typeparam>
+
+            <returns></returns>
+>>>>>>> master
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
