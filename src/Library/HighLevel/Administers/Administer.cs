@@ -7,7 +7,7 @@ using System;
 namespace Library.HighLevel.Administers
 {
     /// <summary>
-    /// This class represents a Administer
+    /// This class represents an Administer.
     /// We used the Creator principle, this class is the one that 
     /// generates the invitations code.
     /// </summary>
@@ -16,7 +16,7 @@ namespace Library.HighLevel.Administers
         private List<UserId> administerList = new List<UserId>();
 
         /// <summary>
-        /// This method create's a invitation code
+        /// This method create's an invitation code.
         /// </summary>
         public static string GenerateInvitation()
         {

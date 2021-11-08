@@ -1,7 +1,7 @@
 namespace Library.Core.Processing
 {
     /// <summary>
-    /// Represents the functionality of handling one or more message input until realizing a certain operation successfully,
+    /// Represents the functionality of handling one or more messages input until realizing a certain operation successfully,
     /// or until the user indicates to stop trying.
     /// </summary>
     public interface IInputHandler

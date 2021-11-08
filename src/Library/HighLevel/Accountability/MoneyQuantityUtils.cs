@@ -13,14 +13,11 @@ namespace Library.HighLevel.Accountability
         /// <param name="price">The price of the material.</param>
         /// <returns>The resulting <see cref="MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
         public static Option<MoneyQuantity> Calculate(Amount amount, Price price) =>
-            Unit.GetConversionFactor(amount.Unit, price.Unit).Map(
-                unitConversionFactor => Option<MoneyQuantity>.From(
-                    new MoneyQuantity(
-                        (float) (amount.Quantity * price.Quantity * unitConversionFactor),
-                        price.Currency
-                    )
-                ),
-                () => Option<MoneyQuantity>.None
+            Unit.GetConversionFactor(amount.Unit, price.Unit).MapValue(
+                unitConversionFactor => new MoneyQuantity(
+                    (float) (amount.Quantity * price.Quantity * unitConversionFactor),
+                    price.Currency
+                )
             );
     }
 }

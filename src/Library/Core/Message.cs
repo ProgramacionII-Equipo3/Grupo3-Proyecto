@@ -1,7 +1,7 @@
 namespace Library.Core
 {
     /// <summary>
-    /// Represents a message (either received from a messaging platform or sent to one)
+    /// Represents a message received from a messaging platform.
     /// </summary>
     public struct Message
     {

@@ -4,7 +4,7 @@ namespace Library.Core
 {
     /// <summary>
     /// This class acts as a unique identifier for each user in the platform.
-    /// Different subclasses of this class represent ids of user of different messaging platforms.
+    /// Different subclasses of this class represent user ids of different messaging platforms.
     /// </summary>
     public abstract class UserId : IEquatable<UserId>
     {

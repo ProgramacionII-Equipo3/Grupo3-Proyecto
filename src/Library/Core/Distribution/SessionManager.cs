@@ -15,25 +15,6 @@ namespace Library.Core.Distribution
         /// </summary>
         private static List<UserSession> sessions = new List<UserSession>();
 
-        // static SessionManager()
-        // {
-        //     sessions.Add(
-        //         new UserSession(
-        //             id: new Library.Platforms.Telegram.TelegramId(1883636472),
-        //             userData: new UserData
-        //             {
-        //                 Name = "Santiago De Olivera",
-        //                 ContactInfo = new ContactInfo
-        //                 {
-        //                     Email = "santiagodeolivera@gmail.com",
-        //                     PhoneNumber = 098553946
-        //                 }
-        //             },
-        //             state: new Library.States.InitialMenuState()
-        //         )
-        //     );
-        // }
-
         /// <summary>
         /// Returns the <see cref="UserSession" /> whose id equals to the given one.
         /// </summary>
