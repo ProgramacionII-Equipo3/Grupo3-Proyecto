@@ -11,7 +11,7 @@ namespace Library.HighLevel.Companies
     public interface IReceivedMaterialCreator
     {
         /// <summary>
-        /// It is the collection of bought materials.
+        /// The collection of bought materials.
         /// </summary>
         /// <value></value>
         protected List<MaterialBoughtLine> materialBought { get; }

@@ -10,12 +10,12 @@ namespace Library.HighLevel.Accountability
     public class ReceivedMaterialReport
     {
         /// <summary>
-        /// Is the list of purchased materials
+        /// The list of purchased materials.
         /// </summary>
         public readonly ReadOnlyCollection<MaterialBoughtLine> Materials;
         
         /// <summary>
-        /// Is the constructor of ReceivedMaterialReport
+        /// Creates a ReceivedMaterialReport.
         /// </summary>
         /// <param name="materials">Is the collection of purchased materials</param>
         public ReceivedMaterialReport(ReadOnlyCollection<MaterialBoughtLine> materials)

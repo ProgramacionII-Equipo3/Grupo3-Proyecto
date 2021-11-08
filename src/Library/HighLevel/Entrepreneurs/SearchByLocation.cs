@@ -18,7 +18,11 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
 
         public static List<MaterialPublication> locationSearcher = new List<MaterialPublication>();
-
+        
+        /// <summary>
+        ///Store a instance of the location. 
+        /// </summary>
+        /// <returns></returns>
         public static LocationApiClient client = new LocationApiClient();
 
         /// <summary>

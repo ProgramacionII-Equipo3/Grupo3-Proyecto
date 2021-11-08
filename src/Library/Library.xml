@@ -347,7 +347,7 @@
             <summary>
             This struct represents an amount of material.
             We used the OCP principle to create this class, we used "readonly"
-            to prevent modifications, but it's still open to extension.
+            to prevent modifications, but it's still open to extension. 
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Amount.Quantity">
@@ -398,8 +398,8 @@
         <member name="T:Library.HighLevel.Accountability.MaterialBoughtLine">
             <summary>
             this class represents a material bought by the entrepreneur
-            We used the SRP principle, in that way material, datetime, 
-            price, amount are all attributes
+            We used the SRP principle, that way material, datetime, 
+            price, amount are all objects created by his respective class.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.MaterialBoughtLine.Material">

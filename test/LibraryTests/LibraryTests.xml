@@ -155,5 +155,12 @@
             search material publication's by the zone.
             </summary>
         </member>
+        <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyZoneNotFound">
+            <summary>
+            This test checks that if an entrepreneur searches
+            for a zone that isn't included in a publication or is to 
+            far away form the distance specified, it returns a list with 0 elements.
+            </summary>
+        </member>
     </members>
 </doc>

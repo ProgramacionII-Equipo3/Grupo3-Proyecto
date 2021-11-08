@@ -11,32 +11,32 @@ namespace Library.HighLevel.Accountability
     public class MaterialBoughtLine
     {
         /// <summary>
-        /// Is the purchased material
+        /// The purchased material.
         /// </summary>
         public readonly Material Material;
         
         /// <summary>
-        /// It is the date of when the purchase was made
+        /// The date of when the purchase was made.
         /// </summary>
         public readonly DateTime DateTime;
         
         /// <summary>
-        /// It is the cost of the material
+        /// The cost of the material.
         /// </summary>
         public readonly Price Price;
 
         /// <summary>
-        /// It is the amount of the purchased material
+        /// The amount of the purchased material.
         /// </summary>
         public readonly Amount Amount;
         /// <summary>
-        /// Is the amount of money spent
+        /// The amount of money spent.
         /// </summary>
         /// <returns></returns>
         public MoneyQuantity Spent => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
         
         /// <summary>
-        /// It is the constructor of MaterialBoughtLine 
+        /// Creates a MaterialBoughtLine. 
         /// </summary>
         /// <param name="material">It is the purchased material</param>
         /// <param name="dateTime">It is the date of when the purchase was made</param>
