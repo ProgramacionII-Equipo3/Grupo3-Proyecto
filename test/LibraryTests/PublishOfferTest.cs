@@ -17,7 +17,7 @@ namespace ProgramTests
         /// </summary>
         [SetUp]
         public void Setup()
-        {     
+        {
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace ProgramTests
         /// </summary>
         [Test]
         public void PublishOffer()
-        { 
+        {
             LocationApiClient provider = new LocationApiClient();
             MaterialCategory category = new MaterialCategory("Impermeable");
             Unit unit = new Unit("Centimeters", "cm", 0.1, Measure.Length);
@@ -47,8 +47,6 @@ namespace ProgramTests
             MaterialPublication.AddPublication(publication2);
 
             List<MaterialPublication> expected = new List<MaterialPublication> { publication, publication2 };
-            
-
             Assert.AreEqual(MaterialPublication.publications, expected);
         }
 

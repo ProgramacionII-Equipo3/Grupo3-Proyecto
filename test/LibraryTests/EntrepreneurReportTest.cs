@@ -1,17 +1,18 @@
 using NUnit.Framework;
-using Library.HighLevel.Materials;
 using Library.HighLevel.Accountability;
-using System;
 using System.Collections.Generic;
+using Library.HighLevel.Materials;
+using System;
+
 namespace ProgramTests
 {
     /// <summary>
-    /// 
+    /// This test check if the Entrepreneur can get an received material report.
     /// </summary>
     public class EntrepreneurReportTest
     {
         /// <summary>
-        /// 
+        /// Test Setup.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -40,15 +41,15 @@ namespace ProgramTests
             Assert.AreEqual(materialbought1, expected);
 
             MaterialCategory category2 = new MaterialCategory("Plásticos");
-            Unit unit2 = new Unit("Gramos","g",500,Measure.Weight);
-            Amount amount2 = new Amount(2,unit);
-            Price price2 = new Price(2,Currency.Dollar,unit);
+            Unit unit2 = new Unit("Gramos", "g", 500, Measure.Weight);
+            Amount amount2 = new Amount(2, unit);
+            Price price2 = new Price(2, Currency.Dollar, unit);
             List<string> keyword2 = new List<string>();
             keyword2.Add("Botella");
             keyword2.Add("plástico");
-            Material boughtMaterial2 = Material.CreateInstance("Botella plástico",Measure.Weight,category2);
-            DateTime date2 = new DateTime(2021,7,8,20,17,19);
-            BoughtMaterialLine materialbought2 = new BoughtMaterialLine(boughtMaterial2,date2,price2,amount2);
+            Material boughtMaterial2 = Material.CreateInstance("Botella plástico", Measure.Weight, category2);
+            DateTime date2 = new DateTime(2021, 7, 8, 20, 17, 19);
+            BoughtMaterialLine materialbought2 = new BoughtMaterialLine(boughtMaterial2, date2, price2, amount2);
             list.Add(materialbought2);
             BoughtMaterialLine expected2 = list[1];
             Assert.AreEqual(materialbought2, expected2);

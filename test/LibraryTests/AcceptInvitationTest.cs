@@ -1,12 +1,12 @@
 using NUnit.Framework;
 using Library.Core;
-using System.Collections.Generic;
 using Library.HighLevel.Administers;
-using Ucu.Poo.Locations.Client;
 using Library.HighLevel.Companies;
-using Library.Platforms.Telegram;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using Library.Platforms.Telegram;
+using System.Collections.Generic;
+using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
 {
@@ -20,7 +20,7 @@ namespace ProgramTests
         /// </summary>
         [SetUp]
         public void Setup()
-        {           
+        {
         }
 
         /// <summary>
@@ -34,8 +34,8 @@ namespace ProgramTests
             // Message with the code.
             Message message = new Message("1234567", id);
             LocationApiClient provider = new LocationApiClient();
-            // If the message with the code is equal with te code sended in an invitation, 
-            // the user can register the company
+            // If the message with the code is equal with te code sended in an invitation,
+            // the user can register the company.
             ContactInfo contactInfo;
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
@@ -45,10 +45,10 @@ namespace ProgramTests
 
             bool expected = company.HasUser(message.Id);
             Company expectedCompany = CompanyManager.GetByName("Company.SA");
-            // If the message with the code is equal with an invitation sended, the user has to 
-            // be added in the representants list of the company. 
+            // If the message with the code is equal with an invitation sended, the user has to
+            // be added in the representants list of the company.
             // The company is registered.
-            Assert.IsTrue(expected);
+            Assert.That(expected, Is.True);
             Assert.AreEqual(company, expectedCompany);
         }
 
@@ -71,8 +71,7 @@ namespace ProgramTests
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
             Entrepreneur.entrepeneurList.Add(message.Id);
             bool expected = Entrepreneur.entrepeneurList.Contains(message.Id);
-            Assert.IsTrue(expected);
-
+            Assert.That(expected, Is.True);
         }
     }
 }

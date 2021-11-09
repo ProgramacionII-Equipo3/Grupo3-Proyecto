@@ -25,9 +25,9 @@
             </summary>
         </member>
         <member name="T:ProgramTests.CompanyReportTest">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:ProgramTests.CompanyReportTest.Setup">
             <summary>
@@ -52,7 +52,7 @@
         <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
             <summary>
             It´s create a message with the information correspondent.
-            </summary>       
+            </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
             <summary>
@@ -61,12 +61,12 @@
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
-            
+            This test check if the Entrepreneur can get an received material report.
             </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.Setup">
             <summary>
-            
+            Test Setup.
             </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
@@ -88,7 +88,7 @@
             <summary>
             This test proves that as an admin I can create an invitation
             As we can't expect a certain invitation code because it's
-            generated randomly, we check if the list of invitations has 
+            generated randomly, we check if the list of invitations has
             the same number of invitations as expected.
             </summary>
         </member>

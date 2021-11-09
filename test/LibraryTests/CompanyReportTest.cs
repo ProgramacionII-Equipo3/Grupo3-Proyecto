@@ -7,7 +7,7 @@ using Library.HighLevel.Accountability;
 namespace ProgramTests
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class CompanyReportTest
     {
@@ -26,7 +26,6 @@ namespace ProgramTests
         SentMaterialReport report;
         SentMaterialReport report2;
 
-
         /// <summary>
         /// Necessary configuration.
         /// </summary>
@@ -39,7 +38,6 @@ namespace ProgramTests
             amount = new Amount(3, unit);
             soldMaterial = Material.CreateInstance("Palet Plástico", Measure.Length, category);
             sold = new DateTime(2021, 10, 3, 15, 30, 16);
-
             category2 = new MaterialCategory("Cartón");
             unit2 = new Unit("Centímetros", "cm", 1, Measure.Length);
             price2 = new Price(10, Currency.Dollar, unit);
@@ -58,7 +56,6 @@ namespace ProgramTests
             MaterialSalesLine materialSale2 = new MaterialSalesLine(soldMaterial2, amount2, price2, sold2);
             List<MaterialSalesLine> sales = new List<MaterialSalesLine> { materialSale, materialSale2 };
             List<MaterialSalesLine> expected = SentMaterialReport.GetSentReport(sales, 3);
-
             Assert.AreEqual(expected, sales);
         }
 
@@ -74,7 +71,6 @@ namespace ProgramTests
             Amount amount3 = new Amount(3, unit);
             Material soldMaterial3 = Material.CreateInstance("Palet Plástico", Measure.Length, category3);
             DateTime sold3 = new DateTime(2021, 3, 10, 13, 45, 12);
-
             MaterialCategory category4 = new MaterialCategory("Cartón");
             Unit unit4 = new Unit("Centímetros", "cm", 1, Measure.Length);
             Price price4 = new Price(10, Currency.Dollar, unit);
