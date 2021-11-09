@@ -37,12 +37,11 @@ namespace Library.HighLevel.Administers
         }
 
         /// <summary>
-        /// This method has the responsibility of validating the entrepreneurs habilitations.
+        /// This method creates an invitation for a company.
         /// </summary>
-        /// <param name="userId"></param>
-        public void ValidateHabilitation()
+        public void CreateCompanyInvitation()
         {
-
+            InvitationManager.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
         }
 
     }

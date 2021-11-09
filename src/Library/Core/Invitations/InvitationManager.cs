@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Companies;
@@ -12,19 +13,24 @@ namespace Library.Core.Invitations
     /// </summary>
     public static class InvitationManager
     {
+        private static List<Invitation> invitations = new List<Invitation>();
+    	
         /// <summary>
-        /// Creates a list to save the invitations
+        /// A public read-only list of the invitations.
         /// </summary>
-        public static List<Invitation> invitations = new List<Invitation>();
+        /// <returns></returns>
+        public static IReadOnlyList<Invitation> Invitations => invitations.AsReadOnly();
 
         /// <summary>
         /// Creates an invitation.
         /// </summary>
-        public static void CreateInvitation()
+        public static void CreateInvitation(string code, Func<string, Invitation> f)
         {
-            string code = Administer.GenerateInvitation();
-            Invitation invitation = new CompanyInvitation(code); 
-            invitations.Add(invitation);
+            Invitation invitation = f(code);
+            if (!invitations.Contains(invitation))
+            {
+                invitations.Add(invitation);
+            }
         }
 
         /// <summary>
