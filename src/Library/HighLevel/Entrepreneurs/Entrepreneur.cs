@@ -53,7 +53,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// The entrepreneur's users in the platform.
         /// </summary>
-        public static List<UserId> entrepeneurList = new List<UserId>();
+        public static List<UserId> EntrepeneurList = new List<UserId>();
 
         /// <summary>
         /// Entrepreneur's Constructor.

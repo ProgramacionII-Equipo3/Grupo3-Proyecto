@@ -934,7 +934,7 @@
             The entrepreneur's specialization.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.entrepeneurList">
+        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.EntrepeneurList">
             <summary>
             The entrepreneur's users in the platform.
             </summary>
@@ -962,7 +962,7 @@
             classes according to what they search.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByCategory.categorySearcher">
+        <member name="F:Library.HighLevel.Entrepreneurs.SearchByCategory.CategorySearcher">
             <summary>
             This list is created to contain all the publication's that.
             are from the specified category.
@@ -982,7 +982,7 @@
             It was created because of polymorphism.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByKeyword.keywordSearcher">
+        <member name="F:Library.HighLevel.Entrepreneurs.SearchByKeyword.KeywordSearcher">
             <summary>
             This list is created to contain all the publication's that.
             are from the specified keyword.
@@ -1002,11 +1002,17 @@
             It was created because of polymorphism.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.locationSearcher">
+        <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.LocationSearcher">
             <summary>
-            This list is created to contain all the publication's that.
+            This list is created to contain all the publication's that
             are near a specified location.
             </summary>
+        </member>
+        <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.client">
+            <summary>
+            It creates a client to be able to use the LocationAPI.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.SearchByLocation.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>

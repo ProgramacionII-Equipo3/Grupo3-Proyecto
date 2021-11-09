@@ -74,7 +74,7 @@ namespace ProgramTests
             expected1.Add(publication1);
             expected1.Add(publication2);
 
-            Assert.AreEqual(SearchByCategory.categorySearcher, expected1);
+            Assert.AreEqual(SearchByCategory.CategorySearcher, expected1);
         }
 
         /// <summary>
@@ -89,12 +89,12 @@ namespace ProgramTests
 
             MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
             SearchByCategory searchByCategory = new SearchByCategory();
-            SearchByCategory.categorySearcher.Clear();
+            SearchByCategory.CategorySearcher.Clear();
             searchByCategory.Search(publicationsToSearchIn, categoryToSearch);
 
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(SearchByCategory.categorySearcher, expected2);
+            Assert.AreEqual(SearchByCategory.CategorySearcher, expected2);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace ProgramTests
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(publication2);
 
-            Assert.AreEqual(SearchByKeyword.keywordSearcher, expected3);
+            Assert.AreEqual(SearchByKeyword.KeywordSearcher, expected3);
         }
 
         /// <summary>
@@ -126,12 +126,12 @@ namespace ProgramTests
             List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication>{ publication1, publication2 };
 
             SearchByKeyword searchByKeyword = new SearchByKeyword();
-            SearchByKeyword.keywordSearcher.Clear();
+            SearchByKeyword.KeywordSearcher.Clear();
             searchByKeyword.Search(publicationsToSearchIn, "sanitario");
 
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
-            Assert.AreEqual(SearchByKeyword.keywordSearcher, expected4);
+            Assert.AreEqual(SearchByKeyword.KeywordSearcher, expected4);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace ProgramTests
             List<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(publication2);
 
-            Assert.AreEqual(SearchByLocation.locationSearcher, expected5);
+            Assert.AreEqual(SearchByLocation.LocationSearcher, expected5);
         }
         /// <summary>
         /// This test checks that if an entrepreneur searches
@@ -170,12 +170,12 @@ namespace ProgramTests
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("12 De Diciembre 811").Result;
             double distanceSpecified = 2;
-            SearchByLocation.locationSearcher.Clear();
+            SearchByLocation.LocationSearcher.Clear();
             searchByLocation.Search(publicationsToSearchIn, locationSpecified, distanceSpecified);
 
             List<MaterialPublication> expected6 = new List<MaterialPublication>();
 
-            Assert.AreEqual(SearchByLocation.locationSearcher, expected6);
+            Assert.AreEqual(SearchByLocation.LocationSearcher, expected6);
         }
     }
 }

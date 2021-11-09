@@ -16,7 +16,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// This list is created to contain all the publication's that.
         /// are from the specified category.
         /// </summary>
-        public static List<MaterialPublication> categorySearcher = new List<MaterialPublication>();
+        public static List<MaterialPublication> CategorySearcher = new List<MaterialPublication>();
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's.
@@ -29,7 +29,7 @@ namespace Library.HighLevel.Entrepreneurs
            {
                if (item.Material.Category.Name == category.Name)
                {
-                   categorySearcher.Add(item);
+                   CategorySearcher.Add(item);
                }
            }
         }

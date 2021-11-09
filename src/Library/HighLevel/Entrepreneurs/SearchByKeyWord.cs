@@ -15,7 +15,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// This list is created to contain all the publication's that.
         /// are from the specified keyword.
         /// </summary>
-        public static List<MaterialPublication> keywordSearcher = new List<MaterialPublication>();
+        public static List<MaterialPublication> KeywordSearcher = new List<MaterialPublication>();
         
         /// <summary>
         /// This method has the responsibility of searching all the publication's.
@@ -28,7 +28,7 @@ namespace Library.HighLevel.Entrepreneurs
            {
                if (item.Keywords.Contains(keyword))
                {
-                   keywordSearcher.Add(item);
+                   KeywordSearcher.Add(item);
                }
            }
         }

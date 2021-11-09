@@ -13,11 +13,16 @@ namespace Library.HighLevel.Entrepreneurs
     public class SearchByLocation
     {
         /// <summary>
-        /// This list is created to contain all the publication's that.
+        /// This list is created to contain all the publication's that
         /// are near a specified location.
         /// </summary>
 
-        public static List<MaterialPublication> locationSearcher = new List<MaterialPublication>();
+        public static List<MaterialPublication> LocationSearcher = new List<MaterialPublication>();
+
+        /// <summary>
+        /// It creates a client to be able to use the LocationAPI.
+        /// </summary>
+        /// <returns></returns>
 
         public static LocationApiClient client = new LocationApiClient();
 
@@ -36,7 +41,7 @@ namespace Library.HighLevel.Entrepreneurs
                distance = client.GetDistanceAsync(locationSpecified, item.PickupLocation).Result;
                if(distance.TravelDistance <= distanceSpecified)
                {
-                   locationSearcher.Add(item);
+                   LocationSearcher.Add(item);
                }
            }
         }

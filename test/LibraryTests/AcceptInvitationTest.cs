@@ -69,8 +69,8 @@ namespace ProgramTests
             LocationApiClient provider = new LocationApiClient();
             Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
-            Entrepreneur.entrepeneurList.Add(message.Id);
-            bool expected = Entrepreneur.entrepeneurList.Contains(message.Id);
+            Entrepreneur.EntrepeneurList.Add(message.Id);
+            bool expected = Entrepreneur.EntrepeneurList.Contains(message.Id);
             Assert.IsTrue(expected);
 
         }

@@ -57,6 +57,8 @@
         <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
             <summary>
             This test evaluate if the entrepreneur is registered with their correct information.
+            The user must be in the list of entrepreneurs to be registered.
+            Evaluate if the habilitations, specializations and name are registered correctly.
             </summary>
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
