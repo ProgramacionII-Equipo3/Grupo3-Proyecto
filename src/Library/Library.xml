@@ -319,6 +319,12 @@
             <param name="msg">The message's text.</param>
             <returns>The next state and the response message.</returns>
         </member>
+        <member name="M:Library.Core.State.GetDefaultResponse">
+            <summary>
+            Returns the first message the object uses to indicate what kind of input it wants.
+            </summary>
+            <returns>A string.</returns>
+        </member>
         <member name="T:Library.Core.UserData">
             <summary>
             This class represents additional data that all users must have.
@@ -1354,6 +1360,19 @@
             <param name="someFunc">The function for the value.</param>
             <typeparam name="U">The type returned by the function.</typeparam>
         </member>
+        <member name="T:Library.OptionUtils">
+            <summary>
+            This class holds methods which are related with the <see cref="T:Library.Option`1"/> struct.
+            </summary>
+        </member>
+        <member name="M:Library.OptionUtils.FirstOrNone``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns an <see cref="T:Library.Option`1" /> containing the first value of an <see cref="T:System.Collections.Generic.IEnumerable`1" />, if there is.
+            </summary>
+            <param name="enumerable">The enumerable.</param>
+            <typeparam name="T">The type of the elements of the enumerable.</typeparam>
+            <returns></returns>
+        </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
@@ -1508,12 +1527,38 @@
         <member name="M:Library.States.IncompleteCompanyRepresentativeState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
+        <member name="M:Library.States.IncompleteCompanyRepresentativeState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
         <member name="T:Library.States.InitialMenuState">
             <summary>
             This class represents a mock user state, in which the bot returns every message it receives.
             </summary>
         </member>
         <member name="M:Library.States.InitialMenuState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.InitialMenuState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.MultipleOptionState">
+            <summary>
+            This class represents a <see cref="T:Library.Core.State" /> which handles the messages in a multiple-option fashion.
+            </summary>
+        </member>
+        <member name="M:Library.States.MultipleOptionState.GetErrorString">
+            <summary>
+            Gets the string to send in order to notify the user that the data is invalid.
+            </summary>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Library.States.MultipleOptionState.#ctor(System.ValueTuple{System.String,System.Func{Library.Core.State}}[])">
+            <summary>
+            Creates a <see cref="T:Library.States.MultipleOptionState" /> with a given group of commands.
+            </summary>
+            <param name="commands">The group of commands.</param>
+        </member>
+        <member name="M:Library.States.MultipleOptionState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Utils">

@@ -12,5 +12,11 @@ namespace Library.States
         {
             return (this, $"Message sent: {msg}");
         }
+
+        /// <inheritdoc />
+        public override string GetDefaultResponse()
+        {
+            return "Welcome to the platform.";
+        }
     }
 }

@@ -37,12 +37,13 @@ namespace Library.States
                 () =>
                 {
                     this.companyGetter = null;
-                    return (this, this.getDefaultResponse());
+                    return (this, this.GetDefaultResponse());
                 }
             );
         }
 
-        private string getDefaultResponse()
+        /// <inheritdoc />
+        public override string GetDefaultResponse()
         {
             if(this.companyGetter == null)
             {
