@@ -13,5 +13,11 @@ namespace Library.Core
         /// <param name="msg">The message's text.</param>
         /// <returns>The next state and the response message.</returns>
         public abstract (State, string) ProcessMessage(UserId id, UserData data, string msg);
+
+        /// <summary>
+        /// Returns the first message the object uses to indicate what kind of input it wants.
+        /// </summary>
+        /// <returns>A string.</returns>
+        public abstract string GetDefaultResponse();
     }
 }
