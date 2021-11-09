@@ -10,10 +10,9 @@ namespace Library.Core.Processing
         /// The list of input handlers.
         /// </summary>
         protected IInputHandler[] inputHandlers;
-        private int index = 0;
+        private int index;
 
         private IInputHandler currentHandler => this.inputHandlers[this.index];
-
 
         /// <inheritdoc />
         public string GetDefaultResponse() => this.currentHandler.GetDefaultResponse();
@@ -52,8 +51,7 @@ namespace Library.Core.Processing
                     this.index++;
                     if (this.index >= this.inputHandlers.Length) return Result<bool, string>.Ok(true);
                     else return Result<bool, string>.Err(this.currentHandler.GetDefaultResponse());
-                }
-            );
+                });
         }
     }
 }

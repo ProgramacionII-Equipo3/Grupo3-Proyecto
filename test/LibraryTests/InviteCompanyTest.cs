@@ -1,15 +1,16 @@
 using NUnit.Framework;
+using Library.HighLevel.Administers;
 using Library.Core.Invitations;
 
 namespace ProgramTests
 {
     /// <summary>
-    /// 
+    /// Test if a Company can be invited to the platform.
     /// </summary>
     public class InviteCompanyTest
     {
         /// <summary>
-        /// 
+        /// Test SetUp.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -25,11 +26,9 @@ namespace ProgramTests
         [Test]
         public void InviteCompany()
         {
-            InvitationManager.CreateInvitation();
-            InvitationManager.CreateInvitation();
-            int expected = 3;
-            int invitationsLength = InvitationManager.invitations.Count;
-            Assert.AreEqual(invitationsLength, expected);
+            Administer.CreateCompanyInvitation();
+            int invitationsLength = InvitationManager.invitationsReadOnly.Count;
+            Assert.AreEqual(2, invitationsLength);
         }
     }
 }

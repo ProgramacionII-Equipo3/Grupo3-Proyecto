@@ -10,18 +10,17 @@ namespace Library.Core.Invitations
     public static class InvitationManager
     {
         private static List<Invitation> invitations = new List<Invitation>();
-    	
+
         /// <summary>
         /// A public read-only list of the invitations.
         /// </summary>
-        /// <returns></returns>
-        public static IReadOnlyList<Invitation> Invitations => invitations.AsReadOnly();
+        public static IReadOnlyList<Invitation> invitationsReadOnly => invitations.AsReadOnly();
 
         /// <summary>
         /// Creates an invitation for the companies.
         /// </summary>
         /// <param name="code">The invitation´s code.</param>
-        /// <param name="f"></param>
+        /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         public static void CreateInvitation(string code, Func<string, Invitation> f)
         {
             Invitation invitation = f(code);
@@ -46,11 +45,12 @@ namespace Library.Core.Invitations
                 string r = invitation.Validate(userId);
                 invitations.Remove(invitation);
                 return r;
-            } 
+            }
+
             else
             {
                 return null;
-            } 
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Library.HighLevel.Companies
         /// A public read-only list of the companies.
         /// </summary>
         /// <returns></returns>
-        public static IReadOnlyList<Company> Companies => companies.AsReadOnly();
+        public static IReadOnlyList<Company> companiesReadOnly => companies.AsReadOnly();
 
         /// <summary>
         /// Gets the company a concrete user represents.

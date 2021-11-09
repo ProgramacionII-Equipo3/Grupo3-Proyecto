@@ -102,7 +102,7 @@
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
             This class represents invitations, through which admins can invite other non-registered users into the platform.
-            </summary>  
+            </summary>
         </member>
         <member name="P:Library.Core.Invitations.Invitation.Code">
             <summary>
@@ -113,7 +113,7 @@
             <summary>
             Creates instances of Invitation.
             </summary>
-            <param name="code"></param>
+            <param name="code">Invitation´s code.</param>
         </member>
         <member name="M:Library.Core.Invitations.Invitation.Validate(Library.Core.UserId)">
             <summary>
@@ -127,18 +127,17 @@
             This class acts as the highest level of abstraccion in invitation handling.
             </summary>
         </member>
-        <member name="P:Library.Core.Invitations.InvitationManager.Invitations">
+        <member name="P:Library.Core.Invitations.InvitationManager.invitationsReadOnly">
             <summary>
             A public read-only list of the invitations.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation(System.String,System.Func{System.String,Library.Core.Invitations.Invitation})">
             <summary>
             Creates an invitation for the companies.
             </summary>
             <param name="code">The invitation´s code.</param>
-            <param name="f"></param>
+            <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,Library.Core.UserId)">
             <summary>
@@ -411,12 +410,12 @@
         </member>
         <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
             <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" />. 
+            Creates an instance of <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" />.
             </summary>
             <param name="material">The purchased material.</param>
             <param name="dateTime">The date of when the purchase was made.</param>
             <param name="price">The cost of the material.</param>
-            <param name="amount">The amount of the pruchased material.</param>
+            <param name="amount">The amount of the purchased material.</param>
         </member>
         <member name="T:Library.HighLevel.Accountability.Currency">
             <summary>
@@ -506,7 +505,7 @@
         <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
             <summary>
             This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
-            We created this class because of the Polymorphism pattern. 
+            We created this class because of the Polymorphism pattern.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -771,7 +770,7 @@
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyInvitation.#ctor(System.String)">
             <summary>
-            
+            Creates instances of CompanyInvitation.
             </summary>
             <param name="code"></param>
             <returns></returns>
@@ -787,7 +786,7 @@
             of companies and getting the companies and not Company by itself.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
+        <member name="P:Library.HighLevel.Companies.CompanyManager.companiesReadOnly">
             <summary>
             A public read-only list of the companies.
             </summary>
@@ -1309,13 +1308,24 @@
             </summary>
         </member>
         <member name="P:Library.NotNull`1.Value">
+            <summary>
             
+            </summary>
+            <value></value>
         </member>
         <member name="M:Library.NotNull`1.FromOption(Library.Option{`0})">
+            <summary>
             
+            </summary>
+            <param name="option"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:Library.NotNull`1.op_Implicit(Library.NotNull{`0})~`0">
+            <summary>
             
+            </summary>
+            <param name="notNull"></param>
         </member>
         <member name="T:Library.Option`1">
             <summary>

@@ -25,8 +25,6 @@ namespace Library.HighLevel.Materials
         public static bool FullCheck(IEnumerable<Requirement> requirements, IEnumerable<Habilitation> habilitations) =>
             requirements.All(
                 req => habilitations.Any(
-                    hab => req.IsSatisfiedBy(hab)
-                )
-            );
+                    hab => req.IsSatisfiedBy(hab)));
     }
 }

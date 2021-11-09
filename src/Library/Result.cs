@@ -49,7 +49,6 @@ namespace Library
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> successFunc, Func<E, U> errFunc) =>
             this.Success ? successFunc(this.successValue) : errFunc(this.errorValue);
-        
 
         /// <summary>
         /// Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="Result{U, F}" />.
@@ -61,8 +60,7 @@ namespace Library
         public Result<U, F> Switch<U, F>(Func<T, U> successFunc, Func<E, F> errFunc) =>
             this.Map(
                 v => Result<U, F>.Ok(successFunc(v)),
-                e => Result<U, F>.Err(errFunc(e))
-            );
+                e => Result<U, F>.Err(errFunc(e)));
 
         /// <summary>
         /// Passes the success value through a function if there is, returning a new <see cref="Result{U, E}" /> with it.
@@ -89,7 +87,6 @@ namespace Library
         public Result<U, E> AndThen<U>(Func<T, Result<U, E>> successFunc) =>
             this.Map(
                 v => successFunc(v),
-                Result<U, E>.Err
-            );
+                Result<U, E>.Err);
     }
 }

@@ -30,7 +30,7 @@ namespace Library.HighLevel.Materials
         /// The publication's pick-up location of material.
         /// </summary>
         public Location PickupLocation { get; private set; }
-        
+
         /// <summary>
         /// List to save all the publication's.
         /// </summary>
@@ -40,7 +40,7 @@ namespace Library.HighLevel.Materials
         /// List of the keywords of the publication material.
         /// </summary>
         public List<string> Keywords = new List<string>();
-        
+
         private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, List<string> keywords)
         {
             this.Material = material;
@@ -80,8 +80,10 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public static void AddPublication(MaterialPublication publication)
         {
-            publications.Add(publication);
+            if (publication != null)
+            {
+                publications.Add(publication);
+            }
         }
-
     }
 }

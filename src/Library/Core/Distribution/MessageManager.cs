@@ -17,7 +17,8 @@ namespace Library.Core.Distribution
             if (SessionManager.GetById(msg.Id) is UserSession session)
             {
                 return session.ProcessMessage(msg.Text);
-            } 
+            }
+
             else
             {
                 return ProcessMessageFromUnknownUser(msg);
@@ -36,10 +37,11 @@ namespace Library.Core.Distribution
             if (
                 args.Length != 2 ||
                 args[0] != "/start" ||
-                string.IsNullOrWhiteSpace(args[1])
-            )
+                string.IsNullOrWhiteSpace(args[1]))
+            {
                 return "Send the message /start <invitation-code> to register to the platform.";
-            
+            }
+
             string invitationCode = args[1];
             return InvitationManager.ValidateInvitation(invitationCode, msg.Id) is string result
                 ? result

@@ -14,12 +14,12 @@ namespace Library.HighLevel.Accountability
         /// The purchased material.
         /// </summary>
         public readonly Material Material;
-        
+
         /// <summary>
         /// The date of when the purchase was made.
         /// </summary>
         public readonly DateTime DateTime;
-        
+
         /// <summary>
         /// The cost of the material.
         /// </summary>
@@ -34,14 +34,14 @@ namespace Library.HighLevel.Accountability
         /// The amount of money spent.
         /// </summary>
         public MoneyQuantity Spent => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
-        
+
         /// <summary>
-        /// Creates an instance of <see cref="BoughtMaterialLine" />. 
+        /// Creates an instance of <see cref="BoughtMaterialLine" />.
         /// </summary>
         /// <param name="material">The purchased material.</param>
         /// <param name="dateTime">The date of when the purchase was made.</param>
         /// <param name="price">The cost of the material.</param>
-        /// <param name="amount">The amount of the pruchased material.</param>
+        /// <param name="amount">The amount of the purchased material.</param>
         public BoughtMaterialLine (Material material, DateTime dateTime, Price price, Amount amount)
         {
             this.Material = material;
