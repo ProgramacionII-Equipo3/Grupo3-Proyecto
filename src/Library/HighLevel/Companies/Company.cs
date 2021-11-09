@@ -40,11 +40,6 @@ namespace Library.HighLevel.Companies
         private List<UserId> representants = new List<UserId>();
 
         /// <summary>
-        /// A list with all companies in the platform.
-        /// </summary>
-        public static List<Company> companiesCreated = new List<Company>();
-
-        /// <summary>
         /// Creates an instance of Company.
         /// </summary>
         /// <param name="name">The company´s name.</param>
@@ -73,15 +68,6 @@ namespace Library.HighLevel.Companies
         /// <param name="id">The user's id.</param>
         public void AddUser(UserId id) =>
             this.representants.Add(id);
-
-        /// <summary>
-        /// This method adds a company to the list with all companies created.
-        /// </summary>
-        /// <param name="company">The company to add.</param>
-        public static void AddCompany(Company company)
-        {
-            companiesCreated.Add(company);
-        }
 
         List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 

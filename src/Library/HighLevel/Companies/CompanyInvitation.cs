@@ -12,7 +12,11 @@ namespace Library.HighLevel.Companies
     public class CompanyInvitation : Invitation
     {
 
-        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public CompanyInvitation(string code): base(code) {}
 
         /// <inheritdoc />

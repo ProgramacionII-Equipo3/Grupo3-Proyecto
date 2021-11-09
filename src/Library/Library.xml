@@ -102,7 +102,7 @@
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
             This class represents invitations, through which admins can invite other non-registered users into the platform.
-            </summary>
+            </summary>  
         </member>
         <member name="P:Library.Core.Invitations.Invitation.Code">
             <summary>
@@ -110,7 +110,10 @@
             </summary>
         </member>
         <member name="M:Library.Core.Invitations.Invitation.#ctor(System.String)">
-            
+            <summary>
+            Creates instances of Invitation.
+            </summary>
+            <param name="code"></param>
         </member>
         <member name="M:Library.Core.Invitations.Invitation.Validate(Library.Core.UserId)">
             <summary>
@@ -124,15 +127,18 @@
             This class acts as the highest level of abstraccion in invitation handling.
             </summary>
         </member>
-        <member name="F:Library.Core.Invitations.InvitationManager.invitations">
+        <member name="P:Library.Core.Invitations.InvitationManager.Invitations">
             <summary>
-            Creates a list to save the invitations
+            A public read-only list of the invitations.
             </summary>
+            <returns></returns>
         </member>
-        <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation">
+        <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation(System.String,System.Func{System.String,Library.Core.Invitations.Invitation})">
             <summary>
-            Creates an invitation.
+            Creates an invitation for the companies.
             </summary>
+            <param name="code">The invitation´s code.</param>
+            <param name="f"></param>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,Library.Core.UserId)">
             <summary>
@@ -688,7 +694,7 @@
         <member name="T:Library.HighLevel.Administers.Administer">
             <summary>
             This class represents an Administer.
-            We used the Creator principle, this class is the one that 
+            We used the Creator principle, this class is the one that. 
             generates the invitations code.
             </summary>
         </member>
@@ -696,12 +702,12 @@
             <summary>
             This method create's an invitation code.
             </summary>
+            <returns>Invitation´s code.</returns>
         </member>
-        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation">
+        <member name="M:Library.HighLevel.Administers.Administer.CreateCompanyInvitation">
             <summary>
-            This method has the responsibility of validating the entrepreneurs habilitations.
+            This method creates an invitation for a company.
             </summary>
-            <param name="userId"></param>
         </member>
         <member name="T:Library.HighLevel.Companies.Company">
             <summary>
@@ -735,11 +741,6 @@
             The company's representants in the platform.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Companies.Company.companiesCreated">
-            <summary>
-            A list with all companies in the platform.
-            </summary>
-        </member>
         <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
             <summary>
             Creates an instance of Company.
@@ -762,12 +763,6 @@
             </summary>
             <param name="id">The user's id.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.AddCompany(Library.HighLevel.Companies.Company)">
-            <summary>
-            This method adds a company to the list with all companies created.
-            </summary>
-            <param name="company">The company to add.</param>
-        </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
             Represents an invitation to the platform for a company representative.
@@ -775,7 +770,11 @@
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyInvitation.#ctor(System.String)">
+            <summary>
             
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyInvitation.Validate(Library.Core.UserId)">
             <inheritdoc />
@@ -787,6 +786,12 @@
             that way the class CompanyManager is the one responsible of creating the list
             of companies and getting the companies and not Company by itself.
             </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
+            <summary>
+            A public read-only list of the companies.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
             <summary>
@@ -814,6 +819,10 @@
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
             <returns>The created instance, or null if there's already a company with the same name.</returns>
+            <param name = "name">The comany´s name.</param>
+            <param name = "contactInfo">The comany´s contact info.</param>
+            <param name = "heading">The company´s heading.</param>
+            <param name = "location">The company´s location.</param>
         </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>

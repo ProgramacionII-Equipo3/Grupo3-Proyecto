@@ -1,10 +1,6 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
-using Library.HighLevel.Companies;
-using Library.HighLevel.Administers;
-
 
 namespace Library.Core.Invitations
 {
@@ -22,8 +18,10 @@ namespace Library.Core.Invitations
         public static IReadOnlyList<Invitation> Invitations => invitations.AsReadOnly();
 
         /// <summary>
-        /// Creates an invitation.
+        /// Creates an invitation for the companies.
         /// </summary>
+        /// <param name="code">The invitation´s code.</param>
+        /// <param name="f"></param>
         public static void CreateInvitation(string code, Func<string, Invitation> f)
         {
             Invitation invitation = f(code);
@@ -41,15 +39,18 @@ namespace Library.Core.Invitations
         /// <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
         public static string ValidateInvitation(string invitationCode, UserId userId)
         {
-            if(
+            if (
                 invitations.Where(invitation => invitation.Code == invitationCode).FirstOrDefault()
-                is Invitation invitation
-            )
+                is Invitation invitation)
             {
                 string r = invitation.Validate(userId);
                 invitations.Remove(invitation);
                 return r;
-            } else return null;
+            } 
+            else
+            {
+                return null;
+            } 
         }
     }
 }
