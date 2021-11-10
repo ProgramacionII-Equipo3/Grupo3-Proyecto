@@ -44,6 +44,41 @@
             Test if the materials sold are out of time.
             </summary>
         </member>
+        <member name="T:ProgramTests.CompanyTest">
+            <summary>
+            This test check if the class Company and CompanyManager and all methods of both classes works.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.Setup">
+            <summary>
+            Test Setup.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.CreateCompanyTest">
+            <summary>
+            Test if a company can be created and added in list of all companies.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.HasUserTest">
+            <summary>
+            This test check if a company can have representants.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.GetCompanyOfTest">
+            <summary>
+            This test check GetCompanyOf method of CompanyManager class.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.GetByNameTest">
+            <summary>
+            This test check GetByName method of CompanyManager class.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.GetSimilarCompaniesTest">
+            <summary>
+            This test check GetCompaniesWithNamesSimilarTo method of CompanyManager class.
+            </summary>
+        </member>
         <member name="T:ProgramTests.EntrepreneurRegisterTest">
             <summary>
             Test if an Entrepreneur can register into the platform.

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Library.Core.Invitations
@@ -14,7 +15,7 @@ namespace Library.Core.Invitations
         /// <summary>
         /// A public read-only list of the invitations.
         /// </summary>
-        public static IReadOnlyList<Invitation> invitationsReadOnly => invitations.AsReadOnly();
+        public static ReadOnlyCollection<Invitation> invitationsReadOnly => invitations.AsReadOnly();
 
         /// <summary>
         /// Creates an invitation for the companies.

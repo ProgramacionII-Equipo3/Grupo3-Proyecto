@@ -7,6 +7,7 @@ Segunda Entrega Correcciones:
     > "La propiedad pública entrepeneurList de la clase Entrepreneur debe comenzar en mayúsculas. Ídem categorySearcher de la clase SearchByCategory." ---> Bianca
     > "El método EntrepreneurRegister de la clase EntrepreneurRegisterTest tiene comentarios XML dentro del método; los comentarios XML deben estar junto a elementos como clases, métodos, etc. y no dentro de los métodos."   ---> Bianca
     > Agregar precondiciones; ---> Juan
+    > Arreglar el método AreSimilar de la clase Utils;
 
 
 

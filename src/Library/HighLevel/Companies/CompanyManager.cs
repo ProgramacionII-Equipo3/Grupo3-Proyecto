@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
 using Ucu.Poo.Locations.Client;
@@ -19,7 +20,7 @@ namespace Library.HighLevel.Companies
         /// A public read-only list of the companies.
         /// </summary>
         /// <returns></returns>
-        public static IReadOnlyList<Company> companiesReadOnly => companies.AsReadOnly();
+        public static ReadOnlyCollection<Company> companiesReadOnly => companies.AsReadOnly();
 
         /// <summary>
         /// Gets the company a concrete user represents.
