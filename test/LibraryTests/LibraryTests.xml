@@ -120,7 +120,7 @@
         </member>
         <member name="M:ProgramTests.SearchOffersTest.Setup">
             <summary>
-            
+            Test setup.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategoryFound">

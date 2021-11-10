@@ -954,74 +954,46 @@
             This method returns all the materials that are constantly generated.
             </summary>
         </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
-            <summary>
-            This class has the responsibility of searching material.
-            publication´s according to a specified category.
-            It was created because of polymorphism, we separated the 
-            classes according to what they search.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByCategory.CategorySearcher">
-            <summary>
-            This list is created to contain all the publication's that.
-            are from the specified category.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
-            <summary>
-            This method has the responsibility of searching all the publication's.
-            </summary>
-            <param name="publications"></param>
-            <param name="category"></param>
-        </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.SearchByKeyword">
+        <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
             This class has the responsibility of searching material
-            publication´s according to a specified keyword.
-            It was created because of polymorphism.
+            publication´s according to a specified category, keyword or location.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByKeyword.KeywordSearcher">
-            <summary>
-            This list is created to contain all the publication's that.
-            are from the specified keyword.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
-            <summary>
-            This method has the responsibility of searching all the publication's.
-            </summary>
-            <param name="publications"></param>
-            /// <param name="keyword"></param>
-        </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.SearchByLocation">
-            <summary>
-            This class has the responsibility of searching material 
-            publication's near a specified location.
-            It was created because of polymorphism.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.LocationSearcher">
+        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.SearchResult">
             <summary>
             This list is created to contain all the publication's that
-            are near a specified location.
+            are from the specified search.
             </summary>
+            <returns></returns>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.client">
+        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
             <summary>
             It creates a client to be able to use the LocationAPI.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByLocation.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
-            This method has the responsibility of searching all the publication's.
+            This method has the responsibility of searching all the publication's by a category.
+            </summary>
+            <param name="publications"></param>
+            <param name="category"></param>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
+            <summary>
+            This method has the responsibility of searching all the publication's by a keyword.
+            </summary>
+            <param name="publications"></param>
+            <param name="keyword"></param>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+            <summary>
+            This method has the responsibility of searching all the publication's by a location.
             </summary>
             <param name="publications"></param>
             <param name="locationSpecified"></param>
             <param name="distanceSpecified"></param>
-            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
