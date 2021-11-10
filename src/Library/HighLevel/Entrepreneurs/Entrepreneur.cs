@@ -48,7 +48,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// The entrepreneur's specialization.
         /// </summary>
-        public List<Specialization> Specialization = new List<Specialization>();
+        public List<string> Specialization { get; private set; }
 
         /// <summary>
         /// The entrepreneur's users in the platform.
@@ -58,7 +58,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Entrepreneur's Constructor.
         /// </summary>
-        public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<Specialization> specializations)
+        public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<string> specializations)
         {
             this.Id = id;
             this.Name = name;

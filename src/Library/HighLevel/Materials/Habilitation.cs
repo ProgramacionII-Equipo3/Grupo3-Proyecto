@@ -18,13 +18,20 @@ namespace Library.HighLevel.Materials
         public bool IsCorrect { get; private set; }
 
         /// <summary>
+        /// A text that describes the habilitations that a entrepreneur has.
+        /// </summary>
+        readonly string DescriptiveText;
+
+        /// <summary>
         /// Creates an habilitation.
         /// </summary>
         /// <param name="DocLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
-        public Habilitation(string DocLink)
+        /// <param name="descriptiveText">It is a text that describes the habilitations.</param>
+        public Habilitation(string DocLink, string descriptiveText)
         {
             this.DocLink = DocLink;
             this.IsCorrect = false;
+            this.DescriptiveText = descriptiveText;
         }
 
         /// <summary>

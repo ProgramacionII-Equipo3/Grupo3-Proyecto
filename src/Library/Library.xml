@@ -929,7 +929,7 @@
             The entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Specialization">
+        <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Specialization">
             <summary>
             The entrepreneur's specialization.
             </summary>
@@ -939,7 +939,7 @@
             The entrepreneur's users in the platform.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{System.String})">
             <summary>
             Entrepreneur's Constructor.
             </summary>
@@ -1023,24 +1023,6 @@
             <param name="distanceSpecified"></param>
             <returns></returns>
         </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.Specialization">
-            <summary>
-            This class represents the specialization's of a entrepreneur.
-            Created because of SRP.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Entrepreneurs.Specialization.Specializations">
-            <summary>
-            The specialization of entrepreneur's.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Specialization.#ctor(System.String)">
-            <summary>
-            The EntrepreneurSpecialization's Constructor.
-            </summary>
-            <param name="specialization"></param>
-        </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
             This class represents habilitations entrepreneurs can possess,
@@ -1058,11 +1040,17 @@
             A boolean value which evaluates if the habilitation is validated.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String)">
+        <member name="F:Library.HighLevel.Materials.Habilitation.DescriptiveText">
+            <summary>
+            A text that describes the habilitations that a entrepreneur has.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String,System.String)">
             <summary>
             Creates an habilitation.
             </summary>
             <param name="DocLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+            <param name="descriptiveText">It is a text that describes the habilitations.</param>
         </member>
         <member name="M:Library.HighLevel.Materials.Habilitation.Validate(Library.HighLevel.Materials.Habilitation)">
             <summary>

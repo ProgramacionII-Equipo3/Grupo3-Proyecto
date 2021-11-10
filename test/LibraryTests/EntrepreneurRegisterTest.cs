@@ -53,16 +53,16 @@ namespace ProgramTests
             
             for (int i = 1; i < habilitationsMessageSplitted.Length; i++)
             {
-                Habilitation habilitation =  new Habilitation(habilitationsMessageSplitted[i]);
+                Habilitation habilitation =  new Habilitation(habilitationsMessageSplitted[i], "description");
                 habilitations.Add(habilitation);
             }
 
             string[] specializationMessageSplitted = habilitationsMessage.Text.Trim().Split();
-            List<Specialization> specializations = new List<Specialization>();
+            List<string> specializations = new List<string>();
 
             for (int i = 1; i < specializationMessageSplitted.Length; i++)
             {
-                Specialization specialization = new Specialization(specializationMessageSplitted[i]);
+                string specialization = new string(specializationMessageSplitted[i]);
                 specializations.Add(specialization);
             }
 
