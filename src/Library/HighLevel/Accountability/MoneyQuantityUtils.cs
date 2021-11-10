@@ -2,7 +2,9 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class offers functions associated with the <see cref="MoneyQuantity" /> struct.
-    /// We created this class because of the Polymorphism pattern. 
+    /// We created this class because of the Polymorphism pattern, while money quantity is for
+    /// an amount of money, this class is created for a particular sale, so we separated it by 
+    /// destination.
     /// </summary>
     public static class MoneyQuantityUtils
     {

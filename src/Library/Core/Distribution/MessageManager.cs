@@ -1,4 +1,3 @@
-using System;
 using Library.Core.Invitations;
 
 namespace Library.Core.Distribution
@@ -15,31 +14,34 @@ namespace Library.Core.Distribution
         /// <returns>The response message's text.</returns>
         public static string ProcessMessage(Message msg)
         {
-            if(SessionManager.GetById(msg.Id) is UserSession session)
+            if (SessionManager.GetById(msg.Id) is UserSession session)
             {
                 return session.ProcessMessage(msg.Text);
-            } else
+            }
+
+            else
             {
-                return processMessageFromUnknownUser(msg);
+                return ProcessMessageFromUnknownUser(msg);
             }
         }
 
-        private static string processMessageFromUnknownUser(Message msg)
+        private static string ProcessMessageFromUnknownUser(Message msg)
         {
-            return processValidateInvitationCommand(msg);
+            return ProcessValidateInvitationCommand(msg);
         }
 
-        private static string processValidateInvitationCommand(Message msg)
+        private static string ProcessValidateInvitationCommand(Message msg)
         {
             string[] args = msg.Text.Split(' ');
 
-            if(
+            if (
                 args.Length != 2 ||
                 args[0] != "/start" ||
-                string.IsNullOrWhiteSpace(args[1])
-            )
+                string.IsNullOrWhiteSpace(args[1]))
+            {
                 return "Send the message /start <invitation-code> to register to the platform.";
-            
+            }
+
             string invitationCode = args[1];
             return InvitationManager.ValidateInvitation(invitationCode, msg.Id) is string result
                 ? result

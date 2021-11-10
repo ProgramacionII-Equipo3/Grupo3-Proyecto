@@ -10,7 +10,9 @@ namespace Library.HighLevel.Companies
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
     /// We used the ISP principle, this class does not depend of types it doesn't 
-    /// use.
+    /// use. We also implemented Creator, this class is the one that creates the 
+    /// list of representants. And Expert, the method of checking if the 
+    /// company has a representant and add users.
     /// </summary>
     public class Company : IPublisher, ISentMaterialReportCreator
     {
@@ -38,11 +40,6 @@ namespace Library.HighLevel.Companies
         /// The company's representants in the platform.
         /// </summary>
         private List<UserId> representants = new List<UserId>();
-
-        /// <summary>
-        /// A list with all companies in the platform.
-        /// </summary>
-        public static List<Company> companiesCreated = new List<Company>();
 
         /// <summary>
         /// Creates an instance of Company.
@@ -73,15 +70,6 @@ namespace Library.HighLevel.Companies
         /// <param name="id">The user's id.</param>
         public void AddUser(UserId id) =>
             this.representants.Add(id);
-
-        /// <summary>
-        /// This method adds a company to the list with all companies created.
-        /// </summary>
-        /// <param name="company">The company to add.</param>
-        public static void AddCompany(Company company)
-        {
-            companiesCreated.Add(company);
-        }
 
         List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 

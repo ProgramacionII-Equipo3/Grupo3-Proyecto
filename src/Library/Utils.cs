@@ -97,7 +97,7 @@ namespace Library
                 return false;
             }
 
-            return false;   
+            return false;
         }
 
         /// <summary>
@@ -118,14 +118,11 @@ namespace Library
                 {
                     return false;
                 }
-                
             }
             else
             {
                 return false;
             }
-
         }
-
     }
 }

@@ -44,7 +44,7 @@ namespace Library
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> someFunc, Func<U> noneFunc) =>
             this.HasValue ? someFunc(this.value) : noneFunc();
-        
+
         /// <summary>
         /// Attempts to retrieve the value from this <see cref="Option{T}" />, throwing an error if not possible.
         /// </summary>
@@ -53,8 +53,7 @@ namespace Library
         public T Unwrap() =>
             this.Map(
                 v => v,
-                () => throw new ArgumentNullException("value", "attempting to retrieve value from None")
-            );
+                () => throw new ArgumentNullException("value", "attempting to retrieve value from None"));
 
         /// <summary>
         /// Passes the inner value through a function (if there is), and returns the result in a new <see cref="Option{T}" />.
@@ -64,7 +63,6 @@ namespace Library
         public Option<U> MapValue<U>(Func<T, U> someFunc) =>
             this.Map(
                 v => Option<U>.From(someFunc(v)),
-                () => Option<U>.None
-            );
+                () => Option<U>.None);
     }
 }

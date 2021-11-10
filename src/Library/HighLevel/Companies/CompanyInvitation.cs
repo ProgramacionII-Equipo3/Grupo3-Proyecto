@@ -11,9 +11,14 @@ namespace Library.HighLevel.Companies
     /// </summary>
     public class CompanyInvitation : Invitation
     {
-
-        ///
-        public CompanyInvitation(string code): base(code) {}
+        /// <summary>
+        /// Creates instances of CompanyInvitation.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public CompanyInvitation(string code): base(code)
+        {
+        }
 
         /// <inheritdoc />
         public override string Validate(UserId userId)
@@ -21,8 +26,7 @@ namespace Library.HighLevel.Companies
             SessionManager.NewUser(
                 id: userId,
                 userData: new UserData(),
-                state: new IncompleteCompanyRepresentativeState()
-            );
+                state: new IncompleteCompanyRepresentativeState());
             return "Please insert the company's name.";
         }
     }

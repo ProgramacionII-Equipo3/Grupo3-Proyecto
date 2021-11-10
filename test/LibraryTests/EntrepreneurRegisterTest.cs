@@ -51,34 +51,28 @@ namespace ProgramTests
             
             for (int i = 1; i < habilitationsMessageSplitted.Length; i++)
             {
-                Habilitation habilitation =  new Habilitation(habilitationsMessageSplitted[i]);
+                Habilitation habilitation =  new Habilitation(habilitationsMessageSplitted[i], "description");
                 habilitations.Add(habilitation);
             }
 
             string[] specializationMessageSplitted = habilitationsMessage.Text.Trim().Split();
-            List<Specialization> specializations = new List<Specialization>();
+            List<string> specializations = new List<string>();
 
             for (int i = 1; i < specializationMessageSplitted.Length; i++)
             {
-                Specialization specialization = new Specialization(specializationMessageSplitted[i]);
+                string specialization = new string(specializationMessageSplitted[i]);
                 specializations.Add(specialization);
             }
 
             Entrepreneur juan = new Entrepreneur(juanId, nameMessage.Text, ageMessage.Text, location, headingMessage.Text, habilitations, specializations );
-            Entrepreneur.entrepeneurList.Add(juanId);
+            Entrepreneur.EntrepeneurList.Add(juanId);
+            // The user must be in the list of entrepreneurs to be registered.
 
-            /// <summary>
-            /// The user must be in the list of entrepreneurs to be registered.
-            /// </summary>
-            
             UserId idExpected = nameMessage.Id;
-            int indexnameUser = Entrepreneur.entrepeneurList.IndexOf(nameMessage.Id);
-            Assert.AreEqual(Entrepreneur.entrepeneurList[indexnameUser], idExpected);
-            
-            /// <summary>
-            /// Evaluate if the habilitations, specializations and name are registered correctly.
-            /// </summary>
-            
+            int indexnameUser = Entrepreneur.EntrepeneurList.IndexOf(nameMessage.Id);
+            Assert.AreEqual(Entrepreneur.EntrepeneurList[indexnameUser], idExpected);
+            // Evaluate if the habilitations, specializations and name are registered correctly.
+
             string nameExpected = nameMessage.Text;
             Assert.AreEqual(habilitations, juan.Habilitation);
             Assert.AreEqual(specializations,juan.Specialization);

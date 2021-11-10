@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Library.HighLevel.Companies;
-using Library.HighLevel.Administers;
-
 
 namespace Library.Core.Invitations
 {
@@ -12,19 +9,25 @@ namespace Library.Core.Invitations
     /// </summary>
     public static class InvitationManager
     {
-        /// <summary>
-        /// Creates a list to save the invitations
-        /// </summary>
-        public static List<Invitation> invitations = new List<Invitation>();
+        private static List<Invitation> invitations = new List<Invitation>();
 
         /// <summary>
-        /// Creates an invitation.
+        /// A public read-only list of the invitations.
         /// </summary>
-        public static void CreateInvitation()
+        public static IReadOnlyList<Invitation> invitationsReadOnly => invitations.AsReadOnly();
+
+        /// <summary>
+        /// Creates an invitation for the companies.
+        /// </summary>
+        /// <param name="code">The invitation´s code.</param>
+        /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
+        public static void CreateInvitation(string code, Func<string, Invitation> f)
         {
-            string code = Administer.GenerateInvitation();
-            Invitation invitation = new CompanyInvitation(code); 
-            invitations.Add(invitation);
+            Invitation invitation = f(code);
+            if (!invitations.Contains(invitation))
+            {
+                invitations.Add(invitation);
+            }
         }
 
         /// <summary>
@@ -35,15 +38,19 @@ namespace Library.Core.Invitations
         /// <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
         public static string ValidateInvitation(string invitationCode, UserId userId)
         {
-            if(
+            if (
                 invitations.Where(invitation => invitation.Code == invitationCode).FirstOrDefault()
-                is Invitation invitation
-            )
+                is Invitation invitation)
             {
                 string r = invitation.Validate(userId);
                 invitations.Remove(invitation);
                 return r;
-            } else return null;
+            }
+
+            else
+            {
+                return null;
+            }
         }
     }
 }

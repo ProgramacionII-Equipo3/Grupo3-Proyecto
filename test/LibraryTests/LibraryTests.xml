@@ -76,12 +76,12 @@
         </member>
         <member name="T:ProgramTests.InviteCompanyTest">
             <summary>
-            
+            Test if a Company can be invited to the platform.
             </summary>
         </member>
         <member name="M:ProgramTests.InviteCompanyTest.Setup">
             <summary>
-            
+            Test SetUp.
             </summary>
         </member>
         <member name="M:ProgramTests.InviteCompanyTest.InviteCompany">
@@ -120,7 +120,7 @@
         </member>
         <member name="M:ProgramTests.SearchOffersTest.Setup">
             <summary>
-            
+            Test setup.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategoryFound">

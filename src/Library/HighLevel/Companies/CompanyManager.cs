@@ -16,6 +16,12 @@ namespace Library.HighLevel.Companies
         private static List<Company> companies = new List<Company>();
 
         /// <summary>
+        /// A public read-only list of the companies.
+        /// </summary>
+        /// <returns></returns>
+        public static IReadOnlyList<Company> companiesReadOnly => companies.AsReadOnly();
+
+        /// <summary>
         /// Gets the company a concrete user represents.
         /// </summary>
         /// <param name="userId">The user's id.</param>
@@ -43,9 +49,13 @@ namespace Library.HighLevel.Companies
         /// Creates an instance of <see cref="Company" />, adding it to the list.
         /// </summary>
         /// <returns>The created instance, or null if there's already a company with the same name.</returns>
+        /// <param name = "name">The comany´s name.</param>
+        /// <param name = "contactInfo">The comany´s contact info.</param>
+        /// <param name = "heading">The company´s heading.</param>
+        /// <param name = "location">The company´s location.</param>
         public static Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
-            if(GetByName(name) != null) return null;
+            if (GetByName(name) != null) return null;
 
             Company result = new Company(name, contactInfo, heading, location);
             companies.Add(result);

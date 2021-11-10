@@ -2,7 +2,11 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents an amount of money.
-    /// Created because of SRP.
+    /// Created because of SRP and Low Coupling and High Cohesion, in that way
+    /// we have this class that has the responsibility of assign an amount of 
+    /// money with his respective quantity and currency (particular of a money quantity)
+    /// with the currency that is controlled by another class currency (following the
+    /// pattern and principle).
     /// </summary>
     public struct MoneyQuantity
     {

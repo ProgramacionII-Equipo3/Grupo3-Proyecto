@@ -5,7 +5,9 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This class represents a requirement to manipulate certain materials.
-    /// Created because of SRP.
+    /// We used Expert to create this class, the class is the one in charge of 
+    /// checking if the habilitation's are satisfied. We also used SRP, that's why
+    /// we separated requirement from habilitation.
     /// </summary>
     public abstract class Requirement
     {
@@ -25,8 +27,6 @@ namespace Library.HighLevel.Materials
         public static bool FullCheck(IEnumerable<Requirement> requirements, IEnumerable<Habilitation> habilitations) =>
             requirements.All(
                 req => habilitations.Any(
-                    hab => req.IsSatisfiedBy(hab)
-                )
-            );
+                    hab => req.IsSatisfiedBy(hab)));
     }
 }

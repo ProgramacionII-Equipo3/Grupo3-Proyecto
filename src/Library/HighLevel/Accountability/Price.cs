@@ -2,7 +2,8 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This struct represents a price.
-    /// Created because of SRP.
+    /// Created because of SRP, this class is the one that controls 
+    /// the price in specific. 
     /// </summary>
     public struct Price
     {

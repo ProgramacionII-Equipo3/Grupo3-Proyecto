@@ -1,12 +1,14 @@
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System;
 
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a report of all materials a company sold over a certain period of time.
-    /// Created because of SRP. 
+    /// Created because of SRP, a report is conformed by lines (created by another class), that way 
+    /// also avoid High Coupling, but have a High Cohesion. At the same time the sent material and 
+    ///  received one are created by different classes because of polymorphism.
     /// </summary>
     public class SentMaterialReport
     {

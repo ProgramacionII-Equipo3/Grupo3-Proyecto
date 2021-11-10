@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Library.Core;
 
 namespace Library.Core.Distribution
 {
@@ -32,7 +30,11 @@ namespace Library.Core.Distribution
         /// <returns>The resulting <see cref="UserSession" />, or null if there's already one.</returns>
         public static UserSession NewUser(UserId id, UserData userData, State state)
         {
-            if(GetById(id) != null) return null;
+            if (GetById(id) != null)
+            {
+                return null;
+            }
+
             UserSession result = new UserSession(id, userData, state);
             sessions.Add(result);
             return result;
