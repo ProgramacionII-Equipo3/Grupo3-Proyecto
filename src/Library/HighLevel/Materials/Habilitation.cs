@@ -3,7 +3,8 @@ namespace Library.HighLevel.Materials
     /// <summary>
     /// This class represents habilitations entrepreneurs can possess,
     /// which are necessary to meet certain material manipulation requirements.
-    /// We used the principle Expert to create this class.
+    /// We used the principle Expert and SRP to create this class, it is the 
+    /// class itself that validates the habilitation.
     /// </summary>
     public class Habilitation
     {

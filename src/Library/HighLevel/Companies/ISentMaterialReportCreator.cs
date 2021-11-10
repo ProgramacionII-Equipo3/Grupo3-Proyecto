@@ -7,7 +7,7 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This interface represents the responsibility of creating material reports.
-    /// 
+    /// We created this interface because of DIP, that way the classes depend of an abstraction.
     /// </summary>
     public interface ISentMaterialReportCreator
     {

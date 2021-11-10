@@ -7,8 +7,8 @@ using Ucu.Poo.Locations.Client;
 namespace Library.HighLevel.Companies
 {
     /// <summary>
-    /// This class represents the responsibility of managing material publications.
-    /// 
+    /// This interface represents the responsibility of managing material publications.
+    /// We created this interface because of DIP, that way the classes depend of an abstraction.
     /// </summary>
     public interface IPublisher
     {

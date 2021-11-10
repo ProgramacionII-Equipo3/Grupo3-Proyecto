@@ -378,9 +378,10 @@
         </member>
         <member name="T:Library.HighLevel.Accountability.BoughtMaterialLine">
             <summary>
-            this class represents a material bought by the entrepreneur
+            This class represents a material bought by the entrepreneur.
             We used the SRP principle, that way material, datetime, 
             price, amount are all objects created by his respective class.
+            That way we have classes with Low Coupling.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.BoughtMaterialLine.Material">
@@ -420,14 +421,14 @@
         <member name="T:Library.HighLevel.Accountability.Currency">
             <summary>
             This class represents a currency with which transactions can be made.
+            Because of the OCP principle, the attributes are
+            readonly, that way this class is open to extension
+            but closed to modifications.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Name">
             <summary>
             The currency's name.
-            Because of the OCP principle, the attributes are
-            readonly, that way this class is open to extension
-            but closed to modifications.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Symbol">
@@ -482,7 +483,11 @@
         <member name="T:Library.HighLevel.Accountability.MoneyQuantity">
             <summary>
             This class represents an amount of money.
-            Created because of SRP.
+            Created because of SRP and Low Coupling and High Cohesion, in that way
+            we have this class that has the responsibility of assign an amount of 
+            money with his respective quantity and currency (particular of a money quantity)
+            with the currency that is controlled by another class currency (following the
+            pattern and principle).
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.MoneyQuantity.Quantity">
@@ -505,7 +510,9 @@
         <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
             <summary>
             This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
-            We created this class because of the Polymorphism pattern.
+            We created this class because of the Polymorphism pattern, while money quantity is for
+            an amount of money, this class is created for a particular sale, so we separated it by 
+            destination.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -519,7 +526,8 @@
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
-            Created because of SRP.
+            Created because of SRP, this class is the one that controls 
+            the price in specific. 
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.Price.Quantity">
@@ -548,8 +556,8 @@
         <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
             <summary>
             This class represents a reports of all material purchased by the entrepreneur.
-            We used the pattern Creator and the SRP principle, that is
-            why this class creates a report.
+            We used the pattern Creator and the SRP principle, that is why this class 
+            creates a report and not another class to avoid High Coupling.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.ReceivedMaterialReport.Materials">
@@ -607,7 +615,9 @@
         <member name="T:Library.HighLevel.Accountability.SentMaterialReport">
             <summary>
             This class represents a report of all materials a company sold over a certain period of time.
-            Created because of SRP. 
+            Created because of SRP, a report is conformed by lines (created by another class), that way 
+            also avoid High Coupling, but have a High Cohesion. At the same time the sent material and 
+             received one are created by different classes because of polymorphism.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.SentMaterialReport.Lines">
@@ -632,7 +642,9 @@
         <member name="T:Library.HighLevel.Accountability.Unit">
             <summary>
             This class represent a unit used for measuring amounts of material.
-            Created because of SRP.
+            Created because of SRP, this particular class is the one with the 
+            responsibility of everything associated with the unit and nothing else 
+            (following also the Expert principle).
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Unit.Name">
@@ -693,8 +705,10 @@
         <member name="T:Library.HighLevel.Administers.Administer">
             <summary>
             This class represents an Administer.
-            We used the Creator principle, this class is the one that. 
-            generates the invitations code.
+            We used the Expert principle, this class is the one that 
+            generates the invitations code (as it should be).
+            At the same time we used Creator, for example the list of admin
+            is created by this class.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Administers.Administer.GenerateInvitation">
@@ -712,7 +726,9 @@
             <summary>
             This class represents a company which can sell materials to entrepreneurs.
             We used the ISP principle, this class does not depend of types it doesn't 
-            use.
+            use. We also implemented Creator, this class is the one that creates the 
+            list of representants. And Expert, the method of checking if the 
+            company has a representant and add users.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Name">
@@ -826,7 +842,7 @@
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
             This class represents the responsibility of managing material publications.
-            We used OCP and Creator.
+            
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IPublisher.publications">
@@ -860,7 +876,7 @@
         <member name="T:Library.HighLevel.Companies.ISentMaterialReportCreator">
             <summary>
             This interface represents the responsibility of creating material reports.
-            Created because of SRP.
+            
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
@@ -877,7 +893,7 @@
         </member>
         <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
             <summary>
-            This interface was created because of SRP and OCP.
+            This interface was created because of
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.boughtMaterials">
@@ -895,8 +911,8 @@
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents an entrepreneur.
-            We used the principle Expert to create this
-            class.
+            We used the principle Creator to create this class, for
+            example, the list of entrepreneur is created here.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Id">
@@ -947,6 +963,9 @@
         <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
             <summary>
             Class to find what materials are constantly generated.
+            Created because of SRP, this class in particular is the one
+            that gets the material constantly generated and not another 
+            one because it would generate a High Coupling.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated.GetReport">
@@ -956,8 +975,10 @@
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
-            This class has the responsibility of searching material
-            publication´s according to a specified category, keyword or location.
+            This class has the responsibility of searching material publication´s 
+            according to a specified category, keyword or location.
+            We created this class using expert, this class itself does all the possible 
+            filter searches). It also has a High Cohesion because of the same reason.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Searcher.SearchResult">

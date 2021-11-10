@@ -7,7 +7,8 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This class represents a publication of a material from a company.
-    /// We used the principle Expert to create this class.
+    /// We created this using Creator, because it creates instance of material
+    /// publication in it's own class.
     /// </summary>
     public class MaterialPublication
     {
