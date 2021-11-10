@@ -12,23 +12,10 @@ namespace Library.Core.Processing
         protected IInputHandler[] inputHandlers;
         private int index;
 
-        private IInputHandler currentHandler => this.inputHandlers[this.index];
+        private IInputHandler CurrentHandler => this.inputHandlers[this.index];
 
         /// <inheritdoc />
-        public string GetDefaultResponse() => this.currentHandler.GetDefaultResponse();
-
-        /// <summary>
-        /// Generates the resulting object with the obtained input.
-        /// <remarks>
-        /// This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns (true, null),
-        /// which is a signal that the object's ready to produce the result.
-        /// </remarks>
-        /// </summary>
-        /// <returns>
-        /// Result.Ok(result), being result the resulting object, or<br />
-        /// Result.Err(error), being error an error string.
-        /// </returns>
-        protected abstract Result<T, string> getResult();
+        public string GetDefaultResponse() => this.CurrentHandler.GetDefaultResponse();
 
         void IInputHandler.Reset()
         {
@@ -42,16 +29,38 @@ namespace Library.Core.Processing
         /// <inheritdoc />
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
-            Result<bool, string> processResult = this.currentHandler.ProcessInput(msg);
+            Result<bool, string> processResult = this.CurrentHandler.ProcessInput(msg);
             return processResult.AndThen(
                 ready =>
                 {
-                    if (!ready) return Result<bool, string>.Ok(false);
+                    if (!ready)
+                    {
+                        return Result<bool, string>.Ok(false);
+                    }
 
                     this.index++;
-                    if (this.index >= this.inputHandlers.Length) return Result<bool, string>.Ok(true);
-                    else return Result<bool, string>.Err(this.currentHandler.GetDefaultResponse());
+                    if (this.index >= this.inputHandlers.Length)
+                    {
+                        return Result<bool, string>.Ok(true);
+                    }
+                    else
+                    {
+                        return Result<bool, string>.Err(this.CurrentHandler.GetDefaultResponse());
+                    }
                 });
         }
+
+        /// <summary>
+        /// Generates the resulting object with the obtained input.
+        /// <remarks>
+        /// This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns (true, null),
+        /// which is a signal that the object's ready to produce the result.
+        /// </remarks>
+        /// </summary>
+        /// <returns>
+        /// Result.Ok(result), being result the resulting object, or<br />
+        /// Result.Err(error), being error an error string.
+        /// </returns>
+        protected abstract Result<T, string> getResult();
     }
 }

@@ -5,7 +5,7 @@
         "companyName": "Universidad Católica del Uruguay",
         "copyrightText": "Copyright (c) Programación II. Derechos reservados.",
         "headerDecoration": "-----------------------------------------------------------------------",
-        "documentationCulture": "es-MX"
+        "documentationCulture": "en-US"
     },
     "orderingRules": {
       "usingDirectivesPlacement":"outsideNamespace"

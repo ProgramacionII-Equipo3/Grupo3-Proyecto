@@ -17,9 +17,9 @@ namespace Library.HighLevel.Companies
         private static List<Company> companies = new List<Company>();
 
         /// <summary>
-        /// A public read-only list of the companies.
+        /// Gets a public read-only list of the companies.
         /// </summary>
-        public static ReadOnlyCollection<Company> companiesReadOnly => companies.AsReadOnly();
+        public static ReadOnlyCollection<Company> CompaniesReadOnly => companies.AsReadOnly();
 
         /// <summary>
         /// Gets the company a concrete user represents.
@@ -55,7 +55,10 @@ namespace Library.HighLevel.Companies
         /// <param name = "location">The company´s location.</param>
         public static Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
-            if (GetByName(name) != null) return null;
+            if (GetByName(name) != null)
+            {
+                return null;
+            }
 
             Company result = new Company(name, contactInfo, heading, location);
             companies.Add(result);

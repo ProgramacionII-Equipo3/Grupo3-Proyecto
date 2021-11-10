@@ -3,7 +3,7 @@ namespace Library.HighLevel.Accountability
     /// <summary>
     /// This struct represents an amount of material.
     /// We used the OCP principle to create this class, we used "readonly"
-    /// to prevent modifications, but it's still open to extension. 
+    /// to prevent modifications, but it's still open to extension.
     /// </summary>
     public struct Amount
     {
@@ -18,7 +18,7 @@ namespace Library.HighLevel.Accountability
         public readonly Unit Unit;
 
         /// <summary>
-        /// Creates an instance of <see cref="Amount" />.
+        /// Initializes a new instance of the <see cref="Amount"/> struct.
         /// </summary>
         /// <param name="quantity">The numeric value.</param>
         /// <param name="unit">The unit.</param>

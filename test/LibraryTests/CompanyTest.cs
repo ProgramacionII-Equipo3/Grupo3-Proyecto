@@ -31,7 +31,7 @@ namespace ProgramTests
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
             Company company = CompanyManager.CreateCompany("Company", contactInfo, "heading", location);
-            bool expected = CompanyManager.companiesReadOnly.Contains(company);
+            bool expected = CompanyManager.CompaniesReadOnly.Contains(company);
             Assert.That(expected, Is.True);
         }
 
@@ -51,7 +51,7 @@ namespace ProgramTests
             company.AddUser(id);
             bool expected = company.HasUser(id);
 
-            Assert.That(expected, Is.True);            
+            Assert.That(expected, Is.True);
         }
 
         /// <summary>

@@ -12,26 +12,25 @@ namespace ProgramTests
     /// publication's using a keyword, category or zone.
     /// </summary>
     public class SearchOffersTest
-    {  
+    {
         MaterialCategory category1;
         Material material1;
         Unit unit1;
         Amount amount1;
-        Price price1; 
+        Price price1;
         LocationApiClient client;
         Location pickupLocation1;
         MaterialPublication publication1;
-
         MaterialCategory category2;
         Material material2;
         Unit unit2;
         Amount amount2;
-        Price price2; 
+        Price price2;
         Location pickupLocation2;
         MaterialPublication publication2;
-        
+
         /// <summary>
-        /// 
+        /// Test Setup.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -54,7 +53,6 @@ namespace ProgramTests
             price2 = new Price(800, Currency.Peso, unit2);
             pickupLocation2 = client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
             publication2 = MaterialPublication.CreateInstance(material2, amount2, price2, pickupLocation2, keyword2);
-
         }
 
         /// <summary>
@@ -155,6 +153,7 @@ namespace ProgramTests
 
             Assert.AreEqual(SearchByLocation.locationSearcher, expected5);
         }
+
         /// <summary>
         /// This test checks that if an entrepreneur searches
         /// for a zone that isn't included in a publication or is to 
@@ -163,7 +162,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneNotFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication>{ publication1, publication2 };
+            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { publication1, publication2 };
 
             SearchByLocation searchByLocation = new SearchByLocation();
             LocationApiClient clientTest = new LocationApiClient();

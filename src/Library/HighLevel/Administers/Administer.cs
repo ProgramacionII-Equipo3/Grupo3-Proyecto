@@ -1,14 +1,14 @@
-using System.Collections.Generic;
-using Library.Core;
 using Library.Core.Invitations;
-using System;
+using Library.Core;
 using Library.HighLevel.Companies;
+using System.Collections.Generic;
+using System;
 
 namespace Library.HighLevel.Administers
 {
     /// <summary>
     /// This class represents an Administer.
-    /// We used the Creator principle, this class is the one that. 
+    /// We used the Creator principle, this class is the one that.
     /// generates the invitations code.
     /// </summary>
     public class Administer
@@ -34,7 +34,6 @@ namespace Library.HighLevel.Administers
             {
                 result += item;
             }
-            
             return result;
         }
 

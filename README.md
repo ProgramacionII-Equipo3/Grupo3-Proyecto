@@ -13,4 +13,12 @@ Segunda Entrega Correcciones:
 
 Tercera Entrega:
     > Agregar los comandos; 
-    > Implementar la serialización de los objetos;
+        > CompanyCommands
+        > EntrepreneurCommands
+        > AdminCommands
+        
+    > Implementar la serialización de los objetos
+        > CompanySerialization              --> Serializa la lista y los usuarios;
+        > EntrepreneurSerialization         --> Serializa los usuarios emprendedores;
+        > MaterialPublicationSerialization  --> Serializa las publicaciones de materiales;
+        > AdminSerialization                --> Serializa los usuarios admin;

@@ -150,7 +150,7 @@
         </member>
         <member name="M:ProgramTests.SearchOffersTest.Setup">
             <summary>
-            
+            Test Setup.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategoryFound">

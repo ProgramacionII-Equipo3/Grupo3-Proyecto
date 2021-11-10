@@ -1,8 +1,6 @@
-using System;
-using System.Globalization;
-using Library.InputHandlers;
-using Library.HighLevel.Companies;
 using Library.Core.Processing;
+using Library.HighLevel.Companies;
+using Library.InputHandlers;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.States
@@ -11,13 +9,11 @@ namespace Library.States
     {
         private class CreateNewCompanyState : FormProcessor<Company>
         {
-
             private IncompleteCompanyRepresentativeState parent;
             private string heading;
             private Location location;
             private int phoneNumber;
             private string email;
-
             private Company result = null;
 
             public CreateNewCompanyState(IncompleteCompanyRepresentativeState parent)
@@ -27,20 +23,16 @@ namespace Library.States
                 {
                     ProcessorHandler.CreateInstance<string>(
                         s => this.heading = s,
-                        new BasicStringProcessor(() => "Please insert the company's heading.")
-                    ),
+                        new BasicStringProcessor(() => "Please insert the company's heading.")),
                     ProcessorHandler.CreateInstance<Location>(
                         l => this.location = l,
-                        new LocationProcessor("company")
-                    ),
+                        new LocationProcessor("company")),
                     ProcessorHandler.CreateInstance<int>(
                         n => this.phoneNumber = n,
-                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")
-                    ),
+                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")),
                     ProcessorHandler.CreateInstance<string>(
                         s => this.email = s,
-                        new EmailProcessor(() => "Please insert the company's email.")
-                    )
+                        new EmailProcessor(() => "Please insert the company's email."))
                 };
             }
 
@@ -54,10 +46,16 @@ namespace Library.States
                         PhoneNumber = this.phoneNumber
                     },
                     heading: this.heading,
-                    location: this.location
-                );
-                if(result == null) return Result<Company, string>.Err("There's already a company with the same name.");
-                else return Result<Company, string>.Ok(result);
+                    location: this.location);
+                if (result == null) 
+                {
+                    return Result<Company, string>.Err("There's already a company with the same name.");
+                }
+
+                else
+                {
+                    return Result<Company, string>.Ok(result);
+                }
             }
         }
     }

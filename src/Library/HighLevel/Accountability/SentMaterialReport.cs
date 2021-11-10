@@ -1,12 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
 
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a report of all materials a company sold over a certain period of time.
-    /// Created because of SRP. 
+    /// Created because of SRP.
     /// </summary>
     public class SentMaterialReport
     {
@@ -16,7 +16,7 @@ namespace Library.HighLevel.Accountability
         public readonly ReadOnlyCollection<MaterialSalesLine> Lines;
 
         /// <summary>
-        /// Creates an instance of <see cref="SentMaterialReport"/>.
+        /// Initializes a new instance of the <see cref="SentMaterialReport"/> class.
         /// </summary>
         /// <param name="lines">The report's list of material sales.</param>
         public SentMaterialReport(ReadOnlyCollection<MaterialSalesLine> lines)
@@ -29,7 +29,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="materialSales">The list of materials sold.</param>
         /// <param name="time">The period of time to search.</param>
-        /// <returns></returns>
+        /// <returns>A report of materials sended in a period of time.</returns>
         public static List<MaterialSalesLine> GetSentReport(List<MaterialSalesLine> materialSales, int time)
         {
 
