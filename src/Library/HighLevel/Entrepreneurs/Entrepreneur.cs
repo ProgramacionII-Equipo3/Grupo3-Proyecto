@@ -9,8 +9,8 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class represents an entrepreneur.
-    /// We used the principle Expert to create this
-    /// class.
+    /// We used the principle Creator to create this class, for
+    /// example, the list of entrepreneur is created here.
     /// </summary>
     public class Entrepreneur 
     {

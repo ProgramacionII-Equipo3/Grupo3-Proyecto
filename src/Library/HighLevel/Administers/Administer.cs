@@ -8,8 +8,10 @@ namespace Library.HighLevel.Administers
 {
     /// <summary>
     /// This class represents an Administer.
-    /// We used the Creator principle, this class is the one that. 
-    /// generates the invitations code.
+    /// We used the Expert principle, this class is the one that 
+    /// generates the invitations code (as it should be).
+    /// At the same time we used Creator, for example the list of admin
+    /// is created by this class.
     /// </summary>
     public class Administer
     {

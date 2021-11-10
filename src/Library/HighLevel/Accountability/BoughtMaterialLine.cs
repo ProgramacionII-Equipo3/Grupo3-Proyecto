@@ -4,9 +4,10 @@ using Library.HighLevel.Materials;
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
-    /// this class represents a material bought by the entrepreneur
+    /// This class represents a material bought by the entrepreneur.
     /// We used the SRP principle, that way material, datetime, 
     /// price, amount are all objects created by his respective class.
+    /// That way we have classes with Low Coupling.
     /// </summary>
     public class BoughtMaterialLine
     {

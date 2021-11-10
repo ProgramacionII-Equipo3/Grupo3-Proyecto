@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Library.HighLevel.Companies
 {
     /// <summary>
-    /// This interface was created because of SRP and OCP.
+    /// This interface was created because of
     /// </summary>
     public interface IReceivedMaterialCreator
     {

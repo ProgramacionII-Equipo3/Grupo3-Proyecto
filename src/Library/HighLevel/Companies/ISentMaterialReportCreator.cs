@@ -7,7 +7,7 @@ namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This interface represents the responsibility of creating material reports.
-    /// Created because of SRP.
+    /// 
     /// </summary>
     public interface ISentMaterialReportCreator
     {

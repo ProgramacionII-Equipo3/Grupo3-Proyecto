@@ -2,14 +2,14 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a currency with which transactions can be made.
+    /// Because of the OCP principle, the attributes are
+    /// readonly, that way this class is open to extension
+    /// but closed to modifications.
     /// </summary>
     public sealed class Currency
     {
         /// <summary>
         /// The currency's name.
-        /// Because of the OCP principle, the attributes are
-        /// readonly, that way this class is open to extension
-        /// but closed to modifications.
         /// </summary>
         public readonly string Name;
 

@@ -5,6 +5,9 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// Class to find what materials are constantly generated.
+    /// Created because of SRP, this class in particular is the one
+    /// that gets the material constantly generated and not another 
+    /// one because it would generate a High Coupling.
     /// </summary>
     public static class GetMaterialConstantlyGenerated
     {
