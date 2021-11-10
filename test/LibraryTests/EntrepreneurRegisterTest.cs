@@ -42,8 +42,6 @@ namespace ProgramTests
 
         /// <summary>
         /// This test evaluate if the entrepreneur is registered with their correct information.
-        /// The user must be in the list of entrepreneurs to be registered.
-        /// Evaluate if the habilitations, specializations and name are registered correctly.
         /// </summary>
         [Test]
         public void EntrepreneurRegister()
@@ -68,11 +66,13 @@ namespace ProgramTests
 
             Entrepreneur juan = new Entrepreneur(juanId, nameMessage.Text, ageMessage.Text, location, headingMessage.Text, habilitations, specializations );
             Entrepreneur.EntrepeneurList.Add(juanId);
-            
+            // The user must be in the list of entrepreneurs to be registered.
+
             UserId idExpected = nameMessage.Id;
             int indexnameUser = Entrepreneur.EntrepeneurList.IndexOf(nameMessage.Id);
             Assert.AreEqual(Entrepreneur.EntrepeneurList[indexnameUser], idExpected);
-            
+            // Evaluate if the habilitations, specializations and name are registered correctly.
+
             string nameExpected = nameMessage.Text;
             Assert.AreEqual(habilitations, juan.Habilitation);
             Assert.AreEqual(specializations,juan.Specialization);
