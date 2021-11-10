@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
-using Ucu.Poo.Locations.Client;
-
 using NUnit.Framework;
+using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
 {
@@ -34,7 +33,7 @@ namespace ProgramTests
             Location location = provider.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
             List<string> keyword = new List<string> { "Cámara" };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
-            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location, keyword);   
+            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location, keyword);
             MaterialPublication.AddPublication(publication);
 
             MaterialCategory category2 = new MaterialCategory("Plástico");

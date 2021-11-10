@@ -1,11 +1,11 @@
-using NUnit.Framework;
+using System.Collections.Generic;
 using Library.Core;
 using Library.HighLevel.Administers;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
 using Library.Platforms.Telegram;
-using System.Collections.Generic;
+using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
@@ -31,9 +31,11 @@ namespace ProgramTests
         {
             Administer.CreateCompanyInvitation();
             TelegramId id = new TelegramId(2066298868);
+
             // Message with the code.
             Message message = new Message("1234567", id);
             LocationApiClient provider = new LocationApiClient();
+
             // If the message with the code is equal with te code sended in an invitation,
             // the user can register the company.
             ContactInfo contactInfo;
@@ -45,6 +47,7 @@ namespace ProgramTests
 
             bool expected = company.HasUser(message.Id);
             Company expectedCompany = CompanyManager.GetByName("Company.SA");
+
             // If the message with the code is equal with an invitation sended, the user has to
             // be added in the representants list of the company.
             // The company is registered.
@@ -55,10 +58,11 @@ namespace ProgramTests
         /// <summary>
         /// If the user don´t have a code, it´s user is an Entrepreneur.
         /// </summary>
+        [Test]
         public void NotAcceptInvitation()
         {
             TelegramId id = new TelegramId(2066298868);
-            Message message = new Message("", id);
+            Message message = new Message(string.Empty, id);
             Habilitation habilitation = new Habilitation("Link1");
             Habilitation habilitation2 = new Habilitation("Link2");
             List<Habilitation> habilitations = new List<Habilitation> { habilitation, habilitation2 };

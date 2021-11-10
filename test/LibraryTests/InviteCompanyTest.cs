@@ -1,6 +1,6 @@
-using NUnit.Framework;
 using Library.Core.Invitations;
 using Library.HighLevel.Administers;
+using NUnit.Framework;
 
 namespace ProgramTests
 {

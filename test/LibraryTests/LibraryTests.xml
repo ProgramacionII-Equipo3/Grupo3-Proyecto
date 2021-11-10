@@ -25,9 +25,9 @@
             </summary>
         </member>
         <member name="T:ProgramTests.CompanyReportTest">
-             <summary>
-            
-             </summary>
+            <summary>
+            Test if a company can get a report of all material´s sent.
+            </summary>
         </member>
         <member name="M:ProgramTests.CompanyReportTest.Setup">
             <summary>
@@ -144,7 +144,7 @@
         </member>
         <member name="T:ProgramTests.SearchOffersTest">
             <summary>
-            This test proves that a entrepreneur can search material 
+            This test proves that a entrepreneur can search material
             publication's using a keyword, category or zone.
             </summary>
         </member>
@@ -175,7 +175,7 @@
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywordsNotFound">
             <summary>
             This test checks that if an entrepreneur searches
-            for a keyword that isn't included in a publication 
+            for a keyword that isn't included in a publication
             it returns a list with 0 elements.
             </summary>
         </member>
@@ -188,7 +188,7 @@
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyZoneNotFound">
             <summary>
             This test checks that if an entrepreneur searches
-            for a zone that isn't included in a publication or is to 
+            for a zone that isn't included in a publication or is to
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
