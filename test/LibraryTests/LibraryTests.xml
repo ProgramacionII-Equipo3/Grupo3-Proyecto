@@ -74,11 +74,6 @@
             This test check GetByName method of CompanyManager class.
             </summary>
         </member>
-        <member name="M:ProgramTests.CompanyTest.GetSimilarCompaniesTest">
-            <summary>
-            This test check GetCompaniesWithNamesSimilarTo method of CompanyManager class.
-            </summary>
-        </member>
         <member name="T:ProgramTests.EntrepreneurRegisterTest">
             <summary>
             Test if an Entrepreneur can register into the platform.

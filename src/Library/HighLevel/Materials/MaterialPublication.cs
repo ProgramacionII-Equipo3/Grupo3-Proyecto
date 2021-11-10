@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System;
+using System.Collections.ObjectModel;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
 
@@ -34,7 +34,12 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// List to save all the publication's.
         /// </summary>
-        public static List<MaterialPublication> publications = new List<MaterialPublication>();
+        private static List<MaterialPublication> publications = new List<MaterialPublication>();
+    
+        /// <summary>
+        /// A public read-only list of the publications.
+        /// </summary>
+        public static ReadOnlyCollection<MaterialPublication> publicationsReadOnly => publications.AsReadOnly();
 
         /// <summary>
         /// List of the keywords of the publication material.
@@ -76,7 +81,7 @@ namespace Library.HighLevel.Materials
                 : null;
 
         /// <summary>
-        /// This method add's all created publication's to the previously created publication's list
+        /// This method add's all created publication's to the previously created publication's list.
         /// </summary>
         public static void AddPublication(MaterialPublication publication)
         {
@@ -84,6 +89,32 @@ namespace Library.HighLevel.Materials
             {
                 publications.Add(publication);
             }
+        }
+
+        /// <summary>
+        /// This method search the material that is constantly generated.
+        /// </summary>
+        /// <returns></returns>
+        public static List<MaterialPublication> GetMaterialConstantlyGenerated()
+        {
+            List<MaterialPublication> materialMostGenerated = new List<MaterialPublication>(); 
+            foreach (MaterialPublication item in publications)
+            {
+                List<MaterialPublication> result = publications.FindAll(
+                delegate(MaterialPublication publication)
+                {
+                    return Utils.AreSimilar(publication.Material.Name, item.Material.Name);
+                });
+                if (result.Count > 3)
+                {
+                    foreach (MaterialPublication element in result)
+                    {
+                        materialMostGenerated.Add(element);
+                    }
+                    result.Clear();
+                }
+            }
+            return materialMostGenerated;
         }
     }
 }

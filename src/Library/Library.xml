@@ -790,7 +790,6 @@
             <summary>
             A public read-only list of the companies.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
             <summary>
@@ -942,16 +941,6 @@
         <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
             <summary>
             Entrepreneur's Constructor.
-            </summary>
-        </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
-            <summary>
-            Class to find what materials are constantly generated.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated.GetReport">
-            <summary>
-            This method returns all the materials that are constantly generated.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
@@ -1165,6 +1154,11 @@
             List to save all the publication's.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.publicationsReadOnly">
+            <summary>
+            A public read-only list of the publications.
+            </summary>
+        </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
             List of the keywords of the publication material.
@@ -1193,8 +1187,14 @@
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
             <summary>
-            This method add's all created publication's to the previously created publication's list
+            This method add's all created publication's to the previously created publication's list.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
+            <summary>
+            This method search the material that is constantly generated.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>

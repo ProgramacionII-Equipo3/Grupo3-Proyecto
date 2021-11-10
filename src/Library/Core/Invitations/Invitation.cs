@@ -9,6 +9,7 @@ namespace Library.Core.Invitations
         /// The invitation's code.
         /// </summary>
         public string Code { get; private set; }
+
         /// <summary>
         /// Creates instances of Invitation.
         /// </summary>

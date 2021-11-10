@@ -37,8 +37,7 @@ namespace Library.HighLevel.Accountability
                 delegate(MaterialSalesLine materialSale)
                 {
                     return materialSale.DateTime.Month > DateTime.Now.Month - time;
-                }
-            );
+                });
             return result;
         }
     }

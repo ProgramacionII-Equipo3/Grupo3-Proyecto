@@ -28,11 +28,13 @@ namespace Library.HighLevel.Administers
             {
                 charsArray[i] = characters[random.Next(characters.Length)];
             }
+
             string result = string.Empty;
             foreach (var item in charsArray)
             {
                 result += item;
-            }    
+            }
+            
             return result;
         }
 

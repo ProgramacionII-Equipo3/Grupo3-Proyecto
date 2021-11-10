@@ -88,14 +88,5 @@ namespace ProgramTests
             Company expected = CompanyManager.GetByName("WoodCompany");
             Assert.AreEqual(expected, company);
         }
-
-        /// <summary>
-        /// This test check GetCompaniesWithNamesSimilarTo method of CompanyManager class.
-        /// </summary>
-        [Test]
-        public void GetSimilarCompaniesTest()
-        {
-            CompanyManager.GetCompaniesWithNamesSimilarTo("Company");
-        }
     }
 }
