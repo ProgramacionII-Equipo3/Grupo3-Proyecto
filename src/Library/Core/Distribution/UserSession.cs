@@ -45,6 +45,7 @@ namespace Library.Core.Distribution
         {
             var (newState, res) = this.state.ProcessMessage(this.Id, this.userData, msg);
             this.state = newState;
+            if(res == null) res = newState.GetDefaultResponse();
             return res;
         }
 

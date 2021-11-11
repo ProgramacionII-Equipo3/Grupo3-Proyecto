@@ -10,7 +10,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// A link to a document with the necessary habilitations to manipulate a material.
         /// </summary>
-        readonly string DocLink;
+        public readonly string DocLink;
 
         /// <summary>
         /// A boolean value which evaluates if the habilitation is validated.

@@ -26,11 +26,6 @@ namespace Library.Core.Distribution
 
         private static string processMessageFromUnknownUser(Message msg)
         {
-            return processValidateInvitationCommand(msg);
-        }
-
-        private static string processValidateInvitationCommand(Message msg)
-        {
             string[] args = msg.Text.Split(' ');
 
             if(
@@ -38,8 +33,14 @@ namespace Library.Core.Distribution
                 args[0] != "/start" ||
                 string.IsNullOrWhiteSpace(args[1])
             )
-                return "Send the message /start <invitation-code> to register to the platform.";
+                return "Send the message /start ( <invitation-code> | -e | --entrepreneur ) to register to the platform.";
             
+            if(args[1] == "-e" || args[1] == "--entrepreneur")
+            {
+                // TODO: Implement subclass of State for new entrepreneurs. 
+                SessionManager.NewUser(msg.Id, default, null);
+            }
+
             string invitationCode = args[1];
             return InvitationManager.ValidateInvitation(invitationCode, msg.Id) is string result
                 ? result

@@ -14,7 +14,6 @@ namespace Library.Core.Processing
 
         private IInputHandler currentHandler => this.inputHandlers[this.index];
 
-
         /// <inheritdoc />
         public string GetDefaultResponse() => this.currentHandler.GetDefaultResponse();
 

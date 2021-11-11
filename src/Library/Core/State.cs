@@ -11,7 +11,7 @@ namespace Library.Core
         /// <param name="id">The user's id.</param>
         /// <param name="data">The user's data.</param>
         /// <param name="msg">The message's text.</param>
-        /// <returns>The next state and the response message.</returns>
+        /// <returns>The next state and the response message. If the response message is null, the new state's default message can be used instead.</returns>
         public abstract (State, string) ProcessMessage(UserId id, UserData data, string msg);
 
         /// <summary>

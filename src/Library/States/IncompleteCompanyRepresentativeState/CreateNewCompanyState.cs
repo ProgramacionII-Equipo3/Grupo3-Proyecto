@@ -31,7 +31,7 @@ namespace Library.States
                     ),
                     ProcessorHandler.CreateInstance<Location>(
                         l => this.location = l,
-                        new LocationProcessor("company")
+                        new LocationProcessor(() => "Please insert the company's location")
                     ),
                     ProcessorHandler.CreateInstance<int>(
                         n => this.phoneNumber = n,

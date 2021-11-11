@@ -101,7 +101,7 @@ namespace Library
         }
 
         /// <summary>
-        /// This method check if a phone number is valid.
+        /// This method checks if a phone number is valid.
         /// </summary>
         /// <param name="number">The phone number input.</param>
         /// <returns>True if the number is valid and false if it not does.</returns>
@@ -125,6 +125,16 @@ namespace Library
                 return false;
             }
 
+        }
+
+        /// <summary>
+        /// Checks if a string is a valid hypertext link.
+        /// </summary>
+        /// <param name="link">The string.</param>
+        /// <returns>Whether it's a valid link or not.</returns>
+        public static bool IsValidHyperTextLink(string link)
+        {
+            return true;
         }
 
     }

@@ -24,9 +24,9 @@ namespace Library.Core.Processing
         /// </summary>
         /// <param name="msg">The input message.</param>
         /// <returns>
-        /// (result, null), being result the resulting object, <br />
-        /// (null, response), being response a response string, or <br />
-        /// (null, null) for an interrupt signal.
+        /// Option.Some(Result.Ok(result)), being result the resulting object, <br />
+        /// Option.Some(Result.Err(response)), being response a response string, or <br />
+        /// Option.None for an interrupt signal.
         /// </returns>
         public Option<Result<T, string>> GenerateFromInput(string msg) =>
             this.ProcessInput(msg).Map<Option<Result<T, string>>>(

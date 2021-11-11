@@ -51,11 +51,6 @@ namespace Library.HighLevel.Entrepreneurs
         public List<Specialization> Specialization = new List<Specialization>();
 
         /// <summary>
-        /// The entrepreneur's users in the platform.
-        /// </summary>
-        public static List<UserId> entrepeneurList = new List<UserId>();
-
-        /// <summary>
         /// Entrepreneur's Constructor.
         /// </summary>
         public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<Specialization> specializations)
