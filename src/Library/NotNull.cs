@@ -20,7 +20,6 @@ namespace Library
         /// 
         /// </summary>
         /// <param name="option"></param>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static Option<NotNull<T>> FromOption(Option<T> option) =>
             option.MapValue(v => new NotNull<T>(v));

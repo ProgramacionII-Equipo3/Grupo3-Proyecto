@@ -13,9 +13,9 @@ namespace Library.HighLevel.Accountability
         /// The list of purchased materials.
         /// </summary>
         public readonly ReadOnlyCollection<BoughtMaterialLine> Materials;
-        
+
         /// <summary>
-        /// Creates an instance of <see cref="ReceivedMaterialReport" />.
+        /// Initializes a new instance of the <see cref="ReceivedMaterialReport"/> class.
         /// </summary>
         /// <param name="materials">The collection of purchased materials.</param>
         public ReceivedMaterialReport(ReadOnlyCollection<BoughtMaterialLine> materials)

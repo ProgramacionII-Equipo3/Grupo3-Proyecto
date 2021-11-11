@@ -17,9 +17,7 @@ namespace Library.HighLevel.Accountability
         public static Option<MoneyQuantity> Calculate(Amount amount, Price price) =>
             Unit.GetConversionFactor(amount.Unit, price.Unit).MapValue(
                 unitConversionFactor => new MoneyQuantity(
-                    (float) (amount.Quantity * price.Quantity * unitConversionFactor),
-                    price.Currency
-                )
-            );
+                    (float)(amount.Quantity * price.Quantity * unitConversionFactor),
+                    price.Currency));
     }
 }

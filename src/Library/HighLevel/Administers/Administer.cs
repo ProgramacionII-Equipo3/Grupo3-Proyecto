@@ -1,14 +1,14 @@
-using System.Collections.Generic;
-using Library.Core;
 using Library.Core.Invitations;
-using System;
+using Library.Core;
 using Library.HighLevel.Companies;
+using System.Collections.Generic;
+using System;
 
 namespace Library.HighLevel.Administers
 {
     /// <summary>
     /// This class represents an Administer.
-    /// We used the Expert principle, this class is the one that 
+    /// We used the Expert principle, this class is the one that
     /// generates the invitations code (as it should be).
     /// At the same time we used Creator, for example the list of admin
     /// is created by this class.
@@ -30,11 +30,12 @@ namespace Library.HighLevel.Administers
             {
                 charsArray[i] = characters[random.Next(characters.Length)];
             }
+
             string result = string.Empty;
             foreach (var item in charsArray)
             {
                 result += item;
-            }    
+            }
             return result;
         }
 

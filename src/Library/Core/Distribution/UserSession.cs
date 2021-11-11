@@ -21,7 +21,7 @@ namespace Library.Core.Distribution
         private State state;
 
         /// <summary>
-        /// Creates a UserSession.
+        /// Initializes a new instance of the <see cref="UserSession"/> class.
         /// </summary>
         /// <param name="id">The session's user's id.</param>
         /// <param name="userData">The session's user's data.</param>
@@ -49,6 +49,7 @@ namespace Library.Core.Distribution
         /// Checks whether this <see cref="UserSession" /> has a concrete <see cref="UserId" />.
         /// </summary>
         /// <param name="id">The id to compare with.</param>
+        /// <returns>True uf the ID´s are equal and false if it not does.</returns>
         public bool MatchesId(UserId id) => this.Id.Equals(id);
     }
 }

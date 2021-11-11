@@ -1,7 +1,7 @@
-using Library.HighLevel.Accountability;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Library.HighLevel.Accountability;
 
 namespace Library.HighLevel.Companies
 {
@@ -11,17 +11,16 @@ namespace Library.HighLevel.Companies
     public interface IReceivedMaterialCreator
     {
         /// <summary>
-        /// It is the collection of bought materials.
+        /// Gets the collection of bought materials.
         /// </summary>
-        protected List<BoughtMaterialLine> boughtMaterials { get; }
+        protected List<BoughtMaterialLine> BoughtMaterials { get; }
 
         /// <summary>
-        /// It creates a reports of the purchase made by the entrepreneur.
+        /// Gets a reports of the purchase made by the entrepreneur.
         /// </summary>
-        /// <param name="dateTime">It is the time when the entrepreneur bought the material</param>
+        /// <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
         /// <returns>A <see cref="ReceivedMaterialReport" />.</returns>
         public ReceivedMaterialReport GetMaterialReport(DateTime dateTime) =>
-            new ReceivedMaterialReport(this.boughtMaterials.ToList().AsReadOnly());
-        
+            new ReceivedMaterialReport(this.BoughtMaterials.ToList().AsReadOnly());
     }
 }

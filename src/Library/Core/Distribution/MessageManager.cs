@@ -18,7 +18,6 @@ namespace Library.Core.Distribution
             {
                 return session.ProcessMessage(msg.Text);
             }
-
             else
             {
                 return ProcessMessageFromUnknownUser(msg);

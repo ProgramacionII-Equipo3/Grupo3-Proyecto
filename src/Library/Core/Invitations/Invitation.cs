@@ -6,11 +6,12 @@ namespace Library.Core.Invitations
     public abstract class Invitation
     {
         /// <summary>
-        /// The invitation's code.
+        /// Gets the invitation's code.
         /// </summary>
         public string Code { get; private set; }
+
         /// <summary>
-        /// Creates instances of Invitation.
+        /// Initializes a new instance of the <see cref="Invitation"/> class.
         /// </summary>
         /// <param name="code">Invitation´s code.</param>
         public Invitation(string code)

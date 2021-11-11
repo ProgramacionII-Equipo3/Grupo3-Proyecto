@@ -26,7 +26,7 @@
         </member>
         <member name="T:ProgramTests.CompanyReportTest">
             <summary>
-            
+            Test if a company can get a report of all material´s sent.
             </summary>
         </member>
         <member name="M:ProgramTests.CompanyReportTest.Setup">
@@ -44,6 +44,36 @@
             Test if the materials sold are out of time.
             </summary>
         </member>
+        <member name="T:ProgramTests.CompanyTest">
+            <summary>
+            This test check if the class Company and CompanyManager and all methods of both classes works.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.Setup">
+            <summary>
+            Test Setup.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.CreateCompanyTest">
+            <summary>
+            Test if a company can be created and added in list of all companies.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.HasUserTest">
+            <summary>
+            This test check if a company can have representants.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.GetCompanyOfTest">
+            <summary>
+            This test check GetCompanyOf method of CompanyManager class.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.GetByNameTest">
+            <summary>
+            This test check GetByName method of CompanyManager class.
+            </summary>
+        </member>
         <member name="T:ProgramTests.EntrepreneurRegisterTest">
             <summary>
             Test if an Entrepreneur can register into the platform.
@@ -52,7 +82,7 @@
         <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
             <summary>
             It´s create a message with the information correspondent.
-            </summary>       
+            </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
             <summary>
@@ -61,12 +91,12 @@
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
-            
+            This test check if the Entrepreneur can get an received material report.
             </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.Setup">
             <summary>
-            
+            Test Setup.
             </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
@@ -88,7 +118,7 @@
             <summary>
             This test proves that as an admin I can create an invitation
             As we can't expect a certain invitation code because it's
-            generated randomly, we check if the list of invitations has 
+            generated randomly, we check if the list of invitations has
             the same number of invitations as expected.
             </summary>
         </member>
@@ -114,13 +144,13 @@
         </member>
         <member name="T:ProgramTests.SearchOffersTest">
             <summary>
-            This test proves that a entrepreneur can search material 
+            This test proves that a entrepreneur can search material
             publication's using a keyword, category or zone.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.Setup">
             <summary>
-            Test setup.
+            Test Setup.
             </summary>
         </member>
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyCategoryFound">
@@ -145,7 +175,7 @@
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyKeywordsNotFound">
             <summary>
             This test checks that if an entrepreneur searches
-            for a keyword that isn't included in a publication 
+            for a keyword that isn't included in a publication
             it returns a list with 0 elements.
             </summary>
         </member>
@@ -158,7 +188,7 @@
         <member name="M:ProgramTests.SearchOffersTest.SearchOffersbyZoneNotFound">
             <summary>
             This test checks that if an entrepreneur searches
-            for a zone that isn't included in a publication or is to 
+            for a zone that isn't included in a publication or is to
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>

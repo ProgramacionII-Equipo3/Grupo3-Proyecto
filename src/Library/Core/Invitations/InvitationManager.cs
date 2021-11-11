@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Library.Core.Invitations
@@ -12,9 +13,9 @@ namespace Library.Core.Invitations
         private static List<Invitation> invitations = new List<Invitation>();
 
         /// <summary>
-        /// A public read-only list of the invitations.
+        /// Gets a public read-only list of the invitations.
         /// </summary>
-        public static IReadOnlyList<Invitation> invitationsReadOnly => invitations.AsReadOnly();
+        public static ReadOnlyCollection<Invitation> InvitationsReadOnly => invitations.AsReadOnly();
 
         /// <summary>
         /// Creates an invitation for the companies.
@@ -23,10 +24,13 @@ namespace Library.Core.Invitations
         /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         public static void CreateInvitation(string code, Func<string, Invitation> f)
         {
-            Invitation invitation = f(code);
-            if (!invitations.Contains(invitation))
+            if (f != null)
             {
-                invitations.Add(invitation);
+                Invitation invitation = f(code);
+                if (!invitations.Contains(invitation))
+                {
+                    invitations.Add(invitation);
+                }
             }
         }
 
@@ -46,7 +50,6 @@ namespace Library.Core.Invitations
                 invitations.Remove(invitation);
                 return r;
             }
-
             else
             {
                 return null;

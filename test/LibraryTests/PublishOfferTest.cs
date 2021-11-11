@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
-using Ucu.Poo.Locations.Client;
-
 using NUnit.Framework;
+using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
 {
@@ -17,7 +16,7 @@ namespace ProgramTests
         /// </summary>
         [SetUp]
         public void Setup()
-        {     
+        {
         }
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace ProgramTests
         /// </summary>
         [Test]
         public void PublishOffer()
-        { 
+        {
             LocationApiClient provider = new LocationApiClient();
             MaterialCategory category = new MaterialCategory("Impermeable");
             Unit unit = new Unit("Centimeters", "cm", 0.1, Measure.Length);
@@ -34,7 +33,7 @@ namespace ProgramTests
             Location location = provider.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
             List<string> keyword = new List<string> { "Cámara" };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
-            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location, keyword);   
+            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location, keyword);
             MaterialPublication.AddPublication(publication);
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
@@ -47,9 +46,7 @@ namespace ProgramTests
             MaterialPublication.AddPublication(publication2);
 
             List<MaterialPublication> expected = new List<MaterialPublication> { publication, publication2 };
-            
-
-            Assert.AreEqual(MaterialPublication.publications, expected);
+            Assert.AreEqual(MaterialPublication.publicationsReadOnly, expected);
         }
 
         /// <summary>
@@ -69,7 +66,7 @@ namespace ProgramTests
             MaterialPublication.CreateInstance(material3, amount3, price3, location3, keywords);
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(MaterialPublication.publications, expected2);
+            Assert.AreEqual(MaterialPublication.publicationsReadOnly, expected2);
         }
     }
 }

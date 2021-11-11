@@ -1,38 +1,38 @@
-using System.Collections.Generic;
-using Ucu.Poo.Locations.Client;
-using System.Linq;
 using Library.Core;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
+using System.Collections.Generic;
+using System.Linq;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
-    /// We used the ISP principle, this class does not depend of types it doesn't 
-    /// use. We also implemented Creator, this class is the one that creates the 
-    /// list of representants. And Expert, the method of checking if the 
+    /// We used the ISP principle, this class does not depend of types it doesn't
+    /// use. We also implemented Creator, this class is the one that creates the
+    /// list of representants. And Expert, the method of checking if the
     /// company has a representant and add users.
     /// </summary>
     public class Company : IPublisher, ISentMaterialReportCreator
     {
         /// <summary>
-        /// The company's name.
+        /// Gets the company's name.
         /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// The company's contact information.
+        /// Gets the company's contact information.
         /// </summary>
-        public ContactInfo contactInfo { get; private set; }
+        public ContactInfo ContactInfo { get; private set; }
 
         /// <summary>
-        /// The company's heading.
+        /// Gets the company's heading.
         /// </summary>
         public string Heading { get; private set; }
 
         /// <summary>
-        /// The company's location.
+        /// Gets the company's location.
         /// </summary>
         public Location Location { get; private set; }
 
@@ -42,7 +42,7 @@ namespace Library.HighLevel.Companies
         private List<UserId> representants = new List<UserId>();
 
         /// <summary>
-        /// Creates an instance of Company.
+        /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
         /// <param name="name">The company´s name.</param>
         /// <param name="contactInfo">The company´s contact info.</param>
@@ -51,7 +51,7 @@ namespace Library.HighLevel.Companies
         public Company(string name, ContactInfo contactInfo, string heading, Location location)
         {
             this.Name = name;
-            this.contactInfo = contactInfo;
+            this.ContactInfo = contactInfo;
             this.Heading = heading;
             this.Location = location;
         }
@@ -71,8 +71,14 @@ namespace Library.HighLevel.Companies
         public void AddUser(UserId id) =>
             this.representants.Add(id);
 
-        List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
+        /// <summary>
+        /// A list of Material Publications.
+        /// </summary>
+        List<MaterialPublication> IPublisher.Publications { get; } = new List<MaterialPublication>();
 
-        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+        /// <summary>
+        /// A list of Material Sales.
+        /// </summary>
+        List<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
     }
 }

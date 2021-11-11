@@ -21,7 +21,7 @@ namespace Library.HighLevel.Accountability
         public readonly Currency Currency;
 
         /// <summary>
-        /// Creates an instance of <see cref="MoneyQuantity" />.
+        /// Initializes a new instance of the <see cref="MoneyQuantity"/> struct.
         /// </summary>
         /// <param name="quantity">The numeric value.</param>
         /// <param name="currency">The currency.</param>

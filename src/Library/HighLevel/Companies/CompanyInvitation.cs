@@ -12,13 +12,10 @@ namespace Library.HighLevel.Companies
     public class CompanyInvitation : Invitation
     {
         /// <summary>
-        /// Creates instances of CompanyInvitation.
+        /// Initializes a new instance of the <see cref="CompanyInvitation"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        public CompanyInvitation(string code): base(code)
-        {
-        }
+        /// <param name="code">The invitation code.</param>
+        public CompanyInvitation(string code) : base(code) {}
 
         /// <inheritdoc />
         public override string Validate(UserId userId)
