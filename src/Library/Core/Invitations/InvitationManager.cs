@@ -13,17 +13,21 @@ namespace Library.Core.Invitations
     public static class InvitationManager
     {
         /// <summary>
-        /// Creates a list to save the invitations
+        /// A list of all the invitations.
         /// </summary>
-        public static List<Invitation> invitations = new List<Invitation>();
+        private static List<Invitation> invitations = new List<Invitation>();
+
+        /// <summary>
+        /// The number of invitations.
+        /// </summary>
+        public static int InvitationCount => invitations.Count;
 
         /// <summary>
         /// Creates an invitation.
         /// </summary>
-        public static void CreateInvitation()
+        public static void CreateInvitation(string code, Func<string, Invitation> invitationGenerator)
         {
-            string code = Administer.GenerateInvitation();
-            Invitation invitation = new CompanyInvitation(code); 
+            Invitation invitation = invitationGenerator(code);
             invitations.Add(invitation);
         }
 

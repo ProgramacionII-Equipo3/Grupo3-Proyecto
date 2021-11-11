@@ -7,6 +7,7 @@ using Library.Core.Invitations;
 using Library.Platforms.Telegram;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using ProgramTests.Utils;
 
 namespace ProgramTests
 {
@@ -29,7 +30,7 @@ namespace ProgramTests
         [Test]
         public void AcceptInvitation()
         {
-            InvitationManager.CreateInvitation();
+            InvitationUtils.CreateInvitation();
             TelegramId id = new TelegramId(2066298868);
             // Message with the code.
             Message message = new Message("1234567", id);
@@ -70,8 +71,8 @@ namespace ProgramTests
             LocationApiClient provider = new LocationApiClient();
             Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
-            Entrepreneur.entrepeneurList.Add(message.Id);
-            bool expected = Entrepreneur.entrepeneurList.Contains(message.Id);
+            EntrepreneurManager.NewEntrepreneur(entrepreneur);
+            bool expected = EntrepreneurManager.Entrepreneurs.Contains(entrepreneur);
             Assert.AreEqual(true, expected);
 
         }

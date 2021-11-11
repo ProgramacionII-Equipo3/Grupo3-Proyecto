@@ -1,5 +1,6 @@
 using System;
 using Library.Core.Invitations;
+using Library.States.Entrepreneurs;
 
 namespace Library.Core.Distribution
 {
@@ -35,13 +36,16 @@ namespace Library.Core.Distribution
             )
                 return "Send the message /start ( <invitation-code> | -e | --entrepreneur ) to register to the platform.";
             
-            if(args[1] == "-e" || args[1] == "--entrepreneur")
+            string arg = args[1].Trim();
+            if(arg == "-e" || arg == "--entrepreneur")
             {
+                State newState = new NewEntrepreneurState(msg.Id);
                 // TODO: Implement subclass of State for new entrepreneurs. 
-                SessionManager.NewUser(msg.Id, default, null);
+                SessionManager.NewUser(msg.Id, default, newState);
+                return newState.GetDefaultResponse();
             }
 
-            string invitationCode = args[1];
+            string invitationCode = arg;
             return InvitationManager.ValidateInvitation(invitationCode, msg.Id) is string result
                 ? result
                 : "Invalid invitation code";

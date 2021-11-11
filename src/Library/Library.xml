@@ -300,9 +300,9 @@
             </summary>
             <param name="msg">The input message.</param>
             <returns>
-            (result, null), being result the resulting object, <br />
-            (null, response), being response a response string, or <br />
-            (null, null) for an interrupt signal.
+            Option.Some(Result.Ok(result)), being result the resulting object, <br />
+            Option.Some(Result.Err(response)), being response a response string, or <br />
+            Option.None for an interrupt signal.
             </returns>
         </member>
         <member name="T:Library.Core.State">
@@ -317,7 +317,7 @@
             <param name="id">The user's id.</param>
             <param name="data">The user's data.</param>
             <param name="msg">The message's text.</param>
-            <returns>The next state and the response message.</returns>
+            <returns>The next state and the response message. If the response message is null, the new state's default message can be used instead.</returns>
         </member>
         <member name="M:Library.Core.State.GetDefaultResponse">
             <summary>
@@ -932,15 +932,26 @@
             The entrepreneur's specialization.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.entrepeneurList">
-            <summary>
-            The entrepreneur's users in the platform.
-            </summary>
-        </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
             <summary>
             Entrepreneur's Constructor.
             </summary>
+        </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
+            <summary>
+            This class represents the highest level of encapsulation in handling entrepreneurs.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs">
+            <summary>
+            The entrepreneur's users in the platform.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.NewEntrepreneur(Library.HighLevel.Entrepreneurs.Entrepreneur)">
+            <summary>
+            Adds a new entrepreneur into the list.
+            </summary>
+            <param name="entrepreneur">The new entrepreneur.</param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
             <summary>
@@ -1257,16 +1268,33 @@
         <member name="M:Library.InputHandlers.EmailProcessor.#ctor(System.Func{System.String})">
             
         </member>
+        <member name="T:Library.InputHandlers.HabilitationProcessor">
+            <summary>
+            This class represents a processor which generates habilitations.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.HabilitationProcessor.#ctor(System.Func{System.String})">
+            
+        </member>
+        <member name="T:Library.InputHandlers.ListProcessor`1">
+            <summary>
+            This class represents a processor which processes several objects of the same type.
+            </summary>
+            <typeparam name="T">The type of the elements which are processed into a list.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.ListProcessor`1.#ctor(Library.Core.Processing.IInputProcessor{`0},System.Func{System.String,System.Boolean},System.Func{System.String})">
+            
+        </member>
+        <member name="M:Library.InputHandlers.ListProcessor`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.LocationProcessor">
             <summary>
             Represents a processor which generates a location from input.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.LocationProcessor.#ctor(System.String)">
-            <param name="locationName">The name of the object of which the program wants the location.</param>
-        </member>
-        <member name="M:Library.InputHandlers.LocationProcessor.getResult">
-            <inheritdoc />
+        <member name="M:Library.InputHandlers.LocationProcessor.#ctor(System.Func{System.String})">
+            
         </member>
         <member name="T:Library.InputHandlers.PhoneNumberProcessor">
             <summary>
@@ -1519,6 +1547,14 @@
             The instance.
             </summary>
         </member>
+        <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.NewEntrepreneurState.#ctor(Library.Core.UserId)">
+            
+        </member>
         <member name="T:Library.States.IncompleteCompanyRepresentativeState">
             <summary>
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
@@ -1539,6 +1575,20 @@
             <inheritdoc />
         </member>
         <member name="M:Library.States.InitialMenuState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.InputHandlerState">
+            <summary>
+            This class represents a State which basically works with an <see cref="T:Library.Core.Processing.IInputHandler" />.
+            </summary>
+        </member>
+        <member name="M:Library.States.InputHandlerState.#ctor(Library.Core.Processing.IInputHandler,System.Func{Library.Core.State},System.Func{Library.Core.State})">
+            
+        </member>
+        <member name="M:Library.States.InputHandlerState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
             <inheritdoc />
         </member>
         <member name="T:Library.States.MultipleOptionState">
@@ -1593,10 +1643,17 @@
         </member>
         <member name="M:Library.Utils.IsValidPhoneNumber(System.Int32)">
             <summary>
-            This method check if a phone number is valid.
+            This method checks if a phone number is valid.
             </summary>
             <param name="number">The phone number input.</param>
             <returns>True if the number is valid and false if it not does.</returns>
+        </member>
+        <member name="M:Library.Utils.IsValidHyperTextLink(System.String)">
+            <summary>
+            Checks if a string is a valid hypertext link.
+            </summary>
+            <param name="link">The string.</param>
+            <returns>Whether it's a valid link or not.</returns>
         </member>
     </members>
 </doc>

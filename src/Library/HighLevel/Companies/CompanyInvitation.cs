@@ -18,12 +18,13 @@ namespace Library.HighLevel.Companies
         /// <inheritdoc />
         public override string Validate(UserId userId)
         {
+            State newState = new IncompleteCompanyRepresentativeState();
             SessionManager.NewUser(
                 id: userId,
                 userData: new UserData(),
-                state: new IncompleteCompanyRepresentativeState()
+                state: newState
             );
-            return "Please insert the company's name.";
+            return newState.GetDefaultResponse();
         }
     }
 }

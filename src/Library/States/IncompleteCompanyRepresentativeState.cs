@@ -43,6 +43,9 @@ namespace Library.States
         }
 
         /// <inheritdoc />
+        public override bool IsComplete => false;
+
+        /// <inheritdoc />
         public override string GetDefaultResponse()
         {
             if(this.companyGetter == null)

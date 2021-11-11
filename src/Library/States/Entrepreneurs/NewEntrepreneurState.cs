@@ -26,6 +26,9 @@ namespace Library.States.Entrepreneurs
             () => null
         ) {}
 
+        /// <inheritdoc />
+        public override bool IsComplete => false;
+
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
         {
             private UserId userId;

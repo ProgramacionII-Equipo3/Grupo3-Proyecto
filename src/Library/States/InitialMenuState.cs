@@ -14,6 +14,9 @@ namespace Library.States
         }
 
         /// <inheritdoc />
+        public override bool IsComplete => true;
+
+        /// <inheritdoc />
         public override string GetDefaultResponse()
         {
             return "Welcome to the platform.";

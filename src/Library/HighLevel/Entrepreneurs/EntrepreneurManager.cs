@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Library.HighLevel.Entrepreneurs
 {
@@ -12,7 +13,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// The entrepreneur's users in the platform.
         /// </summary>
-        public static IReadOnlyList<Entrepreneur> Entrepreneurs => entrepeneurs.AsReadOnly();
+        public static ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepeneurs.AsReadOnly();
 
         /// <summary>
         /// Adds a new entrepreneur into the list.

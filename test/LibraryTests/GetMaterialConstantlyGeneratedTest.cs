@@ -7,10 +7,11 @@ using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
 {
+    /*
     /// <summary>
     /// Test if an entrepreneur can see the material that is constantly generated.
     /// </summary>
-    /* public class GetMaterialConstantlyGenerated
+    public class GetMaterialConstantlyGenerated
     {
         /// <summary>
         /// Test SetUp.

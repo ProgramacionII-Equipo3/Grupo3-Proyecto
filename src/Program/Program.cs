@@ -21,7 +21,7 @@ namespace Grupo3_Proyecto
         /// </summary>
         public static void Main()
         {
-            /* TelegramBot telegramBot = TelegramBot.Instance;
+            TelegramBot telegramBot = TelegramBot.Instance;
             Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
             telegramBot.ReceiveMessages(
                 () =>
@@ -29,8 +29,8 @@ namespace Grupo3_Proyecto
                     Console.WriteLine("Escribe una línea para terminar");
                     Console.ReadLine();
                 }
-            ); */
-            Console.WriteLine($"El email es: {Utils.IsValidEmail("martin.caraballo@correo.ucu.edu.uy")}");
+            );
+            // Console.WriteLine($"El email es: {Utils.IsValidEmail("martin.caraballo@correo.ucu.edu.uy")}");
         }
     }
 }

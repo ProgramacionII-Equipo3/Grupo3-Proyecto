@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Library.Core.Invitations;
+using ProgramTests.Utils;
 
 namespace ProgramTests
 {
@@ -25,10 +26,10 @@ namespace ProgramTests
         [Test]
         public void InviteCompany()
         {
-            InvitationManager.CreateInvitation();
-            InvitationManager.CreateInvitation();
+            InvitationUtils.CreateInvitation();
+            InvitationUtils.CreateInvitation();
             int expected = 3;
-            int invitationsLength = InvitationManager.invitations.Count;
+            int invitationsLength = InvitationManager.InvitationCount;
             Assert.AreEqual(invitationsLength, expected);
         }
     }

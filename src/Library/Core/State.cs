@@ -19,5 +19,11 @@ namespace Library.Core
         /// </summary>
         /// <returns>A string.</returns>
         public abstract string GetDefaultResponse();
+
+        /// <summary>
+        /// Determines whether the user who has this <see cref="State" /> is complete,
+        /// that is, if the process of registering to the platform has already finished.
+        /// </summary>
+        public abstract bool IsComplete { get; }
     }
 }
