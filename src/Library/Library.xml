@@ -80,7 +80,7 @@
         </member>
         <member name="M:Library.Core.Distribution.UserSession.#ctor(Library.Core.UserId,Library.Core.UserData,Library.Core.State)">
             <summary>
-            Creates a UserSession.
+            Initializes a new instance of the <see cref="T:Library.Core.Distribution.UserSession"/> class.
             </summary>
             <param name="id">The session's user's id.</param>
             <param name="userData">The session's user's data.</param>
@@ -98,6 +98,7 @@
             Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete <see cref="T:Library.Core.UserId" />.
             </summary>
             <param name="id">The id to compare with.</param>
+            <returns>True uf the ID´s are equal and false if it not does.</returns>
         </member>
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
@@ -106,11 +107,14 @@
         </member>
         <member name="P:Library.Core.Invitations.Invitation.Code">
             <summary>
-            The invitation's code.
+            Gets the invitation's code.
             </summary>
         </member>
         <member name="M:Library.Core.Invitations.Invitation.#ctor(System.String)">
-            
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.Core.Invitations.Invitation"/> class.
+            </summary>
+            <param name="code">Invitation´s code.</param>
         </member>
         <member name="M:Library.Core.Invitations.Invitation.Validate(Library.Core.UserId)">
             <summary>
@@ -126,13 +130,20 @@
         </member>
         <member name="F:Library.Core.Invitations.InvitationManager.invitations">
             <summary>
-            Creates a list to save the invitations
+            A list of all the invitations.
             </summary>
         </member>
-        <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation">
+        <member name="P:Library.Core.Invitations.InvitationManager.InvitationCount">
             <summary>
-            Creates an invitation.
+            The number of invitations.
             </summary>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation(System.String,System.Func{System.String,Library.Core.Invitations.Invitation})">
+            <summary>
+            Adds an invitation into the list.
+            </summary>
+            <param name="code">The invitation´s code.</param>
+            <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,Library.Core.UserId)">
             <summary>
@@ -159,7 +170,7 @@
         </member>
         <member name="M:Library.Core.Message.#ctor(System.String,Library.Core.UserId)">
             <summary>
-            Creates a message.
+            Initializes a new instance of the <see cref="T:Library.Core.Message"/> struct.
             </summary>
             <param name="text">The message's text.</param>
             <param name="id">The message's id.</param>
@@ -230,6 +241,9 @@
         <member name="M:Library.Core.Processing.FormProcessor`1.GetDefaultResponse">
             <inheritdoc />
         </member>
+        <member name="M:Library.Core.Processing.FormProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
         <member name="M:Library.Core.Processing.FormProcessor`1.getResult">
             <summary>
             Generates the resulting object with the obtained input.
@@ -242,9 +256,6 @@
             Result.Ok(result), being result the resulting object, or<br />
             Result.Err(error), being error an error string.
             </returns>
-        </member>
-        <member name="M:Library.Core.Processing.FormProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
-            <inheritdoc />
         </member>
         <member name="T:Library.Core.Processing.IInputHandler">
             <summary>
@@ -325,6 +336,12 @@
             </summary>
             <returns>A string.</returns>
         </member>
+        <member name="P:Library.Core.State.IsComplete">
+            <summary>
+            Determines whether the user who has this <see cref="T:Library.Core.State" /> is complete,
+            that is, if the process of registering to the platform has already finished.
+            </summary>
+        </member>
         <member name="T:Library.Core.UserData">
             <summary>
             This class represents additional data that all users must have.
@@ -357,7 +374,7 @@
             <summary>
             This struct represents an amount of material.
             We used the OCP principle to create this class, we used "readonly"
-            to prevent modifications, but it's still open to extension. 
+            to prevent modifications, but it's still open to extension.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Amount.Quantity">
@@ -372,16 +389,17 @@
         </member>
         <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Single,Library.HighLevel.Accountability.Unit)">
             <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.Amount" />.
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Amount"/> struct.
             </summary>
             <param name="quantity">The numeric value.</param>
             <param name="unit">The unit.</param>
         </member>
         <member name="T:Library.HighLevel.Accountability.BoughtMaterialLine">
             <summary>
-            this class represents a material bought by the entrepreneur
-            We used the SRP principle, that way material, datetime, 
+            This class represents a material bought by the entrepreneur
+            We used the SRP principle, that way material, datetime,
             price, amount are all objects created by his respective class.
+            That way we have classes with Low Coupling.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.BoughtMaterialLine.Material">
@@ -404,31 +422,31 @@
             The amount of the purchased material.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine"/> class.
+            </summary>
+            <param name="material">The purchased material.</param>
+            <param name="dateTime">The date of when the purchase was made.</param>
+            <param name="price">The cost of the material.</param>
+            <param name="amount">The amount of the purchased material.</param>
+        </member>
         <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Spent">
             <summary>
             The amount of money spent.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
-            <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" />. 
-            </summary>
-            <param name="material">The purchased material.</param>
-            <param name="dateTime">The date of when the purchase was made.</param>
-            <param name="price">The cost of the material.</param>
-            <param name="amount">The amount of the pruchased material.</param>
-        </member>
         <member name="T:Library.HighLevel.Accountability.Currency">
             <summary>
             This class represents a currency with which transactions can be made.
+            Because of the OCP principle, the attributes are
+            readonly, that way this class is open to extension
+            but closed to modifications.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Name">
             <summary>
             The currency's name.
-            Because of the OCP principle, the attributes are
-            readonly, that way this class is open to extension
-            but closed to modifications.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Symbol">
@@ -445,124 +463,6 @@
             <summary>
             The american dollar.
             </summary>
-        </member>
-        <member name="T:Library.HighLevel.Accountability.Measure">
-            <summary>
-            This class represents a measure through which a certain amount of material can be measured.
-            We used the pattern Creator, we assigned the method Length and Weigth to Measure because
-            it's the class that knows about it.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.Measure.Name">
-            <summary>
-            The measure's name.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.Measure.units">
-            <summary>
-            The measure's available units.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.Measure.#ctor(System.String,System.ValueTuple{System.String,System.String,System.Double}[])">
-            <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.Measure" />, assigning its units in the process.
-            </summary>
-            <param name="name">The measure's name.</param>
-            <param name="unitsData">An array of tuples containing data about its units.</param>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.Measure.Length">
-            <summary>
-            The length measure.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.Measure.Weight">
-            <summary>
-            The weight measure.
-            </summary>
-        </member>
-        <member name="T:Library.HighLevel.Accountability.MoneyQuantity">
-            <summary>
-            This class represents an amount of money.
-            Created because of SRP.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.MoneyQuantity.Quantity">
-            <summary>
-            The numeric value.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.MoneyQuantity.Currency">
-            <summary>
-            The currency.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.#ctor(System.Single,Library.HighLevel.Accountability.Currency)">
-            <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />.
-            </summary>
-            <param name="quantity">The numeric value.</param>
-            <param name="currency">The currency.</param>
-        </member>
-        <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
-            <summary>
-            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
-            We created this class because of the Polymorphism pattern. 
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
-            <summary>
-            Calculates the amount of money made from selling a certain amount of material at a certain price.
-            </summary>
-            <param name="amount">The amount of material.</param>
-            <param name="price">The price of the material.</param>
-            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
-        </member>
-        <member name="T:Library.HighLevel.Accountability.Price">
-            <summary>
-            This struct represents a price.
-            Created because of SRP.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Accountability.Price.Quantity">
-            <summary>
-            The numeric value.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Accountability.Price.Currency">
-            <summary>
-            The currency with which the price is determined.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Accountability.Price.Unit">
-            <summary>
-            The unit of material measurement with which the price is determined.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
-            <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.Price" />.
-            </summary>
-            <param name="quantity"></param>
-            <param name="currency"></param>
-            <param name="unit"></param>
-        </member>
-        <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
-            <summary>
-            This class represents a reports of all material purchased by the entrepreneur.
-            We used the pattern Creator and the SRP principle, that is
-            why this class creates a report.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.ReceivedMaterialReport.Materials">
-            <summary>
-            The list of purchased materials.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.ReceivedMaterialReport.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Accountability.BoughtMaterialLine})">
-            <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />.
-            </summary>
-            <param name="materials">The collection of purchased materials.</param>
         </member>
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
             <summary>
@@ -591,24 +491,151 @@
             The moment the sale happened.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
-            <summary>
-            The amount of money made from this sale.
-            </summary>
-        </member>
         <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime)">
             <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" />.
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/> class.
             </summary>
             <param name="material">The sold material.</param>
             <param name="amount">The amount of sold material.</param>
             <param name="price">The price of the sold material.</param>
             <param name="dateTime">The moment the sale happened.</param>
         </member>
+        <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
+            <summary>
+            Gets the amount of money made from this sale.
+            </summary>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.Measure">
+            <summary>
+            This class represents a measure through which a certain amount of material can be measured.
+            We used the pattern Creator, we assigned the method Length and Weigth to Measure because
+            it's the class that knows about it.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.Length">
+            <summary>
+            The length measure.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.Weight">
+            <summary>
+            The weight measure.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.Name">
+            <summary>
+            Gets the measure's name.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.units">
+            <summary>
+            The measure's available units.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Measure.#ctor(System.String,System.ValueTuple{System.String,System.String,System.Double}[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Measure"/> class, assigning its units in the process.
+            </summary>
+            <param name="name">The measure's name.</param>
+            <param name="unitsData">An array of tuples containing data about its units.</param>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.MoneyQuantity">
+            <summary>
+            This class represents an amount of money.
+            Created because of SRP and Low Coupling and High Cohesion, in that way
+            we have this class that has the responsibility of assign an amount of 
+            money with his respective quantity and currency (particular of a money quantity)
+            with the currency that is controlled by another class currency (following the
+            pattern and principle).
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MoneyQuantity.Quantity">
+            <summary>
+            The numeric value.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MoneyQuantity.Currency">
+            <summary>
+            The currency.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.#ctor(System.Single,Library.HighLevel.Accountability.Currency)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity"/> struct.
+            </summary>
+            <param name="quantity">The numeric value.</param>
+            <param name="currency">The currency.</param>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
+            <summary>
+            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
+            We created this class because of the Polymorphism pattern, while money quantity is for
+            an amount of money, this class is created for a particular sale, so we separated it by 
+            destination.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
+            <summary>
+            Calculates the amount of money made from selling a certain amount of material at a certain price.
+            </summary>
+            <param name="amount">The amount of material.</param>
+            <param name="price">The price of the material.</param>
+            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.Price">
+            <summary>
+            This struct represents a price.
+            Created because of SRP, this class is the one that controls 
+            the price in specific. 
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.Price.Quantity">
+            <summary>
+            Gets the numeric value.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.Price.Currency">
+            <summary>
+            Gets the currency with which the price is determined.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.Price.Unit">
+            <summary>
+            Gets the unit of material measurement with which the price is determined.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Price"/> struct.
+            </summary>
+            <param name="quantity">Material´s Quantity.</param>
+            <param name="currency">Material´s publication currency.</param>
+            <param name="unit">Material´s unit.</param>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
+            <summary>
+            This class represents a reports of all material purchased by the entrepreneur.
+            We used the pattern Creator and the SRP principle, that is why this class 
+            creates a report and not another class to avoid High Coupling.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.ReceivedMaterialReport.Materials">
+            <summary>
+            The list of purchased materials.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.ReceivedMaterialReport.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Accountability.BoughtMaterialLine})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport"/> class.
+            </summary>
+            <param name="materials">The collection of purchased materials.</param>
+        </member>
         <member name="T:Library.HighLevel.Accountability.SentMaterialReport">
             <summary>
             This class represents a report of all materials a company sold over a certain period of time.
-            Created because of SRP. 
+            Created because of SRP, a report is conformed by lines (created by another class), that way
+            also avoid High Coupling, but have a High Cohesion. At the same time the sent material and
+            received one are created by different classes because of polymorphism.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.SentMaterialReport.Lines">
@@ -618,7 +645,7 @@
         </member>
         <member name="M:Library.HighLevel.Accountability.SentMaterialReport.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{Library.HighLevel.Accountability.MaterialSalesLine})">
             <summary>
-            Creates an instance of <see cref="T:Library.HighLevel.Accountability.SentMaterialReport"/>.
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.SentMaterialReport"/> class.
             </summary>
             <param name="lines">The report's list of material sales.</param>
         </member>
@@ -628,12 +655,14 @@
             </summary>
             <param name="materialSales">The list of materials sold.</param>
             <param name="time">The period of time to search.</param>
-            <returns></returns>
+            <returns>A report of materials sended in a period of time.</returns>
         </member>
         <member name="T:Library.HighLevel.Accountability.Unit">
             <summary>
             This class represent a unit used for measuring amounts of material.
-            Created because of SRP.
+            Created because of SRP, this particular class is the one with the 
+            responsibility of everything associated with the unit and nothing else 
+            (following also the Expert principle).
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Unit.Name">
@@ -656,14 +685,14 @@
             The measure form which the unit is.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.Unit.values">
+        <member name="F:Library.HighLevel.Accountability.Unit.Values">
             <summary>
             The list of available units.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.Unit.#ctor(System.String,System.String,System.Double,Library.HighLevel.Accountability.Measure)">
             <summary>
-            Creates and instance of Unit.
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Unit"/> class.
             </summary>
             <param name="name">Unit´s name.</param>
             <param name="abbreviation">Unit´s abbreviation.</param>
@@ -675,7 +704,7 @@
             Gets the unit which has a concrete abbreviation.
             </summary>
             <param name="abbreviation">The unit's abbreviation.</param>
-            <returns></returns>
+            <returns>The unit which has a concrete abbreviation.</returns>
         </member>
         <member name="M:Library.HighLevel.Accountability.Unit.GetConversionFactor(Library.HighLevel.Accountability.Unit,Library.HighLevel.Accountability.Unit)">
             <summary>
@@ -690,50 +719,57 @@
             Checks whether two units are compatible with each other.
             That is, whether they belong to the same measure.
             </summary>
+            <param name="u1">Unit 1 to compare.</param>
+            <param name="u2">Unit 2 to compare.</param>
+            <returns>Returns true if the units are compatible and false if it not does.</returns>
         </member>
         <member name="T:Library.HighLevel.Administers.Administer">
             <summary>
             This class represents an Administer.
-            We used the Creator principle, this class is the one that 
-            generates the invitations code.
+            We used the Expert principle, this class is the one that
+            generates the invitations code (as it should be).
+            At the same time we used Creator, for example the list of admin
+            is created by this class.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Administers.Administer.GenerateInvitation">
             <summary>
             This method create's an invitation code.
             </summary>
+            <returns>Invitation´s code.</returns>
         </member>
-        <member name="M:Library.HighLevel.Administers.Administer.ValidateHabilitation">
+        <member name="M:Library.HighLevel.Administers.Administer.CreateCompanyInvitation">
             <summary>
-            This method has the responsibility of validating the entrepreneurs habilitations.
+            This method creates an invitation for a company.
             </summary>
-            <param name="userId"></param>
         </member>
         <member name="T:Library.HighLevel.Companies.Company">
             <summary>
             This class represents a company which can sell materials to entrepreneurs.
-            We used the ISP principle, this class does not depend of types it doesn't 
-            use.
+            We used the ISP principle, this class does not depend of types it doesn't
+            use. We also implemented Creator, this class is the one that creates the
+            list of representants. And Expert, the method of checking if the
+            company has a representant and add users.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Name">
             <summary>
-            The company's name.
+            Gets the company's name.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.contactInfo">
+        <member name="P:Library.HighLevel.Companies.Company.ContactInfo">
             <summary>
-            The company's contact information.
+            Gets the company's contact information.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Heading">
             <summary>
-            The company's heading.
+            Gets the company's heading.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Location">
             <summary>
-            The company's location.
+            Gets the company's location.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Companies.Company.representants">
@@ -741,14 +777,9 @@
             The company's representants in the platform.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Companies.Company.companiesCreated">
-            <summary>
-            A list with all companies in the platform.
-            </summary>
-        </member>
         <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
             <summary>
-            Creates an instance of Company.
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class.
             </summary>
             <param name="name">The company´s name.</param>
             <param name="contactInfo">The company´s contact info.</param>
@@ -768,11 +799,15 @@
             </summary>
             <param name="id">The user's id.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.AddCompany(Library.HighLevel.Companies.Company)">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#Publications">
             <summary>
-            This method adds a company to the list with all companies created.
+            A list of Material Publications.
             </summary>
-            <param name="company">The company to add.</param>
+        </member>
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#MaterialSales">
+            <summary>
+            A list of Material Sales.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
@@ -781,7 +816,10 @@
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyInvitation.#ctor(System.String)">
-            
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.CompanyInvitation"/> class.
+            </summary>
+            <param name="code">The invitation code.</param>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyInvitation.Validate(Library.Core.UserId)">
             <inheritdoc />
@@ -792,6 +830,11 @@
             Created because of SRP and Don't talk to Strangers,
             that way the class CompanyManager is the one responsible of creating the list
             of companies and getting the companies and not Company by itself.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.CompanyManager.CompaniesReadOnly">
+            <summary>
+            Gets a public read-only list of the companies.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
@@ -820,21 +863,25 @@
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
             <returns>The created instance, or null if there's already a company with the same name.</returns>
+            <param name = "name">The comany´s name.</param>
+            <param name = "contactInfo">The comany´s contact info.</param>
+            <param name = "heading">The company´s heading.</param>
+            <param name = "location">The company´s location.</param>
         </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
-            This class represents the responsibility of managing material publications.
-            We used OCP and Creator.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.publications">
-            <summary>
-            A private list of the publications.
+            This interface represents the responsibility of managing material publications.
+            We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
             <summary>
-            A public read-only list of the publications.
+            Gets a private list of the publications.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.IPublisher.PublicationsReadOnly">
+            <summary>
+            Gets a public read-only list of the publications.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
@@ -858,12 +905,12 @@
         <member name="T:Library.HighLevel.Companies.ISentMaterialReportCreator">
             <summary>
             This interface represents the responsibility of creating material reports.
-            Created because of SRP.
+            We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
+        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.MaterialSales">
             <summary>
-            The list of material sales.
+            Gets the list of material sales.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.ISentMaterialReportCreator.GetMaterialReport(System.DateTime)">
@@ -875,67 +922,79 @@
         </member>
         <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
             <summary>
-            This interface was created because of SRP and OCP.
+            This interface was created because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.boughtMaterials">
+        <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.BoughtMaterials">
             <summary>
-            It is the collection of bought materials.
+            Gets the collection of bought materials.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
             <summary>
-            It creates a reports of the purchase made by the entrepreneur.
+            Gets a reports of the purchase made by the entrepreneur.
             </summary>
-            <param name="dateTime">It is the time when the entrepreneur bought the material</param>
+            <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />.</returns>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents an entrepreneur.
-            We used the principle Expert to create this
-            class.
+            We used the principle Creator to create this class, for
+            example, the list of entrepreneur is created here.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Id">
             <summary>
-            The entrepreneur's id.
+            Gets the entrepreneur's id.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Name">
             <summary>
-            The entrepeneur's name.
+            Gets the entrepeneur's name.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Age">
             <summary>
-            The entrepreneur's age.
+            Gets the entrepreneur's age.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Location">
             <summary>
-            The entrepreneur's location.
+            Gets the entrepreneur's location.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Heading">
             <summary>
-            The entrepreneur's heading.
+            Gets the entrepreneur's heading.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Habilitation">
             <summary>
-            The entrepreneur's habilitation needed to buy certain materials.
+            Gets the entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Specialization">
+        <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Specialization">
             <summary>
-            The entrepreneur's specialization.
+            Gets the entrepreneur's specialization.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{Library.HighLevel.Entrepreneurs.Specialization})">
+        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.EntrepeneurList">
             <summary>
-            Entrepreneur's Constructor.
+            Gets the entrepreneur's users in the platform.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
+            </summary>
+            <param name="id">Entrepreneur´s id.</param>
+            <param name="name">Entrepreneur´s name.</param>
+            <param name="age">Entrepreneur´s age.</param>
+            <param name="location">Entrepreneur´s location.</param>
+            <param name="heading">Entrepreneur´s heading.</param>
+            <param name="habilitations">Entrepreneur´s habilitation.</param>
+            <param name="specializations">Entrepreneur´s specializations.</param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
             <summary>
@@ -953,102 +1012,55 @@
             </summary>
             <param name="entrepreneur">The new entrepreneur.</param>
         </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated">
+        <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
-            Class to find what materials are constantly generated.
+            This class has the responsibility of searching material publication´s 
+            according to a specified category, keyword or location.
+            We created this class using expert, this class itself does all the possible 
+            filter searches). It also has a High Cohesion because of the same reason.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.GetMaterialConstantlyGenerated.GetReport">
+        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.SearchResult">
             <summary>
-            This method returns all the materials that are constantly generated.
+            This list is created to contain all the publication's that
+            are from the specified search.
             </summary>
+            <returns></returns>
         </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.SearchByCategory">
+        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
             <summary>
-            This class has the responsibility of searching material.
-            publication´s according to a specified category.
-            It was created because of polymorphism, we separated the 
-            classes according to what they search.
+            It creates a client to be able to use the LocationAPI.
             </summary>
+            <returns></returns>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByCategory.categorySearcher">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
-            This list is created to contain all the publication's that.
-            are from the specified category.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByCategory.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
-            <summary>
-            This method has the responsibility of searching all the publication's.
+            This method has the responsibility of searching all the publication's by a category.
             </summary>
             <param name="publications"></param>
             <param name="category"></param>
         </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.SearchByKeyword">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
-            This class has the responsibility of searching material
-            publication´s according to a specified keyword.
-            It was created because of polymorphism.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByKeyword.keywordSearcher">
-            <summary>
-            This list is created to contain all the publication's that.
-            are from the specified keyword.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByKeyword.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
-            <summary>
-            This method has the responsibility of searching all the publication's.
+            This method has the responsibility of searching all the publication's by a keyword.
             </summary>
             <param name="publications"></param>
-            /// <param name="keyword"></param>
+            <param name="keyword"></param>
         </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.SearchByLocation">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
-            This class has the responsibility of searching material 
-            publication's near a specified location.
-            It was created because of polymorphism.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.SearchByLocation.locationSearcher">
-            <summary>
-            This list is created to contain all the publication's that.
-            are near a specified location.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.SearchByLocation.Search(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
-            <summary>
-            This method has the responsibility of searching all the publication's.
+            This method has the responsibility of searching all the publication's by a location.
             </summary>
             <param name="publications"></param>
             <param name="locationSpecified"></param>
             <param name="distanceSpecified"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.Specialization">
-            <summary>
-            This class represents the specialization's of a entrepreneur.
-            Created because of SRP.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Entrepreneurs.Specialization.Specializations">
-            <summary>
-            The specialization of entrepreneur's.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Specialization.#ctor(System.String)">
-            <summary>
-            The EntrepreneurSpecialization's Constructor.
-            </summary>
-            <param name="specialization"></param>
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
             This class represents habilitations entrepreneurs can possess,
             which are necessary to meet certain material manipulation requirements.
-            We used the principle Expert to create this class.
+            We used the principle Expert and SRP to create this class, it is the 
+            class itself that validates the habilitation.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Materials.Habilitation.DocLink">
@@ -1061,11 +1073,17 @@
             A boolean value which evaluates if the habilitation is validated.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String)">
+        <member name="F:Library.HighLevel.Materials.Habilitation.DescriptiveText">
+            <summary>
+            A text that describes the habilitations that a entrepreneur has.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String,System.String)">
             <summary>
             Creates an habilitation.
             </summary>
             <param name="DocLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+            <param name="descriptiveText">It is a text that describes the habilitations.</param>
         </member>
         <member name="M:Library.HighLevel.Materials.Habilitation.Validate(Library.HighLevel.Materials.Habilitation)">
             <summary>
@@ -1146,7 +1164,8 @@
         <member name="T:Library.HighLevel.Materials.MaterialPublication">
             <summary>
             This class represents a publication of a material from a company.
-            We used the principle Expert to create this class.
+            We created this using Creator, because it creates instance of material
+            publication in it's own class.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Material">
@@ -1172,6 +1191,11 @@
         <member name="F:Library.HighLevel.Materials.MaterialPublication.publications">
             <summary>
             List to save all the publication's.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.publicationsReadOnly">
+            <summary>
+            A public read-only list of the publications.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
@@ -1202,13 +1226,21 @@
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
             <summary>
-            This method add's all created publication's to the previously created publication's list
+            This method add's all created publication's to the previously created publication's list.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
+            <summary>
+            This method search the material that is constantly generated.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
             This class represents a requirement to manipulate certain materials.
-            Created because of SRP.
+            We used Expert to create this class, the class is the one in charge of 
+            checking if the habilitation's are satisfied. We also used SRP, that's why
+            we separated requirement from habilitation.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.Requirement.IsSatisfiedBy(Library.HighLevel.Materials.Habilitation)">
@@ -1276,6 +1308,17 @@
         <member name="M:Library.InputHandlers.HabilitationProcessor.#ctor(System.Func{System.String})">
             
         </member>
+        <member name="M:Library.InputHandlers.HabilitationProcessor.getResult">
+            
+        </member>
+        <member name="T:Library.InputHandlers.HTMLLinkProcessor">
+            <summary>
+            This class represents a processor which generates a hypertext link
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.HTMLLinkProcessor.#ctor(System.Func{System.String})">
+            
+        </member>
         <member name="T:Library.InputHandlers.ListProcessor`1">
             <summary>
             This class represents a processor which processes several objects of the same type.
@@ -1334,13 +1377,23 @@
             </summary>
         </member>
         <member name="P:Library.NotNull`1.Value">
+            <summary>
             
+            </summary>
+            <value></value>
         </member>
         <member name="M:Library.NotNull`1.FromOption(Library.Option{`0})">
+            <summary>
             
+            </summary>
+            <param name="option"></param>
+            <returns></returns>
         </member>
         <member name="M:Library.NotNull`1.op_Implicit(Library.NotNull{`0})~`0">
+            <summary>
             
+            </summary>
+            <param name="notNull"></param>
         </member>
         <member name="T:Library.Option`1">
             <summary>
@@ -1555,12 +1608,18 @@
         <member name="M:Library.States.Entrepreneurs.NewEntrepreneurState.#ctor(Library.Core.UserId)">
             
         </member>
+        <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.IsComplete">
+            <inheritdoc />
+        </member>
         <member name="T:Library.States.IncompleteCompanyRepresentativeState">
             <summary>
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
             </summary>
         </member>
         <member name="M:Library.States.IncompleteCompanyRepresentativeState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.IncompleteCompanyRepresentativeState.IsComplete">
             <inheritdoc />
         </member>
         <member name="M:Library.States.IncompleteCompanyRepresentativeState.GetDefaultResponse">
@@ -1572,6 +1631,9 @@
             </summary>
         </member>
         <member name="M:Library.States.InitialMenuState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.InitialMenuState.IsComplete">
             <inheritdoc />
         </member>
         <member name="M:Library.States.InitialMenuState.GetDefaultResponse">

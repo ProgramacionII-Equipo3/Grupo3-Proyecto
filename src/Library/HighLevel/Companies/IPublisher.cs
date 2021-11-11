@@ -7,20 +7,20 @@ using Ucu.Poo.Locations.Client;
 namespace Library.HighLevel.Companies
 {
     /// <summary>
-    /// This class represents the responsibility of managing material publications.
-    /// We used OCP and Creator.
+    /// This interface represents the responsibility of managing material publications.
+    /// We created this interface because of DIP, that way the classes depend of an abstraction.
     /// </summary>
     public interface IPublisher
     {
         /// <summary>
-        /// A private list of the publications.
+        /// Gets a private list of the publications.
         /// </summary>
-        protected List<MaterialPublication> publications { get; }
+        protected List<MaterialPublication> Publications { get; }
 
         /// <summary>
-        /// A public read-only list of the publications.
+        /// Gets a public read-only list of the publications.
         /// </summary>
-        public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
+        public ReadOnlyCollection<MaterialPublication> PublicationsReadOnly => this.Publications.AsReadOnly();
 
         /// <summary>
         /// Publishes a material.
@@ -33,11 +33,12 @@ namespace Library.HighLevel.Companies
         /// <returns>Whether the operation was successful.</returns>
         public bool PublishMaterial(Material material, Amount amount, Price price, Location location, List<string> keywords)
         {
-            if(MaterialPublication.CreateInstance(material, amount, price, location, keywords) is MaterialPublication publication)
+            if (MaterialPublication.CreateInstance(material, amount, price, location, keywords) is MaterialPublication publication)
             {
-                this.publications.Add(publication);
+                this.Publications.Add(publication);
                 return true;
             }
+
             return false;
         }
 
@@ -48,9 +49,12 @@ namespace Library.HighLevel.Companies
         /// <returns>Whether the removal was successful.</returns>
         public bool RemovePublication(int index)
         {
-            if(index < 0 || index >= this.publications.Count) return false;
+            if (index < 0 || index >= this.Publications.Count)
+            {
+                return false;
+            }
 
-            this.publications.RemoveAt(index);
+            this.Publications.RemoveAt(index);
             return true;
         }
     }

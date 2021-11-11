@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Library.HighLevel.Accountability
@@ -10,27 +9,6 @@ namespace Library.HighLevel.Accountability
     /// </summary>
     public class Measure
     {
-        /// <summary>
-        /// The measure's name.
-        /// </summary>
-        public readonly string Name;
-
-        /// <summary>
-        /// The measure's available units.
-        /// </summary>
-        private readonly Unit[] units;
-
-        /// <summary>
-        /// Creates an instance of <see cref="Measure" />, assigning its units in the process.
-        /// </summary>
-        /// <param name="name">The measure's name.</param>
-        /// <param name="unitsData">An array of tuples containing data about its units.</param>
-        private Measure(string name, (string name, string abbr, double weight)[] unitsData)
-        {
-            this.Name = name;
-            this.units = unitsData.Select(data => new Unit(data.name, data.abbr, data.weight, this)).ToArray();
-        }
-
         /// <summary>
         /// The length measure.
         /// </summary>
@@ -56,5 +34,25 @@ namespace Library.HighLevel.Accountability
             ("kilogram",  "kg",  1),
             ("tonne",     "t",   1000)
         });
+        /// <summary>
+        /// Gets the measure's name.
+        /// </summary>
+        public readonly string Name;
+
+        /// <summary>
+        /// The measure's available units.
+        /// </summary>
+        private readonly Unit[] units;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Measure"/> class, assigning its units in the process.
+        /// </summary>
+        /// <param name="name">The measure's name.</param>
+        /// <param name="unitsData">An array of tuples containing data about its units.</param>
+        private Measure(string name, (string name, string abbr, double weight)[] unitsData)
+        {
+            this.Name = name;
+            this.units = unitsData.Select(data => new Unit(data.name, data.abbr, data.weight, this)).ToArray();
+        }
     }
 }

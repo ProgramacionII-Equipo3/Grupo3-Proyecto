@@ -2,31 +2,32 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This struct represents a price.
-    /// Created because of SRP.
+    /// Created because of SRP, this class is the one that controls 
+    /// the price in specific. 
     /// </summary>
     public struct Price
     {
         /// <summary>
-        /// The numeric value.
+        /// Gets the numeric value.
         /// </summary>
         public float Quantity { get; private set; }
 
         /// <summary>
-        /// The currency with which the price is determined.
+        /// Gets the currency with which the price is determined.
         /// </summary>
         public Currency Currency { get; private set; }
 
         /// <summary>
-        /// The unit of material measurement with which the price is determined.
+        /// Gets the unit of material measurement with which the price is determined.
         /// </summary>
         public Unit Unit { get; private set; }
 
         /// <summary>
-        /// Creates an instance of <see cref="Price" />.
+        /// Initializes a new instance of the <see cref="Price"/> struct.
         /// </summary>
-        /// <param name="quantity"></param>
-        /// <param name="currency"></param>
-        /// <param name="unit"></param>
+        /// <param name="quantity">Material´s Quantity.</param>
+        /// <param name="currency">Material´s publication currency.</param>
+        /// <param name="unit">Material´s unit.</param>
         public Price(float quantity, Currency currency, Unit unit)
         {
             this.Quantity = quantity;

@@ -42,13 +42,14 @@ namespace Library.Core.Processing
                                 {
                                     this.Reset();
                                     return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
-                                }
-                            )
-                        );
+                                }));
                     }
-                    else return Option<Result<T, string>>.None;
+
+                    else
+                    {
+                        return Option<Result<T, string>>.None;
+                    }
                 },
-                e => Option<Result<T, string>>.From(Result<T, string>.Err(e))
-            );
+                e => Option<Result<T, string>>.From(Result<T, string>.Err(e)));
     }
 }

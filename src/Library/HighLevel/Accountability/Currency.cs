@@ -2,14 +2,14 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a currency with which transactions can be made.
+    /// Because of the OCP principle, the attributes are
+    /// readonly, that way this class is open to extension
+    /// but closed to modifications.
     /// </summary>
     public sealed class Currency
     {
         /// <summary>
         /// The currency's name.
-        /// Because of the OCP principle, the attributes are
-        /// readonly, that way this class is open to extension
-        /// but closed to modifications.
         /// </summary>
         public readonly string Name;
 
@@ -18,13 +18,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         public readonly string Symbol;
 
-        private Currency(string name, string symbol)
-        {
-            this.Name = name;
-            this.Symbol = symbol;
-        }
-
-        /// <summary>
+          /// <summary>
         /// The uruguayan peso.
         /// </summary>
         public static Currency Peso = new Currency("uruguayan peso(s)", "U$");
@@ -33,5 +27,11 @@ namespace Library.HighLevel.Accountability
         /// The american dollar.
         /// </summary>
         public static Currency Dollar = new Currency("american dollar(s)", "US$");
+
+        private Currency(string name, string symbol)
+        {
+            this.Name = name;
+            this.Symbol = symbol;
+        }
     }
 }

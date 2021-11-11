@@ -4,3 +4,5 @@ Create Tests
 Juan - EntrepreneurRegisterTest, EntrepreneurReportTest
 Martin - PublishOfferTest, CompanyReportTest, AcceptInvitationTest
 Bianca - InviteCompanyTest, SearchOfferTest
+
+?? - Reassign the Habilitation class to the Library.HighLevel.Entrepreneurs namespace

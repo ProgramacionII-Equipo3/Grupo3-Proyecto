@@ -16,7 +16,7 @@ namespace Library.Core
         public readonly UserId Id;
 
         /// <summary>
-        /// Creates a message.
+        /// Initializes a new instance of the <see cref="Message"/> struct.
         /// </summary>
         /// <param name="text">The message's text.</param>
         /// <param name="id">The message's id.</param>

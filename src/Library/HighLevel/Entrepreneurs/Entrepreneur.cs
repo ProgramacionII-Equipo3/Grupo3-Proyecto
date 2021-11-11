@@ -1,66 +1,75 @@
 using System.Collections.Generic;
-using System.Linq;
+using Library.Core;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
-using Library.Core;
-
 
 namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class represents an entrepreneur.
-    /// We used the principle Expert to create this
-    /// class.
+    /// We used the principle Creator to create this class, for
+    /// example, the list of entrepreneur is created here.
     /// </summary>
     public class Entrepreneur 
     {
-
         /// <summary>
-        /// The entrepreneur's id.
+        /// Gets the entrepreneur's id.
         /// </summary>
         public UserId Id { get; set; }
 
         /// <summary>
-        /// The entrepeneur's name.
+        /// Gets the entrepeneur's name.
         /// </summary>
         public string Name { get; private set; }
-       
+
         /// <summary>
-        /// The entrepreneur's age.
+        /// Gets the entrepreneur's age.
         /// </summary>
         public string Age { get; private set; }
 
         /// <summary>
-        /// The entrepreneur's location.
+        /// Gets the entrepreneur's location.
         /// </summary>
         public Location Location { get; private set; }
 
         /// <summary>
-        /// The entrepreneur's heading.
+        /// Gets the entrepreneur's heading.
         /// </summary>
         public string Heading { get; private set; }
 
         /// <summary>
-        /// The entrepreneur's habilitation needed to buy certain materials.
+        /// Gets the entrepreneur's habilitation needed to buy certain materials.
         /// </summary>
         public  List<Habilitation> Habilitation = new List<Habilitation>();
 
         /// <summary>
-        /// The entrepreneur's specialization.
+        /// Gets the entrepreneur's specialization.
         /// </summary>
-        public List<Specialization> Specialization = new List<Specialization>();
+        public List<string> Specialization { get; private set; }
 
         /// <summary>
-        /// Entrepreneur's Constructor.
+        /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<Specialization> specializations)
+        public static List<UserId> EntrepeneurList = new List<UserId>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Entrepreneur"/> class.
+        /// </summary>
+        /// <param name="id">Entrepreneur´s id.</param>
+        /// <param name="name">Entrepreneur´s name.</param>
+        /// <param name="age">Entrepreneur´s age.</param>
+        /// <param name="location">Entrepreneur´s location.</param>
+        /// <param name="heading">Entrepreneur´s heading.</param>
+        /// <param name="habilitations">Entrepreneur´s habilitation.</param>
+        /// <param name="specializations">Entrepreneur´s specializations.</param>
+        public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<string> specializations)
         {
             this.Id = id;
             this.Name = name;
             this.Age = age;
             this.Location = Location;
             this.Heading = heading;
-            this.Habilitation= habilitations;
+            this.Habilitation = habilitations;
             this.Specialization = specializations;
         }
     }

@@ -38,7 +38,7 @@ namespace Library.States.Entrepreneurs
             private Location location;
             private string heading;
             private List<Habilitation> habilitations;
-            private List<Specialization> specializations;
+            private List<string> specializations;
 
             public NewEntrepreneurForm(UserId userId)
             {
@@ -71,7 +71,7 @@ namespace Library.States.Entrepreneurs
                         )
                     ),
                     ProcessorHandler.CreateInstance<string[]>(
-                        specializations => this.specializations = specializations.Select(s => new Specialization(s)).ToList(),
+                        specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
                             new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish."),
                             s => s.Trim() == "/finish",

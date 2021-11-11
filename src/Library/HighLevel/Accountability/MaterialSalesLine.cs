@@ -31,12 +31,7 @@ namespace Library.HighLevel.Accountability
         public readonly DateTime DateTime;
 
         /// <summary>
-        /// The amount of money made from this sale.
-        /// </summary>
-        public MoneyQuantity Income => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
-
-        /// <summary>
-        /// Creates an instance of <see cref="MaterialSalesLine" />.
+        /// Initializes a new instance of the <see cref="MaterialSalesLine"/> class.
         /// </summary>
         /// <param name="material">The sold material.</param>
         /// <param name="amount">The amount of sold material.</param>
@@ -49,5 +44,10 @@ namespace Library.HighLevel.Accountability
             this.Price = price;
             this.DateTime = dateTime;
         }
+
+        /// <summary>
+        /// Gets the amount of money made from this sale.
+        /// </summary>
+        public MoneyQuantity Income => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
     }
 }

@@ -2,7 +2,9 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class offers functions associated with the <see cref="MoneyQuantity" /> struct.
-    /// We created this class because of the Polymorphism pattern. 
+    /// We created this class because of the Polymorphism pattern, while money quantity is for
+    /// an amount of money, this class is created for a particular sale, so we separated it by 
+    /// destination.
     /// </summary>
     public static class MoneyQuantityUtils
     {
@@ -15,9 +17,7 @@ namespace Library.HighLevel.Accountability
         public static Option<MoneyQuantity> Calculate(Amount amount, Price price) =>
             Unit.GetConversionFactor(amount.Unit, price.Unit).MapValue(
                 unitConversionFactor => new MoneyQuantity(
-                    (float) (amount.Quantity * price.Quantity * unitConversionFactor),
-                    price.Currency
-                )
-            );
+                    (float)(amount.Quantity * price.Quantity * unitConversionFactor),
+                    price.Currency));
     }
 }
