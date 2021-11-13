@@ -17,9 +17,9 @@ namespace Library.HighLevel.Companies
         private static List<Company> companies = new List<Company>();
 
         /// <summary>
-        /// Gets a public read-only list of the companies.
+        /// A public read-only list of the companies.
         /// </summary>
-        public static ReadOnlyCollection<Company> CompaniesReadOnly => companies.AsReadOnly();
+        public static ReadOnlyCollection<Company> Companies => companies.AsReadOnly();
 
         /// <summary>
         /// Gets the company a concrete user represents.
@@ -49,10 +49,10 @@ namespace Library.HighLevel.Companies
         /// Creates an instance of <see cref="Company" />, adding it to the list.
         /// </summary>
         /// <returns>The created instance, or null if there's already a company with the same name.</returns>
-        /// <param name = "name">The comany´s name.</param>
-        /// <param name = "contactInfo">The comany´s contact info.</param>
-        /// <param name = "heading">The company´s heading.</param>
-        /// <param name = "location">The company´s location.</param>
+        /// <param name="name">The comany´s name.</param>
+        /// <param name="contactInfo">The comany´s contact info.</param>
+        /// <param name="heading">The company´s heading.</param>
+        /// <param name="location">The company´s location.</param>
         public static Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
             if (GetByName(name) != null)

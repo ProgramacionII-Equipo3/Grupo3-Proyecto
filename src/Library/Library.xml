@@ -247,11 +247,14 @@
         <member name="M:Library.Core.Processing.FormProcessor`1.getResult">
             <summary>
             Generates the resulting object with the obtained input.
-            <remarks>
-            This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns (true, null),
-            which is a signal that the object's ready to produce the result.
-            </remarks>
             </summary>
+            <remarks>
+                <para>
+                This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns: <br />
+                    Result&lt;bool, string&gt;.Ok(true) <br />
+                which is a signal that the object's ready to produce the result. Doing so under other circumstances may result in undefined behaviour.
+                </para>
+            </remarks>
             <returns>
             Result.Ok(result), being result the resulting object, or<br />
             Result.Err(error), being error an error string.
@@ -295,11 +298,14 @@
         <member name="M:Library.Core.Processing.IInputProcessor`1.getResult">
             <summary>
             Generates the resulting object with the obtained input.
-            <remarks>
-            This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns (true, null),
-            which is a signal that the object's ready to produce the result.
-            </remarks>
             </summary>
+            <remarks>
+                <para>
+                This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns: <br />
+                    Result&lt;bool, string&gt;.Ok(true) <br />
+                which is a signal that the object's ready to produce the result. Doing so under other circumstances may result in undefined behaviour.
+                </para>
+            </remarks>
             <returns>
             Result.Ok(result), being result the resulting object, or<br />
             Result.Err(error), being error an error string.
@@ -799,12 +805,12 @@
             </summary>
             <param name="id">The user's id.</param>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#Publications">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#publications">
             <summary>
             A list of Material Publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#MaterialSales">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#materialSales">
             <summary>
             A list of Material Sales.
             </summary>
@@ -832,9 +838,9 @@
             of companies and getting the companies and not Company by itself.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.CompanyManager.CompaniesReadOnly">
+        <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
             <summary>
-            Gets a public read-only list of the companies.
+            A public read-only list of the companies.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
@@ -863,10 +869,10 @@
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
             <returns>The created instance, or null if there's already a company with the same name.</returns>
-            <param name = "name">The comany´s name.</param>
-            <param name = "contactInfo">The comany´s contact info.</param>
-            <param name = "heading">The company´s heading.</param>
-            <param name = "location">The company´s location.</param>
+            <param name="name">The comany´s name.</param>
+            <param name="contactInfo">The comany´s contact info.</param>
+            <param name="heading">The company´s heading.</param>
+            <param name="location">The company´s location.</param>
         </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
@@ -874,14 +880,14 @@
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
+        <member name="P:Library.HighLevel.Companies.IPublisher.publications">
             <summary>
-            Gets a private list of the publications.
+            A private list of the publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.PublicationsReadOnly">
+        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
             <summary>
-            Gets a public read-only list of the publications.
+            A public read-only list of the publications.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
@@ -908,9 +914,9 @@
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.MaterialSales">
+        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
             <summary>
-            Gets the list of material sales.
+            The list of material sales.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.ISentMaterialReportCreator.GetMaterialReport(System.DateTime)">
@@ -1193,7 +1199,7 @@
             List to save all the publication's.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Materials.MaterialPublication.publicationsReadOnly">
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
             <summary>
             A public read-only list of the publications.
             </summary>
@@ -1221,13 +1227,14 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="pickupLocation">The pick-up location of the material.</param>
-            <param name ="keywords">The keywords of the material.</param>
+            <param name="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
             <summary>
-            This method add's all created publication's to the previously created publication's list.
+            This method adds a publication into the list.
             </summary>
+            <param name="publication">The publication to add</param>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
             <summary>

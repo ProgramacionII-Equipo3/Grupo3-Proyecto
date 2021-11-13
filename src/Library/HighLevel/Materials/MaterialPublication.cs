@@ -40,7 +40,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// A public read-only list of the publications.
         /// </summary>
-        public static ReadOnlyCollection<MaterialPublication> publicationsReadOnly => publications.AsReadOnly();
+        public static ReadOnlyCollection<MaterialPublication> Publications => publications.AsReadOnly();
 
         /// <summary>
         /// List of the keywords of the publication material.
@@ -74,7 +74,7 @@ namespace Library.HighLevel.Materials
         /// <param name="amount">The amount of material.</param>
         /// <param name="price">The price of the material.</param>
         /// <param name="pickupLocation">The pick-up location of the material.</param>
-        /// <param name ="keywords">The keywords of the material.</param>
+        /// <param name="keywords">The keywords of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
         public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, List<string> keywords) =>
             CheckMaterialFields(material, amount, price)
@@ -82,8 +82,9 @@ namespace Library.HighLevel.Materials
                 : null;
 
         /// <summary>
-        /// This method add's all created publication's to the previously created publication's list.
+        /// This method adds a publication into the list.
         /// </summary>
+        /// <param name="publication">The publication to add</param>
         public static void AddPublication(MaterialPublication publication)
         {
             if (publication != null)
