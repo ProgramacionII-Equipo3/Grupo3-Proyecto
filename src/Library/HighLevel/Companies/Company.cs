@@ -74,11 +74,11 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// A list of Material Publications.
         /// </summary>
-        List<MaterialPublication> IPublisher.Publications { get; } = new List<MaterialPublication>();
+        List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 
         /// <summary>
         /// A list of Material Sales.
         /// </summary>
-        List<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
+        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
     }
 }

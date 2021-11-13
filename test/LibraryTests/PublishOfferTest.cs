@@ -46,7 +46,7 @@ namespace ProgramTests
             MaterialPublication.AddPublication(publication2);
 
             List<MaterialPublication> expected = new List<MaterialPublication> { publication, publication2 };
-            Assert.AreEqual(MaterialPublication.publicationsReadOnly, expected);
+            Assert.AreEqual(MaterialPublication.Publications, expected);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace ProgramTests
             MaterialPublication.CreateInstance(material3, amount3, price3, location3, keywords);
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(MaterialPublication.publicationsReadOnly, expected2);
+            Assert.AreEqual(MaterialPublication.Publications, expected2);
         }
     }
 }

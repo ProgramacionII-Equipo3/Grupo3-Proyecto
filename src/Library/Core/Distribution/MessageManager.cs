@@ -21,11 +21,11 @@ namespace Library.Core.Distribution
             }
             else
             {
-                return ProcessMessageFromUnknownUser(msg);
+                return processMessageFromUnknownUser(msg);
             }
         }
 
-        private static string ProcessMessageFromUnknownUser(Message msg)
+        private static string processMessageFromUnknownUser(Message msg)
         {
             string[] args = msg.Text.Split(' ');
 

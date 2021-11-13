@@ -13,14 +13,14 @@ namespace Library.HighLevel.Companies
     public interface IPublisher
     {
         /// <summary>
-        /// Gets a private list of the publications.
+        /// A private list of the publications.
         /// </summary>
-        protected List<MaterialPublication> Publications { get; }
+        protected List<MaterialPublication> publications { get; }
 
         /// <summary>
-        /// Gets a public read-only list of the publications.
+        /// A public read-only list of the publications.
         /// </summary>
-        public ReadOnlyCollection<MaterialPublication> PublicationsReadOnly => this.Publications.AsReadOnly();
+        public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
 
         /// <summary>
         /// Publishes a material.
@@ -35,7 +35,7 @@ namespace Library.HighLevel.Companies
         {
             if (MaterialPublication.CreateInstance(material, amount, price, location, keywords) is MaterialPublication publication)
             {
-                this.Publications.Add(publication);
+                this.publications.Add(publication);
                 return true;
             }
 
@@ -49,12 +49,12 @@ namespace Library.HighLevel.Companies
         /// <returns>Whether the removal was successful.</returns>
         public bool RemovePublication(int index)
         {
-            if (index < 0 || index >= this.Publications.Count)
+            if (index < 0 || index >= this.publications.Count)
             {
                 return false;
             }
 
-            this.Publications.RemoveAt(index);
+            this.publications.RemoveAt(index);
             return true;
         }
     }

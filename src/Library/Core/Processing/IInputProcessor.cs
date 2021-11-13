@@ -8,11 +8,14 @@ namespace Library.Core.Processing
     {
         /// <summary>
         /// Generates the resulting object with the obtained input.
-        /// <remarks>
-        /// This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns (true, null),
-        /// which is a signal that the object's ready to produce the result.
-        /// </remarks>
         /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///     This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns: <br />
+        ///         Result&lt;bool, string&gt;.Ok(true) <br />
+        ///     which is a signal that the object's ready to produce the result. Doing so under other circumstances may result in undefined behaviour.
+        ///     </para>
+        /// </remarks>
         /// <returns>
         /// Result.Ok(result), being result the resulting object, or<br />
         /// Result.Err(error), being error an error string.
