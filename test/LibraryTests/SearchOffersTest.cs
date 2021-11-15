@@ -43,7 +43,7 @@ namespace ProgramTests
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             this.client = new LocationApiClient();
             this.pickupLocation1 = this.client.GetLocationAsync("Libertad 2500").Result;
-            this.publication1 = MaterialPublication.CreateInstance(this.material1, this.amount1, this.price1, this.pickupLocation1, keyword1);
+            this.publication1 = MaterialPublication.CreateInstance(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
 
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             List<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
@@ -52,7 +52,7 @@ namespace ProgramTests
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
-            this.publication2 = MaterialPublication.CreateInstance(this.material2, this.amount2, this.price2, this.pickupLocation2, keyword2);
+            this.publication2 = MaterialPublication.CreateInstance(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
         }
 
         /// <summary>

@@ -9,6 +9,8 @@ Segunda Entrega Correcciones:
     > Agregar precondiciones; ---> Juan
 
 
+Correcciones pequeñas:
+    > Hacer que el atributo MaterialPublication.Keywords sea una propiedad de solo lectura
 
 
 Tercera Entrega:
