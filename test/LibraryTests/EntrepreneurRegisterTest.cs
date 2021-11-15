@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
-using Library.HighLevel.Entrepreneurs;
 using Library.Core;
+using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
 using Library.Platforms.Telegram;
 using NUnit.Framework;
@@ -50,11 +49,11 @@ namespace ProgramTests
 
             for (int i = 1; i < habilitationsMessageSplitted.Length; i++)
             {
-                Habilitation habilitation =  new Habilitation(habilitationsMessageSplitted[i], "description");
+                Habilitation habilitation = new Habilitation(habilitationsMessageSplitted[i], "description");
                 habilitations.Add(habilitation);
             }
 
-            string[] specializationMessageSplitted = habilitationsMessage.Text.Trim().Split();
+            string[] specializationMessageSplitted = this.habilitationsMessage.Text.Trim().Split();
             List<string> specializations = new List<string>();
 
             for (int i = 1; i < specializationMessageSplitted.Length; i++)
@@ -63,17 +62,15 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(this.juanId, this.nameMessage.Text, this.ageMessage.Text, this.location, this.headingMessage.Text, habilitations, specializations );
+            Entrepreneur juan = new Entrepreneur(this.juanId, this.nameMessage.Text, this.ageMessage.Text, this.location, this.headingMessage.Text, habilitations, specializations);
             EntrepreneurManager.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
-            
             UserId idExpected = this.nameMessage.Id;
             int indexnameUser = EntrepreneurManager.Entrepreneurs.IndexOf(juan);
-            Assert.AreEqual(EntrepreneurManager.Entrepreneurs[indexnameUser], idExpected);
-            
+            Assert.AreEqual(EntrepreneurManager.Entrepreneurs[indexnameUser].Id, idExpected);
+
             // Evaluate if the habilitations, specializations and name are registered correctly.
-            
             string nameExpected = this.nameMessage.Text;
             Assert.AreEqual(habilitations, juan.Habilitation);
             Assert.AreEqual(specializations, juan.Specialization);
