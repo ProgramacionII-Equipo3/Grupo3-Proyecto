@@ -21,7 +21,7 @@ namespace Library.States
         /// Creates a <see cref="MultipleOptionState" /> with a given group of commands.
         /// </summary>
         /// <param name="commands">The group of commands.</param>
-        protected MultipleOptionState((string, Func<State>)[] commands)
+        protected MultipleOptionState(params (string, Func<State>)[] commands)
         {
             this.commands = commands;
         }
