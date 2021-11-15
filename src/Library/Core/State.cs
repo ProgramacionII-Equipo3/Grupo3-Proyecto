@@ -5,6 +5,12 @@ namespace Library.Core
     /// </summary>
     public abstract class State
     {
+          /// <summary>
+        /// Determines whether the user who has this <see cref="State" /> is complete,
+        /// that is, if the process of registering to the platform has already finished.
+        /// </summary>
+        public abstract bool IsComplete { get; }
+
         /// <summary>
         /// Processes a received message, returning the next state and the response message.
         /// </summary>
@@ -19,11 +25,5 @@ namespace Library.Core
         /// </summary>
         /// <returns>A string.</returns>
         public abstract string GetDefaultResponse();
-
-        /// <summary>
-        /// Determines whether the user who has this <see cref="State" /> is complete,
-        /// that is, if the process of registering to the platform has already finished.
-        /// </summary>
-        public abstract bool IsComplete { get; }
     }
 }

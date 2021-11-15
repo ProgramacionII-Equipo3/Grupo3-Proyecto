@@ -15,7 +15,9 @@ namespace Library.HighLevel.Companies
         /// Initializes a new instance of the <see cref="CompanyInvitation"/> class.
         /// </summary>
         /// <param name="code">The invitation code.</param>
-        public CompanyInvitation(string code) : base(code) {}
+        public CompanyInvitation(string code) : base(code)
+        {
+        }
 
         /// <inheritdoc />
         public override string Validate(UserId userId)
@@ -24,8 +26,7 @@ namespace Library.HighLevel.Companies
             SessionManager.NewUser(
                 id: userId,
                 userData: new UserData(),
-                state: newState
-            );
+                state: newState);
             return newState.GetDefaultResponse();
         }
     }

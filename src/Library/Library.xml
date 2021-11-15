@@ -135,7 +135,7 @@
         </member>
         <member name="P:Library.Core.Invitations.InvitationManager.InvitationCount">
             <summary>
-            The number of invitations.
+            Gets the number of invitations.
             </summary>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation(System.String,System.Func{System.String,Library.Core.Invitations.Invitation})">
@@ -327,6 +327,12 @@
             This class represents a state of a user session.
             </summary>
         </member>
+        <member name="P:Library.Core.State.IsComplete">
+            <summary>
+            Determines whether the user who has this <see cref="T:Library.Core.State" /> is complete,
+            that is, if the process of registering to the platform has already finished.
+            </summary>
+        </member>
         <member name="M:Library.Core.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
@@ -341,12 +347,6 @@
             Returns the first message the object uses to indicate what kind of input it wants.
             </summary>
             <returns>A string.</returns>
-        </member>
-        <member name="P:Library.Core.State.IsComplete">
-            <summary>
-            Determines whether the user who has this <see cref="T:Library.Core.State" /> is complete,
-            that is, if the process of registering to the platform has already finished.
-            </summary>
         </member>
         <member name="T:Library.Core.UserData">
             <summary>
@@ -439,7 +439,7 @@
         </member>
         <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Spent">
             <summary>
-            The amount of money spent.
+            Gets the amount of money spent.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Accountability.Currency">
@@ -450,16 +450,6 @@
             but closed to modifications.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.Currency.Name">
-            <summary>
-            The currency's name.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Accountability.Currency.Symbol">
-            <summary>
-            The currency's symbol.
-            </summary>
-        </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Peso">
             <summary>
             The uruguayan peso.
@@ -468,6 +458,16 @@
         <member name="F:Library.HighLevel.Accountability.Currency.Dollar">
             <summary>
             The american dollar.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Currency.Name">
+            <summary>
+            The currency's name.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Currency.Symbol">
+            <summary>
+            The currency's symbol.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
@@ -576,7 +576,7 @@
             <summary>
             This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
             We created this class because of the Polymorphism pattern, while money quantity is for
-            an amount of money, this class is created for a particular sale, so we separated it by 
+            an amount of money, this class is created for a particular sale, so we separated it by
             destination.
             </summary>
         </member>
@@ -591,8 +591,8 @@
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
-            Created because of SRP, this class is the one that controls 
-            the price in specific. 
+            Created because of SRP, this class is the one that controls
+            the price in specific.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.Price.Quantity">
@@ -621,7 +621,7 @@
         <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
             <summary>
             This class represents a reports of all material purchased by the entrepreneur.
-            We used the pattern Creator and the SRP principle, that is why this class 
+            We used the pattern Creator and the SRP principle, that is why this class
             creates a report and not another class to avoid High Coupling.
             </summary>
         </member>
@@ -666,8 +666,8 @@
         <member name="T:Library.HighLevel.Accountability.Unit">
             <summary>
             This class represent a unit used for measuring amounts of material.
-            Created because of SRP, this particular class is the one with the 
-            responsibility of everything associated with the unit and nothing else 
+            Created because of SRP, this particular class is the one with the
+            responsibility of everything associated with the unit and nothing else
             (following also the Expert principle).
             </summary>
         </member>
@@ -805,14 +805,14 @@
             </summary>
             <param name="id">The user's id.</param>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#publications">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#Publications">
             <summary>
-            A list of Material Publications.
+            Gets a list of Material Publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#materialSales">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#MaterialSales">
             <summary>
-            A list of Material Sales.
+            Gets a list of Material Sales.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
@@ -840,7 +840,7 @@
         </member>
         <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
             <summary>
-            A public read-only list of the companies.
+            Gets a public read-only list of the companies.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
@@ -880,14 +880,14 @@
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.publications">
+        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
             <summary>
             A private list of the publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
+        <member name="P:Library.HighLevel.Companies.IPublisher.PublicationsReadOnly">
             <summary>
-            A public read-only list of the publications.
+            Gets a public read-only list of the publications.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
@@ -914,9 +914,9 @@
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
+        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.MaterialSales">
             <summary>
-            The list of material sales.
+            Gets the list of material sales.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.ISentMaterialReportCreator.GetMaterialReport(System.DateTime)">
@@ -1194,16 +1194,6 @@
             The publication's pick-up location of material.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Materials.MaterialPublication.publications">
-            <summary>
-            List to save all the publication's.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
-            <summary>
-            A public read-only list of the publications.
-            </summary>
-        </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
             List of the keywords of the publication material.
@@ -1229,18 +1219,6 @@
             <param name="pickupLocation">The pick-up location of the material.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
-        </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
-            <summary>
-            This method adds a publication into the list.
-            </summary>
-            <param name="publication">The publication to add</param>
-        </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
-            <summary>
-            This method search the material that is constantly generated.
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
