@@ -27,7 +27,7 @@ Tercera Entrega:
         > Santiago: 1883636472
         > Martín:   2066298868
         > Bianca:   2090102457
-        > Juan:     
+        > Juan:     2012232708
 
     > Modificar MaterialPublication
         > Eliminar el método GetMaterialConstantlyGenerated             --> Martín
