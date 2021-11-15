@@ -19,11 +19,17 @@ Tercera Entrega:
         > EntrepreneurCommands
         > AdminCommands
         
-    > Implementar la serialización de los objetos
-        > CompanySerialization              --> Serializa la lista y los usuarios;
-        > EntrepreneurSerialization         --> Serializa los usuarios emprendedores;
-        > MaterialPublicationSerialization  --> Serializa las publicaciones de materiales;
-        > AdminSerialization                --> Serializa los usuarios admin;
+    > Implementar la serialización y deserialización de los objetos (carpeta Memory en la raíz del proyecto)
+        > CompanySerialization              --> Serializar la lista, las companias y las publicaciones   --> Martín
+        > EntrepreneurSerialization         --> Serializar los usuarios emprendedores;                   --> Juan
+        > AdminSerialization                --> Serializar los usuarios admin;                           --> Bianca
+        > States                            --> Serializar los estados de los mensajes                   --> Santiago
+
+    ID´s Telegram:
+        > Santiago: 1883636472
+        > Martín:   2066298868
+        > Bianca:   2090102457
+        > Juan:     2012232708
 
     > Modificar MaterialPublication
         > Eliminar el método GetMaterialConstantlyGenerated             --> Martín
