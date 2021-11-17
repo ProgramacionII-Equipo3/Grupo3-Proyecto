@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
 
@@ -39,25 +40,11 @@ namespace Library.HighLevel.Materials
         public MaterialPublicationTypeData Type { get; private set; }
 
         /// <summary>
-        /// List of the keywords of the publication material.
+        /// The list of keywords of the publication material.
         /// </summary>
-        public List<string> Keywords = new List<string>();
+        public IList<string> Keywords = new List<string>();
 
-
-
-        /// <summary>
-        /// List to save all the publication's.
-        /// </summary>
-        private static List<MaterialPublication> publications = new List<MaterialPublication>();
-    
-        /// <summary>
-        /// A public read-only list of the publications.
-        /// </summary>
-        public static ReadOnlyCollection<MaterialPublication> Publications => publications.AsReadOnly();
-
-
-
-        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords)
+        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords)
         {
             this.Material = material;
             this.Amount = amount;
@@ -90,47 +77,9 @@ namespace Library.HighLevel.Materials
         /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords) =>
+        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords) =>
             CheckMaterialFields(material, amount, price)
                 ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords)
                 : null;
-
-        /// <summary>
-        /// This method adds a publication into the list.
-        /// </summary>
-        /// <param name="publication">The publication to add</param>
-        public static void AddPublication(MaterialPublication publication)
-        {
-            if (publication != null)
-            {
-                publications.Add(publication);
-            }
-        }
-
-        /// <summary>
-        /// This method search the material that is constantly generated.
-        /// </summary>
-        /// <returns></returns>
-        public static List<MaterialPublication> GetMaterialConstantlyGenerated()
-        {
-            List<MaterialPublication> materialMostGenerated = new List<MaterialPublication>(); 
-            foreach (MaterialPublication item in publications)
-            {
-                List<MaterialPublication> result = publications.FindAll(
-                delegate(MaterialPublication publication)
-                {
-                    return Utils.AreSimilar(publication.Material.Name, item.Material.Name);
-                });
-                if (result.Count > 3)
-                {
-                    foreach (MaterialPublication element in result)
-                    {
-                        materialMostGenerated.Add(element);
-                    }
-                    result.Clear();
-                }
-            }
-            return materialMostGenerated;
-        }
     }
 }

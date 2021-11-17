@@ -11,7 +11,7 @@ namespace Library.InputHandlers
     public class ListProcessor<T> : IInputProcessor<T[]>
     {
         private Func<string, bool> escapePredicate;
-        private List<T> list = new List<T>();
+        private IList<T> list = new List<T>();
 
         private Func<string> responseGetterForNextObjects;
 

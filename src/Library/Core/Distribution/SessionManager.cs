@@ -11,7 +11,7 @@ namespace Library.Core.Distribution
         /// <summary>
         /// The list of current sessions.
         /// </summary>
-        private List<UserSession> sessions = new List<UserSession>();
+        private IList<UserSession> sessions = new List<UserSession>();
 
         /// <summary>
         /// Returns the <see cref="UserSession" /> whose id equals to the given one.

@@ -29,7 +29,7 @@ namespace ProgramTests
             Unit unit = new Unit("Kilos", "kg", 0.5, Measure.Weight);
             Amount amount = new Amount(3, unit);
             Price price = new Price(520, Currency.Peso, unit);
-            List<string> keyword = new List<string>();
+            IList<string> keyword = new List<string>();
             keyword.Add("ruleman");
             keyword.Add("metal");
             Material boughtMaterial = Material.CreateInstance("Ruleman Metal", Measure.Weight, category);
@@ -44,7 +44,7 @@ namespace ProgramTests
             Unit unit2 = new Unit("Gramos", "g", 500, Measure.Weight);
             Amount amount2 = new Amount(2, unit);
             Price price2 = new Price(2, Currency.Dollar, unit);
-            List<string> keyword2 = new List<string>();
+            IList<string> keyword2 = new List<string>();
             keyword2.Add("Botella");
             keyword2.Add("plástico");
             Material boughtMaterial2 = Material.CreateInstance("Botella plástico", Measure.Weight, category2);

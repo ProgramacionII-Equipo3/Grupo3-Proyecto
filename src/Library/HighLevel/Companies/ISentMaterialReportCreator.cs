@@ -14,7 +14,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The list of material sales.
         /// </summary>
-        protected List<MaterialSalesLine> materialSales { get; }
+        protected IList<MaterialSalesLine> materialSales { get; }
 
         /// <summary>
         /// Builds a <see cref="SentMaterialReport" /> with the material sales that occured after a certain <see cref="DateTime" />.

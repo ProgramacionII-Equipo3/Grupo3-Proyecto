@@ -34,7 +34,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The list of available units.
         /// </summary>
-        internal static List<Unit> Values = new List<Unit>();
+        internal static IList<Unit> Values = new List<Unit>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Unit"/> class.

@@ -16,8 +16,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// This list is created to contain all the publication's that
         /// are from the specified search.
         /// </summary>
-        /// <returns></returns>
-        public List<MaterialPublication> SearchResult = new List<MaterialPublication>();
+        public IList<MaterialPublication> SearchResult = new List<MaterialPublication>();
 
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
@@ -30,7 +29,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="category"></param>
-        public void SearchByCategory(List<MaterialPublication> publications, MaterialCategory category)
+        public void SearchByCategory(IList<MaterialPublication> publications, MaterialCategory category)
         {
            foreach (var item in publications)
            {
@@ -46,7 +45,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="keyword"></param>
-        public void SearchByKeyword(List<MaterialPublication> publications, string keyword)
+        public void SearchByKeyword(IList<MaterialPublication> publications, string keyword)
         {
            foreach (var item in publications)
            {
@@ -63,7 +62,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="publications"></param>
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
-        public void SearchByLocation(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public void SearchByLocation(IList<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
         {
            foreach (var item in publications)
            {

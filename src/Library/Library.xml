@@ -17,6 +17,7 @@
         </member>
         <member name="F:Library.Core.ContactInfo.PhoneNumber">
             <summary>
+            
             The entity's phone number (-1 if non-existent).
             </summary>
         </member>

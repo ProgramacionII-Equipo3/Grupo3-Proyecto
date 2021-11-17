@@ -8,6 +8,11 @@ namespace Library.HighLevel.Entrepreneurs
     /// </summary>
     public class EntrepreneurManager
     {
+        /// <summary>
+        /// The list of entrepreneurs.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="EntrepreneurManager.Entrepreneurs" />.
+        /// </summary>
         private List<Entrepreneur> entrepeneurs = new List<Entrepreneur>();
 
         /// <summary>

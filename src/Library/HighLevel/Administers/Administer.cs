@@ -15,7 +15,7 @@ namespace Library.HighLevel.Administers
     /// </summary>
     public class Administer
     {
-        private List<UserId> AdministerList = new List<UserId>();
+        private IList<UserId> AdministerList = new List<UserId>();
 
         /// <summary>
         /// This method create's an invitation code.
