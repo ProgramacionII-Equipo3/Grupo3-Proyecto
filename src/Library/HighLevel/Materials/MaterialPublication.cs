@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
 
@@ -39,11 +40,11 @@ namespace Library.HighLevel.Materials
         public MaterialPublicationTypeData Type { get; private set; }
 
         /// <summary>
-        /// List of the keywords of the publication material.
+        /// The list of keywords of the publication material.
         /// </summary>
-        public List<string> Keywords = new List<string>();
+        public IList<string> Keywords = new List<string>();
 
-        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords)
+        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords)
         {
             this.Material = material;
             this.Amount = amount;
@@ -74,7 +75,7 @@ namespace Library.HighLevel.Materials
         /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords) =>
+        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords) =>
             CheckMaterialFields(material, amount, price)
                 ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords)
                 : null;

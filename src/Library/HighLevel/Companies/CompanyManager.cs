@@ -16,6 +16,11 @@ namespace Library.HighLevel.Companies
     /// </summary>
     public class CompanyManager
     {
+        /// <summary>
+        /// The list of companies.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="CompanyManager.Companies" />.
+        /// </summary>
         private List<Company> companies = new List<Company>();
 
         /// <summary>

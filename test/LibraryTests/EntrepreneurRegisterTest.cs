@@ -46,7 +46,7 @@ namespace ProgramTests
         public void EntrepreneurRegister()
         {
             string[] habilitationsMessageSplitted = this.habilitationsMessage.Text.Trim().Split();
-            List<Habilitation> habilitations = new List<Habilitation>();
+            IList<Habilitation> habilitations = new List<Habilitation>();
 
             for (int i = 1; i < habilitationsMessageSplitted.Length; i++)
             {
@@ -55,7 +55,7 @@ namespace ProgramTests
             }
 
             string[] specializationMessageSplitted = this.habilitationsMessage.Text.Trim().Split();
-            List<string> specializations = new List<string>();
+            IList<string> specializations = new List<string>();
 
             for (int i = 1; i < specializationMessageSplitted.Length; i++)
             {
@@ -75,8 +75,8 @@ namespace ProgramTests
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;
-            Assert.AreEqual(habilitations, juan.Habilitation);
-            Assert.AreEqual(specializations, juan.Specialization);
+            Assert.AreEqual(habilitations, juan.Habilitations);
+            Assert.AreEqual(specializations, juan.Specializations);
             Assert.AreEqual(nameExpected, juan.Name);
         }
     }

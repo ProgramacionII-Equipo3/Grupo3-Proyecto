@@ -18,11 +18,6 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public Measure Measure { get; private set; }
 
-
-        //private List<Requirement> requirements = new List<Requirement>();
-
-        //public ReadOnlyCollection<Requirement> Requirements => this.requirements.AsReadOnly();
-
         /// <summary>
         /// The category the material belongs to.
         /// </summary>

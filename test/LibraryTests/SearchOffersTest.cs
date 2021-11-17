@@ -37,7 +37,7 @@ namespace ProgramTests
         public void Setup()
         {
             this.category1 = new MaterialCategory("Residuos hospitalarios");
-            List<string> keyword1 = new List<string> { "agujas", "hospital" };
+            IList<string> keyword1 = new List<string> { "agujas", "hospital" };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
             this.unit1 = Unit.GetByAbbr("kg");
             this.amount1 = new Amount(100, this.unit1);
@@ -47,7 +47,7 @@ namespace ProgramTests
             this.publication1 = MaterialPublication.CreateInstance(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
 
             this.category2 = new MaterialCategory("Residuos hospitalarios");
-            List<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
+            IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
             this.unit2 = Unit.GetByAbbr("kg");
             this.amount2 = new Amount(500, this.unit2);
@@ -63,12 +63,12 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
             Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch);
 
-            List<MaterialPublication> expected1 = new List<MaterialPublication>();
+            IList<MaterialPublication> expected1 = new List<MaterialPublication>();
             expected1.Add(this.publication1);
             expected1.Add(this.publication2);
 
@@ -83,13 +83,13 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryNotFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
             Singleton<Searcher>.Instance.SearchResult.Clear();
             Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch);
 
-            List<MaterialPublication> expected2 = new List<MaterialPublication>();
+            IList<MaterialPublication> expected2 = new List<MaterialPublication>();
 
             Assert.AreEqual(Singleton<Searcher>.Instance.SearchResult, expected2);
         }
@@ -101,12 +101,12 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             Singleton<Searcher>.Instance.SearchResult.Clear();
             Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "cubrebocas");
 
-            List<MaterialPublication> expected3 = new List<MaterialPublication>();
+            IList<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(this.publication2);
 
             Assert.AreEqual(Singleton<Searcher>.Instance.SearchResult, expected3);
@@ -120,12 +120,12 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsNotFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             Singleton<Searcher>.Instance.SearchResult.Clear();
             Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "sanitario");
 
-            List<MaterialPublication> expected4 = new List<MaterialPublication>();
+            IList<MaterialPublication> expected4 = new List<MaterialPublication>();
 
             Assert.AreEqual(Singleton<Searcher>.Instance.SearchResult, expected4);
         }
@@ -137,7 +137,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
@@ -146,7 +146,7 @@ namespace ProgramTests
             Singleton<Searcher>.Instance.SearchResult.Clear();
             Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified);
 
-            List<MaterialPublication> expected5 = new List<MaterialPublication>();
+            IList<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(this.publication2);
 
             Assert.AreEqual(Singleton<Searcher>.Instance.SearchResult, expected5);
@@ -160,7 +160,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneNotFound()
         {
-            List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
@@ -169,7 +169,7 @@ namespace ProgramTests
             Singleton<Searcher>.Instance.SearchResult.Clear();
             Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified);
 
-            List<MaterialPublication> expected6 = new List<MaterialPublication>();
+            IList<MaterialPublication> expected6 = new List<MaterialPublication>();
 
             Assert.AreEqual(Singleton<Searcher>.Instance.SearchResult, expected6);
         }
