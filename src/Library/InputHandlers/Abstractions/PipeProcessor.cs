@@ -21,6 +21,7 @@ namespace Library.InputHandlers.Abstractions
             this.resetter = resetter;
         }
 
+        /// <inheritdoc />
         Result<bool, string> IInputHandler.ProcessInput(string msg) =>
             (this.inputHandler)(msg).Map(
                 processResult => processResult.AndThen(

@@ -1248,6 +1248,9 @@
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
         <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,Library.Result{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
             <summary>
             Creates a pipe processor.
