@@ -52,8 +52,8 @@ namespace ProgramTests
         {
             MaterialSalesLine materialSale = new MaterialSalesLine(this.soldMaterial, this.amount, this.price, this.sold);
             MaterialSalesLine materialSale2 = new MaterialSalesLine(this.soldMaterial2, this.amount2, this.price2, this.sold2);
-            List<MaterialSalesLine> sales = new List<MaterialSalesLine> { materialSale, materialSale2 };
-            List<MaterialSalesLine> expected = SentMaterialReport.GetSentReport(sales, 3);
+            IList<MaterialSalesLine> sales = new List<MaterialSalesLine> { materialSale, materialSale2 };
+            IList<MaterialSalesLine> expected = SentMaterialReport.GetSentReport(sales, 3);
             Assert.AreEqual(expected, sales);
         }
 
@@ -78,9 +78,9 @@ namespace ProgramTests
 
             MaterialSalesLine materialSale3 = new MaterialSalesLine(soldMaterial3, amount3, price3, sold3);
             MaterialSalesLine materialSale4 = new MaterialSalesLine(soldMaterial4, amount4, price4, sold4);
-            List<MaterialSalesLine> sales2 = new List<MaterialSalesLine> { materialSale3, materialSale4 };
-            List<MaterialSalesLine> report = SentMaterialReport.GetSentReport(sales2, 3);
-            List<MaterialSalesLine> expected = new List<MaterialSalesLine>();
+            IList<MaterialSalesLine> sales2 = new List<MaterialSalesLine> { materialSale3, materialSale4 };
+            IList<MaterialSalesLine> report = SentMaterialReport.GetSentReport(sales2, 3);
+            IList<MaterialSalesLine> expected = new List<MaterialSalesLine>();
 
             Assert.AreEqual(expected, report);
         }

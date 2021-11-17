@@ -27,7 +27,6 @@ namespace Library.Core.Distribution
 
 
         private string processMessageFromUnknownUser(Message msg)
-
         {
             string[] args = msg.Text.Split(' ');
 

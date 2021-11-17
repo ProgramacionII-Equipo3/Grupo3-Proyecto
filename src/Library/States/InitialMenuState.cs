@@ -8,7 +8,7 @@ namespace Library.States
     public class InitialMenuState : State
     {
         /// <inheritdoc />
-        public override (State, string) ProcessMessage(UserId id, UserData data, string msg)
+        public override (State, string) ProcessMessage(string id, UserData data, string msg)
         {
             return (this, $"Message sent: {msg}");
         }

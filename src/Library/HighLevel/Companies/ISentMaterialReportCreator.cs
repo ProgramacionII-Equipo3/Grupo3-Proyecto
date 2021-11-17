@@ -14,7 +14,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets the list of material sales.
         /// </summary>
-        protected List<MaterialSalesLine> MaterialSales { get; }
+        protected IList<MaterialSalesLine> materialSales { get; }
 
         /// <summary>
         /// Builds a <see cref="SentMaterialReport" /> with the material sales that occured after a certain <see cref="DateTime" />.
@@ -22,6 +22,6 @@ namespace Library.HighLevel.Companies
         /// <param name="dateTime">The lower limit of the moment the sales happened.</param>
         /// <returns>The <see cref="SentMaterialReport" />.</returns>
         public SentMaterialReport GetMaterialReport(DateTime dateTime) =>
-            new SentMaterialReport(this.MaterialSales.Where(line => line.DateTime < dateTime).ToList().AsReadOnly());
+            new SentMaterialReport(this.materialSales.Where(line => line.DateTime < dateTime).ToList().AsReadOnly());
     }
 }

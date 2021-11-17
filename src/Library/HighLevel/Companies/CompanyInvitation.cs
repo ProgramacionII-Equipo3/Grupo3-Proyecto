@@ -20,7 +20,7 @@ namespace Library.HighLevel.Companies
         }
 
         /// <inheritdoc />
-        public override string Validate(UserId userId)
+        public override string Validate(string userId)
         {
             State newState = new IncompleteCompanyRepresentativeState();
             Singleton<SessionManager>.Instance.NewUser(

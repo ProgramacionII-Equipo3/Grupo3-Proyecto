@@ -15,7 +15,7 @@ namespace Library.States.Entrepreneurs
     public class NewEntrepreneurState : InputHandlerState
     {
         ///
-        public NewEntrepreneurState(UserId userId): base(
+        public NewEntrepreneurState(string userId): base(
             ProcessorHandler.CreateInstance<Entrepreneur>(
                 e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e),
                 new NewEntrepreneurForm(userId)
@@ -31,16 +31,16 @@ namespace Library.States.Entrepreneurs
 
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
         {
-            private UserId userId;
+            private string userId;
 
             private string name;
             private int age;
             private Location location;
             private string heading;
-            private List<Habilitation> habilitations;
-            private List<string> specializations;
+            private IList<Habilitation> habilitations;
+            private IList<string> specializations;
 
-            public NewEntrepreneurForm(UserId userId)
+            public NewEntrepreneurForm(string userId)
             {
                 this.userId = userId;
 

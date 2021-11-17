@@ -14,7 +14,7 @@ namespace ProgramTests
     /// </summary>
     public class EntrepreneurRegisterTest
     {
-        private TelegramId juanId;
+        private string juanId;
         private Message nameMessage;
         private Message ageMessage;
         private LocationApiClient provider;
@@ -29,7 +29,7 @@ namespace ProgramTests
         [SetUp]
         public void Setup()
         {
-            this.juanId = new TelegramId(2567104974);
+            this.juanId = "Telegram_2567104974";
             this.nameMessage = new Message("Juan", this.juanId);
             this.ageMessage = new Message("23", this.juanId);
             this.headingMessage = new Message("carpintero", this.juanId);
@@ -46,7 +46,7 @@ namespace ProgramTests
         public void EntrepreneurRegister()
         {
             string[] habilitationsMessageSplitted = this.habilitationsMessage.Text.Trim().Split();
-            List<Habilitation> habilitations = new List<Habilitation>();
+            IList<Habilitation> habilitations = new List<Habilitation>();
 
             for (int i = 1; i < habilitationsMessageSplitted.Length; i++)
             {
@@ -55,7 +55,7 @@ namespace ProgramTests
             }
 
             string[] specializationMessageSplitted = this.habilitationsMessage.Text.Trim().Split();
-            List<string> specializations = new List<string>();
+            IList<string> specializations = new List<string>();
 
             for (int i = 1; i < specializationMessageSplitted.Length; i++)
             {
@@ -67,7 +67,7 @@ namespace ProgramTests
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
-            UserId idExpected = this.nameMessage.Id;
+            string idExpected = this.nameMessage.Id;
 
             int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
             Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);
@@ -75,8 +75,8 @@ namespace ProgramTests
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;
-            Assert.AreEqual(habilitations, juan.Habilitation);
-            Assert.AreEqual(specializations, juan.Specialization);
+            Assert.AreEqual(habilitations, juan.Habilitations);
+            Assert.AreEqual(specializations, juan.Specializations);
             Assert.AreEqual(nameExpected, juan.Name);
         }
     }
