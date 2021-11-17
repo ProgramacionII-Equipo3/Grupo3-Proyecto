@@ -5,6 +5,7 @@ using System.Linq;
 using Library.Core;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
+using Library.Utils;
 
 namespace Library.HighLevel.Companies
 {
@@ -35,14 +36,6 @@ namespace Library.HighLevel.Companies
         /// <returns>A company, or null if the user doesn't represent a company.</returns>
         public Company GetCompanyOf(string userId) =>
             companies.Where(company => company.HasUser(userId)).FirstOrDefault();
-
-        /// <summary>
-        /// Gets an enumerable of companies whose names are similar to a given one.
-        /// </summary>
-        /// <param name="name">The company name to compare.</param>
-        /// <returns>A list of companies.</returns>
-        public IEnumerable<Company> GetCompaniesWithNamesSimilarTo(string name) =>
-            companies.Where(company => Utils.AreSimilar(company.Name, name));
 
         /// <summary>
         /// Gets the <see cref="Company" /> with a concrete name.

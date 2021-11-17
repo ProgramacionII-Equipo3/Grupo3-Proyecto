@@ -53,7 +53,7 @@ namespace ProgramTests
             // be added in the representants list of the company.
             // The company is registered.
             Assert.That(expected, Is.True);
-            Assert.AreEqual(company, expectedCompany);
+            Assert.AreEqual(expectedCompany, company);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 using System;
 using Library.InputHandlers.Abstractions;
+using Library.Utils;
 
 namespace Library.InputHandlers
 {
@@ -14,7 +15,7 @@ namespace Library.InputHandlers
         /// <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         public HTMLLinkProcessor(Func<string> initialResponseGetter) : base(
             PipeProcessor<string>.CreateInstance<string>(
-                s => Utils.IsValidHyperTextLink(s)
+                s => BasicUtils.IsValidHyperTextLink(s)
                     ? Result<string, string>.Ok(s)
                     : Result<string, string>.Err("The given link is invalid."),
                 new BasicStringProcessor(initialResponseGetter))) {}

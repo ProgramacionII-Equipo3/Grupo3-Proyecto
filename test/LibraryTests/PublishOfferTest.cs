@@ -36,6 +36,7 @@ namespace ProgramTests
             Location location = provider.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
             IList<string> keyword = new List<string> { "Cámara" };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
+
             ContactInfo contact = new ContactInfo();
             contact.Email = "evertec@gmail.com";
             contact.PhoneNumber = 095456258;

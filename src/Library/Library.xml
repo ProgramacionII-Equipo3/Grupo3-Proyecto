@@ -559,22 +559,6 @@
             <param name="quantity">The numeric value.</param>
             <param name="currency">The currency.</param>
         </member>
-        <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
-            <summary>
-            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
-            We created this class because of the Polymorphism pattern, while money quantity is for
-            an amount of money, this class is created for a particular sale, so we separated it by
-            destination.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
-            <summary>
-            Calculates the amount of money made from selling a certain amount of material at a certain price.
-            </summary>
-            <param name="amount">The amount of material.</param>
-            <param name="price">The price of the material.</param>
-            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
-        </member>
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
@@ -849,13 +833,6 @@
             <param name="userId">The user's id.</param>
             <returns>A company, or null if the user doesn't represent a company.</returns>
         </member>
-        <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompaniesWithNamesSimilarTo(System.String)">
-            <summary>
-            Gets an enumerable of companies whose names are similar to a given one.
-            </summary>
-            <param name="name">The company name to compare.</param>
-            <returns>A list of companies.</returns>
-        </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetByName(System.String)">
             <summary>
             Gets the <see cref="T:Library.HighLevel.Companies.Company" /> with a concrete name.
@@ -1003,11 +980,7 @@
             Gets the entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
-<<<<<<< HEAD
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{System.String})">
-=======
         <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
->>>>>>> 2fe1ceb81ed68534cb313fb7d507e4cf0b2e5a99
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
             </summary>
@@ -1049,13 +1022,6 @@
             We created this class using expert, this class itself does all the possible
             filter searches). It also has a High Cohesion because of the same reason.
             </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.SearchResult">
-            <summary>
-            This list is created to contain all the publication's that
-            are from the specified search.
-            </summary>
-            <returns></returns>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
             <summary>
@@ -1253,9 +1219,9 @@
             Gets the type of the material publication.
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.MaterialPublication.Type" -->
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
-<<<<<<< HEAD
             List of the keywords of the publication material.
             </summary>
         </member>
@@ -1267,9 +1233,6 @@
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
             <summary>
             A public read-only list of the publications.
-=======
-            The list of keywords of the publication material.
->>>>>>> 2fe1ceb81ed68534cb313fb7d507e4cf0b2e5a99
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1410,6 +1373,9 @@
             Represents a processor which parses an email from input.
             </summary>
         </member>
+        <member name="M:Library.InputHandlers.EmailProcessor.#ctor(System.Func{System.String})">
+            
+        </member>
         <member name="T:Library.InputHandlers.HabilitationProcessor">
             <summary>
             This class represents a processor which generates habilitations.
@@ -1549,19 +1515,6 @@
             </summary>
             <param name="someFunc">The function for the value.</param>
             <typeparam name="U">The type returned by the function.</typeparam>
-        </member>
-        <member name="T:Library.OptionUtils">
-            <summary>
-            This class holds methods which are related with the <see cref="T:Library.Option`1"/> struct.
-            </summary>
-        </member>
-        <member name="M:Library.OptionUtils.FirstOrNone``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Returns an <see cref="T:Library.Option`1" /> containing the first value of an <see cref="T:System.Collections.Generic.IEnumerable`1" />, if there is.
-            </summary>
-            <param name="enumerable">The enumerable.</param>
-            <typeparam name="T">The type of the elements of the enumerable.</typeparam>
-            <returns></returns>
         </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
@@ -1765,12 +1718,12 @@
         <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
-        <member name="T:Library.Utils">
+        <member name="T:Library.Utils.BasicUtils">
             <summary>
             This class stores context-generic static methods.
             </summary>
         </member>
-        <member name="M:Library.Utils.GetLocation(System.String,System.String,System.String,System.String)">
+        <member name="M:Library.Utils.BasicUtils.GetLocation(System.String,System.String,System.String,System.String)">
             <summary>
             This method returns the coordinates of a specific address using the LocationAPI.
             </summary>
@@ -1780,7 +1733,7 @@
             <param name="country">The country where is the site.</param>
             <returns>The site´s coordinates.</returns>
         </member>
-        <member name="M:Library.Utils.AreSimilar(System.String,System.String)">
+        <member name="M:Library.Utils.BasicUtils.AreSimilar(System.String,System.String)">
             <summary>
             This method returns True if both strings are equals.
             </summary>
@@ -1788,26 +1741,55 @@
             <param name="s2">Other String to compare.</param>
             <returns>Boolean.</returns>
         </member>
-        <member name="M:Library.Utils.IsValidEmail(System.String)">
+        <member name="M:Library.Utils.BasicUtils.IsValidEmail(System.String)">
             <summary>
             This method check if a email is valid.
             </summary>
             <param name="s">The email to check.</param>
             <returns>Boolean.</returns>
         </member>
-        <member name="M:Library.Utils.IsValidPhoneNumber(System.Int32)">
+        <member name="M:Library.Utils.BasicUtils.IsValidPhoneNumber(System.Int32)">
             <summary>
             This method checks if a phone number is valid.
             </summary>
             <param name="number">The phone number input.</param>
             <returns>True if the number is valid and false if it not does.</returns>
         </member>
-        <member name="M:Library.Utils.IsValidHyperTextLink(System.String)">
+        <member name="M:Library.Utils.BasicUtils.IsValidHyperTextLink(System.String)">
             <summary>
             Checks if a string is a valid hypertext link.
             </summary>
             <param name="link">The string.</param>
             <returns>Whether it's a valid link or not.</returns>
+        </member>
+        <member name="T:Library.Utils.MoneyQuantityUtils">
+            <summary>
+            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
+            We created this class because of the Polymorphism pattern, while money quantity is for
+            an amount of money, this class is created for a particular sale, so we separated it by
+            destination.
+            </summary>
+        </member>
+        <member name="M:Library.Utils.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
+            <summary>
+            Calculates the amount of money made from selling a certain amount of material at a certain price.
+            </summary>
+            <param name="amount">The amount of material.</param>
+            <param name="price">The price of the material.</param>
+            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
+        </member>
+        <member name="T:Library.Utils.OptionUtils">
+            <summary>
+            This class holds methods which are related with the <see cref="T:Library.Option`1"/> struct.
+            </summary>
+        </member>
+        <member name="M:Library.Utils.OptionUtils.FirstOrNone``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns an <see cref="T:Library.Option`1" /> containing the first value of an <see cref="T:System.Collections.Generic.IEnumerable`1" />, if there is.
+            </summary>
+            <param name="enumerable">The enumerable.</param>
+            <typeparam name="T">The type of the elements of the enumerable.</typeparam>
+            <returns></returns>
         </member>
     </members>
 </doc>

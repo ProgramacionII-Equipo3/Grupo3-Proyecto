@@ -82,7 +82,7 @@ namespace ProgramTests
             IList<MaterialSalesLine> report = SentMaterialReport.GetSentReport(sales2, 3);
             IList<MaterialSalesLine> expected = new List<MaterialSalesLine>();
 
-            Assert.AreEqual(report, expected);
+            Assert.AreEqual(expected, report);
         }
     }
 }

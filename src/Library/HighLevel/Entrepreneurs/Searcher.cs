@@ -13,13 +13,6 @@ namespace Library.HighLevel.Entrepreneurs
     public class Searcher
     {
         /// <summary>
-        /// This list is created to contain all the publication's that
-        /// are from the specified search.
-        /// </summary>
-        public IList<MaterialPublication> SearchResult = new List<MaterialPublication>();
-
-
-        /// <summary>
         /// It creates a client to be able to use the LocationAPI.
         /// </summary>
         public LocationApiClient client = new LocationApiClient();
@@ -29,52 +22,56 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="category"></param>
-        public void SearchByCategory(IList<MaterialPublication> publications, MaterialCategory category)
+        public List<MaterialPublication> SearchByCategory(List<MaterialPublication> publications, MaterialCategory category)
         {
+           List<MaterialPublication> searchResultA = new List<MaterialPublication>();
            foreach (var item in publications)
            {
                if (item.Material.Category.Name == category.Name)
                {
-                   SearchResult.Add(item);
+                   searchResultA.Add(item);
                }
            }
+           return searchResultA;
         }
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a keyword.
         /// </summary>
-
         /// <param name="publications"></param>
         /// <param name="keyword"></param>
-        public void SearchByKeyword(IList<MaterialPublication> publications, string keyword)
+        public List<MaterialPublication> SearchByKeyword(List<MaterialPublication> publications, string keyword)
         {
+           List<MaterialPublication> searchResultB = new List<MaterialPublication>();
            foreach (var item in publications)
            {
                if (item.Keywords.Contains(keyword))
                {
-                   SearchResult.Add(item);
+                   searchResultB.Add(item);
                }
            }
+           return searchResultB;
         }
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a location.
         /// </summary>
-
         /// <param name="publications"></param>
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
-        public void SearchByLocation(IList<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public List<MaterialPublication> SearchByLocation(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
         {
+           List<MaterialPublication> searchResultC = new List<MaterialPublication>();
            foreach (var item in publications)
            {
                Distance distance;
                distance = client.GetDistanceAsync(locationSpecified, item.PickupLocation).Result;
                if (distance.TravelDistance <= distanceSpecified)
                {
-                    SearchResult.Add(item);
+                   searchResultC.Add(item);
                }
            }
+           return searchResultC;
         }        
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library
+namespace Library.Utils
 {
     /// <summary>
     /// This class holds methods which are related with the <see cref="Option{T}"/> struct.

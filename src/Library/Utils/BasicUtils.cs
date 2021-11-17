@@ -1,11 +1,11 @@
 using Ucu.Poo.Locations.Client;
 
-namespace Library
+namespace Library.Utils
 {
     /// <summary>
     /// This class stores context-generic static methods.
     /// </summary>
-    public static class Utils
+    public static class BasicUtils
     {
         private static LocationApiClient locationClient = new LocationApiClient();
 
