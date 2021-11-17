@@ -52,8 +52,6 @@ namespace ProgramTests
             Material material2 = Material.CreateInstance("Palet de Plástico", Measure.Length, category2);
 
             MaterialPublication.CreateInstance(material2, amount2, price2, location2, MaterialPublicationTypeData.Normal(), keyword2);
-
-            List<MaterialPublication> expected = new List<MaterialPublication> { publication, publication2 };
         }
 
         /// <summary>
