@@ -79,11 +79,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a list of Material Sales.
         /// </summary>
-<<<<<<< HEAD
-        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
-=======
-        IList<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
->>>>>>> 2fe1ceb81ed68534cb313fb7d507e4cf0b2e5a99
+        IList<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
 
         /// <summary>
         /// Gets the list of publications, dinamically assigned to the company.
