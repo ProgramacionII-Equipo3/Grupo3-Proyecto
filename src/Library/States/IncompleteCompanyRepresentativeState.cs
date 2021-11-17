@@ -60,12 +60,12 @@ namespace Library.States
         private (IInputProcessor<Company>, string) nextStateGivenCompanyName(string name)
         {
             IInputProcessor<Company> getter;
-            if(CompanyManager.GetByName(name) is Company perfectMatch)
+            if(Singleton<CompanyManager>.Instance.GetByName(name) is Company perfectMatch)
             {
                 getter = new AssignExistingCompanyState(perfectMatch);
             } else
             {
-                List<Company> companies = CompanyManager.GetCompaniesWithNamesSimilarTo(name).ToList();
+                List<Company> companies = Singleton<CompanyManager>.Instance.GetCompaniesWithNamesSimilarTo(name).ToList();
                 if(companies.Count > 0)
                     getter = new AssignExistingCompanyInListState(companies);
                 else
