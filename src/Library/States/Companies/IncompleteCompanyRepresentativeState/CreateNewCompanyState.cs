@@ -3,7 +3,7 @@ using Library.HighLevel.Companies;
 using Library.InputHandlers;
 using Ucu.Poo.Locations.Client;
 
-namespace Library.States
+namespace Library.States.Companies
 {
     public partial class IncompleteCompanyRepresentativeState
     {
