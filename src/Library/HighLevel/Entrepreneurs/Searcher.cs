@@ -10,27 +10,27 @@ namespace Library.HighLevel.Entrepreneurs
     /// We created this class using expert, this class itself does all the possible 
     /// filter searches). It also has a High Cohesion because of the same reason.
     /// </summary>
-    public static class Searcher
+    public class Searcher
     {
         /// <summary>
         /// This list is created to contain all the publication's that
         /// are from the specified search.
         /// </summary>
         /// <returns></returns>
-        public static List<MaterialPublication> SearchResult = new List<MaterialPublication>();
+        public List<MaterialPublication> SearchResult = new List<MaterialPublication>();
 
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
         /// </summary>
         /// <returns></returns>
-        public static LocationApiClient client = new LocationApiClient();
+        public LocationApiClient client = new LocationApiClient();
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a category.
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="category"></param>
-        public static void SearchByCategory(List<MaterialPublication> publications, MaterialCategory category)
+        public void SearchByCategory(List<MaterialPublication> publications, MaterialCategory category)
         {
            foreach (var item in publications)
            {
@@ -46,7 +46,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="keyword"></param>
-        public static void SearchByKeyword(List<MaterialPublication> publications, string keyword)
+        public void SearchByKeyword(List<MaterialPublication> publications, string keyword)
         {
            foreach (var item in publications)
            {
@@ -63,7 +63,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="publications"></param>
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
-        public static void SearchByLocation(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public void SearchByLocation(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
         {
            foreach (var item in publications)
            {

@@ -21,7 +21,7 @@ namespace Library.HighLevel.Companies
         public override string Validate(UserId userId)
         {
             State newState = new IncompleteCompanyRepresentativeState();
-            SessionManager.NewUser(
+            Singleton<SessionManager>.Instance.NewUser(
                 id: userId,
                 userData: new UserData(),
                 state: newState

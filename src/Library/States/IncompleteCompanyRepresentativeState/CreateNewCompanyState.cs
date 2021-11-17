@@ -39,7 +39,7 @@ namespace Library.States
 
             protected override Result<Company, string> getResult()
             {
-                Company result = CompanyManager.CreateCompany(
+                Company result = Singleton<CompanyManager>.Instance.CreateCompany(
                     name: this.parent.name,
                     contactInfo: new Library.Core.ContactInfo
                     {
