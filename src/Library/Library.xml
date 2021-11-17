@@ -42,14 +42,14 @@
             The list of current sessions.
             </summary>
         </member>
-        <member name="M:Library.Core.Distribution.SessionManager.GetById(Library.Core.UserId)">
+        <member name="M:Library.Core.Distribution.SessionManager.GetById(System.String)">
             <summary>
             Returns the <see cref="T:Library.Core.Distribution.UserSession" /> whose id equals to the given one.
             </summary>
             <param name="id">The given id.</param>
             <returns>Its corresponding <see cref="T:Library.Core.Distribution.UserSession" />, or null if there isn't.</returns>
         </member>
-        <member name="M:Library.Core.Distribution.SessionManager.NewUser(Library.Core.UserId,Library.Core.UserData,Library.Core.State)">
+        <member name="M:Library.Core.Distribution.SessionManager.NewUser(System.String,Library.Core.UserData,Library.Core.State)">
             <summary>
             Adds a new user into the platform.
             </summary>
@@ -78,7 +78,7 @@
             The current state of the user's session.
             </summary>
         </member>
-        <member name="M:Library.Core.Distribution.UserSession.#ctor(Library.Core.UserId,Library.Core.UserData,Library.Core.State)">
+        <member name="M:Library.Core.Distribution.UserSession.#ctor(System.String,Library.Core.UserData,Library.Core.State)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.Core.Distribution.UserSession"/> class.
             </summary>
@@ -93,9 +93,9 @@
             <param name="msg">The received message text.</param>
             <returns>The response message text.</returns>
         </member>
-        <member name="M:Library.Core.Distribution.UserSession.MatchesId(Library.Core.UserId)">
+        <member name="M:Library.Core.Distribution.UserSession.MatchesId(System.String)">
             <summary>
-            Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete <see cref="T:Library.Core.UserId" />.
+            Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete user id.
             </summary>
             <param name="id">The id to compare with.</param>
             <returns>True uf the ID´s are equal and false if it not does.</returns>
@@ -116,7 +116,7 @@
             </summary>
             <param name="code">Invitation´s code.</param>
         </member>
-        <member name="M:Library.Core.Invitations.Invitation.Validate(Library.Core.UserId)">
+        <member name="M:Library.Core.Invitations.Invitation.Validate(System.String)">
             <summary>
             Validates the invitation, returning the response string for that activity.
             </summary>
@@ -145,7 +145,7 @@
             <param name="code">The invitation´s code.</param>
             <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         </member>
-        <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,Library.Core.UserId)">
+        <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,System.String)">
             <summary>
             Validates an invitation with a user id, returning the response message of the validation.
             </summary>
@@ -168,7 +168,7 @@
             The id of the user who sent the image.
             </summary>
         </member>
-        <member name="M:Library.Core.Message.#ctor(System.String,Library.Core.UserId)">
+        <member name="M:Library.Core.Message.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.Core.Message"/> struct.
             </summary>
@@ -183,10 +183,10 @@
         </member>
         <member name="M:Library.Core.Messaging.IMessageReceiver`1.GetUserId(`0)">
             <summary>
-            Converts a valid id of the platform into a <see cref="T:Library.Core.UserId" />.
+            Converts a valid id of the platform into a user id.
             </summary>
             <param name="id">The id to convert.</param>
-            <returns>The resulting <see cref="T:Library.Core.UserId" />.</returns>
+            <returns>The resulting user id.</returns>
         </member>
         <member name="M:Library.Core.Messaging.IMessageReceiver`1.ReceiveMessage(System.String,`0)">
             <summary>
@@ -333,7 +333,7 @@
             that is, if the process of registering to the platform has already finished.
             </summary>
         </member>
-        <member name="M:Library.Core.State.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+        <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
             </summary>
@@ -362,19 +362,6 @@
             <summary>
             The user's contact information.
             </summary>
-        </member>
-        <member name="T:Library.Core.UserId">
-            <summary>
-            This class acts as a unique identifier for each user in the platform.
-            Different subclasses of this class represent user ids of different messaging platforms.
-            </summary>
-        </member>
-        <member name="M:Library.Core.UserId.Equals(Library.Core.UserId)">
-            <summary>
-            Compares the equality of two <see cref="T:Library.Core.UserId" />s.
-            </summary>
-            <param name="other">The other id.</param>
-            <returns>Whether the two ids are equal or not.</returns>
         </member>
         <member name="T:Library.HighLevel.Accountability.Amount">
             <summary>
@@ -792,27 +779,32 @@
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.HasUser(Library.Core.UserId)">
+        <member name="M:Library.HighLevel.Companies.Company.HasUser(System.String)">
             <summary>
             Returns whether a user represents this company.
             </summary>
             <param name="id">The user's id.</param>
             <returns>Whether it belongs to the company.</returns>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.AddUser(Library.Core.UserId)">
+        <member name="M:Library.HighLevel.Companies.Company.AddUser(System.String)">
             <summary>
             Adds a user into the list of representants.
             </summary>
             <param name="id">The user's id.</param>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#Publications">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#publications">
             <summary>
             Gets a list of Material Publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#MaterialSales">
+        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#materialSales">
             <summary>
             Gets a list of Material Sales.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.Company.Publications">
+            <summary>
+            Gets the list of publications, dinamically assigned to the company.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
@@ -827,7 +819,7 @@
             </summary>
             <param name="code">The invitation code.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.CompanyInvitation.Validate(Library.Core.UserId)">
+        <member name="M:Library.HighLevel.Companies.CompanyInvitation.Validate(System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Companies.CompanyManager">
@@ -843,7 +835,7 @@
             Gets a public read-only list of the companies.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(Library.Core.UserId)">
+        <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompanyOf(System.String)">
             <summary>
             Gets the company a concrete user represents.
             </summary>
@@ -874,18 +866,23 @@
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
         </member>
+        <member name="P:Library.HighLevel.Companies.CompanyManager.Publications">
+            <summary>
+            The list of all publications made by all companies.
+            </summary>
+        </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
             This interface represents the responsibility of managing material publications.
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
+        <member name="P:Library.HighLevel.Companies.IPublisher.publications">
             <summary>
             Gets a private list of the publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.PublicationsReadOnly">
+        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
             <summary>
             Gets a public read-only list of the publications.
             </summary>
@@ -915,7 +912,7 @@
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.MaterialSales">
+        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
             <summary>
             Gets the list of material sales.
             </summary>
@@ -991,7 +988,7 @@
             Gets the entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{System.String})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
             </summary>
@@ -1032,33 +1029,57 @@
             This list is created to contain all the publication's that
             are from the specified search.
             </summary>
+            <returns></returns>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
             <summary>
             It creates a client to be able to use the LocationAPI.
             </summary>
+            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's by a category.
             </summary>
-            <param name="publications">The publication list to search in.</param>
-            <param name="category">The material´s category to search.</param>
+            <param name="publications"></param>
+            <param name="category"></param>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
             This method has the responsibility of searching all the publication's by a keyword.
             </summary>
-            <param name="publications">The publication list to search in.</param>
-            <param name="keyword">The material´s keywords to search.</param>
+            <param name="publications"></param>
+            <param name="keyword"></param>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
             This method has the responsibility of searching all the publication's by a location.
             </summary>
-            <param name="publications">The publication list to search in.</param>
-            <param name="locationSpecified">The material´s location to search.</param>
-            <param name="distanceSpecified">The maximum distance for the search.</param>
+            <param name="publications"></param>
+            <param name="locationSpecified"></param>
+            <param name="distanceSpecified"></param>
+        </member>
+        <member name="T:Library.HighLevel.Materials.AssignedMaterialPublication">
+            <summary>
+            This struct represents a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> which is detached from its <see cref="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.AssignedMaterialPublication.Publication">
+            <summary>
+            The publication.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company">
+            <summary>
+            The company which owns the publication.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.AssignedMaterialPublication.#ctor(Library.HighLevel.Materials.MaterialPublication,Library.HighLevel.Companies.Company)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.HighLevel.Materials.AssignedMaterialPublication" />.
+            </summary>
+            <param name="publication">The publication.</param>
+            <param name="company">The company which owns the publication.</param>
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
@@ -1191,8 +1212,7 @@
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.PickupLocation">
             <summary>
-
-            The publication's pick-up location of material.
+            Gets the publication's pick-up location of material.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Type">
@@ -1213,7 +1233,6 @@
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
             <summary>
             A public read-only list of the publications.
-
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1237,19 +1256,6 @@
             <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
-        </member>
-
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
-            <summary>
-            This method adds a publication into the list.
-            </summary>
-            <param name="publication">The publication to add</param>
-        </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
-            <summary>
-            This method search the material that is constantly generated.
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
@@ -1305,7 +1311,6 @@
             </summary>
             <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
         </member>
-
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
             This class represents a requirement to manipulate certain materials.
@@ -1568,29 +1573,6 @@
             </summary>
             <param name="blockingAction">The function which blocks the thread.</param>
         </member>
-        <member name="T:Library.Platforms.Telegram.TelegramId">
-            <summary>
-            This class represents <see cref="T:Library.Core.UserId" />s of Telegram users.
-            </summary>
-        </member>
-        <member name="F:Library.Platforms.Telegram.TelegramId.ChatId">
-            <summary>
-            The id of the user.
-            </summary>
-        </member>
-        <member name="M:Library.Platforms.Telegram.TelegramId.#ctor(System.Int64)">
-            <summary>
-            Initializes an instance of <see cref="T:Library.Platforms.Telegram.TelegramId" /> class.
-            </summary>
-            <param name="chatId">The Telegram id.</param>
-        </member>
-        <member name="M:Library.Platforms.Telegram.TelegramId.Equals(Library.Core.UserId)">
-            <summary>
-            Checks the equality two <see cref="T:Library.Core.UserId" />s.
-            </summary>
-            <param name="other">The other id.</param>
-            <returns>Whether the two ids are equal or not.</returns>
-        </member>
         <member name="T:Library.Result`2">
             <summary>
             This struct represents a value which could be a success (with a success value) or an error (with an error value).
@@ -1672,7 +1654,7 @@
             
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.NewEntrepreneurState.#ctor(Library.Core.UserId)">
+        <member name="M:Library.States.Entrepreneurs.NewEntrepreneurState.#ctor(System.String)">
             
         </member>
         <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.IsComplete">
@@ -1683,7 +1665,7 @@
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
             </summary>
         </member>
-        <member name="M:Library.States.IncompleteCompanyRepresentativeState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
         <member name="P:Library.States.IncompleteCompanyRepresentativeState.IsComplete">
@@ -1697,7 +1679,7 @@
             This class represents a mock user state, in which the bot returns every message it receives.
             </summary>
         </member>
-        <member name="M:Library.States.InitialMenuState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.InitialMenuState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
         <member name="P:Library.States.InitialMenuState.IsComplete">
@@ -1714,7 +1696,7 @@
         <member name="M:Library.States.InputHandlerState.#ctor(Library.Core.Processing.IInputHandler,System.Func{Library.Core.State},System.Func{Library.Core.State})">
             
         </member>
-        <member name="M:Library.States.InputHandlerState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
@@ -1731,13 +1713,19 @@
             </summary>
             <returns>A string.</returns>
         </member>
+        <member name="M:Library.States.MultipleOptionState.GetEndString">
+            <summary>
+            Gets the string to send after receiving a valid option.
+            </summary>
+            <returns>A string, or null if there's no string to send.</returns>
+        </member>
         <member name="M:Library.States.MultipleOptionState.#ctor(System.ValueTuple{System.String,System.Func{Library.Core.State}}[])">
             <summary>
             Creates a <see cref="T:Library.States.MultipleOptionState" /> with a given group of commands.
             </summary>
             <param name="commands">The group of commands.</param>
         </member>
-        <member name="M:Library.States.MultipleOptionState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Utils">

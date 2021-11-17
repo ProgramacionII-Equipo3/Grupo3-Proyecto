@@ -79,7 +79,6 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a list of Material Sales.
         /// </summary>
-
         List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
 
         /// <summary>
