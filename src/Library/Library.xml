@@ -874,8 +874,8 @@
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
             <returns>The created instance, or null if there's already a company with the same name.</returns>
-            <param name="name">The comany´s name.</param>
-            <param name="contactInfo">The comany´s contact info.</param>
+            <param name="name">The company´s name.</param>
+            <param name="contactInfo">The company´s contact info.</param>
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
         </member>
