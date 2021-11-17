@@ -39,7 +39,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The company's representants in the platform.
         /// </summary>
-        private List<string> representants = new List<string>();
+        private IList<string> representants = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
@@ -79,16 +79,19 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a list of Material Sales.
         /// </summary>
+<<<<<<< HEAD
         List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+=======
+        IList<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
+>>>>>>> 2fe1ceb81ed68534cb313fb7d507e4cf0b2e5a99
 
         /// <summary>
         /// Gets the list of publications, dinamically assigned to the company.
         /// </summary>
-        public List<AssignedMaterialPublication> Publications =>
+        public IList<AssignedMaterialPublication> Publications =>
             (this as IPublisher).Publications.Select(pub => new AssignedMaterialPublication(
                 company: this,
                 publication: pub
             )).ToList();
-
     }
 }

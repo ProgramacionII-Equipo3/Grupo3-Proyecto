@@ -642,7 +642,7 @@
             </summary>
             <param name="lines">The report's list of material sales.</param>
         </member>
-        <member name="M:Library.HighLevel.Accountability.SentMaterialReport.GetSentReport(System.Collections.Generic.List{Library.HighLevel.Accountability.MaterialSalesLine},System.Int32)">
+        <member name="M:Library.HighLevel.Accountability.SentMaterialReport.GetSentReport(System.Collections.Generic.IList{Library.HighLevel.Accountability.MaterialSalesLine},System.Int32)">
             <summary>
             This method returns a list of materials that were sold in a certain period of time.
             </summary>
@@ -830,6 +830,13 @@
             of companies and getting the companies and not Company by itself.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Companies.CompanyManager.companies">
+            <summary>
+            The list of companies.
+            The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Companies.CompanyManager.Companies" />.
+            </summary>
+        </member>
         <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
             <summary>
             Gets a public read-only list of the companies.
@@ -861,8 +868,8 @@
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
             <returns>The created instance, or null if there's already a company with the same name.</returns>
-            <param name="name">The comany´s name.</param>
-            <param name="contactInfo">The comany´s contact info.</param>
+            <param name="name">The company´s name.</param>
+            <param name="contactInfo">The company´s contact info.</param>
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
         </member>
@@ -880,6 +887,8 @@
         <member name="P:Library.HighLevel.Companies.IPublisher.publications">
             <summary>
             Gets a private list of the publications.
+            The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Companies.IPublisher.Publications" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
@@ -887,7 +896,7 @@
             Gets a public read-only list of the publications.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String})">
             <summary>
             Publishes a material.
             </summary>
@@ -924,17 +933,18 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" />.</returns>
         </member>
-        <member name="T:Library.HighLevel.Companies.IReceivedMaterialCreator">
+        <member name="T:Library.HighLevel.Companies.IReceivedMaterialReportCreator">
             <summary>
-            This interface was created because of DIP, that way the classes depend of an abstraction.
+            This interface represents a class which can create <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />s.
+            It was created because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.IReceivedMaterialCreator.BoughtMaterials">
+        <member name="P:Library.HighLevel.Companies.IReceivedMaterialReportCreator.BoughtMaterials">
             <summary>
             Gets the collection of bought materials.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.IReceivedMaterialCreator.GetMaterialReport(System.DateTime)">
+        <member name="M:Library.HighLevel.Companies.IReceivedMaterialReportCreator.GetMaterialReport(System.DateTime)">
             <summary>
             Gets a reports of the purchase made by the entrepreneur.
             </summary>
@@ -973,7 +983,12 @@
             Gets the entrepreneur's heading.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Specialization">
+        <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Habilitations">
+            <summary>
+            Gets the entrepreneur's habilitation needed to buy certain materials.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Specializations">
             <summary>
             Gets the entrepreneur's specialization.
             </summary>
@@ -988,7 +1003,11 @@
             Gets the entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
+<<<<<<< HEAD
         <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.List{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.List{System.String})">
+=======
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
+>>>>>>> 2fe1ceb81ed68534cb313fb7d507e4cf0b2e5a99
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
             </summary>
@@ -1003,6 +1022,13 @@
         <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
             <summary>
             This class represents the highest level of encapsulation in handling entrepreneurs.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Entrepreneurs.EntrepreneurManager.entrepeneurs">
+            <summary>
+            The list of entrepreneurs.
+            The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs">
@@ -1037,21 +1063,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's by a category.
             </summary>
             <param name="publications"></param>
             <param name="category"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
             This method has the responsibility of searching all the publication's by a keyword.
             </summary>
             <param name="publications"></param>
             <param name="keyword"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
             This method has the responsibility of searching all the publication's by a location.
             </summary>
@@ -1170,9 +1196,16 @@
             The list of existent categories.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Materials.MaterialCategory.Materials">
+        <member name="F:Library.HighLevel.Materials.MaterialCategory.materials">
             <summary>
             The list of materials which belong to this category.
+            The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Materials.MaterialCategory.Materials" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.MaterialCategory.Materials">
+            <summary>
+            A public, read-only list of materials which belong to this category.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialCategory.#ctor(System.String)">
@@ -1217,11 +1250,12 @@
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Type">
             <summary>
-            The type of the material publication.
+            Gets the type of the material publication.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
+<<<<<<< HEAD
             List of the keywords of the publication material.
             </summary>
         </member>
@@ -1233,6 +1267,9 @@
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
             <summary>
             A public read-only list of the publications.
+=======
+            The list of keywords of the publication material.
+>>>>>>> 2fe1ceb81ed68534cb313fb7d507e4cf0b2e5a99
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1245,7 +1282,7 @@
             <param name="price">The price of the material.</param>
             <returns>Whether the data is valid with itself.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, validating the data beforehand.
             </summary>

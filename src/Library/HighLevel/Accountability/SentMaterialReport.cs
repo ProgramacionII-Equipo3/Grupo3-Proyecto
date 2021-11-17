@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -32,14 +33,14 @@ namespace Library.HighLevel.Accountability
         /// <param name="materialSales">The list of materials sold.</param>
         /// <param name="time">The period of time to search.</param>
         /// <returns>A report of materials sended in a period of time.</returns>
-        public static List<MaterialSalesLine> GetSentReport(List<MaterialSalesLine> materialSales, int time)
+        public static IList<MaterialSalesLine> GetSentReport(IList<MaterialSalesLine> materialSales, int time)
         {
 
-            List<MaterialSalesLine> result = materialSales.FindAll(
+            IList<MaterialSalesLine> result = materialSales.Where(
                 delegate(MaterialSalesLine materialSale)
                 {
                     return materialSale.DateTime.Month > DateTime.Now.Month - time;
-                });
+                }).ToList();
             return result;
         }
     }

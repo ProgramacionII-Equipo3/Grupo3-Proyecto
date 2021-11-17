@@ -37,8 +37,8 @@ namespace Library.States.Entrepreneurs
             private int age;
             private Location location;
             private string heading;
-            private List<Habilitation> habilitations;
-            private List<string> specializations;
+            private IList<Habilitation> habilitations;
+            private IList<string> specializations;
 
             public NewEntrepreneurForm(string userId)
             {
