@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
 
@@ -33,8 +34,7 @@ namespace Library.HighLevel.Materials
         public Location PickupLocation { get; private set; }
 
         /// <summary>
-
-        /// The type of the material publication.
+        /// Gets the type of the material publication.
         /// </summary>
         public MaterialPublicationTypeData Type { get; private set; }
 
@@ -42,21 +42,6 @@ namespace Library.HighLevel.Materials
         /// List of the keywords of the publication material.
         /// </summary>
         public List<string> Keywords = new List<string>();
-
-
-
-        /// <summary>
-        /// List to save all the publication's.
-        /// </summary>
-        private static List<MaterialPublication> publications = new List<MaterialPublication>();
-    
-        /// <summary>
-        /// A public read-only list of the publications.
-        /// </summary>
-        public static ReadOnlyCollection<MaterialPublication> Publications => publications.AsReadOnly();
-
-
-
 
         private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords)
         {
@@ -67,8 +52,6 @@ namespace Library.HighLevel.Materials
             this.Type = type;
             this.Keywords = keywords;
         }
-
-
 
         /// <summary>
         /// Checks whether the given fields for building a <see cref="MaterialPublication" /> are valid with each other.

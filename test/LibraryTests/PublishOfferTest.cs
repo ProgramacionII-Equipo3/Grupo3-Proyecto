@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Library;
 using Library.Core;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Companies;
@@ -35,9 +36,12 @@ namespace ProgramTests
             Location location = provider.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
             List<string> keyword = new List<string> { "Cámara" };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
-
-            MaterialPublication publication = MaterialPublication.CreateInstance(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
-            MaterialPublication.AddPublication(publication);
+            ContactInfo contact = new ContactInfo();
+            contact.Email = "evertec@gmail.com";
+            contact.PhoneNumber = 095456258;
+            Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location);
+            (empresa as IPublisher).PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
+            
 
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
@@ -47,11 +51,7 @@ namespace ProgramTests
             List<string> keyword2 = new List<string> { "Palet", "Plástico" };
             Material material2 = Material.CreateInstance("Palet de Plástico", Measure.Length, category2);
 
-            MaterialPublication publication2 = MaterialPublication.CreateInstance(material2, amount2, price2, location2, MaterialPublicationTypeData.Normal(), keyword2);
-            MaterialPublication.AddPublication(publication2);
-
-
-            List<MaterialPublication> expected = new List<MaterialPublication> { publication, publication2 };
+            MaterialPublication.CreateInstance(material2, amount2, price2, location2, MaterialPublicationTypeData.Normal(), keyword2);
         }
 
         /// <summary>
