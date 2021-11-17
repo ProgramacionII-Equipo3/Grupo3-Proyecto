@@ -15,7 +15,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a private list of the publications.
         /// </summary>
-        protected List<MaterialPublication> Publications { get; }
+        public List<MaterialPublication> Publications { get; }
 
         /// <summary>
         /// Gets a public read-only list of the publications.

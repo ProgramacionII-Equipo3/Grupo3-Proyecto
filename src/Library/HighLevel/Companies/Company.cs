@@ -39,7 +39,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The company's representants in the platform.
         /// </summary>
-        private List<UserId> representants = new List<UserId>();
+        private List<UserId> Representants = new List<UserId>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
@@ -62,14 +62,14 @@ namespace Library.HighLevel.Companies
         /// <param name="id">The user's id.</param>
         /// <returns>Whether it belongs to the company.</returns>
         public bool HasUser(UserId id) =>
-            this.representants.Any(repId => repId.Equals(id));
+            this.Representants.Any(repId => repId.Equals(id));
 
         /// <summary>
         /// Adds a user into the list of representants.
         /// </summary>
         /// <param name="id">The user's id.</param>
         public void AddUser(UserId id) =>
-            this.representants.Add(id);
+            this.Representants.Add(id);
 
         /// <summary>
         /// Gets a list of Material Publications.
@@ -80,7 +80,7 @@ namespace Library.HighLevel.Companies
         /// Gets a list of Material Sales.
         /// </summary>
 
-        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+        List<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
 
         /// <summary>
         /// Gets the list of publications, dinamically assigned to the company.
@@ -90,6 +90,5 @@ namespace Library.HighLevel.Companies
                 company: this,
                 publication: pub
             )).ToList();
-
     }
 }
