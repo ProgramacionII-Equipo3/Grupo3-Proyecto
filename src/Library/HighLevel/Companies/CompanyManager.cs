@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
+using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
@@ -64,5 +65,11 @@ namespace Library.HighLevel.Companies
             companies.Add(result);
             return result;
         }
+
+        /// <summary>
+        /// The list of all publications made by all companies.
+        /// </summary>
+        public List<AssignedMaterialPublication> Publications =>
+            this.Companies.SelectMany(company => company.Publications).ToList();
     }
 }
