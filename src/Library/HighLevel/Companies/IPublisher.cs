@@ -17,12 +17,12 @@ namespace Library.HighLevel.Companies
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
         /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="IPublisher.Publications" />.
         /// </summary>
-        public List<MaterialPublication> Publications { get; }
+        protected List<MaterialPublication> publications { get; }
 
         /// <summary>
         /// Gets a public read-only list of the publications.
         /// </summary>
-        public ReadOnlyCollection<MaterialPublication> PublicationsReadOnly => this.Publications.AsReadOnly();
+        public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
 
         /// <summary>
         /// Publishes a material.
@@ -38,7 +38,7 @@ namespace Library.HighLevel.Companies
         {
             if (MaterialPublication.CreateInstance(material, amount, price, location, type, keywords) is MaterialPublication publication)
             {
-                this.Publications.Add(publication);
+                this.publications.Add(publication);
                 return true;
             }
 
@@ -57,7 +57,7 @@ namespace Library.HighLevel.Companies
                 return false;
             }
 
-            this.Publications.RemoveAt(index);
+            this.publications.RemoveAt(index);
             return true;
         }
     }

@@ -33,7 +33,7 @@ namespace Library.States
         }
 
         /// <inheritdoc />
-        public override (State, string) ProcessMessage(UserId id, UserData data, string msg) =>
+        public override (State, string) ProcessMessage(string id, UserData data, string msg) =>
             this.commands.Where((command) => command.Item1 == msg.Trim()).FirstOrNone().Map(
                 command =>
                 {

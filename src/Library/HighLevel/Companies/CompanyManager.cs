@@ -33,7 +33,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="userId">The user's id.</param>
         /// <returns>A company, or null if the user doesn't represent a company.</returns>
-        public Company GetCompanyOf(UserId userId) =>
+        public Company GetCompanyOf(string userId) =>
             companies.Where(company => company.HasUser(userId)).FirstOrDefault();
 
         /// <summary>

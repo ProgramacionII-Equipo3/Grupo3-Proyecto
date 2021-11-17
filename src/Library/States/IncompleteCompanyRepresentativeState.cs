@@ -15,7 +15,7 @@ namespace Library.States
         private string name;
 
         /// <inheritdoc />
-        public override (State, string) ProcessMessage(UserId id, UserData data, string msg)
+        public override (State, string) ProcessMessage(string id, UserData data, string msg)
         {
             if(this.companyGetter == null)
             {

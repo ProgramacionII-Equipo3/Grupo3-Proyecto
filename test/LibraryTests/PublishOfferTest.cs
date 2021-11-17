@@ -41,8 +41,6 @@ namespace ProgramTests
             contact.PhoneNumber = 095456258;
             Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location);
             (empresa as IPublisher).PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
-            
-
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
             Amount amount2 = new Amount(5, unit);
@@ -50,7 +48,6 @@ namespace ProgramTests
             Location location2 = provider.GetLocationAsync("Camino Maldonado km 11").Result;
             IList<string> keyword2 = new List<string> { "Palet", "Plástico" };
             Material material2 = Material.CreateInstance("Palet de Plástico", Measure.Length, category2);
-
         }
 
         /// <summary>

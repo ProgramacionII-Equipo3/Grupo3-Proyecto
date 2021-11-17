@@ -42,7 +42,7 @@ namespace ProgramTests
         [Test]
         public void HasUserTest()
         {
-            TelegramId id = new TelegramId(2066298868);
+            string id = "Telegram_2066298868";
             ContactInfo contactInfo;
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
@@ -61,7 +61,7 @@ namespace ProgramTests
         [Test]
         public void GetCompanyOfTest()
         {
-            TelegramId id = new TelegramId(2022597748);
+            string id = "Telegram_2022597748";
             ContactInfo contactInfo;
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
@@ -79,7 +79,7 @@ namespace ProgramTests
         [Test]
         public void GetByNameTest()
         {
-            TelegramId id = new TelegramId(2015598868);
+            string id = "Telegram_2015598868";
             ContactInfo contactInfo;
             contactInfo.Email = "Woodcompany@gmail.com";
             contactInfo.PhoneNumber = 094567417;

@@ -13,14 +13,14 @@ namespace Library.Core
         /// <summary>
         /// The id of the user who sent the image.
         /// </summary>
-        public readonly UserId Id;
+        public readonly string Id;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Message"/> struct.
         /// </summary>
         /// <param name="text">The message's text.</param>
         /// <param name="id">The message's id.</param>
-        public Message(string text, UserId id)
+        public Message(string text, string id)
         {
             this.Text = text;
             this.Id = id;

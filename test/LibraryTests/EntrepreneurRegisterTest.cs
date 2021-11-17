@@ -14,7 +14,7 @@ namespace ProgramTests
     /// </summary>
     public class EntrepreneurRegisterTest
     {
-        private TelegramId juanId;
+        private string juanId;
         private Message nameMessage;
         private Message ageMessage;
         private LocationApiClient provider;
@@ -29,7 +29,7 @@ namespace ProgramTests
         [SetUp]
         public void Setup()
         {
-            this.juanId = new TelegramId(2567104974);
+            this.juanId = "Telegram_2567104974";
             this.nameMessage = new Message("Juan", this.juanId);
             this.ageMessage = new Message("23", this.juanId);
             this.headingMessage = new Message("carpintero", this.juanId);
@@ -67,7 +67,7 @@ namespace ProgramTests
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
-            UserId idExpected = this.nameMessage.Id;
+            string idExpected = this.nameMessage.Id;
 
             int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
             Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);

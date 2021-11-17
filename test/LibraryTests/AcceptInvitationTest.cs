@@ -31,7 +31,7 @@ namespace ProgramTests
         public void AcceptInvitation()
         {
             Administer.CreateCompanyInvitation();
-            TelegramId id = new TelegramId(2066298868);
+            string id = "Telegram_2066298868";
 
             // Message with the code.
             Message message = new Message("1234567", id);
@@ -62,7 +62,7 @@ namespace ProgramTests
         [Test]
         public void NotAcceptInvitation()
         {
-            TelegramId id = new TelegramId(2066298868);
+            string id = "Telegram_2066298868";
             Message message = new Message(string.Empty, id);
             Habilitation habilitation = new Habilitation("Link1", "description1");
             Habilitation habilitation2 = new Habilitation("Link2", "description2");

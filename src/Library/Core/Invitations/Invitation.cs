@@ -24,6 +24,6 @@ namespace Library.Core.Invitations
         /// </summary>
         /// <param name="userId">The id of the user who validated the invitation.</param>
         /// <returns>The response string.</returns>
-        public abstract string Validate(UserId userId);
+        public abstract string Validate(string userId);
     }
 }

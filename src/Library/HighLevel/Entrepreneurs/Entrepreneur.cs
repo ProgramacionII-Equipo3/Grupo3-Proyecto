@@ -15,7 +15,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets or sets the entrepreneur's id.
         /// </summary>
-        public UserId Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the entrepeneur's name.
@@ -50,7 +50,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public static IList<UserId> EntrepeneurList = new List<UserId>();
+        public static IList<string> EntrepeneurList = new List<string>();
 
         /// <summary>
         /// Gets the entrepreneur's habilitation needed to buy certain materials.
@@ -67,7 +67,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="heading">Entrepreneur´s heading.</param>
         /// <param name="habilitations">Entrepreneur´s habilitation.</param>
         /// <param name="specializations">Entrepreneur´s specializations.</param>
-        public Entrepreneur(UserId id, string name, string age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
+        public Entrepreneur(string id, string name, string age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
         {
             this.Id = id;
             this.Name = name;
