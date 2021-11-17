@@ -13,7 +13,7 @@ namespace Library.HighLevel.Companies
     public interface IPublisher
     {
         /// <summary>
-        /// A private list of the publications.
+        /// Gets a private list of the publications.
         /// </summary>
         protected List<MaterialPublication> Publications { get; }
 

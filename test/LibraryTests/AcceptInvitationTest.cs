@@ -62,20 +62,19 @@ namespace ProgramTests
         public void NotAcceptInvitation()
         {
             TelegramId id = new TelegramId(2066298868);
-            Message message = new Message("", id);
+            Message message = new Message(string.Empty, id);
             Habilitation habilitation = new Habilitation("Link1", "description1");
             Habilitation habilitation2 = new Habilitation("Link2", "description2");
             List<Habilitation> habilitations = new List<Habilitation> { habilitation, habilitation2 };
             string specialization = "specialization1";
             string specialization2 = "specialization2";
-            List<string> specializations = new List<string> {specialization, specialization2};
+            List<string> specializations = new List<string> { specialization, specialization2 };
             LocationApiClient provider = new LocationApiClient();
             Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
             EntrepreneurManager.NewEntrepreneur(entrepreneur);
             bool expected = EntrepreneurManager.Entrepreneurs.Contains(entrepreneur);
             Assert.That(expected, Is.True);
-
         }
     }
 }

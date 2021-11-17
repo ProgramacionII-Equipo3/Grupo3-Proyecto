@@ -10,10 +10,10 @@ namespace Library.HighLevel.Entrepreneurs
     /// We used the principle Creator to create this class, for
     /// example, the list of entrepreneur is created here.
     /// </summary>
-    public class Entrepreneur 
+    public class Entrepreneur
     {
         /// <summary>
-        /// Gets the entrepreneur's id.
+        /// Gets or sets the entrepreneur's id.
         /// </summary>
         public UserId Id { get; set; }
 
@@ -38,11 +38,6 @@ namespace Library.HighLevel.Entrepreneurs
         public string Heading { get; private set; }
 
         /// <summary>
-        /// Gets the entrepreneur's habilitation needed to buy certain materials.
-        /// </summary>
-        public  List<Habilitation> Habilitation = new List<Habilitation>();
-
-        /// <summary>
         /// Gets the entrepreneur's specialization.
         /// </summary>
         public List<string> Specialization { get; private set; }
@@ -51,6 +46,11 @@ namespace Library.HighLevel.Entrepreneurs
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
         public static List<UserId> EntrepeneurList = new List<UserId>();
+
+        /// <summary>
+        /// Gets the entrepreneur's habilitation needed to buy certain materials.
+        /// </summary>
+        public List<Habilitation> Habilitation = new List<Habilitation>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Entrepreneur"/> class.
@@ -67,7 +67,7 @@ namespace Library.HighLevel.Entrepreneurs
             this.Id = id;
             this.Name = name;
             this.Age = age;
-            this.Location = Location;
+            this.Location = location;
             this.Heading = heading;
             this.Habilitation = habilitations;
             this.Specialization = specializations;

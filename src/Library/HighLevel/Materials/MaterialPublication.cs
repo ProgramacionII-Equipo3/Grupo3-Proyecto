@@ -12,22 +12,22 @@ namespace Library.HighLevel.Materials
     public class MaterialPublication
     {
         /// <summary>
-        /// The publication's material.
+        /// Gets the publication's material.
         /// </summary>
         public Material Material { get; private set; }
 
         /// <summary>
-        /// The publication's amount of material.
+        /// Gets the publication's amount of material.
         /// </summary>
         public Amount Amount { get; private set; }
 
         /// <summary>
-        /// The publication's price of the material.
+        /// Gets the publication's price of the material.
         /// </summary>
         public Price Price { get; private set; }
 
         /// <summary>
-        /// The publication's pick-up location of material.
+        /// Gets the publication's pick-up location of material.
         /// </summary>
         public Location PickupLocation { get; private set; }
 

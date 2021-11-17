@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -32,16 +31,16 @@ namespace Library.HighLevel.Materials
         public readonly ReadOnlyCollection<Material> Materials;
 
         /// <summary>
-        /// Creates and instance of MaterialCategory.
+        /// Initializes an instance of <see cref="MaterialCategory" /> class.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">The material´s category name.</param>
         public MaterialCategory(string name)
         {
             this.Name = name;
             this.Materials = materials.AsReadOnly();
         }
 
-        internal void addMaterial(Material material)
+        internal void AddMaterial(Material material)
         {
             this.materials.Add(material);
         }

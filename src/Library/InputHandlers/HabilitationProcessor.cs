@@ -1,6 +1,5 @@
 using System;
 using Library.Core.Processing;
-using Library.InputHandlers.Abstractions;
 using Library.HighLevel.Materials;
 
 namespace Library.InputHandlers
@@ -13,8 +12,6 @@ namespace Library.InputHandlers
         private string docLink;
         private string description;
 
-
-        ///
         public HabilitationProcessor(Func<string> initialResponseGetter)
         {
             this.inputHandlers = new IInputHandler[]
@@ -30,7 +27,6 @@ namespace Library.InputHandlers
             };
         }
 
-        ///
         protected override Result<Habilitation, string> getResult() =>
             Result<Habilitation, string>.Ok(new Habilitation(docLink, description));
     }
