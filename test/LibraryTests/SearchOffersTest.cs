@@ -71,7 +71,7 @@ namespace ProgramTests
             expected1.Add(this.publication1);
             expected1.Add(this.publication2);
 
-            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected1);
+            Assert.AreEqual(expected1, Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch));
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace ProgramTests
 
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected2);
-
+            Assert.AreEqual(expected2, Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch));
+        }
         /// <summary>
         /// This test checks that an entrepreneur is able to
         /// search material publication's with a keyword.
@@ -102,7 +102,7 @@ namespace ProgramTests
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(this.publication2);
 
-            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "cubrebocas"), expected3);
+            Assert.AreEqual(expected3, Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "cubrebocas"));
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace ProgramTests
 
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "sanitario"), expected4);
+            Assert.AreEqual(expected4, Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "sanitario"));
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace ProgramTests
             List<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(this.publication2);
 
-            Assert.AreEqual( Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected5);
+            Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified));
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace ProgramTests
 
             List<MaterialPublication> expected6 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected6);
+            Assert.AreEqual(expected6, Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified));
         }
     }
 }

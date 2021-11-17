@@ -38,7 +38,7 @@ namespace ProgramTests
             var list = new List<BoughtMaterialLine>();
             list.Add(materialbought1);
             BoughtMaterialLine expected = list[0];
-            Assert.AreEqual(materialbought1, expected);
+            Assert.AreEqual(expected, materialbought1);
 
             MaterialCategory category2 = new MaterialCategory("Plásticos");
             Unit unit2 = Unit.GetByAbbr("g");
@@ -52,7 +52,7 @@ namespace ProgramTests
             BoughtMaterialLine materialbought2 = new BoughtMaterialLine(boughtMaterial2, date2, price2, amount2);
             list.Add(materialbought2);
             BoughtMaterialLine expected2 = list[1];
-            Assert.AreEqual(materialbought2, expected2);
+            Assert.AreEqual(expected2, materialbought2);
         }
     }
 }

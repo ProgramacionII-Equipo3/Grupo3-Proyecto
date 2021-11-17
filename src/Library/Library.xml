@@ -572,25 +572,6 @@
             <param name="quantity">The numeric value.</param>
             <param name="currency">The currency.</param>
         </member>
-<<<<<<< HEAD
-=======
-        <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
-            <summary>
-            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
-            We created this class because of the Polymorphism pattern, while money quantity is for
-            an amount of money, this class is created for a particular sale, so we separated it by
-            destination.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
-            <summary>
-            Calculates the amount of money made from selling a certain amount of material at a certain price.
-            </summary>
-            <param name="amount">The amount of material.</param>
-            <param name="price">The price of the material.</param>
-            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
-        </member>
->>>>>>> master
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
@@ -818,6 +799,11 @@
             Gets a list of Material Sales.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Companies.Company.Publications">
+            <summary>
+            Gets the list of publications, dinamically assigned to the company.
+            </summary>
+        </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
             Represents an invitation to the platform for a company representative.
@@ -853,13 +839,6 @@
             <param name="userId">The user's id.</param>
             <returns>A company, or null if the user doesn't represent a company.</returns>
         </member>
-        <member name="M:Library.HighLevel.Companies.CompanyManager.GetCompaniesWithNamesSimilarTo(System.String)">
-            <summary>
-            Gets an enumerable of companies whose names are similar to a given one.
-            </summary>
-            <param name="name">The company name to compare.</param>
-            <returns>A list of companies.</returns>
-        </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.GetByName(System.String)">
             <summary>
             Gets the <see cref="T:Library.HighLevel.Companies.Company" /> with a concrete name.
@@ -876,6 +855,11 @@
             <param name="contactInfo">The comany´s contact info.</param>
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
+        </member>
+        <member name="P:Library.HighLevel.Companies.CompanyManager.Publications">
+            <summary>
+            The list of all publications made by all companies.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
@@ -1030,41 +1014,55 @@
             filter searches). It also has a High Cohesion because of the same reason.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
-        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.SearchResult">
-            <summary>
-            This list is created to contain all the publication's that
-            are from the specified search.
-            </summary>
-        </member>
->>>>>>> master
         <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
             <summary>
             It creates a client to be able to use the LocationAPI.
             </summary>
+            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's by a category.
             </summary>
-            <param name="publications">The publication list to search in.</param>
-            <param name="category">The material´s category to search.</param>
+            <param name="publications"></param>
+            <param name="category"></param>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.String)">
             <summary>
             This method has the responsibility of searching all the publication's by a keyword.
             </summary>
-            <param name="publications">The publication list to search in.</param>
-            <param name="keyword">The material´s keywords to search.</param>
+            <param name="publications"></param>
+            <param name="keyword"></param>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
             This method has the responsibility of searching all the publication's by a location.
             </summary>
-            <param name="publications">The publication list to search in.</param>
-            <param name="locationSpecified">The material´s location to search.</param>
-            <param name="distanceSpecified">The maximum distance for the search.</param>
+            <param name="publications"></param>
+            <param name="locationSpecified"></param>
+            <param name="distanceSpecified"></param>
+        </member>
+        <member name="T:Library.HighLevel.Materials.AssignedMaterialPublication">
+            <summary>
+            This struct represents a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> which is detached from its <see cref="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.AssignedMaterialPublication.Publication">
+            <summary>
+            The publication.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company">
+            <summary>
+            The company which owns the publication.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.AssignedMaterialPublication.#ctor(Library.HighLevel.Materials.MaterialPublication,Library.HighLevel.Companies.Company)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.HighLevel.Materials.AssignedMaterialPublication" />.
+            </summary>
+            <param name="publication">The publication.</param>
+            <param name="company">The company which owns the publication.</param>
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
@@ -1197,15 +1195,10 @@
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.PickupLocation">
             <summary>
-
-            The publication's pick-up location of material.
+            Gets the publication's pick-up location of material.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Materials.MaterialPublication.Type">
-            <summary>
-            The type of the material publication.
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.MaterialPublication.Type" -->
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
             List of the keywords of the publication material.
@@ -1219,10 +1212,6 @@
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
             <summary>
             A public read-only list of the publications.
-<<<<<<< HEAD
-=======
-
->>>>>>> master
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1246,19 +1235,6 @@
             <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
-        </member>
-
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
-            <summary>
-            This method adds a publication into the list.
-            </summary>
-            <param name="publication">The publication to add</param>
-        </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
-            <summary>
-            This method search the material that is constantly generated.
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
@@ -1314,10 +1290,6 @@
             </summary>
             <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
         </member>
-<<<<<<< HEAD
-=======
-
->>>>>>> master
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
             This class represents a requirement to manipulate certain materials.
@@ -1379,6 +1351,9 @@
             <summary>
             Represents a processor which parses an email from input.
             </summary>
+        </member>
+        <member name="M:Library.InputHandlers.EmailProcessor.#ctor(System.Func{System.String})">
+            
         </member>
         <member name="T:Library.InputHandlers.HabilitationProcessor">
             <summary>
@@ -1730,6 +1705,12 @@
             </summary>
             <returns>A string.</returns>
         </member>
+        <member name="M:Library.States.MultipleOptionState.GetEndString">
+            <summary>
+            Gets the string to send after receiving a valid option.
+            </summary>
+            <returns>A string, or null if there's no string to send.</returns>
+        </member>
         <member name="M:Library.States.MultipleOptionState.#ctor(System.ValueTuple{System.String,System.Func{Library.Core.State}}[])">
             <summary>
             Creates a <see cref="T:Library.States.MultipleOptionState" /> with a given group of commands.
@@ -1787,7 +1768,7 @@
             <summary>
             This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
             We created this class because of the Polymorphism pattern, while money quantity is for
-            an amount of money, this class is created for a particular sale, so we separated it by 
+            an amount of money, this class is created for a particular sale, so we separated it by
             destination.
             </summary>
         </member>
