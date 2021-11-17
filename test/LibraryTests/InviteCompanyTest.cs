@@ -1,3 +1,4 @@
+using Library;
 using Library.Core.Invitations;
 using Library.HighLevel.Administers;
 using NUnit.Framework;
@@ -27,7 +28,7 @@ namespace ProgramTests
         public void InviteCompany()
         {
             Administer.CreateCompanyInvitation();
-            int invitationsLength = InvitationManager.InvitationCount;
+            int invitationsLength = Singleton<InvitationManager>.Instance.InvitationCount;
             Assert.AreEqual(2, invitationsLength);
         }
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Library;
 using Library.Core;
 using Library.HighLevel.Administers;
 using Library.HighLevel.Companies;
@@ -42,11 +43,11 @@ namespace ProgramTests
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
             Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
-            Company company = CompanyManager.CreateCompany("Company.SA", contactInfo, "Arroz", location);
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location);
             company.AddUser(message.Id);
 
             bool expected = company.HasUser(message.Id);
-            Company expectedCompany = CompanyManager.GetByName("Company.SA");
+            Company expectedCompany = Singleton<CompanyManager>.Instance.GetByName("Company.SA");
 
             // If the message with the code is equal with an invitation sended, the user has to
             // be added in the representants list of the company.
@@ -72,8 +73,8 @@ namespace ProgramTests
             LocationApiClient provider = new LocationApiClient();
             Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
-            EntrepreneurManager.NewEntrepreneur(entrepreneur);
-            bool expected = EntrepreneurManager.Entrepreneurs.Contains(entrepreneur);
+            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
+            bool expected = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.Contains(entrepreneur);
             Assert.That(expected, Is.True);
         }
     }
