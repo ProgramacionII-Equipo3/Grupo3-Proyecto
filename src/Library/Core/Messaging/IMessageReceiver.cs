@@ -7,11 +7,11 @@ namespace Library.Core.Messaging
     public interface IMessageReceiver<TId>
     {
         /// <summary>
-        /// Converts a valid id of the platform into a <see cref="UserId" />.
+        /// Converts a valid id of the platform into a user id.
         /// </summary>
         /// <param name="id">The id to convert.</param>
-        /// <returns>The resulting <see cref="UserId" />.</returns>
-        public UserId GetUserId(TId id);
+        /// <returns>The resulting user id.</returns>
+        public string GetUserId(TId id);
 
         /// <summary>
         /// Handles the event of receiving a message.

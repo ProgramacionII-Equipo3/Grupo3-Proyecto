@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
 
@@ -33,7 +34,6 @@ namespace Library.HighLevel.Materials
         public Location PickupLocation { get; private set; }
 
         /// <summary>
-
         /// The type of the material publication.
         /// </summary>
         public MaterialPublicationTypeData Type { get; private set; }

@@ -12,7 +12,7 @@ namespace Library.Core.Messaging
         public abstract void SendMessage(string msg, TId id);
 
         /// <inheritdoc />
-        public abstract UserId GetUserId(TId id);
+        public abstract string GetUserId(TId id);
 
         /// <summary>
         /// Handles the event of receiving a message, sending a response.

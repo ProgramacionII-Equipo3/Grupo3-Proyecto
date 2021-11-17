@@ -12,7 +12,7 @@ namespace Library.Platforms.Telegram
     public class TelegramBot : MessagingPlatform<long>
     {
         /// <inheritdoc />
-        public override UserId GetUserId(long id) => new TelegramId(id);
+        public override string GetUserId(long id) => $"Telegram_{id}";
 
         /// <inheritdoc />
         public override async void SendMessage(string msg, long id)

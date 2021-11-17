@@ -21,7 +21,7 @@ namespace Library.Core.Distribution
             }
             else
             {
-                return ProcessMessageFromUnknownUser(msg);
+                return processMessageFromUnknownUser(msg);
             }
         }
 
