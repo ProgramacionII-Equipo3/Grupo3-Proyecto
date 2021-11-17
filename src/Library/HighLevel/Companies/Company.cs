@@ -79,6 +79,17 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a list of Material Sales.
         /// </summary>
-        List<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
+
+        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+
+        /// <summary>
+        /// Gets the list of publications, dinamically assigned to the company.
+        /// </summary>
+        public List<AssignedMaterialPublication> Publications =>
+            (this as IPublisher).Publications.Select(pub => new AssignedMaterialPublication(
+                company: this,
+                publication: pub
+            )).ToList();
+
     }
 }

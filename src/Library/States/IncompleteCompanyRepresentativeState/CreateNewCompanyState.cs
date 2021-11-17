@@ -23,23 +23,26 @@ namespace Library.States
                 {
                     ProcessorHandler.CreateInstance<string>(
                         s => this.heading = s,
-                        new BasicStringProcessor(() => "Please insert the company's heading.")),
+                        new BasicStringProcessor(() => "Please insert the company's heading.")
+                    ),
                     ProcessorHandler.CreateInstance<Location>(
                         l => this.location = l,
                         new LocationProcessor(() => "Please insert the company's location")
                     ),
                     ProcessorHandler.CreateInstance<int>(
                         n => this.phoneNumber = n,
-                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")),
+                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")
+                    ),
                     ProcessorHandler.CreateInstance<string>(
                         s => this.email = s,
-                        new EmailProcessor(() => "Please insert the company's email."))
+                        new EmailProcessor(() => "Please insert the company's email.")
+                    )
                 };
             }
 
             protected override Result<Company, string> getResult()
             {
-                Company result = CompanyManager.CreateCompany(
+                Company result = Singleton<CompanyManager>.Instance.CreateCompany(
                     name: this.parent.name,
                     contactInfo: new Library.Core.ContactInfo
                     {

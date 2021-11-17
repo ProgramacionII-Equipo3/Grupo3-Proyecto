@@ -45,7 +45,7 @@ namespace Library.HighLevel.Administers
         /// </summary>
         public static void CreateCompanyInvitation()
         {
-            InvitationManager.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
+            Singleton<InvitationManager>.Instance.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
         }
     }
 }

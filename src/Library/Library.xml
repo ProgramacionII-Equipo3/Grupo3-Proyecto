@@ -890,7 +890,7 @@
             Gets a public read-only list of the publications.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.List{System.String})">
             <summary>
             Publishes a material.
             </summary>
@@ -898,6 +898,7 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="location">The pick-up location of the material.</param>
+            <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>Whether the operation was successful.</returns>
         </member>
@@ -1190,12 +1191,29 @@
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublication.PickupLocation">
             <summary>
-            Gets the publication's pick-up location of material.
+
+            The publication's pick-up location of material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.Type">
+            <summary>
+            The type of the material publication.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
             List of the keywords of the publication material.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublication.publications">
+            <summary>
+            List to save all the publication's.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
+            <summary>
+            A public read-only list of the publications.
+
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1208,7 +1226,7 @@
             <param name="price">The price of the material.</param>
             <returns>Whether the data is valid with itself.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.List{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, validating the data beforehand.
             </summary>
@@ -1216,9 +1234,78 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="pickupLocation">The pick-up location of the material.</param>
+            <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
+
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.AddPublication(Library.HighLevel.Materials.MaterialPublication)">
+            <summary>
+            This method adds a publication into the list.
+            </summary>
+            <param name="publication">The publication to add</param>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.GetMaterialConstantlyGenerated">
+            <summary>
+            This method search the material that is constantly generated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
+            <summary>
+            This struct represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublicationTypeData.DateTime">
+            <summary>
+            The date the material will be published if the publication is scheduled.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.PublicationType">
+            <summary>
+            The type of the publication.
+            </summary>
+        </member>
+        <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType">
+            <summary>
+            This enum represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType.NORMAL">
+            <summary>
+            Represents a normal material publication.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType.SCHEDULED">
+            <summary>
+            Represents a material publication which has a specific schedule.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType.CONTINUOUS">
+            <summary>
+            Represents a material publication whose material is constantly generated.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Normal">
+            <summary>
+            Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a normal <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+            <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Scheduled(System.DateTime)">
+            <summary>
+            Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a scheduled <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+            <param name="dateTime">The <see cref="P:Library.HighLevel.Materials.MaterialPublicationTypeData.DateTime" /> in which the material will be published.</param>
+            <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Continuous">
+            <summary>
+            Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a continuous <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+            <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
+        </member>
+
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
             This class represents a requirement to manipulate certain materials.

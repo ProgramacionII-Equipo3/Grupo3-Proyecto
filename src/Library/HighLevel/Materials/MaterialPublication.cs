@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
@@ -32,18 +33,42 @@ namespace Library.HighLevel.Materials
         public Location PickupLocation { get; private set; }
 
         /// <summary>
+
+        /// The type of the material publication.
+        /// </summary>
+        public MaterialPublicationTypeData Type { get; private set; }
+
+        /// <summary>
         /// List of the keywords of the publication material.
         /// </summary>
         public List<string> Keywords = new List<string>();
 
-        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, List<string> keywords)
+
+
+        /// <summary>
+        /// List to save all the publication's.
+        /// </summary>
+        private static List<MaterialPublication> publications = new List<MaterialPublication>();
+    
+        /// <summary>
+        /// A public read-only list of the publications.
+        /// </summary>
+        public static ReadOnlyCollection<MaterialPublication> Publications => publications.AsReadOnly();
+
+
+
+
+        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords)
         {
             this.Material = material;
             this.Amount = amount;
             this.Price = price;
             this.PickupLocation = pickupLocation;
+            this.Type = type;
             this.Keywords = keywords;
         }
+
+
 
         /// <summary>
         /// Checks whether the given fields for building a <see cref="MaterialPublication" /> are valid with each other.
@@ -63,11 +88,12 @@ namespace Library.HighLevel.Materials
         /// <param name="amount">The amount of material.</param>
         /// <param name="price">The price of the material.</param>
         /// <param name="pickupLocation">The pick-up location of the material.</param>
+        /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, List<string> keywords) =>
+        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, List<string> keywords) =>
             CheckMaterialFields(material, amount, price)
-                ? new MaterialPublication(material, amount, price, pickupLocation, keywords)
+                ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords)
                 : null;
     }
 }

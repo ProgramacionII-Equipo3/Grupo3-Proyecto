@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
+using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
@@ -12,21 +13,21 @@ namespace Library.HighLevel.Companies
     /// that way the class CompanyManager is the one responsible of creating the list
     /// of companies and getting the companies and not Company by itself.
     /// </summary>
-    public static class CompanyManager
+    public class CompanyManager
     {
-        private static List<Company> companies = new List<Company>();
+        private List<Company> companies = new List<Company>();
 
         /// <summary>
         /// Gets a public read-only list of the companies.
         /// </summary>
-        public static ReadOnlyCollection<Company> Companies => companies.AsReadOnly();
+        public ReadOnlyCollection<Company> Companies => companies.AsReadOnly();
 
         /// <summary>
         /// Gets the company a concrete user represents.
         /// </summary>
         /// <param name="userId">The user's id.</param>
         /// <returns>A company, or null if the user doesn't represent a company.</returns>
-        public static Company GetCompanyOf(UserId userId) =>
+        public Company GetCompanyOf(UserId userId) =>
             companies.Where(company => company.HasUser(userId)).FirstOrDefault();
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="name">The company name to compare.</param>
         /// <returns>A list of companies.</returns>
-        public static IEnumerable<Company> GetCompaniesWithNamesSimilarTo(string name) =>
+        public IEnumerable<Company> GetCompaniesWithNamesSimilarTo(string name) =>
             companies.Where(company => Utils.AreSimilar(company.Name, name));
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="name">The company's name.</param>
         /// <returns>A company, or null if there is no company with that name.</returns>
-        public static Company GetByName(string name) =>
+        public Company GetByName(string name) =>
             companies.Where(company => company.Name == name).FirstOrDefault();
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace Library.HighLevel.Companies
         /// <param name="contactInfo">The comany´s contact info.</param>
         /// <param name="heading">The company´s heading.</param>
         /// <param name="location">The company´s location.</param>
-        public static Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
+        public Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
             if (GetByName(name) != null)
             {
@@ -64,5 +65,11 @@ namespace Library.HighLevel.Companies
             companies.Add(result);
             return result;
         }
+
+        /// <summary>
+        /// The list of all publications made by all companies.
+        /// </summary>
+        public List<AssignedMaterialPublication> Publications =>
+            this.Companies.SelectMany(company => company.Publications).ToList();
     }
 }

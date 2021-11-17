@@ -17,7 +17,7 @@ namespace Library.States.Entrepreneurs
         ///
         public NewEntrepreneurState(UserId userId): base(
             ProcessorHandler.CreateInstance<Entrepreneur>(
-                e => EntrepreneurManager.NewEntrepreneur(e),
+                e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e),
                 new NewEntrepreneurForm(userId)
             ),
             () => null,
