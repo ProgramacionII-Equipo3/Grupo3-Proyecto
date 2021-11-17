@@ -1,7 +1,7 @@
 using Library.Core;
 using Library.Core.Distribution;
 using Library.Core.Invitations;
-using Library.States;
+using Library.States.Companies;
 
 namespace Library.HighLevel.Companies
 {

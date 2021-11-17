@@ -4,7 +4,7 @@ using Library.Core;
 using Library.Core.Processing;
 using Library.HighLevel.Companies;
 
-namespace Library.States
+namespace Library.States.Companies
 {
     /// <summary>
     /// This class represents the state of a company representative who is yet to be fully logged in to the platform.
