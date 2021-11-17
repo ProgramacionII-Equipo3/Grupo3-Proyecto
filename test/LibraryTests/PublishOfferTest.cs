@@ -40,6 +40,8 @@ namespace ProgramTests
             contact.Email = "evertec@gmail.com";
             contact.PhoneNumber = 095456258;
             Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location);
+            MaterialPublication publication = (empresa as IPublisher).PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
+            
 
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
@@ -51,6 +53,7 @@ namespace ProgramTests
 
             MaterialPublication publication2 = MaterialPublication.CreateInstance(material2, amount2, price2, location2, MaterialPublicationTypeData.Normal(), keyword2);
 
+            List<MaterialPublication> expected = new List<MaterialPublication> { publication, publication2 };
         }
 
         /// <summary>
