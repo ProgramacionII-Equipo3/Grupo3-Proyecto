@@ -9,7 +9,7 @@ namespace Library.InputHandlers
     /// </summary>
     public class UnsignedInt32Processor : IInputProcessor<int>
     {
-        private int result;
+        private int result = -1;
 
         private readonly Func<string> initialResponseGetter;
 
