@@ -65,13 +65,12 @@ namespace ProgramTests
             List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
-            Searcher.SearchByCategory(publicationsToSearchIn, categoryToSearch);
 
             List<MaterialPublication> expected1 = new List<MaterialPublication>();
             expected1.Add(this.publication1);
             expected1.Add(this.publication2);
 
-            Assert.AreEqual(Searcher.SearchResult, expected1);
+            Assert.AreEqual(Searcher.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected1);
         }
 
         /// <summary>
@@ -85,12 +84,10 @@ namespace ProgramTests
             List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
             MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
-            Searcher.SearchResult.Clear();
-            Searcher.SearchByCategory(publicationsToSearchIn, categoryToSearch);
 
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Searcher.SearchResult, expected2);
+            Assert.AreEqual(Searcher.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected2);
         }
 
         /// <summary>
@@ -102,13 +99,10 @@ namespace ProgramTests
         {
             List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
-            Searcher.SearchResult.Clear();
-            Searcher.SearchByKeyword(publicationsToSearchIn, "cubrebocas");
-
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(this.publication2);
 
-            Assert.AreEqual(Searcher.SearchResult, expected3);
+            Assert.AreEqual(Searcher.SearchByKeyword(publicationsToSearchIn, "cubrebocas"), expected3);
         }
 
         /// <summary>
@@ -121,12 +115,9 @@ namespace ProgramTests
         {
             List<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
 
-            Searcher.SearchResult.Clear();
-            Searcher.SearchByKeyword(publicationsToSearchIn, "sanitario");
-
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Searcher.SearchResult, expected4);
+            Assert.AreEqual(Searcher.SearchByKeyword(publicationsToSearchIn, "sanitario"), expected4);
         }
 
         /// <summary>
@@ -142,13 +133,11 @@ namespace ProgramTests
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("Av. Gral. San Martín 2909").Result;
             double distanceSpecified = 4;
-            Searcher.SearchResult.Clear();
-            Searcher.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified);
 
             List<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(this.publication2);
 
-            Assert.AreEqual(Searcher.SearchResult, expected5);
+            Assert.AreEqual(Searcher.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected5);
         }
 
         /// <summary>
@@ -165,12 +154,10 @@ namespace ProgramTests
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("12 De Diciembre 811").Result;
             double distanceSpecified = 2;
-            Searcher.SearchResult.Clear();
-            Searcher.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified);
 
             List<MaterialPublication> expected6 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Searcher.SearchResult, expected6);
+            Assert.AreEqual(Searcher.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected6);
         }
     }
 }

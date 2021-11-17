@@ -1,4 +1,6 @@
-namespace Library.HighLevel.Accountability
+using Library.HighLevel.Accountability;
+
+namespace Library.Utils
 {
     /// <summary>
     /// This class offers functions associated with the <see cref="MoneyQuantity" /> struct.

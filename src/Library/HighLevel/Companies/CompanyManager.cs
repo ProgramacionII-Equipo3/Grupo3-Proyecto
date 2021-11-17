@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
 using Ucu.Poo.Locations.Client;
+using Library.Utils;
 
 namespace Library.HighLevel.Companies
 {
@@ -35,7 +36,7 @@ namespace Library.HighLevel.Companies
         /// <param name="name">The company name to compare.</param>
         /// <returns>A list of companies.</returns>
         public static IEnumerable<Company> GetCompaniesWithNamesSimilarTo(string name) =>
-            companies.Where(company => Utils.AreSimilar(company.Name, name));
+            companies.Where(company => BasicUtils.AreSimilar(company.Name, name));
 
         /// <summary>
         /// Gets the <see cref="Company" /> with a concrete name.

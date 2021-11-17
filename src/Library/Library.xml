@@ -572,22 +572,6 @@
             <param name="quantity">The numeric value.</param>
             <param name="currency">The currency.</param>
         </member>
-        <member name="T:Library.HighLevel.Accountability.MoneyQuantityUtils">
-            <summary>
-            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
-            We created this class because of the Polymorphism pattern, while money quantity is for
-            an amount of money, this class is created for a particular sale, so we separated it by 
-            destination.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
-            <summary>
-            Calculates the amount of money made from selling a certain amount of material at a certain price.
-            </summary>
-            <param name="amount">The amount of material.</param>
-            <param name="price">The price of the material.</param>
-            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
-        </member>
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
@@ -890,7 +874,7 @@
             A public read-only list of the publications.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.List{System.String})">
             <summary>
             Publishes a material.
             </summary>
@@ -898,6 +882,7 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="location">The pick-up location of the material.</param>
+            <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>Whether the operation was successful.</returns>
         </member>
@@ -1025,13 +1010,6 @@
             We created this class using expert, this class itself does all the possible 
             filter searches). It also has a High Cohesion because of the same reason.
             </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.SearchResult">
-            <summary>
-            This list is created to contain all the publication's that
-            are from the specified search.
-            </summary>
-            <returns></returns>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
             <summary>
@@ -1194,6 +1172,16 @@
             The publication's pick-up location of material.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.Type">
+            <summary>
+            The type of the material publication.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
+            <summary>
+            List of the keywords of the publication material.
+            </summary>
+        </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.publications">
             <summary>
             List to save all the publication's.
@@ -1202,11 +1190,6 @@
         <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
             <summary>
             A public read-only list of the publications.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
-            <summary>
-            List of the keywords of the publication material.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1219,7 +1202,7 @@
             <param name="price">The price of the material.</param>
             <returns>Whether the data is valid with itself.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String})">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.List{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, validating the data beforehand.
             </summary>
@@ -1227,6 +1210,7 @@
             <param name="amount">The amount of material.</param>
             <param name="price">The price of the material.</param>
             <param name="pickupLocation">The pick-up location of the material.</param>
+            <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
@@ -1241,6 +1225,60 @@
             This method search the material that is constantly generated.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
+            <summary>
+            This struct represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublicationTypeData.DateTime">
+            <summary>
+            The date the material will be published if the publication is scheduled.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.PublicationType">
+            <summary>
+            The type of the publication.
+            </summary>
+        </member>
+        <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType">
+            <summary>
+            This enum represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType.NORMAL">
+            <summary>
+            Represents a normal material publication.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType.SCHEDULED">
+            <summary>
+            Represents a material publication which has a specific schedule.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublicationTypeData.MaterialPublicationType.CONTINUOUS">
+            <summary>
+            Represents a material publication whose material is constantly generated.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Normal">
+            <summary>
+            Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a normal <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+            <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Scheduled(System.DateTime)">
+            <summary>
+            Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a scheduled <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+            <param name="dateTime">The <see cref="P:Library.HighLevel.Materials.MaterialPublicationTypeData.DateTime" /> in which the material will be published.</param>
+            <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Continuous">
+            <summary>
+            Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a continuous <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+            <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
         </member>
         <member name="T:Library.HighLevel.Materials.Requirement">
             <summary>
@@ -1447,19 +1485,6 @@
             </summary>
             <param name="someFunc">The function for the value.</param>
             <typeparam name="U">The type returned by the function.</typeparam>
-        </member>
-        <member name="T:Library.OptionUtils">
-            <summary>
-            This class holds methods which are related with the <see cref="T:Library.Option`1"/> struct.
-            </summary>
-        </member>
-        <member name="M:Library.OptionUtils.FirstOrNone``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Returns an <see cref="T:Library.Option`1" /> containing the first value of an <see cref="T:System.Collections.Generic.IEnumerable`1" />, if there is.
-            </summary>
-            <param name="enumerable">The enumerable.</param>
-            <typeparam name="T">The type of the elements of the enumerable.</typeparam>
-            <returns></returns>
         </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
@@ -1680,12 +1705,12 @@
         <member name="M:Library.States.MultipleOptionState.ProcessMessage(Library.Core.UserId,Library.Core.UserData,System.String)">
             <inheritdoc />
         </member>
-        <member name="T:Library.Utils">
+        <member name="T:Library.Utils.BasicUtils">
             <summary>
             This class stores context-generic static methods.
             </summary>
         </member>
-        <member name="M:Library.Utils.GetLocation(System.String,System.String,System.String,System.String)">
+        <member name="M:Library.Utils.BasicUtils.GetLocation(System.String,System.String,System.String,System.String)">
             <summary>
             This method returns the coordinates of a specific address using the LocationAPI.
             </summary>
@@ -1695,7 +1720,7 @@
             <param name="country">The country where is the site.</param>
             <returns>The site´s coordinates.</returns>
         </member>
-        <member name="M:Library.Utils.AreSimilar(System.String,System.String)">
+        <member name="M:Library.Utils.BasicUtils.AreSimilar(System.String,System.String)">
             <summary>
             This method returns True if both strings are equals.
             </summary>
@@ -1703,26 +1728,55 @@
             <param name="s2">Other String to compare.</param>
             <returns>Boolean.</returns>
         </member>
-        <member name="M:Library.Utils.IsValidEmail(System.String)">
+        <member name="M:Library.Utils.BasicUtils.IsValidEmail(System.String)">
             <summary>
             This method check if a email is valid.
             </summary>
             <param name="s">The email to check.</param>
             <returns>Boolean.</returns>
         </member>
-        <member name="M:Library.Utils.IsValidPhoneNumber(System.Int32)">
+        <member name="M:Library.Utils.BasicUtils.IsValidPhoneNumber(System.Int32)">
             <summary>
             This method checks if a phone number is valid.
             </summary>
             <param name="number">The phone number input.</param>
             <returns>True if the number is valid and false if it not does.</returns>
         </member>
-        <member name="M:Library.Utils.IsValidHyperTextLink(System.String)">
+        <member name="M:Library.Utils.BasicUtils.IsValidHyperTextLink(System.String)">
             <summary>
             Checks if a string is a valid hypertext link.
             </summary>
             <param name="link">The string.</param>
             <returns>Whether it's a valid link or not.</returns>
+        </member>
+        <member name="T:Library.Utils.MoneyQuantityUtils">
+            <summary>
+            This class offers functions associated with the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" /> struct.
+            We created this class because of the Polymorphism pattern, while money quantity is for
+            an amount of money, this class is created for a particular sale, so we separated it by 
+            destination.
+            </summary>
+        </member>
+        <member name="M:Library.Utils.MoneyQuantityUtils.Calculate(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
+            <summary>
+            Calculates the amount of money made from selling a certain amount of material at a certain price.
+            </summary>
+            <param name="amount">The amount of material.</param>
+            <param name="price">The price of the material.</param>
+            <returns>The resulting <see cref="T:Library.HighLevel.Accountability.MoneyQuantity" />, or null if the amount and price are invalid with each other.</returns>
+        </member>
+        <member name="T:Library.Utils.OptionUtils">
+            <summary>
+            This class holds methods which are related with the <see cref="T:Library.Option`1"/> struct.
+            </summary>
+        </member>
+        <member name="M:Library.Utils.OptionUtils.FirstOrNone``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns an <see cref="T:Library.Option`1" /> containing the first value of an <see cref="T:System.Collections.Generic.IEnumerable`1" />, if there is.
+            </summary>
+            <param name="enumerable">The enumerable.</param>
+            <typeparam name="T">The type of the elements of the enumerable.</typeparam>
+            <returns></returns>
         </member>
     </members>
 </doc>

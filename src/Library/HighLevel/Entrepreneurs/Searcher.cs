@@ -17,7 +17,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// are from the specified search.
         /// </summary>
         /// <returns></returns>
-        public static List<MaterialPublication> SearchResult = new List<MaterialPublication>();
+        //public static List<MaterialPublication> SearchResult = new List<MaterialPublication>();
 
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
@@ -30,15 +30,17 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="category"></param>
-        public static void SearchByCategory(List<MaterialPublication> publications, MaterialCategory category)
+        public static List<MaterialPublication> SearchByCategory(List<MaterialPublication> publications, MaterialCategory category)
         {
+           List<MaterialPublication> searchResultA = new List<MaterialPublication>();
            foreach (var item in publications)
            {
                if (item.Material.Category.Name == category.Name)
                {
-                   SearchResult.Add(item);
+                   searchResultA.Add(item);
                }
            }
+           return searchResultA;
         }
 
         /// <summary>
@@ -46,15 +48,17 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="publications"></param>
         /// <param name="keyword"></param>
-        public static void SearchByKeyword(List<MaterialPublication> publications, string keyword)
+        public static List<MaterialPublication> SearchByKeyword(List<MaterialPublication> publications, string keyword)
         {
+           List<MaterialPublication> searchResultB = new List<MaterialPublication>();
            foreach (var item in publications)
            {
                if (item.Keywords.Contains(keyword))
                {
-                   SearchResult.Add(item);
+                   searchResultB.Add(item);
                }
            }
+           return searchResultB;
         }
 
         /// <summary>
@@ -63,17 +67,19 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="publications"></param>
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
-        public static void SearchByLocation(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public static List<MaterialPublication> SearchByLocation(List<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
         {
+           List<MaterialPublication> searchResultC = new List<MaterialPublication>();
            foreach (var item in publications)
            {
                Distance distance;
                distance = client.GetDistanceAsync(locationSpecified, item.PickupLocation).Result;
                if(distance.TravelDistance <= distanceSpecified)
                {
-                   SearchResult.Add(item);
+                   searchResultC.Add(item);
                }
            }
+           return searchResultC;
         }        
     }
 }

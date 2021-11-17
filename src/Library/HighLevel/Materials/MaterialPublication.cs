@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
+using Library.Utils;
 
 namespace Library.HighLevel.Materials
 {
@@ -119,7 +120,7 @@ namespace Library.HighLevel.Materials
                 List<MaterialPublication> result = publications.FindAll(
                 delegate(MaterialPublication publication)
                 {
-                    return Utils.AreSimilar(publication.Material.Name, item.Material.Name);
+                    return BasicUtils.AreSimilar(publication.Material.Name, item.Material.Name);
                 });
                 if (result.Count > 3)
                 {
