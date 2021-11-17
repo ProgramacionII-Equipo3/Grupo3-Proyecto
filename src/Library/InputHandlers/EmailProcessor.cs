@@ -9,6 +9,10 @@ namespace Library.InputHandlers
     /// </summary>
     public class EmailProcessor : ProcessorWrapper<string>
     {
+        /// <summary>
+        /// Initializes an instance of <see cref="EmailProcessor" />.
+        /// </summary>
+        /// <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         public EmailProcessor(Func<string> initialResponseGetter) : base(
             PipeProcessor<string>.CreateInstance<string> (
                 func: s => Utils.IsValidEmail(s)
