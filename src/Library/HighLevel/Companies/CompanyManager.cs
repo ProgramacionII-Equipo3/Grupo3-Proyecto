@@ -18,7 +18,7 @@ namespace Library.HighLevel.Companies
         private List<Company> companies = new List<Company>();
 
         /// <summary>
-        /// A public read-only list of the companies.
+        /// Gets a public read-only list of the companies.
         /// </summary>
         public ReadOnlyCollection<Company> Companies => companies.AsReadOnly();
 

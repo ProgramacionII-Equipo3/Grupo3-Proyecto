@@ -9,14 +9,12 @@ namespace Library.InputHandlers
     /// </summary>
     public class EmailProcessor : ProcessorWrapper<string>
     {
-        ///
-        public EmailProcessor(Func<string> initialResponseGetter): base(
-            PipeProcessor<string>.CreateInstance<string>(
+        public EmailProcessor(Func<string> initialResponseGetter) : base(
+            PipeProcessor<string>.CreateInstance<string> (
                 func: s => Utils.IsValidEmail(s)
                     ? Result<string, string>.Ok(s)
                     : Result<string, string>.Err("The given input is not a valid email."),
                 processor: new BasicStringProcessor(initialResponseGetter)
-            )
-        ) {}
+            )) {}
     }
 }

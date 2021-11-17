@@ -11,7 +11,7 @@ namespace Library.HighLevel.Entrepreneurs
         private List<Entrepreneur> entrepeneurs = new List<Entrepreneur>();
 
         /// <summary>
-        /// The entrepreneur's users in the platform.
+        /// Gets the entrepreneur's users in the platform.
         /// </summary>
         public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepeneurs.AsReadOnly();
 

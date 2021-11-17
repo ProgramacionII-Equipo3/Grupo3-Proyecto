@@ -21,27 +21,32 @@ namespace Library.Core.Distribution
             }
             else
             {
-                return processMessageFromUnknownUser(msg);
+                return ProcessMessageFromUnknownUser(msg);
             }
         }
 
+
         private string processMessageFromUnknownUser(Message msg)
+
         {
             string[] args = msg.Text.Split(' ');
 
             if (
                 args.Length != 2 ||
                 args[0] != "/start" ||
-                string.IsNullOrWhiteSpace(args[1])
-            )
+                string.IsNullOrWhiteSpace(args[1]))
+            {
                 return "Send the message /start ( <invitation-code> | -e | --entrepreneur ) to register to the platform.";
-            
+            }
+
             string arg = args[1].Trim();
-            if(arg == "-e" || arg == "--entrepreneur")
+            if (arg == "-e" || arg == "--entrepreneur")
             {
                 State newState = new NewEntrepreneurState(msg.Id);
+
                 // TODO: Implement subclass of State for new entrepreneurs. 
                 Singleton<SessionManager>.Instance.NewUser(msg.Id, default, newState);
+
                 return newState.GetDefaultResponse();
             }
 

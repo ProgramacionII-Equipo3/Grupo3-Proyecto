@@ -9,16 +9,6 @@ namespace Library.HighLevel.Accountability
     public sealed class Currency
     {
         /// <summary>
-        /// The currency's name.
-        /// </summary>
-        public readonly string Name;
-
-        /// <summary>
-        /// The currency's symbol.
-        /// </summary>
-        public readonly string Symbol;
-
-          /// <summary>
         /// The uruguayan peso.
         /// </summary>
         public static Currency Peso = new Currency("uruguayan peso(s)", "U$");
@@ -27,6 +17,16 @@ namespace Library.HighLevel.Accountability
         /// The american dollar.
         /// </summary>
         public static Currency Dollar = new Currency("american dollar(s)", "US$");
+
+        /// <summary>
+        /// The currency's name.
+        /// </summary>
+        public readonly string Name;
+
+        /// <summary>
+        /// The currency's symbol.
+        /// </summary>
+        public readonly string Symbol;
 
         private Currency(string name, string symbol)
         {

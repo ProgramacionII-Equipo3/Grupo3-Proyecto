@@ -31,15 +31,15 @@ namespace ProgramTests
         public void Setup()
         {
             this.category = new MaterialCategory("Plásticos");
-            this.unit = new Unit("Centímetros", "cm", 1, Measure.Length);
+            this.unit = Unit.GetByAbbr("cm");
             this.price = new Price(300, Currency.Peso, this.unit);
             this.amount = new Amount(3, this.unit);
             this.soldMaterial = Material.CreateInstance("Palet Plástico", Measure.Length, this.category);
             this.sold = new DateTime(2021, 10, 3, 15, 30, 16);
             this.category2 = new MaterialCategory("Cartón");
-            this.unit2 = new Unit("Centímetros", "cm", 1, Measure.Length);
-            this.price2 = new Price(10, Currency.Dollar, this.unit);
-            this.amount2 = new Amount(40, this.unit);
+            this.unit2 = Unit.GetByAbbr("cm");
+            this.price2 = new Price(10, Currency.Dollar, this.unit2);
+            this.amount2 = new Amount(40, this.unit2);
             this.soldMaterial2 = Material.CreateInstance("Bujes de cartón", Measure.Length, this.category2);
             this.sold2 = new DateTime(2021, 11, 1, 16, 21, 15);
         }
@@ -64,15 +64,15 @@ namespace ProgramTests
         public void CompanyReportOutOfTime()
         {
             MaterialCategory category3 = new MaterialCategory("Plásticos");
-            Unit unit3 = new Unit("Centímetros", "cm", 1, Measure.Length);
-            Price price3 = new Price(300, Currency.Peso, this.unit);
-            Amount amount3 = new Amount(3, this.unit);
+            Unit unit3 = Unit.GetByAbbr("cm");
+            Price price3 = new Price(300, Currency.Peso, unit3);
+            Amount amount3 = new Amount(3, unit3);
             Material soldMaterial3 = Material.CreateInstance("Palet Plástico", Measure.Length, category3);
             DateTime sold3 = new DateTime(2021, 3, 10, 13, 45, 12);
             MaterialCategory category4 = new MaterialCategory("Cartón");
-            Unit unit4 = new Unit("Centímetros", "cm", 1, Measure.Length);
-            Price price4 = new Price(10, Currency.Dollar, this.unit);
-            Amount amount4 = new Amount(40, this.unit);
+            Unit unit4 = Unit.GetByAbbr("g");
+            Price price4 = new Price(10, Currency.Dollar, unit4);
+            Amount amount4 = new Amount(40, unit4);
             Material soldMaterial4 = Material.CreateInstance("Bujes de cartón", Measure.Length, category4);
             DateTime sold4 = new DateTime(2021, 2, 15, 17, 45, 02);
 

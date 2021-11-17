@@ -68,8 +68,10 @@ namespace ProgramTests
 
             // The user must be in the list of entrepreneurs to be registered.
             UserId idExpected = this.nameMessage.Id;
+
             int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
             Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);
+
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;

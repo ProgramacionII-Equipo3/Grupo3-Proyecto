@@ -47,7 +47,6 @@ namespace Library.Core.Processing
                                     return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
                                 }));
                     }
-
                     else
                     {
                         return Option<Result<T, string>>.None;

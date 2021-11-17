@@ -16,7 +16,7 @@ namespace Library.Core.Invitations
         private List<Invitation> invitations = new List<Invitation>();
 
         /// <summary>
-        /// The number of invitations.
+        /// Gets the number of invitations.
         /// </summary>
         public int InvitationCount => invitations.Count;
 

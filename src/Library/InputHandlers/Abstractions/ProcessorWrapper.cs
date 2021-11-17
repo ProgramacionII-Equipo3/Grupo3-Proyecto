@@ -11,7 +11,6 @@ namespace Library.InputHandlers.Abstractions
         private IInputProcessor<T> innerProcessor;
         private T result = default;
 
-        ///
         protected ProcessorWrapper(IInputProcessor<T> innerProcessor)
         {
             this.innerProcessor = innerProcessor;
@@ -24,12 +23,11 @@ namespace Library.InputHandlers.Abstractions
             if(this.result != null) return Result<bool, string>.Ok(true);
             return this.innerProcessor.GenerateFromInput(msg).Map(
                 result => result.SwitchOk(
-                    v => 
+                    v =>
                     {
                         this.result = v;
                         return true;
-                    }
-                ),
+                    }),
                 () => Result<bool, string>.Ok(false)
             );
         }
