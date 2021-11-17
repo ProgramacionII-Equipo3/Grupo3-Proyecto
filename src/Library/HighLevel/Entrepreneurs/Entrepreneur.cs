@@ -38,14 +38,19 @@ namespace Library.HighLevel.Entrepreneurs
         public string Heading { get; private set; }
 
         /// <summary>
+        /// Gets the entrepreneur's habilitation needed to buy certain materials.
+        /// </summary>
+        public IList<Habilitation> Habilitations { get; private set; }
+
+        /// <summary>
         /// Gets the entrepreneur's specialization.
         /// </summary>
-        public List<string> Specialization { get; private set; }
+        public IList<string> Specializations { get; private set; }
 
         /// <summary>
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public static List<string> EntrepeneurList = new List<string>();
+        public static IList<string> EntrepeneurList = new List<string>();
 
         /// <summary>
         /// Gets the entrepreneur's habilitation needed to buy certain materials.
@@ -62,15 +67,15 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="heading">Entrepreneur´s heading.</param>
         /// <param name="habilitations">Entrepreneur´s habilitation.</param>
         /// <param name="specializations">Entrepreneur´s specializations.</param>
-        public Entrepreneur(string id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<string> specializations)
+        public Entrepreneur(string id, string name, string age, Location location, string heading, List<Habilitation> habilitations, IList<string> specializations)
         {
             this.Id = id;
             this.Name = name;
             this.Age = age;
             this.Location = location;
             this.Heading = heading;
-            this.Habilitation = habilitations;
-            this.Specialization = specializations;
+            this.Habilitations = habilitations;
+            this.Specializations = specializations;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
@@ -15,6 +16,11 @@ namespace Library.HighLevel.Companies
     /// </summary>
     public class CompanyManager
     {
+        /// <summary>
+        /// The list of companies.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="CompanyManager.Companies" />.
+        /// </summary>
         private List<Company> companies = new List<Company>();
 
         /// <summary>
@@ -50,8 +56,8 @@ namespace Library.HighLevel.Companies
         /// Creates an instance of <see cref="Company" />, adding it to the list.
         /// </summary>
         /// <returns>The created instance, or null if there's already a company with the same name.</returns>
-        /// <param name="name">The comany´s name.</param>
-        /// <param name="contactInfo">The comany´s contact info.</param>
+        /// <param name="name">The company´s name.</param>
+        /// <param name="contactInfo">The company´s contact info.</param>
         /// <param name="heading">The company´s heading.</param>
         /// <param name="location">The company´s location.</param>
         public Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)

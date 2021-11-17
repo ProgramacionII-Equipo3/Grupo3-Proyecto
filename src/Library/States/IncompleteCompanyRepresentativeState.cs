@@ -65,7 +65,7 @@ namespace Library.States
                 getter = new AssignExistingCompanyState(perfectMatch);
             } else
             {
-                List<Company> companies = Singleton<CompanyManager>.Instance.GetCompaniesWithNamesSimilarTo(name).ToList();
+                IList<Company> companies = Singleton<CompanyManager>.Instance.GetCompaniesWithNamesSimilarTo(name).ToList();
                 if(companies.Count > 0)
                     getter = new AssignExistingCompanyInListState(companies);
                 else

@@ -9,11 +9,9 @@ namespace Library.InputHandlers
     public class HTMLLinkProcessor : ProcessorWrapper<string>
     {
         /// <summary>
-        /// 
+        /// Initializes an instance of <see cref="HTMLLinkProcessor" />.
         /// </summary>
-        /// <param name="initialResponseGetter"></param>
-        /// <typeparam name="string"></typeparam>
-        /// <returns></returns>
+        /// <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         public HTMLLinkProcessor(Func<string> initialResponseGetter) : base(
             PipeProcessor<string>.CreateInstance<string>(
                 s => Utils.IsValidHyperTextLink(s)

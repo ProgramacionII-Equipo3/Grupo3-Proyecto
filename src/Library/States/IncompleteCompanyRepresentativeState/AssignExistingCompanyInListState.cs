@@ -10,10 +10,10 @@ namespace Library.States
     {
         private class AssignExistingCompanyInListState : IInputProcessor<Company>
         {
-            private List<Company> companies;
+            private IList<Company> companies;
             private Company chosenCompany = null;
 
-            public AssignExistingCompanyInListState(List<Company> companies)
+            public AssignExistingCompanyInListState(IList<Company> companies)
             {
                 this.companies = companies;
             }
