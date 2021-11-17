@@ -26,7 +26,7 @@ namespace ProgramTests
         public void EntrepreneurReport()
         {
             MaterialCategory category = new MaterialCategory("Metales");
-            Unit unit = new Unit("Kilos", "kg", 0.5, Measure.Weight);
+            Unit unit = Unit.GetByAbbr("kg");
             Amount amount = new Amount(3, unit);
             Price price = new Price(520, Currency.Peso, unit);
             List<string> keyword = new List<string>();
@@ -41,7 +41,7 @@ namespace ProgramTests
             Assert.AreEqual(materialbought1, expected);
 
             MaterialCategory category2 = new MaterialCategory("Plásticos");
-            Unit unit2 = new Unit("Gramos", "g", 500, Measure.Weight);
+            Unit unit2 = Unit.GetByAbbr("g");
             Amount amount2 = new Amount(2, unit);
             Price price2 = new Price(2, Currency.Dollar, unit);
             List<string> keyword2 = new List<string>();

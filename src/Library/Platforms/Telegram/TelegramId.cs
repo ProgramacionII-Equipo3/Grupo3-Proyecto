@@ -18,7 +18,7 @@ namespace Library.Platforms.Telegram
         public readonly long ChatId;
 
         /// <summary>
-        /// Creates an instance of <see cref="TelegramId" />.
+        /// Initializes an instance of <see cref="TelegramId" /> class.
         /// </summary>
         /// <param name="chatId">The Telegram id.</param>
         public TelegramId(long chatId)

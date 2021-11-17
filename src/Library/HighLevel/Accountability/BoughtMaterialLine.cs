@@ -48,7 +48,7 @@ namespace Library.HighLevel.Accountability
         }
 
         /// <summary>
-        /// The amount of money spent.
+        /// Gets the amount of money spent.
         /// </summary>
         public MoneyQuantity Spent => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
     }

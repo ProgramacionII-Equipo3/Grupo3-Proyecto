@@ -19,6 +19,12 @@ namespace Library.States
         protected abstract string GetErrorString();
 
         /// <summary>
+        /// Gets the string to send after receiving a valid option.
+        /// </summary>
+        /// <returns>A string, or null if there's no string to send.</returns>
+        protected abstract string GetEndString();
+
+        /// <summary>
         /// Creates a <see cref="MultipleOptionState" /> with a given group of commands.
         /// </summary>
         /// <param name="commands">The group of commands.</param>
@@ -33,7 +39,13 @@ namespace Library.States
                 command =>
                 {
                     State newState = command.Item2();
-                    return (newState, newState.GetDefaultResponse());
+                    string endString = this.GetEndString();
+                    return (
+                        newState,
+                        endString != null
+                            ? $"{endString}\n{newState.GetDefaultResponse()}"
+                            : newState.GetDefaultResponse()
+                    );
                 },
                 () => (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}")
             );

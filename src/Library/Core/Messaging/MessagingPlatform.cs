@@ -21,7 +21,7 @@ namespace Library.Core.Messaging
         /// <param name="id">The received message's user id.</param>
         public void ReceiveMessage(string msg, TId id)
         {
-            string newMsg = MessageManager.ProcessMessage(new Message(msg, this.GetUserId(id)));
+            string newMsg = Singleton<MessageManager>.Instance.ProcessMessage(new Message(msg, this.GetUserId(id)));
             this.SendMessage(newMsg, id);
         }
     }

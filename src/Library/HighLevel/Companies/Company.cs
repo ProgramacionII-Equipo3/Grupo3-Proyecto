@@ -1,8 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using Library.Core;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
-using System.Collections.Generic;
-using System.Linq;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
@@ -72,13 +72,24 @@ namespace Library.HighLevel.Companies
             this.representants.Add(id);
 
         /// <summary>
-        /// A list of Material Publications.
+        /// Gets a list of Material Publications.
         /// </summary>
-        List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
+        List<MaterialPublication> IPublisher.Publications { get; } = new List<MaterialPublication>();
 
         /// <summary>
-        /// A list of Material Sales.
+        /// Gets a list of Material Sales.
         /// </summary>
-        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+
+        List<MaterialSalesLine> ISentMaterialReportCreator.MaterialSales { get; } = new List<MaterialSalesLine>();
+
+        /// <summary>
+        /// Gets the list of publications, dinamically assigned to the company.
+        /// </summary>
+        public List<AssignedMaterialPublication> Publications =>
+            (this as IPublisher).Publications.Select(pub => new AssignedMaterialPublication(
+                company: this,
+                publication: pub
+            )).ToList();
+
     }
 }

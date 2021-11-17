@@ -8,24 +8,24 @@ namespace Library.Core.Invitations
     /// <summary>
     /// This class acts as the highest level of abstraccion in invitation handling.
     /// </summary>
-    public static class InvitationManager
+    public class InvitationManager
     {
         /// <summary>
         /// A list of all the invitations.
         /// </summary>
-        private static List<Invitation> invitations = new List<Invitation>();
+        private List<Invitation> invitations = new List<Invitation>();
 
         /// <summary>
-        /// The number of invitations.
+        /// Gets the number of invitations.
         /// </summary>
-        public static int InvitationCount => invitations.Count;
+        public int InvitationCount => invitations.Count;
 
         /// <summary>
         /// Adds an invitation into the list.
         /// </summary>
         /// <param name="code">The invitation´s code.</param>
         /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
-        public static void CreateInvitation(string code, Func<string, Invitation> f)
+        public void CreateInvitation(string code, Func<string, Invitation> f)
         {
             if (f != null)
             {
@@ -43,7 +43,7 @@ namespace Library.Core.Invitations
         /// <param name="invitationCode">The invitation's code.</param>
         /// <param name="userId">The id of the user who validated the invitation.</param>
         /// <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
-        public static string ValidateInvitation(string invitationCode, UserId userId)
+        public string ValidateInvitation(string invitationCode, UserId userId)
         {
             if (
                 invitations.Where(invitation => invitation.Code == invitationCode).FirstOrDefault()

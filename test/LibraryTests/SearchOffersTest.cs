@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Library;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
@@ -38,7 +39,7 @@ namespace ProgramTests
             this.category1 = new MaterialCategory("Residuos hospitalarios");
             List<string> keyword1 = new List<string> { "agujas", "hospital" };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
-            this.unit1 = new Unit("kilogram", "kg", 20, Measure.Weight);
+            this.unit1 = Unit.GetByAbbr("kg");
             this.amount1 = new Amount(100, this.unit1);
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             this.client = new LocationApiClient();
@@ -48,7 +49,7 @@ namespace ProgramTests
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             List<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
-            this.unit2 = new Unit("kilogram", "kg", 5, Measure.Weight);
+            this.unit2 = Unit.GetByAbbr("kg");
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
@@ -70,7 +71,7 @@ namespace ProgramTests
             expected1.Add(this.publication1);
             expected1.Add(this.publication2);
 
-            Assert.AreEqual(Searcher.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected1);
+            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected1);
         }
 
         /// <summary>
@@ -87,8 +88,7 @@ namespace ProgramTests
 
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Searcher.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected2);
-        }
+            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch), expected2);
 
         /// <summary>
         /// This test checks that an entrepreneur is able to
@@ -102,7 +102,7 @@ namespace ProgramTests
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(this.publication2);
 
-            Assert.AreEqual(Searcher.SearchByKeyword(publicationsToSearchIn, "cubrebocas"), expected3);
+            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "cubrebocas"), expected3);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace ProgramTests
 
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Searcher.SearchByKeyword(publicationsToSearchIn, "sanitario"), expected4);
+            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "sanitario"), expected4);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace ProgramTests
             List<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(this.publication2);
 
-            Assert.AreEqual(Searcher.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected5);
+            Assert.AreEqual( Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected5);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace ProgramTests
 
             List<MaterialPublication> expected6 = new List<MaterialPublication>();
 
-            Assert.AreEqual(Searcher.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected6);
+            Assert.AreEqual(Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified), expected6);
         }
     }
 }

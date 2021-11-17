@@ -21,6 +21,7 @@ namespace Library.InputHandlers.Abstractions
             this.resetter = resetter;
         }
 
+        /// <inheritdoc />
         Result<bool, string> IInputHandler.ProcessInput(string msg) =>
             (this.inputHandler)(msg).Map(
                 processResult => processResult.AndThen(
@@ -28,10 +29,8 @@ namespace Library.InputHandlers.Abstractions
                     {
                         this.result = result;
                         return Result<bool, string>.Ok(true);
-                    }
-                ),
-                () => Result<bool, string>.Ok(false)
-            );
+                    }),
+                () => Result<bool, string>.Ok(false));
 
         Result<T, string> IInputProcessor<T>.getResult() => Result<T, string>.Ok(this.result);
 
@@ -62,12 +61,8 @@ namespace Library.InputHandlers.Abstractions
                                 {
                                     processor.Reset();
                                     return $"{e}\n{processor.GetDefaultResponse()}";
-                                }
-                            )
-                        )
-                    ),
-                resetter: processor.Reset
-            );
+                                }))),
+                resetter: processor.Reset);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Library;
 using Library.Core;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
@@ -63,12 +64,14 @@ namespace ProgramTests
             }
 
             Entrepreneur juan = new Entrepreneur(this.juanId, this.nameMessage.Text, this.ageMessage.Text, this.location, this.headingMessage.Text, habilitations, specializations);
-            EntrepreneurManager.NewEntrepreneur(juan);
+            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
             UserId idExpected = this.nameMessage.Id;
-            int indexnameUser = EntrepreneurManager.Entrepreneurs.IndexOf(juan);
-            Assert.AreEqual(EntrepreneurManager.Entrepreneurs[indexnameUser].Id, idExpected);
+
+            int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
+            Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);
+
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;

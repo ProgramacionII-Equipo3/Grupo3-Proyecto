@@ -17,7 +17,6 @@ namespace Library.InputHandlers
                     ? Result<string, string>.Ok(s)
                     : Result<string, string>.Err("The given input is not a valid email."),
                 processor: new BasicStringProcessor(initialResponseGetter)
-            )
-        ) {}
+            )) {}
     }
 }

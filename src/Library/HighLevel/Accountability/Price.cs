@@ -2,8 +2,8 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This struct represents a price.
-    /// Created because of SRP, this class is the one that controls 
-    /// the price in specific. 
+    /// Created because of SRP, this class is the one that controls
+    /// the price in specific.
     /// </summary>
     public struct Price
     {
@@ -28,6 +28,7 @@ namespace Library.HighLevel.Accountability
         /// <param name="quantity">Material´s Quantity.</param>
         /// <param name="currency">Material´s publication currency.</param>
         /// <param name="unit">Material´s unit.</param>
+
         public Price(float quantity, Currency currency, Unit unit)
         {
             this.Quantity = quantity;

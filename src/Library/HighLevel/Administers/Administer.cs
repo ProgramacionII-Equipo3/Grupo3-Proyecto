@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using Library.Core.Invitations;
 using Library.Core;
 using Library.HighLevel.Companies;
-using System.Collections.Generic;
-using System;
 
 namespace Library.HighLevel.Administers
 {
@@ -15,7 +15,7 @@ namespace Library.HighLevel.Administers
     /// </summary>
     public class Administer
     {
-        private List<UserId> AdministerList = new List<UserId>();
+        private List<UserId> administerList = new List<UserId>();
 
         /// <summary>
         /// This method create's an invitation code.
@@ -36,6 +36,7 @@ namespace Library.HighLevel.Administers
             {
                 result += item;
             }
+            
             return result;
         }
 
@@ -44,7 +45,7 @@ namespace Library.HighLevel.Administers
         /// </summary>
         public static void CreateCompanyInvitation()
         {
-            InvitationManager.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
+            Singleton<InvitationManager>.Instance.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
         }
     }
 }
