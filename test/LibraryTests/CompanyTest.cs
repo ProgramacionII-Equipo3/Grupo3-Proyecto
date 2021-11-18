@@ -79,7 +79,9 @@ namespace ProgramTests
         [Test]
         public void GetByNameTest()
         {
+#pragma warning disable 0219
             string id = "Telegram_2015598868";
+#pragma warning restore 0219
             ContactInfo contactInfo;
             contactInfo.Email = "Woodcompany@gmail.com";
             contactInfo.PhoneNumber = 094567417;

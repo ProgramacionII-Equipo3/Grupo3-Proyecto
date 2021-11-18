@@ -32,21 +32,24 @@ namespace Library.Core.Invitations
 
         /// <summary>
         /// Gets the set of invitations.<br />
-        /// This property is used to serialize and deserialize invitations from JSON.
+        /// This property is used to serialize invitations into JSON.
         /// </summary>
-        public ISet<T> Invitations
-        {
-            get => invitations;
-            set
-            {
-                if(value is null) return;
+        public ISet<T> Invitations => invitations;
 
-                foreach(T i in value)
-                {
-                    Singleton<InvitationManager>.Instance.AddInvitation(i);
-                }
-                this.invitations = value;
+        /// <summary>
+        /// Sets the set of invitations.<br />
+        /// This function is used to deserialize invitations from JSON.
+        /// </summary>
+        /// <param name="value">An enumerable with the invitations.</param>
+        public void SetInvitations(IEnumerable<T> value)
+        {
+            if(value is null) return;
+
+            foreach(T i in value)
+            {
+                Singleton<InvitationManager>.Instance.AddInvitation(i);
             }
+            this.invitations = value.ToHashSet();
         }
 
         /// <summary>

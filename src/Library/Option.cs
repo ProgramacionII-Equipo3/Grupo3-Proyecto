@@ -48,7 +48,7 @@ namespace Library
         /// <summary>
         /// Attempts to retrieve the value from this <see cref="Option{T}" />, throwing an error if not possible.
         /// </summary>
-        /// <exception cref="ArgumentNullException">This option doesn't have a value.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if this option doesn't have a value.</exception>
         /// <returns>The option's inner value.</returns>
         public T Unwrap() =>
             this.Map(
