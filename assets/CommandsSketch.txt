@@ -1,0 +1,96 @@
+ ________________
+|		         |
+| ADMIN COMMANDS |
+|________________|
+
+
+> /invite		--> Ok, vamos a invitar una empresa. El código de invitación es el siguiente:
+					 _________________
+					| 		          |
+					| invitation code |
+					|_________________|
+
+
+...................................................................................................................................................................................................
+ __________________
+|		   		   |
+| COMPANY COMMANDS |
+|__________________|
+
+
+> /registercompany	-->	Ok, vamos a registrar una empresa.
+				Para poder registrar la empresa, tienes que ingresar el código de invitación que te enviamos.
+					> ¿Cuál es el nombre de la empresa?
+					> ¿Cuál es la dirección de la empresa?
+					> ¿Cuál es el rubro de la empresa?
+
+> /publish		-->	Ok, vamos a publicar un material.
+					> ¿Cuál es el nombre del material?
+					> ¿Cuántas unidades del material deseas publicar?
+					> ¿Cuál es el precio del material?
+					> ¿En que moneda se encuentra el precio del material?
+					> ¿Cuál es la dirección donde se encuentra el material?
+					> ¿Cuál o cuáles son las palabras claves asociadas al material?
+					> ¿En que unidad se mide el material?
+					> ¿Cuál es la categoría del material?
+					> ¿Cuál o cuáles son las habilitaciones necesarias para manipular el material?
+					> ¿El material, se genera constantemente o en una fecha puntual?
+
+> /checkhabilitations	--> 	Ok, vamos a comprobar las habilitaciones del emprendedor que solicitó el material,
+					> ¿Cuál es el ID del emprendedor?
+
+
+> /companyreport	--> 	Ok, vamos a obtener el reporte de todos los materiales obtenidos,
+					> ¿Cuál es el período de tiempo del que quieres obtener el reporte? (Por favor ingresar el tiempo en meses).
+
+> /companyhelp 		--> 	Ok, a continuación te muestro todos los comandos disponibles para las empresas:
+					> /registercompany 	-> Este comando sirve para registrar una empresa, para hacer uso de el se necesita tener el código previamente enviado a la empresa.
+					> /publish		-> Este comando se encarga de publicar un material.
+					> /companyreport	-> Este comando se encarga de mostrarle al usuario el reporte de todos los materiales enviados en un período de tiempo ingresado en meses.
+					> /checkhabilitations	-> Este comando se encarga de mostrarle al usuario las habilitaciones que posee luego de que el emprendedor solicite el material, para así checkear que todo este correcto.
+
+
+...................................................................................................................................................................................................
+
+ _______________________
+|						|
+| ENTREPRENEUR COMMANDS |
+|_______________________|
+
+
+> /eregister		--> 	Ok, vamos a registrarte como emprendedor.
+					> ¿Cuál es tu nombre?
+					> ¿A que te dedicas?
+					> ¿Cuál es tu ubicación?
+					> ¿Cuál o cuáles habilitaciones posees? (recuerda ingresar links a documentos, por ejemplo google drive).
+					> ¿Cuál o cuáles son tus especializaciones?
+
+> /esearchFK		--> 	Ok, vamos a buscar materiales por palabras claves,
+					> Ingresa las palabras claves a buscar.
+
+> /esearchFC		--> 	Ok, vamos a buscar materiales por categorías,
+					> Ingresa las categorías a buscar.
+
+> /esearchFZ		--> 	Ok, vamos a buscar materiales por zona,
+					> Ingresa la zona a buscar.
+
+
+> /ematerialsgen	--> 	Ok, vamos a buscar materiales que se generen constantemente.
+					
+
+> /ematerialspunt	--> 	Ok, vamos a buscar materiales que se generen puntualmente.
+
+
+>/ereport		--> 	Ok, vamos a obtener el reporte de todos los materiales recibidos,
+					> ¿Cuál es el período de tiempo del que quieres obtener el reporte? (Porfavor ingresar el tiempo en meses)
+
+> /ehelp		--> 	Ok, a continuación te muestro todos los comandos disponibles para los emprendedores:
+					> /eregister      -> Este comando se encarga de registrar un emprendedor.
+					> /searchFK       -> Este comando sirve para realizar una búsqueda de todos los materiales publicados que tengan las keywords ingresadas.
+					> /searchFC	  -> Este comando sirve para realizar una búsqueda de todos los materiales publicados que tengan la/las categorías ingresadas.
+					> /searchFZ  	  -> Este comando sirve para realizar una búsqueda de todos los materiales publicados que estén en la zona ingresada.
+					> /materialsgen   -> Este comando sirve para que un emprendedor tenga la información de los materiales que se generen constantemente.
+					> /materialspunt  -> Este comando sirve para que un emprendedor tenga la información de cuando se genera puntualmente un material.
+					> /ereport	  -> Este comando sirve para que un emprendedor pueda ver el reporte de todos los materiales recibidos en un cierto período de tiempo.
+
+					

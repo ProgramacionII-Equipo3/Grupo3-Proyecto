@@ -123,6 +123,43 @@
             <param name="userId">The id of the user who validated the invitation.</param>
             <returns>The response string.</returns>
         </member>
+        <member name="T:Library.Core.Invitations.InvitationList`1">
+            <summary>
+            This class represents a list of invitations of a concrete class.
+            </summary>
+            <typeparam name="T">The class of the invitations.</typeparam>
+        </member>
+        <member name="F:Library.Core.Invitations.InvitationList`1.removers">
+            <summary>
+            Gets the list of functions which remove invitations from the <see cref="T:Library.Core.Invitations.InvitationList`1" /> instances.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Invitations.InvitationList`1.Instance">
+            <summary>
+            The instance of the <see cref="T:Library.Core.Invitations.InvitationList`1" />.
+            </summary>
+        </member>
+        <member name="F:Library.Core.Invitations.InvitationList`1.invitations">
+            <summary>
+            The set of invitations.
+            It's an <see cref="T:System.Collections.Generic.ISet`1" /> due to ISP,
+            since only its functionality as a set is used.
+            </summary>
+        </member>
+        <member name="P:Library.Core.Invitations.InvitationList`1.Invitations">
+            <summary>
+            Gets the set of invitations.<br />
+            This property is used to serialize and deserialize invitations from JSON.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationList`1.AddInvitation(`0)">
+            <summary>
+            Adds an invitation into the set.<br />
+            This function should only be used by the <see cref="M:Library.Core.Invitations.InvitationManager.CreateInvitation``1(System.String,System.Func{System.String,``0})" /> function.<br />
+            For other contexts, use <see cref="M:Library.Core.Invitations.InvitationManager.CreateInvitation``1(System.String,System.Func{System.String,``0})" />.
+            </summary>
+            <param name="invitation">The invitation.</param>
+        </member>
         <member name="T:Library.Core.Invitations.InvitationManager">
             <summary>
             This class acts as the highest level of abstraccion in invitation handling.
@@ -138,12 +175,21 @@
             Gets the number of invitations.
             </summary>
         </member>
-        <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation(System.String,System.Func{System.String,Library.Core.Invitations.Invitation})">
+        <member name="M:Library.Core.Invitations.InvitationManager.CreateInvitation``1(System.String,System.Func{System.String,``0})">
             <summary>
             Adds an invitation into the list.
             </summary>
             <param name="code">The invitation´s code.</param>
             <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.AddInvitation(Library.Core.Invitations.Invitation)">
+            <summary>
+            Adds an invitation directly into the list.<br />
+            This function should only be used by the <see cref="P:Library.Core.Invitations.InvitationList`1.Invitations" /> setter
+            to load invitations which come from JSON data.<br />
+            For other contexts, use <see cref="M:Library.Core.Invitations.InvitationManager.CreateInvitation``1(System.String,System.Func{System.String,``0})" />.
+            </summary>
+            <param name="invitation">The invitation to load.</param>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,System.String)">
             <summary>
@@ -1463,16 +1509,16 @@
         </member>
         <member name="M:Library.NotNull`1.FromOption(Library.Option{`0})">
             <summary>
-            
+            Converts an <see cref="T:Library.Option`1" /> with a value into an <see cref="T:Library.Option`1" /> with a <see cref="T:Library.NotNull`1" /> with the same value.
             </summary>
-            <param name="option"></param>
-            <returns></returns>
+            <param name="option">The initial <see cref="T:Library.Option`1" />.</param>
+            <returns>The resulting <see cref="T:Library.Option`1" />.</returns>
         </member>
         <member name="M:Library.NotNull`1.op_Implicit(Library.NotNull{`0})~`0">
             <summary>
-            
+            Gets the value out of the <see cref="T:Library.NotNull`1" />.
             </summary>
-            <param name="notNull"></param>
+            <param name="notNull">The <see cref="T:Library.NotNull`1" />.</param>
         </member>
         <member name="T:Library.Option`1">
             <summary>
@@ -1779,7 +1825,10 @@
             </summary>
             <param name="enumerable">The enumerable.</param>
             <typeparam name="T">The type of the elements of the enumerable.</typeparam>
-            <returns></returns>
+            <returns>
+            Option.None if the enumerable is empty or if the first element is null, or<br />
+            Option.Some(element), being element the first element.
+            </returns>
         </member>
     </members>
 </doc>
