@@ -25,11 +25,13 @@ namespace Library.Platforms.Telegram
         private TelegramBot()
         {
             this.Client = new TelegramBotClient(Secret.TELEGRAM_BOT_TOKEN);
+#pragma warning disable 0618
             this.Client.OnMessage += (sender, messageEventArgs) =>
                 this.ReceiveMessage(
                     messageEventArgs.Message.Text,
                     messageEventArgs.Message.Chat.Id
                 );
+#pragma warning restore 0618
         }
 
         /// <summary>
@@ -60,9 +62,13 @@ namespace Library.Platforms.Telegram
         /// <param name="blockingAction">The function which blocks the thread.</param>
         public void ReceiveMessages(Action blockingAction)
         {
+#pragma warning disable 0618
             this.Client.StartReceiving();
+#pragma warning restore 0618
             blockingAction();
+#pragma warning disable 0618
             this.Client.StopReceiving();
+#pragma warning restore 0618
         }
     }
 }

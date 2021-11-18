@@ -40,7 +40,7 @@ namespace Library.Core.Invitations
 
         /// <summary>
         /// Adds an invitation directly into the list.<br />
-        /// This function should only be used by the <see cref="InvitationList{T}.Invitations" /> setter
+        /// This function should only be used by the <see cref="InvitationList{T}.SetInvitations(IEnumerable{T})" /> function
         /// to load invitations which come from JSON data.<br />
         /// For other contexts, use <see cref="InvitationManager.CreateInvitation{T}(string, Func{string, T})" />.
         /// </summary>
