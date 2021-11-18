@@ -10,7 +10,20 @@ namespace Library.States
     /// </summary>
     public abstract class MultipleOptionState : State
     {
-        private (string, Func<State>)[] commands { get; }
+        /// <summary>
+        /// Gets the list of the commands supported by this <see cref="MultipleOptionState" />.
+        /// </summary>
+        protected (string, string, Func<(State, string)>)[] commands = new (string, string, Func<(State, string)>)[0];
+
+        /// <summary>
+        /// Returns the message the program sends before asking for an option.
+        /// </summary>
+        /// <returns>A string.</returns>
+        protected abstract string GetInitialResponse();
+
+        /// <inheritdoc />
+        public override sealed string GetDefaultResponse() =>
+            this.GetInitialResponse() + "\n        " + string.Join("\n        ", commands.Select(command => $"{command.Item1}: {command.Item2}"));
 
         /// <summary>
         /// Gets the string to send in order to notify the user that the data is invalid.
@@ -18,32 +31,16 @@ namespace Library.States
         /// <returns>A string.</returns>
         protected abstract string GetErrorString();
 
-        /// <summary>
-        /// Gets the string to send after receiving a valid option.
-        /// </summary>
-        /// <returns>A string, or null if there's no string to send.</returns>
-        protected abstract string GetEndString();
-
-        /// <summary>
-        /// Creates a <see cref="MultipleOptionState" /> with a given group of commands.
-        /// </summary>
-        /// <param name="commands">The group of commands.</param>
-        protected MultipleOptionState(params (string, Func<State>)[] commands)
-        {
-            this.commands = commands;
-        }
-
         /// <inheritdoc />
         public override (State, string) ProcessMessage(string id, UserData data, string msg) =>
             this.commands.Where((command) => command.Item1 == msg.Trim()).FirstOrNone().Map(
                 command =>
                 {
-                    State newState = command.Item2();
-                    string endString = this.GetEndString();
+                    var (newState, res) = command.Item3();
                     return (
                         newState,
-                        endString != null
-                            ? $"{endString}\n{newState.GetDefaultResponse()}"
+                        res != null
+                            ? $"{res}\n{newState.GetDefaultResponse()}"
                             : newState.GetDefaultResponse()
                     );
                 },

@@ -20,11 +20,11 @@ namespace Library.InputHandlers
         {
             this.inputHandlers = new IInputHandler[]
             {
-                ProcessorHandler.CreateInstance<string>(
+                ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.docLink = s,
                     new HTMLLinkProcessor(() => "Please insert the habilitation's link.")
                 ),
-                ProcessorHandler.CreateInstance<string>(
+                ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.description = s,
                     new BasicStringProcessor(() => "Please insert the habilitation's description.")
                 )

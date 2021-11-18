@@ -21,19 +21,19 @@ namespace Library.States.Companies
                 this.parent = parent;
                 this.inputHandlers = new IInputHandler[]
                 {
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.heading = s,
                         new BasicStringProcessor(() => "Please insert the company's heading.")
                     ),
-                    ProcessorHandler.CreateInstance<Location>(
+                    ProcessorHandler.CreateInfallibleInstance<Location>(
                         l => this.location = l,
                         new LocationProcessor(() => "Please insert the company's location")
                     ),
-                    ProcessorHandler.CreateInstance<int>(
+                    ProcessorHandler.CreateInfallibleInstance<int>(
                         n => this.phoneNumber = n,
                         new UnsignedInt32Processor(() => "Please insert the company's phone number.")
                     ),
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.email = s,
                         new EmailProcessor(() => "Please insert the company's email.")
                     )

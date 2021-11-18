@@ -23,6 +23,7 @@ namespace Library.InputHandlers
 
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
+            if(msg == "\\") return Result<bool, string>.Ok(false);
             if(string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A number was expected.");
             int result;
             if(int.TryParse(msg.Trim(), NumberStyles.AllowTrailingWhite | NumberStyles.AllowLeadingWhite | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out result))

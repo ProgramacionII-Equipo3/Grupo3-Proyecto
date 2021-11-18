@@ -46,6 +46,9 @@ namespace Library.States.Companies
         public override bool IsComplete => false;
 
         /// <inheritdoc />
+        public override State.Type UserType => State.Type.COMPANY;
+
+        /// <inheritdoc />
         public override string GetDefaultResponse()
         {
             if(this.companyGetter == null)
