@@ -40,7 +40,7 @@ namespace UnitTests
             {
                 Assert.Contains(
                     new CustomInvitation(i),
-                    Singleton<InvitationList<CustomInvitation>>.Instance.GetInvitations().ToArray()
+                    Singleton<InvitationList<CustomInvitation>>.Instance.Invitations.ToArray()
                 );
                 Assert.AreEqual(
                     $"Invitation accepted: {i}, AAA",
