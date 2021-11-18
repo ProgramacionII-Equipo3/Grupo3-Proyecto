@@ -11,16 +11,14 @@ namespace Library.Core.Invitations
     /// <typeparam name="T">The class of the invitations.</typeparam>
     public class InvitationList<T> where T : Invitation
     {
-        /// <summary>
-        /// Gets the list of functions which remove invitations from the <see cref="InvitationList{T}" /> instances.
-        /// </summary>
-        private IList<Action<string>> removers = new List<Action<string>>();
-
-        /// <summary>
-        /// The instance of the <see cref="InvitationList{T}" />.
-        /// </summary>
-        public static readonly InvitationList<T> Instance = new InvitationList<T>();
-
+        static InvitationList()
+        {
+            Singleton<InvitationManager>.Instance.AddRemover(code =>
+            {
+                Singleton<InvitationList<T>>.Instance.invitations =
+                    Singleton<InvitationList<T>>.Instance.invitations.Where(inv => inv.Code != code).ToHashSet();
+            });
+        }
 
         /// <summary>
         /// The set of invitations.

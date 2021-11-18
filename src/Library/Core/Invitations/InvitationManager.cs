@@ -11,6 +11,22 @@ namespace Library.Core.Invitations
     public class InvitationManager
     {
         /// <summary>
+        /// Gets a set of functions to remove invitations
+        /// from their correspondent <see cref="InvitationList{T}" /> instances.
+        /// </summary>
+        private IList<Action<string>> removers = new List<Action<string>>();
+
+        /// <summary>
+        /// Adds a remover into the set.
+        /// </summary>
+        /// <param name="remover">The remover.</param>
+        public void AddRemover(Action<string> remover)
+        {
+            if(!removers.Contains(remover))
+                removers.Add(remover);
+        }
+
+        /// <summary>
         /// A list of all the invitations.
         /// </summary>
         private IList<Invitation> invitations = new List<Invitation>();
@@ -64,6 +80,10 @@ namespace Library.Core.Invitations
             {
                 string r = invitation.Validate(userId);
                 invitations.Remove(invitation);
+                foreach(Action<string> f in removers)
+                {
+                    f(invitationCode);
+                }
                 return r;
             }
             else

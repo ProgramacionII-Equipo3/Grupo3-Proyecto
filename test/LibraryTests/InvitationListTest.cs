@@ -47,6 +47,10 @@ namespace UnitTests
                     Singleton<InvitationManager>.Instance.ValidateInvitation(i, "AAA")
                 );
             }
+
+            Assert.Zero(
+                Singleton<InvitationList<CustomInvitation>>.Instance.Invitations.Count
+            );
         }
 
         private class CustomInvitation : Invitation, IEquatable<CustomInvitation>

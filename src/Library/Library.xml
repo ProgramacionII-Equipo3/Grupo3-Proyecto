@@ -129,16 +129,6 @@
             </summary>
             <typeparam name="T">The class of the invitations.</typeparam>
         </member>
-        <member name="F:Library.Core.Invitations.InvitationList`1.removers">
-            <summary>
-            Gets the list of functions which remove invitations from the <see cref="T:Library.Core.Invitations.InvitationList`1" /> instances.
-            </summary>
-        </member>
-        <member name="F:Library.Core.Invitations.InvitationList`1.Instance">
-            <summary>
-            The instance of the <see cref="T:Library.Core.Invitations.InvitationList`1" />.
-            </summary>
-        </member>
         <member name="F:Library.Core.Invitations.InvitationList`1.invitations">
             <summary>
             The set of invitations.
@@ -149,8 +139,15 @@
         <member name="P:Library.Core.Invitations.InvitationList`1.Invitations">
             <summary>
             Gets the set of invitations.<br />
-            This property is used to serialize and deserialize invitations from JSON.
+            This property is used to serialize invitations into JSON.
             </summary>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationList`1.SetInvitations(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Sets the set of invitations.<br />
+            This function is used to deserialize invitations from JSON.
+            </summary>
+            <param name="value">An enumerable with the invitations.</param>
         </member>
         <member name="M:Library.Core.Invitations.InvitationList`1.AddInvitation(`0)">
             <summary>
@@ -164,6 +161,18 @@
             <summary>
             This class acts as the highest level of abstraccion in invitation handling.
             </summary>
+        </member>
+        <member name="F:Library.Core.Invitations.InvitationManager.removers">
+            <summary>
+            Gets a set of functions to remove invitations
+            from their correspondent <see cref="T:Library.Core.Invitations.InvitationList`1" /> instances.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.AddRemover(System.Action{System.String})">
+            <summary>
+            Adds a remover into the set.
+            </summary>
+            <param name="remover">The remover.</param>
         </member>
         <member name="F:Library.Core.Invitations.InvitationManager.invitations">
             <summary>
@@ -185,7 +194,7 @@
         <member name="M:Library.Core.Invitations.InvitationManager.AddInvitation(Library.Core.Invitations.Invitation)">
             <summary>
             Adds an invitation directly into the list.<br />
-            This function should only be used by the <see cref="P:Library.Core.Invitations.InvitationList`1.Invitations" /> setter
+            This function should only be used by the <see cref="M:Library.Core.Invitations.InvitationList`1.SetInvitations(System.Collections.Generic.IEnumerable{`0})" /> function
             to load invitations which come from JSON data.<br />
             For other contexts, use <see cref="M:Library.Core.Invitations.InvitationManager.CreateInvitation``1(System.String,System.Func{System.String,``0})" />.
             </summary>
@@ -1556,7 +1565,7 @@
             <summary>
             Attempts to retrieve the value from this <see cref="T:Library.Option`1" />, throwing an error if not possible.
             </summary>
-            <exception cref="T:System.ArgumentNullException">This option doesn't have a value.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown if this option doesn't have a value.</exception>
             <returns>The option's inner value.</returns>
         </member>
         <member name="M:Library.Option`1.MapValue``1(System.Func{`0,``0})">
