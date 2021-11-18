@@ -192,5 +192,8 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
+        <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

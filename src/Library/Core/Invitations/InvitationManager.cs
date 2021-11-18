@@ -25,16 +25,29 @@ namespace Library.Core.Invitations
         /// </summary>
         /// <param name="code">The invitation´s code.</param>
         /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
-        public void CreateInvitation(string code, Func<string, Invitation> f)
+        public void CreateInvitation<T>(string code, Func<string, T> f) where T : Invitation
         {
             if (f != null)
             {
-                Invitation invitation = f(code);
+                T invitation = f(code);
                 if (!invitations.Any(inv => inv.Code == code))
                 {
                     invitations.Add(invitation);
+                    Singleton<InvitationList<T>>.Instance.AddInvitation(invitation);
                 }
             }
+        }
+
+        /// <summary>
+        /// Adds an invitation directly into the list.<br />
+        /// This function should only be used by the <see cref="InvitationList{T}.Invitations" /> setter
+        /// to load invitations which come from JSON data.<br />
+        /// For other contexts, use <see cref="InvitationManager.CreateInvitation{T}(string, Func{string, T})" />.
+        /// </summary>
+        /// <param name="invitation">The invitation to load.</param>
+        public void AddInvitation(Invitation invitation)
+        {
+            invitations.Add(invitation);
         }
 
         /// <summary>
