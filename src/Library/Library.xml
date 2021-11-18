@@ -42,6 +42,9 @@
             The list of current sessions.
             </summary>
         </member>
+        <member name="M:Library.Core.Distribution.SessionManager.#ctor">
+            
+        </member>
         <member name="M:Library.Core.Distribution.SessionManager.GetById(System.String)">
             <summary>
             Returns the <see cref="T:Library.Core.Distribution.UserSession" /> whose id equals to the given one.
@@ -388,6 +391,11 @@
             that is, if the process of registering to the platform has already finished.
             </summary>
         </member>
+        <member name="P:Library.Core.State.UserType">
+            <summary>
+            Determines for what kind of user this state is oriented towards.
+            </summary>
+        </member>
         <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
@@ -402,6 +410,26 @@
             Returns the first message the object uses to indicate what kind of input it wants.
             </summary>
             <returns>A string.</returns>
+        </member>
+        <member name="T:Library.Core.State.Type">
+            <summary>
+            This enumeration represents the three kinds of users the state can belong to.
+            </summary>
+        </member>
+        <member name="F:Library.Core.State.Type.ADMIN">
+            <summary>
+            The administer.
+            </summary>
+        </member>
+        <member name="F:Library.Core.State.Type.ENTREPRENEUR">
+            <summary>
+            The entrepreneur.
+            </summary>
+        </member>
+        <member name="F:Library.Core.State.Type.COMPANY">
+            <summary>
+            The company.
+            </summary>
         </member>
         <member name="T:Library.Core.UserData">
             <summary>
@@ -764,7 +792,7 @@
             is created by this class.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Administers.Administer.GenerateInvitation">
+        <member name="M:Library.HighLevel.Administers.Administer.GenerateInvitationCode">
             <summary>
             This method create's an invitation code.
             </summary>
@@ -909,6 +937,13 @@
             <summary>
             The list of all publications made by all companies.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.RemoveCompany(System.String)">
+            <summary>
+            Removes a company.
+            </summary>
+            <param name="name">The company's name.</param>
+            <returns>Whether the company was successfully removed.</returns>
         </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
@@ -1489,9 +1524,18 @@
         <member name="M:Library.InputHandlers.ProcessorHandler.#ctor(System.Func{System.String,Library.Result{System.Boolean,System.String}},System.Func{System.String},System.Action)">
             
         </member>
-        <member name="M:Library.InputHandlers.ProcessorHandler.CreateInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.ProcessorHandler.CreateInstance``1(System.Func{``0,System.String},Library.Core.Processing.IInputProcessor{``0})">
             <summary>
             Creates an instance of <see cref="T:Library.InputHandlers.ProcessorHandler" />.
+            </summary>
+            <param name="f">The operation to do with the resulting input, and returns a not-null string if there was an error.</param>
+            <param name="processor">The input processor.</param>
+            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.ProcessorHandler.CreateInfallibleInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Creates an instance of <see cref="T:Library.InputHandlers.ProcessorHandler" /> which can't send an error
+            in the function which gets the generated value.
             </summary>
             <param name="action">The operation to do with the resulting input.</param>
             <param name="processor">The input processor.</param>
@@ -1698,6 +1742,44 @@
             The instance.
             </summary>
         </member>
+        <member name="T:Library.States.Admins.AdminInitialMenuState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.States.Admins.AdminInitialMenuState.IsComplete">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.Admins.AdminInitialMenuState.UserType">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Admins.AdminInitialMenuState.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Admins.AdminInitialMenuState.GetInitialResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Admins.AdminInitialMenuState.GetErrorString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.Admins.AdminRemoveCompanyState">
+            <summary>
+            This class represents the state of an admin who is removing a company.
+            </summary>
+        </member>
+        <member name="P:Library.States.Admins.AdminRemoveCompanyState.IsComplete">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.Admins.AdminRemoveCompanyState.UserType">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Admins.AdminRemoveCompanyState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Admins.AdminRemoveCompanyState" />.
+            </summary>
+        </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
             <summary>
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
@@ -1707,6 +1789,9 @@
             <inheritdoc />
         </member>
         <member name="P:Library.States.Companies.IncompleteCompanyRepresentativeState.IsComplete">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.Companies.IncompleteCompanyRepresentativeState.UserType">
             <inheritdoc />
         </member>
         <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.GetDefaultResponse">
@@ -1721,6 +1806,9 @@
             
         </member>
         <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.IsComplete">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.UserType">
             <inheritdoc />
         </member>
         <member name="T:Library.States.InputHandlerState">
@@ -1742,23 +1830,25 @@
             This class represents a <see cref="T:Library.Core.State" /> which handles the messages in a multiple-option fashion.
             </summary>
         </member>
+        <member name="F:Library.States.MultipleOptionState.commands">
+            <summary>
+            Gets the list of the commands supported by this <see cref="T:Library.States.MultipleOptionState" />.
+            </summary>
+        </member>
+        <member name="M:Library.States.MultipleOptionState.GetInitialResponse">
+            <summary>
+            Returns the message the program sends before asking for an option.
+            </summary>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Library.States.MultipleOptionState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
         <member name="M:Library.States.MultipleOptionState.GetErrorString">
             <summary>
             Gets the string to send in order to notify the user that the data is invalid.
             </summary>
             <returns>A string.</returns>
-        </member>
-        <member name="M:Library.States.MultipleOptionState.GetEndString">
-            <summary>
-            Gets the string to send after receiving a valid option.
-            </summary>
-            <returns>A string, or null if there's no string to send.</returns>
-        </member>
-        <member name="M:Library.States.MultipleOptionState.#ctor(System.ValueTuple{System.String,System.Func{Library.Core.State}}[])">
-            <summary>
-            Creates a <see cref="T:Library.States.MultipleOptionState" /> with a given group of commands.
-            </summary>
-            <param name="commands">The group of commands.</param>
         </member>
         <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
             <inheritdoc />

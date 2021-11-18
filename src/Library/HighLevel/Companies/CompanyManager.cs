@@ -55,6 +55,8 @@ namespace Library.HighLevel.Companies
         /// <param name="location">The company´s location.</param>
         public Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
+            name = name.Trim();
+            heading = heading.Trim();
             if (GetByName(name) != null)
             {
                 return null;
@@ -70,5 +72,16 @@ namespace Library.HighLevel.Companies
         /// </summary>
         public List<AssignedMaterialPublication> Publications =>
             this.Companies.SelectMany(company => company.Publications).ToList();
+
+        /// <summary>
+        /// Removes a company.
+        /// </summary>
+        /// <param name="name">The company's name.</param>
+        /// <returns>Whether the company was successfully removed.</returns>
+        public bool RemoveCompany(string name)
+        {
+            name = name.Trim();
+            return this.companies.RemoveAll(company => company.Name == name) > 0;
+        }
     }
 }

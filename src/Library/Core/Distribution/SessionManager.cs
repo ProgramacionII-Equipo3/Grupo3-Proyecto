@@ -13,6 +13,24 @@ namespace Library.Core.Distribution
         /// </summary>
         private IList<UserSession> sessions = new List<UserSession>();
 
+        ///
+        public SessionManager()
+        {
+            this.NewUser(
+                "Telegram_1883636472",
+                new UserData
+                {
+                    Name = "",
+                    ContactInfo = new ContactInfo
+                    {
+                        PhoneNumber = -1,
+                        Email = ""
+                    }
+                },
+                new Library.States.Admins.AdminInitialMenuState()
+            );
+        }
+
         /// <summary>
         /// Returns the <see cref="UserSession" /> whose id equals to the given one.
         /// </summary>

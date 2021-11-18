@@ -16,7 +16,7 @@ namespace Library.States.Entrepreneurs
     {
         ///
         public NewEntrepreneurState(string userId): base(
-            ProcessorHandler.CreateInstance<Entrepreneur>(
+            ProcessorHandler.CreateInfallibleInstance<Entrepreneur>(
                 e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e),
                 new NewEntrepreneurForm(userId)
             ),
@@ -28,6 +28,9 @@ namespace Library.States.Entrepreneurs
 
         /// <inheritdoc />
         public override bool IsComplete => false;
+
+        /// <inheritdoc />
+        public override State.Type UserType => State.Type.ENTREPRENEUR;
 
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
         {
@@ -46,23 +49,23 @@ namespace Library.States.Entrepreneurs
 
                 this.inputHandlers = new IInputHandler[]
                 {
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         name => this.name = name,
                         new BasicStringProcessor(() => "Please insert your name.")
                     ),
-                    ProcessorHandler.CreateInstance<int>(
+                    ProcessorHandler.CreateInfallibleInstance<int>(
                         age => this.age = age,
                         new UnsignedInt32Processor(() => "Please insert your age (in years).")
                     ),
-                    ProcessorHandler.CreateInstance<Location>(
+                    ProcessorHandler.CreateInfallibleInstance<Location>(
                         location => this.location = location,
                         new LocationProcessor(() => "Please insert your location (<address>, <city>, <department>, <country>).")
                     ),
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         heading => this.heading = heading,
                         new BasicStringProcessor(() => "Please insert your heading.")
                     ),
-                    ProcessorHandler.CreateInstance<Habilitation[]>(
+                    ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
                             new HabilitationProcessor(() => "Please insert your habilitations (they are represented as links to documents which act as evidence).\nInsert them one on one and insert /finish to finish."),
@@ -70,7 +73,7 @@ namespace Library.States.Entrepreneurs
                             () => "Insert the next habilitation (or /finish to finish)"
                         )
                     ),
-                    ProcessorHandler.CreateInstance<string[]>(
+                    ProcessorHandler.CreateInfallibleInstance<string[]>(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
                             new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish."),

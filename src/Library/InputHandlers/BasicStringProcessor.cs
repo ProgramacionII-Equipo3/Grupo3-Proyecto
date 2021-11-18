@@ -10,6 +10,7 @@ namespace Library.InputHandlers
     {
         private readonly Func<string> initialResponseGetter;
         private string result;
+        
 
         /// <summary>
         /// Initializes an instance of <see cref="BasicStringProcessor" /> with the given default response getter.
@@ -24,6 +25,7 @@ namespace Library.InputHandlers
 
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
+            if(msg == "\\") return Result<bool, string>.Ok(false);
             if (string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A valid string was expected.");
             this.result = msg.Trim();
             return Result<bool, string>.Ok(true);

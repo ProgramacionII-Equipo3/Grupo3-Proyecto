@@ -21,7 +21,7 @@ namespace Library.HighLevel.Administers
         /// This method create's an invitation code.
         /// </summary>
         /// <returns>Invitation´s code.</returns>
-        public static string GenerateInvitation()
+        public static string GenerateInvitationCode()
         {
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrsteuvwxyz0123456789";
             char[] charsArray = new char[8];
@@ -43,9 +43,11 @@ namespace Library.HighLevel.Administers
         /// <summary>
         /// This method creates an invitation for a company.
         /// </summary>
-        public static void CreateCompanyInvitation()
+        public static string CreateCompanyInvitation()
         {
-            Singleton<InvitationManager>.Instance.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
+            string generatedCode = Administer.GenerateInvitationCode();
+            Singleton<InvitationManager>.Instance.CreateInvitation(generatedCode, code => new CompanyInvitation(code));
+            return generatedCode;
         }
     }
 }
