@@ -980,7 +980,7 @@
             Gets the entrepreneur's habilitation needed to buy certain materials.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(Library.Core.UserId,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
             </summary>
@@ -1027,7 +1027,6 @@
             <summary>
             It creates a client to be able to use the LocationAPI.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
             <summary>
@@ -1219,20 +1218,9 @@
             Gets the type of the material publication.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.MaterialPublication.Type" -->
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
-            List of the keywords of the publication material.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Materials.MaterialPublication.publications">
-            <summary>
-            List to save all the publication's.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Materials.MaterialPublication.Publications">
-            <summary>
-            A public read-only list of the publications.
+            The list of keywords of the publication material.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
@@ -1357,6 +1345,12 @@
             </summary>
             <typeparam name="T">The type the inner processor returns.</typeparam>
         </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.#ctor(Library.Core.Processing.IInputProcessor{`0})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1" />.
+            </summary>
+            <param name="innerProcessor">The processor which receives the data and returns the object.</param>
+        </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
             Generates a string from a single input message, after trimming it.
@@ -1374,12 +1368,24 @@
             </summary>
         </member>
         <member name="M:Library.InputHandlers.EmailProcessor.#ctor(System.Func{System.String})">
-            
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.EmailProcessor" />.
+            </summary>
+            <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         </member>
         <member name="T:Library.InputHandlers.HabilitationProcessor">
             <summary>
             This class represents a processor which generates habilitations.
             </summary>
+        </member>
+        <member name="M:Library.InputHandlers.HabilitationProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.HabilitationProcessor" />.
+            </summary>
+            <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
+        </member>
+        <member name="M:Library.InputHandlers.HabilitationProcessor.getResult">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.HTMLLinkProcessor">
             <summary>
@@ -1388,11 +1394,9 @@
         </member>
         <member name="M:Library.InputHandlers.HTMLLinkProcessor.#ctor(System.Func{System.String})">
             <summary>
-            
+            Initializes an instance of <see cref="T:Library.InputHandlers.HTMLLinkProcessor" />.
             </summary>
-            <param name="initialResponseGetter"></param>
-            <typeparam name="string"></typeparam>
-            <returns></returns>
+            <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         </member>
         <member name="T:Library.InputHandlers.ListProcessor`1">
             <summary>
@@ -1639,6 +1643,20 @@
             The instance.
             </summary>
         </member>
+        <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
+            <summary>
+            This class represents the state of a company representative who is yet to be fully logged in to the platform.
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.Companies.IncompleteCompanyRepresentativeState.IsComplete">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
         <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
             <summary>
             
@@ -1648,34 +1666,6 @@
             
         </member>
         <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="T:Library.States.IncompleteCompanyRepresentativeState">
-            <summary>
-            This class represents the state of a company representative who is yet to be fully logged in to the platform.
-            </summary>
-        </member>
-        <member name="M:Library.States.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.IncompleteCompanyRepresentativeState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.States.IncompleteCompanyRepresentativeState.GetDefaultResponse">
-            <inheritdoc />
-        </member>
-        <member name="T:Library.States.InitialMenuState">
-            <summary>
-            This class represents a mock user state, in which the bot returns every message it receives.
-            </summary>
-        </member>
-        <member name="M:Library.States.InitialMenuState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.InitialMenuState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.States.InitialMenuState.GetDefaultResponse">
             <inheritdoc />
         </member>
         <member name="T:Library.States.InputHandlerState">

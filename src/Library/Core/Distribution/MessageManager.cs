@@ -43,7 +43,6 @@ namespace Library.Core.Distribution
             {
                 State newState = new NewEntrepreneurState(msg.Id);
 
-                // TODO: Implement subclass of State for new entrepreneurs. 
                 Singleton<SessionManager>.Instance.NewUser(msg.Id, default, newState);
 
                 return newState.GetDefaultResponse();
