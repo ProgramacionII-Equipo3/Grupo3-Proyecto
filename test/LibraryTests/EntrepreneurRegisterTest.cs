@@ -36,7 +36,7 @@ namespace ProgramTests
             this.habilitationsMessage = new Message("/command link1 link2", this.juanId);
             this.specializationsMessage = new Message("/command specialization1, specialization2", this.juanId);
             this.provider = new LocationApiClient();
-            this.location = this.provider.GetLocationAsync("Av. 8 de Octubre 2738").Result;
+            this.location = this.provider.GetLocation("Av. 8 de Octubre 2738");
         }
 
         /// <summary>
@@ -71,7 +71,6 @@ namespace ProgramTests
 
             int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
             Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);
-
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;

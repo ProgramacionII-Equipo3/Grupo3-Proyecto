@@ -42,9 +42,6 @@
             The list of current sessions.
             </summary>
         </member>
-        <member name="M:Library.Core.Distribution.SessionManager.#ctor">
-            
-        </member>
         <member name="M:Library.Core.Distribution.SessionManager.GetById(System.String)">
             <summary>
             Returns the <see cref="T:Library.Core.Distribution.UserSession" /> whose id equals to the given one.
