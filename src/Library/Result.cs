@@ -88,5 +88,31 @@ namespace Library
             this.Map(
                 v => successFunc(v),
                 Result<U, E>.Err);
+
+        /// <summary>
+        /// Calls a function if the result is an Ok.
+        /// </summary>
+        /// <param name="successAction">The success function.</param>
+        public void RunIfOk(Action<T> successAction)
+        {
+            this.SwitchOk(v =>
+            {
+                successAction(v);
+                return true;
+            });
+        }
+
+        /// <summary>
+        /// Calls a function if the result is an Err.
+        /// </summary>
+        /// <param name="errAction">The error function.</param>
+        public void RunIfErr(Action<E> errAction)
+        {
+            this.SwitchErr(e =>
+            {
+                errAction(e);
+                return true;
+            });
+        }
     }
 }

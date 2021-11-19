@@ -282,24 +282,24 @@
             <param name="msg">The received message's text.</param>
             <param name="id">The received message's user id.</param>
         </member>
-        <member name="T:Library.Core.Processing.FormProcessor`1">
+        <member name="T:Library.Core.Processing.BaseFormProcessor`1">
             <summary>
             Represent a complex form-like set of data through which certain types of data can be received from user input easily.
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
-        <member name="F:Library.Core.Processing.FormProcessor`1.inputHandlers">
+        <member name="F:Library.Core.Processing.BaseFormProcessor`1.inputHandlers">
             <summary>
             The list of input handlers.
             </summary>
         </member>
-        <member name="M:Library.Core.Processing.FormProcessor`1.GetDefaultResponse">
+        <member name="M:Library.Core.Processing.BaseFormProcessor`1.GetDefaultResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.Core.Processing.FormProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
+        <member name="M:Library.Core.Processing.BaseFormProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Library.Core.Processing.FormProcessor`1.getResult">
+        <member name="M:Library.Core.Processing.BaseFormProcessor`1.getResult">
             <summary>
             Generates the resulting object with the obtained input.
             </summary>
@@ -1409,6 +1409,36 @@
             <param name="habilitation">The habilitation.</param>
             <returns>Whether the requirement is satisfied by the habilitation.</returns>
         </member>
+        <member name="T:Library.InputHandlers.Abstractions.FormProcessor`2">
+            <summary>
+            This class acts as a standard implementation of a <see cref="T:Library.Core.Processing.BaseFormProcessor`1" />.
+            </summary>
+            <typeparam name="T">The type of the resulting object of the input handling.</typeparam>
+            <typeparam name="U">The type of the object which holds memory of the state of the processor.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.FormProcessor`2.#ctor(System.Func{`1},System.Func{`1,Library.Result{`0,System.String}},System.Func{System.Func{`1},Library.Core.Processing.IInputProcessor{`1}}[])">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            </summary>
+            <param name="initialStateGetter">The function which determines the initial state.</param>
+            <param name="conversionFunction">The function which generates the value.</param>
+            <param name="inputHandlers">The array of input handlers.</param>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.FormProcessor`2.getResult">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1">
+            <summary>
+            This class represents a processor which processes several objects of the same type.
+            </summary>
+            <typeparam name="T">The type of the elements which are processed into a list.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.#ctor(Library.Core.Processing.IInputProcessor{`0},System.Func{System.String,System.Boolean},System.Func{System.String})">
+            
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
             <summary>
             This class represents an input processor which takes the result of another one and applies a transformation to it.
@@ -1425,6 +1455,39 @@
             <param name="func">The transformation function.</param>
             <param name="processor">The inner <see cref="T:Library.Core.Processing.IInputProcessor`1" />.</param>
             <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.IInputProcessor`1" /> returns.</typeparam>
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ProcessorHandler">
+            <summary>
+            Represents an <see cref="T:Library.Core.Processing.IInputHandler" /> which uses an input processor, and a function to be given its result.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.#ctor(System.Func{System.String,Library.Result{System.Boolean,System.String}},System.Func{System.String},System.Action)">
+            
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInstance``1(System.Func{``0,System.String},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler" />.
+            </summary>
+            <param name="f">The operation to do with the resulting input, and returns a not-null string if there was an error.</param>
+            <param name="processor">The input processor.</param>
+            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInfallibleInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler" /> which can't send an error
+            in the function which gets the generated value.
+            </summary>
+            <param name="action">The operation to do with the resulting input.</param>
+            <param name="processor">The input processor.</param>
+            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ProcessorModifier`1">
+            <summary>
+            Represents an <see cref="T:Library.Core.Processing.IInputProcessor`1" /> which transforms a value into another of the same type.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.#ctor(System.Func{`0},System.Func{System.String,`0,Library.Option{Library.Result{`0,System.String}}},System.Func{System.String},System.Action)">
+            
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1">
             <summary>
@@ -1485,18 +1548,6 @@
             </summary>
             <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         </member>
-        <member name="T:Library.InputHandlers.ListProcessor`1">
-            <summary>
-            This class represents a processor which processes several objects of the same type.
-            </summary>
-            <typeparam name="T">The type of the elements which are processed into a list.</typeparam>
-        </member>
-        <member name="M:Library.InputHandlers.ListProcessor`1.#ctor(Library.Core.Processing.IInputProcessor{`0},System.Func{System.String,System.Boolean},System.Func{System.String})">
-            
-        </member>
-        <member name="M:Library.InputHandlers.ListProcessor`1.GetDefaultResponse">
-            <inheritdoc />
-        </member>
         <member name="T:Library.InputHandlers.LocationProcessor">
             <summary>
             Represents a processor which generates a location from input.
@@ -1512,31 +1563,6 @@
         </member>
         <member name="M:Library.InputHandlers.PhoneNumberProcessor.#ctor(System.Func{System.String})">
             
-        </member>
-        <member name="T:Library.InputHandlers.ProcessorHandler">
-            <summary>
-            Represents an <see cref="T:Library.Core.Processing.IInputHandler" /> which uses an input processor, and a function to be given its result.
-            </summary>
-        </member>
-        <member name="M:Library.InputHandlers.ProcessorHandler.#ctor(System.Func{System.String,Library.Result{System.Boolean,System.String}},System.Func{System.String},System.Action)">
-            
-        </member>
-        <member name="M:Library.InputHandlers.ProcessorHandler.CreateInstance``1(System.Func{``0,System.String},Library.Core.Processing.IInputProcessor{``0})">
-            <summary>
-            Creates an instance of <see cref="T:Library.InputHandlers.ProcessorHandler" />.
-            </summary>
-            <param name="f">The operation to do with the resulting input, and returns a not-null string if there was an error.</param>
-            <param name="processor">The input processor.</param>
-            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
-        </member>
-        <member name="M:Library.InputHandlers.ProcessorHandler.CreateInfallibleInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
-            <summary>
-            Creates an instance of <see cref="T:Library.InputHandlers.ProcessorHandler" /> which can't send an error
-            in the function which gets the generated value.
-            </summary>
-            <param name="action">The operation to do with the resulting input.</param>
-            <param name="processor">The input processor.</param>
-            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
         <member name="T:Library.InputHandlers.UnsignedInt32Processor">
             <summary>
@@ -1727,6 +1753,18 @@
             </summary>
             <param name="successFunc">The function for the success value.</param>
             <typeparam name="U">The success type of the result returned by the function.</typeparam>
+        </member>
+        <member name="M:Library.Result`2.RunIfOk(System.Action{`0})">
+            <summary>
+            Calls a function if the result is an Ok.
+            </summary>
+            <param name="successAction">The success function.</param>
+        </member>
+        <member name="M:Library.Result`2.RunIfErr(System.Action{`1})">
+            <summary>
+            Calls a function if the result is an Err.
+            </summary>
+            <param name="errAction">The error function.</param>
         </member>
         <member name="T:Library.Singleton`1">
             <summary>

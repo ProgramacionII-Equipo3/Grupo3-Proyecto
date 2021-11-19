@@ -3,6 +3,7 @@ using System.Linq;
 using Library.HighLevel.Entrepreneurs;
 using Library.Core;
 using Library.InputHandlers;
+using Library.InputHandlers.Abstractions;
 using Library.Core.Processing;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
@@ -32,7 +33,7 @@ namespace Library.States.Entrepreneurs
         /// <inheritdoc />
         public override State.Type UserType => State.Type.ENTREPRENEUR;
 
-        private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
+        private class NewEntrepreneurForm : BaseFormProcessor<Entrepreneur>
         {
             private string userId;
 

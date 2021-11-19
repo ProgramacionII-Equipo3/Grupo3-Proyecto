@@ -1,13 +1,14 @@
 using System;
 using Library.Core.Processing;
 using Library.HighLevel.Materials;
+using Library.InputHandlers.Abstractions;
 
 namespace Library.InputHandlers
 {
     /// <summary>
     /// This class represents a processor which generates habilitations.
     /// </summary>
-    public class HabilitationProcessor : FormProcessor<Habilitation>
+    public class HabilitationProcessor : BaseFormProcessor<Habilitation>
     {
         private string docLink;
         private string description;
