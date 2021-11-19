@@ -49,10 +49,13 @@ namespace UnitTests
             
 
             Match match = expected.Match(platform.ReceivedMessages[0]);
+
+            Singleton<SessionManager>.Instance.RemoveUser("___");
+
             Assert.That(match.Success, Is.True);
 
             string invitationCode = match.Groups["invitationcode"].Value;
             Console.WriteLine($"Invitation code: {invitationCode}");
-        }
+       }
     }
 }
