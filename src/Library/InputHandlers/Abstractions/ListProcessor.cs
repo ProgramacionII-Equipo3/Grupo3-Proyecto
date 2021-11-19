@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Library.Core.Processing;
 
-namespace Library.InputHandlers
+namespace Library.InputHandlers.Abstractions
 {
     /// <summary>
     /// This class represents a processor which processes several objects of the same type.

@@ -1,7 +1,7 @@
 using System;
 using Library.Core.Processing;
 
-namespace Library.InputHandlers
+namespace Library.InputHandlers.Abstractions
 {
     /// <summary>
     /// Represents an <see cref="IInputHandler" /> which uses an input processor, and a function to be given its result.

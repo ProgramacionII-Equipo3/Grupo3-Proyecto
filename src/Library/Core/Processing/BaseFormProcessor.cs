@@ -4,7 +4,7 @@ namespace Library.Core.Processing
     /// Represent a complex form-like set of data through which certain types of data can be received from user input easily.
     /// </summary>
     /// <typeparam name="T">The type of the resulting object.</typeparam>
-    public abstract class FormProcessor<T> : IInputProcessor<T>
+    public abstract class BaseFormProcessor<T> : IInputProcessor<T>
     {
         /// <summary>
         /// The list of input handlers.

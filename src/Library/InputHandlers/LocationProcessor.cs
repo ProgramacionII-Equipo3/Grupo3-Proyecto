@@ -23,6 +23,7 @@ namespace Library.InputHandlers
                     if(sections.Length != 4)
                         return Result<Location, string>.Err("The given location text is incoherent, it must have address, city, department and country.");
                     
+                    // TODO: Implement code in case of status 500
                     Location location = Singleton<LocationApiClient>.Instance.GetLocationAsync(
                         sections[0].Trim(),
                         sections[1].Trim(),

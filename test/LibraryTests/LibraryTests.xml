@@ -192,6 +192,22 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
+        <member name="T:UnitTests.ConsolePlatform">
+            <summary>
+            Represents the console as a messaging platform in and of itself.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ConsolePlatform.GetUserId(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ConsolePlatform.SendMessage(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ConsolePlatform.Run">
+            <summary>
+            Receives messages from the console as if it was a messaging platform.
+            </summary>
+        </member>
         <member name="T:UnitTests.InvitationListTest">
             <summary>
             This class represents tests concerning the <see cref="T:Library.Core.Invitations.InvitationList`1" /> class.
@@ -210,6 +226,34 @@
         </member>
         <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:UnitTests.ProgramaticPlatform">
+            <summary>
+            Acts as a messaging platform in which the messages it sends are determined in advance.
+            </summary>
+        </member>
+        <member name="P:UnitTests.ProgramaticPlatform.ReceivedMessages">
+            <summary>
+            The received messages.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes an instance of <see cref="T:UnitTests.ProgramaticPlatform" />
+            </summary>
+            <param name="id">The platform's id.</param>
+            <param name="messages">The messages to send.</param>
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.GetUserId(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.SendMessage(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.Run">
+            <summary>
+            Receives messages from the console as if it was a messaging platform.
+            </summary>
         </member>
     </members>
 </doc>

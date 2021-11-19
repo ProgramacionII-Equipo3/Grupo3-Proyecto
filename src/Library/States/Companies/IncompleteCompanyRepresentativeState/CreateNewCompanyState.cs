@@ -1,13 +1,14 @@
 using Library.Core.Processing;
 using Library.HighLevel.Companies;
 using Library.InputHandlers;
+using Library.InputHandlers.Abstractions;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.States.Companies
 {
     public partial class IncompleteCompanyRepresentativeState
     {
-        private class CreateNewCompanyState : FormProcessor<Company>
+        private class CreateNewCompanyState : BaseFormProcessor<Company>
         {
             private IncompleteCompanyRepresentativeState parent;
             private string heading;

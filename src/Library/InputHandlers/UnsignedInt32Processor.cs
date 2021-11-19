@@ -24,14 +24,14 @@ namespace Library.InputHandlers
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
             if(msg == "\\") return Result<bool, string>.Ok(false);
-            if(string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A number was expected.");
+            if(string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err($"A number was expected.\n{(this.initialResponseGetter)()}");
             int result;
             if(int.TryParse(msg.Trim(), NumberStyles.AllowTrailingWhite | NumberStyles.AllowLeadingWhite | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out result))
             {
                 this.result = result;
                 return Result<bool, string>.Ok(true);
             }
-            return Result<bool, string>.Err("The given input is not a valid number.");
+            return Result<bool, string>.Err($"The given input is not a valid number.\n{(this.initialResponseGetter)()}");
         }
 
         Result<int, string> IInputProcessor<int>.getResult() => Result<int, string>.Ok(this.result);
