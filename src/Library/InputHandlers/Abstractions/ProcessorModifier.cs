@@ -52,6 +52,27 @@ namespace Library.InputHandlers.Abstractions
             );
         }
 
+        /// <summary>
+        /// Generates a function which can be passed to the <see cref="FormProcessor{T, U}" /> constructor to represent an <see cref="IInputHandler" />.
+        /// </summary>
+        /// <param name="f">The function which takes the initial value and the generated data, and returns the resulting value.</param>
+        /// <param name="processor">The processor which generates the data.</param>
+        /// <typeparam name="U">The type of the generated data.</typeparam>
+        /// <returns>A function which receives a value getter and returns a <see cref="ProcessorModifier{T}" />.</returns>
+        public static Func<Func<T>, ProcessorModifier<T>> CreateInfallibleInstanceGetter<U>(Func<T, U, T> f, IInputProcessor<U> processor)
+        {
+            return initialValueGetter => new ProcessorModifier<T> (
+                initialValueGetter: initialValueGetter,
+                inputHandler: (s, initialValue) => processor.GenerateFromInput(s).MapValue(
+                    result => result.AndThen(
+                        v => Result<T, string>.Ok(f(initialValue, v))
+                    )
+                ),
+                initialResponseGetter: processor.GetDefaultResponse,
+                resetter: processor.Reset
+            );
+        }
+
         string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
         Result<bool, string> IInputHandler.ProcessInput(string msg) =>

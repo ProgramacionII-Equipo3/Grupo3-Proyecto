@@ -8,12 +8,12 @@ namespace Library.Core.Distribution
         /// <summary>
         /// The id of the user.
         /// </summary>
-        public readonly string Id;
+        public string Id { get; }
 
         /// <summary>
         /// Data associated with the user.
         /// </summary>
-        private UserData userData;
+        public UserData UserData { get; private set; }
 
         /// <summary>
         /// The current state of the user's session.
@@ -29,7 +29,7 @@ namespace Library.Core.Distribution
         public UserSession(string id, UserData userData, State state)
         {
             this.Id = id;
-            this.userData = userData;
+            this.UserData = userData;
             this.state = state;
         }
 
@@ -40,7 +40,7 @@ namespace Library.Core.Distribution
         /// <returns>The response message text.</returns>
         public string ProcessMessage(string msg)
         {
-            var (newState, res) = this.state.ProcessMessage(this.Id, this.userData, msg);
+            var (newState, res) = this.state.ProcessMessage(this.Id, this.UserData, msg);
             this.state = newState;
             if (res == null)
             {

@@ -192,6 +192,16 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
+        <member name="T:UnitTests.AdminStatesTest">
+            <summary>
+            This class represents unit tests related to admin states.
+            </summary>
+        </member>
+        <member name="M:UnitTests.AdminStatesTest.TestAdminCreateInvitation">
+            <summary>
+            Tests the class <see cref="T:Library.States.Admins.AdminInitialMenuState" />'s /createcompany option.
+            </summary>
+        </member>
         <member name="T:UnitTests.ConsolePlatform">
             <summary>
             Represents the console as a messaging platform in and of itself.
@@ -206,6 +216,16 @@
         <member name="M:UnitTests.ConsolePlatform.Run">
             <summary>
             Receives messages from the console as if it was a messaging platform.
+            </summary>
+        </member>
+        <member name="T:UnitTests.FormProcessorTest">
+            <summary>
+            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            </summary>
+        </member>
+        <member name="M:UnitTests.FormProcessorTest.FormProcessorBasicTest">
+            <summary>
+            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
             </summary>
         </member>
         <member name="T:UnitTests.InvitationListTest">

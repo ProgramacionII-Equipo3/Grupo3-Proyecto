@@ -40,6 +40,8 @@
         <member name="F:Library.Core.Distribution.SessionManager.sessions">
             <summary>
             The list of current sessions.
+            The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
+            because the method <see cref="M:System.Collections.Generic.List`1.RemoveAll(System.Predicate{`0})" /> is necessary for the method <see cref="M:Library.Core.Distribution.SessionManager.RemoveUser(System.String)" />.
             </summary>
         </member>
         <member name="M:Library.Core.Distribution.SessionManager.GetById(System.String)">
@@ -58,17 +60,31 @@
             <param name="state">The user's initial state.</param>
             <returns>The resulting <see cref="T:Library.Core.Distribution.UserSession" />, or null if there's already one.</returns>
         </member>
+        <member name="M:Library.Core.Distribution.SessionManager.RemoveUser(System.String)">
+            <summary>
+            Removes the user with a concrete id.
+            </summary>
+            <param name="id">The user's id.</param>
+            <returns>Whether there was a user with the given id.</returns>
+        </member>
+        <member name="M:Library.Core.Distribution.SessionManager.RemoveUserByName(System.String)">
+            <summary>
+            Removes the user with a concrete name.
+            </summary>
+            <param name="name">The user's name.</param>
+            <returns>Whether there was a user with the given name.</returns>
+        </member>
         <member name="T:Library.Core.Distribution.UserSession">
             <summary>
             This class represent a user's session, being the highest-level class which represents it.
             </summary>
         </member>
-        <member name="F:Library.Core.Distribution.UserSession.Id">
+        <member name="P:Library.Core.Distribution.UserSession.Id">
             <summary>
             The id of the user.
             </summary>
         </member>
-        <member name="F:Library.Core.Distribution.UserSession.userData">
+        <member name="P:Library.Core.Distribution.UserSession.UserData">
             <summary>
             Data associated with the user.
             </summary>
@@ -871,6 +887,11 @@
             Gets the list of publications, dinamically assigned to the company.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Companies.Company.RemoveUsers">
+            <summary>
+            Removes all users in a company
+            </summary>
+        </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
             Represents an invitation to the platform for a company representative.
@@ -898,7 +919,7 @@
             <summary>
             The list of companies.
             The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
-            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Companies.CompanyManager.Companies" />.
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Companies.CompanyManager.Companies" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
@@ -952,7 +973,7 @@
             <summary>
             Gets a private list of the publications.
             The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
-            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Companies.IPublisher.Publications" />.
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Companies.IPublisher.Publications" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
@@ -1088,7 +1109,7 @@
             <summary>
             The list of entrepreneurs.
             The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
-            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs" />.
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs">
@@ -1252,7 +1273,7 @@
             <summary>
             The list of materials which belong to this category.
             The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
-            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is neccesary for the property <see cref="P:Library.HighLevel.Materials.MaterialCategory.Materials" />.
+            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Materials.MaterialCategory.Materials" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialCategory.Materials">
@@ -1485,9 +1506,25 @@
             <summary>
             Represents an <see cref="T:Library.Core.Processing.IInputProcessor`1" /> which transforms a value into another of the same type.
             </summary>
+            <typeparam name="T">The type of the value the object transforms.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.#ctor(System.Func{`0},System.Func{System.String,`0,Library.Option{Library.Result{`0,System.String}}},System.Func{System.String},System.Action)">
-            
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.CreateInstanceGetter``1(System.Func{`0,``0,Library.Result{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Generates a function which can be passed to the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" /> constructor to represent an <see cref="T:Library.Core.Processing.IInputHandler" />.
+            </summary>
+            <param name="f">The function which takes the initial value and the generated data, and returns the resulting value.</param>
+            <param name="processor">The processor which generates the data.</param>
+            <typeparam name="U">The type of the generated data.</typeparam>
+            <returns>A function which receives a value getter and returns a <see cref="T:Library.InputHandlers.Abstractions.ProcessorModifier`1" />.</returns>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.CreateInfallibleInstanceGetter``1(System.Func{`0,``0,`0},Library.Core.Processing.IInputProcessor{``0})">
+            <summary>
+            Generates a function which can be passed to the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" /> constructor to represent an <see cref="T:Library.Core.Processing.IInputHandler" />.
+            </summary>
+            <param name="f">The function which takes the initial value and the generated data, and returns the resulting value.</param>
+            <param name="processor">The processor which generates the data.</param>
+            <typeparam name="U">The type of the generated data.</typeparam>
+            <returns>A function which receives a value getter and returns a <see cref="T:Library.InputHandlers.Abstractions.ProcessorModifier`1" />.</returns>
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1">
             <summary>
@@ -1779,7 +1816,7 @@
         </member>
         <member name="T:Library.States.Admins.AdminInitialMenuState">
             <summary>
-            
+            This class represents the <see cref="T:Library.Core.State" /> of an admin in the initial menu.
             </summary>
         </member>
         <member name="P:Library.States.Admins.AdminInitialMenuState.IsComplete">
@@ -1790,7 +1827,7 @@
         </member>
         <member name="M:Library.States.Admins.AdminInitialMenuState.#ctor">
             <summary>
-            
+            Initializes an instance of <see cref="T:Library.States.Admins.AdminInitialMenuState" />
             </summary>
         </member>
         <member name="M:Library.States.Admins.AdminInitialMenuState.GetInitialResponse">
@@ -1813,6 +1850,22 @@
         <member name="M:Library.States.Admins.AdminRemoveCompanyState.#ctor">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Admins.AdminRemoveCompanyState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Admins.AdminRemoveUserState">
+            <summary>
+            This class represents the state of an admin who is removing a user.
+            </summary>
+        </member>
+        <member name="P:Library.States.Admins.AdminRemoveUserState.IsComplete">
+            <inheritdoc />
+        </member>
+        <member name="P:Library.States.Admins.AdminRemoveUserState.UserType">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Admins.AdminRemoveUserState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Admins.AdminRemoveUserState" />.
             </summary>
         </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
