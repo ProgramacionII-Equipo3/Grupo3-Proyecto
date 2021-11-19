@@ -10,8 +10,10 @@ namespace Library.Core.Distribution
     {
         /// <summary>
         /// The list of current sessions.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.RemoveAll(System.Predicate{T})" /> is necessary for the method <see cref="SessionManager.RemoveUser(string)" />.
         /// </summary>
-        private IList<UserSession> sessions = new List<UserSession>();
+        private List<UserSession> sessions = new List<UserSession>();
 
         /// <summary>
         /// Returns the <see cref="UserSession" /> whose id equals to the given one.
@@ -39,5 +41,21 @@ namespace Library.Core.Distribution
             sessions.Add(result);
             return result;
         }
+
+        /// <summary>
+        /// Removes the user with a concrete id.
+        /// </summary>
+        /// <param name="id">The user's id.</param>
+        /// <returns>Whether there was a user with the given id.</returns>
+        public bool RemoveUser(string id) =>
+            this.sessions.RemoveAll(session => session.Id == id) > 0;
+
+        /// <summary>
+        /// Removes the user with a concrete name.
+        /// </summary>
+        /// <param name="name">The user's name.</param>
+        /// <returns>Whether there was a user with the given name.</returns>
+        public bool RemoveUserByName(string name) =>
+            this.sessions.RemoveAll(session => session.UserData.Name == name) > 0;
     }
 }

@@ -15,7 +15,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a private list of the publications.
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
-        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="IPublisher.Publications" />.
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="IPublisher.Publications" />.
         /// </summary>
         protected List<MaterialPublication> publications { get; }
 

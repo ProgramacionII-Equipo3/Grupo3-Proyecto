@@ -208,6 +208,16 @@
             Receives messages from the console as if it was a messaging platform.
             </summary>
         </member>
+        <member name="T:UnitTests.FormProcessorTest">
+            <summary>
+            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            </summary>
+        </member>
+        <member name="M:UnitTests.FormProcessorTest.FormProcessorBasicTest">
+            <summary>
+            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            </summary>
+        </member>
         <member name="T:UnitTests.InvitationListTest">
             <summary>
             This class represents tests concerning the <see cref="T:Library.Core.Invitations.InvitationList`1" /> class.

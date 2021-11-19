@@ -7,7 +7,7 @@ using Library.HighLevel.Companies;
 namespace Library.States.Admins
 {
     /// <summary>
-    /// 
+    /// This class represents the <see cref="Library.Core.State" /> of an admin in the initial menu.
     /// </summary>
     public class AdminInitialMenuState : MultipleOptionState
     {
@@ -19,7 +19,7 @@ namespace Library.States.Admins
 
 
         /// <summary>
-        /// 
+        /// Initializes an instance of <see cref="AdminInitialMenuState" />
         /// </summary>
         public AdminInitialMenuState()
         {
@@ -39,12 +39,12 @@ namespace Library.States.Admins
 
         private (State, string) removeCompany()
         {
-            throw new NotImplementedException();
+            return (new AdminRemoveCompanyState(), null);
         }
 
         private (State, string) removeUser()
         {
-            throw new NotImplementedException();
+            return (new AdminRemoveUserState(), null);
         }
 
         /// <inheritdoc />

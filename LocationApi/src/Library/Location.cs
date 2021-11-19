@@ -32,7 +32,7 @@ namespace Ucu.Poo.Locations.Client
         public string CountryRegion { get; set; }
 
         /// <summary>
-        /// Obtiene o establece asdasdla dirección completa, incluyendo ciudad, código postal, etc.
+        /// Obtiene o establece la dirección completa, incluyendo ciudad, código postal, etc.
         /// </summary>
         /// <value>Por ejemplo, Avenida 8 de Octubre 2738, Montevideo, 11200, Uruguay.</value>
         public string FormattedAddress { get; set; }

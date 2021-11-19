@@ -38,6 +38,7 @@ namespace UnitTests
             {
                 Console.WriteLine($"\t--------\n{i}");
             }
+            Singleton<SessionManager>.Instance.RemoveUser("___");
             Assert.AreEqual(3524, value);
         }
 
@@ -65,12 +66,12 @@ namespace UnitTests
                         },
                         inputHandlers: new Func<Func<(int, int)>, IInputProcessor<(int, int)>>[]
                         {
-                            ProcessorModifier<(int, int)>.CreateInstanceGetter<int>(
-                                (state, v) => Result<(int, int), string>.Ok((v, default)),
+                            ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
+                                (state, v) => (v, default),
                                 new UnsignedInt32Processor(() => "Item1: ")
                             ),
-                            ProcessorModifier<(int, int)>.CreateInstanceGetter<int>(
-                                (state, v) => Result<(int, int), string>.Ok((state.Item1, v)),
+                            ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
+                                (state, v) => (state.Item1, v),
                                 new UnsignedInt32Processor(() => "Item2: ")
                             )
                         }

@@ -20,7 +20,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The list of companies.
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
-        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="CompanyManager.Companies" />.
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="CompanyManager.Companies" />.
         /// </summary>
         private List<Company> companies = new List<Company>();
 
@@ -81,7 +81,15 @@ namespace Library.HighLevel.Companies
         public bool RemoveCompany(string name)
         {
             name = name.Trim();
-            return this.companies.RemoveAll(company => company.Name == name) > 0;
+            Option<Company> company = this.companies.Where(company => company.Name == name).FirstOrNone();
+            return company.Map(
+                c =>
+                {
+                    c.RemoveUsers();
+                    return true;
+                },
+                () => false
+            );
         }
     }
 }
