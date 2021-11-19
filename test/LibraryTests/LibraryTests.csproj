@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Library\Library.csproj" />
-    <ProjectReference Include="..\..\LocationAPI\src\Library\APILibrary.csproj" />
+    <ProjectReference Include="..\..\PII_LocationApiClient\src\Library\APILibrary.csproj" />
   </ItemGroup>
 
 </Project>

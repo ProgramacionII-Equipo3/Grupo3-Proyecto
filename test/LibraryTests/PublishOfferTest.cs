@@ -33,7 +33,7 @@ namespace ProgramTests
             Unit unit = Unit.GetByAbbr("cm");
             Amount amount = new Amount(10, unit);
             Price price = new Price(100, Currency.Peso, unit);
-            Location location = provider.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
+            Location location = provider.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
             IList<string> keyword = new List<string> { "Cámara" };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
 
@@ -46,7 +46,7 @@ namespace ProgramTests
             MaterialCategory category2 = new MaterialCategory("Plástico");
             Amount amount2 = new Amount(5, unit);
             Price price2 = new Price(600, Currency.Peso, unit);
-            Location location2 = provider.GetLocationAsync("Camino Maldonado km 11").Result;
+            Location location2 = provider.GetLocation("Camino Maldonado km 11");
             IList<string> keyword2 = new List<string> { "Palet", "Plástico" };
             Material material2 = Material.CreateInstance("Palet de Plástico", Measure.Length, category2);
         }
@@ -64,7 +64,7 @@ namespace ProgramTests
 
             Amount amount3 = new Amount(3, unit3);
             Price price3 = new Price(250, Currency.Peso, unit3);
-            Location location3 = client.GetLocationAsync("Av. 8 de Octubre 2738").Result;
+            Location location3 = client.GetLocation("Av. 8 de Octubre 2738");
             IList<string> keywords = new List<string> { "metálicos", "metal", "residuos de contenedores" };
             Material material3 = Material.CreateInstance("Residuos generados de reparaciones de contenedores", Measure.Weight, category3);
             MaterialPublication.CreateInstance(material3, amount3, price3, location3, MaterialPublicationTypeData.Normal(), keywords);

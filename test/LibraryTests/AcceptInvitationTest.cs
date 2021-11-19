@@ -5,7 +5,6 @@ using Library.HighLevel.Administers;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
-using Library.Platforms.Telegram;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -42,7 +41,7 @@ namespace ProgramTests
             ContactInfo contactInfo;
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
-            Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
+            Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location);
             company.AddUser(message.Id);
 
@@ -71,7 +70,7 @@ namespace ProgramTests
             string specialization2 = "specialization2";
             IList<string> specializations = new List<string> { specialization, specialization2 };
             LocationApiClient provider = new LocationApiClient();
-            Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
+            Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
             bool expected = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.Contains(entrepreneur);
