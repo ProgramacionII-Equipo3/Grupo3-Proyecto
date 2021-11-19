@@ -6,6 +6,7 @@ namespace Library.InputHandlers.Abstractions
     /// <summary>
     /// Represents an <see cref="IInputProcessor{T}" /> which transforms a value into another of the same type.
     /// </summary>
+    /// <typeparam name="T">The type of the value the object transforms.</typeparam>
     public class ProcessorModifier<T> : IInputProcessor<T>
     {
         private Func<string, T, Option<Result<T, string>>> inputHandler;
@@ -14,7 +15,6 @@ namespace Library.InputHandlers.Abstractions
         private readonly Func<T> initialValueGetter;
         private T result;
 
-        ///
         private ProcessorModifier(Func<T> initialValueGetter, Func<string, T, Option<Result<T, string>>> inputHandler, Func<string> initialResponseGetter, Action resetter)
         {
             this.initialValueGetter = initialValueGetter;
@@ -23,6 +23,13 @@ namespace Library.InputHandlers.Abstractions
             this.resetter = resetter;
         }
 
+        /// <summary>
+        /// Generates a function which can be passed to the <see cref="FormProcessor{T, U}" /> constructor to represent an <see cref="IInputHandler" />.
+        /// </summary>
+        /// <param name="f">The function which takes the initial value and the generated data, and returns the resulting value.</param>
+        /// <param name="processor">The processor which generates the data.</param>
+        /// <typeparam name="U">The type of the generated data.</typeparam>
+        /// <returns>A function which receives a value getter and returns a <see cref="ProcessorModifier{T}" />.</returns>
         public static Func<Func<T>, ProcessorModifier<T>> CreateInstanceGetter<U>(Func<T, U, Result<T, string>> f, IInputProcessor<U> processor)
         {
             return initialValueGetter => new ProcessorModifier<T> (
