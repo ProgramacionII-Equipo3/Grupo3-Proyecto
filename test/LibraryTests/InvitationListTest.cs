@@ -68,10 +68,10 @@ namespace UnitTests
                 return $"Invitation accepted: {this.Code}, {userId}";
             }
 
-            public bool Equals(CustomInvitation other) =>
-                this.Code == other.Code;
+            public bool Equals(CustomInvitation? other) =>
+                other is not null && this.Code == other.Code;
 
-            public override bool Equals(object obj) =>
+            public override bool Equals(object? obj) =>
                 obj is CustomInvitation inv ? this.Code == inv.Code : false;
             
             public override int GetHashCode() =>

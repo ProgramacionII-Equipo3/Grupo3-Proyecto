@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Library;
 using Library.Core;
+using Library.Utils;
 using Library.HighLevel.Administers;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
@@ -42,11 +43,11 @@ namespace ProgramTests
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
             Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location);
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location)!;
             company.AddUser(message.Id);
 
             bool expected = company.HasUser(message.Id);
-            Company expectedCompany = Singleton<CompanyManager>.Instance.GetByName("Company.SA");
+            Company expectedCompany = Singleton<CompanyManager>.Instance.GetByName("Company.SA")!;
 
             // If the message with the code is equal with an invitation sended, the user has to
             // be added in the representants list of the company.

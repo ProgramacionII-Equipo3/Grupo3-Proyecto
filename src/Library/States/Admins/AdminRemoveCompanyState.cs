@@ -12,12 +12,6 @@ namespace Library.States.Admins
     /// </summary>
     public class AdminRemoveCompanyState : InputHandlerState
     {
-        /// <inheritdoc />
-        public override bool IsComplete => true;
-
-        /// <inheritdoc />
-        public override State.Type UserType => State.Type.ADMIN;
-
         /// <summary>
         /// Initializes an instance of <see cref="AdminRemoveCompanyState" />.
         /// </summary>

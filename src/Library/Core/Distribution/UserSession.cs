@@ -40,14 +40,15 @@ namespace Library.Core.Distribution
         /// <returns>The response message text.</returns>
         public string ProcessMessage(string msg)
         {
-            var (newState, res) = this.state.ProcessMessage(this.Id, this.UserData, msg);
-            this.state = newState;
-            if (res == null)
+            var (newState, res, newData) = this.state.ProcessMessage(this.Id, this.UserData, msg);
+            if(newState == null)
             {
-                res = newState.GetDefaultResponse();
+                Singleton<SessionManager>.Instance.RemoveUser(this.Id);
+                return "User eliminated.";
             }
-
-            return res;
+            if(newData != null) this.UserData = newData;
+            this.state = newState;
+            return res ?? newState.GetDefaultResponse();
         }
 
         /// <summary>

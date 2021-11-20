@@ -220,12 +220,12 @@
         </member>
         <member name="T:UnitTests.FormProcessorTest">
             <summary>
-            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
             </summary>
         </member>
         <member name="M:UnitTests.FormProcessorTest.FormProcessorBasicTest">
             <summary>
-            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
             </summary>
         </member>
         <member name="T:UnitTests.InvitationListTest">
@@ -246,6 +246,26 @@
         </member>
         <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:UnitTests.ListProcessorTest">
+            <summary>
+            This class represents unit tests related to the class <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1" /> as a subclass of <see cref="T:Library.Core.Processing.InputProcessor`1" /> of a list of elements.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ListProcessorTest.ListProcessorBasicTest">
+            <summary>
+            Tests the basic workings of the list processor: adding elements and submitting them.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ListProcessorTest.ListProcessorRemoveElementsTest">
+            <summary>
+            Tests the functionality of removing elements.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ListProcessorTest.ListProcessorGoBackTest">
+            <summary>
+            Tests the functionality of giving an interrupt signal.
+            </summary>
         </member>
         <member name="T:UnitTests.ProgramaticPlatform">
             <summary>

@@ -6,7 +6,7 @@ namespace Library.InputHandlers
     /// <summary>
     /// Generates a string from a single input message, after trimming it.
     /// </summary>
-    public class BasicStringProcessor : IInputProcessor<string>
+    public class BasicStringProcessor : InputProcessor<string>
     {
         private readonly Func<string> initialResponseGetter;
         private string result;
@@ -19,11 +19,14 @@ namespace Library.InputHandlers
         public BasicStringProcessor(Func<string> initialResponseGetter)
         {
             this.initialResponseGetter = initialResponseGetter;
+            this.result = string.Empty;
         }
 
-        string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
+        /// <inheritdoc />
+        public override string GetDefaultResponse() => (this.initialResponseGetter)();
 
-        Result<bool, string> IInputHandler.ProcessInput(string msg)
+        /// <inheritdoc />
+        public override Result<bool, string> ProcessInput(string msg)
         {
             if(msg == "\\") return Result<bool, string>.Ok(false);
             if (string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A valid string was expected.");
@@ -31,11 +34,13 @@ namespace Library.InputHandlers
             return Result<bool, string>.Ok(true);
         }
 
-        Result<string, string> IInputProcessor<string>.getResult() => Result<string, string>.Ok(this.result);
+        /// <inheritdoc />
+        protected override Result<string, string> getResult() => Result<string, string>.Ok(this.result);
 
-        void IInputHandler.Reset()
+        /// <inheritdoc />
+        public override void Reset()
         {
-            this.result = null;
+            this.result = string.Empty;
         }
     }
 }

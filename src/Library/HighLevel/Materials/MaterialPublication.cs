@@ -76,7 +76,7 @@ namespace Library.HighLevel.Materials
         /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public static MaterialPublication CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords) =>
+        public static MaterialPublication? CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords) =>
             CheckMaterialFields(material, amount, price)
                 ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords)
                 : null;
