@@ -46,16 +46,6 @@ namespace Library.States.Companies
         {
         }
 
-        public override string GetDefaultResponse()
-        {
-            return base.GetDefaultResponse();
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
         public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
             return base.ProcessMessage(id, ref data, msg);

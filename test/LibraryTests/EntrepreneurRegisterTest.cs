@@ -3,6 +3,7 @@ using Library;
 using Library.Core;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using Library.Core.Invitations;
 using Library.Utils;
 using Library.Platforms.Telegram;
 using NUnit.Framework;
@@ -78,6 +79,32 @@ namespace ProgramTests
             Assert.AreEqual(habilitations, juan.Habilitations);
             Assert.AreEqual(specializations, juan.Specializations);
             Assert.AreEqual(nameExpected, juan.Name);
+        }
+
+        /// <summary>
+        /// Tests the course of registering an entrepreneur from user input.
+        /// </summary>
+        public void EntrepreneurRegisterFromUserInput()
+        {
+            Singleton<InvitationManager>.Instance.CreateInvitation<Library.HighLevel.Companies.CompanyInvitation>("4jsk", code => new Library.HighLevel.Companies.CompanyInvitation(code));
+            UnitTests.ProgramaticPlatform platform = new UnitTests.ProgramaticPlatform(
+                "___",
+                "/start 4jsk",
+                "Teogal",
+                "Maderas",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "098471724",
+                "teogal@gmail.com",
+                "/publish",
+                "A",
+                "length",
+                "metales",
+                "50", "cm",
+                "30", "pesos", "cm",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "/finish"
+            );
+            platform.Run();
         }
     }
 }

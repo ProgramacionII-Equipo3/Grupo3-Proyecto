@@ -22,17 +22,15 @@ namespace Grupo3_Proyecto
         /// </summary>
         public static void Main()
         {
-            Singleton<InvitationManager>.Instance.CreateInvitation<Library.HighLevel.Companies.CompanyInvitation>("4jsk", code => new Library.HighLevel.Companies.CompanyInvitation(code));
-            new ConsolePlatform().Run();
-            // TelegramBot telegramBot = TelegramBot.Instance;
-            // Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
-            // telegramBot.ReceiveMessages(
-            //     () =>
-            //     {
-            //         Console.WriteLine("Escribe una línea para terminar");
-            //         Console.ReadLine();
-            //     }
-            // );
+            TelegramBot telegramBot = TelegramBot.Instance;
+            Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
+            telegramBot.ReceiveMessages(
+                () =>
+                {
+                    Console.WriteLine("Escribe una línea para terminar");
+                    Console.ReadLine();
+                }
+            );
         }
     }
 }
