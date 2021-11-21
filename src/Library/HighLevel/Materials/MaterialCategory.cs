@@ -54,10 +54,10 @@ namespace Library.HighLevel.Materials
         /// </summary>
         /// <param name="name">The category's name.</param>
         /// <returns>An instance of <see cref="MaterialCategory" />.</returns>
-        public Material? GetByName(string name)
+        public static MaterialCategory? GetByName(string name)
         {
             name = name.ToLowerInvariant();
-            return this.materials.Where(material => material.MatchesName(name)).FirstOrDefault();
+            return MaterialCategory.Categories.Where(c => c.Name.ToLower() == name).FirstOrDefault();
         }
     }
 }
