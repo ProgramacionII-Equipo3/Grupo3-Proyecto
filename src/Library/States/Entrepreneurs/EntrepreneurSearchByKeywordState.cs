@@ -13,7 +13,7 @@ namespace Library.States.Entrepreneurs
     /// <summary>
     /// This class represents the state of an entrepreneur that is searching publications with a keyword.
     /// </summary>
-    public class EntrepreneurSearchByKeywordState : InputHandlerState
+    public class EntrepreneurSearchByKeywordState : InputProcessorState
     {
         /// <inheritdoc />
         public override bool IsComplete => true;

@@ -30,7 +30,7 @@ namespace ProgramTests
         private Price price2;
         private Location? pickupLocation2;
         private MaterialPublication? publication2;
-        private List<MaterialPublication>? publications;
+        private IList<MaterialPublication>? publications;
 
         /// <summary>
         /// Test Setup.
