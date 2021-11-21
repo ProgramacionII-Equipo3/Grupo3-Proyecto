@@ -70,8 +70,14 @@ namespace Library.States.Companies
                         new AmountProcessor()
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Price>(
-                        
-                    )
+                        p => this.price = p,
+                        new PriceProcessor()
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<Location>(
+                        l => this.location = l,
+                        new LocationProcessor(() => "Por favor ingresa la ubicación de donde se encuentra el material.")
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<>
                 };
             }
             protected override Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>), string> getResult()

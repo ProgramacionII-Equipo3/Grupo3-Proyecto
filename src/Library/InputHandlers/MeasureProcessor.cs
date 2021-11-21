@@ -5,8 +5,15 @@ using Library.InputHandlers.Abstractions;
 
 namespace Library.InputHandlers
 {
+    /// <summary>
+    /// This class has te responsibility of return a measure for the publication.
+    /// </summary>
     public class MeasureProcessor : ProcessorWrapper<Measure>
     {
+        /// <summary>
+        /// Initializes an instance of <see cref="MeasureProcessor" />
+        /// </summary>
+        /// <param name="initialResponseGetter"></param>
         public MeasureProcessor(Func<string> initialResponseGetter) : base(
             PipeProcessor<Measure>.CreateInstance<string>(
                 s =>
