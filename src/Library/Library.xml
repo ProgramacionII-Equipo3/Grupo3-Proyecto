@@ -1136,25 +1136,22 @@
             It creates a client to be able to use the LocationAPI.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's by a category.
             </summary>
-            <param name="publications"></param>
             <param name="category"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.String)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.String)">
             <summary>
             This method has the responsibility of searching all the publication's by a keyword.
             </summary>
-            <param name="publications"></param>
             <param name="keyword"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
             This method has the responsibility of searching all the publication's by a location.
             </summary>
-            <param name="publications"></param>
             <param name="locationSpecified"></param>
             <param name="distanceSpecified"></param>
         </member>

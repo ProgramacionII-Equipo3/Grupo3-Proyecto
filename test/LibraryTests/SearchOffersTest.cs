@@ -29,6 +29,7 @@ namespace ProgramTests
         private Price price2;
         private Location pickupLocation2;
         private MaterialPublication publication2;
+        protected List<MaterialPublication> publications { get; }
 
         /// <summary>
         /// Test Setup.
@@ -54,6 +55,9 @@ namespace ProgramTests
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
             this.publication2 = MaterialPublication.CreateInstance(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
+           
+            //publications.Add(publication1);
+            //publications.Add(publication2);
         }
 
         /// <summary>
@@ -63,15 +67,13 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-
             MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
 
             IList<MaterialPublication> expected1 = new List<MaterialPublication>();
             expected1.Add(this.publication1);
             expected1.Add(this.publication2);
 
-            Assert.AreEqual(expected1, Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch));
+            Assert.AreEqual(expected1, Singleton<Searcher>.Instance.SearchByCategory(categoryToSearch));
         }
 
         /// <summary>
@@ -82,13 +84,11 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryNotFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-
             MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
 
             IList<MaterialPublication> expected2 = new List<MaterialPublication>();
 
-            Assert.AreEqual(expected2, Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch));
+            Assert.AreEqual(expected2, Singleton<Searcher>.Instance.SearchByCategory(categoryToSearch));
         }
         /// <summary>
         /// This test checks that an entrepreneur is able to
@@ -97,12 +97,10 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(this.publication2);
 
-            Assert.AreEqual(expected3, Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "cubrebocas"));
+            Assert.AreEqual(expected3, Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas"));
         }
 
         /// <summary>
@@ -113,11 +111,9 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsNotFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
-            Assert.AreEqual(expected4, Singleton<Searcher>.Instance.SearchByKeyword(publicationsToSearchIn, "sanitario"));
+            Assert.AreEqual(expected4, Singleton<Searcher>.Instance.SearchByKeyword("sanitario"));
         }
 
         /// <summary>
@@ -137,7 +133,7 @@ namespace ProgramTests
             IList<MaterialPublication> expected5 = new List<MaterialPublication>();
             expected5.Add(this.publication2);
 
-            Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified));
+            Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
         }
 
         /// <summary>
@@ -157,7 +153,7 @@ namespace ProgramTests
 
             IList<MaterialPublication> expected6 = new List<MaterialPublication>();
 
-            Assert.AreEqual(expected6, Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified));
+            Assert.AreEqual(expected6, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
         }
     }
 }

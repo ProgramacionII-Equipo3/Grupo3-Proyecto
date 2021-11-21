@@ -12,6 +12,8 @@ namespace Library.HighLevel.Entrepreneurs
     /// </summary>
     public class Searcher
     {
+        protected List<MaterialPublication> publications { get; }
+
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
         /// </summary>
@@ -20,9 +22,8 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a category.
         /// </summary>
-        /// <param name="publications"></param>
         /// <param name="category"></param>
-        public List<MaterialPublication> SearchByCategory(IList<MaterialPublication> publications, MaterialCategory category)
+        public List<MaterialPublication> SearchByCategory(MaterialCategory category)
         {
            List<MaterialPublication> searchResultA = new List<MaterialPublication>();
            foreach (var item in publications)
@@ -38,9 +39,8 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a keyword.
         /// </summary>
-        /// <param name="publications"></param>
         /// <param name="keyword"></param>
-        public List<MaterialPublication> SearchByKeyword(IList<MaterialPublication> publications, string keyword)
+        public List<MaterialPublication> SearchByKeyword(string keyword)
         {
            List<MaterialPublication> searchResultB = new List<MaterialPublication>();
            foreach (var item in publications)
@@ -56,10 +56,9 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a location.
         /// </summary>
-        /// <param name="publications"></param>
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
-        public List<MaterialPublication> SearchByLocation(IList<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public List<MaterialPublication> SearchByLocation(Location locationSpecified, double distanceSpecified)
         {
            List<MaterialPublication> searchResultC = new List<MaterialPublication>();
            foreach (var item in publications)
