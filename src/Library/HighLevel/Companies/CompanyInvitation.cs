@@ -25,7 +25,7 @@ namespace Library.HighLevel.Companies
             State newState = new IncompleteCompanyRepresentativeState();
             Singleton<SessionManager>.Instance.NewUser(
                 id: userId,
-                userData: new UserData(),
+                userData: new UserData(string.Empty, false, UserData.Type.COMPANY, null, null),
                 state: newState);
             return newState.GetDefaultResponse();
         }

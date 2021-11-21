@@ -17,7 +17,7 @@
         </member>
         <member name="F:Library.Core.ContactInfo.PhoneNumber">
             <summary>
-            The entity's phone number (-1 if non-existent).
+            The entity's phone number (null if non-existent).
             </summary>
         </member>
         <member name="T:Library.Core.Distribution.MessageManager">
@@ -298,46 +298,33 @@
             <param name="msg">The received message's text.</param>
             <param name="id">The received message's user id.</param>
         </member>
-        <member name="T:Library.Core.Processing.BaseFormProcessor`1">
+        <member name="T:Library.Core.Processing.FormProcessor`1">
             <summary>
             Represent a complex form-like set of data through which certain types of data can be received from user input easily.
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
-        <member name="F:Library.Core.Processing.BaseFormProcessor`1.inputHandlers">
+        <member name="F:Library.Core.Processing.FormProcessor`1.inputHandlers">
             <summary>
             The list of input handlers.
             </summary>
         </member>
-        <member name="M:Library.Core.Processing.BaseFormProcessor`1.GetDefaultResponse">
+        <member name="M:Library.Core.Processing.FormProcessor`1.GetDefaultResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.Core.Processing.BaseFormProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
+        <member name="M:Library.Core.Processing.FormProcessor`1.Reset">
             <inheritdoc />
         </member>
-        <member name="M:Library.Core.Processing.BaseFormProcessor`1.getResult">
-            <summary>
-            Generates the resulting object with the obtained input.
-            </summary>
-            <remarks>
-                <para>
-                This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns: <br />
-                    Result&lt;bool, string&gt;.Ok(true) <br />
-                which is a signal that the object's ready to produce the result. Doing so under other circumstances may result in undefined behaviour.
-                </para>
-            </remarks>
-            <returns>
-            Result.Ok(result), being result the resulting object, or<br />
-            Result.Err(error), being error an error string.
-            </returns>
+        <member name="M:Library.Core.Processing.FormProcessor`1.ProcessInput(System.String)">
+            <inheritdoc />
         </member>
-        <member name="T:Library.Core.Processing.IInputHandler">
+        <member name="T:Library.Core.Processing.InputHandler">
             <summary>
             Represents the functionality of handling one or more messages input until realizing a certain operation successfully,
             or until the user indicates to stop trying.
             </summary>
         </member>
-        <member name="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)">
+        <member name="M:Library.Core.Processing.InputHandler.ProcessInput(System.String)">
             <summary>
             Handles a received input message, returning a success signal,
             a response string (indicating it's not done yet), or an interrupt signal.
@@ -349,30 +336,30 @@
             Result.Ok(false) for an interrupt signal.
             </returns>
         </member>
-        <member name="M:Library.Core.Processing.IInputHandler.GetDefaultResponse">
+        <member name="M:Library.Core.Processing.InputHandler.GetDefaultResponse">
             <summary>
             Returns the first message the object uses to indicate what kind of input it wants.
             </summary>
             <returns>A string.</returns>
         </member>
-        <member name="M:Library.Core.Processing.IInputHandler.Reset">
+        <member name="M:Library.Core.Processing.InputHandler.Reset">
             <summary>
             Resets the processor, so it can be used again.
             </summary>
         </member>
-        <member name="T:Library.Core.Processing.IInputProcessor`1">
+        <member name="T:Library.Core.Processing.InputProcessor`1">
             <summary>
             Represents the functionality of receiving one or more input messages, and generating an object with that input.
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
-        <member name="M:Library.Core.Processing.IInputProcessor`1.getResult">
+        <member name="M:Library.Core.Processing.InputProcessor`1.getResult">
             <summary>
             Generates the resulting object with the obtained input.
             </summary>
             <remarks>
                 <para>
-                This function should be called only after a call to <see cref="M:Library.Core.Processing.IInputHandler.ProcessInput(System.String)" /> returns: <br />
+                This function should be called only after a call to <see cref="M:Library.Core.Processing.InputHandler.ProcessInput(System.String)" /> returns: <br />
                     Result&lt;bool, string&gt;.Ok(true) <br />
                 which is a signal that the object's ready to produce the result. Doing so under other circumstances may result in undefined behaviour.
                 </para>
@@ -382,7 +369,7 @@
             Result.Err(error), being error an error string.
             </returns>
         </member>
-        <member name="M:Library.Core.Processing.IInputProcessor`1.GenerateFromInput(System.String)">
+        <member name="M:Library.Core.Processing.InputProcessor`1.GenerateFromInput(System.String)">
             <summary>
             Receives an input message, returning the resulting object if it's ready.
             </summary>
@@ -395,21 +382,10 @@
         </member>
         <member name="T:Library.Core.State">
             <summary>
-            This class represents a state of a user session.
+            This class represents a state.
             </summary>
         </member>
-        <member name="P:Library.Core.State.IsComplete">
-            <summary>
-            Determines whether the user who has this <see cref="T:Library.Core.State" /> is complete,
-            that is, if the process of registering to the platform has already finished.
-            </summary>
-        </member>
-        <member name="P:Library.Core.State.UserType">
-            <summary>
-            Determines for what kind of user this state is oriented towards.
-            </summary>
-        </member>
-        <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
             </summary>
@@ -424,39 +400,60 @@
             </summary>
             <returns>A string.</returns>
         </member>
-        <member name="T:Library.Core.State.Type">
-            <summary>
-            This enumeration represents the three kinds of users the state can belong to.
-            </summary>
-        </member>
-        <member name="F:Library.Core.State.Type.ADMIN">
-            <summary>
-            The administer.
-            </summary>
-        </member>
-        <member name="F:Library.Core.State.Type.ENTREPRENEUR">
-            <summary>
-            The entrepreneur.
-            </summary>
-        </member>
-        <member name="F:Library.Core.State.Type.COMPANY">
-            <summary>
-            The company.
-            </summary>
-        </member>
         <member name="T:Library.Core.UserData">
             <summary>
             This class represents additional data that all users must have.
             </summary>
         </member>
-        <member name="F:Library.Core.UserData.Name">
+        <member name="P:Library.Core.UserData.Name">
             <summary>
             The user's name.
             </summary>
         </member>
-        <member name="F:Library.Core.UserData.ContactInfo">
+        <member name="P:Library.Core.UserData.ContactInfo">
             <summary>
             The user's contact information.
+            </summary>
+        </member>
+        <member name="P:Library.Core.UserData.IsComplete">
+            <summary>
+            Determines whether the user is complete,
+            that is, if the process of registering to the platform has already finished.
+            </summary>
+        </member>
+        <member name="P:Library.Core.UserData.UserType">
+            <summary>
+            Determines for what kind of user this state is oriented towards.
+            </summary>
+        </member>
+        <member name="M:Library.Core.UserData.#ctor(System.String,System.Boolean,Library.Core.UserData.Type,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.Core.UserData" />.
+            </summary>
+            <param name="name">The user's name.</param>
+            <param name="isComplete">Whether the user is complete.</param>
+            <param name="userType">The user's type.</param>
+            <param name="email">The user's email.</param>
+            <param name="phoneNumber">The user's phone number.</param>
+        </member>
+        <member name="T:Library.Core.UserData.Type">
+            <summary>
+            This enumeration represents the three kinds of users the state can belong to.
+            </summary>
+        </member>
+        <member name="F:Library.Core.UserData.Type.ADMIN">
+            <summary>
+            The administer.
+            </summary>
+        </member>
+        <member name="F:Library.Core.UserData.Type.ENTREPRENEUR">
+            <summary>
+            The entrepreneur.
+            </summary>
+        </member>
+        <member name="F:Library.Core.UserData.Type.COMPANY">
+            <summary>
+            The company.
             </summary>
         </member>
         <member name="T:Library.HighLevel.Accountability.Amount">
@@ -1430,22 +1427,25 @@
             <param name="habilitation">The habilitation.</param>
             <returns>Whether the requirement is satisfied by the habilitation.</returns>
         </member>
-        <member name="T:Library.InputHandlers.Abstractions.FormProcessor`2">
+        <member name="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2">
             <summary>
-            This class acts as a standard implementation of a <see cref="T:Library.Core.Processing.BaseFormProcessor`1" />.
+            This class acts as a standard implementation of a <see cref="T:Library.Core.Processing.FormProcessor`1" />.
             </summary>
             <typeparam name="T">The type of the resulting object of the input handling.</typeparam>
             <typeparam name="U">The type of the object which holds memory of the state of the processor.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.FormProcessor`2.#ctor(System.Func{`1},System.Func{`1,Library.Result{`0,System.String}},System.Func{System.Func{`1},Library.Core.Processing.IInputProcessor{`1}}[])">
+        <member name="M:Library.InputHandlers.Abstractions.BaseFormProcessor`2.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.BaseFormProcessor`2.#ctor(System.Func{`1},System.Func{`1,Library.Result{`0,System.String}},System.Func{System.Func{`1},Library.Core.Processing.InputProcessor{`1}}[])">
             <summary>
-            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" />.
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
             </summary>
             <param name="initialStateGetter">The function which determines the initial state.</param>
             <param name="conversionFunction">The function which generates the value.</param>
             <param name="inputHandlers">The array of input handlers.</param>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.FormProcessor`2.getResult">
+        <member name="M:Library.InputHandlers.Abstractions.BaseFormProcessor`2.getResult">
             <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1">
@@ -1454,10 +1454,81 @@
             </summary>
             <typeparam name="T">The type of the elements which are processed into a list.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.#ctor(Library.Core.Processing.IInputProcessor{`0},System.Func{System.String,System.Boolean},System.Func{System.String})">
-            
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.#ctor(System.Func{System.String},Library.Core.Processing.InputProcessor{`0})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1" />.
+            </summary>
+            <param name="initialResponseGetter">The default response for the initial menu.</param>
+            <param name="processor">The processor which generates the elements of the list.</param>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.getResult">
+            <inheritdoc />
         </member>
         <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.AddElementState">
+            <summary>
+            This class represents the state of adding a new element in the list,
+            which is done via the inner processor.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.AddElementState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.AddElementState.ProcessMessage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.InitialMenuState">
+            <summary>
+            This class represents the state of the initial menu.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InitialMenuState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InitialMenuState.ProcessMessage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState">
+            <summary>
+            This class represents the inner state of the list processor.
+            This class is based on the Polymorphism principle, through which
+            the concrete subtype of this class to which the list's state belongs determines its behaviour.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState.ProcessMessage(System.String)">
+            <summary>
+            Processes a message.
+            </summary>
+            <param name="msg">The message to process.</param>
+            <returns>
+            Result.Err((newState, msg)), being newState the new state of the list and msg an optional response message (if it's null, the new state's default response is used in its place),<br />
+            Result.Ok(true) for a success signal, or <br />
+            Result.Ok(false) for an interrupt signal.
+            </returns>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState.GetDefaultResponse">
+            <summary>
+            Gets the <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState" />'s default response.
+            </summary>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState">
+            <summary>
+            This class represents the state of asking for an index to remove an element from the list.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState.ProcessMessage(System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
@@ -1466,26 +1537,35 @@
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.Library#Core#Processing#IInputHandler#ProcessInput(System.String)">
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.ProcessInput(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,Library.Result{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,Library.Result{`0,System.String}},Library.Core.Processing.InputProcessor{``0})">
             <summary>
             Creates a pipe processor.
             </summary>
             <param name="func">The transformation function.</param>
-            <param name="processor">The inner <see cref="T:Library.Core.Processing.IInputProcessor`1" />.</param>
-            <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.IInputProcessor`1" /> returns.</typeparam>
+            <param name="processor">The inner <see cref="T:Library.Core.Processing.InputProcessor`1" />.</param>
+            <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.InputProcessor`1" /> returns.</typeparam>
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorHandler">
             <summary>
-            Represents an <see cref="T:Library.Core.Processing.IInputHandler" /> which uses an input processor, and a function to be given its result.
+            Represents an <see cref="T:Library.Core.Processing.InputHandler" /> which uses an input processor, and a function to be given its result.
             </summary>
         </member>
         <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.#ctor(System.Func{System.String,Library.Result{System.Boolean,System.String}},System.Func{System.String},System.Action)">
             
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInstance``1(System.Func{``0,System.String},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInstance``1(System.Func{``0,System.String},Library.Core.Processing.InputProcessor{``0})">
             <summary>
             Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler" />.
             </summary>
@@ -1493,7 +1573,7 @@
             <param name="processor">The input processor.</param>
             <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInfallibleInstance``1(System.Action{``0},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInfallibleInstance``1(System.Action{``0},Library.Core.Processing.InputProcessor{``0})">
             <summary>
             Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler" /> which can't send an error
             in the function which gets the generated value.
@@ -1502,41 +1582,74 @@
             <param name="processor">The input processor.</param>
             <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.Reset">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorModifier`1">
             <summary>
-            Represents an <see cref="T:Library.Core.Processing.IInputProcessor`1" /> which transforms a value into another of the same type.
+            Represents an <see cref="T:Library.Core.Processing.InputProcessor`1" /> which transforms a value into another of the same type.
             </summary>
             <typeparam name="T">The type of the value the object transforms.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.CreateInstanceGetter``1(System.Func{`0,``0,Library.Result{`0,System.String}},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.CreateInstanceGetter``1(System.Func{`0,``0,Library.Result{`0,System.String}},Library.Core.Processing.InputProcessor{``0})">
             <summary>
-            Generates a function which can be passed to the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" /> constructor to represent an <see cref="T:Library.Core.Processing.IInputHandler" />.
+            Generates a function which can be passed to the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" /> constructor to represent an <see cref="T:Library.Core.Processing.InputHandler" />.
             </summary>
             <param name="f">The function which takes the initial value and the generated data, and returns the resulting value.</param>
             <param name="processor">The processor which generates the data.</param>
             <typeparam name="U">The type of the generated data.</typeparam>
             <returns>A function which receives a value getter and returns a <see cref="T:Library.InputHandlers.Abstractions.ProcessorModifier`1" />.</returns>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.CreateInfallibleInstanceGetter``1(System.Func{`0,``0,`0},Library.Core.Processing.IInputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.CreateInfallibleInstanceGetter``1(System.Func{`0,``0,`0},Library.Core.Processing.InputProcessor{``0})">
             <summary>
-            Generates a function which can be passed to the <see cref="T:Library.InputHandlers.Abstractions.FormProcessor`2" /> constructor to represent an <see cref="T:Library.Core.Processing.IInputHandler" />.
+            Generates a function which can be passed to the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" /> constructor to represent an <see cref="T:Library.Core.Processing.InputHandler" />.
             </summary>
             <param name="f">The function which takes the initial value and the generated data, and returns the resulting value.</param>
             <param name="processor">The processor which generates the data.</param>
             <typeparam name="U">The type of the generated data.</typeparam>
             <returns>A function which receives a value getter and returns a <see cref="T:Library.InputHandlers.Abstractions.ProcessorModifier`1" />.</returns>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorModifier`1.Reset">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1">
             <summary>
-            Act as a type wrapper for a specific type of <see cref="T:Library.Core.Processing.IInputProcessor`1" />.
+            Act as a type wrapper for a specific type of <see cref="T:Library.Core.Processing.InputProcessor`1" />.
             </summary>
             <typeparam name="T">The type the inner processor returns.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.#ctor(Library.Core.Processing.IInputProcessor{`0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.#ctor(Library.Core.Processing.InputProcessor{`0})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorWrapper`1" />.
             </summary>
             <param name="innerProcessor">The processor which receives the data and returns the object.</param>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.Reset">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
@@ -1548,6 +1661,18 @@
             Initializes an instance of <see cref="T:Library.InputHandlers.BasicStringProcessor" /> with the given default response getter.
             </summary>
             <param name="initialResponseGetter">The default response getter.</param>
+        </member>
+        <member name="M:Library.InputHandlers.BasicStringProcessor.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.BasicStringProcessor.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.BasicStringProcessor.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.BasicStringProcessor.Reset">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.EmailProcessor">
             <summary>
@@ -1565,11 +1690,10 @@
             This class represents a processor which generates habilitations.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.HabilitationProcessor.#ctor(System.Func{System.String})">
+        <member name="M:Library.InputHandlers.HabilitationProcessor.#ctor">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.HabilitationProcessor" />.
             </summary>
-            <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         </member>
         <member name="M:Library.InputHandlers.HabilitationProcessor.getResult">
             <inheritdoc />
@@ -1607,77 +1731,22 @@
             </summary>
         </member>
         <member name="M:Library.InputHandlers.UnsignedInt32Processor.#ctor(System.Func{System.String})">
-            
-        </member>
-        <member name="T:Library.NotNull`1">
             <summary>
-            This class represents a not nullable value.
+            Initializes an instance of <see cref="T:Library.InputHandlers.UnsignedInt32Processor" />
             </summary>
+            <param name="initialResponseGetter"></param>
         </member>
-        <member name="P:Library.NotNull`1.Value">
-            <summary>
-            
-            </summary>
-            <value></value>
+        <member name="M:Library.InputHandlers.UnsignedInt32Processor.GetDefaultResponse">
+            <inheritdoc />
         </member>
-        <member name="M:Library.NotNull`1.FromOption(Library.Option{`0})">
-            <summary>
-            Converts an <see cref="T:Library.Option`1" /> with a value into an <see cref="T:Library.Option`1" /> with a <see cref="T:Library.NotNull`1" /> with the same value.
-            </summary>
-            <param name="option">The initial <see cref="T:Library.Option`1" />.</param>
-            <returns>The resulting <see cref="T:Library.Option`1" />.</returns>
+        <member name="M:Library.InputHandlers.UnsignedInt32Processor.ProcessInput(System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:Library.NotNull`1.op_Implicit(Library.NotNull{`0})~`0">
-            <summary>
-            Gets the value out of the <see cref="T:Library.NotNull`1" />.
-            </summary>
-            <param name="notNull">The <see cref="T:Library.NotNull`1" />.</param>
+        <member name="M:Library.InputHandlers.UnsignedInt32Processor.getResult">
+            <inheritdoc />
         </member>
-        <member name="T:Library.Option`1">
-            <summary>
-            This class represents a nullable value.
-            </summary>
-            <typeparam name="T">The type contained in the option.</typeparam>
-        </member>
-        <member name="P:Library.Option`1.HasValue">
-            <summary>
-            Whether there is a value.
-            </summary>
-        </member>
-        <member name="P:Library.Option`1.None">
-            <summary>
-            An empty <see cref="T:Library.Option`1" />.
-            </summary>
-        </member>
-        <member name="M:Library.Option`1.From(`0)">
-            <summary>
-            Returns an <see cref="T:Library.Option`1" /> with the given value, <br />
-            or an empty one if the value's null.
-            </summary>
-            <param name="value">The given value.</param>
-        </member>
-        <member name="M:Library.Option`1.Map``1(System.Func{`0,``0},System.Func{``0})">
-            <summary>
-            Returns the result of a function which receives the given value if there is, <br />,
-            or the result of a function which doesn't receive anything if there isn't.
-            </summary>
-            <param name="someFunc">The function for the success value.</param>
-            <param name="noneFunc">The function for when there's no value.</param>
-            <typeparam name="U">The type returned by the functions.</typeparam>
-        </member>
-        <member name="M:Library.Option`1.Unwrap">
-            <summary>
-            Attempts to retrieve the value from this <see cref="T:Library.Option`1" />, throwing an error if not possible.
-            </summary>
-            <exception cref="T:System.ArgumentNullException">Thrown if this option doesn't have a value.</exception>
-            <returns>The option's inner value.</returns>
-        </member>
-        <member name="M:Library.Option`1.MapValue``1(System.Func{`0,``0})">
-            <summary>
-            Passes the inner value through a function (if there is), and returns the result in a new <see cref="T:Library.Option`1" />.
-            </summary>
-            <param name="someFunc">The function for the value.</param>
-            <typeparam name="U">The type returned by the function.</typeparam>
+        <member name="M:Library.InputHandlers.UnsignedInt32Processor.Reset">
+            <inheritdoc />
         </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
@@ -1819,12 +1888,6 @@
             This class represents the <see cref="T:Library.Core.State" /> of an admin in the initial menu.
             </summary>
         </member>
-        <member name="P:Library.States.Admins.AdminInitialMenuState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.Admins.AdminInitialMenuState.UserType">
-            <inheritdoc />
-        </member>
         <member name="M:Library.States.Admins.AdminInitialMenuState.#ctor">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Admins.AdminInitialMenuState" />
@@ -1841,12 +1904,6 @@
             This class represents the state of an admin who is removing a company.
             </summary>
         </member>
-        <member name="P:Library.States.Admins.AdminRemoveCompanyState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.Admins.AdminRemoveCompanyState.UserType">
-            <inheritdoc />
-        </member>
         <member name="M:Library.States.Admins.AdminRemoveCompanyState.#ctor">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Admins.AdminRemoveCompanyState" />.
@@ -1856,12 +1913,6 @@
             <summary>
             This class represents the state of an admin who is removing a user.
             </summary>
-        </member>
-        <member name="P:Library.States.Admins.AdminRemoveUserState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.Admins.AdminRemoveUserState.UserType">
-            <inheritdoc />
         </member>
         <member name="M:Library.States.Admins.AdminRemoveUserState.#ctor">
             <summary>
@@ -1873,17 +1924,29 @@
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
             </summary>
         </member>
-        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.Companies.IncompleteCompanyRepresentativeState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.Companies.IncompleteCompanyRepresentativeState.UserType">
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.GetDefaultResponse">
             <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.AssignExistingCompanyState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.AssignExistingCompanyState.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.AssignExistingCompanyState.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.AssignExistingCompanyState.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.CreateNewCompanyState.#ctor(Library.States.Companies.IncompleteCompanyRepresentativeState)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Companies.IncompleteCompanyRepresentativeState.CreateNewCompanyState" />.
+            </summary>
+            <param name="parent">Its parent, from which it gets the company's name.</param>
         </member>
         <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
             <summary>
@@ -1893,21 +1956,20 @@
         <member name="M:Library.States.Entrepreneurs.NewEntrepreneurState.#ctor(System.String)">
             
         </member>
-        <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.IsComplete">
-            <inheritdoc />
-        </member>
-        <member name="P:Library.States.Entrepreneurs.NewEntrepreneurState.UserType">
-            <inheritdoc />
-        </member>
         <member name="T:Library.States.InputHandlerState">
             <summary>
-            This class represents a State which basically works with an <see cref="T:Library.Core.Processing.IInputHandler" />.
+            This class represents a State which basically works with an <see cref="T:Library.Core.Processing.InputHandler" />.
             </summary>
         </member>
-        <member name="M:Library.States.InputHandlerState.#ctor(Library.Core.Processing.IInputHandler,System.Func{Library.Core.State},System.Func{Library.Core.State})">
-            
+        <member name="M:Library.States.InputHandlerState.#ctor(Library.Core.Processing.InputHandler,System.Func{Library.Core.State},System.Func{Library.Core.State})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.InputHandlerState" />.
+            </summary>
+            <param name="inputHandler">The handler which determines the course of the state.</param>
+            <param name="exitState">The function which determines the state to go when an interrupt signal is given.</param>
+            <param name="nextState">The function which determines the state to go when a success signal is given.</param>
         </member>
-        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
@@ -1938,7 +2000,7 @@
             </summary>
             <returns>A string.</returns>
         </member>
-        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Utils.BasicUtils">
@@ -2003,19 +2065,24 @@
         </member>
         <member name="T:Library.Utils.OptionUtils">
             <summary>
-            This class holds methods which are related with the <see cref="T:Library.Option`1"/> struct.
+            This class holds methods which are related with nullable values.
             </summary>
         </member>
-        <member name="M:Library.Utils.OptionUtils.FirstOrNone``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Library.Utils.OptionUtils.Unwrap``1(``0)">
             <summary>
-            Returns an <see cref="T:Library.Option`1" /> containing the first value of an <see cref="T:System.Collections.Generic.IEnumerable`1" />, if there is.
+            Unwraps a nullable value, throwing an exception if it's null.
             </summary>
-            <param name="enumerable">The enumerable.</param>
-            <typeparam name="T">The type of the elements of the enumerable.</typeparam>
-            <returns>
-            Option.None if the enumerable is empty or if the first element is null, or<br />
-            Option.Some(element), being element the first element.
-            </returns>
+            <param name="value">The nullable value.</param>
+            <typeparam name="T">The type of the underlying value.</typeparam>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Library.Utils.OptionUtils.Unwrap``1(System.Nullable{``0})">
+            <summary>
+            Unwraps a nullable value, throwing an exception if it's null.
+            </summary>
+            <param name="value">The nullable value.</param>
+            <typeparam name="T">The type of the underlying value.</typeparam>
+            <returns>The value.</returns>
         </member>
     </members>
 </doc>

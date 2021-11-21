@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Library.Core;
 using Library.Core.Processing;
 
 namespace Library.InputHandlers.Abstractions
@@ -8,45 +10,49 @@ namespace Library.InputHandlers.Abstractions
     /// This class represents a processor which processes several objects of the same type.
     /// </summary>
     /// <typeparam name="T">The type of the elements which are processed into a list.</typeparam>
-    public class ListProcessor<T> : IInputProcessor<T[]>
+    public partial class ListProcessor<T> : InputProcessor<T[]>
     {
-        private Func<string, bool> escapePredicate;
         private List<T> list = new List<T>();
 
-        private Func<string> responseGetterForNextObjects;
+        private Func<string> initialResponseGetter;
 
-        private IInputProcessor<T> processor;
+        private InnerProcessorState state;
 
-        ///
-        public ListProcessor(IInputProcessor<T> processor, Func<string, bool> escapePredicate, Func<string> responseGetterForNextObjects)
+        private InputProcessor<T> processor;
+
+        /// <summary>
+        /// Initializes an instance of <see cref="ListProcessor{T}" />.
+        /// </summary>
+        /// <param name="initialResponseGetter">The default response for the initial menu.</param>
+        /// <param name="processor">The processor which generates the elements of the list.</param>
+        public ListProcessor(Func<string> initialResponseGetter, InputProcessor<T> processor)
         {
+            this.state = new InitialMenuState(this);
+            this.initialResponseGetter = initialResponseGetter;
             this.processor = processor;
-            this.escapePredicate = escapePredicate;
-            this.responseGetterForNextObjects = responseGetterForNextObjects;
         }
-
-        Result<bool, string> IInputHandler.ProcessInput(string msg)
-        {
-            if ((this.escapePredicate)(msg)) return Result<bool, string>.Ok(true);
-            return this.processor.GenerateFromInput(msg).Map(
-                result => result.Map(
-                    value =>
-                    {
-                        this.list.Add(value);
-                        this.processor.Reset();
-                        return Result<bool, string>.Err(this.GetDefaultResponse());
-                    },
-                    s => Result<bool, string>.Err(s)),
-                () => Result<bool, string>.Ok(false));
-        }
-
-        Result<T[], string> IInputProcessor<T[]>.getResult() => Result<T[], string>.Ok(this.list.ToArray());
 
         /// <inheritdoc />
-        public string GetDefaultResponse() =>
-            this.list.Count == 0 ? this.processor.GetDefaultResponse() : (this.responseGetterForNextObjects)();
+        public override Result<bool, string> ProcessInput(string msg) =>
+            this.state.ProcessMessage(msg).SwitchErr(
+                result =>
+                {
+                    var (newState, msg) = result;
+                    this.state = newState;
+                    return msg == null
+                        ? this.GetDefaultResponse()
+                        : $"{msg}\n{this.GetDefaultResponse()}";
+                }
+            );
 
-        void IInputHandler.Reset()
+        /// <inheritdoc />
+        protected override Result<T[], string> getResult() => Result<T[], string>.Ok(this.list.ToArray());
+
+        /// <inheritdoc />
+        public override string GetDefaultResponse() => this.state.GetDefaultResponse();
+
+        /// <inheritdoc />
+        public override void Reset()
         {
             this.list.Clear();
             this.processor.Reset();

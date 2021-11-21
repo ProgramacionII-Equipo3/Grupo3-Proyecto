@@ -1,4 +1,5 @@
 using System;
+using Library.Utils;
 
 namespace Library
 {
@@ -14,11 +15,11 @@ namespace Library
         /// </summary>
         public bool Success { get; }
 
-        private T successValue { get; }
+        private T? successValue { get; }
 
-        private E errorValue { get; }
+        private E? errorValue { get; }
 
-        private Result(bool Success, T successValue, E errorValue)
+        private Result(bool Success, T? successValue, E? errorValue)
         {
             this.Success = Success;
             this.successValue = successValue;
@@ -48,7 +49,7 @@ namespace Library
         /// <param name="errFunc">The function for the error value.</param>
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> successFunc, Func<E, U> errFunc) =>
-            this.Success ? successFunc(this.successValue) : errFunc(this.errorValue);
+            this.Success ? successFunc(this.successValue.Unwrap()) : errFunc(this.errorValue.Unwrap());
 
         /// <summary>
         /// Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="Result{U, F}" />.

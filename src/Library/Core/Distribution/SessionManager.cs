@@ -20,7 +20,7 @@ namespace Library.Core.Distribution
         /// </summary>
         /// <param name="id">The given id.</param>
         /// <returns>Its corresponding <see cref="UserSession" />, or null if there isn't.</returns>
-        public UserSession GetById(string id) =>
+        public UserSession? GetById(string id) =>
             sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Library.Core.Distribution
         /// <param name="userData">The user's data.</param>
         /// <param name="state">The user's initial state.</param>
         /// <returns>The resulting <see cref="UserSession" />, or null if there's already one.</returns>
-        public UserSession NewUser(string id, UserData userData, State state)
+        public UserSession? NewUser(string id, UserData userData, State state)
         {
             if (GetById(id) != null)
             {

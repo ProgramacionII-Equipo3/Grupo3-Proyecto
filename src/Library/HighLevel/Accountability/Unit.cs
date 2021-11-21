@@ -58,7 +58,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="abbreviation">The unit's abbreviation.</param>
         /// <returns>The unit which has a concrete abbreviation.</returns>
-        public static Unit GetByAbbr(string abbreviation) =>
+        public static Unit? GetByAbbr(string abbreviation) =>
             Values.Where(unit => unit.Abbreviation == abbreviation).FirstOrDefault();
 
         /// <summary>
@@ -67,10 +67,10 @@ namespace Library.HighLevel.Accountability
         /// <param name="fromUnit">The unit of the initial measure.</param>
         /// <param name="toUnit">The unit of the final measure.</param>
         /// <returns>The number to multiply to the initial measure's numeric value to get the final measure's numeric value, or null if the units belong to different measures.</returns>
-        public static Option<double> GetConversionFactor(Unit fromUnit, Unit toUnit) =>
+        public static double? GetConversionFactor(Unit fromUnit, Unit toUnit) =>
             Unit.AreCompatible(fromUnit, toUnit)
-                ? Option<double>.From(fromUnit.weight / toUnit.weight)
-                : Option<double>.None;
+                ? fromUnit.weight / toUnit.weight
+                : null;
 
         /// <summary>
         /// Checks whether two units are compatible with each other.

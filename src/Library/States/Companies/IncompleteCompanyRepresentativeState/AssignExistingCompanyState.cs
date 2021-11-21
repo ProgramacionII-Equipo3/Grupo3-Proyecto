@@ -6,7 +6,7 @@ namespace Library.States.Companies
 {
     public partial class IncompleteCompanyRepresentativeState
     {
-        private class AssignExistingCompanyState : IInputProcessor<Company>
+        private class AssignExistingCompanyState : InputProcessor<Company>
         {
             private Company company;
 
@@ -15,12 +15,15 @@ namespace Library.States.Companies
                 this.company = company;
             }
 
-            public string GetDefaultResponse() =>
+            /// <inheritdoc />
+            public override string GetDefaultResponse() =>
                 $"There's already a company called {this.company.Name}. Is this the company you want to assign to?";
 
-            Result<Company, string> IInputProcessor<Company>.getResult() => Result<Company, string>.Ok(this.company);
+            /// <inheritdoc />
+            protected override Result<Company, string> getResult() => Result<Company, string>.Ok(this.company);
 
-            Result<bool, string> IInputHandler.ProcessInput(string msg)
+            /// <inheritdoc />
+            public override Result<bool, string> ProcessInput(string msg)
             {
                 msg = msg.Trim().ToLowerInvariant();
                 if(msg == "yes" || msg == "y")
@@ -28,10 +31,11 @@ namespace Library.States.Companies
                 else if(msg == "no" || msg == "n")
                     return Result<bool, string>.Ok(false);
                 
-                return Result<bool, string>.Err("Please answer \"yes\" (\"y\") or \"no\" (\"n\").");
+                return Result<bool, string>.Err($"Please answer \"yes\" (\"y\") or \"no\" (\"n\").\n{this.GetDefaultResponse()}");
             }
 
-            void IInputHandler.Reset()
+            /// <inheritdoc />
+            public override void Reset()
             {
             }
         }

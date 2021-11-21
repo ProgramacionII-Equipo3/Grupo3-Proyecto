@@ -72,7 +72,7 @@ namespace Library.Core.Invitations
         /// <param name="invitationCode">The invitation's code.</param>
         /// <param name="userId">The id of the user who validated the invitation.</param>
         /// <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
-        public string ValidateInvitation(string invitationCode, string userId)
+        public string? ValidateInvitation(string invitationCode, string userId)
         {
             if (
                 invitations.Where(invitation => invitation.Code == invitationCode).FirstOrDefault()
