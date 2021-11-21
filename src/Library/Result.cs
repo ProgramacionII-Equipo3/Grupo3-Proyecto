@@ -1,4 +1,5 @@
 using System;
+using Library.Utils;
 
 namespace Library
 {
@@ -14,11 +15,11 @@ namespace Library
         /// </summary>
         public bool Success { get; }
 
-        private T successValue { get; }
+        private T? successValue { get; }
 
-        private E errorValue { get; }
+        private E? errorValue { get; }
 
-        private Result(bool Success, T successValue, E errorValue)
+        private Result(bool Success, T? successValue, E? errorValue)
         {
             this.Success = Success;
             this.successValue = successValue;
@@ -48,7 +49,7 @@ namespace Library
         /// <param name="errFunc">The function for the error value.</param>
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> successFunc, Func<E, U> errFunc) =>
-            this.Success ? successFunc(this.successValue) : errFunc(this.errorValue);
+            this.Success ? successFunc(this.successValue.Unwrap()) : errFunc(this.errorValue.Unwrap());
 
         /// <summary>
         /// Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="Result{U, F}" />.
@@ -88,5 +89,31 @@ namespace Library
             this.Map(
                 v => successFunc(v),
                 Result<U, E>.Err);
+
+        /// <summary>
+        /// Calls a function if the result is an Ok.
+        /// </summary>
+        /// <param name="successAction">The success function.</param>
+        public void RunIfOk(Action<T> successAction)
+        {
+            this.SwitchOk(v =>
+            {
+                successAction(v);
+                return true;
+            });
+        }
+
+        /// <summary>
+        /// Calls a function if the result is an Err.
+        /// </summary>
+        /// <param name="errAction">The error function.</param>
+        public void RunIfErr(Action<E> errAction)
+        {
+            this.SwitchErr(e =>
+            {
+                errAction(e);
+                return true;
+            });
+        }
     }
 }

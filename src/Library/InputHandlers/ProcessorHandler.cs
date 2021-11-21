@@ -1,12 +1,12 @@
 using System;
 using Library.Core.Processing;
 
-namespace Library.InputHandlers
+namespace Library.InputHandlers.Abstractions
 {
     /// <summary>
-    /// Represents an <see cref="IInputHandler" /> which uses an input processor, and a function to be given its result.
+    /// Represents an <see cref="InputHandler" /> which uses an input processor, and a function to be given its result.
     /// </summary>
-    public class ProcessorHandler : IInputHandler
+    public class ProcessorHandler : InputHandler
     {
         private Func<string, Result<bool, string>> inputHandler;
         private readonly Func<string> initialResponseGetter;
@@ -26,21 +26,20 @@ namespace Library.InputHandlers
         /// <param name="f">The operation to do with the resulting input, and returns a not-null string if there was an error.</param>
         /// <param name="processor">The input processor.</param>
         /// <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
-        public static ProcessorHandler CreateInstance<T>(Func<T, string> f, IInputProcessor<T> processor)
+        public static ProcessorHandler CreateInstance<T>(Func<T, string?> f, InputProcessor<T> processor)
         {
             return new ProcessorHandler (
-                inputHandler: s => processor.GenerateFromInput(s).Map(
-                    result => result.AndThen(
+                inputHandler: s => processor.GenerateFromInput(s) is Result<T, string> result
+                    ? result.AndThen(
                         v =>
                         {
-                            string res = f(v);
+                            string? res = f(v);
                             if(res == null) return Result<bool, string>.Ok(true);
                             processor.Reset();
                             return Result<bool, string>.Err($"{res}\n{processor.GetDefaultResponse()}");
                         }
-                    ),
-                    () => Result<bool, string>.Ok(false)
-                ),
+                    )
+                    : Result<bool, string>.Ok(false),
                 initialResponseGetter: processor.GetDefaultResponse,
                 resetter: processor.Reset
             );
@@ -53,16 +52,19 @@ namespace Library.InputHandlers
         /// <param name="action">The operation to do with the resulting input.</param>
         /// <param name="processor">The input processor.</param>
         /// <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
-        public static ProcessorHandler CreateInfallibleInstance<T>(Action<T> action, IInputProcessor<T> processor) =>
+        public static ProcessorHandler CreateInfallibleInstance<T>(Action<T> action, InputProcessor<T> processor) =>
             ProcessorHandler.CreateInstance<T>(v => {
                 action(v);
                 return null;
             }, processor);
 
-        string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
+        /// <inheritdoc />
+        public override string GetDefaultResponse() => (this.initialResponseGetter)();
 
-        Result<bool, string> IInputHandler.ProcessInput(string msg) => (this.inputHandler)(msg);
+        /// <inheritdoc />
+        public override Result<bool, string> ProcessInput(string msg) => (this.inputHandler)(msg);
 
-        void IInputHandler.Reset() => (this.resetter)();
+        /// <inheritdoc />
+        public override void Reset() => (this.resetter)();
     }
 }

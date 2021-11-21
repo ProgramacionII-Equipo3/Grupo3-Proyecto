@@ -26,7 +26,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The list of materials which belong to this category.
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
-        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="MaterialCategory.Materials" />.
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="MaterialCategory.Materials" />.
         /// </summary>
         private List<Material> materials = new List<Material>();
 
@@ -54,7 +54,7 @@ namespace Library.HighLevel.Materials
         /// </summary>
         /// <param name="name">The category's name.</param>
         /// <returns>An instance of <see cref="MaterialCategory" />.</returns>
-        public Material GetByName(string name)
+        public Material? GetByName(string name)
         {
             name = name.ToLowerInvariant();
             return this.materials.Where(material => material.MatchesName(name)).FirstOrDefault();

@@ -1,6 +1,8 @@
 using System;
 using Library.Core.Processing;
 using Library.HighLevel.Materials;
+using Library.InputHandlers.Abstractions;
+using Library.Utils;
 
 namespace Library.InputHandlers
 {
@@ -9,16 +11,15 @@ namespace Library.InputHandlers
     /// </summary>
     public class HabilitationProcessor : FormProcessor<Habilitation>
     {
-        private string docLink;
-        private string description;
+        private string? docLink;
+        private string? description;
 
         /// <summary>
         /// Initializes an instance of <see cref="HabilitationProcessor" />.
         /// </summary>
-        /// <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
-        public HabilitationProcessor(Func<string> initialResponseGetter)
+        public HabilitationProcessor()
         {
-            this.inputHandlers = new IInputHandler[]
+            this.inputHandlers = new InputHandler[]
             {
                 ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.docLink = s,
@@ -33,6 +34,6 @@ namespace Library.InputHandlers
 
         /// <inheritdoc />
         protected override Result<Habilitation, string> getResult() =>
-            Result<Habilitation, string>.Ok(new Habilitation(docLink, description));
+            Result<Habilitation, string>.Ok(new Habilitation(docLink.Unwrap(), description.Unwrap()));
     }
 }

@@ -20,7 +20,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The list of companies.
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
-        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="CompanyManager.Companies" />.
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="CompanyManager.Companies" />.
         /// </summary>
         private List<Company> companies = new List<Company>();
 
@@ -34,7 +34,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="userId">The user's id.</param>
         /// <returns>A company, or null if the user doesn't represent a company.</returns>
-        public Company GetCompanyOf(string userId) =>
+        public Company? GetCompanyOf(string userId) =>
             companies.Where(company => company.HasUser(userId)).FirstOrDefault();
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="name">The company's name.</param>
         /// <returns>A company, or null if there is no company with that name.</returns>
-        public Company GetByName(string name) =>
+        public Company? GetByName(string name) =>
             companies.Where(company => company.Name == name).FirstOrDefault();
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Library.HighLevel.Companies
         /// <param name="contactInfo">The company´s contact info.</param>
         /// <param name="heading">The company´s heading.</param>
         /// <param name="location">The company´s location.</param>
-        public Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
+        public Company? CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
             name = name.Trim();
             heading = heading.Trim();
@@ -81,7 +81,10 @@ namespace Library.HighLevel.Companies
         public bool RemoveCompany(string name)
         {
             name = name.Trim();
-            return this.companies.RemoveAll(company => company.Name == name) > 0;
+            Company? company = this.companies.Where(company => company.Name == name).FirstOrDefault();
+            if(company == null) return false;
+            company.RemoveUsers();
+            return true;
         }
     }
 }

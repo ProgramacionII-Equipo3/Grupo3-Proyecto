@@ -1,23 +1,34 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Library.Utils
 {
     /// <summary>
-    /// This class holds methods which are related with the <see cref="Option{T}"/> struct.
+    /// This class holds methods which are related with nullable values.
     /// </summary>
     public static class OptionUtils
     {
         /// <summary>
-        /// Returns an <see cref="Option{T}" /> containing the first value of an <see cref="IEnumerable{T}" />, if there is.
+        /// Unwraps a nullable value, throwing an exception if it's null.
         /// </summary>
-        /// <param name="enumerable">The enumerable.</param>
-        /// <typeparam name="T">The type of the elements of the enumerable.</typeparam>
-        /// <returns>
-        /// Option.None if the enumerable is empty or if the first element is null, or<br />
-        /// Option.Some(element), being element the first element.
-        /// </returns>
-        public static Option<T> FirstOrNone<T>(this IEnumerable<T> enumerable) =>
-            enumerable.Count() == 0 ? Option<T>.None : Option<T>.From(enumerable.FirstOrDefault());
+        /// <param name="value">The nullable value.</param>
+        /// <typeparam name="T">The type of the underlying value.</typeparam>
+        /// <returns>The value.</returns>
+        public static T Unwrap<T>(this T? value) =>
+            value is null
+                ? throw new ArgumentNullException()
+                : (T)value;
+
+        /// <summary>
+        /// Unwraps a nullable value, throwing an exception if it's null.
+        /// </summary>
+        /// <param name="value">The nullable value.</param>
+        /// <typeparam name="T">The type of the underlying value.</typeparam>
+        /// <returns>The value.</returns>
+        public static T Unwrap<T>(this T? value) where T: struct =>
+            value is null
+                ? throw new ArgumentNullException()
+                : (T)value;
     }
 }

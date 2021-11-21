@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Entrepreneurs;
-using Library.Core;
+using Library.Utils;
 using Library.InputHandlers;
+using Library.InputHandlers.Abstractions;
 using Library.Core.Processing;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
@@ -26,28 +27,40 @@ namespace Library.States.Entrepreneurs
             () => null
         ) {}
 
+<<<<<<< HEAD
         /// <inheritdoc />
         public override bool IsComplete => false;
 
         /// <inheritdoc />
         public override State.Type UserType => State.Type.ENTREPRENEUR;
 
+=======
+>>>>>>> master
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
         {
             private string userId;
 
+<<<<<<< HEAD
             private string name;
             private int age;
             private Location location;
             private string heading;
             private IList<Habilitation> habilitations;
             private IList<string> specializations;
+=======
+            private string? name;
+            private int? age;
+            private Location? location;
+            private string? heading;
+            private IList<Habilitation>? habilitations;
+            private IList<string>? specializations;
+>>>>>>> master
 
             public NewEntrepreneurForm(string userId)
             {
                 this.userId = userId;
 
-                this.inputHandlers = new IInputHandler[]
+                this.inputHandlers = new InputHandler[]
                 {
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         name => this.name = name,
@@ -68,24 +81,22 @@ namespace Library.States.Entrepreneurs
                     ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
-                            new HabilitationProcessor(() => "Please insert your habilitations (they are represented as links to documents which act as evidence).\nInsert them one on one and insert /finish to finish."),
-                            s => s.Trim() == "/finish",
-                            () => "Insert the next habilitation (or /finish to finish)"
+                            () => "Please insert your habilitations",
+                            new HabilitationProcessor()
                         )
                     ),
                     ProcessorHandler.CreateInfallibleInstance<string[]>(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
-                            new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish."),
-                            s => s.Trim() == "/finish",
-                            () => "Insert the next specialization (or /finish to finish)"
+                            () => "Please insert your specializations.",
+                            new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish.")
                         )
                     )
                 };
             }
 
             protected override Result<Entrepreneur, string> getResult() =>
-                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name, age.ToString(), location, heading, habilitations, specializations));
+                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.ToString().Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
         }
     }
 }

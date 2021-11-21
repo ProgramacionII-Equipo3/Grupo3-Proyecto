@@ -9,11 +9,11 @@ namespace Library.Core
         /// <summary>
         /// The entity's email (null if non-existent).
         /// </summary>
-        public string Email;
+        public string? Email;
 
         /// <summary>
-        /// The entity's phone number (-1 if non-existent).
+        /// The entity's phone number (null if non-existent).
         /// </summary>
-        public int PhoneNumber;
+        public int? PhoneNumber;
     }
 }

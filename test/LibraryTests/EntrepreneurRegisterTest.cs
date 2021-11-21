@@ -3,6 +3,7 @@ using Library;
 using Library.Core;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using Library.Platforms.Telegram;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
@@ -14,11 +15,15 @@ namespace ProgramTests
     /// </summary>
     public class EntrepreneurRegisterTest
     {
+<<<<<<< HEAD
         private string juanId;
+=======
+        private string? juanId;
+>>>>>>> master
         private Message nameMessage;
         private Message ageMessage;
-        private LocationApiClient provider;
-        private Location location;
+        private LocationApiClient? provider;
+        private Location? location;
         private Message headingMessage;
         private Message habilitationsMessage;
         private Message specializationsMessage;
@@ -36,7 +41,7 @@ namespace ProgramTests
             this.habilitationsMessage = new Message("/command link1 link2", this.juanId);
             this.specializationsMessage = new Message("/command specialization1, specialization2", this.juanId);
             this.provider = new LocationApiClient();
-            this.location = this.provider.GetLocationAsync("Av. 8 de Octubre 2738").Result;
+            this.location = this.provider.GetLocation("Av. 8 de Octubre 2738");
         }
 
         /// <summary>
@@ -63,7 +68,11 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
+<<<<<<< HEAD
             Entrepreneur juan = new Entrepreneur(this.juanId, this.nameMessage.Text, this.ageMessage.Text, this.location, this.headingMessage.Text, habilitations, specializations);
+=======
+            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, this.ageMessage.Text, this.location!, this.headingMessage.Text, habilitations, specializations);
+>>>>>>> master
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
@@ -71,7 +80,10 @@ namespace ProgramTests
 
             int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
             Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;

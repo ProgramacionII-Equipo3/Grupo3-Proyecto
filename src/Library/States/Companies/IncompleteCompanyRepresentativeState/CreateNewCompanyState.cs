@@ -1,6 +1,8 @@
 using Library.Core.Processing;
 using Library.HighLevel.Companies;
 using Library.InputHandlers;
+using Library.InputHandlers.Abstractions;
+using Library.Utils;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.States.Companies
@@ -10,16 +12,20 @@ namespace Library.States.Companies
         private class CreateNewCompanyState : FormProcessor<Company>
         {
             private IncompleteCompanyRepresentativeState parent;
-            private string heading;
-            private Location location;
-            private int phoneNumber;
-            private string email;
-            private Company result = null;
+            private string? heading;
+            private Location? location;
+            private int? phoneNumber;
+            private string? email;
+            private Company? result = null;
 
+            /// <summary>
+            /// Initializes an instance of <see cref="CreateNewCompanyState" />.
+            /// </summary>
+            /// <param name="parent">Its parent, from which it gets the company's name.</param>
             public CreateNewCompanyState(IncompleteCompanyRepresentativeState parent)
             {
                 this.parent = parent;
-                this.inputHandlers = new IInputHandler[]
+                this.inputHandlers = new InputHandler[]
                 {
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.heading = s,
@@ -42,15 +48,15 @@ namespace Library.States.Companies
 
             protected override Result<Company, string> getResult()
             {
-                Company result = Singleton<CompanyManager>.Instance.CreateCompany(
-                    name: this.parent.name,
+                Company? result = Singleton<CompanyManager>.Instance.CreateCompany(
+                    name: this.parent.name.Unwrap(),
                     contactInfo: new Library.Core.ContactInfo
                     {
-                        Email = this.email,
-                        PhoneNumber = this.phoneNumber
+                        Email = this.email.Unwrap(),
+                        PhoneNumber = this.phoneNumber.Unwrap()
                     },
-                    heading: this.heading,
-                    location: this.location);
+                    heading: this.heading.Unwrap(),
+                    location: this.location.Unwrap());
                 if (result == null) 
                 {
                     return Result<Company, string>.Err("There's already a company with the same name.");

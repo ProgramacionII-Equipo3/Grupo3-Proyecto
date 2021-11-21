@@ -4,14 +4,14 @@ namespace Library.Core.Processing
     /// Represents the functionality of receiving one or more input messages, and generating an object with that input.
     /// </summary>
     /// <typeparam name="T">The type of the resulting object.</typeparam>
-    public interface IInputProcessor<T> : IInputHandler
+    public abstract class InputProcessor<T> : InputHandler
     {
         /// <summary>
         /// Generates the resulting object with the obtained input.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///     This function should be called only after a call to <see cref="IInputHandler.ProcessInput(string)" /> returns: <br />
+        ///     This function should be called only after a call to <see cref="InputHandler.ProcessInput(string)" /> returns: <br />
         ///         Result&lt;bool, string&gt;.Ok(true) <br />
         ///     which is a signal that the object's ready to produce the result. Doing so under other circumstances may result in undefined behaviour.
         ///     </para>
@@ -20,7 +20,7 @@ namespace Library.Core.Processing
         /// Result.Ok(result), being result the resulting object, or<br />
         /// Result.Err(error), being error an error string.
         /// </returns>
-        protected Result<T, string> getResult();
+        protected abstract Result<T, string> getResult();
 
         /// <summary>
         /// Receives an input message, returning the resulting object if it's ready.
@@ -31,27 +31,26 @@ namespace Library.Core.Processing
         /// Option.Some(Result.Err(response)), being response a response string, or <br />
         /// Option.None for an interrupt signal.
         /// </returns>
-        public Option<Result<T, string>> GenerateFromInput(string msg) =>
-            this.ProcessInput(msg).Map<Option<Result<T, string>>>(
+        public Result<T, string>? GenerateFromInput(string msg) =>
+            this.ProcessInput(msg).Map<Result<T, string>?>(
                 ready =>
                 {
                     if (ready)
                     {
                         Result<T, string> result = this.getResult();
-                        return Option<Result<T, string>>.From(
-                            result.Map(
-                                result => Result<T, string>.Ok(result),
-                                error =>
-                                {
-                                    this.Reset();
-                                    return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
-                                }));
+                        return result.Map(
+                            result => Result<T, string>.Ok(result),
+                            error =>
+                            {
+                                this.Reset();
+                                return Result<T, string>.Err($"{error}\n{this.GetDefaultResponse()}");
+                            });
                     }
                     else
                     {
-                        return Option<Result<T, string>>.None;
+                        return null;
                     }
                 },
-                e => Option<Result<T, string>>.From(Result<T, string>.Err(e)));
+                e => Result<T, string>.Err(e));
     }
 }

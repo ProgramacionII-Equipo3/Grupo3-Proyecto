@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
+using Library.Core.Distribution;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
@@ -89,5 +90,16 @@ namespace Library.HighLevel.Companies
                 company: this,
                 publication: pub
             )).ToList();
+
+        /// <summary>
+        /// Removes all users in a company
+        /// </summary>
+        public void RemoveUsers()
+        {
+            foreach(string id in this.representants)
+            {
+                Singleton<SessionManager>.Instance.RemoveUser(id);
+            }
+        }
     }
 }
