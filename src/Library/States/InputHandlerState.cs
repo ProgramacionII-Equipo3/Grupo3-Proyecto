@@ -29,13 +29,8 @@ namespace Library.States
         }
 
         /// <inheritdoc />
-<<<<<<< HEAD
-        public override (State, string) ProcessMessage(string id, UserData data, string msg) =>
-            inputHandler.ProcessInput(msg).Map<(State, string)>(
-=======
         public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg) =>
             inputHandler.ProcessInput(msg).Map<(State?, string?)>(
->>>>>>> master
                 success => ((success ? (this.nextState)() : (this.exitState)()), null),
                 s => (this, s)
             );

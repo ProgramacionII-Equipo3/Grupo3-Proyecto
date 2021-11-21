@@ -11,13 +11,6 @@ namespace Library.States.Entrepreneurs
 {
     public class EntrepreneurInitialMenuState : MultipleOptionState
     {
-        /// <inheritdoc />
-        public override bool IsComplete => true;
-
-        /// <inheritdoc />
-        public override State.Type UserType => State.Type.ENTREPRENEUR;
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -57,10 +50,12 @@ namespace Library.States.Entrepreneurs
             return (this, string.Join ('\n', spunt_publication)+"\n"+this.GetDefaultResponse());
         }
         
+        /// <inheritdoc />
         protected override string GetInitialResponse() =>
             "Qué acción quieres ejecutar?";
 
 
+        /// <inheritdoc />
         protected override string GetErrorString() =>
             "Opción no válida.";
 

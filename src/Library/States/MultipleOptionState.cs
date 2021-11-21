@@ -13,11 +13,7 @@ namespace Library.States
         /// <summary>
         /// Gets the list of the commands supported by this <see cref="MultipleOptionState" />.
         /// </summary>
-<<<<<<< HEAD
-        protected (string, string, Func<(State, string)>)[] commands = new (string, string, Func<(State, string)>)[0];
-=======
         protected (string, string, Func<(State, string?)>)[] commands = new (string, string, Func<(State, string?)>)[0];
->>>>>>> master
 
         /// <summary>
         /// Returns the message the program sends before asking for an option.
@@ -36,22 +32,6 @@ namespace Library.States
         protected abstract string GetErrorString();
 
         /// <inheritdoc />
-<<<<<<< HEAD
-        public override (State, string) ProcessMessage(string id, UserData data, string msg) =>
-            this.commands.Where((command) => command.Item1 == msg.Trim()).FirstOrNone().Map(
-                command =>
-                {
-                    var (newState, res) = command.Item3();
-                    return (
-                        newState,
-                        res != null
-                            ? $"{res}\n{newState.GetDefaultResponse()}"
-                            : newState.GetDefaultResponse()
-                    );
-                },
-                () => (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}")
-            );
-=======
         public override (State, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
             (string, string, Func<(State, string?)>)? command = this.commands
@@ -72,6 +52,5 @@ namespace Library.States
                 return (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}");
             }
         }
->>>>>>> master
     }
 }

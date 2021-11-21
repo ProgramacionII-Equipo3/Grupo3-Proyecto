@@ -30,13 +30,8 @@ namespace ProgramTests
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
-<<<<<<< HEAD
-            Location location = client.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location);
-=======
             Location location = client.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location)!;
->>>>>>> master
             bool expected = Singleton<CompanyManager>.Instance.Companies.Contains(company);
             Assert.That(expected, Is.True);
         }
@@ -71,17 +66,10 @@ namespace ProgramTests
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
-<<<<<<< HEAD
-            Location location = client.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Blue Patna", contactInfo, "Arroz", location);
-            company.AddUser(id);
-            Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id);
-=======
             Location location = client.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Blue Patna", contactInfo, "Arroz", location)!;
             company.AddUser(id);
             Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id)!;
->>>>>>> master
             Assert.AreEqual(expected, company);
         }
 
@@ -98,15 +86,9 @@ namespace ProgramTests
             contactInfo.Email = "Woodcompany@gmail.com";
             contactInfo.PhoneNumber = 094567417;
             LocationApiClient client = new LocationApiClient();
-<<<<<<< HEAD
-            Location location = client.GetLocationAsync("Luis Alberto de Herrera 774", "Minas", "Lavalleja", "Uruguay").Result;
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location);
-            Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany");
-=======
             Location location = client.GetLocation("Luis Alberto de Herrera 774", "Minas", "Lavalleja", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location)!;
             Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany")!;
->>>>>>> master
             Assert.AreEqual(expected, company);
         }
     }

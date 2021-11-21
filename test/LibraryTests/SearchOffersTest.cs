@@ -40,11 +40,7 @@ namespace ProgramTests
             this.category1 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword1 = new List<string> { "agujas", "hospital" };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
-<<<<<<< HEAD
-            this.unit1 = Unit.GetByAbbr("kg");
-=======
             this.unit1 = Unit.GetByAbbr("kg")!;
->>>>>>> master
             this.amount1 = new Amount(100, this.unit1);
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             this.client = new LocationApiClient();
@@ -54,11 +50,7 @@ namespace ProgramTests
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
-<<<<<<< HEAD
-            this.unit2 = Unit.GetByAbbr("kg");
-=======
             this.unit2 = Unit.GetByAbbr("kg")!;
->>>>>>> master
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
@@ -72,22 +64,13 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryFound()
         {
-<<<<<<< HEAD
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-=======
             IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
->>>>>>> master
 
             MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
 
             IList<MaterialPublication> expected1 = new List<MaterialPublication>();
-<<<<<<< HEAD
-            expected1.Add(this.publication1);
-            expected1.Add(this.publication2);
-=======
             expected1.Add(this.publication1!);
             expected1.Add(this.publication2!);
->>>>>>> master
 
             Assert.AreEqual(expected1, Singleton<Searcher>.Instance.SearchByCategory(publicationsToSearchIn, categoryToSearch));
         }
@@ -100,11 +83,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryNotFound()
         {
-<<<<<<< HEAD
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-=======
             IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
->>>>>>> master
 
             MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
 
@@ -119,11 +98,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsFound()
         {
-<<<<<<< HEAD
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-=======
             IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
->>>>>>> master
 
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
             expected3.Add(this.publication2!);
@@ -139,11 +114,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsNotFound()
         {
-<<<<<<< HEAD
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-=======
             IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
->>>>>>> master
 
             List<MaterialPublication> expected4 = new List<MaterialPublication>();
 
@@ -157,11 +128,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneFound()
         {
-<<<<<<< HEAD
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-=======
             IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
->>>>>>> master
 
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
@@ -169,11 +136,7 @@ namespace ProgramTests
             double distanceSpecified = 4;
 
             IList<MaterialPublication> expected5 = new List<MaterialPublication>();
-<<<<<<< HEAD
-            expected5.Add(this.publication2);
-=======
             expected5.Add(this.publication2!);
->>>>>>> master
 
             Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(publicationsToSearchIn, locationSpecified, distanceSpecified));
         }
@@ -186,11 +149,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneNotFound()
         {
-<<<<<<< HEAD
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
-=======
             IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
->>>>>>> master
 
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();

@@ -42,21 +42,12 @@ namespace ProgramTests
             ContactInfo contactInfo;
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
-<<<<<<< HEAD
-            Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location);
-            company.AddUser(message.Id);
-
-            bool expected = company.HasUser(message.Id);
-            Company expectedCompany = Singleton<CompanyManager>.Instance.GetByName("Company.SA");
-=======
             Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location)!;
             company.AddUser(message.Id);
 
             bool expected = company.HasUser(message.Id);
             Company expectedCompany = Singleton<CompanyManager>.Instance.GetByName("Company.SA")!;
->>>>>>> master
 
             // If the message with the code is equal with an invitation sended, the user has to
             // be added in the representants list of the company.

@@ -29,11 +29,7 @@ namespace Library.InputHandlers
         public override Result<bool, string> ProcessInput(string msg)
         {
             if(msg == "\\") return Result<bool, string>.Ok(false);
-<<<<<<< HEAD
-            if(string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A number was expected.");
-=======
             if(string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err($"A number was expected.\n{(this.initialResponseGetter)()}");
->>>>>>> master
             int result;
             if(int.TryParse(msg.Trim(), NumberStyles.AllowTrailingWhite | NumberStyles.AllowLeadingWhite | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out result))
             {

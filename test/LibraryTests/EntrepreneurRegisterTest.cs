@@ -15,11 +15,7 @@ namespace ProgramTests
     /// </summary>
     public class EntrepreneurRegisterTest
     {
-<<<<<<< HEAD
-        private string juanId;
-=======
         private string? juanId;
->>>>>>> master
         private Message nameMessage;
         private Message ageMessage;
         private LocationApiClient? provider;
@@ -68,11 +64,7 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-<<<<<<< HEAD
-            Entrepreneur juan = new Entrepreneur(this.juanId, this.nameMessage.Text, this.ageMessage.Text, this.location, this.headingMessage.Text, habilitations, specializations);
-=======
             Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, this.ageMessage.Text, this.location!, this.headingMessage.Text, habilitations, specializations);
->>>>>>> master
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
@@ -80,10 +72,6 @@ namespace ProgramTests
 
             int indexnameUser = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.IndexOf(juan);
             Assert.AreEqual(Singleton<EntrepreneurManager>.Instance.Entrepreneurs[indexnameUser].Id, idExpected);
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
             // Evaluate if the habilitations, specializations and name are registered correctly.
             string nameExpected = this.nameMessage.Text;

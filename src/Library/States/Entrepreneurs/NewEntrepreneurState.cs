@@ -27,34 +27,16 @@ namespace Library.States.Entrepreneurs
             () => null
         ) {}
 
-<<<<<<< HEAD
-        /// <inheritdoc />
-        public override bool IsComplete => false;
-
-        /// <inheritdoc />
-        public override State.Type UserType => State.Type.ENTREPRENEUR;
-
-=======
->>>>>>> master
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
         {
             private string userId;
 
-<<<<<<< HEAD
-            private string name;
-            private int age;
-            private Location location;
-            private string heading;
-            private IList<Habilitation> habilitations;
-            private IList<string> specializations;
-=======
             private string? name;
             private int? age;
             private Location? location;
             private string? heading;
             private IList<Habilitation>? habilitations;
             private IList<string>? specializations;
->>>>>>> master
 
             public NewEntrepreneurForm(string userId)
             {
