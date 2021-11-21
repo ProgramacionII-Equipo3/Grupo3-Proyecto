@@ -34,6 +34,7 @@ namespace Library.HighLevel.Accountability
             ("kilogram",  "kg",  1),
             ("tonne",     "t",   1000)
         });
+
         /// <summary>
         /// Gets the measure's name.
         /// </summary>

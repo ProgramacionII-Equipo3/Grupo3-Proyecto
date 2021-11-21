@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Library.Core;
+using Library.Utils;
 
 namespace Library.States
 {
@@ -9,7 +10,20 @@ namespace Library.States
     /// </summary>
     public abstract class MultipleOptionState : State
     {
-        private (string, Func<State>)[] commands { get; }
+        /// <summary>
+        /// Gets the list of the commands supported by this <see cref="MultipleOptionState" />.
+        /// </summary>
+        protected (string, string, Func<(State, string?)>)[] commands = new (string, string, Func<(State, string?)>)[0];
+
+        /// <summary>
+        /// Returns the message the program sends before asking for an option.
+        /// </summary>
+        /// <returns>A string.</returns>
+        protected abstract string GetInitialResponse();
+
+        /// <inheritdoc />
+        public override sealed string GetDefaultResponse() =>
+            this.GetInitialResponse() + "\n        " + string.Join("\n        ", commands.Select(command => $"{command.Item1}: {command.Item2}"));
 
         /// <summary>
         /// Gets the string to send in order to notify the user that the data is invalid.
@@ -17,24 +31,26 @@ namespace Library.States
         /// <returns>A string.</returns>
         protected abstract string GetErrorString();
 
-        /// <summary>
-        /// Creates a <see cref="MultipleOptionState" /> with a given group of commands.
-        /// </summary>
-        /// <param name="commands">The group of commands.</param>
-        protected MultipleOptionState(params (string, Func<State>)[] commands)
-        {
-            this.commands = commands;
-        }
-
         /// <inheritdoc />
-        public override (State, string) ProcessMessage(UserId id, UserData data, string msg) =>
-            this.commands.Where((command) => command.Item1 == msg.Trim()).FirstOrNone().Map(
-                command =>
-                {
-                    State newState = command.Item2();
-                    return (newState, newState.GetDefaultResponse());
-                },
-                () => (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}")
-            );
+        public override (State, string?) ProcessMessage(string id, ref UserData data, string msg)
+        {
+            (string, string, Func<(State, string?)>)? command = this.commands
+                .Where((command) => command.Item1 == msg.Trim())
+                .OfType<(string, string, Func<(State, string?)>)?>()
+                .FirstOrDefault();
+            
+            if(command is (string, string, Func<(State, string?)>) c)
+            {
+                var (newState, res) = c.Item3();
+                return (
+                    newState,
+                    res != null
+                        ? $"{res}\n{newState.GetDefaultResponse()}"
+                        : newState.GetDefaultResponse()
+                );
+            } else {
+                return (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}");
+            }
+        }
     }
 }

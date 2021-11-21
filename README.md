@@ -33,4 +33,4 @@ Tercera Entrega:
 
     > Modificar MaterialPublication
         > Eliminar el método GetMaterialConstantlyGenerated             --> Martín
-        > Agregar en la publicacion si es continuo, puntual, o normal   --> Santiago
+        > Agregar en la publicacion si es continuo, puntual, o normal   --> Santiago --

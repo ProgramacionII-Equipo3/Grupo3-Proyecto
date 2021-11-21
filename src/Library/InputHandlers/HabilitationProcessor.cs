@@ -1,7 +1,8 @@
 using System;
 using Library.Core.Processing;
-using Library.InputHandlers.Abstractions;
 using Library.HighLevel.Materials;
+using Library.InputHandlers.Abstractions;
+using Library.Utils;
 
 namespace Library.InputHandlers
 {
@@ -10,28 +11,29 @@ namespace Library.InputHandlers
     /// </summary>
     public class HabilitationProcessor : FormProcessor<Habilitation>
     {
-        private string docLink;
-        private string description;
+        private string? docLink;
+        private string? description;
 
-
-        ///
-        public HabilitationProcessor(Func<string> initialResponseGetter)
+        /// <summary>
+        /// Initializes an instance of <see cref="HabilitationProcessor" />.
+        /// </summary>
+        public HabilitationProcessor()
         {
-            this.inputHandlers = new IInputHandler[]
+            this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInstance<string>(
+                ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.docLink = s,
                     new HTMLLinkProcessor(() => "Please insert the habilitation's link.")
                 ),
-                ProcessorHandler.CreateInstance<string>(
+                ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.description = s,
                     new BasicStringProcessor(() => "Please insert the habilitation's description.")
                 )
             };
         }
 
-        ///
+        /// <inheritdoc />
         protected override Result<Habilitation, string> getResult() =>
-            Result<Habilitation, string>.Ok(new Habilitation(docLink, description));
+            Result<Habilitation, string>.Ok(new Habilitation(docLink.Unwrap(), description.Unwrap()));
     }
 }

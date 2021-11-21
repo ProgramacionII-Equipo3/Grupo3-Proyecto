@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Entrepreneurs;
-using Library.Core;
+using Library.Utils;
 using Library.InputHandlers;
+using Library.InputHandlers.Abstractions;
 using Library.Core.Processing;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
@@ -15,9 +16,9 @@ namespace Library.States.Entrepreneurs
     public class NewEntrepreneurState : InputHandlerState
     {
         ///
-        public NewEntrepreneurState(UserId userId): base(
-            ProcessorHandler.CreateInstance<Entrepreneur>(
-                e => EntrepreneurManager.NewEntrepreneur(e),
+        public NewEntrepreneurState(string userId): base(
+            ProcessorHandler.CreateInfallibleInstance<Entrepreneur>(
+                e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e),
                 new NewEntrepreneurForm(userId)
             ),
             () => null,
@@ -26,63 +27,58 @@ namespace Library.States.Entrepreneurs
             () => null
         ) {}
 
-        /// <inheritdoc />
-        public override bool IsComplete => false;
-
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
         {
-            private UserId userId;
+            private string userId;
 
-            private string name;
-            private int age;
-            private Location location;
-            private string heading;
-            private List<Habilitation> habilitations;
-            private List<string> specializations;
+            private string? name;
+            private int? age;
+            private Location? location;
+            private string? heading;
+            private IList<Habilitation>? habilitations;
+            private IList<string>? specializations;
 
-            public NewEntrepreneurForm(UserId userId)
+            public NewEntrepreneurForm(string userId)
             {
                 this.userId = userId;
 
-                this.inputHandlers = new IInputHandler[]
+                this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         name => this.name = name,
                         new BasicStringProcessor(() => "Please insert your name.")
                     ),
-                    ProcessorHandler.CreateInstance<int>(
+                    ProcessorHandler.CreateInfallibleInstance<int>(
                         age => this.age = age,
                         new UnsignedInt32Processor(() => "Please insert your age (in years).")
                     ),
-                    ProcessorHandler.CreateInstance<Location>(
+                    ProcessorHandler.CreateInfallibleInstance<Location>(
                         location => this.location = location,
                         new LocationProcessor(() => "Please insert your location (<address>, <city>, <department>, <country>).")
                     ),
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         heading => this.heading = heading,
                         new BasicStringProcessor(() => "Please insert your heading.")
                     ),
-                    ProcessorHandler.CreateInstance<Habilitation[]>(
+                    ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
-                            new HabilitationProcessor(() => "Please insert your habilitations (they are represented as links to documents which act as evidence).\nInsert them one on one and insert /finish to finish."),
-                            s => s.Trim() == "/finish",
-                            () => "Insert the next habilitation (or /finish to finish)"
+                            () => "Please insert your habilitations",
+                            new HabilitationProcessor()
                         )
                     ),
-                    ProcessorHandler.CreateInstance<string[]>(
+                    ProcessorHandler.CreateInfallibleInstance<string[]>(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
-                            new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish."),
-                            s => s.Trim() == "/finish",
-                            () => "Insert the next specialization (or /finish to finish)"
+                            () => "Please insert your specializations.",
+                            new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish.")
                         )
                     )
                 };
             }
 
             protected override Result<Entrepreneur, string> getResult() =>
-                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name, age.ToString(), location, heading, habilitations, specializations));
+                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.ToString().Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using NUnit.Framework;
 
 namespace ProgramTests
@@ -26,10 +27,10 @@ namespace ProgramTests
         public void EntrepreneurReport()
         {
             MaterialCategory category = new MaterialCategory("Metales");
-            Unit unit = new Unit("Kilos", "kg", 0.5, Measure.Weight);
+            Unit unit = Unit.GetByAbbr("kg")!;
             Amount amount = new Amount(3, unit);
             Price price = new Price(520, Currency.Peso, unit);
-            List<string> keyword = new List<string>();
+            IList<string> keyword = new List<string>();
             keyword.Add("ruleman");
             keyword.Add("metal");
             Material boughtMaterial = Material.CreateInstance("Ruleman Metal", Measure.Weight, category);
@@ -38,13 +39,13 @@ namespace ProgramTests
             var list = new List<BoughtMaterialLine>();
             list.Add(materialbought1);
             BoughtMaterialLine expected = list[0];
-            Assert.AreEqual(materialbought1, expected);
+            Assert.AreEqual(expected, materialbought1);
 
             MaterialCategory category2 = new MaterialCategory("Plásticos");
-            Unit unit2 = new Unit("Gramos", "g", 500, Measure.Weight);
+            Unit unit2 = Unit.GetByAbbr("g")!;
             Amount amount2 = new Amount(2, unit);
             Price price2 = new Price(2, Currency.Dollar, unit);
-            List<string> keyword2 = new List<string>();
+            IList<string> keyword2 = new List<string>();
             keyword2.Add("Botella");
             keyword2.Add("plástico");
             Material boughtMaterial2 = Material.CreateInstance("Botella plástico", Measure.Weight, category2);
@@ -52,7 +53,7 @@ namespace ProgramTests
             BoughtMaterialLine materialbought2 = new BoughtMaterialLine(boughtMaterial2, date2, price2, amount2);
             list.Add(materialbought2);
             BoughtMaterialLine expected2 = list[1];
-            Assert.AreEqual(materialbought2, expected2);
+            Assert.AreEqual(expected2, materialbought2);
         }
     }
 }

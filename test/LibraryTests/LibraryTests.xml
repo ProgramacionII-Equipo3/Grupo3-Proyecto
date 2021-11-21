@@ -192,5 +192,125 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
+        <member name="T:UnitTests.AdminStatesTest">
+            <summary>
+            This class represents unit tests related to admin states.
+            </summary>
+        </member>
+        <member name="M:UnitTests.AdminStatesTest.TestAdminCreateInvitation">
+            <summary>
+            Tests the class <see cref="T:Library.States.Admins.AdminInitialMenuState" />'s /createcompany option.
+            </summary>
+        </member>
+        <member name="T:UnitTests.ConsolePlatform">
+            <summary>
+            Represents the console as a messaging platform in and of itself.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ConsolePlatform.GetUserId(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ConsolePlatform.SendMessage(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ConsolePlatform.Run">
+            <summary>
+            Receives messages from the console as if it was a messaging platform.
+            </summary>
+        </member>
+        <member name="T:UnitTests.FormProcessorTest">
+            <summary>
+            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
+            </summary>
+        </member>
+        <member name="M:UnitTests.FormProcessorTest.FormProcessorBasicTest">
+            <summary>
+            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
+            </summary>
+        </member>
+        <member name="T:UnitTests.InvitationListTest">
+            <summary>
+            This class represents tests concerning the <see cref="T:Library.Core.Invitations.InvitationList`1" /> class.
+            </summary>
+        </member>
+        <member name="M:UnitTests.InvitationListTest.SetUp">
+            <summary>
+            Setup function.
+            </summary>
+        </member>
+        <member name="M:UnitTests.InvitationListTest.TestInvitationList">
+            <summary>
+            Tests whether adding invitations via the <see cref="T:Library.Core.Invitations.InvitationManager" /> adds them in the <see cref="T:Library.Core.Invitations.InvitationList`1" />,<br />
+            and whether validating them removes them.
+            </summary>
+        </member>
+        <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:UnitTests.ListProcessorTest">
+            <summary>
+            This class represents unit tests related to the class <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1" /> as a subclass of <see cref="T:Library.Core.Processing.InputProcessor`1" /> of a list of elements.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ListProcessorTest.ListProcessorBasicTest">
+            <summary>
+            Tests the basic workings of the list processor: adding elements and submitting them.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ListProcessorTest.ListProcessorRemoveElementsTest">
+            <summary>
+            Tests the functionality of removing elements.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ListProcessorTest.ListProcessorGoBackTest">
+            <summary>
+            Tests the functionality of giving an interrupt signal.
+            </summary>
+        </member>
+        <member name="T:UnitTests.ProgramaticPlatform">
+            <summary>
+            Acts as a messaging platform in which the messages it sends are determined in advance.
+            </summary>
+        </member>
+        <member name="P:UnitTests.ProgramaticPlatform.ReceivedMessages">
+            <summary>
+            The received messages.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes an instance of <see cref="T:UnitTests.ProgramaticPlatform" />
+            </summary>
+            <param name="id">The platform's id.</param>
+            <param name="messages">The messages to send.</param>
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.GetUserId(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.SendMessage(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ProgramaticPlatform.Run">
+            <summary>
+            Receives messages from the console as if it was a messaging platform.
+            </summary>
+        </member>
+        <member name="T:UnitTests.Utils.BasicUtils">
+            <summary>
+            This class contains functions which perform common actions in the unit tests.
+            </summary>
+        </member>
+        <member name="M:UnitTests.Utils.BasicUtils.CreateUser(Library.Core.State)">
+            <summary>
+            Creates a new user with the id "___".
+            </summary>
+            <param name="state">The state of the user.</param>
+        </member>
+        <member name="M:UnitTests.Utils.BasicUtils.EmptyUserData">
+            <summary>
+            Creates an empty user data for mock users.
+            </summary>
+            <returns>A <see cref="T:Library.Core.UserData" /></returns>
+        </member>
     </members>
 </doc>

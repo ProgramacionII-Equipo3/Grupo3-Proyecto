@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Library;
 using Library.Core;
+using Library.Utils;
 using Library.HighLevel.Administers;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
-using Library.Platforms.Telegram;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -30,7 +31,7 @@ namespace ProgramTests
         public void AcceptInvitation()
         {
             Administer.CreateCompanyInvitation();
-            TelegramId id = new TelegramId(2066298868);
+            string id = "Telegram_2066298868";
 
             // Message with the code.
             Message message = new Message("1234567", id);
@@ -41,18 +42,18 @@ namespace ProgramTests
             ContactInfo contactInfo;
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
-            Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
-            Company company = CompanyManager.CreateCompany("Company.SA", contactInfo, "Arroz", location);
+            Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location)!;
             company.AddUser(message.Id);
 
             bool expected = company.HasUser(message.Id);
-            Company expectedCompany = CompanyManager.GetByName("Company.SA");
+            Company expectedCompany = Singleton<CompanyManager>.Instance.GetByName("Company.SA")!;
 
             // If the message with the code is equal with an invitation sended, the user has to
             // be added in the representants list of the company.
             // The company is registered.
             Assert.That(expected, Is.True);
-            Assert.AreEqual(company, expectedCompany);
+            Assert.AreEqual(expectedCompany, company);
         }
 
         /// <summary>
@@ -61,19 +62,19 @@ namespace ProgramTests
         [Test]
         public void NotAcceptInvitation()
         {
-            TelegramId id = new TelegramId(2066298868);
+            string id = "Telegram_2066298868";
             Message message = new Message(string.Empty, id);
             Habilitation habilitation = new Habilitation("Link1", "description1");
             Habilitation habilitation2 = new Habilitation("Link2", "description2");
-            List<Habilitation> habilitations = new List<Habilitation> { habilitation, habilitation2 };
+            IList<Habilitation> habilitations = new List<Habilitation> { habilitation, habilitation2 };
             string specialization = "specialization1";
             string specialization2 = "specialization2";
-            List<string> specializations = new List<string> { specialization, specialization2 };
+            IList<string> specializations = new List<string> { specialization, specialization2 };
             LocationApiClient provider = new LocationApiClient();
-            Location location = provider.GetLocationAsync("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay").Result;
+            Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
-            EntrepreneurManager.NewEntrepreneur(entrepreneur);
-            bool expected = EntrepreneurManager.Entrepreneurs.Contains(entrepreneur);
+            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
+            bool expected = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.Contains(entrepreneur);
             Assert.That(expected, Is.True);
         }
     }

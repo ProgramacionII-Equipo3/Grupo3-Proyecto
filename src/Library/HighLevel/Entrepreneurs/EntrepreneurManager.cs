@@ -6,20 +6,25 @@ namespace Library.HighLevel.Entrepreneurs
     /// <summary>
     /// This class represents the highest level of encapsulation in handling entrepreneurs.
     /// </summary>
-    public static class EntrepreneurManager
+    public class EntrepreneurManager
     {
-        private static List<Entrepreneur> entrepeneurs = new List<Entrepreneur>();
+        /// <summary>
+        /// The list of entrepreneurs.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="EntrepreneurManager.Entrepreneurs" />.
+        /// </summary>
+        private List<Entrepreneur> entrepeneurs = new List<Entrepreneur>();
 
         /// <summary>
-        /// The entrepreneur's users in the platform.
+        /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public static ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepeneurs.AsReadOnly();
+        public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepeneurs.AsReadOnly();
 
         /// <summary>
         /// Adds a new entrepreneur into the list.
         /// </summary>
         /// <param name="entrepreneur">The new entrepreneur.</param>
-        public static void NewEntrepreneur(Entrepreneur entrepreneur)
+        public void NewEntrepreneur(Entrepreneur entrepreneur)
         {
             entrepeneurs.Add(entrepreneur);
         }
