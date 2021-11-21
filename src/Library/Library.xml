@@ -1473,6 +1473,22 @@
         <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.Reset">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState">
+            <summary>
+            This class represents the inner state of the list processor.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState.ProcessMessage(System.String)">
+            <summary>
+            Processes a message.
+            </summary>
+            <param name="msg">The message to process.</param>
+            <returns>
+            Result.Err((newState, msg)), being newState the new state of the list and msg an optional response message (if it's null, the new state's default response is used in its place),<br />
+            Result.Ok(true) for a success signal, or <br />
+            Result.Ok(false) for an interrupt signal.
+            </returns>
+        </member>
         <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
             <summary>
             This class represents an input processor which takes the result of another one and applies a transformation to it.
