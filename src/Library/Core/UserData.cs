@@ -8,23 +8,23 @@ namespace Library.Core
         /// <summary>
         /// The user's name.
         /// </summary>
-        public string Name;
+        public string Name { get; set; }
 
         /// <summary>
         /// The user's contact information.
         /// </summary>
-        public ContactInfo ContactInfo;
+        public ContactInfo ContactInfo { get; set; }
 
         /// <summary>
         /// Determines whether the user is complete,
         /// that is, if the process of registering to the platform has already finished.
         /// </summary>
-        public bool IsComplete { get; }
+        public bool IsComplete { get; set; }
 
         /// <summary>
         /// Determines for what kind of user this state is oriented towards.
         /// </summary>
-        public Type UserType { get; }
+        public Type UserType { get; set; }
 
         /// <summary>
         /// Initializes an instance of <see cref="UserData" />.

@@ -1,3 +1,5 @@
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
@@ -15,19 +17,19 @@ namespace Library.States.Companies
         private string name = string.Empty;
 
         /// <inheritdoc />
-        public override (State?, string?, UserData?) ProcessMessage(string id, UserData data, string msg)
+        public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
             if(this.companyGetter == null)
             {
                 this.name = msg.Trim();
                 var (newStep, response) = this.nextStateGivenCompanyName(this.name);
                 this.companyGetter = newStep;
-                return (this, response, null);
+                return (this, response);
             }
 
             if(companyGetter.GenerateFromInput(msg) is Result<Company, string> result)
             {
-                return result.Map<(State?, string?, UserData?)>(
+                var (state, s, f) = result.Map<(State?, string?, Func<UserData, UserData>?)>(
                     company =>
                     {
                         company.AddUser(id);
@@ -35,14 +37,21 @@ namespace Library.States.Companies
                             // TODO: Implement next state
                             null,
                             "Welcome to the platform. What do you want to do?",
-                            new UserData(data.Name, true, data.UserType, data.ContactInfo.Email, data.ContactInfo.PhoneNumber));
+                            (data) =>
+                            {
+                                data.IsComplete = true;
+                                return data;
+                            }
+                        );
                     },
                     e => (this, e, null)
                 );
+                if(f != null) data = f(data);
+                return (state, s);
             } else
             {
                 this.companyGetter = null;
-                return (this, null, null);
+                return (this, null);
             }
         }
 

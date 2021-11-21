@@ -90,8 +90,8 @@ namespace UnitTests
                 return base.GetHashCode();
             }
 
-            public override (State, string, UserData?) ProcessMessage(string id, UserData data, string msg) =>
-                (this, $"Message sent: {msg}", null);
+            public override (State, string) ProcessMessage(string id, ref UserData data, string msg) =>
+                (this, $"Message sent: {msg}");
         }
     }
 }

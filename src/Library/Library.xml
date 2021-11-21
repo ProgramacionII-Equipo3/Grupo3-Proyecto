@@ -385,7 +385,7 @@
             This class represents a state.
             </summary>
         </member>
-        <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
             </summary>
@@ -405,12 +405,12 @@
             This class represents additional data that all users must have.
             </summary>
         </member>
-        <member name="F:Library.Core.UserData.Name">
+        <member name="P:Library.Core.UserData.Name">
             <summary>
             The user's name.
             </summary>
         </member>
-        <member name="F:Library.Core.UserData.ContactInfo">
+        <member name="P:Library.Core.UserData.ContactInfo">
             <summary>
             The user's contact information.
             </summary>
@@ -1473,9 +1473,34 @@
         <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.Reset">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.AddElementState">
+            <summary>
+            This class represents the state of adding a new element in the list,
+            which is done via the inner processor.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.AddElementState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.AddElementState.ProcessMessage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.InitialMenuState">
+            <summary>
+            This class represents the state of the initial menu.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InitialMenuState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InitialMenuState.ProcessMessage(System.String)">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState">
             <summary>
             This class represents the inner state of the list processor.
+            This class is based on the Polymorphism principle, through which
+            the concrete subtype of this class to which the list's state belongs determines its behaviour.
             </summary>
         </member>
         <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState.ProcessMessage(System.String)">
@@ -1488,6 +1513,23 @@
             Result.Ok(true) for a success signal, or <br />
             Result.Ok(false) for an interrupt signal.
             </returns>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState.GetDefaultResponse">
+            <summary>
+            Gets the <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1.InnerProcessorState" />'s default response.
+            </summary>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState">
+            <summary>
+            This class represents the state of asking for an index to remove an element from the list.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState.ProcessMessage(System.String)">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
             <summary>
@@ -1882,7 +1924,7 @@
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
             </summary>
         </member>
-        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.GetDefaultResponse">
@@ -1927,7 +1969,7 @@
             <param name="exitState">The function which determines the state to go when an interrupt signal is given.</param>
             <param name="nextState">The function which determines the state to go when a success signal is given.</param>
         </member>
-        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
@@ -1958,7 +2000,7 @@
             </summary>
             <returns>A string.</returns>
         </member>
-        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData,System.String)">
+        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Utils.BasicUtils">

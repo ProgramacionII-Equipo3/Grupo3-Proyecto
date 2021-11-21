@@ -32,7 +32,7 @@ namespace Library.States
         protected abstract string GetErrorString();
 
         /// <inheritdoc />
-        public override (State, string?, UserData?) ProcessMessage(string id, UserData data, string msg)
+        public override (State, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
             (string, string, Func<(State, string?)>)? command = this.commands
                 .Where((command) => command.Item1 == msg.Trim())
@@ -46,11 +46,10 @@ namespace Library.States
                     newState,
                     res != null
                         ? $"{res}\n{newState.GetDefaultResponse()}"
-                        : newState.GetDefaultResponse(),
-                    null
+                        : newState.GetDefaultResponse()
                 );
             } else {
-                return (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}", null);
+                return (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}");
             }
         }
     }
