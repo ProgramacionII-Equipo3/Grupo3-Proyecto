@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using Library.Core;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Accountability;
@@ -8,6 +8,7 @@ using Ucu.Poo.Locations.Client;
 using Library.Core.Processing;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
+using Library.Utils;
 
 namespace Library.States.Companies
 {
@@ -21,12 +22,17 @@ namespace Library.States.Companies
                 {
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        (company as IPublisher).PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6);
+                        if((company as IPublisher).PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6))
+                        {
+                            return null;
+                        }
+                        return "La publicación es inválida.";
                     } else
                     {
                         return "This user is not a company representative.";
                     }
-                }
+                },
+                new CollectDataProcessor()
             )
         )
         {
@@ -49,12 +55,12 @@ namespace Library.States.Companies
 
         private class CollectDataProcessor : FormProcessor<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>)>
         {
-            private Material material;
-            private Amount amount;
-            private Price price;
-            private Location location;
-            private MaterialPublicationTypeData materialPublicationTypeData;
-            private IList<string> keywords;
+            private Material? material;
+            private Amount? amount;
+            private Price? price;
+            private Location? location;
+            private MaterialPublicationTypeData? materialPublicationTypeData;
+            private IList<string>? keywords;
 
             public CollectDataProcessor()
             {
@@ -77,13 +83,16 @@ namespace Library.States.Companies
                         l => this.location = l,
                         new LocationProcessor(() => "Por favor ingresa la ubicación de donde se encuentra el material.")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<>
+                    ProcessorHandler.CreateInfallibleInstance<string[]>(
+                        k => this.keywords = k.ToList(),
+                        new ListProcessor<string>(() => "Por favor ingrese la lista de palabras claves asociadas al material.", new BasicStringProcessor(
+                            () => "Por favor ingrese una de las palabras claves."
+                        )
+                    ))
                 };
             }
-            protected override Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>), string> getResult()
-            {
-                throw new NotImplementedException();
-            }
+            protected override Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>), string> getResult() =>
+                Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>), string>.Ok((this.material.Unwrap(), this.amount.Unwrap(), this.price.Unwrap(), this.location.Unwrap(), this.materialPublicationTypeData.Unwrap(), this.keywords.Unwrap()));
         }
 
     }

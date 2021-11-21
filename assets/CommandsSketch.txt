@@ -34,7 +34,7 @@
 					> ¿Cuál es el ID del emprendedor?
 
 
-> /companyreport	--> 	Ok, vamos a obtener el reporte de todos los materiales obtenidos,
+> /companyreport	--> 	Ok, vamos a obtener el reporte de todos los materiales enviados,
 					> ¿Cuál es el período de tiempo del que quieres obtener el reporte? (Por favor ingresar el tiempo en meses).
 
 
