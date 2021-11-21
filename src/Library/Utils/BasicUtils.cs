@@ -1,3 +1,4 @@
+using System;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.Utils
@@ -134,6 +135,11 @@ namespace Library.Utils
         {
             return true;
         }
+
+        // public static string DateToString(DateTime dateTime)
+        // {
+        //     dateTime.ToShortDateString()
+        // }
 
     }
 }

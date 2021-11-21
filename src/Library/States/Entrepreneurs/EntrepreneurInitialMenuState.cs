@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using Library.HighLevel.Companies;
 using System.Text;
 
@@ -11,24 +12,29 @@ namespace Library.States.Entrepreneurs
 {
     public class EntrepreneurInitialMenuState : MultipleOptionState
     {
+        private string id;
+
         /// <summary>
         /// 
         /// </summary>
-        public EntrepreneurInitialMenuState()
+        public EntrepreneurInitialMenuState(string id)
         {
-            this.commands = new (string, string, Func<(State, string)>)[]
+            this.commands = new (string, string, Func<(State, string?)>)[]
             {
+                /*
                 ("/searchFK", "Busca materiales utilizando palabras claves.", this.searchFK),
                 ("/searchFC", "Busca materiales por categorías.", this.searchFC)
-                ("/searchFZ", "Busca materiales por zona.", this.searchFZ)
-                ("/materialgen","Muestra que materiales son constantemente generados.", this.materialgen)
-                ("/materialSpunt","Muestra que materiales son generados puntualmente.", this.materialspunt)
+                ("/searchFZ", "Busca materiales por zona.", this.searchFZ)*/
+                ("/materialgen","Muestra que materiales son constantemente generados.", this.materialsgen),
+                ("/materialSpunt","Muestra que materiales son generados puntualmente.", this.materialspunt),
                 ("/ereport","Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
             };
         }
-        private (State, string) ereport()
+        private (State, string?) ereport()
         {
-            return (this,null);
+            return (new EntrepreneurCreateReportState(
+                Singleton<EntrepreneurManager>.Instance.GetById(this.id).Unwrap()
+            ), null);
         }
 
         private (State, string) materialsgen()

@@ -22,9 +22,7 @@ namespace Library.States.Entrepreneurs
                 new NewEntrepreneurForm(userId)
             ),
             () => null,
-
-            // TODO: implement next state
-            () => null
+            () => new EntrepreneurInitialMenuState(userId)
         ) {}
 
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>

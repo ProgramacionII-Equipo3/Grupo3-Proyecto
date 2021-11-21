@@ -22,5 +22,8 @@ namespace Library.HighLevel.Accountability
         {
             this.Materials = materials;
         }
+
+        public override string? ToString() =>
+            string.Join('\n', this.Materials);
     }
 }

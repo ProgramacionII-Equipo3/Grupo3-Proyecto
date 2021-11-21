@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Accountability;
 
-namespace Library.HighLevel.Companies
+namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This interface represents a class which can create <see cref="ReceivedMaterialReport" />s.
