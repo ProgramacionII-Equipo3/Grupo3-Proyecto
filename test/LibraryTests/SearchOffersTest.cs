@@ -3,6 +3,7 @@ using Library;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -14,22 +15,22 @@ namespace ProgramTests
     /// </summary>
     public class SearchOffersTest
     {
-        private MaterialCategory category1;
-        private Material material1;
-        private Unit unit1;
+        private MaterialCategory? category1;
+        private Material? material1;
+        private Unit? unit1;
         private Amount amount1;
         private Price price1;
-        private LocationApiClient client;
-        private Location pickupLocation1;
-        private MaterialPublication publication1;
-        private MaterialCategory category2;
-        private Material material2;
-        private Unit unit2;
+        private LocationApiClient? client;
+        private Location? pickupLocation1;
+        private MaterialPublication? publication1;
+        private MaterialCategory? category2;
+        private Material? material2;
+        private Unit? unit2;
         private Amount amount2;
         private Price price2;
-        private Location pickupLocation2;
-        private MaterialPublication publication2;
-        protected List<MaterialPublication> publications { get; }
+        private Location? pickupLocation2;
+        private MaterialPublication? publication2;
+        private List<MaterialPublication>? publications;
 
         /// <summary>
         /// Test Setup.
@@ -40,7 +41,7 @@ namespace ProgramTests
             this.category1 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword1 = new List<string> { "agujas", "hospital" };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
-            this.unit1 = Unit.GetByAbbr("kg");
+            this.unit1 = Unit.GetByAbbr("kg")!;
             this.amount1 = new Amount(100, this.unit1);
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             this.client = new LocationApiClient();
@@ -50,7 +51,7 @@ namespace ProgramTests
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
-            this.unit2 = Unit.GetByAbbr("kg");
+            this.unit2 = Unit.GetByAbbr("kg")!;
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
@@ -70,8 +71,8 @@ namespace ProgramTests
             MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
 
             IList<MaterialPublication> expected1 = new List<MaterialPublication>();
-            expected1.Add(this.publication1);
-            expected1.Add(this.publication2);
+            expected1.Add(this.publication1!);
+            expected1.Add(this.publication2!);
 
             Assert.AreEqual(expected1, Singleton<Searcher>.Instance.SearchByCategory(categoryToSearch));
         }
@@ -98,7 +99,7 @@ namespace ProgramTests
         public void SearchOffersbyKeywordsFound()
         {
             List<MaterialPublication> expected3 = new List<MaterialPublication>();
-            expected3.Add(this.publication2);
+            expected3.Add(this.publication2!);
 
             Assert.AreEqual(expected3, Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas"));
         }
@@ -123,7 +124,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
 
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
@@ -131,7 +132,7 @@ namespace ProgramTests
             double distanceSpecified = 4;
 
             IList<MaterialPublication> expected5 = new List<MaterialPublication>();
-            expected5.Add(this.publication2);
+            expected5.Add(this.publication2!);
 
             Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
         }
@@ -144,7 +145,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneNotFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1, this.publication2 };
+            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
 
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();

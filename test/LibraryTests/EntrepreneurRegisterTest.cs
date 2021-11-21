@@ -3,6 +3,7 @@ using Library;
 using Library.Core;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using Library.Platforms.Telegram;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
@@ -14,11 +15,11 @@ namespace ProgramTests
     /// </summary>
     public class EntrepreneurRegisterTest
     {
-        private string juanId;
+        private string? juanId;
         private Message nameMessage;
         private Message ageMessage;
-        private LocationApiClient provider;
-        private Location location;
+        private LocationApiClient? provider;
+        private Location? location;
         private Message headingMessage;
         private Message habilitationsMessage;
         private Message specializationsMessage;
@@ -63,7 +64,7 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(this.juanId, this.nameMessage.Text, this.ageMessage.Text, this.location, this.headingMessage.Text, habilitations, specializations);
+            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, this.ageMessage.Text, this.location!, this.headingMessage.Text, habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.

@@ -43,7 +43,7 @@ namespace Library.Core.Distribution
             {
                 State newState = new NewEntrepreneurState(msg.Id);
 
-                Singleton<SessionManager>.Instance.NewUser(msg.Id, default, newState);
+                Singleton<SessionManager>.Instance.NewUser(msg.Id, new UserData(string.Empty, false, UserData.Type.ENTREPRENEUR, null, null), newState);
 
                 return newState.GetDefaultResponse();
             }

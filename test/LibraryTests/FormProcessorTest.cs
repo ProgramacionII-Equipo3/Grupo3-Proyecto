@@ -6,24 +6,25 @@ using Library.Core.Processing;
 using Library.States;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
+using UnitTests.Utils;
 using NUnit.Framework;
 
 namespace UnitTests
 {
     /// <summary>
-    /// This class represents unit tests concerning the class <see cref="FormProcessor{T, U}" />.
+    /// This class represents unit tests concerning the class <see cref="BaseFormProcessor{T, U}" />.
     /// </summary>
     public class FormProcessorTest
     {
         /// <summary>
-        /// Tests the functionality itself of the <see cref="FormProcessor{T, U}" />.
+        /// Tests the functionality itself of the <see cref="BaseFormProcessor{T, U}" />.
         /// </summary>
         [Test]
         public void FormProcessorBasicTest()
         {
             Console.WriteLine();
             int value = default;
-            Singleton<SessionManager>.Instance.NewUser("___", new Library.Core.UserData(), new FormProcessorTestState(v => value = v));
+            BasicUtils.CreateUser(new FormProcessorTestState(v => value = v));
             ProgramaticPlatform platform = new ProgramaticPlatform(
                 "___",
                 new string[]
@@ -44,9 +45,6 @@ namespace UnitTests
 
         private class FormProcessorTestState : InputHandlerState
         {
-            public override bool IsComplete => false;
-            public override State.Type UserType => State.Type.ADMIN;
-
             public FormProcessorTestState(Action<int> f): base(
                 exitState: () => new BasicState(),
                 nextState: () => new BasicState(),
@@ -57,14 +55,14 @@ namespace UnitTests
                         Console.WriteLine($"\tIN-CODE: Result: {result}");
                         return null;
                     },
-                    new FormProcessor<int, (int, int)>(
+                    new BaseFormProcessor<int, (int, int)>(
                         initialStateGetter: () => default,
                         conversionFunction: state =>
                         {
                             Console.WriteLine($"\tIN-CODE: State: {state}");
                             return Result<int, string>.Ok(joinNumbers(state.Item1, state.Item2));
                         },
-                        inputHandlers: new Func<Func<(int, int)>, IInputProcessor<(int, int)>>[]
+                        inputHandlers: new Func<Func<(int, int)>, InputProcessor<(int, int)>>[]
                         {
                             ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
                                 (state, v) => (v, default),
@@ -85,10 +83,6 @@ namespace UnitTests
 
         private class BasicState : State
         {
-            public override bool IsComplete => false;
-
-            public override Type UserType => Type.ADMIN;
-
             public override string GetDefaultResponse() => "What do you want to do?";
 
             public override int GetHashCode()
@@ -96,7 +90,7 @@ namespace UnitTests
                 return base.GetHashCode();
             }
 
-            public override (State, string) ProcessMessage(string id, UserData data, string msg) =>
+            public override (State, string) ProcessMessage(string id, ref UserData data, string msg) =>
                 (this, $"Message sent: {msg}");
         }
     }

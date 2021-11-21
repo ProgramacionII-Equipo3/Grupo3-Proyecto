@@ -24,8 +24,8 @@ namespace UnitTests
         {
             while(true)
             {
-                string msg = Console.ReadLine();
-                if(msg == "\\") return;
+                string? msg = Console.ReadLine();
+                if(msg == null || msg == "\\") return;
                 this.ReceiveMessage(msg, true);
             }
         }

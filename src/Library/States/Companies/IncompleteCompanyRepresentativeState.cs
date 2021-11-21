@@ -1,3 +1,5 @@
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
@@ -11,11 +13,11 @@ namespace Library.States.Companies
     /// </summary>
     public partial class IncompleteCompanyRepresentativeState : State
     {
-        private IInputProcessor<Company> companyGetter = null;
-        private string name;
+        private InputProcessor<Company>? companyGetter = null;
+        private string name = string.Empty;
 
         /// <inheritdoc />
-        public override (State, string) ProcessMessage(string id, UserData data, string msg)
+        public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
             if(this.companyGetter == null)
             {
@@ -25,28 +27,33 @@ namespace Library.States.Companies
                 return (this, response);
             }
 
-            return companyGetter.GenerateFromInput(msg).Map(
-                result => result.Map(
+            if(companyGetter.GenerateFromInput(msg) is Result<Company, string> result)
+            {
+                var (state, s, f) = result.Map<(State?, string?, Func<UserData, UserData>?)>(
                     company =>
                     {
                         company.AddUser(id);
-                        return (null, "Welcome to the platform. What do you want to do?");
+                        return (
+                            // TODO: Implement next state
+                            null,
+                            "Welcome to the platform. What do you want to do?",
+                            (data) =>
+                            {
+                                data.IsComplete = true;
+                                return data;
+                            }
+                        );
                     },
-                    e => (this, e)
-                ),
-                () =>
-                {
-                    this.companyGetter = null;
-                    return (this, this.GetDefaultResponse());
-                }
-            );
+                    e => (this, e, null)
+                );
+                if(f != null) data = f(data);
+                return (state, s);
+            } else
+            {
+                this.companyGetter = null;
+                return (this, null);
+            }
         }
-
-        /// <inheritdoc />
-        public override bool IsComplete => false;
-
-        /// <inheritdoc />
-        public override State.Type UserType => State.Type.COMPANY;
 
         /// <inheritdoc />
         public override string GetDefaultResponse()
@@ -60,9 +67,9 @@ namespace Library.States.Companies
             }
         }
 
-        private (IInputProcessor<Company>, string) nextStateGivenCompanyName(string name)
+        private (InputProcessor<Company>, string) nextStateGivenCompanyName(string name)
         {
-            IInputProcessor<Company> getter;
+            InputProcessor<Company> getter;
             if(Singleton<CompanyManager>.Instance.GetByName(name) is Company perfectMatch)
             {
                 getter = new AssignExistingCompanyState(perfectMatch);

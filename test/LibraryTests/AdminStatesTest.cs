@@ -2,8 +2,10 @@ using System;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
 using Library;
+using Library.Core;
 using Library.Core.Distribution;
 using Library.States.Admins;
+using UnitTests.Utils;
 
 namespace UnitTests
 {
@@ -19,7 +21,7 @@ namespace UnitTests
         public void TestAdminCreateInvitation()
         {
             Console.WriteLine();
-            Singleton<SessionManager>.Instance.NewUser("___", new Library.Core.UserData(), new AdminInitialMenuState());
+            BasicUtils.CreateUser(new AdminInitialMenuState());
             ProgramaticPlatform platform = new ProgramaticPlatform(
                 "___",
                 new string[]

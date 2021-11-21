@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using NUnit.Framework;
 
 namespace ProgramTests
@@ -26,7 +27,7 @@ namespace ProgramTests
         public void EntrepreneurReport()
         {
             MaterialCategory category = new MaterialCategory("Metales");
-            Unit unit = Unit.GetByAbbr("kg");
+            Unit unit = Unit.GetByAbbr("kg")!;
             Amount amount = new Amount(3, unit);
             Price price = new Price(520, Currency.Peso, unit);
             IList<string> keyword = new List<string>();
@@ -41,7 +42,7 @@ namespace ProgramTests
             Assert.AreEqual(expected, materialbought1);
 
             MaterialCategory category2 = new MaterialCategory("Plásticos");
-            Unit unit2 = Unit.GetByAbbr("g");
+            Unit unit2 = Unit.GetByAbbr("g")!;
             Amount amount2 = new Amount(2, unit);
             Price price2 = new Price(2, Currency.Dollar, unit);
             IList<string> keyword2 = new List<string>();

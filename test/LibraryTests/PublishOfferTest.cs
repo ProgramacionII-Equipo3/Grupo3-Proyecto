@@ -4,6 +4,7 @@ using Library.Core;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Materials;
+using Library.Utils;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -30,7 +31,7 @@ namespace ProgramTests
         {
             LocationApiClient provider = new LocationApiClient();
             MaterialCategory category = new MaterialCategory("Impermeable");
-            Unit unit = Unit.GetByAbbr("cm");
+            Unit unit = Unit.GetByAbbr("cm")!;
             Amount amount = new Amount(10, unit);
             Price price = new Price(100, Currency.Peso, unit);
             Location location = provider.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
@@ -40,7 +41,7 @@ namespace ProgramTests
             ContactInfo contact = new ContactInfo();
             contact.Email = "evertec@gmail.com";
             contact.PhoneNumber = 095456258;
-            Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location);
+            Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location)!;
             (empresa as IPublisher).PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
@@ -60,7 +61,7 @@ namespace ProgramTests
             LocationApiClient client = new LocationApiClient();
             MaterialCategory category3 = new MaterialCategory("Metálicos");
 
-            Unit unit3 = Unit.GetByAbbr("kg");//new Unit("Kilogramos", "kg", 1, Measure.Weight);
+            Unit unit3 = Unit.GetByAbbr("kg")!;
 
             Amount amount3 = new Amount(3, unit3);
             Price price3 = new Price(250, Currency.Peso, unit3);

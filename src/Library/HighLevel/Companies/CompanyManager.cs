@@ -34,7 +34,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="userId">The user's id.</param>
         /// <returns>A company, or null if the user doesn't represent a company.</returns>
-        public Company GetCompanyOf(string userId) =>
+        public Company? GetCompanyOf(string userId) =>
             companies.Where(company => company.HasUser(userId)).FirstOrDefault();
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="name">The company's name.</param>
         /// <returns>A company, or null if there is no company with that name.</returns>
-        public Company GetByName(string name) =>
+        public Company? GetByName(string name) =>
             companies.Where(company => company.Name == name).FirstOrDefault();
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Library.HighLevel.Companies
         /// <param name="contactInfo">The company´s contact info.</param>
         /// <param name="heading">The company´s heading.</param>
         /// <param name="location">The company´s location.</param>
-        public Company CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
+        public Company? CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
             name = name.Trim();
             heading = heading.Trim();
@@ -81,15 +81,10 @@ namespace Library.HighLevel.Companies
         public bool RemoveCompany(string name)
         {
             name = name.Trim();
-            Option<Company> company = this.companies.Where(company => company.Name == name).FirstOrNone();
-            return company.Map(
-                c =>
-                {
-                    c.RemoveUsers();
-                    return true;
-                },
-                () => false
-            );
+            Company? company = this.companies.Where(company => company.Name == name).FirstOrDefault();
+            if(company == null) return false;
+            company.RemoveUsers();
+            return true;
         }
     }
 }

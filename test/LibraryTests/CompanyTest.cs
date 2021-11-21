@@ -1,6 +1,7 @@
 using Library;
 using Library.Core;
 using Library.HighLevel.Companies;
+using Library.Utils;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -30,7 +31,7 @@ namespace ProgramTests
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location);
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location)!;
             bool expected = Singleton<CompanyManager>.Instance.Companies.Contains(company);
             Assert.That(expected, Is.True);
         }
@@ -66,9 +67,9 @@ namespace ProgramTests
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Blue Patna", contactInfo, "Arroz", location);
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Blue Patna", contactInfo, "Arroz", location)!;
             company.AddUser(id);
-            Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id);
+            Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id)!;
             Assert.AreEqual(expected, company);
         }
 
@@ -86,8 +87,8 @@ namespace ProgramTests
             contactInfo.PhoneNumber = 094567417;
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 774", "Minas", "Lavalleja", "Uruguay");
-            Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location);
-            Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany");
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location)!;
+            Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany")!;
             Assert.AreEqual(expected, company);
         }
     }
