@@ -1,7 +1,7 @@
 using Library.Core;
 using Library.Core.Distribution;
 using Library.Core.Invitations;
-using Library.States;
+using Library.States.Companies;
 
 namespace Library.HighLevel.Companies
 {
@@ -15,17 +15,18 @@ namespace Library.HighLevel.Companies
         /// Initializes a new instance of the <see cref="CompanyInvitation"/> class.
         /// </summary>
         /// <param name="code">The invitation code.</param>
-        public CompanyInvitation(string code) : base(code) {}
+        public CompanyInvitation(string code) : base(code)
+        {
+        }
 
         /// <inheritdoc />
-        public override string Validate(UserId userId)
+        public override string Validate(string userId)
         {
             State newState = new IncompleteCompanyRepresentativeState();
-            SessionManager.NewUser(
+            Singleton<SessionManager>.Instance.NewUser(
                 id: userId,
                 userData: new UserData(),
-                state: newState
-            );
+                state: newState);
             return newState.GetDefaultResponse();
         }
     }

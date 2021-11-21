@@ -10,12 +10,12 @@ namespace Library.HighLevel.Entrepreneurs
     /// We used the principle Creator to create this class, for
     /// example, the list of entrepreneur is created here.
     /// </summary>
-    public class Entrepreneur 
+    public class Entrepreneur
     {
         /// <summary>
-        /// Gets the entrepreneur's id.
+        /// Gets or sets the entrepreneur's id.
         /// </summary>
-        public UserId Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the entrepeneur's name.
@@ -40,17 +40,22 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur's habilitation needed to buy certain materials.
         /// </summary>
-        public  List<Habilitation> Habilitation = new List<Habilitation>();
+        public IList<Habilitation> Habilitations { get; private set; }
 
         /// <summary>
         /// Gets the entrepreneur's specialization.
         /// </summary>
-        public List<string> Specialization { get; private set; }
+        public IList<string> Specializations { get; private set; }
 
         /// <summary>
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public static List<UserId> EntrepeneurList = new List<UserId>();
+        public static IList<string> EntrepeneurList = new List<string>();
+
+        /// <summary>
+        /// Gets the entrepreneur's habilitation needed to buy certain materials.
+        /// </summary>
+        public List<Habilitation> Habilitation = new List<Habilitation>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Entrepreneur"/> class.
@@ -62,15 +67,15 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="heading">Entrepreneur´s heading.</param>
         /// <param name="habilitations">Entrepreneur´s habilitation.</param>
         /// <param name="specializations">Entrepreneur´s specializations.</param>
-        public Entrepreneur(UserId id, string name, string age, Location location, string heading, List<Habilitation> habilitations, List<string> specializations)
+        public Entrepreneur(string id, string name, string age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
         {
             this.Id = id;
             this.Name = name;
             this.Age = age;
-            this.Location = Location;
+            this.Location = location;
             this.Heading = heading;
-            this.Habilitation = habilitations;
-            this.Specialization = specializations;
+            this.Habilitations = habilitations;
+            this.Specializations = specializations;
         }
     }
 }

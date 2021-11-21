@@ -1,3 +1,4 @@
+using Library;
 using Library.Core;
 using Library.HighLevel.Companies;
 using Library.Platforms.Telegram;
@@ -30,8 +31,8 @@ namespace ProgramTests
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
-            Company company = CompanyManager.CreateCompany("Company", contactInfo, "heading", location);
-            bool expected = CompanyManager.Companies.Contains(company);
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location);
+            bool expected = Singleton<CompanyManager>.Instance.Companies.Contains(company);
             Assert.That(expected, Is.True);
         }
 
@@ -41,7 +42,7 @@ namespace ProgramTests
         [Test]
         public void HasUserTest()
         {
-            TelegramId id = new TelegramId(2066298868);
+            string id = "Telegram_2066298868";
             ContactInfo contactInfo;
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
@@ -60,15 +61,15 @@ namespace ProgramTests
         [Test]
         public void GetCompanyOfTest()
         {
-            TelegramId id = new TelegramId(2022597748);
+            string id = "Telegram_2022597748";
             ContactInfo contactInfo;
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocationAsync("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay").Result;
-            Company company = CompanyManager.CreateCompany("Blue Patna", contactInfo, "Arroz", location);
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("Blue Patna", contactInfo, "Arroz", location);
             company.AddUser(id);
-            Company expected = CompanyManager.GetCompanyOf(id);
+            Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id);
             Assert.AreEqual(expected, company);
         }
 
@@ -78,14 +79,16 @@ namespace ProgramTests
         [Test]
         public void GetByNameTest()
         {
-            TelegramId id = new TelegramId(2015598868);
+#pragma warning disable 0219
+            string id = "Telegram_2015598868";
+#pragma warning restore 0219
             ContactInfo contactInfo;
             contactInfo.Email = "Woodcompany@gmail.com";
             contactInfo.PhoneNumber = 094567417;
             LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocationAsync("Luis Alberto de Herrera 774", "Minas", "Lavalleja", "Uruguay").Result;
-            Company company = CompanyManager.CreateCompany("WoodCompany", contactInfo, "Madera", location);
-            Company expected = CompanyManager.GetByName("WoodCompany");
+            Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location);
+            Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany");
             Assert.AreEqual(expected, company);
         }
     }

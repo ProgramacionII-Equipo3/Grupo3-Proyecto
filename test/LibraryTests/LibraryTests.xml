@@ -192,5 +192,24 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
+        <member name="T:UnitTests.InvitationListTest">
+            <summary>
+            This class represents tests concerning the <see cref="T:Library.Core.Invitations.InvitationList`1" /> class.
+            </summary>
+        </member>
+        <member name="M:UnitTests.InvitationListTest.SetUp">
+            <summary>
+            Setup function.
+            </summary>
+        </member>
+        <member name="M:UnitTests.InvitationListTest.TestInvitationList">
+            <summary>
+            Tests whether adding invitations via the <see cref="T:Library.Core.Invitations.InvitationManager" /> adds them in the <see cref="T:Library.Core.Invitations.InvitationList`1" />,<br />
+            and whether validating them removes them.
+            </summary>
+        </member>
+        <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

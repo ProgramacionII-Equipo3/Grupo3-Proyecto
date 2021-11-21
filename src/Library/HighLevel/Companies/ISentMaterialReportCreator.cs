@@ -12,9 +12,9 @@ namespace Library.HighLevel.Companies
     public interface ISentMaterialReportCreator
     {
         /// <summary>
-        /// The list of material sales.
+        /// Gets the list of material sales.
         /// </summary>
-        protected List<MaterialSalesLine> materialSales { get; }
+        protected IList<MaterialSalesLine> materialSales { get; }
 
         /// <summary>
         /// Builds a <see cref="SentMaterialReport" /> with the material sales that occured after a certain <see cref="DateTime" />.

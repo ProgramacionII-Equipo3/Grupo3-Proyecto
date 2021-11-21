@@ -8,7 +8,7 @@ namespace Library.Core.Distribution
         /// <summary>
         /// The id of the user.
         /// </summary>
-        public readonly UserId Id;
+        public readonly string Id;
 
         /// <summary>
         /// Data associated with the user.
@@ -26,7 +26,7 @@ namespace Library.Core.Distribution
         /// <param name="id">The session's user's id.</param>
         /// <param name="userData">The session's user's data.</param>
         /// <param name="state">The session's initial state.</param>
-        public UserSession(UserId id, UserData userData, State state)
+        public UserSession(string id, UserData userData, State state)
         {
             this.Id = id;
             this.userData = userData;
@@ -42,15 +42,19 @@ namespace Library.Core.Distribution
         {
             var (newState, res) = this.state.ProcessMessage(this.Id, this.userData, msg);
             this.state = newState;
-            if(res == null) res = newState.GetDefaultResponse();
+            if (res == null)
+            {
+                res = newState.GetDefaultResponse();
+            }
+
             return res;
         }
 
         /// <summary>
-        /// Checks whether this <see cref="UserSession" /> has a concrete <see cref="UserId" />.
+        /// Checks whether this <see cref="UserSession" /> has a concrete user id.
         /// </summary>
         /// <param name="id">The id to compare with.</param>
         /// <returns>True uf the ID´s are equal and false if it not does.</returns>
-        public bool MatchesId(UserId id) => this.Id.Equals(id);
+        public bool MatchesId(string id) => this.Id.Equals(id);
     }
 }

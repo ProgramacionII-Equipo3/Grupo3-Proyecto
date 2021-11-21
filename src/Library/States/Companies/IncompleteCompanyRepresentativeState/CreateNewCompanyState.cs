@@ -3,7 +3,7 @@ using Library.HighLevel.Companies;
 using Library.InputHandlers;
 using Ucu.Poo.Locations.Client;
 
-namespace Library.States
+namespace Library.States.Companies
 {
     public partial class IncompleteCompanyRepresentativeState
     {
@@ -21,25 +21,28 @@ namespace Library.States
                 this.parent = parent;
                 this.inputHandlers = new IInputHandler[]
                 {
-                    ProcessorHandler.CreateInstance<string>(
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.heading = s,
-                        new BasicStringProcessor(() => "Please insert the company's heading.")),
-                    ProcessorHandler.CreateInstance<Location>(
+                        new BasicStringProcessor(() => "Please insert the company's heading.")
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<Location>(
                         l => this.location = l,
                         new LocationProcessor(() => "Please insert the company's location")
                     ),
-                    ProcessorHandler.CreateInstance<int>(
+                    ProcessorHandler.CreateInfallibleInstance<int>(
                         n => this.phoneNumber = n,
-                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")),
-                    ProcessorHandler.CreateInstance<string>(
+                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.email = s,
-                        new EmailProcessor(() => "Please insert the company's email."))
+                        new EmailProcessor(() => "Please insert the company's email.")
+                    )
                 };
             }
 
             protected override Result<Company, string> getResult()
             {
-                Company result = CompanyManager.CreateCompany(
+                Company result = Singleton<CompanyManager>.Instance.CreateCompany(
                     name: this.parent.name,
                     contactInfo: new Library.Core.ContactInfo
                     {

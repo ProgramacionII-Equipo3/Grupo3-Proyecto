@@ -27,7 +27,7 @@ namespace Library.InputHandlers
 
         Result<bool, string> IInputHandler.ProcessInput(string msg)
         {
-            if((this.escapePredicate)(msg)) return Result<bool, string>.Ok(true);
+            if ((this.escapePredicate)(msg)) return Result<bool, string>.Ok(true);
             return this.processor.GenerateFromInput(msg).Map(
                 result => result.Map(
                     value =>
@@ -36,10 +36,8 @@ namespace Library.InputHandlers
                         this.processor.Reset();
                         return Result<bool, string>.Err(this.GetDefaultResponse());
                     },
-                    s => Result<bool, string>.Err(s)
-                ),
-                () => Result<bool, string>.Ok(false)
-            );
+                    s => Result<bool, string>.Err(s)),
+                () => Result<bool, string>.Ok(false));
         }
 
         Result<T[], string> IInputProcessor<T[]>.getResult() => Result<T[], string>.Ok(this.list.ToArray());

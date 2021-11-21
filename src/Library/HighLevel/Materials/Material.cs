@@ -9,18 +9,14 @@ namespace Library.HighLevel.Materials
     public class Material
     {
         /// <summary>
-        /// The material's name.
+        /// Gets the material's name.
         /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// The measure with which the amounts of the material are measured.
+        /// Gets the measure with which the amounts of the material are measured.
         /// </summary>
         public Measure Measure { get; private set; }
-
-        
-        //private List<Requirement> requirements = new List<Requirement>();
-        //public ReadOnlyCollection<Requirement> Requirements => this.requirements.AsReadOnly();
 
         /// <summary>
         /// The category the material belongs to.
@@ -39,13 +35,13 @@ namespace Library.HighLevel.Materials
         /// </summary>
         /// <param name="name">The material's name.</param>
         /// <param name="measure">The material's measure.</param>
-        /// <param name="category">The material's category</param>
+        /// <param name="category">The material's category.</param>
         /// <returns>A <see cref="Material" /> instance.</returns>
 
         public static Material CreateInstance(string name, Measure measure, MaterialCategory category)
         {
             Material result = new Material(name, measure, category);
-            category.addMaterial(result);
+            category.AddMaterial(result);
             return result;
         }
 
@@ -53,6 +49,7 @@ namespace Library.HighLevel.Materials
         /// Checks whether this material has a concrete name.
         /// </summary>
         /// <param name="name">The name to compare with.</param>
+        /// <returns>True if the names are equal and false if it not does.</returns>
         public bool MatchesName(string name) => this.Name == name;
     }
 }

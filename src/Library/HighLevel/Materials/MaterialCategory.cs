@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,24 +23,28 @@ namespace Library.HighLevel.Materials
             "Metales", "Plásticos", "Materiales Técnicos"
         }.Select(name => new MaterialCategory(name.ToLowerInvariant())).ToList().AsReadOnly();
 
+        /// <summary>
+        /// The list of materials which belong to this category.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="MaterialCategory.Materials" />.
+        /// </summary>
         private List<Material> materials = new List<Material>();
 
         /// <summary>
-        /// The list of materials which belong to this category.
+        /// A public, read-only list of materials which belong to this category.
         /// </summary>
-        public readonly ReadOnlyCollection<Material> Materials;
+        public ReadOnlyCollection<Material> Materials => materials.AsReadOnly();
 
         /// <summary>
-        /// Creates and instance of MaterialCategory.
+        /// Initializes an instance of <see cref="MaterialCategory" /> class.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">The material´s category name.</param>
         public MaterialCategory(string name)
         {
             this.Name = name;
-            this.Materials = materials.AsReadOnly();
         }
 
-        internal void addMaterial(Material material)
+        internal void AddMaterial(Material material)
         {
             this.materials.Add(material);
         }

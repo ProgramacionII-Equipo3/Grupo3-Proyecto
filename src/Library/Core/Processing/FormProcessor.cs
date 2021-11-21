@@ -20,7 +20,10 @@ namespace Library.Core.Processing
         void IInputHandler.Reset()
         {
             foreach (IInputHandler handler in this.inputHandlers)
+            {
                 handler.Reset();
+            }
+            
             this.index = 0;
         }
 

@@ -1,19 +1,20 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Library.HighLevel.Accountability;
 
 namespace Library.HighLevel.Companies
 {
     /// <summary>
-    /// This interface was created because of DIP, that way the classes depend of an abstraction.
+    /// This interface represents a class which can create <see cref="ReceivedMaterialReport" />s.
+    /// It was created because of DIP, that way the classes depend of an abstraction.
     /// </summary>
-    public interface IReceivedMaterialCreator
+    public interface IReceivedMaterialReportCreator
     {
         /// <summary>
         /// Gets the collection of bought materials.
         /// </summary>
-        protected List<BoughtMaterialLine> BoughtMaterials { get; }
+        protected IList<BoughtMaterialLine> BoughtMaterials { get; }
 
         /// <summary>
         /// Gets a reports of the purchase made by the entrepreneur.

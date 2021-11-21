@@ -2,7 +2,7 @@ using Library.Core;
 using Library.Core.Processing;
 using Library.HighLevel.Companies;
 
-namespace Library.States
+namespace Library.States.Companies
 {
     public partial class IncompleteCompanyRepresentativeState
     {

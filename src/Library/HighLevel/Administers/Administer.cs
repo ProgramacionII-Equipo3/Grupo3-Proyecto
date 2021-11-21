@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using Library.Core.Invitations;
 using Library.Core;
 using Library.HighLevel.Companies;
-using System.Collections.Generic;
-using System;
 
 namespace Library.HighLevel.Administers
 {
@@ -15,13 +15,13 @@ namespace Library.HighLevel.Administers
     /// </summary>
     public class Administer
     {
-        private List<UserId> AdministerList = new List<UserId>();
+        private IList<string> administerList = new List<string>();
 
         /// <summary>
         /// This method create's an invitation code.
         /// </summary>
         /// <returns>Invitation´s code.</returns>
-        public static string GenerateInvitation()
+        public static string GenerateInvitationCode()
         {
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrsteuvwxyz0123456789";
             char[] charsArray = new char[8];
@@ -36,15 +36,18 @@ namespace Library.HighLevel.Administers
             {
                 result += item;
             }
+            
             return result;
         }
 
         /// <summary>
         /// This method creates an invitation for a company.
         /// </summary>
-        public static void CreateCompanyInvitation()
+        public static string CreateCompanyInvitation()
         {
-            InvitationManager.CreateInvitation(Administer.GenerateInvitation(), code => new CompanyInvitation(code));
+            string generatedCode = Administer.GenerateInvitationCode();
+            Singleton<InvitationManager>.Instance.CreateInvitation(generatedCode, code => new CompanyInvitation(code));
+            return generatedCode;
         }
     }
 }

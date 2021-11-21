@@ -11,7 +11,10 @@ namespace Library.InputHandlers.Abstractions
         private IInputProcessor<T> innerProcessor;
         private T result = default;
 
-        ///
+        /// <summary>
+        /// Initializes an instance of <see cref="ProcessorWrapper{T}" />.
+        /// </summary>
+        /// <param name="innerProcessor">The processor which receives the data and returns the object.</param>
         protected ProcessorWrapper(IInputProcessor<T> innerProcessor)
         {
             this.innerProcessor = innerProcessor;
@@ -24,12 +27,11 @@ namespace Library.InputHandlers.Abstractions
             if(this.result != null) return Result<bool, string>.Ok(true);
             return this.innerProcessor.GenerateFromInput(msg).Map(
                 result => result.SwitchOk(
-                    v => 
+                    v =>
                     {
                         this.result = v;
                         return true;
-                    }
-                ),
+                    }),
                 () => Result<bool, string>.Ok(false)
             );
         }

@@ -1,8 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using Library.Core;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
-using System.Collections.Generic;
-using System.Linq;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
@@ -39,7 +39,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The company's representants in the platform.
         /// </summary>
-        private List<UserId> representants = new List<UserId>();
+        private IList<string> representants = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
@@ -61,24 +61,33 @@ namespace Library.HighLevel.Companies
         /// </summary>
         /// <param name="id">The user's id.</param>
         /// <returns>Whether it belongs to the company.</returns>
-        public bool HasUser(UserId id) =>
+        public bool HasUser(string id) =>
             this.representants.Any(repId => repId.Equals(id));
 
         /// <summary>
         /// Adds a user into the list of representants.
         /// </summary>
         /// <param name="id">The user's id.</param>
-        public void AddUser(UserId id) =>
+        public void AddUser(string id) =>
             this.representants.Add(id);
 
         /// <summary>
-        /// A list of Material Publications.
+        /// Gets a list of Material Publications.
         /// </summary>
         List<MaterialPublication> IPublisher.publications { get; } = new List<MaterialPublication>();
 
         /// <summary>
-        /// A list of Material Sales.
+        /// Gets a list of Material Sales.
         /// </summary>
-        List<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+        IList<MaterialSalesLine> ISentMaterialReportCreator.materialSales { get; } = new List<MaterialSalesLine>();
+
+        /// <summary>
+        /// Gets the list of publications, dinamically assigned to the company.
+        /// </summary>
+        public IList<AssignedMaterialPublication> Publications =>
+            (this as IPublisher).Publications.Select(pub => new AssignedMaterialPublication(
+                company: this,
+                publication: pub
+            )).ToList();
     }
 }

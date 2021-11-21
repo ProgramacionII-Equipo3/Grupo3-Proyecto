@@ -13,12 +13,14 @@ namespace Library.HighLevel.Companies
     public interface IPublisher
     {
         /// <summary>
-        /// A private list of the publications.
+        /// Gets a private list of the publications.
+        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
+        /// because the method <see cref="List{T}.AsReadOnly()" /> is neccesary for the property <see cref="IPublisher.Publications" />.
         /// </summary>
         protected List<MaterialPublication> publications { get; }
 
         /// <summary>
-        /// A public read-only list of the publications.
+        /// Gets a public read-only list of the publications.
         /// </summary>
         public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
 
@@ -32,7 +34,7 @@ namespace Library.HighLevel.Companies
         /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
         /// <returns>Whether the operation was successful.</returns>
-        public bool PublishMaterial(Material material, Amount amount, Price price, Location location, MaterialPublicationTypeData type, List<string> keywords)
+        public bool PublishMaterial(Material material, Amount amount, Price price, Location location, MaterialPublicationTypeData type, IList<string> keywords)
         {
             if (MaterialPublication.CreateInstance(material, amount, price, location, type, keywords) is MaterialPublication publication)
             {
@@ -50,7 +52,7 @@ namespace Library.HighLevel.Companies
         /// <returns>Whether the removal was successful.</returns>
         public bool RemovePublication(int index)
         {
-            if (index < 0 || index >= this.publications.Count)
+            if (index < 0 || index >= this.Publications.Count)
             {
                 return false;
             }

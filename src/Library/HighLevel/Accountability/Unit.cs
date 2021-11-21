@@ -5,8 +5,8 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represent a unit used for measuring amounts of material.
-    /// Created because of SRP, this particular class is the one with the 
-    /// responsibility of everything associated with the unit and nothing else 
+    /// Created because of SRP, this particular class is the one with the
+    /// responsibility of everything associated with the unit and nothing else
     /// (following also the Expert principle).
     /// </summary>
     public class Unit
@@ -34,7 +34,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The list of available units.
         /// </summary>
-        internal static List<Unit> Values = new List<Unit>();
+        internal static IList<Unit> Values = new List<Unit>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Unit"/> class.

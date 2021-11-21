@@ -4,7 +4,7 @@ using Library.Core;
 using Library.Core.Processing;
 using Library.HighLevel.Companies;
 
-namespace Library.States
+namespace Library.States.Companies
 {
     /// <summary>
     /// This class represents the state of a company representative who is yet to be fully logged in to the platform.
@@ -15,7 +15,7 @@ namespace Library.States
         private string name;
 
         /// <inheritdoc />
-        public override (State, string) ProcessMessage(UserId id, UserData data, string msg)
+        public override (State, string) ProcessMessage(string id, UserData data, string msg)
         {
             if(this.companyGetter == null)
             {
@@ -46,6 +46,9 @@ namespace Library.States
         public override bool IsComplete => false;
 
         /// <inheritdoc />
+        public override State.Type UserType => State.Type.COMPANY;
+
+        /// <inheritdoc />
         public override string GetDefaultResponse()
         {
             if(this.companyGetter == null)
@@ -60,16 +63,12 @@ namespace Library.States
         private (IInputProcessor<Company>, string) nextStateGivenCompanyName(string name)
         {
             IInputProcessor<Company> getter;
-            if(CompanyManager.GetByName(name) is Company perfectMatch)
+            if(Singleton<CompanyManager>.Instance.GetByName(name) is Company perfectMatch)
             {
                 getter = new AssignExistingCompanyState(perfectMatch);
             } else
             {
-                List<Company> companies = CompanyManager.GetCompaniesWithNamesSimilarTo(name).ToList();
-                if(companies.Count > 0)
-                    getter = new AssignExistingCompanyInListState(companies);
-                else
-                    getter = new CreateNewCompanyState(this);
+                getter = new CreateNewCompanyState(this);
             }
                 return (getter, getter.GetDefaultResponse());
         }

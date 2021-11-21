@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library
+namespace Library.Utils
 {
     /// <summary>
     /// This class holds methods which are related with the <see cref="Option{T}"/> struct.
@@ -13,7 +13,10 @@ namespace Library
         /// </summary>
         /// <param name="enumerable">The enumerable.</param>
         /// <typeparam name="T">The type of the elements of the enumerable.</typeparam>
-        /// <returns></returns>
+        /// <returns>
+        /// Option.None if the enumerable is empty or if the first element is null, or<br />
+        /// Option.Some(element), being element the first element.
+        /// </returns>
         public static Option<T> FirstOrNone<T>(this IEnumerable<T> enumerable) =>
             enumerable.Count() == 0 ? Option<T>.None : Option<T>.From(enumerable.FirstOrDefault());
     }

@@ -23,18 +23,20 @@ namespace Library.InputHandlers
         /// <summary>
         /// Creates an instance of <see cref="ProcessorHandler" />.
         /// </summary>
-        /// <param name="action">The operation to do with the resulting input.</param>
+        /// <param name="f">The operation to do with the resulting input, and returns a not-null string if there was an error.</param>
         /// <param name="processor">The input processor.</param>
         /// <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
-        public static ProcessorHandler CreateInstance<T>(Action<T> action, IInputProcessor<T> processor)
+        public static ProcessorHandler CreateInstance<T>(Func<T, string> f, IInputProcessor<T> processor)
         {
             return new ProcessorHandler (
                 inputHandler: s => processor.GenerateFromInput(s).Map(
-                    result => result.SwitchOk(
+                    result => result.AndThen(
                         v =>
                         {
-                            action(v);
-                            return true;
+                            string res = f(v);
+                            if(res == null) return Result<bool, string>.Ok(true);
+                            processor.Reset();
+                            return Result<bool, string>.Err($"{res}\n{processor.GetDefaultResponse()}");
                         }
                     ),
                     () => Result<bool, string>.Ok(false)
@@ -43,6 +45,19 @@ namespace Library.InputHandlers
                 resetter: processor.Reset
             );
         }
+
+        /// <summary>
+        /// Creates an instance of <see cref="ProcessorHandler" /> which can't send an error
+        /// in the function which gets the generated value.
+        /// </summary>
+        /// <param name="action">The operation to do with the resulting input.</param>
+        /// <param name="processor">The input processor.</param>
+        /// <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
+        public static ProcessorHandler CreateInfallibleInstance<T>(Action<T> action, IInputProcessor<T> processor) =>
+            ProcessorHandler.CreateInstance<T>(v => {
+                action(v);
+                return null;
+            }, processor);
 
         string IInputHandler.GetDefaultResponse() => (this.initialResponseGetter)();
 
