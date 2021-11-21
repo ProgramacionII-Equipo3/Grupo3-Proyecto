@@ -1,22 +1,30 @@
 using System.Collections.Generic;
 using System.Linq;
-using Library.Core;
-using Library.HighLevel.Companies;
-using Library.HighLevel.Accountability;
-using Library.HighLevel.Materials;
-using Ucu.Poo.Locations.Client;
 using Library.Core.Processing;
-using Library.InputHandlers;
+using Library.Core;
+using Library.HighLevel.Accountability;
+using Library.HighLevel.Companies;
+using Library.HighLevel.Materials;
 using Library.InputHandlers.Abstractions;
+using Library.InputHandlers;
 using Library.Utils;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.States.Companies
 {
+    /// <summary>
+    /// This class has the responsibility of publish an offer.
+    /// </summary>
     public class CompanyPublishMaterialState : InputHandlerState
     {
+        /// <summary>
+        /// Initializes an instance of <see cref="CompanyPublishMaterialState" />
+        /// </summary>
+        /// <param name="id">User´s id.</param>
+        /// <returns></returns>
         public CompanyPublishMaterialState(string id) : base(
-            exitState: () => new CompanyInitialMenuState(),
-            nextState: () => new CompanyInitialMenuState(),
+            exitState: () => new CompanyInitialMenuState(id),
+            nextState: () => new CompanyInitialMenuState(id),
             inputHandler: ProcessorHandler.CreateInstance<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>)>(
                 (result) => 
                 {
@@ -26,10 +34,10 @@ namespace Library.States.Companies
                         {
                             return null;
                         }
-                        return "La publicación es inválida.";
+                        return "Disculpa, no pude realizar la publicación, vuelve a intentarlo.";
                     } else
                     {
-                        return "This user is not a company representative.";
+                        return "Lo siento, no te reconozco como un representante de una empresa.";
                     }
                 },
                 new CollectDataProcessor()
@@ -62,6 +70,9 @@ namespace Library.States.Companies
             private MaterialPublicationTypeData? materialPublicationTypeData;
             private IList<string>? keywords;
 
+            /// <summary>
+            /// Initializes an instance of <see cref="CollectDataProcessor" />
+            /// </summary>
             public CollectDataProcessor()
             {
                 this.inputHandlers = new InputHandler[]
