@@ -29,19 +29,19 @@ namespace Library.States.Companies
                 {
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.heading = s,
-                        new BasicStringProcessor(() => "Please insert the company's heading.")
+                        new BasicStringProcessor(() => "Por favor ingresa el rubro de la compañía.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Location>(
                         l => this.location = l,
-                        new LocationProcessor(() => "Please insert the company's location")
+                        new LocationProcessor(() => "Por favor ingresa la ubicación de la compañía.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<int>(
                         n => this.phoneNumber = n,
-                        new UnsignedInt32Processor(() => "Please insert the company's phone number.")
+                        new UnsignedInt32Processor(() => "Por favor ingresa el teléfono de la compañía.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         s => this.email = s,
-                        new EmailProcessor(() => "Please insert the company's email.")
+                        new EmailProcessor(() => "Por favor ingresa el email de la compañía.")
                     )
                 };
             }
@@ -59,7 +59,7 @@ namespace Library.States.Companies
                     location: this.location.Unwrap());
                 if (result == null) 
                 {
-                    return Result<Company, string>.Err("There's already a company with the same name.");
+                    return Result<Company, string>.Err("Ya existe una compañía con ese nombre.");
                 }
 
                 else
