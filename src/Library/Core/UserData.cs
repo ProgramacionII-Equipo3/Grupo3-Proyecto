@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Library.Core
 {
     /// <summary>
@@ -44,6 +46,22 @@ namespace Library.Core
                 Email = email,
                 PhoneNumber = phoneNumber
             };
+        }
+
+        /// <summary>
+        /// Initializes an instance of <see cref="UserData" /> from JSON data.
+        /// </summary>
+        /// <param name="name">The user's name.</param>
+        /// <param name="isComplete">Whether the user is complete.</param>
+        /// <param name="userType">The user's type.</param>
+        /// <param name="contactInfo">The user's contact info.</param>
+        [JsonConstructor]
+        public UserData(string name, bool isComplete, Type userType, ContactInfo contactInfo)
+        {
+            this.Name = name;
+            this.IsComplete = isComplete;
+            this.UserType = userType;
+            this.ContactInfo = contactInfo;
         }
 
         /// <summary>

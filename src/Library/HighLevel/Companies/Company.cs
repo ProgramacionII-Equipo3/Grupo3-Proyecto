@@ -43,6 +43,15 @@ namespace Library.HighLevel.Companies
         /// </summary>
         private IList<string> representants = new List<string>();
 
+        private string[] jsonRepresentants
+        {
+            get => representants.ToArray();
+            set
+            {
+                this.representants = value.ToList();
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
@@ -58,6 +67,7 @@ namespace Library.HighLevel.Companies
             this.Location = location;
         }
 
+        [JsonConstructor]
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class from JSON data.
         /// </summary>
@@ -66,9 +76,13 @@ namespace Library.HighLevel.Companies
         /// <param name="heading">The company´s heading.</param>
         /// <param name="location">The company´s location.</param>
         /// <param name="representants">The company's representants' ids.</param>
-        public Company(string name, ContactInfo contactInfo, string heading, Location location, IEnumerable<string> representants) : this(name, contactInfo, heading, location)
+        public Company(string name, ContactInfo contactInfo, string heading, Location location, string[] representants)
         {
-            this.representants = representants.ToList();
+            this.Name = name;
+            this.ContactInfo = contactInfo;
+            this.Heading = heading;
+            this.Location = location;
+            this.jsonRepresentants = representants;
         }
 
         /// <summary>

@@ -458,6 +458,15 @@
             <param name="email">The user's email.</param>
             <param name="phoneNumber">The user's phone number.</param>
         </member>
+        <member name="M:Library.Core.UserData.#ctor(System.String,System.Boolean,Library.Core.UserData.Type,Library.Core.ContactInfo)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.Core.UserData" /> from JSON data.
+            </summary>
+            <param name="name">The user's name.</param>
+            <param name="isComplete">Whether the user is complete.</param>
+            <param name="userType">The user's type.</param>
+            <param name="contactInfo">The user's contact info.</param>
+        </member>
         <member name="T:Library.Core.UserData.Type">
             <summary>
             This enumeration represents the three kinds of users the state can belong to.
@@ -904,16 +913,6 @@
             <param name="contactInfo">The company´s contact info.</param>
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
-        </member>
-        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class from JSON data.
-            </summary>
-            <param name="name">The company´s name.</param>
-            <param name="contactInfo">The company´s contact info.</param>
-            <param name="heading">The company´s heading.</param>
-            <param name="location">The company´s location.</param>
-            <param name="representants">The company's representants' ids.</param>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(System.String)">
             <summary>

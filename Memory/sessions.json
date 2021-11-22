@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "Id": "ConsoleID",
+        "UserData": {
+            "Name": "santiago",
+            "ContactInfo": {
+
+            },
+            "IsComplete": true,
+            "UserType": 2
+        }
+    }
+]
