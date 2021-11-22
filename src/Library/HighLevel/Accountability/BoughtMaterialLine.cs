@@ -51,5 +51,8 @@ namespace Library.HighLevel.Accountability
         /// Gets the amount of money spent.
         /// </summary>
         public MoneyQuantity Spent => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
+
+        public override string? ToString() =>
+            $"{this.Amount} de {this.Material.Name} el día {this.DateTime.ToShortDateString()} a precio de {this.Price} ({this.Spent})";
     }
 }

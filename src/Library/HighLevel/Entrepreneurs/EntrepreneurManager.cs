@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -28,5 +29,8 @@ namespace Library.HighLevel.Entrepreneurs
         {
             entrepeneurs.Add(entrepreneur);
         }
+
+        public Entrepreneur? GetById(string id) =>
+            this.entrepeneurs.Where(e => e.Id == id).FirstOrDefault();
     }
 }

@@ -5,6 +5,7 @@ namespace Library.Core
     /// </summary>
     public abstract class State
     {
+
         /// <summary>
         /// Processes a received message, returning the next state and the response message.
         /// </summary>
