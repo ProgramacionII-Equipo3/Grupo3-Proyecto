@@ -4,6 +4,22 @@
         <name>Program</name>
     </assembly>
     <members>
+        <member name="T:Grupo3_Proyecto.ConsolePlatform">
+            <summary>
+            Represents the console as a messaging platform in and of itself.
+            </summary>
+        </member>
+        <member name="M:Grupo3_Proyecto.ConsolePlatform.GetUserId(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Grupo3_Proyecto.ConsolePlatform.SendMessage(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Grupo3_Proyecto.ConsolePlatform.Run">
+            <summary>
+            Receives messages from the console as if it was a messaging platform.
+            </summary>
+        </member>
         <member name="T:Grupo3_Proyecto.Program">
             <summary>
             The main program.

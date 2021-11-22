@@ -34,9 +34,8 @@ namespace Library.States.Companies
                     {
                         company.AddUser(id);
                         return (
-                            // TODO: Implement next state
+                            new CompanyInitialMenuState(id),
                             null,
-                            "Welcome to the platform. What do you want to do?",
                             (data) =>
                             {
                                 data.IsComplete = true;

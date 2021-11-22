@@ -89,6 +89,11 @@
             This test evaluate if the entrepreneur is registered with their correct information.
             </summary>
         </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegisterFromUserInput">
+            <summary>
+            Tests the course of registering an entrepreneur from user input.
+            </summary>
+        </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
             This test check if the Entrepreneur can get an received material report.
@@ -200,22 +205,6 @@
         <member name="M:UnitTests.AdminStatesTest.TestAdminCreateInvitation">
             <summary>
             Tests the class <see cref="T:Library.States.Admins.AdminInitialMenuState" />'s /createcompany option.
-            </summary>
-        </member>
-        <member name="T:UnitTests.ConsolePlatform">
-            <summary>
-            Represents the console as a messaging platform in and of itself.
-            </summary>
-        </member>
-        <member name="M:UnitTests.ConsolePlatform.GetUserId(System.Boolean)">
-            <inheritdoc />
-        </member>
-        <member name="M:UnitTests.ConsolePlatform.SendMessage(System.String,System.Boolean)">
-            <inheritdoc />
-        </member>
-        <member name="M:UnitTests.ConsolePlatform.Run">
-            <summary>
-            Receives messages from the console as if it was a messaging platform.
             </summary>
         </member>
         <member name="T:UnitTests.FormProcessorTest">

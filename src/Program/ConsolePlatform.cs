@@ -1,7 +1,7 @@
 using System;
 using Library.Core.Messaging;
 
-namespace UnitTests
+namespace Grupo3_Proyecto
 {
     /// <summary>
     /// Represents the console as a messaging platform in and of itself.
@@ -25,7 +25,7 @@ namespace UnitTests
             while(true)
             {
                 string? msg = Console.ReadLine();
-                if(msg == null || msg == "\\") return;
+                if(msg == null || msg == "--STOP") return;
                 this.ReceiveMessage(msg, true);
             }
         }

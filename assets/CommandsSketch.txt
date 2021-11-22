@@ -18,12 +18,6 @@
 |__________________|
 
 
-> /registercompany	-->	Ok, vamos a registrar una empresa.
-				Para poder registrar la empresa, tienes que ingresar el código de invitación que te enviamos.
-					> ¿Cuál es el nombre de la empresa?
-					> ¿Cuál es la dirección de la empresa?
-					> ¿Cuál es el rubro de la empresa?
-
 > /publish		-->	Ok, vamos a publicar un material.
 					> ¿Cuál es el nombre del material?
 					> ¿Cuántas unidades del material deseas publicar?
@@ -40,14 +34,8 @@
 					> ¿Cuál es el ID del emprendedor?
 
 
-> /companyreport	--> 	Ok, vamos a obtener el reporte de todos los materiales obtenidos,
+> /companyreport	--> 	Ok, vamos a obtener el reporte de todos los materiales enviados,
 					> ¿Cuál es el período de tiempo del que quieres obtener el reporte? (Por favor ingresar el tiempo en meses).
-
-> /companyhelp 		--> 	Ok, a continuación te muestro todos los comandos disponibles para las empresas:
-					> /registercompany 	-> Este comando sirve para registrar una empresa, para hacer uso de el se necesita tener el código previamente enviado a la empresa.
-					> /publish		-> Este comando se encarga de publicar un material.
-					> /companyreport	-> Este comando se encarga de mostrarle al usuario el reporte de todos los materiales enviados en un período de tiempo ingresado en meses.
-					> /checkhabilitations	-> Este comando se encarga de mostrarle al usuario las habilitaciones que posee luego de que el emprendedor solicite el material, para así checkear que todo este correcto.
 
 
 ...................................................................................................................................................................................................
