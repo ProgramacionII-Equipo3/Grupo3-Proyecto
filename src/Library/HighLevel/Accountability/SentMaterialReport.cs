@@ -43,5 +43,8 @@ namespace Library.HighLevel.Accountability
                 }).ToList();
             return result;
         }
+
+        public override string? ToString() =>
+            string.Join('\n', this.Lines);
     }
 }

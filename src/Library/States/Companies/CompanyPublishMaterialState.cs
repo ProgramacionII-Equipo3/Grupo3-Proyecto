@@ -84,6 +84,10 @@ namespace Library.States.Companies
                         l => this.location = l,
                         new LocationProcessor(() => "Por favor ingresa la ubicación de donde se encuentra el material.")
                     ),
+                    ProcessorHandler.CreateInfallibleInstance<MaterialPublicationTypeData>(
+                        t => this.materialPublicationTypeData = t,
+                        new MaterialPublicationTypeDataProcessor(() => "Por favor, indica el tipo de la publicación:\n        /normal: Publicación normal\n        /scheduled: Publicación con una fecha concreta\n        /continuous: Publicación constante")
+                    ),
                     ProcessorHandler.CreateInfallibleInstance<string[]>(
                         k => this.keywords = k.ToList(),
                         new ListProcessor<string>(() => "Por favor ingrese la lista de palabras claves asociadas al material.", new BasicStringProcessor(
