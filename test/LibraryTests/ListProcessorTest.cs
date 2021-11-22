@@ -15,21 +15,16 @@ namespace UnitTests
     /// </summary>
     public class ListProcessorTest
     {
-        private void listProcessorBaseTest<T>(T[]? expected, string initialResponse, InputProcessor<T> processor, params string[] messages)
+        private static void listProcessorBaseTest<T>(T[]? expected, string initialResponse, InputProcessor<T> processor, params string[] messages)
         {
             Console.WriteLine();
             T[]? list = null;
             BasicUtils.CreateUser(new InputHandlerState(
                 ProcessorHandler.CreateInfallibleInstance<T[]>(
                     l => list = l,
-                    new ListProcessor<T>(
-                        () => initialResponse,
-                        processor
-                    )
-                ),
+                    new ListProcessor<T>(() => initialResponse, processor)),
                 () => null,
-                () => null
-            ));
+                () => null));
             ProgramaticPlatform platform = new ProgramaticPlatform("___", messages);
             platform.Run();
 
@@ -51,13 +46,11 @@ namespace UnitTests
                 new int[] { 32, 51 },
                 "Insert the numbers.",
                 new UnsignedInt32Processor(() => "Insert a number."),
-
                 "/add",
                 "32",
                 "/add",
                 "51",
-                "/finish"
-            );
+                "/finish");
         }
 
         /// <summary>
@@ -70,7 +63,6 @@ namespace UnitTests
                 new int[] { 40 },
                 "Insert the numbers.",
                 new UnsignedInt32Processor(() => "Insert a number."),
-
                 "/add",
                 "32",
                 "/add",
@@ -83,8 +75,7 @@ namespace UnitTests
                 "2",
                 "/remove",
                 "0",
-                "/finish"
-            );
+                "/finish");
         }
 
         /// <summary>
@@ -97,14 +88,11 @@ namespace UnitTests
                 null,
                 "Insert the numbers.",
                 new UnsignedInt32Processor(() => "Insert a number."),
-
                 "/add",
                 "32",
                 "/add",
                 "51",
-                "/back"
-            );
-
+                "/back");
         }
     }
 }

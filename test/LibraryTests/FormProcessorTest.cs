@@ -45,7 +45,7 @@ namespace UnitTests
 
         private class FormProcessorTestState : InputHandlerState
         {
-            public FormProcessorTestState(Action<int> f): base(
+            public FormProcessorTestState(Action<int> f) : base(
                 exitState: () => new BasicState(),
                 nextState: () => new BasicState(),
                 inputHandler: ProcessorHandler.CreateInstance<int>(
@@ -66,16 +66,11 @@ namespace UnitTests
                         {
                             ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
                                 (state, v) => (v, default),
-                                new UnsignedInt32Processor(() => "Item1: ")
-                            ),
+                                new UnsignedInt32Processor(() => "Item1: ")),
                             ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
                                 (state, v) => (state.Item1, v),
-                                new UnsignedInt32Processor(() => "Item2: ")
-                            )
-                        }
-                    )
-                )
-            ) {}
+                                new UnsignedInt32Processor(() => "Item2: "))
+                        }))) {}
         }
 
         private static int joinNumbers(int a, int b) =>

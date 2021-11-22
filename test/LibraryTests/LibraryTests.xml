@@ -299,7 +299,7 @@
             <summary>
             Creates an empty user data for mock users.
             </summary>
-            <returns>A <see cref="T:Library.Core.UserData" /></returns>
+            <returns>A <see cref="T:Library.Core.UserData" />.</returns>
         </member>
     </members>
 </doc>

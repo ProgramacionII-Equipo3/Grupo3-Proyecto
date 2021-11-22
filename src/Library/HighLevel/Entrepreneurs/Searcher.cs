@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Library.HighLevel.Materials;
 using Library.HighLevel.Companies;
@@ -11,12 +12,17 @@ namespace Library.HighLevel.Entrepreneurs
     /// We created this class using expert, this class itself does all the possible
     /// filter searches). It also has a High Cohesion because of the same reason.
     /// </summary>
-    public class Searcher
+    public class Searcher : IDisposable
     {
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
         /// </summary>
         public LocationApiClient client = new LocationApiClient();
+
+        void IDisposable.Dispose()
+        {
+            ((IDisposable)client).Dispose();
+        }
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a category.

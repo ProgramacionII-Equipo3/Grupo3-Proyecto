@@ -26,14 +26,13 @@ namespace ProgramTests
         [Test]
         public void CreateCompanyTest()
         {
-            ContactInfo contactInfo = new ContactInfo();
-            contactInfo.Email = "company@gmail.com";
-            contactInfo.PhoneNumber = 094567142;
-            LocationApiClient client = new LocationApiClient();
+            ContactInfo contactInfo = new ContactInfo("company@gmail.com", 094567142);
+            using LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location)!;
             bool expected = Singleton<CompanyManager>.Instance.Companies.Contains(company);
             Assert.That(expected, Is.True);
+            client.Dispose();
         }
 
         /// <summary>
@@ -43,16 +42,15 @@ namespace ProgramTests
         public void HasUserTest()
         {
             string id = "Telegram_2066298868";
-            ContactInfo contactInfo = new ContactInfo();
-            contactInfo.Email = "company@gmail.com";
-            contactInfo.PhoneNumber = 094567142;
-            LocationApiClient client = new LocationApiClient();
+            ContactInfo contactInfo = new ContactInfo("company@gmail.com", 094567142);
+            using LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 777", "Minas", "Lavalleja", "Uruguay");
             Company company = new Company("Company", contactInfo, "heading", location);
             company.AddUser(id);
             bool expected = company.HasUser(id);
 
             Assert.That(expected, Is.True);
+            client.Dispose();
         }
 
         /// <summary>
@@ -62,15 +60,14 @@ namespace ProgramTests
         public void GetCompanyOfTest()
         {
             string id = "Telegram_2022597748";
-            ContactInfo contactInfo = new ContactInfo();
-            contactInfo.Email = "company@gmail.com";
-            contactInfo.PhoneNumber = 094567142;
-            LocationApiClient client = new LocationApiClient();
+            ContactInfo contactInfo = new ContactInfo("company@gmail.com", 094567142);
+            using LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Blue Patna", contactInfo, "Arroz", location)!;
             company.AddUser(id);
             Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id)!;
             Assert.AreEqual(expected, company);
+            client.Dispose();
         }
 
         /// <summary>
@@ -82,14 +79,13 @@ namespace ProgramTests
 #pragma warning disable 0219
             string id = "Telegram_2015598868";
 #pragma warning restore 0219
-            ContactInfo contactInfo = new ContactInfo();
-            contactInfo.Email = "Woodcompany@gmail.com";
-            contactInfo.PhoneNumber = 094567417;
-            LocationApiClient client = new LocationApiClient();
+            ContactInfo contactInfo = new ContactInfo("Woodcompany@gmail.com", 098567417);
+            using LocationApiClient client = new LocationApiClient();
             Location location = client.GetLocation("Luis Alberto de Herrera 774", "Minas", "Lavalleja", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location)!;
             Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany")!;
             Assert.AreEqual(expected, company);
+            client.Dispose();
         }
     }
 }

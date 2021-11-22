@@ -20,6 +20,13 @@
             The entity's phone number (null if non-existent).
             </summary>
         </member>
+        <member name="M:Library.Core.ContactInfo.#ctor(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.Core.ContactInfo" />.
+            </summary>
+            <param name="email">The email.</param>
+            <param name="phoneNumber">The phone number.</param>
+        </member>
         <member name="T:Library.Core.Distribution.MessageManager">
             <summary>
             This class represents the highest level of encapsulation in message processing.

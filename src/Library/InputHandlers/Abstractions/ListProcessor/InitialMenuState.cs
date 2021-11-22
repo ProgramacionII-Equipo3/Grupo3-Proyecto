@@ -7,7 +7,9 @@ namespace Library.InputHandlers.Abstractions
         /// </summary>
         private class InitialMenuState : InnerProcessorState
         {
-            public InitialMenuState(ListProcessor<T> parent) : base(parent) {}
+            public InitialMenuState(ListProcessor<T> parent) : base(parent)
+            {
+            }
 
             /// <inheritdoc />
             public override string GetDefaultResponse() =>
