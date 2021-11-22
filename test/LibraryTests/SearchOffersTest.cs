@@ -3,6 +3,8 @@ using Library;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
+using Library.HighLevel.Companies;
+using Library.Core;
 using Library.Utils;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
@@ -31,6 +33,8 @@ namespace ProgramTests
         private Location? pickupLocation2;
         private MaterialPublication? publication2;
         private IList<AssignedMaterialPublication>? publications;
+        private ContactInfo contact;
+
 
         /// <summary>
         /// Test Setup.
@@ -38,6 +42,7 @@ namespace ProgramTests
         [SetUp]
         public void Setup()
         {
+
             this.category1 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword1 = new List<string> { "agujas", "hospital" };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
@@ -46,7 +51,11 @@ namespace ProgramTests
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             this.client = new LocationApiClient();
             this.pickupLocation1 = this.client.GetLocationAsync("Libertad 2500").Result;
-            this.publication1 = MaterialPublication.CreateInstance(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
+            contact = new ContactInfo();
+            contact.Email = "company1@gmail.com";
+            contact.PhoneNumber = 099421658;
+            Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", contact, "Tecnología", pickupLocation1)!;
+            (empresa as IPublisher).PublishMaterial(material1, amount1, price1, pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
 
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
@@ -56,7 +65,8 @@ namespace ProgramTests
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
             this.publication2 = MaterialPublication.CreateInstance(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
-            IList<AssignedMaterialPublication> publications = new List<AssignedMaterialPublication> {publication1, publication2};
+            (empresa as IPublisher).PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
+            IList<AssignedMaterialPublication> publications = empresa.Publications;
         }
 
         /// <summary>
@@ -68,7 +78,7 @@ namespace ProgramTests
         {
             MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
 
-            IList<MaterialPublication> expected1 = new List<MaterialPublication>();
+            IList<AssignedMaterialPublication> expected1 = new List<AssignedMaterialPublication>();
             expected1.Add(this.publication1!);
             expected1.Add(this.publication2!);
 
@@ -85,7 +95,7 @@ namespace ProgramTests
         {
             MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
 
-            IList<MaterialPublication> expected2 = new List<MaterialPublication>();
+            IList<AssignedMaterialPublication> expected2 = new List<AssignedMaterialPublication>();
 
             Assert.AreEqual(expected2, Singleton<Searcher>.Instance.SearchByCategory(categoryToSearch));
         }
@@ -96,7 +106,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsFound()
         {
-            List<MaterialPublication> expected3 = new List<MaterialPublication>();
+            List<AssignedMaterialPublication> expected3 = new List<AssignedMaterialPublication>();
             expected3.Add(this.publication2!);
 
             Assert.AreEqual(expected3, Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas"));
@@ -110,7 +120,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyKeywordsNotFound()
         {
-            List<MaterialPublication> expected4 = new List<MaterialPublication>();
+            List<AssignedMaterialPublication> expected4 = new List<AssignedMaterialPublication>();
 
             Assert.AreEqual(expected4, Singleton<Searcher>.Instance.SearchByKeyword("sanitario"));
         }
@@ -127,7 +137,7 @@ namespace ProgramTests
             locationSpecified = clientTest.GetLocationAsync("Av. Gral. San Martín 2909").Result;
             double distanceSpecified = 4;
 
-            IList<MaterialPublication> expected5 = new List<MaterialPublication>();
+            IList<AssignedMaterialPublication> expected5 = new List<AssignedMaterialPublication>();
             expected5.Add(this.publication2!);
 
             Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
@@ -146,7 +156,7 @@ namespace ProgramTests
             locationSpecified = clientTest.GetLocationAsync("12 De Diciembre 811").Result;
             double distanceSpecified = 2;
 
-            IList<MaterialPublication> expected6 = new List<MaterialPublication>();
+            IList<AssignedMaterialPublication> expected6 = new List<AssignedMaterialPublication>();
 
             Assert.AreEqual(expected6, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
         }

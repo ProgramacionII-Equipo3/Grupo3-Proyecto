@@ -1648,6 +1648,16 @@
         <member name="M:Library.InputHandlers.Abstractions.ProcessorWrapper`1.Reset">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.AmountProcessor">
+            <summary>
+            This class has the responsibility of create an instance of amount for the publication, with the input data of the user.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.AmountProcessor.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />
+            </summary>
+        </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
             Generates a string from a single input message, after trimming it.
@@ -1714,6 +1724,19 @@
         <member name="M:Library.InputHandlers.LocationProcessor.#ctor(System.Func{System.String})">
             
         </member>
+        <member name="T:Library.InputHandlers.MaterialProcessor">
+            <summary>
+            This class has the responsibility of create an material with the input data of the user.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.MaterialProcessor.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.MaterialProcessor" />
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.MaterialProcessor.getResult">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.PhoneNumberProcessor">
             <summary>
             Represent an input processor which processes a phone number from input.
@@ -1721,6 +1744,41 @@
         </member>
         <member name="M:Library.InputHandlers.PhoneNumberProcessor.#ctor(System.Func{System.String})">
             
+        </member>
+        <member name="T:Library.InputHandlers.UnitProcessor">
+            <summary>
+            This class has the responsibility of return a unit for the publication.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.UnitProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.UnitProcessor" />
+            </summary>
+            <param name="initialResponseGetter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.InputHandlers.UnsignedDoubleProcessor">
+            <summary>
+            Represent an input processor which processes a double floating point decimal from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.UnsignedInt32Processor" />
+            </summary>
+            <param name="initialResponseGetter"></param>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.Reset">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.UnsignedInt32Processor">
             <summary>
@@ -1916,6 +1974,22 @@
             Initializes an instance of <see cref="T:Library.States.Admins.AdminRemoveUserState" />.
             </summary>
         </member>
+        <member name="T:Library.States.Companies.CompanyInitialMenuState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.CompanyInitialMenuState.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.CompanyInitialMenuState.GetInitialResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Companies.CompanyInitialMenuState.GetErrorString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
             <summary>
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
@@ -1945,6 +2019,52 @@
             </summary>
             <param name="parent">Its parent, from which it gets the company's name.</param>
         </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurMenuState">
+            <summary>
+            This class represents the <see cref="T:Library.Core.State" /> of an entrepreneur in the initial menu.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurMenuState" />
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetInitialResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetErrorString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a keyword.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a keyword.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a location and distance.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState" />.
+            </summary>
+        </member>
         <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
             <summary>
             
@@ -1970,6 +2090,17 @@
             <inheritdoc />
         </member>
         <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.InputProcessorState">
+            <summary>
+            This class represents a State which basically works with an <see cref="T:Library.Core.Processing.InputProcessor`1" />.
+            </summary>
+        </member>
+        <member name="M:Library.States.InputProcessorState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.InputProcessorState.GetDefaultResponse">
             <inheritdoc />
         </member>
         <member name="T:Library.States.MultipleOptionState">
@@ -1998,6 +2129,12 @@
             <returns>A string.</returns>
         </member>
         <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.WrapperState.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.WrapperState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Utils.BasicUtils">

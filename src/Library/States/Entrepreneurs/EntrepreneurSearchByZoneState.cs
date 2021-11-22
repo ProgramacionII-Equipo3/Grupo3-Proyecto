@@ -5,6 +5,7 @@ using Library.Core.Processing;
 using Library.HighLevel.Entrepreneurs;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
+using Library.Utils;
 using System.Linq;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
@@ -16,21 +17,43 @@ namespace Library.States.Entrepreneurs
     /// </summary>
     public class EntrepreneurSearchByZoneState : WrapperState
     {
-        public double distanceSpecified;
-
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurSearchByZoneState" />.
         /// </summary>
         public EntrepreneurSearchByZoneState(): base(
-            InputProcessorState.CreateInstance<Location>(
-                new LocationProcessor(() => "Please insert the Location you want to search."),
-                locationSpecified =>
+            InputProcessorState.CreateInstance<(Location, double)>(
+                new SearchDataProcessor(),
+                result =>
                 {
-                    List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified);
+                    List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByLocation(result.Item1, result.Item2);
                     return (new EntrepreneurMenuState(string.Join('\n', publications)), null);
                 },
                 () => (new EntrepreneurMenuState(), null)
             )
         ) {}
+
+        private class SearchDataProcessor : FormProcessor<(Location, double)>
+        {
+            private Location? location;
+            private double? distance;
+
+            public SearchDataProcessor()
+            {
+                this.inputHandlers = new InputHandler[]
+                {
+                    ProcessorHandler.CreateInfallibleInstance<Location>(
+                        location => this.location = location,
+                        new LocationProcessor(() => "")
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<double>(
+                        distance => this.distance = distance,
+                        new UnsignedDoubleProcessor(() => "")
+                    )
+                };
+            }
+
+            protected override Result<(Location, double), string> getResult() =>
+                Result<(Location, double), string>.Ok((this.location.Unwrap(), this.distance.Unwrap()));
+        }
     }
 }

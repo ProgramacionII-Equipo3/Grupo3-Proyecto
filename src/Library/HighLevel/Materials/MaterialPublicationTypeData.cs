@@ -50,6 +50,8 @@ namespace Library.HighLevel.Materials
                     return "scheduled";
                 case MaterialPublicationType.CONTINUOUS:
                     return "continuous";
+                default:
+                    throw new Exception();
             }
         }
 

@@ -135,5 +135,10 @@ namespace Library.Utils
             return true;
         }
 
+        public static string LocationToString(Location location)
+        {
+            $"{location.AddresLine}, {location.Locality}, {location.CountryRegion}";
+        }
+
     }
 }

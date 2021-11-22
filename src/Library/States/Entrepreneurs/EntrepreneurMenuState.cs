@@ -9,35 +9,20 @@ namespace Library.States.Entrepreneurs
     /// </summary>
     public class EntrepreneurMenuState : MultipleOptionState
     {
-        /// <inheritdoc />
-        public override bool IsComplete => true;
-
-        /// <inheritdoc />
-        public override State.Type UserType => State.Type.ENTREPRENEUR;
-
-        private string userId;
-
         private string? initialResponse;
 
-        private string keyword;
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurMenuState" />
         /// </summary>
         public EntrepreneurMenuState(string? initialResponse = null)
         {
             this.initialResponse = initialResponse;
-            this.commands = new (string, string, Func<(State, string)>)[]
+            this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                ("/eregister", "Registers a Entrepreneur into the platform", this.registerEntrepreneur),
                 ("/esearchFK", "Search a material with a keyword", this.searchByKeyword),
                 ("/esearchFC", "Search a material by its category", this.searchByCategory),
                 ("/esearchFZ", "Search a material by its zone", this.searchByZone)
             };
-        }
-
-        private (State, string) registerEntrepreneur()
-        {
-            return (new NewEntrepreneurState(userId), null);
         }
 
         private (State, string) searchByKeyword()

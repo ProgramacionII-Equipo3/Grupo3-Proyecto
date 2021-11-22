@@ -16,18 +16,7 @@ namespace Library.States.Companies
         public CompanyPublishMaterialState(string id) : base(
             exitState: () => new CompanyInitialMenuState(),
             nextState: () => new CompanyInitialMenuState(),
-            inputHandler: ProcessorHandler.CreateInstance<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>)>(
-                (result) => 
-                {
-                    if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
-                    {
-                        (company as IPublisher).PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6);
-                    } else
-                    {
-                        return "This user is not a company representative.";
-                    }
-                }
-            )
+            inputHandler: null! // Replace with real value
         )
         {
         }
@@ -68,9 +57,6 @@ namespace Library.States.Companies
                     ProcessorHandler.CreateInfallibleInstance<Amount>(
                         a => this.amount = a,
                         new AmountProcessor()
-                    ),
-                    ProcessorHandler.CreateInfallibleInstance<Price>(
-                        
                     )
                 };
             }
