@@ -36,7 +36,7 @@ namespace Library.States.Companies
 
         private (State, string?) CompanyReport()
         {
-            throw new NotImplementedException();
+            return(new CompanySentReportState(this.id), null);
         }
 
         /// <inheritdoc />

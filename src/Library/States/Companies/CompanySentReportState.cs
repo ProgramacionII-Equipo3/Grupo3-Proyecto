@@ -15,7 +15,6 @@ namespace Library.States.Companies
         /// Initializes an intance of <see cref="CompanySentReportState" />
         /// </summary>
         /// <param name="id">User´s id.</param>
-        /// <typeparam name="DateTime">The DateTime to search.</typeparam>
         /// <returns></returns>
         public CompanySentReportState(string id) : base(
             InputProcessorState.CreateInstance<DateTime>(
