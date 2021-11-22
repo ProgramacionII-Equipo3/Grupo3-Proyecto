@@ -25,7 +25,7 @@
             The main program.
             </summary>
         </member>
-        <member name="M:Grupo3_Proyecto.Program.Main">
+        <member name="M:Grupo3_Proyecto.Program.Main(System.String[])">
             <summary>
             Executes the program.
             </summary>
