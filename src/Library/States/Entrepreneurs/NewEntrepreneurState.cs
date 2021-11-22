@@ -44,32 +44,32 @@ namespace Library.States.Entrepreneurs
                 {
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         name => this.name = name,
-                        new BasicStringProcessor(() => "Please insert your name.")
+                        new BasicStringProcessor(() => "Porfavor ingrese su nombre.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<int>(
                         age => this.age = age,
-                        new UnsignedInt32Processor(() => "Please insert your age (in years).")
+                        new UnsignedInt32Processor(() => "Porfavor ingrese su edad.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Location>(
                         location => this.location = location,
-                        new LocationProcessor(() => "Please insert your location (<address>, <city>, <department>, <country>).")
+                        new LocationProcessor(() => "Porfavor ingrese su ubicación (<dirección>, <ciudad>, <departamento>, <país>).")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         heading => this.heading = heading,
-                        new BasicStringProcessor(() => "Please insert your heading.")
+                        new BasicStringProcessor(() => "Porfavor ingrese su rubro.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
-                            () => "Please insert your habilitations",
+                            () => "Porfavor ingrese sus habilitaciones.",
                             new HabilitationProcessor()
                         )
                     ),
                     ProcessorHandler.CreateInfallibleInstance<string[]>(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
-                            () => "Please insert your specializations.",
-                            new BasicStringProcessor(() => "Please insert your specializations, insert /finish to finish.")
+                            () => "Porfavor ingrese sus especializaciones.",
+                            new BasicStringProcessor(() => "Porfavor ingrese sus especializaciones, escriba /finish para finalizar.")
                         )
                     )
                 };
