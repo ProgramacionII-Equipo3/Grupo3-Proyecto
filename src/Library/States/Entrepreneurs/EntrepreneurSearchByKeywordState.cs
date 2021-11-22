@@ -13,29 +13,21 @@ namespace Library.States.Entrepreneurs
     /// <summary>
     /// This class represents the state of an entrepreneur that is searching publications with a keyword.
     /// </summary>
-    public class EntrepreneurSearchByKeywordState : InputProcessorState
+    public class EntrepreneurSearchByKeywordState : WrapperState
     {
-        /// <inheritdoc />
-        public override bool IsComplete => true;
-
-        /// <inheritdoc />
-        public override State.Type UserType => State.Type.ENTREPRENEUR;
-
-        private IList<MaterialPublication> publications;
-
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurSearchByKeywordState" />.
         /// </summary>
         public EntrepreneurSearchByKeywordState(): base(
-            inputHandler: ProcessorHandler.CreateInstance<string>(
+            InputProcessorState.CreateInstance<string>(
+                new BasicStringProcessor(() => "Please insert the keyword you want to search."),
                 keyword => 
-                Singleton<Searcher>.Instance.SearchByKeyword(keyword).Any()
-                    ? null
-                    : "There's no publication with that keyword.",
-                new BasicStringProcessor(() => "Please insert the keyword you want to search.")
-            ),
-            exitState: () => new EntrepreneurMenuState(),
-            nextState: () => new EntrepreneurMenuState()
+                {
+                    List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByKeyword(keyword);
+                    return (new EntrepreneurMenuState(string.Join('\n', publications)), null);
+                },
+                () => (new EntrepreneurMenuState(), null)
+            )
         ) {}
     }
 }

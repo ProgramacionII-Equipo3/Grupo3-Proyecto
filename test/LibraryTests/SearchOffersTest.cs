@@ -30,7 +30,7 @@ namespace ProgramTests
         private Price price2;
         private Location? pickupLocation2;
         private MaterialPublication? publication2;
-        private IList<MaterialPublication>? publications;
+        private IList<AssignedMaterialPublication>? publications;
 
         /// <summary>
         /// Test Setup.
@@ -56,9 +56,7 @@ namespace ProgramTests
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
             this.publication2 = MaterialPublication.CreateInstance(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
-           
-            //publications.Add(publication1);
-            //publications.Add(publication2);
+            IList<AssignedMaterialPublication> publications = new List<AssignedMaterialPublication> {publication1, publication2};
         }
 
         /// <summary>
@@ -124,8 +122,6 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
-
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("Av. Gral. San Martín 2909").Result;
@@ -145,8 +141,6 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneNotFound()
         {
-            IList<MaterialPublication> publicationsToSearchIn = new List<MaterialPublication> { this.publication1!, this.publication2! };
-
             LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("12 De Diciembre 811").Result;
