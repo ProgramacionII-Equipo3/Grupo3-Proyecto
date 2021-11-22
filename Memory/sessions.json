@@ -1,5 +1,16 @@
 [
     {
+        "Id": "CompRep",
+        "UserData": {
+            "Name": "santiago",
+            "ContactInfo": {
+
+            },
+            "IsComplete": true,
+            "UserType": 2
+        }
+    },
+    {
         "Id": "ConsoleID",
         "UserData": {
             "Name": "santiago",

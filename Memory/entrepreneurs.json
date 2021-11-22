@@ -19,6 +19,14 @@
         ],
         "Specializations": [
 
+        ],
+        "BoughtMaterials": [
+            {
+                "CompanyName": "Company1",
+                "Material": {
+                    
+                }
+            }
         ]
     }
 ]

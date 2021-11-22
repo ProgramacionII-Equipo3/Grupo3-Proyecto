@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Library.Core;
+using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
 
@@ -12,7 +13,7 @@ namespace Library.HighLevel.Entrepreneurs
     /// We used the principle Creator to create this class, for
     /// example, the list of entrepreneur is created here.
     /// </summary>
-    public class Entrepreneur
+    public partial class Entrepreneur
     {
         /// <summary>
         /// Gets or sets the entrepreneur's id.
@@ -64,8 +65,23 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="heading">Entrepreneur's heading.</param>
         /// <param name="habilitations">Entrepreneur's habilitation.</param>
         /// <param name="specializations">Entrepreneur's specializations.</param>
+        public Entrepreneur(string id, string name, int age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations) : this(id, name, age, location, heading, habilitations, specializations, new List<BoughtMaterialLine>())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Entrepreneur"/> class from JSON data.
+        /// </summary>
+        /// <param name="id">Entrepreneur's id.</param>
+        /// <param name="name">Entrepreneur's name.</param>
+        /// <param name="age">Entrepreneur's age.</param>
+        /// <param name="location">Entrepreneur's location.</param>
+        /// <param name="heading">Entrepreneur's heading.</param>
+        /// <param name="habilitations">Entrepreneur's habilitation.</param>
+        /// <param name="specializations">Entrepreneur's specializations.</param>
+        /// <param name="boughtMaterials">Entrepreneur's bought material lines.</param>
         [JsonConstructor]
-        public Entrepreneur(string id, string name, int age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
+        public Entrepreneur(string id, string name, int age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations, IList<BoughtMaterialLine> boughtMaterials)
         {
             this.Id = id;
             this.Name = name;
@@ -74,6 +90,7 @@ namespace Library.HighLevel.Entrepreneurs
             this.Heading = heading;
             this.Habilitations = habilitations;
             this.Specializations = specializations;
+            this.BoughtMaterials = boughtMaterials;
         }
     }
 }

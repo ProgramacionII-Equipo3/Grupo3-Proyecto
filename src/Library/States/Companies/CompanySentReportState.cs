@@ -15,7 +15,6 @@ namespace Library.States.Companies
         /// Initializes an intance of <see cref="CompanySentReportState" />
         /// </summary>
         /// <param name="id">User's id.</param>
-        /// <returns></returns>
         public CompanySentReportState(string id) : base(
             InputProcessorState.CreateInstance<DateTime>(
                 new DateProcessor(() => "Ingresa la fecha para realizar el reporte."),
@@ -24,7 +23,7 @@ namespace Library.States.Companies
                     State newState = new CompanyInitialMenuState(id);
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        SentMaterialReport report = (company as ISentMaterialReportCreator).GetMaterialReport(time);
+                        SentMaterialReport report = company.GetMaterialReport(time);
                         return (newState, $"{report}\n{newState.GetDefaultResponse()}");
                     }
                     else

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Library.HighLevel.Accountability;
 
 namespace Library.HighLevel.Materials
@@ -16,6 +17,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// Gets the measure with which the amounts of the material are measured.
         /// </summary>
+        [JsonIgnore]
         public Measure Measure { get; private set; }
 
         /// <summary>

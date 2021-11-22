@@ -30,7 +30,7 @@ namespace Library.States.Companies
                 {
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        if ((company as IPublisher).PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6))
+                        if (company.PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6))
                         {
                             return null;
                         }
@@ -40,7 +40,7 @@ namespace Library.States.Companies
                         return "Lo siento, no te reconozco como un representante de una empresa.";
                     }
                 },
-                new CollectDataProcessor()
+                new CollectDataProcessor(id)
             )
         )
         {
@@ -64,13 +64,26 @@ namespace Library.States.Companies
             /// <summary>
             /// Initializes an instance of <see cref="CollectDataProcessor" />
             /// </summary>
-            public CollectDataProcessor()
+            public CollectDataProcessor(string id)
             {
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInfallibleInstance<Material>(
-
-                        m => this.material = m,
+                    ProcessorHandler.CreateInstance<Material>(
+                        m =>
+                        {
+                            if(Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
+                            {
+                                if(company.Publications.Any(ap => ap.Publication.Material.Name == m.Name))
+                                {
+                                    return "Ya hay un material con este nombre.";
+                                }
+                                this.material = m;
+                                return null;
+                            } else
+                            {
+                                return "No se puede chequear la unicidad de este material en la compañía.";
+                            }
+                        },
                         new MaterialProcessor()
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Amount>(

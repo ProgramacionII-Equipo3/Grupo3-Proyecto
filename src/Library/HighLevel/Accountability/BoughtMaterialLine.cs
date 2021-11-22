@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 using Library.HighLevel.Materials;
 using Library.Utils;
 
@@ -13,34 +14,42 @@ namespace Library.HighLevel.Accountability
     public class BoughtMaterialLine
     {
         /// <summary>
+        /// The company who owns the material.
+        /// </summary>
+        public string CompanyName { get; }
+
+        /// <summary>
         /// The purchased material.
         /// </summary>
-        public readonly Material Material;
+        public Material Material { get; }
 
         /// <summary>
         /// The date of when the purchase was made.
         /// </summary>
-        public readonly DateTime DateTime;
+        public DateTime DateTime { get; }
 
         /// <summary>
         /// The cost of the material.
         /// </summary>
-        public readonly Price Price;
+        public Price Price { get; }
 
         /// <summary>
         /// The amount of the purchased material.
         /// </summary>
-        public readonly Amount Amount;
+        public Amount Amount { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BoughtMaterialLine"/> class.
         /// </summary>
+        /// <param name="companyName">The company who owned the material.</param>
         /// <param name="material">The purchased material.</param>
         /// <param name="dateTime">The date of when the purchase was made.</param>
         /// <param name="price">The cost of the material.</param>
         /// <param name="amount">The amount of the purchased material.</param>
-        public BoughtMaterialLine(Material material, DateTime dateTime, Price price, Amount amount)
+        [JsonConstructor]
+        public BoughtMaterialLine(string companyName, Material material, DateTime dateTime, Price price, Amount amount)
         {
+            this.CompanyName = companyName;
             this.Material = material;
             this.DateTime = dateTime;
             this.Price = price;

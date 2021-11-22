@@ -9,12 +9,12 @@ namespace Library.HighLevel.Companies
     /// This interface represents the responsibility of creating material reports.
     /// We created this interface because of DIP, that way the classes depend of an abstraction.
     /// </summary>
-    public interface ISentMaterialReportCreator
+    public partial class Company
     {
         /// <summary>
         /// Gets the list of material sales.
         /// </summary>
-        protected IList<MaterialSalesLine> materialSales { get; }
+        public IList<MaterialSalesLine> materialSales { get; private set; } = new List<MaterialSalesLine>();
 
         /// <summary>
         /// Builds a <see cref="SentMaterialReport" /> with the material sales that occured after a certain <see cref="DateTime" />.
