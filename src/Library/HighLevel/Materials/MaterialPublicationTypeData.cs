@@ -40,6 +40,21 @@ namespace Library.HighLevel.Materials
             CONTINUOUS
         }
 
+        public override string? ToString()
+        {
+            switch(this.PublicationType)
+            {
+                case MaterialPublicationType.NORMAL:
+                    return "normal";
+                case MaterialPublicationType.SCHEDULED:
+                    return "scheduled";
+                case MaterialPublicationType.CONTINUOUS:
+                    return "continuous";
+                default:
+                    throw new Exception();
+            }
+        }
+
         private MaterialPublicationTypeData(MaterialPublicationType publicationType, DateTime dateTime)
         {
             this.PublicationType = publicationType;

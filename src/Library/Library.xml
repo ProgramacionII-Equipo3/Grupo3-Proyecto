@@ -1133,25 +1133,22 @@
             It creates a client to be able to use the LocationAPI.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's by a category.
             </summary>
-            <param name="publications"></param>
             <param name="category"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.String)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.String)">
             <summary>
             This method has the responsibility of searching all the publication's by a keyword.
             </summary>
-            <param name="publications"></param>
             <param name="keyword"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
             This method has the responsibility of searching all the publication's by a location.
             </summary>
-            <param name="publications"></param>
             <param name="locationSpecified"></param>
             <param name="distanceSpecified"></param>
         </member>
@@ -1801,6 +1798,29 @@
             <param name="initialResponseGetter"></param>
             <returns></returns>
         </member>
+        <member name="T:Library.InputHandlers.UnsignedDoubleProcessor">
+            <summary>
+            Represent an input processor which processes a double floating point decimal from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.UnsignedInt32Processor" />
+            </summary>
+            <param name="initialResponseGetter"></param>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.Reset">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.UnsignedInt32Processor">
             <summary>
             Represent an input processor which processes an integer from input.
@@ -2038,7 +2058,6 @@
             Initializes an intance of <see cref="T:Library.States.Companies.CompanySentReportState" />
             </summary>
             <param name="id">User´s id.</param>
-            <typeparam name="DateTime">The DateTime to search.</typeparam>
             <returns></returns>
         </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
@@ -2069,6 +2088,52 @@
             Initializes an instance of <see cref="T:Library.States.Companies.IncompleteCompanyRepresentativeState.CreateNewCompanyState" />.
             </summary>
             <param name="parent">Its parent, from which it gets the company's name.</param>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurMenuState">
+            <summary>
+            This class represents the <see cref="T:Library.Core.State" /> of an entrepreneur in the initial menu.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurMenuState" />
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetInitialResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetErrorString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a keyword.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a keyword.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a location and distance.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState" />.
+            </summary>
         </member>
         <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
             <summary>

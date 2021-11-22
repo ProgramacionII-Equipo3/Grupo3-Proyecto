@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Library.HighLevel.Materials;
+using Library.HighLevel.Companies;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Entrepreneurs
@@ -12,6 +13,8 @@ namespace Library.HighLevel.Entrepreneurs
     /// </summary>
     public class Searcher
     {
+        protected List<MaterialPublication> publications { get; }
+
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
         /// </summary>
@@ -20,58 +23,55 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a category.
         /// </summary>
-        /// <param name="publications"></param>
         /// <param name="category"></param>
-        public List<MaterialPublication> SearchByCategory(IList<MaterialPublication> publications, MaterialCategory category)
+        public List<AssignedMaterialPublication> SearchByCategory(MaterialCategory category)
         {
-           List<MaterialPublication> searchResultA = new List<MaterialPublication>();
-           foreach (var item in publications)
+           List<AssignedMaterialPublication> searchResultCategory = new List<AssignedMaterialPublication>();
+           foreach (var item in Singleton<CompanyManager>.Instance.Publications)
            {
-               if (item.Material.Category.Name == category.Name)
+               if (item.Publication.Material.Category.Name == category.Name)
                {
-                   searchResultA.Add(item);
+                   searchResultCategory.Add(item);
                }
            }
-           return searchResultA;
+           return searchResultCategory;
         }
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a keyword.
         /// </summary>
-        /// <param name="publications"></param>
         /// <param name="keyword"></param>
-        public List<MaterialPublication> SearchByKeyword(IList<MaterialPublication> publications, string keyword)
+        public List<AssignedMaterialPublication> SearchByKeyword(string keyword)
         {
-           List<MaterialPublication> searchResultB = new List<MaterialPublication>();
-           foreach (var item in publications)
+           List<AssignedMaterialPublication> searchResultKeyword = new List<AssignedMaterialPublication>();
+           foreach (var item in Singleton<CompanyManager>.Instance.Publications)
            {
-               if (item.Keywords.Contains(keyword))
+               if (item.Publication.Keywords.Contains(keyword))
                {
-                   searchResultB.Add(item);
+                   searchResultKeyword.Add(item);
                }
            }
-           return searchResultB;
+           return searchResultKeyword;
         }
 
         /// <summary>
         /// This method has the responsibility of searching all the publication's by a location.
         /// </summary>
-        /// <param name="publications"></param>
         /// <param name="locationSpecified"></param>
         /// <param name="distanceSpecified"></param>
-        public List<MaterialPublication> SearchByLocation(IList<MaterialPublication> publications, Location locationSpecified, double distanceSpecified)
+        public List<AssignedMaterialPublication> SearchByLocation(Location locationSpecified, double distanceSpecified)
         {
-           List<MaterialPublication> searchResultC = new List<MaterialPublication>();
-           foreach (var item in publications)
+           List<AssignedMaterialPublication> searchResultLocation = new List<AssignedMaterialPublication>();
+           foreach (var item in Singleton<CompanyManager>.Instance.Publications)
            {
                Distance distance;
-               distance = client.GetDistanceAsync(locationSpecified, item.PickupLocation).Result;
+               distance = client.GetDistanceAsync(locationSpecified, item.Publication.PickupLocation).Result;
                if (distance.TravelDistance <= distanceSpecified)
                {
-                   searchResultC.Add(item);
+                   searchResultLocation.Add(item);
                }
            }
-           return searchResultC;
+           return searchResultLocation;
         }        
     }
 }
