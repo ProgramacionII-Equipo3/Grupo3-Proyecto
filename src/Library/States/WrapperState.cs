@@ -9,6 +9,10 @@ namespace Library.States
     {
         private State innerState;
 
+        /// <summary>
+        /// Initializes an instance of <see cref="WrapperState" />.
+        /// </summary>
+        /// <param name="innerState">The inner state.</param>
         public WrapperState(State innerState)
         {
             this.innerState = innerState;

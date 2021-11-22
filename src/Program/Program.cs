@@ -23,15 +23,6 @@ namespace Grupo3_Proyecto
         /// </summary>
         public static void Main(string[] args)
         {
-            /* TelegramBot telegramBot = TelegramBot.Instance;
-            Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
-            telegramBot.ReceiveMessages(
-                () =>
-                {
-                    Console.WriteLine("Escribe una línea para terminar");
-                    Console.ReadLine();
-                }
-            ); */
             if(args.Length != 1) throw new Exception("One command-line argument expected.");
             switch(args[0])
             {

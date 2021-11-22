@@ -89,11 +89,6 @@
             This test evaluate if the entrepreneur is registered with their correct information.
             </summary>
         </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegisterFromUserInput">
-            <summary>
-            Tests the course of registering an entrepreneur from user input.
-            </summary>
-        </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
             This test check if the Entrepreneur can get an received material report.
@@ -197,8 +192,6 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="T:UnitTests.AdminStatesTest">
             <summary>
             This class represents unit tests related to admin states.
@@ -219,7 +212,6 @@
             Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
             </summary>
         </member>
->>>>>>> master
         <member name="T:UnitTests.InvitationListTest">
             <summary>
             This class represents tests concerning the <see cref="T:Library.Core.Invitations.InvitationList`1" /> class.
@@ -239,8 +231,6 @@
         <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
             <inheritdoc />
         </member>
-<<<<<<< HEAD
-=======
         <member name="T:UnitTests.ListProcessorTest">
             <summary>
             This class represents unit tests related to the class <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1" /> as a subclass of <see cref="T:Library.Core.Processing.InputProcessor`1" /> of a list of elements.
@@ -306,6 +296,5 @@
             </summary>
             <returns>A <see cref="T:Library.Core.UserData" /></returns>
         </member>
->>>>>>> master
     </members>
 </doc>
