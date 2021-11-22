@@ -26,9 +26,9 @@ namespace Library.States.Entrepreneurs
                 result =>
                 {
                     List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByLocation(result.Item1, result.Item2);
-                    return (new EntrepreneurMenuState(string.Join('\n', publications)), null);
+                    return (new EntrepreneurInitialMenuState(string.Join('\n', publications)), null);
                 },
-                () => (new EntrepreneurMenuState(), null)
+                () => (new EntrepreneurInitialMenuState(null), null)
             )
         ) {}
 
@@ -43,11 +43,11 @@ namespace Library.States.Entrepreneurs
                 {
                     ProcessorHandler.CreateInfallibleInstance<Location>(
                         location => this.location = location,
-                        new LocationProcessor(() => "")
+                        new LocationProcessor(() => "Ingrese una dirección para buscar en sus alrededores.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<double>(
                         distance => this.distance = distance,
-                        new UnsignedDoubleProcessor(() => "")
+                        new UnsignedDoubleProcessor(() => "Ingrese el radio de búsqueda.")
                     )
                 };
             }

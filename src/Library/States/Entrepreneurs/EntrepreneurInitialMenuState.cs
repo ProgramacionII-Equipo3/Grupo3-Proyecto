@@ -15,20 +15,22 @@ namespace Library.States.Entrepreneurs
     /// </summary>
     public class EntrepreneurInitialMenuState : MultipleOptionState
     {
-        private string id;
+        private string? initialResponse;
+        private string? id;
 
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurInitialMenuState" />.
         /// </summary>
-        public EntrepreneurInitialMenuState(string id)
+        public EntrepreneurInitialMenuState(string? id,string? initialResponse = null)
         {
+            this.initialResponse=initialResponse;
             this.id = id;
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                /*
-                ("/searchFK", "Busca materiales utilizando palabras claves.", this.searchFK),
-                ("/searchFC", "Busca materiales por categorías.", this.searchFC)
-                ("/searchFZ", "Busca materiales por zona.", this.searchFZ)*/
+                
+                ("/searchFK", "Busca materiales utilizando palabras claves.", this.searchByKeyword),
+                ("/searchFC", "Busca materiales por categorías.", this.searchByCategory),
+                ("/searchFZ", "Busca materiales por zona.", this.searchByZone),
                 ("/materialgen","Muestra que materiales son constantemente generados.", this.materialsgen),
                 ("/materialSpunt","Muestra que materiales son generados puntualmente.", this.materialspunt),
                 ("/ereport","Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
@@ -59,15 +61,34 @@ namespace Library.States.Entrepreneurs
             );
             return (this, string.Join ('\n', spunt_publication)+"\n"+this.GetDefaultResponse());
         }
-        
-        /// <inheritdoc />
-        protected override string GetInitialResponse() =>
-            "Qué acción quieres ejecutar?";
 
+        private (State, string?) searchByKeyword()
+        {
+            return (new EntrepreneurSearchByKeywordState(), null);
+        }
+
+        private (State, string?) searchByCategory()
+        {
+            return (new EntrepreneurSearchByCategoryState(), null);
+        }
+
+        private (State, string?) searchByZone()
+        {
+            return (new EntrepreneurSearchByZoneState(), null);
+        }
+        
+       /// <inheritdoc />
+        protected override string GetInitialResponse()
+        {
+            if(initialResponse is null) return "What do you want to do?";
+            string response = initialResponse;
+            initialResponse = null;
+            return $"{response}\nWhat do you want to do?";
+        }
 
         /// <inheritdoc />
         protected override string GetErrorString() =>
-            "Opción no válida.";
+            "Invalid option.";
 
     }
 }

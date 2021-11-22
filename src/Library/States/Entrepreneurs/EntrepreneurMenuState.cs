@@ -1,7 +1,7 @@
 using System;
 using Library.Core;
 using Library.States.Entrepreneurs;
-
+/*
 namespace Library.States.Entrepreneurs
 {
     /// <summary>
@@ -54,3 +54,4 @@ namespace Library.States.Entrepreneurs
             "Invalid option.";
     }
 }
+*/

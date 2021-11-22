@@ -2187,7 +2187,7 @@
             This class represents a <see cref="T:Library.Core.State" /> for an entrepreneur in the initial menu.
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.#ctor(System.String)">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.#ctor(System.String,System.String)">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurInitialMenuState" />.
             </summary>
@@ -2196,22 +2196,6 @@
             <inheritdoc />
         </member>
         <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.GetErrorString">
-            <inheritdoc />
-        </member>
-        <member name="T:Library.States.Entrepreneurs.EntrepreneurMenuState">
-            <summary>
-            This class represents the <see cref="T:Library.Core.State" /> of an entrepreneur in the initial menu.
-            </summary>
-        </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.#ctor(System.String)">
-            <summary>
-            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurMenuState" />
-            </summary>
-        </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetInitialResponse">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetErrorString">
             <inheritdoc />
         </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState">
