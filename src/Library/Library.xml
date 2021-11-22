@@ -1751,6 +1751,12 @@
         <member name="M:Library.InputHandlers.MaterialProcessor.getResult">
             <inheritdoc />
         </member>
+        <member name="M:Library.InputHandlers.MaterialPublicationTypeDataProcessor.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.MaterialPublicationTypeDataProcessor.getResult">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.MeasureProcessor">
             <summary>
             This class has te responsibility of return a measure for the publication.
@@ -2021,6 +2027,19 @@
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor" />
             </summary>
+        </member>
+        <member name="T:Library.States.Companies.CompanySentReportState">
+            <summary>
+            This class has the responsibility of return the material´s sent report.
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.CompanySentReportState.#ctor(System.String)">
+            <summary>
+            Initializes an intance of <see cref="T:Library.States.Companies.CompanySentReportState" />
+            </summary>
+            <param name="id">User´s id.</param>
+            <typeparam name="DateTime">The DateTime to search.</typeparam>
+            <returns></returns>
         </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
             <summary>
