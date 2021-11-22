@@ -33,7 +33,6 @@ namespace ProgramTests
         private Price price2;
         private Location? pickupLocation2;
         private AssignedMaterialPublication? publication2;
-        private IList<AssignedMaterialPublication>? publications;
         private ContactInfo contact;
 
 

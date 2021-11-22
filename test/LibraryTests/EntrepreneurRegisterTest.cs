@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Library;
 using Library.Core;
+using Library.Core.Invitations;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
-using Library.Core.Invitations;
-using Library.Utils;
 using Library.Platforms.Telegram;
+using Library.Utils;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -66,7 +67,7 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text), this.location!, this.headingMessage.Text, habilitations, specializations);
+            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text, NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite), this.location!, this.headingMessage.Text, habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
