@@ -18,7 +18,7 @@ namespace Library.States.Companies
         /// <inheritdoc />
         public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
-            if(this.companyGetter == null)
+            if (this.companyGetter == null)
             {
                 this.name = msg.Trim();
                 var (newStep, response) = this.nextStateGivenCompanyName(this.name);
@@ -26,7 +26,7 @@ namespace Library.States.Companies
                 return (this, response);
             }
 
-            if(companyGetter.GenerateFromInput(msg) is Result<Company, string> result)
+            if (companyGetter.GenerateFromInput(msg) is Result<Company, string> result)
             {
                 var (state, s, f) = result.Map<(State?, string?, Func<UserData, UserData>?)>(
                     company =>
@@ -44,7 +44,7 @@ namespace Library.States.Companies
                     },
                     e => (this, e, null)
                 );
-                if(f != null) data = f(data);
+                if (f != null) data = f(data);
                 return (state, s);
             } else
             {
@@ -56,7 +56,7 @@ namespace Library.States.Companies
         /// <inheritdoc />
         public override string GetDefaultResponse()
         {
-            if(this.companyGetter == null)
+            if (this.companyGetter == null)
             {
                 return "Por favor ingresa el nombre de la empresa.";
             } else
@@ -68,7 +68,7 @@ namespace Library.States.Companies
         private (InputProcessor<Company>, string) nextStateGivenCompanyName(string name)
         {
             InputProcessor<Company> getter;
-            if(Singleton<CompanyManager>.Instance.GetByName(name) is Company perfectMatch)
+            if (Singleton<CompanyManager>.Instance.GetByName(name) is Company perfectMatch)
             {
                 getter = new AssignExistingCompanyState(perfectMatch);
             } else

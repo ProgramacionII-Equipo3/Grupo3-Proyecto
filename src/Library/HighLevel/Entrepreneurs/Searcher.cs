@@ -6,7 +6,7 @@ using Ucu.Poo.Locations.Client;
 namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
-    /// This class has the responsibility of searching material publication´s
+    /// This class has the responsibility of searching material publication's
     /// according to a specified category, keyword or location.
     /// We created this class using expert, this class itself does all the possible
     /// filter searches). It also has a High Cohesion because of the same reason.

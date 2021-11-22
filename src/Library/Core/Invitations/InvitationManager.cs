@@ -25,7 +25,7 @@ namespace Library.Core.Invitations
         /// <param name="remover">The remover.</param>
         public void AddRemover(Action<string> remover)
         {
-            if(!removers.Contains(remover))
+            if (!removers.Contains(remover))
                 removers.Add(remover);
         }
 
@@ -42,7 +42,7 @@ namespace Library.Core.Invitations
         /// <summary>
         /// Adds an invitation into the list.
         /// </summary>
-        /// <param name="code">The invitation´s code.</param>
+        /// <param name="code">The invitation's code.</param>
         /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         public void CreateInvitation<T>(string code, Func<string, T> f) where T : Invitation
         {

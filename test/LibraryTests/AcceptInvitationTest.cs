@@ -57,7 +57,7 @@ namespace ProgramTests
         }
 
         /// <summary>
-        /// If the user don´t have a code, it´s user is an Entrepreneur.
+        /// If the user don't have a code, its user is an Entrepreneur.
         /// </summary>
         [Test]
         public void NotAcceptInvitation()
@@ -72,7 +72,7 @@ namespace ProgramTests
             IList<string> specializations = new List<string> { specialization, specialization2 };
             LocationApiClient provider = new LocationApiClient();
             Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
-            Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", "22", location, "Carpintero", habilitations, specializations);
+            Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
             bool expected = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.Contains(entrepreneur);
             Assert.That(expected, Is.True);

@@ -27,7 +27,7 @@ namespace Library.Utils
         public static T DeserializeJSON<T>(string path)
         {
             using var fileStream = new FileStream(path, FileMode.Open);
-            if(JsonSerializer.DeserializeAsync<T>(fileStream, defaultOptions).Result is T result)
+            if (JsonSerializer.DeserializeAsync<T>(fileStream, defaultOptions).Result is T result)
             {
                 return result;
             } else

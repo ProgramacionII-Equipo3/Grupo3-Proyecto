@@ -7,14 +7,14 @@ using Library.InputHandlers;
 namespace Library.States.Companies
 {
     /// <summary>
-    /// This class has the responsibility of return the material´s sent report.
+    /// This class has the responsibility of return the material's sent report.
     /// </summary>
     public class CompanySentReportState : WrapperState
     {
         /// <summary>
         /// Initializes an intance of <see cref="CompanySentReportState" />
         /// </summary>
-        /// <param name="id">User´s id.</param>
+        /// <param name="id">User's id.</param>
         /// <returns></returns>
         public CompanySentReportState(string id) : base(
             InputProcessorState.CreateInstance<DateTime>(

@@ -16,7 +16,7 @@ namespace Library.InputHandlers
                 s =>
                 {
                     DateTime dateTime;
-                    if(DateTime.TryParseExact(s, "dd/MM/yyyy", NumberFormatInfo.InvariantInfo, DateTimeStyles.None, out dateTime))
+                    if (DateTime.TryParseExact(s, "dd/MM/yyyy", NumberFormatInfo.InvariantInfo, DateTimeStyles.None, out dateTime))
                     {
                         return Result<DateTime, string>.Ok(dateTime);
                     } else

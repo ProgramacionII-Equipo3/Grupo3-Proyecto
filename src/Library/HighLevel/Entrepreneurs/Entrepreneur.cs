@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Library.Core;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
@@ -25,7 +27,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur's age.
         /// </summary>
-        public string Age { get; private set; }
+        public int Age { get; private set; }
 
         /// <summary>
         /// Gets the entrepreneur's location.
@@ -55,14 +57,15 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Initializes a new instance of the <see cref="Entrepreneur"/> class.
         /// </summary>
-        /// <param name="id">Entrepreneur´s id.</param>
-        /// <param name="name">Entrepreneur´s name.</param>
-        /// <param name="age">Entrepreneur´s age.</param>
-        /// <param name="location">Entrepreneur´s location.</param>
-        /// <param name="heading">Entrepreneur´s heading.</param>
-        /// <param name="habilitations">Entrepreneur´s habilitation.</param>
-        /// <param name="specializations">Entrepreneur´s specializations.</param>
-        public Entrepreneur(string id, string name, string age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
+        /// <param name="id">Entrepreneur's id.</param>
+        /// <param name="name">Entrepreneur's name.</param>
+        /// <param name="age">Entrepreneur's age.</param>
+        /// <param name="location">Entrepreneur's location.</param>
+        /// <param name="heading">Entrepreneur's heading.</param>
+        /// <param name="habilitations">Entrepreneur's habilitation.</param>
+        /// <param name="specializations">Entrepreneur's specializations.</param>
+        [JsonConstructor]
+        public Entrepreneur(string id, string name, int age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
         {
             this.Id = id;
             this.Name = name;

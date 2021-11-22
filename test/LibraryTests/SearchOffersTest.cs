@@ -65,7 +65,7 @@ namespace ProgramTests
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
 
             Company empresa;
-            if(Singleton<CompanyManager>.Instance.GetByName("Company1") is Company c)
+            if (Singleton<CompanyManager>.Instance.GetByName("Company1") is Company c)
             {
                 empresa = c;
             } else

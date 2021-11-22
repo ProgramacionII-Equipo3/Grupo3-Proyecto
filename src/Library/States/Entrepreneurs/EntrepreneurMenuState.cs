@@ -43,7 +43,7 @@ namespace Library.States.Entrepreneurs
         /// <inheritdoc />
         protected override string GetInitialResponse()
         {
-            if(initialResponse is null) return "What do you want to do?";
+            if (initialResponse is null) return "What do you want to do?";
             string response = initialResponse;
             initialResponse = null;
             return $"{response}\nWhat do you want to do?";

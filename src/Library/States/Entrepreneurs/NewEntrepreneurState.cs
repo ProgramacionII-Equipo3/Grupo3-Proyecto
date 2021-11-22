@@ -76,7 +76,7 @@ namespace Library.States.Entrepreneurs
             }
 
             protected override Result<Entrepreneur, string> getResult() =>
-                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.ToString().Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
+                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
         }
     }
 }

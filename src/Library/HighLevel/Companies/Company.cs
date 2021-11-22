@@ -41,24 +41,16 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The company's representants in the platform.
         /// </summary>
-        private IList<string> representants = new List<string>();
-
-        private string[] jsonRepresentants
-        {
-            get => representants.ToArray();
-            set
-            {
-                this.representants = value.ToList();
-            }
-        }
+        [JsonInclude]
+        public IList<string> representants { get; private set; } = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
-        /// <param name="name">The company´s name.</param>
-        /// <param name="contactInfo">The company´s contact info.</param>
-        /// <param name="heading">The company´s heading.</param>
-        /// <param name="location">The company´s location.</param>
+        /// <param name="name">The company's name.</param>
+        /// <param name="contactInfo">The company's contact info.</param>
+        /// <param name="heading">The company's heading.</param>
+        /// <param name="location">The company's location.</param>
         public Company(string name, ContactInfo contactInfo, string heading, Location location)
         {
             this.Name = name;
@@ -67,22 +59,22 @@ namespace Library.HighLevel.Companies
             this.Location = location;
         }
 
-        [JsonConstructor]
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class from JSON data.
         /// </summary>
-        /// <param name="name">The company´s name.</param>
-        /// <param name="contactInfo">The company´s contact info.</param>
-        /// <param name="heading">The company´s heading.</param>
-        /// <param name="location">The company´s location.</param>
+        /// <param name="name">The company's name.</param>
+        /// <param name="contactInfo">The company's contact info.</param>
+        /// <param name="heading">The company's heading.</param>
+        /// <param name="location">The company's location.</param>
         /// <param name="representants">The company's representants' ids.</param>
-        public Company(string name, ContactInfo contactInfo, string heading, Location location, string[] representants)
+        [JsonConstructor]
+        public Company(string name, ContactInfo contactInfo, string heading, Location location, IList<string> representants)
         {
             this.Name = name;
             this.ContactInfo = contactInfo;
             this.Heading = heading;
             this.Location = location;
-            this.jsonRepresentants = representants;
+            this.representants = representants.ToList();
         }
 
         /// <summary>

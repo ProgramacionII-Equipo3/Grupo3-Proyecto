@@ -20,7 +20,7 @@ namespace Library.InputHandlers
                 s =>
                 {
                     string[] sections = s.Split(", ");
-                    if(sections.Length != 4)
+                    if (sections.Length != 4)
                         return Result<Location, string>.Err("The given location text is incoherent, it must have address, city, department and country.");
                     
                     // TODO: Implement code in case of status 500
@@ -31,7 +31,7 @@ namespace Library.InputHandlers
                         sections[3].Trim()
                     ).Result;
 
-                    if(!location.Found) return Result<Location, string>.Err("The given location is invalid.");
+                    if (!location.Found) return Result<Location, string>.Err("The given location is invalid.");
 
                     return Result<Location, string>.Ok(location);
                 },

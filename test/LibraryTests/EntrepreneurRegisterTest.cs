@@ -27,7 +27,7 @@ namespace ProgramTests
         private Message specializationsMessage;
 
         /// <summary>
-        /// It´s create a message with the information correspondent.
+        /// Creates a message with the correspondent information.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -66,7 +66,7 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, this.ageMessage.Text, this.location!, this.headingMessage.Text, habilitations, specializations);
+            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text), this.location!, this.headingMessage.Text, habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
@@ -82,10 +82,10 @@ namespace ProgramTests
             Assert.AreEqual(nameExpected, juan.Name);
         }
 
-        [Test]
         /// <summary>
         /// Tests the course of registering an entrepreneur from user input.
         /// </summary>
+        [Test]
         public void EntrepreneurRegisterFromUserInput()
         {
             Singleton<InvitationManager>.Instance.CreateInvitation<Library.HighLevel.Companies.CompanyInvitation>("4jsk", code => new Library.HighLevel.Companies.CompanyInvitation(code));

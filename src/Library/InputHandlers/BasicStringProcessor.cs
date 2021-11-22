@@ -28,7 +28,7 @@ namespace Library.InputHandlers
         /// <inheritdoc />
         public override Result<bool, string> ProcessInput(string msg)
         {
-            if(msg == "\\") return Result<bool, string>.Ok(false);
+            if (msg == "\\") return Result<bool, string>.Ok(false);
             if (string.IsNullOrWhiteSpace(msg)) return Result<bool, string>.Err("A valid string was expected.");
             this.result = msg.Trim();
             return Result<bool, string>.Ok(true);

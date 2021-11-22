@@ -1,3 +1,24 @@
 [
-    
+    {
+        "Id": "ConsoleID",
+        "Name": "Santiago",
+        "Age": 20,
+        "Location": {
+            "found": true,
+            "addresLine": "Avenida 8 de Octubre",
+            "countryRegion": "Uruguay",
+            "formattedAddress": "Avenida 8 de Octubre, Montevideo",
+            "locality": "Montevideo",
+            "postalCode": null,
+            "latitude": -34.87959,
+            "longitude": -56.14838
+        },
+        "Heading": "AAA",
+        "Habilitations": [
+
+        ],
+        "Specializations": [
+
+        ]
+    }
 ]

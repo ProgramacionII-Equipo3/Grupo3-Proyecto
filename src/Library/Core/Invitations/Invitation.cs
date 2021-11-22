@@ -13,7 +13,7 @@ namespace Library.Core.Invitations
         /// <summary>
         /// Initializes a new instance of the <see cref="Invitation"/> class.
         /// </summary>
-        /// <param name="code">Invitation´s code.</param>
+        /// <param name="code">Invitation's code.</param>
         public Invitation(string code)
         {
             this.Code = code;

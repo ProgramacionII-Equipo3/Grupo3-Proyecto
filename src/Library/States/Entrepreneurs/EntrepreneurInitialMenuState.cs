@@ -1,11 +1,11 @@
-using Library.HighLevel.Entrepreneurs;
 using Library.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Library.HighLevel.Materials;
-using Library.Utils;
 using Library.HighLevel.Companies;
+using Library.HighLevel.Entrepreneurs;
+using Library.Utils;
 using System.Text;
 
 namespace Library.States.Entrepreneurs
@@ -31,33 +31,37 @@ namespace Library.States.Entrepreneurs
                 ("/searchFZ", "Busca materiales por zona.", this.searchFZ)*/
                 ("/materialgen","Muestra que materiales son constantemente generados.", this.materialsgen),
                 ("/materialSpunt","Muestra que materiales son generados puntualmente.", this.materialspunt),
-                ("/ereport","Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
+                ("/ereport","Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport),
             };
         }
         private (State, string?) ereport()
         {
-            return (new EntrepreneurCreateReportState(
-                Singleton<EntrepreneurManager>.Instance.GetById(this.id).Unwrap()
-            ), null);
+            if (Singleton<EntrepreneurManager>.Instance.GetById(this.id) is Entrepreneur entrepreneur)
+            {
+                return (new EntrepreneurCreateReportState(entrepreneur), null);
+            } else
+            {
+                return (this, "Lo siento, no te reconozco como emprendedor.");
+            }
         }
 
         private (State, string) materialsgen()
         {
-            IEnumerable<AssignedMaterialPublication> gen_publication = Singleton<CompanyManager>.Instance.Publications.Where(
-                gen_publication =>
-                    gen_publication.Publication.Type.PublicationType == MaterialPublicationTypeData.MaterialPublicationType.CONTINUOUS
+            IEnumerable<AssignedMaterialPublication> publications = Singleton<CompanyManager>.Instance.Publications.Where(
+                publications =>
+                    publications.Publication.Type.PublicationType == MaterialPublicationTypeData.MaterialPublicationType.CONTINUOUS
             );
 
-            return (this, string.Join('\n', gen_publication) + "\n" + this.GetDefaultResponse());
+            return (this, string.Join('\n', publications));
         }
 
         private (State, string) materialspunt()
         {
-            IEnumerable<AssignedMaterialPublication> spunt_publication = Singleton<CompanyManager>.Instance.Publications.Where(
-                spunt_publication =>
-                    spunt_publication.Publication.Type.PublicationType == MaterialPublicationTypeData.MaterialPublicationType.SCHEDULED
+            IEnumerable<AssignedMaterialPublication> publications = Singleton<CompanyManager>.Instance.Publications.Where(
+                publication =>
+                    publication.Publication.Type.PublicationType == MaterialPublicationTypeData.MaterialPublicationType.SCHEDULED
             );
-            return (this, string.Join ('\n', spunt_publication)+"\n"+this.GetDefaultResponse());
+            return (this, string.Join('\n', publications));
         }
         
         /// <inheritdoc />
