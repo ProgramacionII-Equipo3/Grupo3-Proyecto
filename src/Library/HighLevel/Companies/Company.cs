@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using Library.Core;
 using Library.Core.Distribution;
 using Library.HighLevel.Accountability;
@@ -55,6 +56,19 @@ namespace Library.HighLevel.Companies
             this.ContactInfo = contactInfo;
             this.Heading = heading;
             this.Location = location;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Company"/> class from JSON data.
+        /// </summary>
+        /// <param name="name">The company´s name.</param>
+        /// <param name="contactInfo">The company´s contact info.</param>
+        /// <param name="heading">The company´s heading.</param>
+        /// <param name="location">The company´s location.</param>
+        /// <param name="representants">The company's representants' ids.</param>
+        public Company(string name, ContactInfo contactInfo, string heading, Location location, IEnumerable<string> representants) : this(name, contactInfo, heading, location)
+        {
+            this.representants = representants.ToList();
         }
 
         /// <summary>

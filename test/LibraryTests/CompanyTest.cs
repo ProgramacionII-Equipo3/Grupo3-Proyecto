@@ -26,7 +26,7 @@ namespace ProgramTests
         [Test]
         public void CreateCompanyTest()
         {
-            ContactInfo contactInfo;
+            ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
@@ -43,7 +43,7 @@ namespace ProgramTests
         public void HasUserTest()
         {
             string id = "Telegram_2066298868";
-            ContactInfo contactInfo;
+            ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
@@ -62,7 +62,7 @@ namespace ProgramTests
         public void GetCompanyOfTest()
         {
             string id = "Telegram_2022597748";
-            ContactInfo contactInfo;
+            ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "company@gmail.com";
             contactInfo.PhoneNumber = 094567142;
             LocationApiClient client = new LocationApiClient();
@@ -82,7 +82,7 @@ namespace ProgramTests
 #pragma warning disable 0219
             string id = "Telegram_2015598868";
 #pragma warning restore 0219
-            ContactInfo contactInfo;
+            ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "Woodcompany@gmail.com";
             contactInfo.PhoneNumber = 094567417;
             LocationApiClient client = new LocationApiClient();

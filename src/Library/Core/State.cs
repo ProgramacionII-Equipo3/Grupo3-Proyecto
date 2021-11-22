@@ -1,3 +1,5 @@
+using System;
+
 namespace Library.Core
 {
     /// <summary>
@@ -20,5 +22,32 @@ namespace Library.Core
         /// </summary>
         /// <returns>A string.</returns>
         public abstract string GetDefaultResponse();
+
+        /// <summary>
+        /// Determines the <see cref="State" /> of a user after the program begins to run.
+        /// </summary>
+        /// <param name="id">The user's id.</param>
+        /// <param name="userData">The user's data.</param>
+        /// <returns>A <see cref="State" />.</returns>
+        public static State FromUserData(string id, UserData userData)
+        {
+            switch((userData.IsComplete, userData.UserType))
+            {
+                case (true, UserData.Type.ADMIN):
+                    return new Library.States.Admins.AdminInitialMenuState();
+                case (false, UserData.Type.ADMIN):
+                    return new Library.States.Admins.AdminInitialMenuState();
+                case (true, UserData.Type.COMPANY):
+                    return new Library.States.Companies.CompanyInitialMenuState(id);
+                case (true, UserData.Type.ENTREPRENEUR):
+                    return new Library.States.Entrepreneurs.EntrepreneurInitialMenuState(id);
+                case (false, UserData.Type.COMPANY):
+                    return new Library.States.Companies.IncompleteCompanyRepresentativeState();
+                case (false, UserData.Type.ENTREPRENEUR):
+                    return new Library.States.Entrepreneurs.NewEntrepreneurState(id);
+                default:
+                    throw new Exception();
+            }
+        }
     }
 }

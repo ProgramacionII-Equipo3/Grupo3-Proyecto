@@ -86,5 +86,14 @@ namespace Library.HighLevel.Companies
             company.RemoveUsers();
             return true;
         }
+
+        /// <summary>
+        /// Loads all companies from a JSON file.
+        /// </summary>
+        /// <param name="path">The main directory's path.</param>
+        public void LoadCompanies(string path)
+        {
+            Company[] companies = SerializationUtils.DeserializeJSON<Company[]>(path + "/companies.json");
+        }
     }
 }

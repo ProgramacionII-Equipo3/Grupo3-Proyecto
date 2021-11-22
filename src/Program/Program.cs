@@ -24,7 +24,7 @@ namespace Grupo3_Proyecto
         public static void Main(string[] args)
         {
             if(args.Length != 1) throw new Exception("One command-line argument expected.");
-            switch(args[0])
+            switch(args[0].ToLower())
             {
                 case "--admin":
                     Singleton<SessionManager>.Instance.NewUser("ConsoleID", new UserData("console user", true, UserData.Type.ADMIN, null, null), new Library.States.Admins.AdminInitialMenuState());
@@ -34,8 +34,11 @@ namespace Grupo3_Proyecto
                 case "--company":
                     Singleton<InvitationManager>.Instance.CreateInvitation<Library.HighLevel.Companies.CompanyInvitation>("4jsk", code => new Library.HighLevel.Companies.CompanyInvitation(code));
                     break;
+                case "--json":
+                    Library.Utils.SerializationUtils.DeserializeAllFromJSON("../../Memory");
+                    break;
                 default:
-                    throw new Exception("Command-line argument expected to be \"--admin\", \"--entrepreneur\" or \"--company\"");
+                    throw new Exception("Command-line argument expected to be \"--admin\", \"--entrepreneur\", \"--company\", or \"--JSON\"");
             }
             Console.WriteLine("----------");
             new ConsolePlatform().Run();

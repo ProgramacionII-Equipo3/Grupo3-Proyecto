@@ -10,12 +10,12 @@
             a company, or another entity with contact information.
             </summary>
         </member>
-        <member name="F:Library.Core.ContactInfo.Email">
+        <member name="P:Library.Core.ContactInfo.Email">
             <summary>
             The entity's email (null if non-existent).
             </summary>
         </member>
-        <member name="F:Library.Core.ContactInfo.PhoneNumber">
+        <member name="P:Library.Core.ContactInfo.PhoneNumber">
             <summary>
             The entity's phone number (null if non-existent).
             </summary>
@@ -73,6 +73,12 @@
             </summary>
             <param name="name">The user's name.</param>
             <returns>Whether there was a user with the given name.</returns>
+        </member>
+        <member name="M:Library.Core.Distribution.SessionManager.LoadUserSessions(System.String)">
+            <summary>
+            Loads all user sessions from JSON.
+            </summary>
+            <param name="path">The main directory's path.</param>
         </member>
         <member name="T:Library.Core.Distribution.UserSession">
             <summary>
@@ -223,6 +229,14 @@
             <param name="invitationCode">The invitation's code.</param>
             <param name="userId">The id of the user who validated the invitation.</param>
             <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.LoadInvitations``1(System.String,System.String)">
+            <summary>
+            Loads the invitations from a JSON file.
+            </summary>
+            <param name="path">The path of the main directory.</param>
+            <param name="fileName">The file name associated with the type of the invitations.</param>
+            <typeparam name="T">The type of the invitations to load.</typeparam>
         </member>
         <member name="T:Library.Core.Message">
             <summary>
@@ -399,6 +413,14 @@
             Returns the first message the object uses to indicate what kind of input it wants.
             </summary>
             <returns>A string.</returns>
+        </member>
+        <member name="M:Library.Core.State.FromUserData(System.String,Library.Core.UserData)">
+            <summary>
+            Determines the <see cref="T:Library.Core.State" /> of a user after the program begins to run.
+            </summary>
+            <param name="id">The user's id.</param>
+            <param name="userData">The user's data.</param>
+            <returns>A <see cref="T:Library.Core.State" />.</returns>
         </member>
         <member name="T:Library.Core.UserData">
             <summary>
@@ -883,6 +905,16 @@
             <param name="heading">The company´s heading.</param>
             <param name="location">The company´s location.</param>
         </member>
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class from JSON data.
+            </summary>
+            <param name="name">The company´s name.</param>
+            <param name="contactInfo">The company´s contact info.</param>
+            <param name="heading">The company´s heading.</param>
+            <param name="location">The company´s location.</param>
+            <param name="representants">The company's representants' ids.</param>
+        </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(System.String)">
             <summary>
             Returns whether a user represents this company.
@@ -987,6 +1019,12 @@
             <param name="name">The company's name.</param>
             <returns>Whether the company was successfully removed.</returns>
         </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.LoadCompanies(System.String)">
+            <summary>
+            Loads all companies from a JSON file.
+            </summary>
+            <param name="path">The main directory's path.</param>
+        </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
             This interface represents the responsibility of managing material publications.
@@ -1089,11 +1127,6 @@
             Gets the entrepreneur's users in the platform.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Habilitation">
-            <summary>
-            Gets the entrepreneur's habilitation needed to buy certain materials.
-            </summary>
-        </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
@@ -1135,6 +1168,12 @@
             </summary>
             <param name="id">The entrepreneur's id.</param>
             <returns>The entrepreneur, or null if there's no entrepreneur with the given id.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.LoadEntrepreneurs(System.String)">
+            <summary>
+            Loads all entrepreneurs from a JSON file.
+            </summary>
+            <param name="path">The main directory's file.</param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator">
             <summary>
@@ -2429,6 +2468,25 @@
             <param name="value">The nullable value.</param>
             <typeparam name="T">The type of the underlying value.</typeparam>
             <returns>The value.</returns>
+        </member>
+        <member name="T:Library.Utils.SerializationUtils">
+            <summary>
+            This class contains methods which handle the serialization and deserialization of the bot's state.
+            </summary>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.DeserializeJSON``1(System.String)">
+            <summary>
+            Loads a JSON file and deserializes its contents. 
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.DeserializeAllFromJSON(System.String)">
+            <summary>
+            Deserialize the bot's state from JSON from a directory.
+            </summary>
+            <param name="path">The directory's path.</param>
         </member>
     </members>
 </doc>

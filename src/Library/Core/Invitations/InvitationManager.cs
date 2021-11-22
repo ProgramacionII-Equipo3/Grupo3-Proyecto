@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Text.Json;
 using System.Linq;
+using Library.Utils;
 
 namespace Library.Core.Invitations
 {
@@ -90,6 +93,18 @@ namespace Library.Core.Invitations
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Loads the invitations from a JSON file.
+        /// </summary>
+        /// <param name="path">The path of the main directory.</param>
+        /// <param name="fileName">The file name associated with the type of the invitations.</param>
+        /// <typeparam name="T">The type of the invitations to load.</typeparam>
+        public void LoadInvitations<T>(string path, string fileName) where T : Invitation
+        {
+            T[] invitations = SerializationUtils.DeserializeJSON<T[]>(path + "/invitations/" + fileName);
+            Singleton<InvitationList<T>>.Instance.SetInvitations(invitations);
         }
     }
 }

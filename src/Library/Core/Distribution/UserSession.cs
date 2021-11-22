@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Library.Core.Distribution
 {
     /// <summary>
@@ -8,7 +10,7 @@ namespace Library.Core.Distribution
         /// <summary>
         /// The id of the user.
         /// </summary>
-        public string Id { get; }
+        public string Id { get; private set; }
 
         /// <summary>
         /// Data associated with the user.
@@ -32,6 +34,14 @@ namespace Library.Core.Distribution
             this.UserData = userData;
             this.state = state;
         }
+
+        [JsonConstructor]
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserSession"/> class from JSON data.
+        /// </summary>
+        /// <param name="id">The session's user's id.</param>
+        /// <param name="userData">The session's user's data.</param>
+        public UserSession(string id, UserData userData): this(id, userData, State.FromUserData(id, userData)) {}
 
         /// <summary>
         /// Process the received message text, returning the response message text.

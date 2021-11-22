@@ -53,11 +53,6 @@ namespace Library.HighLevel.Entrepreneurs
         public static IList<string> EntrepeneurList = new List<string>();
 
         /// <summary>
-        /// Gets the entrepreneur's habilitation needed to buy certain materials.
-        /// </summary>
-        public List<Habilitation> Habilitation = new List<Habilitation>();
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Entrepreneur"/> class.
         /// </summary>
         /// <param name="id">Entrepreneur´s id.</param>

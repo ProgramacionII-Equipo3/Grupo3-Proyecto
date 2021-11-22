@@ -39,7 +39,7 @@ namespace ProgramTests
 
             // If the message with the code is equal with te code sended in an invitation,
             // the user can register the company.
-            ContactInfo contactInfo;
+            ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
             Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
