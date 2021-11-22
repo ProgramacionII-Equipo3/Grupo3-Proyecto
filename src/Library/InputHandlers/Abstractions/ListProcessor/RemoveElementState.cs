@@ -9,7 +9,9 @@ namespace Library.InputHandlers.Abstractions
         /// </summary>
         private class RemoveElementState : InnerProcessorState
         {
-            public RemoveElementState(ListProcessor<T> parent) : base(parent) { }
+            public RemoveElementState(ListProcessor<T> parent) : base(parent)
+            {
+            }
 
             /// <inheritdoc />
             public override string GetDefaultResponse() =>

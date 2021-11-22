@@ -15,7 +15,7 @@ namespace UnitTests
     /// </summary>
     public class ListProcessorTest
     {
-        private void listProcessorBaseTest<T>(T[]? expected, string initialResponse, InputProcessor<T> processor, params string[] messages)
+        private static void listProcessorBaseTest<T>(T[]? expected, string initialResponse, InputProcessor<T> processor, params string[] messages)
         {
             Console.WriteLine();
             T[]? list = null;
@@ -42,11 +42,10 @@ namespace UnitTests
         [Test]
         public void ListProcessorBasicTest()
         {
-            this.listProcessorBaseTest<int>(
+            listProcessorBaseTest<int>(
                 new int[] { 32, 51 },
                 "Insert the numbers.",
                 new UnsignedInt32Processor(() => "Insert a number."),
-
                 "/add",
                 "32",
                 "/add",
@@ -60,11 +59,10 @@ namespace UnitTests
         [Test]
         public void ListProcessorRemoveElementsTest()
         {
-            this.listProcessorBaseTest<int>(
+            listProcessorBaseTest<int>(
                 new int[] { 40 },
                 "Insert the numbers.",
                 new UnsignedInt32Processor(() => "Insert a number."),
-
                 "/add",
                 "32",
                 "/add",
@@ -86,11 +84,10 @@ namespace UnitTests
         [Test]
         public void ListProcessorGoBackTest()
         {
-            this.listProcessorBaseTest<int>(
+            listProcessorBaseTest<int>(
                 null,
                 "Insert the numbers.",
                 new UnsignedInt32Processor(() => "Insert a number."),
-
                 "/add",
                 "32",
                 "/add",

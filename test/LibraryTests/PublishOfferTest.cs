@@ -38,9 +38,7 @@ namespace ProgramTests
             IList<string> keyword = new List<string> { "Cámara" };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
 
-            ContactInfo contact = new ContactInfo();
-            contact.Email = "evertec@gmail.com";
-            contact.PhoneNumber = 095456258;
+            ContactInfo contact = new ContactInfo("evertec@gmail.com", 095456258);
             Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location)!;
             (empresa as IPublisher).PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
 

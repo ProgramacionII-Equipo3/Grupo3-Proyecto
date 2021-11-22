@@ -15,5 +15,16 @@ namespace Library.Core
         /// The entity's phone number (null if non-existent).
         /// </summary>
         public int? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Initializes an instance of <see cref="ContactInfo" />.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="phoneNumber">The phone number.</param>
+        public ContactInfo(string? email = null, int? phoneNumber = null)
+        {
+            this.Email = email;
+            this.PhoneNumber = phoneNumber;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace UnitTests.Utils
         /// <summary>
         /// Creates an empty user data for mock users.
         /// </summary>
-        /// <returns>A <see cref="UserData" /></returns>
+        /// <returns>A <see cref="UserData" />.</returns>
         public static UserData EmptyUserData() =>
             new UserData(string.Empty, false, UserData.Type.ADMIN, null, null);
     }

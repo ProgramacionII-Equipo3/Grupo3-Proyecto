@@ -23,7 +23,6 @@ namespace ProgramTests
         private Unit? unit1;
         private Amount amount1;
         private Price price1;
-        private LocationApiClient? client;
         private Location? pickupLocation1;
         private AssignedMaterialPublication? publication1;
         private MaterialCategory? category2;
@@ -49,8 +48,8 @@ namespace ProgramTests
             this.unit1 = Unit.GetByAbbr("kg") !;
             this.amount1 = new Amount(100, this.unit1);
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
-            this.client = new LocationApiClient();
-            this.pickupLocation1 = this.client.GetLocationAsync("Libertad 2500").Result;
+            using LocationApiClient client = new LocationApiClient();
+            this.pickupLocation1 = client.GetLocationAsync("Libertad 2500").Result;
             this.contact = new ContactInfo();
             this.contact.Email = "company1@gmail.com";
             this.contact.PhoneNumber = 099421658;
@@ -60,7 +59,7 @@ namespace ProgramTests
             this.unit2 = Unit.GetByAbbr("kg") !;
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
-            this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
+            this.pickupLocation2 = client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
 
             Company empresa;
@@ -78,6 +77,8 @@ namespace ProgramTests
 
             this.publication1 = publications.Where(p => p.Publication.Keywords.Any(k => k == "hospital")).FirstOrDefault();
             this.publication2 = publications.Where(p => p.Publication.Keywords.Any(k => k == "cubrebocas")).FirstOrDefault();
+
+            client.Dispose();
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneFound()
         {
-            LocationApiClient clientTest = new LocationApiClient();
+            using LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("Av. Gral. San Martín 2909").Result;
             double distanceSpecified = 4;
@@ -159,6 +160,7 @@ namespace ProgramTests
             expected5.Add(this.publication2.Unwrap());
 
             Assert.AreEqual(expected5, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
+            clientTest.Dispose();
         }
 
         /// <summary>
@@ -169,7 +171,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyZoneNotFound()
         {
-            LocationApiClient clientTest = new LocationApiClient();
+            using LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
             locationSpecified = clientTest.GetLocationAsync("12 De Diciembre 811").Result;
             double distanceSpecified = 2;
@@ -177,6 +179,7 @@ namespace ProgramTests
             IList<AssignedMaterialPublication> expected6 = new List<AssignedMaterialPublication>();
 
             Assert.AreEqual(expected6, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
+            clientTest.Dispose();
         }
     }
 }

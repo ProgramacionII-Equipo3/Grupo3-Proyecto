@@ -8,7 +8,9 @@ namespace Library.InputHandlers.Abstractions
         /// </summary>
         private class AddElementState : InnerProcessorState
         {
-            public AddElementState(ListProcessor<T> parent) : base(parent) { }
+            public AddElementState(ListProcessor<T> parent) : base(parent)
+            {
+            }
 
             /// <inheritdoc />
             public override string GetDefaultResponse() => this.parent.processor.GetDefaultResponse();

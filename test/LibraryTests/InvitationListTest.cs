@@ -40,24 +40,22 @@ namespace UnitTests
             {
                 Assert.Contains(
                     new CustomInvitation(i),
-                    Singleton<InvitationList<CustomInvitation>>.Instance.Invitations.ToArray()
-                );
+                    Singleton<InvitationList<CustomInvitation>>.Instance.Invitations.ToArray());
                 Assert.AreEqual(
                     $"Invitation accepted: {i}, AAA",
-                    Singleton<InvitationManager>.Instance.ValidateInvitation(i, "AAA")
-                );
+                    Singleton<InvitationManager>.Instance.ValidateInvitation(i, "AAA"));
             }
 
-            Assert.Zero(
-                Singleton<InvitationList<CustomInvitation>>.Instance.Invitations.Count
-            );
+            Assert.Zero(Singleton<InvitationList<CustomInvitation>>.Instance.Invitations.Count);
         }
 
         private class CustomInvitation : Invitation, IEquatable<CustomInvitation>
         {
             public static IList<string> validated = new List<string>();
 
-            public CustomInvitation(string code) : base(code) {}
+            public CustomInvitation(string code) : base(code)
+            {
+            }
 
             public static CustomInvitation CreateInstance(string code) => new CustomInvitation(code);
 
