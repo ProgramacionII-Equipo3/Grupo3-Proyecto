@@ -23,6 +23,7 @@ namespace Library.HighLevel.Accountability
             this.Materials = materials;
         }
 
+        /// <inheritdoc />
         public override string? ToString() =>
             string.Join('\n', this.Materials);
     }

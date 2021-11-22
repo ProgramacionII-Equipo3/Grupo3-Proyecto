@@ -5,8 +5,12 @@ using System;
 
 namespace Library.InputHandlers
 {
+    /// <summary>
+    /// This class represents an <see cref="InputProcessor{T}" /> which generates objects of type <see cref="DateTime" />.
+    /// </summary>
     public class DateProcessor : ProcessorWrapper<DateTime>
     {
+        /// <inheritdoc />
         public DateProcessor(Func<string> initialResponseGetter) : base(
             PipeProcessor<DateTime>.CreateInstance<string>(
                 s =>

@@ -14,12 +14,12 @@ namespace Library.HighLevel.Entrepreneurs
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
         /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="EntrepreneurManager.Entrepreneurs" />.
         /// </summary>
-        private List<Entrepreneur> entrepeneurs = new List<Entrepreneur>();
+        private List<Entrepreneur> entrepreneurs = new List<Entrepreneur>();
 
         /// <summary>
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepeneurs.AsReadOnly();
+        public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepreneurs.AsReadOnly();
 
         /// <summary>
         /// Adds a new entrepreneur into the list.
@@ -27,10 +27,15 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="entrepreneur">The new entrepreneur.</param>
         public void NewEntrepreneur(Entrepreneur entrepreneur)
         {
-            entrepeneurs.Add(entrepreneur);
+            entrepreneurs.Add(entrepreneur);
         }
 
+        /// <summary>
+        /// Gets the entrepreneur with a concrete id.
+        /// </summary>
+        /// <param name="id">The entrepreneur's id.</param>
+        /// <returns>The entrepreneur, or null if there's no entrepreneur with the given id.</returns>
         public Entrepreneur? GetById(string id) =>
-            this.entrepeneurs.Where(e => e.Id == id).FirstOrDefault();
+            this.entrepreneurs.Where(e => e.Id == id).FirstOrDefault();
     }
 }

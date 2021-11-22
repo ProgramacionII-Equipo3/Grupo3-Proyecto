@@ -25,17 +25,17 @@ namespace Library.States.Entrepreneurs
             };
         }
 
-        private (State, string) searchByKeyword()
+        private (State, string?) searchByKeyword()
         {
             return (new EntrepreneurSearchByKeywordState(), null);
         }
 
-        private (State, string) searchByCategory()
+        private (State, string?) searchByCategory()
         {
             return (new EntrepreneurSearchByCategoryState(), null);
         }
 
-        private (State, string) searchByZone()
+        private (State, string?) searchByZone()
         {
             return (new EntrepreneurSearchByZoneState(), null);
         }

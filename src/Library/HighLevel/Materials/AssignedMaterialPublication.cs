@@ -28,6 +28,7 @@ namespace Library.HighLevel.Materials
             this.Company = company;
         }
 
+        /// <inheritdoc />
         public override string ToString() =>
             $"(De {this.Company.Name}) {this.Publication.Material},"
             + $" cantidad: {this.Publication.Amount},"

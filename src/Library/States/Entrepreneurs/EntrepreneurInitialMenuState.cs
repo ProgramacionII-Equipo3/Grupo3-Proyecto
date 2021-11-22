@@ -10,15 +10,19 @@ using System.Text;
 
 namespace Library.States.Entrepreneurs
 {
+    /// <summary>
+    /// This class represents a <see cref="State" /> for an entrepreneur in the initial menu.
+    /// </summary>
     public class EntrepreneurInitialMenuState : MultipleOptionState
     {
         private string id;
 
         /// <summary>
-        /// 
+        /// Initializes an instance of <see cref="EntrepreneurInitialMenuState" />.
         /// </summary>
         public EntrepreneurInitialMenuState(string id)
         {
+            this.id = id;
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
                 /*

@@ -51,6 +51,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         public MoneyQuantity Income => MoneyQuantityUtils.Calculate(this.Amount, this.Price).Unwrap();
 
+        /// <inheritdoc />
         public override string? ToString() =>
             $"{this.Amount} de {this.Material.Name} vendido(s) a {this.Price} el día {this.DateTime.ToShortDateString()}";
     }

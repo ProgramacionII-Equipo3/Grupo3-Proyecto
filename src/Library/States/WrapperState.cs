@@ -2,6 +2,9 @@ using Library.Core;
 
 namespace Library.States
 {
+    /// <summary>
+    /// This class acts as a type wrapper for a <see cref="State" />.
+    /// </summary>
     public class WrapperState : State
     {
         private State innerState;

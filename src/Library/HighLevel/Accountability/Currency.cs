@@ -34,6 +34,7 @@ namespace Library.HighLevel.Accountability
             this.Symbol = symbol;
         }
 
+        /// <inheritdoc />
         public override string ToString() => this.Symbol;
     }
 }

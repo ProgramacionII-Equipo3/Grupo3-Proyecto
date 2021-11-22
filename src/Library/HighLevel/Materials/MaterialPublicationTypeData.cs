@@ -40,6 +40,7 @@ namespace Library.HighLevel.Materials
             CONTINUOUS
         }
 
+        /// <inheritdoc />
         public override string? ToString()
         {
             switch(this.PublicationType)

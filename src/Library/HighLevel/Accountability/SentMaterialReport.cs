@@ -44,6 +44,7 @@ namespace Library.HighLevel.Accountability
             return result;
         }
 
+        /// <inheritdoc />
         public override string? ToString() =>
             string.Join('\n', this.Lines);
     }

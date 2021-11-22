@@ -13,8 +13,6 @@ namespace Library.HighLevel.Entrepreneurs
     /// </summary>
     public class Searcher
     {
-        protected List<MaterialPublication> publications { get; }
-
         /// <summary>
         /// It creates a client to be able to use the LocationAPI.
         /// </summary>

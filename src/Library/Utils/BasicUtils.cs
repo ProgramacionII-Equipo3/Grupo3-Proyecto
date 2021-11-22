@@ -136,6 +136,11 @@ namespace Library.Utils
             return true;
         }
 
+        /// <summary>
+        /// Converts a location into a string equivalent.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns>The string equivalent.</returns>
         public static string LocationToString(Location location) =>
             $"{location.AddresLine}, {location.Locality}, {location.CountryRegion}";
 

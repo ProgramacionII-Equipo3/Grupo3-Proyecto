@@ -46,6 +46,7 @@ namespace Library.States.Companies
         {
         }
 
+        /// <inheritdoc />
         public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
         {
             return base.ProcessMessage(id, ref data, msg);

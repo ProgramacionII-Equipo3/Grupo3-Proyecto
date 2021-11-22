@@ -5,6 +5,9 @@ using Library.Utils;
 
 namespace Library.InputHandlers
 {
+    /// <summary>
+    /// This class represents an <see cref="InputProcessor{T}" /> which generates objects of type <see cref="MaterialPublicationTypeData" />.
+    /// </summary>
     public class MaterialPublicationTypeDataProcessor : InputProcessor<MaterialPublicationTypeData>
     {
         private Func<string> initialResponseGetter;
@@ -12,16 +15,22 @@ namespace Library.InputHandlers
         private MaterialPublicationTypeData? result = null;
         private DateProcessor dateProcessor = new DateProcessor(() => "Which is the scheduled date?");
 
+        /// <summary>
+        /// Initializes an instance of <see cref="MaterialPublicationTypeDataProcessor" />.
+        /// </summary>
+        /// <param name="initialResponseGetter">The function which determines the processor's default response.</param>
         public MaterialPublicationTypeDataProcessor(Func<string> initialResponseGetter)
         {
             this.initialResponseGetter = initialResponseGetter;
         }
 
+        /// <inheritdoc />
         public override string GetDefaultResponse() =>
             askForDate
                 ? dateProcessor.GetDefaultResponse()
                 : (this.initialResponseGetter)();
 
+        /// <inheritdoc />
         public override Result<bool, string> ProcessInput(string msg)
         {
             if(this.askForDate)
