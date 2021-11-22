@@ -27,7 +27,7 @@ namespace Library.InputHandlers.Abstractions
         /// <inheritdoc />
         public override Result<bool, string> ProcessInput(string msg)
         {
-            if(this.result != null) return Result<bool, string>.Ok(true);
+            if (this.result != null) return Result<bool, string>.Ok(true);
             return this.innerProcessor.GenerateFromInput(msg) is Result<T, string> result
                 ? result.SwitchOk(
                     v =>

@@ -39,7 +39,7 @@ namespace Library.States
                 .OfType<(string, string, Func<(State, string?)>)?>()
                 .FirstOrDefault();
             
-            if(command is (string, string, Func<(State, string?)>) c)
+            if (command is (string, string, Func<(State, string?)>) c)
             {
                 var (newState, res) = c.Item3();
                 return (

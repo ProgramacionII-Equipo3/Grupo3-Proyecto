@@ -1,0 +1,24 @@
+[
+    {
+        "Id": "ConsoleID",
+        "UserData": {
+            "Name": "santiago",
+            "ContactInfo": {
+
+            },
+            "IsComplete": true,
+            "UserType": 1
+        }
+    },
+    {
+        "Id": "Admin1",
+        "UserData": {
+            "Name": "Admin",
+            "ContactInfo": {
+
+            },
+            "IsComplete": true,
+            "UserType": 0
+        }
+    }
+]

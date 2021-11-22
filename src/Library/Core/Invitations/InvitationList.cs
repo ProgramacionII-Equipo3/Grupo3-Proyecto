@@ -41,7 +41,7 @@ namespace Library.Core.Invitations
         /// <param name="value">An enumerable with the invitations.</param>
         public void SetInvitations(IEnumerable<T> value)
         {
-            if(value is null) return;
+            if (value is null) return;
 
             foreach(T i in value)
             {

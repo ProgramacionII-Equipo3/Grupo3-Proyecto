@@ -1,6 +1,8 @@
-using System.Linq;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using Library.Utils;
 
 namespace Library.HighLevel.Entrepreneurs
 {
@@ -37,5 +39,14 @@ namespace Library.HighLevel.Entrepreneurs
         /// <returns>The entrepreneur, or null if there's no entrepreneur with the given id.</returns>
         public Entrepreneur? GetById(string id) =>
             this.entrepreneurs.Where(e => e.Id == id).FirstOrDefault();
+
+        /// <summary>
+        /// Loads all entrepreneurs from a JSON file.
+        /// </summary>
+        /// <param name="path">The main directory's file.</param>
+        public void LoadEntrepreneurs(string path)
+        {
+            Entrepreneur[] entrepreneurs = SerializationUtils.DeserializeJSON<Entrepreneur[]>(path + "/entrepreneurs.json");
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Library.HighLevel.Administers
         /// <summary>
         /// This method create's an invitation code.
         /// </summary>
-        /// <returns>Invitation´s code.</returns>
+        /// <returns>Invitation's code.</returns>
         public static string GenerateInvitationCode()
         {
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrsteuvwxyz0123456789";

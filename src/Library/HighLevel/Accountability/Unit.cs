@@ -39,10 +39,10 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// Initializes a new instance of the <see cref="Unit"/> class.
         /// </summary>
-        /// <param name="name">Unit´s name.</param>
-        /// <param name="abbreviation">Unit´s abbreviation.</param>
-        /// <param name="weight">Unit´s associated weight.</param>
-        /// <param name="measure">Unit´s measure.</param>
+        /// <param name="name">Unit's name.</param>
+        /// <param name="abbreviation">Unit's abbreviation.</param>
+        /// <param name="weight">Unit's associated weight.</param>
+        /// <param name="measure">Unit's measure.</param>
         public Unit(string name, string abbreviation, double weight, Measure measure)
         {
             this.Name = name;

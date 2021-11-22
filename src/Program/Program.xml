@@ -4,18 +4,24 @@
         <name>Program</name>
     </assembly>
     <members>
-        <member name="T:Grupo3_Proyecto.ConsolePlatform">
+        <member name="T:Grupo3_Proyecto.MultipleUsersConsolePlatform">
             <summary>
             Represents the console as a messaging platform in and of itself.
             </summary>
         </member>
-        <member name="M:Grupo3_Proyecto.ConsolePlatform.GetUserId(System.Boolean)">
+        <member name="M:Grupo3_Proyecto.MultipleUsersConsolePlatform.GetUserId(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Grupo3_Proyecto.ConsolePlatform.SendMessage(System.String,System.Boolean)">
+        <member name="M:Grupo3_Proyecto.MultipleUsersConsolePlatform.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Grupo3_Proyecto.MultipleUsersConsolePlatform" />.
+            </summary>
+            <param name="currentId">The platform's initial id.</param>
+        </member>
+        <member name="M:Grupo3_Proyecto.MultipleUsersConsolePlatform.SendMessage(System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Grupo3_Proyecto.ConsolePlatform.Run">
+        <member name="M:Grupo3_Proyecto.MultipleUsersConsolePlatform.Run">
             <summary>
             Receives messages from the console as if it was a messaging platform.
             </summary>

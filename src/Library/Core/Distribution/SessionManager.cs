@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Library.Utils;
 
 namespace Library.Core.Distribution
 {
@@ -57,5 +58,15 @@ namespace Library.Core.Distribution
         /// <returns>Whether there was a user with the given name.</returns>
         public bool RemoveUserByName(string name) =>
             this.sessions.RemoveAll(session => session.UserData.Name == name) > 0;
+
+        /// <summary>
+        /// Loads all user sessions from JSON.
+        /// </summary>
+        /// <param name="path">The main directory's path.</param>
+        public void LoadUserSessions(string path)
+        {
+            UserSession[] sessions = SerializationUtils.DeserializeJSON<UserSession[]>(path + "/sessions.json");
+            this.sessions = sessions.ToList();
+        }
     }
 }

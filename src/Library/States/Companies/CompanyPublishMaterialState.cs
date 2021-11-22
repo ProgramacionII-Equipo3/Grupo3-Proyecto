@@ -20,7 +20,7 @@ namespace Library.States.Companies
         /// <summary>
         /// Initializes an instance of <see cref="CompanyPublishMaterialState" />
         /// </summary>
-        /// <param name="id">User´s id.</param>
+        /// <param name="id">User's id.</param>
         /// <returns></returns>
         public CompanyPublishMaterialState(string id) : base(
             exitState: () => new CompanyInitialMenuState(id),
@@ -30,7 +30,7 @@ namespace Library.States.Companies
                 {
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        if((company as IPublisher).PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6))
+                        if ((company as IPublisher).PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6))
                         {
                             return null;
                         }

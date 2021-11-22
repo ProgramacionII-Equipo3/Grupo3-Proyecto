@@ -49,10 +49,10 @@ namespace Library.HighLevel.Companies
         /// Creates an instance of <see cref="Company" />, adding it to the list.
         /// </summary>
         /// <returns>The created instance, or null if there's already a company with the same name.</returns>
-        /// <param name="name">The company´s name.</param>
-        /// <param name="contactInfo">The company´s contact info.</param>
-        /// <param name="heading">The company´s heading.</param>
-        /// <param name="location">The company´s location.</param>
+        /// <param name="name">The company's name.</param>
+        /// <param name="contactInfo">The company's contact info.</param>
+        /// <param name="heading">The company's heading.</param>
+        /// <param name="location">The company's location.</param>
         public Company? CreateCompany(string name, ContactInfo contactInfo, string heading, Location location)
         {
             name = name.Trim();
@@ -82,9 +82,18 @@ namespace Library.HighLevel.Companies
         {
             name = name.Trim();
             Company? company = this.companies.Where(company => company.Name == name).FirstOrDefault();
-            if(company == null) return false;
+            if (company == null) return false;
             company.RemoveUsers();
             return true;
+        }
+
+        /// <summary>
+        /// Loads all companies from a JSON file.
+        /// </summary>
+        /// <param name="path">The main directory's path.</param>
+        public void LoadCompanies(string path)
+        {
+            Company[] companies = SerializationUtils.DeserializeJSON<Company[]>(path + "/companies.json");
         }
     }
 }

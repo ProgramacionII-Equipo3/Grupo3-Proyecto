@@ -26,9 +26,9 @@ namespace Library.States.Companies
             public override Result<bool, string> ProcessInput(string msg)
             {
                 msg = msg.Trim().ToLowerInvariant();
-                if(msg == "yes" || msg == "y")
+                if (msg == "yes" || msg == "y")
                     return Result<bool, string>.Ok(true);
-                else if(msg == "no" || msg == "n")
+                else if (msg == "no" || msg == "n")
                     return Result<bool, string>.Ok(false);
                 
                 return Result<bool, string>.Err($"Por favor ingresa \"yes\" (\"y\") o \"no\" (\"n\").\n{this.GetDefaultResponse()}");

@@ -21,12 +21,12 @@
         </member>
         <member name="M:ProgramTests.AcceptInvitationTest.NotAcceptInvitation">
             <summary>
-            If the user don´t have a code, it´s user is an Entrepreneur.
+            If the user don't have a code, its user is an Entrepreneur.
             </summary>
         </member>
         <member name="T:ProgramTests.CompanyReportTest">
             <summary>
-            Test if a company can get a report of all material´s sent.
+            Test if a company can get a report of all sent materials.
             </summary>
         </member>
         <member name="M:ProgramTests.CompanyReportTest.Setup">
@@ -81,12 +81,17 @@
         </member>
         <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
             <summary>
-            It´s create a message with the information correspondent.
+            Creates a message with the correspondent information.
             </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegister">
             <summary>
             This test evaluate if the entrepreneur is registered with their correct information.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegisterFromUserInput">
+            <summary>
+            Tests the course of registering an entrepreneur from user input.
             </summary>
         </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">

@@ -10,12 +10,12 @@
             a company, or another entity with contact information.
             </summary>
         </member>
-        <member name="F:Library.Core.ContactInfo.Email">
+        <member name="P:Library.Core.ContactInfo.Email">
             <summary>
             The entity's email (null if non-existent).
             </summary>
         </member>
-        <member name="F:Library.Core.ContactInfo.PhoneNumber">
+        <member name="P:Library.Core.ContactInfo.PhoneNumber">
             <summary>
             The entity's phone number (null if non-existent).
             </summary>
@@ -74,6 +74,12 @@
             <param name="name">The user's name.</param>
             <returns>Whether there was a user with the given name.</returns>
         </member>
+        <member name="M:Library.Core.Distribution.SessionManager.LoadUserSessions(System.String)">
+            <summary>
+            Loads all user sessions from JSON.
+            </summary>
+            <param name="path">The main directory's path.</param>
+        </member>
         <member name="T:Library.Core.Distribution.UserSession">
             <summary>
             This class represent a user's session, being the highest-level class which represents it.
@@ -102,6 +108,13 @@
             <param name="userData">The session's user's data.</param>
             <param name="state">The session's initial state.</param>
         </member>
+        <member name="M:Library.Core.Distribution.UserSession.#ctor(System.String,Library.Core.UserData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.Core.Distribution.UserSession"/> class from JSON data.
+            </summary>
+            <param name="id">The session's user's id.</param>
+            <param name="userData">The session's user's data.</param>
+        </member>
         <member name="M:Library.Core.Distribution.UserSession.ProcessMessage(System.String)">
             <summary>
             Process the received message text, returning the response message text.
@@ -114,7 +127,7 @@
             Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete user id.
             </summary>
             <param name="id">The id to compare with.</param>
-            <returns>True uf the ID´s are equal and false if it not does.</returns>
+            <returns>True uf the IDs are equal and false if it not does.</returns>
         </member>
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
@@ -130,7 +143,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Library.Core.Invitations.Invitation"/> class.
             </summary>
-            <param name="code">Invitation´s code.</param>
+            <param name="code">Invitation's code.</param>
         </member>
         <member name="M:Library.Core.Invitations.Invitation.Validate(System.String)">
             <summary>
@@ -204,7 +217,7 @@
             <summary>
             Adds an invitation into the list.
             </summary>
-            <param name="code">The invitation´s code.</param>
+            <param name="code">The invitation's code.</param>
             <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.AddInvitation(Library.Core.Invitations.Invitation)">
@@ -223,6 +236,14 @@
             <param name="invitationCode">The invitation's code.</param>
             <param name="userId">The id of the user who validated the invitation.</param>
             <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.LoadInvitations``1(System.String,System.String)">
+            <summary>
+            Loads the invitations from a JSON file.
+            </summary>
+            <param name="path">The path of the main directory.</param>
+            <param name="fileName">The file name associated with the type of the invitations.</param>
+            <typeparam name="T">The type of the invitations to load.</typeparam>
         </member>
         <member name="T:Library.Core.Message">
             <summary>
@@ -400,6 +421,14 @@
             </summary>
             <returns>A string.</returns>
         </member>
+        <member name="M:Library.Core.State.FromUserData(System.String,Library.Core.UserData)">
+            <summary>
+            Determines the <see cref="T:Library.Core.State" /> of a user after the program begins to run.
+            </summary>
+            <param name="id">The user's id.</param>
+            <param name="userData">The user's data.</param>
+            <returns>A <see cref="T:Library.Core.State" />.</returns>
+        </member>
         <member name="T:Library.Core.UserData">
             <summary>
             This class represents additional data that all users must have.
@@ -435,6 +464,15 @@
             <param name="userType">The user's type.</param>
             <param name="email">The user's email.</param>
             <param name="phoneNumber">The user's phone number.</param>
+        </member>
+        <member name="M:Library.Core.UserData.#ctor(System.String,System.Boolean,Library.Core.UserData.Type,Library.Core.ContactInfo)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.Core.UserData" /> from JSON data.
+            </summary>
+            <param name="name">The user's name.</param>
+            <param name="isComplete">Whether the user is complete.</param>
+            <param name="userType">The user's type.</param>
+            <param name="contactInfo">The user's contact info.</param>
         </member>
         <member name="T:Library.Core.UserData.Type">
             <summary>
@@ -693,9 +731,9 @@
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Price"/> struct.
             </summary>
-            <param name="quantity">Material´s Quantity.</param>
-            <param name="currency">Material´s publication currency.</param>
-            <param name="unit">Material´s unit.</param>
+            <param name="quantity">Material's Quantity.</param>
+            <param name="currency">Material's publication currency.</param>
+            <param name="unit">Material's unit.</param>
         </member>
         <member name="M:Library.HighLevel.Accountability.Price.ToString">
             <inheritdoc />
@@ -788,10 +826,10 @@
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Unit"/> class.
             </summary>
-            <param name="name">Unit´s name.</param>
-            <param name="abbreviation">Unit´s abbreviation.</param>
-            <param name="weight">Unit´s associated weight.</param>
-            <param name="measure">Unit´s measure.</param>
+            <param name="name">Unit's name.</param>
+            <param name="abbreviation">Unit's abbreviation.</param>
+            <param name="weight">Unit's associated weight.</param>
+            <param name="measure">Unit's measure.</param>
         </member>
         <member name="M:Library.HighLevel.Accountability.Unit.GetByAbbr(System.String)">
             <summary>
@@ -833,7 +871,7 @@
             <summary>
             This method create's an invitation code.
             </summary>
-            <returns>Invitation´s code.</returns>
+            <returns>Invitation's code.</returns>
         </member>
         <member name="M:Library.HighLevel.Administers.Administer.CreateCompanyInvitation">
             <summary>
@@ -869,7 +907,7 @@
             Gets the company's location.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Companies.Company.representants">
+        <member name="P:Library.HighLevel.Companies.Company.representants">
             <summary>
             The company's representants in the platform.
             </summary>
@@ -878,10 +916,20 @@
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class.
             </summary>
-            <param name="name">The company´s name.</param>
-            <param name="contactInfo">The company´s contact info.</param>
-            <param name="heading">The company´s heading.</param>
-            <param name="location">The company´s location.</param>
+            <param name="name">The company's name.</param>
+            <param name="contactInfo">The company's contact info.</param>
+            <param name="heading">The company's heading.</param>
+            <param name="location">The company's location.</param>
+        </member>
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class from JSON data.
+            </summary>
+            <param name="name">The company's name.</param>
+            <param name="contactInfo">The company's contact info.</param>
+            <param name="heading">The company's heading.</param>
+            <param name="location">The company's location.</param>
+            <param name="representants">The company's representants' ids.</param>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(System.String)">
             <summary>
@@ -970,10 +1018,10 @@
             Creates an instance of <see cref="T:Library.HighLevel.Companies.Company" />, adding it to the list.
             </summary>
             <returns>The created instance, or null if there's already a company with the same name.</returns>
-            <param name="name">The company´s name.</param>
-            <param name="contactInfo">The company´s contact info.</param>
-            <param name="heading">The company´s heading.</param>
-            <param name="location">The company´s location.</param>
+            <param name="name">The company's name.</param>
+            <param name="contactInfo">The company's contact info.</param>
+            <param name="heading">The company's heading.</param>
+            <param name="location">The company's location.</param>
         </member>
         <member name="P:Library.HighLevel.Companies.CompanyManager.Publications">
             <summary>
@@ -986,6 +1034,12 @@
             </summary>
             <param name="name">The company's name.</param>
             <returns>Whether the company was successfully removed.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.LoadCompanies(System.String)">
+            <summary>
+            Loads all companies from a JSON file.
+            </summary>
+            <param name="path">The main directory's path.</param>
         </member>
         <member name="T:Library.HighLevel.Companies.IPublisher">
             <summary>
@@ -1089,22 +1143,17 @@
             Gets the entrepreneur's users in the platform.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Entrepreneur.Habilitation">
-            <summary>
-            Gets the entrepreneur's habilitation needed to buy certain materials.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.Int32,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class.
             </summary>
-            <param name="id">Entrepreneur´s id.</param>
-            <param name="name">Entrepreneur´s name.</param>
-            <param name="age">Entrepreneur´s age.</param>
-            <param name="location">Entrepreneur´s location.</param>
-            <param name="heading">Entrepreneur´s heading.</param>
-            <param name="habilitations">Entrepreneur´s habilitation.</param>
-            <param name="specializations">Entrepreneur´s specializations.</param>
+            <param name="id">Entrepreneur's id.</param>
+            <param name="name">Entrepreneur's name.</param>
+            <param name="age">Entrepreneur's age.</param>
+            <param name="location">Entrepreneur's location.</param>
+            <param name="heading">Entrepreneur's heading.</param>
+            <param name="habilitations">Entrepreneur's habilitation.</param>
+            <param name="specializations">Entrepreneur's specializations.</param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
             <summary>
@@ -1136,6 +1185,12 @@
             <param name="id">The entrepreneur's id.</param>
             <returns>The entrepreneur, or null if there's no entrepreneur with the given id.</returns>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.LoadEntrepreneurs(System.String)">
+            <summary>
+            Loads all entrepreneurs from a JSON file.
+            </summary>
+            <param name="path">The main directory's file.</param>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator">
             <summary>
             This interface represents a class which can create <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />s.
@@ -1156,7 +1211,7 @@
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
-            This class has the responsibility of searching material publication´s
+            This class has the responsibility of searching material publication's
             according to a specified category, keyword or location.
             We created this class using expert, this class itself does all the possible
             filter searches). It also has a High Cohesion because of the same reason.
@@ -1316,7 +1371,7 @@
             <summary>
             Initializes an instance of <see cref="T:Library.HighLevel.Materials.MaterialCategory" /> class.
             </summary>
-            <param name="name">The material´s category name.</param>
+            <param name="name">The material's category name.</param>
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialCategory.GetByName(System.String)">
             <summary>
@@ -2119,7 +2174,7 @@
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyPublishMaterialState" />
             </summary>
-            <param name="id">User´s id.</param>
+            <param name="id">User's id.</param>
             <returns></returns>
         </member>
         <member name="M:Library.States.Companies.CompanyPublishMaterialState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
@@ -2132,14 +2187,14 @@
         </member>
         <member name="T:Library.States.Companies.CompanySentReportState">
             <summary>
-            This class has the responsibility of return the material´s sent report.
+            This class has the responsibility of return the material's sent report.
             </summary>
         </member>
         <member name="M:Library.States.Companies.CompanySentReportState.#ctor(System.String)">
             <summary>
             Initializes an intance of <see cref="T:Library.States.Companies.CompanySentReportState" />
             </summary>
-            <param name="id">User´s id.</param>
+            <param name="id">User's id.</param>
             <returns></returns>
         </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
@@ -2339,7 +2394,7 @@
             <param name="city">The city where is the site.</param>
             <param name="department">The department where is the site.</param>
             <param name="country">The country where is the site.</param>
-            <returns>The site´s coordinates.</returns>
+            <returns>The site's coordinates.</returns>
         </member>
         <member name="M:Library.Utils.BasicUtils.AreSimilar(System.String,System.String)">
             <summary>
@@ -2413,6 +2468,25 @@
             <param name="value">The nullable value.</param>
             <typeparam name="T">The type of the underlying value.</typeparam>
             <returns>The value.</returns>
+        </member>
+        <member name="T:Library.Utils.SerializationUtils">
+            <summary>
+            This class contains methods which handle the serialization and deserialization of the bot's state.
+            </summary>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.DeserializeJSON``1(System.String)">
+            <summary>
+            Loads a JSON file and deserializes its contents. 
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.DeserializeAllFromJSON(System.String)">
+            <summary>
+            Deserialize the bot's state from JSON from a directory.
+            </summary>
+            <param name="path">The directory's path.</param>
         </member>
     </members>
 </doc>

@@ -25,9 +25,9 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// Initializes a new instance of the <see cref="Price"/> struct.
         /// </summary>
-        /// <param name="quantity">Material´s Quantity.</param>
-        /// <param name="currency">Material´s publication currency.</param>
-        /// <param name="unit">Material´s unit.</param>
+        /// <param name="quantity">Material's Quantity.</param>
+        /// <param name="currency">Material's publication currency.</param>
+        /// <param name="unit">Material's unit.</param>
 
         public Price(float quantity, Currency currency, Unit unit)
         {

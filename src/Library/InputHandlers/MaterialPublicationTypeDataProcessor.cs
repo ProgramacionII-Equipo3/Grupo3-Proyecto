@@ -33,9 +33,9 @@ namespace Library.InputHandlers
         /// <inheritdoc />
         public override Result<bool, string> ProcessInput(string msg)
         {
-            if(this.askForDate)
+            if (this.askForDate)
             {
-                if(dateProcessor.GenerateFromInput(msg) is Result<DateTime, string> result)
+                if (dateProcessor.GenerateFromInput(msg) is Result<DateTime, string> result)
                 {
                     return result.SwitchOk(
                         dateTime =>

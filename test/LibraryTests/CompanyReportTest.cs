@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace ProgramTests
 {
     /// <summary>
-    /// Test if a company can get a report of all material´s sent.
+    /// Test if a company can get a report of all sent materials.
     /// </summary>
     public class CompanyReportTest
     {

@@ -48,7 +48,7 @@ namespace UnitTests
         /// </summary>
         public void Run()
         {
-            if(this.done) return;
+            if (this.done) return;
 
             foreach(string i in messagesToSend)
             {

@@ -44,39 +44,39 @@ namespace Library.States.Entrepreneurs
                 {
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         name => this.name = name,
-                        new BasicStringProcessor(() => "Porfavor ingrese su nombre.")
+                        new BasicStringProcessor(() => "Por favor ingrese su nombre.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<int>(
                         age => this.age = age,
-                        new UnsignedInt32Processor(() => "Porfavor ingrese su edad.")
+                        new UnsignedInt32Processor(() => "Por favor ingrese su edad.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Location>(
                         location => this.location = location,
-                        new LocationProcessor(() => "Porfavor ingrese su ubicación (<dirección>, <ciudad>, <departamento>, <país>).")
+                        new LocationProcessor(() => "Por favor ingrese su ubicación (<dirección>, <ciudad>, <departamento>, <país>).")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         heading => this.heading = heading,
-                        new BasicStringProcessor(() => "Porfavor ingrese su rubro.")
+                        new BasicStringProcessor(() => "Por favor ingrese su rubro.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
-                            () => "Porfavor ingrese sus habilitaciones.",
+                            () => "Por favor ingrese sus habilitaciones.",
                             new HabilitationProcessor()
                         )
                     ),
                     ProcessorHandler.CreateInfallibleInstance<string[]>(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
-                            () => "Porfavor ingrese sus especializaciones.",
-                            new BasicStringProcessor(() => "Porfavor ingrese sus especializaciones, escriba /finish para finalizar.")
+                            () => "Por favor ingrese sus especializaciones.",
+                            new BasicStringProcessor(() => "Por favor ingrese sus especializaciones, escriba /finish para finalizar.")
                         )
                     )
                 };
             }
 
             protected override Result<Entrepreneur, string> getResult() =>
-                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.ToString().Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
+                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
         }
     }
 }

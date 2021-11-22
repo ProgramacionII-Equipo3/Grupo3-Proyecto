@@ -17,7 +17,7 @@ namespace Library.Utils
         /// <param name="city">The city where is the site.</param>
         /// <param name="department">The department where is the site.</param>
         /// <param name="country">The country where is the site.</param>
-        /// <returns>The site´s coordinates.</returns>
+        /// <returns>The site's coordinates.</returns>
         public static Location GetLocation(string address, string city, string department, string country)
         {
             return locationClient.GetLocationAsync(address, city, department, country).Result;
@@ -45,7 +45,7 @@ namespace Library.Utils
             if (s.Contains("@"))
             {
                 string[] mailSplitted = s.Split("@");
-                string[] invalids = { "!", "¡" ,"¿", "?", "#", "´", "+", "-", "<", ">", "&", "/", "*", "[", "]", "{", "}", "$", "|", "°", ";", ":", "=", "," };
+                string[] invalids = { "!", "¡" ,"¿", "?", "#", "'", "+", "-", "<", ">", "&", "/", "*", "[", "]", "{", "}", "$", "|", "°", ";", ":", "=", "," };
                 char[] invalidFirst = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
                 if (mailSplitted.Length == 2)
                 {
@@ -62,7 +62,7 @@ namespace Library.Utils
                     // This verificates if the first character of the email is a number, and if it is, return false.
                     foreach (var num in invalidFirst)
                     {
-                        if(part1[0] == num)
+                        if (part1[0] == num)
                         {
                             return false;
                         }
