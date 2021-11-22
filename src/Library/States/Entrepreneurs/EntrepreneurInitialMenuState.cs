@@ -16,12 +16,12 @@ namespace Library.States.Entrepreneurs
     public class EntrepreneurInitialMenuState : MultipleOptionState
     {
         private string? initialResponse;
-        private string? id;
+        private string id;
 
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurInitialMenuState" />.
         /// </summary>
-        public EntrepreneurInitialMenuState(string? id,string? initialResponse = null)
+        public EntrepreneurInitialMenuState(string id,string? initialResponse = null)
         {
             this.initialResponse=initialResponse;
             this.id = id;
@@ -64,17 +64,17 @@ namespace Library.States.Entrepreneurs
 
         private (State, string?) searchByKeyword()
         {
-            return (new EntrepreneurSearchByKeywordState(), null);
+            return (new EntrepreneurSearchByKeywordState(this.id), null);
         }
 
         private (State, string?) searchByCategory()
         {
-            return (new EntrepreneurSearchByCategoryState(), null);
+            return (new EntrepreneurSearchByCategoryState(this.id), null);
         }
 
         private (State, string?) searchByZone()
         {
-            return (new EntrepreneurSearchByZoneState(), null);
+            return (new EntrepreneurSearchByZoneState(this.id), null);
         }
         
        /// <inheritdoc />

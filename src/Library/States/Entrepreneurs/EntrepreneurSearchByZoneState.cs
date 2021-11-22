@@ -20,7 +20,7 @@ namespace Library.States.Entrepreneurs
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurSearchByZoneState" />.
         /// </summary>
-        public EntrepreneurSearchByZoneState(): base(
+        public EntrepreneurSearchByZoneState(string id): base(
             InputProcessorState.CreateInstance<(Location, double)>(
                 new SearchDataProcessor(),
                 result =>
@@ -28,7 +28,7 @@ namespace Library.States.Entrepreneurs
                     List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByLocation(result.Item1, result.Item2);
                     return (new EntrepreneurInitialMenuState(string.Join('\n', publications)), null);
                 },
-                () => (new EntrepreneurInitialMenuState(null), null)
+                () => (new EntrepreneurInitialMenuState(id), null)
             )
         ) {}
 

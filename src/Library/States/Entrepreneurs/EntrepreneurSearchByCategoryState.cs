@@ -18,7 +18,7 @@ namespace Library.States.Entrepreneurs
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurSearchByKeywordState" />.
         /// </summary>
-        public EntrepreneurSearchByCategoryState(): base(
+        public EntrepreneurSearchByCategoryState(string id): base(
             InputProcessorState.CreateInstance<MaterialCategory>(
                 new MaterialCategoryProcessor(() => "Inserte la categoría del material que quieres buscar."),
                 category =>
@@ -26,7 +26,7 @@ namespace Library.States.Entrepreneurs
                     List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByCategory(category);
                     return (new EntrepreneurInitialMenuState(string.Join('\n', publications)), null);
                 },
-                () => (new EntrepreneurInitialMenuState(null), null)
+                () => (new EntrepreneurInitialMenuState(id), null)
             )
         ) {}
     }
