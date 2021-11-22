@@ -67,7 +67,7 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text, NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite), this.location!, this.headingMessage.Text, habilitations, specializations);
+            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text, CultureInfo.InvariantCulture), this.location!, this.headingMessage.Text, habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
 
             // The user must be in the list of entrepreneurs to be registered.
@@ -102,11 +102,13 @@ namespace ProgramTests
                 "A",
                 "length",
                 "metales",
-                "50", "cm",
-                "30", "pesos", "cm",
+                "50",
+                "cm",
+                "30",
+                "pesos",
+                "cm",
                 "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                "/finish"
-            );
+                "/finish");
             platform.Run();
             Console.WriteLine();
             Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));

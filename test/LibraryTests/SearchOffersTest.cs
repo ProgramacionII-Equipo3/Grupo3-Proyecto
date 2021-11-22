@@ -46,18 +46,18 @@ namespace ProgramTests
             this.category1 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword1 = new List<string> { "agujas", "hospital" };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
-            this.unit1 = Unit.GetByAbbr("kg")!;
+            this.unit1 = Unit.GetByAbbr("kg") !;
             this.amount1 = new Amount(100, this.unit1);
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             this.client = new LocationApiClient();
             this.pickupLocation1 = this.client.GetLocationAsync("Libertad 2500").Result;
-            contact = new ContactInfo();
-            contact.Email = "company1@gmail.com";
-            contact.PhoneNumber = 099421658;
+            this.contact = new ContactInfo();
+            this.contact.Email = "company1@gmail.com";
+            this.contact.PhoneNumber = 099421658;
             
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
-            this.unit2 = Unit.GetByAbbr("kg")!;
+            this.unit2 = Unit.GetByAbbr("kg") !;
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
@@ -69,8 +69,8 @@ namespace ProgramTests
                 empresa = c;
             } else
             {
-                empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", contact, "Tecnología", pickupLocation1)!;
-                (empresa as IPublisher).PublishMaterial(material1, amount1, price1, pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
+                empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", this.contact, "Tecnología", this.pickupLocation1)!;
+                (empresa as IPublisher).PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
                 (empresa as IPublisher).PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
             }
 

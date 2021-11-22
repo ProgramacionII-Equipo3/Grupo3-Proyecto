@@ -57,7 +57,7 @@ namespace UnitTests
         {
             public static IList<string> validated = new List<string>();
 
-            public CustomInvitation(string code): base(code) {}
+            public CustomInvitation(string code) : base(code) {}
 
             public static CustomInvitation CreateInstance(string code) => new CustomInvitation(code);
 
@@ -75,7 +75,7 @@ namespace UnitTests
                 obj is CustomInvitation inv ? this.Code == inv.Code : false;
             
             public override int GetHashCode() =>
-                this.Code.GetHashCode();
+                this.Code.GetHashCode(StringComparison.InvariantCulture);
 
             public static bool operator ==(CustomInvitation a, CustomInvitation b) =>
                 a.Code == b.Code;
