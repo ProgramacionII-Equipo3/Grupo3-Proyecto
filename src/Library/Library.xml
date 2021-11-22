@@ -480,6 +480,9 @@
             <param name="quantity">The numeric value.</param>
             <param name="unit">The unit.</param>
         </member>
+        <member name="M:Library.HighLevel.Accountability.Amount.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Accountability.BoughtMaterialLine">
             <summary>
             This class represents a material bought by the entrepreneur
@@ -522,6 +525,9 @@
             Gets the amount of money spent.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Accountability.Currency">
             <summary>
             This class represents a currency with which transactions can be made.
@@ -549,6 +555,9 @@
             <summary>
             The currency's symbol.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Currency.ToString">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
             <summary>
@@ -590,6 +599,9 @@
             <summary>
             Gets the amount of money made from this sale.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.ToString">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
@@ -652,6 +664,9 @@
             <param name="quantity">The numeric value.</param>
             <param name="currency">The currency.</param>
         </member>
+        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Accountability.Price">
             <summary>
             This struct represents a price.
@@ -682,6 +697,9 @@
             <param name="currency">Material´s publication currency.</param>
             <param name="unit">Material´s unit.</param>
         </member>
+        <member name="M:Library.HighLevel.Accountability.Price.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Accountability.ReceivedMaterialReport">
             <summary>
             This class represents a reports of all material purchased by the entrepreneur.
@@ -699,6 +717,9 @@
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport"/> class.
             </summary>
             <param name="materials">The collection of purchased materials.</param>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.ReceivedMaterialReport.ToString">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Accountability.SentMaterialReport">
             <summary>
@@ -726,6 +747,9 @@
             <param name="materialSales">The list of materials sold.</param>
             <param name="time">The period of time to search.</param>
             <returns>A report of materials sended in a period of time.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.SentMaterialReport.ToString">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Accountability.Unit">
             <summary>
@@ -792,6 +816,9 @@
             <param name="u1">Unit 1 to compare.</param>
             <param name="u2">Unit 2 to compare.</param>
             <returns>Returns true if the units are compatible and false if it not does.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Unit.ToString">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Administers.Administer">
             <summary>
@@ -1015,24 +1042,6 @@
             <param name="dateTime">The lower limit of the moment the sales happened.</param>
             <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" />.</returns>
         </member>
-        <member name="T:Library.HighLevel.Companies.IReceivedMaterialReportCreator">
-            <summary>
-            This interface represents a class which can create <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />s.
-            It was created because of DIP, that way the classes depend of an abstraction.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Companies.IReceivedMaterialReportCreator.BoughtMaterials">
-            <summary>
-            Gets the collection of bought materials.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Companies.IReceivedMaterialReportCreator.GetMaterialReport(System.DateTime)">
-            <summary>
-            Gets a reports of the purchase made by the entrepreneur.
-            </summary>
-            <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
-            <returns>A <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />.</returns>
-        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents an entrepreneur.
@@ -1102,7 +1111,7 @@
             This class represents the highest level of encapsulation in handling entrepreneurs.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.EntrepreneurManager.entrepeneurs">
+        <member name="F:Library.HighLevel.Entrepreneurs.EntrepreneurManager.entrepreneurs">
             <summary>
             The list of entrepreneurs.
             The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
@@ -1120,6 +1129,31 @@
             </summary>
             <param name="entrepreneur">The new entrepreneur.</param>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.GetById(System.String)">
+            <summary>
+            Gets the entrepreneur with a concrete id.
+            </summary>
+            <param name="id">The entrepreneur's id.</param>
+            <returns>The entrepreneur, or null if there's no entrepreneur with the given id.</returns>
+        </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator">
+            <summary>
+            This interface represents a class which can create <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />s.
+            It was created because of DIP, that way the classes depend of an abstraction.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator.BoughtMaterials">
+            <summary>
+            Gets the collection of bought materials.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator.GetMaterialReport(System.DateTime)">
+            <summary>
+            Gets a reports of the purchase made by the entrepreneur.
+            </summary>
+            <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
+            <returns>A <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />.</returns>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
             This class has the responsibility of searching material publication´s
@@ -1133,25 +1167,22 @@
             It creates a client to be able to use the LocationAPI.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Library.HighLevel.Materials.MaterialCategory)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(Library.HighLevel.Materials.MaterialCategory)">
             <summary>
             This method has the responsibility of searching all the publication's by a category.
             </summary>
-            <param name="publications"></param>
             <param name="category"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.String)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByKeyword(System.String)">
             <summary>
             This method has the responsibility of searching all the publication's by a keyword.
             </summary>
-            <param name="publications"></param>
             <param name="keyword"></param>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},Ucu.Poo.Locations.Client.Location,System.Double)">
+        <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByLocation(Ucu.Poo.Locations.Client.Location,System.Double)">
             <summary>
             This method has the responsibility of searching all the publication's by a location.
             </summary>
-            <param name="publications"></param>
             <param name="locationSpecified"></param>
             <param name="distanceSpecified"></param>
         </member>
@@ -1176,6 +1207,9 @@
             </summary>
             <param name="publication">The publication.</param>
             <param name="company">The company which owns the publication.</param>
+        </member>
+        <member name="M:Library.HighLevel.Materials.AssignedMaterialPublication.ToString">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Materials.Habilitation">
             <summary>
@@ -1384,6 +1418,9 @@
             <summary>
             Represents a material publication whose material is constantly generated.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.ToString">
+            <inheritdoc />
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublicationTypeData.Normal">
             <summary>
@@ -1661,6 +1698,9 @@
             Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />
             </summary>
         </member>
+        <member name="M:Library.InputHandlers.AmountProcessor.getResult">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
             Generates a string from a single input message, after trimming it.
@@ -1694,6 +1734,14 @@
             Initializes an instance of <see cref="T:Library.InputHandlers.CurrencyProcessor" />
             </summary>
             <param name="initialResponseGetter"></param>
+        </member>
+        <member name="T:Library.InputHandlers.DateProcessor">
+            <summary>
+            This class represents an <see cref="T:Library.Core.Processing.InputProcessor`1" /> which generates objects of type <see cref="T:System.DateTime" />.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.DateProcessor.#ctor(System.Func{System.String})">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.EmailProcessor">
             <summary>
@@ -1738,6 +1786,17 @@
         <member name="M:Library.InputHandlers.LocationProcessor.#ctor(System.Func{System.String})">
             
         </member>
+        <member name="T:Library.InputHandlers.MaterialCategoryProcessor">
+            <summary>
+            This class represents an <see cref="T:Library.Core.Processing.InputProcessor`1" /> which generates objects of type <see cref="T:Library.HighLevel.Materials.MaterialCategory" />.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.MaterialCategoryProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.MaterialCategoryProcessor" />
+            </summary>
+            <param name="initialResponseGetter">A function which determines the processor's default response.</param>
+        </member>
         <member name="T:Library.InputHandlers.MaterialProcessor">
             <summary>
             This class has the responsibility of create an material with the input data of the user.
@@ -1749,6 +1808,23 @@
             </summary>
         </member>
         <member name="M:Library.InputHandlers.MaterialProcessor.getResult">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.InputHandlers.MaterialPublicationTypeDataProcessor">
+            <summary>
+            This class represents an <see cref="T:Library.Core.Processing.InputProcessor`1" /> which generates objects of type <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.MaterialPublicationTypeDataProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.MaterialPublicationTypeDataProcessor" />.
+            </summary>
+            <param name="initialResponseGetter">The function which determines the processor's default response.</param>
+        </member>
+        <member name="M:Library.InputHandlers.MaterialPublicationTypeDataProcessor.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.MaterialPublicationTypeDataProcessor.ProcessInput(System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.InputHandlers.MaterialPublicationTypeDataProcessor.Reset">
@@ -1800,6 +1876,29 @@
             </summary>
             <param name="initialResponseGetter"></param>
             <returns></returns>
+        </member>
+        <member name="T:Library.InputHandlers.UnsignedDoubleProcessor">
+            <summary>
+            Represent an input processor which processes a double floating point decimal from input.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.UnsignedInt32Processor" />
+            </summary>
+            <param name="initialResponseGetter"></param>
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.UnsignedDoubleProcessor.Reset">
+            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.UnsignedInt32Processor">
             <summary>
@@ -2023,6 +2122,9 @@
             <param name="id">User´s id.</param>
             <returns></returns>
         </member>
+        <member name="M:Library.States.Companies.CompanyPublishMaterialState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+            <inheritdoc />
+        </member>
         <member name="M:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor.#ctor">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor" />
@@ -2038,7 +2140,6 @@
             Initializes an intance of <see cref="T:Library.States.Companies.CompanySentReportState" />
             </summary>
             <param name="id">User´s id.</param>
-            <typeparam name="DateTime">The DateTime to search.</typeparam>
             <returns></returns>
         </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
@@ -2069,6 +2170,79 @@
             Initializes an instance of <see cref="T:Library.States.Companies.IncompleteCompanyRepresentativeState.CreateNewCompanyState" />.
             </summary>
             <param name="parent">Its parent, from which it gets the company's name.</param>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurCreateReportState">
+            <summary>
+            This class represents a <see cref="T:Library.Core.State" /> for an entrepreneur who is creating a report.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurCreateReportState.#ctor(Library.HighLevel.Entrepreneurs.Entrepreneur)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurCreateReportState" />.
+            </summary>
+            <param name="entrepreneur">The data of the entrepreneur.</param>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurInitialMenuState">
+            <summary>
+            This class represents a <see cref="T:Library.Core.State" /> for an entrepreneur in the initial menu.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurInitialMenuState" />.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.GetInitialResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.GetErrorString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurMenuState">
+            <summary>
+            This class represents the <see cref="T:Library.Core.State" /> of an entrepreneur in the initial menu.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurMenuState" />
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetInitialResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetErrorString">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a keyword.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a keyword.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
+            </summary>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState">
+            <summary>
+            This class represents the state of an entrepreneur that is searching publications with a location and distance.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState" />.
+            </summary>
         </member>
         <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
             <summary>
@@ -2101,6 +2275,21 @@
             <summary>
             This class represents a State which basically works with an <see cref="T:Library.Core.Processing.InputProcessor`1" />.
             </summary>
+        </member>
+        <member name="M:Library.States.InputProcessorState.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.InputProcessorState" />.
+            </summary>
+        </member>
+        <member name="M:Library.States.InputProcessorState.CreateInstance``1(Library.Core.Processing.InputProcessor{``0},System.Func{``0,System.ValueTuple{Library.Core.State,System.String}},System.Func{System.ValueTuple{Library.Core.State,System.String}})">
+            <summary>
+            Creates a valid instance of <see cref="T:Library.States.InputProcessorState" />.
+            </summary>
+            <param name="processor">The inner processor on which the <see cref="T:Library.States.InputProcessorState" /> depends.</param>
+            <param name="nextState">The function which determines the next state, given the resulting object from the processor.</param>
+            <param name="exitState">The function which determines the next state, given that the processor returned an interrupt signal.</param>
+            <typeparam name="T">The type of the objects generated by the processor.</typeparam>
+            <returns>An <see cref="T:Library.States.InputProcessorState" />.</returns>
         </member>
         <member name="M:Library.States.InputProcessorState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
@@ -2135,6 +2324,17 @@
         </member>
         <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
+        </member>
+        <member name="T:Library.States.WrapperState">
+            <summary>
+            This class acts as a type wrapper for a <see cref="T:Library.Core.State" />.
+            </summary>
+        </member>
+        <member name="M:Library.States.WrapperState.#ctor(Library.Core.State)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.WrapperState" />.
+            </summary>
+            <param name="innerState">The inner state.</param>
         </member>
         <member name="M:Library.States.WrapperState.GetDefaultResponse">
             <inheritdoc />
@@ -2185,6 +2385,13 @@
             </summary>
             <param name="link">The string.</param>
             <returns>Whether it's a valid link or not.</returns>
+        </member>
+        <member name="M:Library.Utils.BasicUtils.LocationToString(Ucu.Poo.Locations.Client.Location)">
+            <summary>
+            Converts a location into a string equivalent.
+            </summary>
+            <param name="location">The location.</param>
+            <returns>The string equivalent.</returns>
         </member>
         <member name="T:Library.Utils.MoneyQuantityUtils">
             <summary>

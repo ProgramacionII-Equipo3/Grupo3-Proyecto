@@ -89,11 +89,6 @@
             This test evaluate if the entrepreneur is registered with their correct information.
             </summary>
         </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegisterFromUserInput">
-            <summary>
-            Tests the course of registering an entrepreneur from user input.
-            </summary>
-        </member>
         <member name="T:ProgramTests.EntrepreneurReportTest">
             <summary>
             This test check if the Entrepreneur can get an received material report.

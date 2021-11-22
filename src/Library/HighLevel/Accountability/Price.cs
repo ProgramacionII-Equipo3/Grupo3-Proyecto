@@ -35,5 +35,9 @@ namespace Library.HighLevel.Accountability
             this.Currency = currency;
             this.Unit = unit;
         }
+
+        /// <inheritdoc />
+        public override string? ToString() =>
+            $"{this.Quantity} {this.Currency}/{this.Unit}";
     }
 }

@@ -27,5 +27,13 @@ namespace Library.HighLevel.Materials
             this.Publication = publication;
             this.Company = company;
         }
+
+        /// <inheritdoc />
+        public override string ToString() =>
+            $"(De {this.Company.Name}) {this.Publication.Material},"
+            + $" cantidad: {this.Publication.Amount},"
+            + $" precio: {this.Publication.Price},"
+            + $" ubicación: {this.Publication.PickupLocation},"
+            + $" tipo: {this.Publication.Type}";
     }
 }

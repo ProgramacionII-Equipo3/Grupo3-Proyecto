@@ -40,6 +40,10 @@ namespace Library.Core.Distribution
         /// <returns>The response message text.</returns>
         public string ProcessMessage(string msg)
         {
+            if(msg == "/help")
+            {
+                return this.state.GetDefaultResponse();
+            }
             UserData userData = this.UserData;
             var (newState, res) = this.state.ProcessMessage(this.Id, ref userData, msg);
             if(newState == null)

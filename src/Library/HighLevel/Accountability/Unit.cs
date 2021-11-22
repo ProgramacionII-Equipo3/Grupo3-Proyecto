@@ -80,5 +80,8 @@ namespace Library.HighLevel.Accountability
         /// <param name="u2">Unit 2 to compare.</param>
         /// <returns>Returns true if the units are compatible and false if it not does.</returns>
         public static bool AreCompatible(Unit u1, Unit u2) => u1.Measure == u2.Measure;
+
+        /// <inheritdoc />
+        public override string? ToString() => this.Abbreviation;
     }
 }

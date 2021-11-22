@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Library;
 using Library.Core;
@@ -81,6 +82,7 @@ namespace ProgramTests
             Assert.AreEqual(nameExpected, juan.Name);
         }
 
+        [Test]
         /// <summary>
         /// Tests the course of registering an entrepreneur from user input.
         /// </summary>
@@ -105,6 +107,8 @@ namespace ProgramTests
                 "/finish"
             );
             platform.Run();
+            Console.WriteLine();
+            Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
         }
     }
 }

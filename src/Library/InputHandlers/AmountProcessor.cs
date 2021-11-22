@@ -31,6 +31,7 @@ namespace Library.InputHandlers
             };
         }
 
+        /// <inheritdoc />
         protected override Result<Amount, string> getResult() =>
             Result<Amount, string>.Ok(new Amount(this.quantity.Unwrap(), this.unit.Unwrap()));
     }

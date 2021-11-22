@@ -27,5 +27,9 @@ namespace Library.HighLevel.Accountability
             this.Quantity = quantity;
             this.Unit = unit;
         }
+
+        /// <inheritdoc />
+        public override string? ToString() =>
+            $"{this.Quantity} {this.Unit}";
     }
 }

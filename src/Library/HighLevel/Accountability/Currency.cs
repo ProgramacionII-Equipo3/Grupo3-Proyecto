@@ -33,5 +33,8 @@ namespace Library.HighLevel.Accountability
             this.Name = name;
             this.Symbol = symbol;
         }
+
+        /// <inheritdoc />
+        public override string ToString() => this.Symbol;
     }
 }
