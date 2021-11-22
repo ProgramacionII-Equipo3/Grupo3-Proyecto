@@ -55,21 +55,30 @@ namespace ProgramTests
             contact = new ContactInfo();
             contact.Email = "company1@gmail.com";
             contact.PhoneNumber = 099421658;
-            Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", contact, "Tecnología", pickupLocation1)!;
-            (empresa as IPublisher).PublishMaterial(material1, amount1, price1, pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
-
+            
             this.category2 = new MaterialCategory("Residuos hospitalarios");
-            IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
             this.unit2 = Unit.GetByAbbr("kg")!;
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = this.client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
-            (empresa as IPublisher).PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
+            IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
+
+            Company empresa;
+            if(Singleton<CompanyManager>.Instance.GetByName("Company1") is Company c)
+            {
+                empresa = c;
+            } else
+            {
+                empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", contact, "Tecnología", pickupLocation1)!;
+                (empresa as IPublisher).PublishMaterial(material1, amount1, price1, pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
+                (empresa as IPublisher).PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
+            }
+
             IList<AssignedMaterialPublication> publications = empresa.Publications;
 
-            this.publication1 = publications.Where(p => p.Publication.Keywords.Equals(keyword1)).FirstOrDefault();
-            this.publication2 = publications.Where(p => p.Publication.Keywords.Equals(keyword2)).FirstOrDefault();
+            this.publication1 = publications.Where(p => p.Publication.Keywords.Any(k => k == "hospital")).FirstOrDefault();
+            this.publication2 = publications.Where(p => p.Publication.Keywords.Any(k => k == "cubrebocas")).FirstOrDefault();
         }
 
         /// <summary>
@@ -110,9 +119,16 @@ namespace ProgramTests
         public void SearchOffersbyKeywordsFound()
         {
             List<AssignedMaterialPublication> expected3 = new List<AssignedMaterialPublication>();
+            System.Console.WriteLine("---" + (publication2 is null));
             expected3.Add(this.publication2.Unwrap());
 
-            Assert.AreEqual(expected3, Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas"));
+            List<AssignedMaterialPublication> result = Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas");
+
+//            Assert.That(expected3, Is.Not.Null);
+            Assert.That(result, Is.Not.Null);
+//            System.Console.WriteLine(string.Join(", ", expected3));
+//            System.Console.WriteLine(string.Join(", ", result));
+            Assert.AreEqual(expected3, result);
         }
 
         /// <summary>

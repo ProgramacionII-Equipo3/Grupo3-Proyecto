@@ -20,6 +20,7 @@ namespace UnitTests
         [Test]
         public void TestAdminCreateInvitation()
         {
+            Singleton<SessionManager>.Instance.RemoveUser("___");
             Console.WriteLine();
             BasicUtils.CreateUser(new AdminInitialMenuState());
             ProgramaticPlatform platform = new ProgramaticPlatform(
