@@ -11,14 +11,12 @@ namespace Grupo3_Proyecto
     public class MultipleUsersConsolePlatform : MessagingPlatform<string>
     {
         private static Regex changeUserRegex = new Regex(
-            "> ?CHANGE ?(?:USER)? *(?<id>.+)",
-            RegexOptions.Compiled
-        );
+            "> ?CHANGE[ -]?(?:USER)? +(?<id>.+)",
+            RegexOptions.Compiled);
 
         private static Regex msgRegex = new Regex(
-            "For (?<id>\\w+) *: *(?<msg>.+?) *",
-            RegexOptions.Compiled
-        );
+            "For +(?<id>\\w+) *: *(?<msg>.+?) *",
+            RegexOptions.Compiled);
 
         /// <inheritdoc />
         public override string GetUserId(string id) => id;
@@ -62,8 +60,7 @@ namespace Grupo3_Proyecto
                 {
                     this.ReceiveMessage(
                         match.Groups["msg"].Value,
-                        match.Groups["id"].Value
-                    );
+                        match.Groups["id"].Value);
                     continue;
                 }
 
