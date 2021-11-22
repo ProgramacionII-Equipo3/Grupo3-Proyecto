@@ -17,7 +17,7 @@ namespace Library.States.Companies
 
             /// <inheritdoc />
             public override string GetDefaultResponse() =>
-                $"There's already a company called {this.company.Name}. Is this the company you want to assign to?";
+                $"Ya existe una compañía llamada {this.company.Name}. ¿Es esta la empresa que desea asignar?";
 
             /// <inheritdoc />
             protected override Result<Company, string> getResult() => Result<Company, string>.Ok(this.company);
@@ -31,7 +31,7 @@ namespace Library.States.Companies
                 else if(msg == "no" || msg == "n")
                     return Result<bool, string>.Ok(false);
                 
-                return Result<bool, string>.Err($"Please answer \"yes\" (\"y\") or \"no\" (\"n\").\n{this.GetDefaultResponse()}");
+                return Result<bool, string>.Err($"Por favor ingresa \"yes\" (\"y\") o \"no\" (\"n\").\n{this.GetDefaultResponse()}");
             }
 
             /// <inheritdoc />

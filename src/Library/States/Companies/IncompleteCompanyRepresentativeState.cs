@@ -1,5 +1,4 @@
 using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
@@ -59,7 +58,7 @@ namespace Library.States.Companies
         {
             if(this.companyGetter == null)
             {
-                return "Please insert the company's name.";
+                return "Por favor ingresa el nombre de la empresa.";
             } else
             {
                 return this.companyGetter.GetDefaultResponse();

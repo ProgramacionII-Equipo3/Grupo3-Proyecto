@@ -29,7 +29,7 @@ namespace Library.States.Companies
                     }
                     else
                     {
-                        return (newState, $"The user is not a company representative\n{newState.GetDefaultResponse()}");
+                        return (newState, $"Lo siento, no te reconozco como un representante de una compañía.\n{newState.GetDefaultResponse()}");
                     }
                 },
                 () => (new CompanyInitialMenuState(id), null)
