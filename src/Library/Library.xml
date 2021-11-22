@@ -2187,7 +2187,7 @@
             This class represents a <see cref="T:Library.Core.State" /> for an entrepreneur in the initial menu.
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.#ctor(System.String)">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.#ctor(System.String,System.String)">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurInitialMenuState" />.
             </summary>
@@ -2198,28 +2198,12 @@
         <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.GetErrorString">
             <inheritdoc />
         </member>
-        <member name="T:Library.States.Entrepreneurs.EntrepreneurMenuState">
-            <summary>
-            This class represents the <see cref="T:Library.Core.State" /> of an entrepreneur in the initial menu.
-            </summary>
-        </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.#ctor(System.String)">
-            <summary>
-            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurMenuState" />
-            </summary>
-        </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetInitialResponse">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurMenuState.GetErrorString">
-            <inheritdoc />
-        </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState">
             <summary>
             This class represents the state of an entrepreneur that is searching publications with a keyword.
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState.#ctor">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState.#ctor(System.String)">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
             </summary>
@@ -2229,7 +2213,7 @@
             This class represents the state of an entrepreneur that is searching publications with a keyword.
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState.#ctor">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState.#ctor(System.String)">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByKeywordState" />.
             </summary>
@@ -2239,7 +2223,7 @@
             This class represents the state of an entrepreneur that is searching publications with a location and distance.
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState.#ctor">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState.#ctor(System.String)">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurSearchByZoneState" />.
             </summary>
