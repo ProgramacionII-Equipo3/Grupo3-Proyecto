@@ -1,6 +1,6 @@
 [
     {
-        "Name": "Teogal",
+        "Name": "Company1",
         "ContactInfo": {
             "email": "teogal@gmail.com",
             "phoneNumber": 98162487
@@ -55,7 +55,23 @@
             }
         ],
         "MaterialSales": [
-
+            {
+                "Material": {
+                    "Name": "Bujes de cart\u00F3n",
+                    "Measure": "Length",
+                    "Category": "Celul\u00F3sicos"
+                },
+                "Amount": {
+                    "Quantity": 2,
+                    "Unit": "cm"
+                },
+                "Price": {
+                    "Quantity": 30,
+                    "Currency": "peso",
+                    "Unit": "cm"
+                },
+                "DateTime": "2021-11-21T12:00:00Z"
+            }
         ]
     }
 ]

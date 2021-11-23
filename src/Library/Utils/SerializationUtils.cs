@@ -35,7 +35,7 @@ namespace Library.Utils
             } else
             {
 #warning Specify a better exception for when the method JsonSerializer.DeserializeAsync<T> returns null.
-                throw new Exception();
+                throw new System.Runtime.Serialization.SerializationException("The given JSON represents a null value.");
             }
         }
 
