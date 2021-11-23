@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Library.Core.Distribution;
 using Library.Core.Invitations;
@@ -23,8 +25,8 @@ namespace Library.Utils
         /// </summary>
         /// <param name="path">The path of the JSON file.</param>
         /// <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
-        /// <returns></returns>
-        public static T DeserializeJSON<T>(string path)
+        /// <returns>The resulting value.</returns>
+        public static T DeserializeJson<T>(string path)
         {
             using var fileStream = new FileStream(path, FileMode.Open);
             if (JsonSerializer.DeserializeAsync<T>(fileStream, defaultOptions).Result is T result)
@@ -32,10 +34,35 @@ namespace Library.Utils
                 return result;
             } else
             {
-                // TODO: specify a better exception
+#warning Specify a better exception for when the method JsonSerializer.DeserializeAsync<T> returns null.
                 throw new Exception();
             }
         }
+
+        /// <summary>
+        /// Loads a JSON file and deserializes its contents into an intermediate type,
+        /// which is transformed into the expected type.
+        /// </summary>
+        /// <param name="path">The path of the JSON file.</param>
+        /// <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
+        /// <typeparam name="U">The intermediate type.</typeparam>
+        /// <returns>The resulting value.</returns>
+        public static T DeserializeJsonFromIntermediate<T, U>(string path)
+            where U: IJsonHolder<T> =>
+                DeserializeJson<U>(path).ToValue();
+
+        /// <summary>
+        /// Loads a JSON file which contains an array and deserializes its contents
+        /// into an array of an intermediate type,
+        /// which is transformed into an enumerable of the expected type.
+        /// </summary>
+        /// <param name="path">The path of the JSON file.</param>
+        /// <typeparam name="T">The type of which the array into which to deserialize the file's contents is.</typeparam>
+        /// <typeparam name="U">The intermediate type.</typeparam>
+        /// <returns>The resulting value.</returns>
+        public static IEnumerable<T> DeserializeJsonListFromIntermediate<T, U>(string path)
+            where U : IJsonHolder<T> =>
+                DeserializeJson<U[]>(path).Select(json => json.ToValue());
 
         /// <summary>
         /// Deserialize the bot's state from JSON from a directory.
@@ -43,7 +70,7 @@ namespace Library.Utils
         /// <param name="path">The directory's path.</param>
         public static void DeserializeAllFromJSON(string path)
         {
-            Singleton<InvitationManager>.Instance.LoadInvitations<CompanyInvitation>(path, "company_invitations.json");
+            Singleton<InvitationManager>.Instance.LoadInvitations<Library.HighLevel.Companies.CompanyInvitation, Library.HighLevel.Companies.JsonCompanyInvitation>(path, "company_invitations.json");
             Singleton<SessionManager>.Instance.LoadUserSessions(path);
             Singleton<CompanyManager>.Instance.LoadCompanies(path);
             Singleton<EntrepreneurManager>.Instance.LoadEntrepreneurs(path);
