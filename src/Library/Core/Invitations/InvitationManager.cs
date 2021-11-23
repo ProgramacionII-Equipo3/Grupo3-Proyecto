@@ -101,9 +101,12 @@ namespace Library.Core.Invitations
         /// <param name="path">The path of the main directory.</param>
         /// <param name="fileName">The file name associated with the type of the invitations.</param>
         /// <typeparam name="T">The type of the invitations to load.</typeparam>
-        public void LoadInvitations<T>(string path, string fileName) where T : Invitation
+        /// <typeparam name="U">The type of the JSON holders.</typeparam>
+        public void LoadInvitations<T, U>(string path, string fileName)
+            where T : Invitation
+            where U : IJsonHolder<T>
         {
-            T[] invitations = SerializationUtils.DeserializeJSON<T[]>(path + "/invitations/" + fileName);
+            IEnumerable<T> invitations = SerializationUtils.DeserializeJsonListFromIntermediate<T, U>(path + "/invitations/" + fileName);
             Singleton<InvitationList<T>>.Instance.SetInvitations(invitations);
         }
     }

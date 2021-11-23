@@ -69,11 +69,11 @@ namespace ProgramTests
             } else
             {
                 empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", this.contact, "Tecnología", this.pickupLocation1)!;
-                (empresa as IPublisher).PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
-                (empresa as IPublisher).PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
+                empresa.PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
+                empresa.PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
             }
 
-            IList<AssignedMaterialPublication> publications = empresa.Publications;
+            IList<AssignedMaterialPublication> publications = empresa.AssignedPublications;
 
             this.publication1 = publications.Where(p => p.Publication.Keywords.Any(k => k == "hospital")).FirstOrDefault();
             this.publication2 = publications.Where(p => p.Publication.Keywords.Any(k => k == "cubrebocas")).FirstOrDefault();

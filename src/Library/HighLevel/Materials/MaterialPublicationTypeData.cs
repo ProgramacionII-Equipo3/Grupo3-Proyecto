@@ -48,7 +48,7 @@ namespace Library.HighLevel.Materials
                 case MaterialPublicationType.NORMAL:
                     return "normal";
                 case MaterialPublicationType.SCHEDULED:
-                    return "scheduled";
+                    return $"scheduled (date: {this.DateTime})";
                 case MaterialPublicationType.CONTINUOUS:
                     return "continuous";
                 default:

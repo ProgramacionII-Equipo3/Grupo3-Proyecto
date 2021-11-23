@@ -40,7 +40,7 @@ namespace ProgramTests
 
             ContactInfo contact = new ContactInfo("evertec@gmail.com", 095456258);
             Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location)!;
-            (empresa as IPublisher).PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
+            empresa.PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
             Amount amount2 = new Amount(5, unit);

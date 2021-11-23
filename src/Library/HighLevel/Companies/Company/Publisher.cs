@@ -1,28 +1,29 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text.Json.Serialization;
+using Library.Core;
+using Library.Core.Distribution;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {
-    /// <summary>
-    /// This interface represents the responsibility of managing material publications.
-    /// We created this interface because of DIP, that way the classes depend of an abstraction.
-    /// </summary>
-    public interface IPublisher
+    public partial class Company
     {
         /// <summary>
         /// Gets a private list of the publications.
-        /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
-        /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="IPublisher.Publications" />.
         /// </summary>
-        protected List<MaterialPublication> publications { get; }
+        public IList<MaterialPublication> Publications { get; private set; } = new List<MaterialPublication>();
 
         /// <summary>
-        /// Gets a public read-only list of the publications.
+        /// Gets the list of publications, dinamically assigned to the company.
         /// </summary>
-        public ReadOnlyCollection<MaterialPublication> Publications => this.publications.AsReadOnly();
+        public IList<AssignedMaterialPublication> AssignedPublications =>
+            this.Publications.Select(pub => new AssignedMaterialPublication(
+                company: this,
+                publication: pub
+            )).ToList();
 
         /// <summary>
         /// Publishes a material.
@@ -38,10 +39,11 @@ namespace Library.HighLevel.Companies
         {
             if (MaterialPublication.CreateInstance(material, amount, price, location, type, keywords) is MaterialPublication publication)
             {
-                this.publications.Add(publication);
+                if(this.Publications.Any(p => p.Material.Name == material.Name))
+                    return false;
+                this.Publications.Add(publication);
                 return true;
             }
-
             return false;
         }
 
@@ -57,7 +59,7 @@ namespace Library.HighLevel.Companies
                 return false;
             }
 
-            this.publications.RemoveAt(index);
+            this.Publications.RemoveAt(index);
             return true;
         }
     }

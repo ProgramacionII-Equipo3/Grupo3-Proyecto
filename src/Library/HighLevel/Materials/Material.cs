@@ -1,4 +1,7 @@
+using System.Text.Json.Serialization;
+using Library.HighLevel;
 using Library.HighLevel.Accountability;
+using Library.Utils;
 
 namespace Library.HighLevel.Materials
 {
@@ -21,7 +24,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The category the material belongs to.
         /// </summary>
-        public MaterialCategory Category;
+        public MaterialCategory Category { get; private set; }
 
         private Material(string name, Measure measure, MaterialCategory category)
         {

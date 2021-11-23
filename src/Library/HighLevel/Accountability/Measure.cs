@@ -55,5 +55,20 @@ namespace Library.HighLevel.Accountability
             this.Name = name;
             this.units = unitsData.Select(data => new Unit(data.name, data.abbr, data.weight, this)).ToArray();
         }
+
+        /// <summary>
+        /// Gets the measure with a concrete name.
+        /// </summary>
+        /// <param name="name">The measure's name.</param>
+        /// <returns>A measure.</returns>
+        public static Measure? GetByName(string name)
+        {
+            switch(name.ToLower(System.Globalization.CultureInfo.InvariantCulture))
+            {
+                case "weight": return Measure.Weight;
+                case "length": return Measure.Length;
+                default: return null;
+            }
+        }
     }
 }

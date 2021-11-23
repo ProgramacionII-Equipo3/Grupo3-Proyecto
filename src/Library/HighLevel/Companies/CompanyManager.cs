@@ -71,7 +71,7 @@ namespace Library.HighLevel.Companies
         /// The list of all publications made by all companies.
         /// </summary>
         public List<AssignedMaterialPublication> Publications =>
-            this.Companies.SelectMany(company => company.Publications).ToList();
+            this.Companies.SelectMany(company => company.AssignedPublications).ToList();
 
         /// <summary>
         /// Removes a company.
@@ -93,7 +93,7 @@ namespace Library.HighLevel.Companies
         /// <param name="path">The main directory's path.</param>
         public void LoadCompanies(string path)
         {
-            Company[] companies = SerializationUtils.DeserializeJSON<Company[]>(path + "/companies.json");
+            List<Company> companies = SerializationUtils.DeserializeJsonListFromIntermediate<Company, JsonCompany>(path + "/companies.json").ToList();
         }
     }
 }

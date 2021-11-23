@@ -1,3 +1,6 @@
+using System.Text.Json.Serialization;
+using Library.Utils;
+
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
@@ -10,12 +13,12 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The numeric value in the amount.
         /// </summary>
-        public readonly float Quantity;
+        public float Quantity { get; private set; }
 
         /// <summary>
         /// The unit used in the amount.
         /// </summary>
-        public readonly Unit Unit;
+        public Unit Unit { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount"/> struct.

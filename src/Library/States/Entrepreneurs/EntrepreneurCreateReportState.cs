@@ -22,7 +22,7 @@ namespace Library.States.Entrepreneurs
                 new DateProcessor(() => "Ingresa la fecha para ver el reporte correspondiente."),
                 dateTime =>
                 {
-                    ReceivedMaterialReport report = (entrepreneur as IReceivedMaterialReportCreator)!.GetMaterialReport(dateTime);
+                    ReceivedMaterialReport report = entrepreneur.GetMaterialReport(dateTime);
                     State newState = new EntrepreneurInitialMenuState(entrepreneur.Id);
                     return (newState, $"{report}\n{newState.GetDefaultResponse()}");
                 },
