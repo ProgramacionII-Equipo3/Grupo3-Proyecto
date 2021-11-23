@@ -12,7 +12,7 @@ namespace Library.States.Admins
     public class AdminInitialMenuState : MultipleOptionState
     {
         /// <summary>
-        /// Initializes an instance of <see cref="AdminInitialMenuState" />
+        /// Initializes an instance of <see cref="AdminInitialMenuState" />.
         /// </summary>
         public AdminInitialMenuState()
         {
