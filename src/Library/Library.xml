@@ -508,15 +508,21 @@
             to prevent modifications, but it's still open to extension.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.Amount.Quantity">
+        <member name="P:Library.HighLevel.Accountability.Amount.Quantity">
             <summary>
             The numeric value in the amount.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.Amount.Unit">
+        <member name="P:Library.HighLevel.Accountability.Amount.Unit">
             <summary>
             The unit used in the amount.
             </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.Amount.UnitName">
+            <summary>
+            Acts as a wrapper for the unit in JSON serialization/deserialization.
+            </summary>
+            <value></value>
         </member>
         <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Single,Library.HighLevel.Accountability.Unit)">
             <summary>
@@ -536,30 +542,36 @@
             That way we have classes with Low Coupling.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.BoughtMaterialLine.Material">
+        <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.CompanyName">
+            <summary>
+            The company who owns the material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Material">
             <summary>
             The purchased material.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.BoughtMaterialLine.DateTime">
+        <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.DateTime">
             <summary>
             The date of when the purchase was made.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.BoughtMaterialLine.Price">
+        <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Price">
             <summary>
             The cost of the material.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.BoughtMaterialLine.Amount">
+        <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Amount">
             <summary>
             The amount of the purchased material.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
+        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(System.String,Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine"/> class.
             </summary>
+            <param name="companyName">The company who owned the material.</param>
             <param name="material">The purchased material.</param>
             <param name="dateTime">The date of when the purchase was made.</param>
             <param name="price">The cost of the material.</param>
@@ -603,6 +615,13 @@
         </member>
         <member name="M:Library.HighLevel.Accountability.Currency.ToString">
             <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Currency.GetFromName(System.String)">
+            <summary>
+            Gets the currency given its name.
+            </summary>
+            <param name="name">The currency's name.</param>
+            <returns>The currency, if there is.</returns>
         </member>
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
             <summary>
@@ -682,6 +701,13 @@
             <param name="name">The measure's name.</param>
             <param name="unitsData">An array of tuples containing data about its units.</param>
         </member>
+        <member name="M:Library.HighLevel.Accountability.Measure.GetByName(System.String)">
+            <summary>
+            Gets the measure with a concrete name.
+            </summary>
+            <param name="name">The measure's name.</param>
+            <returns>A measure.</returns>
+        </member>
         <member name="T:Library.HighLevel.Accountability.MoneyQuantity">
             <summary>
             This class represents an amount of money.
@@ -729,9 +755,19 @@
             Gets the currency with which the price is determined.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Accountability.Price.CurrencyName">
+            <summary>
+            Acts as a wrapper for the price in JSON serialization/deserialization.
+            </summary>
+        </member>
         <member name="P:Library.HighLevel.Accountability.Price.Unit">
             <summary>
             Gets the unit of material measurement with which the price is determined.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.Price.UnitName">
+            <summary>
+            Acts as a wrapper for the unit in JSON serialization/deserialization.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
@@ -893,6 +929,10 @@
             list of representants. And Expert, the method of checking if the
             company has a representant and add users.
             </summary>
+            <summary>
+            This interface represents the responsibility of creating material reports.
+            We created this interface because of DIP, that way the classes depend of an abstraction.
+            </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Name">
             <summary>
@@ -928,7 +968,7 @@
             <param name="heading">The company's heading.</param>
             <param name="location">The company's location.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.IList{System.String})">
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.Collections.Generic.IList{Library.HighLevel.Accountability.MaterialSalesLine})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class from JSON data.
             </summary>
@@ -937,6 +977,8 @@
             <param name="heading">The company's heading.</param>
             <param name="location">The company's location.</param>
             <param name="representants">The company's representants' ids.</param>
+            <param name="publications">The company's publications.</param>
+            <param name="materialSales">The company's material sales.</param>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(System.String)">
             <summary>
@@ -951,14 +993,14 @@
             </summary>
             <param name="id">The user's id.</param>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#IPublisher#publications">
+        <member name="M:Library.HighLevel.Companies.Company.RemoveUsers">
             <summary>
-            Gets a list of Material Publications.
+            Removes all users in a company
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Library#HighLevel#Companies#ISentMaterialReportCreator#materialSales">
+        <member name="P:Library.HighLevel.Companies.Company.publications">
             <summary>
-            Gets a list of Material Sales.
+            Gets a private list of the publications.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Publications">
@@ -966,10 +1008,36 @@
             Gets the list of publications, dinamically assigned to the company.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.RemoveUsers">
+        <member name="M:Library.HighLevel.Companies.Company.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String})">
             <summary>
-            Removes all users in a company
+            Publishes a material.
             </summary>
+            <param name="material">The material to publish.</param>
+            <param name="amount">The amount of material.</param>
+            <param name="price">The price of the material.</param>
+            <param name="location">The pick-up location of the material.</param>
+            <param name="type">The type of the material publication.</param>
+            <param name="keywords">The keywords of the material.</param>
+            <returns>Whether the operation was successful.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Companies.Company.RemovePublication(System.Int32)">
+            <summary>
+            Removes a material publication.
+            </summary>
+            <param name="index">The index of the publication.</param>
+            <returns>Whether the removal was successful.</returns>
+        </member>
+        <member name="P:Library.HighLevel.Companies.Company.materialSales">
+            <summary>
+            Gets the list of material sales.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Companies.Company.GetMaterialReport(System.DateTime)">
+            <summary>
+            Builds a <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /> with the material sales that occured after a certain <see cref="T:System.DateTime" />.
+            </summary>
+            <param name="dateTime">The lower limit of the moment the sales happened.</param>
+            <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" />.</returns>
         </member>
         <member name="T:Library.HighLevel.Companies.CompanyInvitation">
             <summary>
@@ -1048,66 +1116,15 @@
             </summary>
             <param name="path">The main directory's path.</param>
         </member>
-        <member name="T:Library.HighLevel.Companies.IPublisher">
-            <summary>
-            This interface represents the responsibility of managing material publications.
-            We created this interface because of DIP, that way the classes depend of an abstraction.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.publications">
-            <summary>
-            Gets a private list of the publications.
-            The class <see cref="T:System.Collections.Generic.List`1" /> is used instead of the interface <see cref="T:System.Collections.Generic.IList`1" />
-            because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Companies.IPublisher.Publications" />.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Companies.IPublisher.Publications">
-            <summary>
-            Gets a public read-only list of the publications.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Companies.IPublisher.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String})">
-            <summary>
-            Publishes a material.
-            </summary>
-            <param name="material">The material to publish.</param>
-            <param name="amount">The amount of material.</param>
-            <param name="price">The price of the material.</param>
-            <param name="location">The pick-up location of the material.</param>
-            <param name="type">The type of the material publication.</param>
-            <param name="keywords">The keywords of the material.</param>
-            <returns>Whether the operation was successful.</returns>
-        </member>
-        <member name="M:Library.HighLevel.Companies.IPublisher.RemovePublication(System.Int32)">
-            <summary>
-            Removes a material publication.
-            </summary>
-            <param name="index">The index of the publication.</param>
-            <returns>Whether the removal was successful.</returns>
-        </member>
-        <member name="T:Library.HighLevel.Companies.ISentMaterialReportCreator">
-            <summary>
-            This interface represents the responsibility of creating material reports.
-            We created this interface because of DIP, that way the classes depend of an abstraction.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Companies.ISentMaterialReportCreator.materialSales">
-            <summary>
-            Gets the list of material sales.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Companies.ISentMaterialReportCreator.GetMaterialReport(System.DateTime)">
-            <summary>
-            Builds a <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" /> with the material sales that occured after a certain <see cref="T:System.DateTime" />.
-            </summary>
-            <param name="dateTime">The lower limit of the moment the sales happened.</param>
-            <returns>The <see cref="T:Library.HighLevel.Accountability.SentMaterialReport" />.</returns>
-        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
             This class represents an entrepreneur.
             We used the principle Creator to create this class, for
             example, the list of entrepreneur is created here.
+            </summary>
+            <summary>
+            This interface represents a class which can create <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />s.
+            It was created because of DIP, that way the classes depend of an abstraction.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.Id">
@@ -1162,6 +1179,31 @@
             <param name="habilitations">Entrepreneur's habilitation.</param>
             <param name="specializations">Entrepreneur's specializations.</param>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.#ctor(System.String,System.String,System.Int32,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{Library.HighLevel.Accountability.BoughtMaterialLine})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur"/> class from JSON data.
+            </summary>
+            <param name="id">Entrepreneur's id.</param>
+            <param name="name">Entrepreneur's name.</param>
+            <param name="age">Entrepreneur's age.</param>
+            <param name="location">Entrepreneur's location.</param>
+            <param name="heading">Entrepreneur's heading.</param>
+            <param name="habilitations">Entrepreneur's habilitation.</param>
+            <param name="specializations">Entrepreneur's specializations.</param>
+            <param name="boughtMaterials">Entrepreneur's bought material lines.</param>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.BoughtMaterials">
+            <summary>
+            Gets the collection of bought materials.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.GetMaterialReport(System.DateTime)">
+            <summary>
+            Gets a reports of the purchase made by the entrepreneur.
+            </summary>
+            <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
+            <returns>A <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />.</returns>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
             <summary>
             This class represents the highest level of encapsulation in handling entrepreneurs.
@@ -1197,24 +1239,6 @@
             Loads all entrepreneurs from a JSON file.
             </summary>
             <param name="path">The main directory's file.</param>
-        </member>
-        <member name="T:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator">
-            <summary>
-            This interface represents a class which can create <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />s.
-            It was created because of DIP, that way the classes depend of an abstraction.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator.BoughtMaterials">
-            <summary>
-            Gets the collection of bought materials.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.IReceivedMaterialReportCreator.GetMaterialReport(System.DateTime)">
-            <summary>
-            Gets a reports of the purchase made by the entrepreneur.
-            </summary>
-            <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
-            <returns>A <see cref="T:Library.HighLevel.Accountability.ReceivedMaterialReport" />.</returns>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
@@ -1325,10 +1349,18 @@
             Gets the measure with which the amounts of the material are measured.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Materials.Material.Category">
+        <member name="P:Library.HighLevel.Materials.Material.Category">
             <summary>
             The category the material belongs to.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.Material.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.HighLevel.Materials.Material" /> from JSON data.
+            </summary>
+            <param name="name">The material's name.</param>
+            <param name="measure">The material's measure.</param>
+            <param name="category">The material's category.</param>
         </member>
         <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory)">
             <summary>
@@ -2187,7 +2219,7 @@
         <member name="M:Library.States.Companies.CompanyPublishMaterialState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor.#ctor">
+        <member name="M:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor.#ctor(System.String)">
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor" />
             </summary>
@@ -2202,7 +2234,6 @@
             Initializes an intance of <see cref="T:Library.States.Companies.CompanySentReportState" />
             </summary>
             <param name="id">User's id.</param>
-            <returns></returns>
         </member>
         <member name="T:Library.States.Companies.IncompleteCompanyRepresentativeState">
             <summary>

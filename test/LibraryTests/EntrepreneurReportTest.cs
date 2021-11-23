@@ -35,7 +35,7 @@ namespace ProgramTests
             keyword.Add("metal");
             Material boughtMaterial = Material.CreateInstance("Ruleman Metal", Measure.Weight, category);
             DateTime date = new DateTime(2021, 9, 2, 23, 20, 18);
-            BoughtMaterialLine materialbought1 = new BoughtMaterialLine(boughtMaterial, date, price, amount);
+            BoughtMaterialLine materialbought1 = new BoughtMaterialLine(string.Empty, boughtMaterial, date, price, amount);
             var list = new List<BoughtMaterialLine>();
             list.Add(materialbought1);
             BoughtMaterialLine expected = list[0];
@@ -50,7 +50,7 @@ namespace ProgramTests
             keyword2.Add("plástico");
             Material boughtMaterial2 = Material.CreateInstance("Botella plástico", Measure.Weight, category2);
             DateTime date2 = new DateTime(2021, 7, 8, 20, 17, 19);
-            BoughtMaterialLine materialbought2 = new BoughtMaterialLine(boughtMaterial2, date2, price2, amount2);
+            BoughtMaterialLine materialbought2 = new BoughtMaterialLine(string.Empty, boughtMaterial2, date2, price2, amount2);
             list.Add(materialbought2);
             BoughtMaterialLine expected2 = list[1];
             Assert.AreEqual(expected2, materialbought2);

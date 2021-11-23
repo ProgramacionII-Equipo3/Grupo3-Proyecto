@@ -11,12 +11,12 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The uruguayan peso.
         /// </summary>
-        public static Currency Peso = new Currency("uruguayan peso(s)", "U$");
+        public static Currency Peso = new Currency("peso", "U$");
 
         /// <summary>
         /// The american dollar.
         /// </summary>
-        public static Currency Dollar = new Currency("american dollar(s)", "US$");
+        public static Currency Dollar = new Currency("dollar", "US$");
 
         /// <summary>
         /// The currency's name.
@@ -36,5 +36,20 @@ namespace Library.HighLevel.Accountability
 
         /// <inheritdoc />
         public override string ToString() => this.Symbol;
+
+        /// <summary>
+        /// Gets the currency given its name.
+        /// </summary>
+        /// <param name="name">The currency's name.</param>
+        /// <returns>The currency, if there is.</returns>
+        public static Currency? GetFromName(string name)
+        {
+            switch(name.ToLowerInvariant())
+            {
+                case "peso": return Currency.Peso;
+                case "dollar": return Currency.Dollar;
+                default: return null;
+            }
+        }
     }
 }
