@@ -34,7 +34,7 @@ namespace Library.Utils
                 return result;
             } else
             {
-                // TODO: specify a better exception
+#warning Specify a better exception for when the method JsonSerializer.DeserializeAsync<T> returns null.
                 throw new Exception();
             }
         }

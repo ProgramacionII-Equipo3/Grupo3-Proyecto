@@ -65,7 +65,7 @@ namespace Library.Core.Distribution
         /// <param name="path">The main directory's path.</param>
         public void LoadUserSessions(string path)
         {
-            UserSession[] sessions = SerializationUtils.DeserializeJson<UserSession[]>(path + "/sessions.json");
+            IEnumerable<UserSession> sessions = SerializationUtils.DeserializeJsonListFromIntermediate<UserSession, JsonUserSession>(path + "/sessions.json");
             this.sessions = sessions.ToList();
         }
     }

@@ -104,9 +104,9 @@ namespace Library.Core.Invitations
         /// <typeparam name="U">The type of the JSON holders.</typeparam>
         public void LoadInvitations<T, U>(string path, string fileName)
             where T : Invitation
-            where U : struct, IJsonHolder<T>
+            where U : IJsonHolder<T>
         {
-            IEnumerable<T> invitations = SerializationUtils.DeserializeJson<U[]>(path + "/invitations/" + fileName).Select(json => json.ToValue());
+            IEnumerable<T> invitations = SerializationUtils.DeserializeJsonListFromIntermediate<T, U>(path + "/invitations/" + fileName);
             Singleton<InvitationList<T>>.Instance.SetInvitations(invitations);
         }
     }
