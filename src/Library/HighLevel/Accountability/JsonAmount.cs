@@ -4,9 +4,9 @@ using Library.Utils;
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
-    /// This struct holds the JSON information of an <see cref="Amount" />.
+    /// This class holds the JSON information of an <see cref="Amount" />.
     /// </summary>
-    public struct JsonAmount : IJsonHolder<Amount>
+    public class JsonAmount : IJsonHolder<Amount>
     {
         /// <summary>
         /// The quantity.

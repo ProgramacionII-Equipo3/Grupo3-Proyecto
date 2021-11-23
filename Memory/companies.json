@@ -7,14 +7,14 @@
         },
         "Heading": "Maderas",
         "Location": {
-            "found": true,
-            "addresLine": "Avenida 8 de Octubre",
-            "countryRegion": "Uruguay",
-            "formattedAddress": "Avenida 8 de Octubre, Montevideo",
-            "locality": "Montevideo",
-            "postalCode": null,
-            "latitude": -34.87959,
-            "longitude": -56.14838
+            "Found": true,
+            "AddresLine": "Avenida 8 de Octubre",
+            "CountryRegion": "Uruguay",
+            "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+            "Locality": "Montevideo",
+            "PostalCode": null,
+            "Latitude": -34.87959,
+            "Longitude": -56.14838
         },
         "Representants": [
             "CompRep"
@@ -22,9 +22,9 @@
         "Publications": [
             {
                 "Material": {
-                    "Name": "Bujes de cartón",
+                    "Name": "Bujes de cart\u00F3n",
                     "Measure": "Length",
-                    "Category": "Celulósicos"
+                    "Category": "Celul\u00F3sicos"
                 },
                 "Amount": {
                     "Quantity": 50,
@@ -36,14 +36,14 @@
                     "Unit": "cm"
                 },
                 "PickupLocation": {
-                    "found": true,
-                    "addresLine": "Avenida 8 de Octubre",
-                    "countryRegion": "Uruguay",
-                    "formattedAddress": "Avenida 8 de Octubre, Montevideo",
-                    "locality": "Montevideo",
-                    "postalCode": null,
-                    "latitude": -34.87959,
-                    "longitude": -56.14838
+                    "Found": true,
+                    "AddresLine": "Avenida 8 de Octubre",
+                    "CountryRegion": "Uruguay",
+                    "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+                    "Locality": "Montevideo",
+                    "PostalCode": null,
+                    "Latitude": -34.87959,
+                    "Longitude": -56.14838
                 },
                 "Type": {
                     "PublicationType": "NORMAL",

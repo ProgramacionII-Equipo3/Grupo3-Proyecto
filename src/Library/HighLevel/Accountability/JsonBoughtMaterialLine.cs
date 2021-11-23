@@ -7,9 +7,9 @@ using Library.Utils;
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
-    /// This struct holds the JSON information of a <see cref="BoughtMaterialLine" />.
+    /// This class holds the JSON information of a <see cref="BoughtMaterialLine" />.
     /// </summary>
-    public struct JsonBoughtMaterialLine : IJsonHolder<BoughtMaterialLine>
+    public class JsonBoughtMaterialLine : IJsonHolder<BoughtMaterialLine>
     {
         /// <summary>
         /// The name of the company from whom the material was bought.

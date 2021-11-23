@@ -1,9 +1,9 @@
 namespace Library.HighLevel.Materials
 {
     /// <summary>
-    /// This struct holds the JSON information of an <see cref="Habilitation" />.
+    /// This class holds the JSON information of an <see cref="Habilitation" />.
     /// </summary>
-    public struct JsonHabilitation : IJsonHolder<Habilitation>
+    public class JsonHabilitation : IJsonHolder<Habilitation>
     {
         /// <summary>
         /// A link to a document with the necessary habilitations to manipulate a material.

@@ -4,9 +4,9 @@ using Library.Utils;
 namespace Library.HighLevel.Materials
 {
     /// <summary>
-    /// This struct holds the JSON information of a <see cref="MaterialPublicationTypeData" />.
+    /// This class holds the JSON information of a <see cref="MaterialPublicationTypeData" />.
     /// </summary>
-    public struct JsonMaterialPublicationTypeData : IJsonHolder<MaterialPublicationTypeData>
+    public class JsonMaterialPublicationTypeData : IJsonHolder<MaterialPublicationTypeData>
     {
         /// <summary>
         /// The date the material will be published if the publication is scheduled.

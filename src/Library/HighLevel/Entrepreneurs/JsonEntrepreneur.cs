@@ -8,9 +8,9 @@ using Library.HighLevel.Materials;
 namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
-    /// This struct holds the JSON information of an <see cref="Entrepreneur" />.
+    /// This class holds the JSON information of an <see cref="Entrepreneur" />.
     /// </summary>
-    public struct JsonEntrepreneur : IJsonHolder<Entrepreneur>
+    public class JsonEntrepreneur : IJsonHolder<Entrepreneur>
     {
         /// <summary>
         /// Gets the entrepreneur's id.
@@ -70,6 +70,12 @@ namespace Library.HighLevel.Entrepreneurs
                 return json;
             }).ToList();
             this.Specializations = value.Specializations;
+            this.BoughtMaterials = value.BoughtMaterials.Select(l =>
+            {
+                var json = new JsonBoughtMaterialLine();
+                json.FromValue(l);
+                return json;
+            }).ToList();
         }
 
         Entrepreneur IJsonHolder<Entrepreneur>.ToValue() =>

@@ -106,8 +106,24 @@ namespace Library.Core.Invitations
             where T : Invitation
             where U : IJsonHolder<T>
         {
-            IEnumerable<T> invitations = SerializationUtils.DeserializeJsonListFromIntermediate<T, U>(path + "/invitations/" + fileName);
+            IEnumerable<T> invitations = SerializationUtils.DeserializeJsonListFromIntermediate<T, U>($"{path}/invitations/{fileName}");
             Singleton<InvitationList<T>>.Instance.SetInvitations(invitations);
+        }
+
+        /// <summary>
+        /// Saves the invitations into a JSON file.
+        /// </summary>
+        /// <param name="path">The path of the main directory.</param>
+        /// <param name="fileName">The file name associated with the type of the invitations.</param>
+        /// <typeparam name="T">The type of the invitations to save.</typeparam>
+        /// <typeparam name="U">The type of the JSON holders.</typeparam>
+        public void SaveInvitations<T, U>(string path, string fileName)
+            where T : Invitation
+            where U : IJsonHolder<T>, new()
+        {
+            System.IO.Directory.CreateDirectory($"{path}/invitations");
+            IEnumerable<T> invitations = Singleton<InvitationList<T>>.Instance.Invitations;
+            SerializationUtils.SerializeJsonListWithIntermediate<T, U>($"{path}/invitations/{fileName}", invitations);
         }
     }
 }

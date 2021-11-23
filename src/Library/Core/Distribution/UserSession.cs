@@ -8,12 +8,12 @@ namespace Library.Core.Distribution
     public class UserSession
     {
         /// <summary>
-        /// The id of the user.
+        /// Gets the id of the user.
         /// </summary>
         public string Id { get; private set; }
 
         /// <summary>
-        /// Data associated with the user.
+        /// Gets the data associated with the user.
         /// </summary>
         public UserData UserData { get; private set; }
 
@@ -41,7 +41,10 @@ namespace Library.Core.Distribution
         /// <param name="id">The session's user's id.</param>
         /// <param name="userData">The session's user's data.</param>
         [JsonConstructor]
-        public UserSession(string id, UserData userData): this(id, userData, State.FromUserData(id, userData)) {}
+        public UserSession(string id, UserData userData) :
+            this(id, userData, State.FromUserData(id, userData))
+        {
+        }
 
         /// <summary>
         /// Process the received message text, returning the response message text.
@@ -54,6 +57,7 @@ namespace Library.Core.Distribution
             {
                 return this.state.GetDefaultResponse();
             }
+
             UserData userData = this.UserData;
             var (newState, res) = this.state.ProcessMessage(this.Id, ref userData, msg);
             if (newState == null)
@@ -61,6 +65,7 @@ namespace Library.Core.Distribution
                 Singleton<SessionManager>.Instance.RemoveUser(this.Id);
                 return "User eliminated.";
             }
+            
             this.UserData = userData;
             this.state = newState;
             return res ?? newState.GetDefaultResponse();

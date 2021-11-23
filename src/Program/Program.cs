@@ -36,7 +36,6 @@ namespace Grupo3_Proyecto
             new MultipleUsersConsolePlatform("ConsoleID").Run();
             (Singleton<Searcher>.Instance as IDisposable).Dispose();
             Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
-//            Library.Utils.SerializationUtils.SerializeAllIntoJSON("../../Memory");
         }
     }
 }
