@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Library;
 using Library.Core;
@@ -24,6 +25,14 @@ namespace Grupo3_Proyecto
         /// </summary>
         public static void Main(string[] args)
         {
+            // Console.SetIn(new StringReader(
+            //     string.Join(null,
+            //         new string[]
+            //         {
+            //             "/ereport",
+            //             "15/11/2021",
+            //             "--STOP"
+            //         }.Select(s => $"{s}\n"))));
             Library.Utils.SerializationUtils.DeserializeAllFromJSON("../../Memory");
             Console.WriteLine("----------");
             new MultipleUsersConsolePlatform("ConsoleID").Run();

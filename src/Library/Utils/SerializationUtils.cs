@@ -15,10 +15,7 @@ namespace Library.Utils
     /// </summary>
     public static class SerializationUtils
     {
-        private static JsonSerializerOptions defaultOptions = new JsonSerializerOptions
-        {
-            
-        };
+        private static JsonSerializerOptions defaultOptions = new JsonSerializerOptions();
 
         /// <summary>
         /// Loads a JSON file and deserializes its contents. 

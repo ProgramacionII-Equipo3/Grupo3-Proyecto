@@ -23,7 +23,7 @@ namespace Library.States
 
         /// <inheritdoc />
         public override sealed string GetDefaultResponse() =>
-            this.GetInitialResponse() + "\n        " + string.Join("\n        ", commands.Select(command => $"{command.Item1}: {command.Item2}"));
+            this.GetInitialResponse() + "\n        " + string.Join("\n        ", this.commands.Select(command => $"{command.Item1}: {command.Item2}"));
 
         /// <summary>
         /// Gets the string to send in order to notify the user that the data is invalid.
@@ -46,8 +46,7 @@ namespace Library.States
                     newState,
                     res != null
                         ? $"{res}\n{newState.GetDefaultResponse()}"
-                        : newState.GetDefaultResponse()
-                );
+                        : newState.GetDefaultResponse());
             } else {
                 return (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}");
             }

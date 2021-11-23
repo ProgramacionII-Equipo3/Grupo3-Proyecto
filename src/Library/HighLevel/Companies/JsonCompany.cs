@@ -42,11 +42,13 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a private list of the publications.
         /// </summary>
+        [JsonInclude]
         public IList<JsonMaterialPublication> Publications { get; set; }
 
         /// <summary>
         /// Gets the list of material sales.
         /// </summary>
+        [JsonInclude]
         public IList<JsonMaterialSalesLine> MaterialSales { get; set; }
 
         /// <inheritdoc />

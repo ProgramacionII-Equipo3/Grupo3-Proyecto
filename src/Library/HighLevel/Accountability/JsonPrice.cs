@@ -11,17 +11,17 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The price's quantity.
         /// </summary>
-        public float Quantity { get; private set; }
+        public float Quantity { get; set; }
 
         /// <summary>
         /// The price's currency.
         /// </summary>
-        public string? Currency { get; private set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// The price's unit.
         /// </summary>
-        public string? Unit { get; private set; }
+        public string? Unit { get; set; }
 
         /// <inheritdoc />
         public Price ToValue() =>

@@ -25,10 +25,8 @@ namespace Library.InputHandlers.Abstractions
         public override string GetDefaultResponse() => this.innerProcessor.GetDefaultResponse();
 
         /// <inheritdoc />
-        public override Result<bool, string> ProcessInput(string msg)
-        {
-            if (this.result != null) return Result<bool, string>.Ok(true);
-            return this.innerProcessor.GenerateFromInput(msg) is Result<T, string> result
+        public override Result<bool, string> ProcessInput(string msg) =>
+            this.innerProcessor.GenerateFromInput(msg) is Result<T, string> result
                 ? result.SwitchOk(
                     v =>
                     {
@@ -36,7 +34,6 @@ namespace Library.InputHandlers.Abstractions
                         return true;
                     })
                 : Result<bool, string>.Ok(false);
-        }
 
         /// <inheritdoc />
         protected override Result<T, string> getResult() => Result<T, string>.Ok(this.result.Unwrap());

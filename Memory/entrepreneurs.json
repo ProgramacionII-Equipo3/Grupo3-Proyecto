@@ -24,9 +24,9 @@
             {
                 "CompanyName": "Company1",
                 "Material": {
-                    "name": "Bujes de cartón",
-                    "measure": "Length",
-                    "category": "Celulósicos"
+                    "Name": "Bujes de cartón",
+                    "Measure": "Length",
+                    "Category": "Celulósicos"
                 },
                 "DateTime": "2021-11-21T12:00:00Z",
                 "Price": {

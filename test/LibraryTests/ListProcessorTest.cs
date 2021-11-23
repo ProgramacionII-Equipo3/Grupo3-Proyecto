@@ -28,7 +28,7 @@ namespace UnitTests
             ProgramaticPlatform platform = new ProgramaticPlatform("___", messages);
             platform.Run();
 
-            foreach(string msg in platform.ReceivedMessages)
+            foreach (string msg in platform.ReceivedMessages)
             {
                 Console.WriteLine(msg);
             }

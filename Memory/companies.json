@@ -6,7 +6,7 @@
             "phoneNumber": 98162487
         },
         "Heading": "Maderas",
-        "location": {
+        "Location": {
             "found": true,
             "addresLine": "Avenida 8 de Octubre",
             "countryRegion": "Uruguay",
@@ -20,7 +20,39 @@
             "CompRep"
         ],
         "Publications": [
-
+            {
+                "Material": {
+                    "Name": "Bujes de cartón",
+                    "Measure": "Length",
+                    "Category": "Celulósicos"
+                },
+                "Amount": {
+                    "Quantity": 50,
+                    "Unit": "cm"
+                },
+                "Price": {
+                    "Quantity": 30,
+                    "Currency": "peso",
+                    "Unit": "cm"
+                },
+                "PickupLocation": {
+                    "found": true,
+                    "addresLine": "Avenida 8 de Octubre",
+                    "countryRegion": "Uruguay",
+                    "formattedAddress": "Avenida 8 de Octubre, Montevideo",
+                    "locality": "Montevideo",
+                    "postalCode": null,
+                    "latitude": -34.87959,
+                    "longitude": -56.14838
+                },
+                "Type": {
+                    "PublicationType": "NORMAL",
+                    "DateTime": null
+                },
+                "Keywords": [
+                    
+                ]
+            }
         ],
         "MaterialSales": [
 
