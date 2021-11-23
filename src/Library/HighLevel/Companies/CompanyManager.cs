@@ -93,7 +93,7 @@ namespace Library.HighLevel.Companies
         /// <param name="path">The main directory's path.</param>
         public void LoadCompanies(string path)
         {
-            Company[] companies = SerializationUtils.DeserializeJSON<Company[]>(path + "/companies.json");
+            Company[] companies = SerializationUtils.DeserializeJson<JsonCompany[]>(path + "/companies.json").Select(jsonCompany => jsonCompany.ToValue());
         }
     }
 }

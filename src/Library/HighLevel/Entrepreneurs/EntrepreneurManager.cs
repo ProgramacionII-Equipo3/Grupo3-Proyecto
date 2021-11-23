@@ -46,7 +46,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="path">The main directory's file.</param>
         public void LoadEntrepreneurs(string path)
         {
-            Entrepreneur[] entrepreneurs = SerializationUtils.DeserializeJSON<Entrepreneur[]>(path + "/entrepreneurs.json");
+            Entrepreneur[] entrepreneurs = SerializationUtils.DeserializeJson<Entrepreneur[]>(path + "/entrepreneurs.json");
         }
     }
 }
