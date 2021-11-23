@@ -73,7 +73,7 @@ namespace Library.States.Companies
                         {
                             if(Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                             {
-                                if(company.Publications.Any(ap => ap.Publication.Material.Name == m.Name))
+                                if(company.AssignedPublications.Any(ap => ap.Publication.Material.Name == m.Name))
                                 {
                                     return "Ya hay un material con este nombre.";
                                 }

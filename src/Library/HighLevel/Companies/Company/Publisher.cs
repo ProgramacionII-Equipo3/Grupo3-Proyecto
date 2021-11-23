@@ -14,13 +14,13 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a private list of the publications.
         /// </summary>
-        public IList<MaterialPublication> publications { get; private set; } = new List<MaterialPublication>();
+        public IList<MaterialPublication> Publications { get; private set; } = new List<MaterialPublication>();
 
         /// <summary>
         /// Gets the list of publications, dinamically assigned to the company.
         /// </summary>
-        public IList<AssignedMaterialPublication> Publications =>
-            this.publications.Select(pub => new AssignedMaterialPublication(
+        public IList<AssignedMaterialPublication> AssignedPublications =>
+            this.Publications.Select(pub => new AssignedMaterialPublication(
                 company: this,
                 publication: pub
             )).ToList();
@@ -39,9 +39,9 @@ namespace Library.HighLevel.Companies
         {
             if (MaterialPublication.CreateInstance(material, amount, price, location, type, keywords) is MaterialPublication publication)
             {
-                if(this.publications.Any(p => p.Material.Name == material.Name))
+                if(this.Publications.Any(p => p.Material.Name == material.Name))
                     return false;
-                this.publications.Add(publication);
+                this.Publications.Add(publication);
                 return true;
             }
             return false;
@@ -54,12 +54,12 @@ namespace Library.HighLevel.Companies
         /// <returns>Whether the removal was successful.</returns>
         public bool RemovePublication(int index)
         {
-            if (index < 0 || index >= this.publications.Count)
+            if (index < 0 || index >= this.Publications.Count)
             {
                 return false;
             }
 
-            this.publications.RemoveAt(index);
+            this.Publications.RemoveAt(index);
             return true;
         }
     }

@@ -55,6 +55,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         public static IList<string> EntrepeneurList = new List<string>();
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Entrepreneur"/> class.
         /// </summary>
@@ -80,7 +81,6 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="habilitations">Entrepreneur's habilitation.</param>
         /// <param name="specializations">Entrepreneur's specializations.</param>
         /// <param name="boughtMaterials">Entrepreneur's bought material lines.</param>
-        [JsonConstructor]
         public Entrepreneur(string id, string name, int age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations, IList<BoughtMaterialLine> boughtMaterials)
         {
             this.Id = id;

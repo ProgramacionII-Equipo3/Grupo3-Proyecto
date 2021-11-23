@@ -21,16 +21,29 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// A text that describes the habilitations that a entrepreneur has.
         /// </summary>
-        readonly string DescriptiveText;
+        public readonly string DescriptiveText;
+
+        /// <summary>
+        /// Creates an habilitation from JSON data.
+        /// </summary>
+        /// <param name="docLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+        /// <param name="isCorrect">Whether the habilitation was already validated.</param>
+        /// <param name="descriptiveText">It is a text that describes the habilitations.</param>
+        public Habilitation(string docLink, bool isCorrect, string descriptiveText)
+        {
+            this.DocLink = docLink;
+            this.IsCorrect = isCorrect;
+            this.DescriptiveText = descriptiveText;
+        }
 
         /// <summary>
         /// Creates an habilitation.
         /// </summary>
-        /// <param name="DocLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+        /// <param name="docLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
         /// <param name="descriptiveText">It is a text that describes the habilitations.</param>
-        public Habilitation(string DocLink, string descriptiveText)
+        public Habilitation(string docLink, string descriptiveText)
         {
-            this.DocLink = DocLink;
+            this.DocLink = docLink;
             this.IsCorrect = false;
             this.DescriptiveText = descriptiveText;
         }

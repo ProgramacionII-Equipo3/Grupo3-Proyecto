@@ -1,11 +1,14 @@
-using Ucu.Poo.Locations.Client;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
+using Ucu.Poo.Locations.Client;
+using Library.HighLevel.Accountability;
+using Library.HighLevel.Materials;
 
 namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
-    /// This class acts as a JSON data holder for entrepreneurs.
+    /// This struct holds the JSON information of an <see cref="Entrepreneur" />.
     /// </summary>
     public struct JsonEntrepreneur : IJsonHolder<Entrepreneur>
     {
@@ -17,32 +20,40 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepeneur's name.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's age.
         /// </summary>
-        public int Age { get; private set; }
+        public int Age { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's location.
         /// </summary>
-        public Location Location { get; private set; }
+        public Location Location { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's heading.
         /// </summary>
-        public string Heading { get; private set; }
+        public string Heading { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's habilitation needed to buy certain materials.
         /// </summary>
-        public IList<JsonHabilitation> Habilitations { get; private set; }
+        [JsonInclude]
+        public IList<JsonHabilitation> Habilitations { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's specialization.
         /// </summary>
-        public IList<string> Specializations { get; private set; }
+        [JsonInclude]
+        public IList<string> Specializations { get; set; }
+
+        /// <summary>
+        /// Gets the collection of bought materials.
+        /// </summary>
+        public IList<JsonBoughtMaterialLine> BoughtMaterials { get; private set; }
+
 
         void IJsonHolder<Entrepreneur>.FromValue(Entrepreneur value)
         {
@@ -56,11 +67,18 @@ namespace Library.HighLevel.Entrepreneurs
                 var json = new JsonHabilitation();
                 json.FromValue(h);
                 return json;
-            });
+            }).ToList();
             this.Specializations = value.Specializations;
         }
 
         Entrepreneur IJsonHolder<Entrepreneur>.ToValue() =>
-            new Entrepreneur(this.Id, this.Name, this.Age, this.Location, this.Heading, this.Habilitations.Select(json => json.ToValue()), this.Specializations);
+            new Entrepreneur(
+                this.Id,
+                this.Name,
+                this.Age,
+                this.Location,
+                this.Heading,
+                this.Habilitations.Select(json => json.ToValue()).ToList(),
+                this.Specializations);
     }
 }

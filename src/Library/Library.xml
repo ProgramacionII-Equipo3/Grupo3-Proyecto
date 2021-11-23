@@ -244,13 +244,14 @@
             <param name="userId">The id of the user who validated the invitation.</param>
             <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
         </member>
-        <member name="M:Library.Core.Invitations.InvitationManager.LoadInvitations``1(System.String,System.String)">
+        <member name="M:Library.Core.Invitations.InvitationManager.LoadInvitations``2(System.String,System.String)">
             <summary>
             Loads the invitations from a JSON file.
             </summary>
             <param name="path">The path of the main directory.</param>
             <param name="fileName">The file name associated with the type of the invitations.</param>
             <typeparam name="T">The type of the invitations to load.</typeparam>
+            <typeparam name="U">The type of the JSON holders.</typeparam>
         </member>
         <member name="T:Library.Core.Message">
             <summary>
@@ -518,12 +519,6 @@
             The unit used in the amount.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Accountability.Amount.UnitName">
-            <summary>
-            Acts as a wrapper for the unit in JSON serialization/deserialization.
-            </summary>
-            <value></value>
-        </member>
         <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Single,Library.HighLevel.Accountability.Unit)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Amount"/> struct.
@@ -622,6 +617,120 @@
             </summary>
             <param name="name">The currency's name.</param>
             <returns>The currency, if there is.</returns>
+        </member>
+        <member name="T:Library.HighLevel.Accountability.JsonAmount">
+            <summary>
+            This struct holds the JSON information of an <see cref="T:Library.HighLevel.Accountability.Amount" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonAmount.Quantity">
+            <summary>
+            The quantity.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonAmount.Unit">
+            <summary>
+            The unit.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonAmount.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonAmount.FromValue(Library.HighLevel.Accountability.Amount)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Accountability.JsonBoughtMaterialLine">
+            <summary>
+            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.CompanyName">
+            <summary>
+            The name of the company from whom the material was bought.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.Material">
+            <summary>
+            The material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.DateTime">
+            <summary>
+            The moment of the purchase.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.Price">
+            <summary>
+            The price of the material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.Amount">
+            <summary>
+            The amount of material.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonBoughtMaterialLine.FromValue(Library.HighLevel.Accountability.BoughtMaterialLine)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonBoughtMaterialLine.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Accountability.JsonMaterialSalesLine">
+            <summary>
+            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Material">
+            <summary>
+            The sold material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Amount">
+            <summary>
+            The amount of sold material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Price">
+            <summary>
+            The price of the sold material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.DateTime">
+            <summary>
+            The moment the sale happened.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonMaterialSalesLine.FromValue(Library.HighLevel.Accountability.MaterialSalesLine)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonMaterialSalesLine.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Accountability.JsonPrice">
+            <summary>
+            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.Price" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonPrice.Quantity">
+            <summary>
+            The price's quantity.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonPrice.Currency">
+            <summary>
+            The price's currency.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonPrice.Unit">
+            <summary>
+            The price's unit.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonPrice.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Accountability.JsonPrice.FromValue(Library.HighLevel.Accountability.Price)">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Accountability.MaterialSalesLine">
             <summary>
@@ -755,19 +864,9 @@
             Gets the currency with which the price is determined.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Accountability.Price.CurrencyName">
-            <summary>
-            Acts as a wrapper for the price in JSON serialization/deserialization.
-            </summary>
-        </member>
         <member name="P:Library.HighLevel.Accountability.Price.Unit">
             <summary>
             Gets the unit of material measurement with which the price is determined.
-            </summary>
-        </member>
-        <member name="P:Library.HighLevel.Accountability.Price.UnitName">
-            <summary>
-            Acts as a wrapper for the unit in JSON serialization/deserialization.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
@@ -954,7 +1053,7 @@
             Gets the company's location.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.representants">
+        <member name="P:Library.HighLevel.Companies.Company.Representants">
             <summary>
             The company's representants in the platform.
             </summary>
@@ -998,12 +1097,12 @@
             Removes all users in a company
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.publications">
+        <member name="P:Library.HighLevel.Companies.Company.Publications">
             <summary>
             Gets a private list of the publications.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.Publications">
+        <member name="P:Library.HighLevel.Companies.Company.AssignedPublications">
             <summary>
             Gets the list of publications, dinamically assigned to the company.
             </summary>
@@ -1027,7 +1126,7 @@
             <param name="index">The index of the publication.</param>
             <returns>Whether the removal was successful.</returns>
         </member>
-        <member name="P:Library.HighLevel.Companies.Company.materialSales">
+        <member name="P:Library.HighLevel.Companies.Company.MaterialSales">
             <summary>
             Gets the list of material sales.
             </summary>
@@ -1115,6 +1214,62 @@
             Loads all companies from a JSON file.
             </summary>
             <param name="path">The main directory's path.</param>
+        </member>
+        <member name="T:Library.HighLevel.Companies.JsonCompany">
+            <summary>
+            This struct acts as a JSON data holder for companies.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.Name">
+            <summary>
+            Gets the company's name.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.ContactInfo">
+            <summary>
+            Gets the company's contact information.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.Heading">
+            <summary>
+            Gets the company's heading.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.Location">
+            <summary>
+            Gets the company's location.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.Representants">
+            <summary>
+            The company's representants in the platform.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.Publications">
+            <summary>
+            Gets a private list of the publications.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompany.MaterialSales">
+            <summary>
+            Gets the list of material sales.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Companies.JsonCompany.FromValue(Library.HighLevel.Companies.Company)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Companies.JsonCompany.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Companies.JsonCompanyInvitation">
+            <summary>
+            This struct acts as a JSON data holder for the type <see cref="T:Library.HighLevel.Companies.CompanyInvitation" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Companies.JsonCompanyInvitation.Code">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
@@ -1240,6 +1395,51 @@
             </summary>
             <param name="path">The main directory's file.</param>
         </member>
+        <member name="T:Library.HighLevel.Entrepreneurs.JsonEntrepreneur">
+            <summary>
+            This struct holds the JSON information of an <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Id">
+            <summary>
+            Gets the entrepreneur's id.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Name">
+            <summary>
+            Gets the entrepeneur's name.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Age">
+            <summary>
+            Gets the entrepreneur's age.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Location">
+            <summary>
+            Gets the entrepreneur's location.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Heading">
+            <summary>
+            Gets the entrepreneur's heading.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Habilitations">
+            <summary>
+            Gets the entrepreneur's habilitation needed to buy certain materials.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Specializations">
+            <summary>
+            Gets the entrepreneur's specialization.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.BoughtMaterials">
+            <summary>
+            Gets the collection of bought materials.
+            </summary>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Searcher">
             <summary>
             This class has the responsibility of searching material publication's
@@ -1320,11 +1520,19 @@
             A text that describes the habilitations that a entrepreneur has.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String,System.Boolean,System.String)">
+            <summary>
+            Creates an habilitation from JSON data.
+            </summary>
+            <param name="docLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+            <param name="isCorrect">Whether the habilitation was already validated.</param>
+            <param name="descriptiveText">It is a text that describes the habilitations.</param>
+        </member>
         <member name="M:Library.HighLevel.Materials.Habilitation.#ctor(System.String,System.String)">
             <summary>
             Creates an habilitation.
             </summary>
-            <param name="DocLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
+            <param name="docLink">It is a link to a document with the necessary habilitations to manipulate a material.</param>
             <param name="descriptiveText">It is a text that describes the habilitations.</param>
         </member>
         <member name="M:Library.HighLevel.Materials.Habilitation.Validate(Library.HighLevel.Materials.Habilitation)">
@@ -1332,6 +1540,120 @@
             Validates the given habilitation.
             </summary>
             <param name="habilitation">The habilitation to validate.</param>
+        </member>
+        <member name="T:Library.HighLevel.Materials.JsonHabilitation">
+            <summary>
+            This struct holds the JSON information of an <see cref="T:Library.HighLevel.Materials.Habilitation" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonHabilitation.DocLink">
+            <summary>
+            A link to a document with the necessary habilitations to manipulate a material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonHabilitation.IsCorrect">
+            <summary>
+            A boolean value which evaluates if the habilitation is validated.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonHabilitation.DescriptiveText">
+            <summary>
+            A text that describes the habilitations that a entrepreneur has.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonHabilitation.FromValue(Library.HighLevel.Materials.Habilitation)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonHabilitation.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Materials.JsonMaterial">
+            <summary>
+            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Materials.Material" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterial.Name">
+            <summary>
+            The material's name.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterial.Measure">
+            <summary>
+            The material's measure.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterial.Category">
+            <summary>
+            The material's category.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonMaterial.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonMaterial.FromValue(Library.HighLevel.Materials.Material)">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Materials.JsonMaterialPublication">
+            <summary>
+            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Material">
+            <summary>
+            Gets the publication's material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Amount">
+            <summary>
+            Gets the publication's amount of material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Price">
+            <summary>
+            Gets the publication's price of the material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.PickupLocation">
+            <summary>
+            Gets the publication's pick-up location of material.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Type">
+            <summary>
+            Gets the type of the material publication.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Keywords">
+            <summary>
+            The list of keywords of the publication material.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonMaterialPublication.FromValue(Library.HighLevel.Materials.MaterialPublication)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonMaterialPublication.ToValue">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.HighLevel.Materials.JsonMaterialPublicationTypeData">
+            <summary>
+            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublicationTypeData.DateTime">
+            <summary>
+            The date the material will be published if the publication is scheduled.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublicationTypeData.PublicationType">
+            <summary>
+            The type of the publication.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonMaterialPublicationTypeData.FromValue(Library.HighLevel.Materials.MaterialPublicationTypeData)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Materials.JsonMaterialPublicationTypeData.ToValue">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Materials.Material">
             <summary>
@@ -1353,14 +1675,6 @@
             <summary>
             The category the material belongs to.
             </summary>
-        </member>
-        <member name="M:Library.HighLevel.Materials.Material.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Initializes an instance of <see cref="T:Library.HighLevel.Materials.Material" /> from JSON data.
-            </summary>
-            <param name="name">The material's name.</param>
-            <param name="measure">The material's measure.</param>
-            <param name="category">The material's category.</param>
         </member>
         <member name="M:Library.HighLevel.Materials.Material.CreateInstance(System.String,Library.HighLevel.Accountability.Measure,Library.HighLevel.Materials.MaterialCategory)">
             <summary>
@@ -1557,6 +1871,24 @@
             </summary>
             <param name="habilitation">The habilitation.</param>
             <returns>Whether the requirement is satisfied by the habilitation.</returns>
+        </member>
+        <member name="T:Library.IJsonHolder`1">
+            <summary>
+            This interface represents the functionality of acting as a JSON data holder
+            which can be transformed back and forth into a concrete type of object.
+            </summary>
+            <typeparam name="U">The type of objects the implementation can be transformed into.</typeparam>
+        </member>
+        <member name="M:Library.IJsonHolder`1.ToValue">
+            <summary>
+            Transforms the JSON data into an object.
+            </summary>
+        </member>
+        <member name="M:Library.IJsonHolder`1.FromValue(`0)">
+            <summary>
+            Gets the JSON data of an object.
+            </summary>
+            <param name="value">The object.</param>
         </member>
         <member name="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2">
             <summary>
@@ -2512,13 +2844,34 @@
             This class contains methods which handle the serialization and deserialization of the bot's state.
             </summary>
         </member>
-        <member name="M:Library.Utils.SerializationUtils.DeserializeJSON``1(System.String)">
+        <member name="M:Library.Utils.SerializationUtils.DeserializeJson``1(System.String)">
             <summary>
             Loads a JSON file and deserializes its contents. 
             </summary>
             <param name="path">The path of the JSON file.</param>
             <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
-            <returns></returns>
+            <returns>The resulting value.</returns>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.DeserializeJsonFromIntermediate``2(System.String)">
+            <summary>
+            Loads a JSON file and deserializes its contents into an intermediate type,
+            which is transformed into the expected type.
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
+            <typeparam name="U">The intermediate type.</typeparam>
+            <returns>The resulting value.</returns>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.DeserializeJsonListFromIntermediate``2(System.String)">
+            <summary>
+            Loads a JSON file which contains an array and deserializes its contents
+            into an array of an intermediate type,
+            which is transformed into an enumerable of the expected type.
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <typeparam name="T">The type of which the array into which to deserialize the file's contents is.</typeparam>
+            <typeparam name="U">The intermediate type.</typeparam>
+            <returns>The resulting value.</returns>
         </member>
         <member name="M:Library.Utils.SerializationUtils.DeserializeAllFromJSON(System.String)">
             <summary>

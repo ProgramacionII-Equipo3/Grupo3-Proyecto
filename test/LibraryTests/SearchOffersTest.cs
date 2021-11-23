@@ -73,7 +73,7 @@ namespace ProgramTests
                 empresa.PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
             }
 
-            IList<AssignedMaterialPublication> publications = empresa.Publications;
+            IList<AssignedMaterialPublication> publications = empresa.AssignedPublications;
 
             this.publication1 = publications.Where(p => p.Publication.Keywords.Any(k => k == "hospital")).FirstOrDefault();
             this.publication2 = publications.Where(p => p.Publication.Keywords.Any(k => k == "cubrebocas")).FirstOrDefault();
