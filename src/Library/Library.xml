@@ -12,12 +12,12 @@
         </member>
         <member name="P:Library.Core.ContactInfo.Email">
             <summary>
-            The entity's email (null if non-existent).
+            Gets the entity's email (null if non-existent).
             </summary>
         </member>
         <member name="P:Library.Core.ContactInfo.PhoneNumber">
             <summary>
-            The entity's phone number (null if non-existent).
+            Gets the entity's phone number (null if non-existent).
             </summary>
         </member>
         <member name="M:Library.Core.ContactInfo.#ctor(System.String,System.Nullable{System.Int32})">
@@ -100,12 +100,12 @@
         </member>
         <member name="P:Library.Core.Distribution.UserSession.Id">
             <summary>
-            The id of the user.
+            Gets the id of the user.
             </summary>
         </member>
         <member name="P:Library.Core.Distribution.UserSession.UserData">
             <summary>
-            Data associated with the user.
+            Gets the data associated with the user.
             </summary>
         </member>
         <member name="F:Library.Core.Distribution.UserSession.state">
