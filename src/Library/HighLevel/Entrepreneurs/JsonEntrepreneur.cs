@@ -52,6 +52,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the collection of bought materials.
         /// </summary>
+        [JsonInclude]
         public IList<JsonBoughtMaterialLine> BoughtMaterials { get; private set; }
 
 
@@ -79,6 +80,7 @@ namespace Library.HighLevel.Entrepreneurs
                 this.Location,
                 this.Heading,
                 this.Habilitations.Select(json => json.ToValue()).ToList(),
-                this.Specializations);
+                this.Specializations,
+                this.BoughtMaterials.Select(json => json.ToValue()).ToList());
     }
 }

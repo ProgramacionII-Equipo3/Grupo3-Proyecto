@@ -28,8 +28,7 @@ namespace Library.InputHandlers
                         sections[0].Trim(),
                         sections[1].Trim(),
                         sections[2].Trim(),
-                        sections[3].Trim()
-                    ).Result;
+                        sections[3].Trim()).Result;
 
                     if (!location.Found) return Result<Location, string>.Err("The given location is invalid.");
 

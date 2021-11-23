@@ -8,11 +8,11 @@ namespace UnitTests
     /// <summary>
     /// Acts as a messaging platform in which the messages it sends are determined in advance.
     /// </summary>
-    public class ProgramaticPlatform: MessagingPlatform<bool>
+    public class ProgramaticPlatform : MessagingPlatform<bool>
     {
         private string[] messagesToSend;
 
-        private bool done = false;
+        private bool done;
 
         private readonly IList<string> receivedMessages = new List<string>();
 
@@ -48,12 +48,16 @@ namespace UnitTests
         /// </summary>
         public void Run()
         {
-            if (this.done) return;
+            if (this.done)
+            {
+                return;
+            }
 
             foreach(string i in messagesToSend)
             {
                 this.ReceiveMessage(i, true);
             }
+            
             this.done = true;
         }
     }

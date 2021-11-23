@@ -22,6 +22,8 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="dateTime">It is the time when the entrepreneur bought the material.</param>
         /// <returns>A <see cref="ReceivedMaterialReport" />.</returns>
         public ReceivedMaterialReport GetMaterialReport(DateTime dateTime) =>
-            new ReceivedMaterialReport(this.BoughtMaterials.ToList().AsReadOnly());
+            new ReceivedMaterialReport(this.BoughtMaterials.Where(
+                boughtMaterial => boughtMaterial.DateTime >= dateTime
+            ).ToList().AsReadOnly());
     }
 }

@@ -55,14 +55,7 @@ namespace Library.HighLevel.Accountability
             var material = this.Material;
             return new BoughtMaterialLine(
                 this.CompanyName,
-                Singleton<CompanyManager>.Instance
-                    .GetByName(this.CompanyName)
-                    .Unwrap()
-                    .AssignedPublications
-                    .Select(p => p.Publication.Material)
-                    .Where(m => m.Name == material.Name)
-                    .FirstOrDefault()
-                    .Unwrap(),
+                this.Material.ToValue(),
                 this.DateTime,
                 this.Price.ToValue(),
                 this.Amount.ToValue());

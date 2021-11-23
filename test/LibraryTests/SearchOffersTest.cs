@@ -50,9 +50,7 @@ namespace ProgramTests
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             using LocationApiClient client = new LocationApiClient();
             this.pickupLocation1 = client.GetLocationAsync("Libertad 2500").Result;
-            this.contact = new ContactInfo();
-            this.contact.Email = "company1@gmail.com";
-            this.contact.PhoneNumber = 099421658;
+            this.contact = new ContactInfo("company1@gmail.com", 099421658);
             
             this.category2 = new MaterialCategory("Residuos hospitalarios");
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
@@ -68,7 +66,7 @@ namespace ProgramTests
                 empresa = c;
             } else
             {
-                empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", this.contact, "Tecnología", this.pickupLocation1)!;
+                empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", this.contact, "Tecnología", this.pickupLocation1) !;
                 empresa.PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
                 empresa.PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
             }
@@ -111,6 +109,7 @@ namespace ProgramTests
 
             Assert.AreEqual(expected2, Singleton<Searcher>.Instance.SearchByCategory(categoryToSearch));
         }
+
         /// <summary>
         /// This test checks that an entrepreneur is able to
         /// search material publication's with a keyword.
@@ -119,7 +118,7 @@ namespace ProgramTests
         public void SearchOffersbyKeywordsFound()
         {
             List<AssignedMaterialPublication> expected3 = new List<AssignedMaterialPublication>();
-            System.Console.WriteLine("---" + (publication2 is null));
+            System.Console.WriteLine("---" + (this.publication2 is null));
             expected3.Add(this.publication2.Unwrap());
 
             List<AssignedMaterialPublication> result = Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas");

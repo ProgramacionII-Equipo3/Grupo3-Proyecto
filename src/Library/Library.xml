@@ -1268,8 +1268,14 @@
         </member>
         <member name="P:Library.HighLevel.Companies.JsonCompanyInvitation.Code">
             <summary>
-            
+            The invitation's code.
             </summary>
+        </member>
+        <member name="M:Library.HighLevel.Companies.JsonCompanyInvitation.Library#IJsonHolder{Library#HighLevel#Companies#CompanyInvitation}#FromValue(Library.HighLevel.Companies.CompanyInvitation)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Companies.JsonCompanyInvitation.Library#IJsonHolder{Library#HighLevel#Companies#CompanyInvitation}#ToValue">
+            <inheritdoc />
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.Entrepreneur">
             <summary>
