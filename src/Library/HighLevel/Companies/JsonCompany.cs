@@ -9,9 +9,9 @@ using Ucu.Poo.Locations.Client;
 namespace Library.HighLevel.Companies
 {
     /// <summary>
-    /// This struct acts as a JSON data holder for companies.
+    /// This class acts as a JSON data holder for companies.
     /// </summary>
-    public struct JsonCompany : IJsonHolder<Company>
+    public class JsonCompany : IJsonHolder<Company>
     {
         /// <summary>
         /// Gets the company's name.

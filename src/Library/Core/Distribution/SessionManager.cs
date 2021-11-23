@@ -22,7 +22,7 @@ namespace Library.Core.Distribution
         /// <param name="id">The given id.</param>
         /// <returns>Its corresponding <see cref="UserSession" />, or null if there isn't.</returns>
         public UserSession? GetById(string id) =>
-            sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
+            this.sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
 
         /// <summary>
         /// Adds a new user into the platform.
@@ -33,13 +33,13 @@ namespace Library.Core.Distribution
         /// <returns>The resulting <see cref="UserSession" />, or null if there's already one.</returns>
         public UserSession? NewUser(string id, UserData userData, State state)
         {
-            if (GetById(id) != null)
+            if (this.GetById(id) != null)
             {
                 return null;
             }
 
             UserSession result = new UserSession(id, userData, state);
-            sessions.Add(result);
+            this.sessions.Add(result);
             return result;
         }
 
@@ -65,8 +65,18 @@ namespace Library.Core.Distribution
         /// <param name="path">The main directory's path.</param>
         public void LoadUserSessions(string path)
         {
-            IEnumerable<UserSession> sessions = SerializationUtils.DeserializeJson<UserSession[]>(path + "/sessions.json");
+            IEnumerable<UserSession> sessions = SerializationUtils.DeserializeJson<UserSession[]>($"{path}/sessions.json");
             this.sessions = sessions.ToList();
+        }
+
+        /// <summary>
+        /// Saves all user sessions into JSON.
+        /// </summary>
+        /// <param name="path">The main directory's path.</param>
+        public void SaveUserSessions(string path)
+        {
+            UserSession[] sessions = this.sessions.ToArray();
+            SerializationUtils.SerializeJson<UserSession[]>($"{path}/sessions.json", sessions);
         }
     }
 }

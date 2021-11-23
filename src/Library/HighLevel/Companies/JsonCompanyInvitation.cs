@@ -1,9 +1,9 @@
 namespace Library.HighLevel.Companies
 {
     /// <summary>
-    /// This struct acts as a JSON data holder for the type <see cref="CompanyInvitation" />.
+    /// This class acts as a JSON data holder for the type <see cref="CompanyInvitation" />.
     /// </summary>
-    public struct JsonCompanyInvitation : IJsonHolder<CompanyInvitation>
+    public class JsonCompanyInvitation : IJsonHolder<CompanyInvitation>
     {
         /// <summary>
         /// The invitation's code.

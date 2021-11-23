@@ -46,8 +46,18 @@ namespace Library.HighLevel.Entrepreneurs
         /// <param name="path">The main directory's file.</param>
         public void LoadEntrepreneurs(string path)
         {
-            List<Entrepreneur> entrepreneurs = SerializationUtils.DeserializeJsonListFromIntermediate<Entrepreneur, JsonEntrepreneur>(path + "/entrepreneurs.json").ToList();
+            List<Entrepreneur> entrepreneurs = SerializationUtils.DeserializeJsonListFromIntermediate<Entrepreneur, JsonEntrepreneur>($"{path}/entrepreneurs.json").ToList();
             this.entrepreneurs = entrepreneurs;
+        }
+
+        //            Singleton<EntrepreneurManager>.Instance.SaveEntrepreneurs(path);
+        /// <summary>
+        /// Saves all entrepreneurs from a JSON file.
+        /// </summary>
+        /// <param name="path">The main directory's file.</param>
+        public void SaveEntrepreneurs(string path)
+        {
+            SerializationUtils.SerializeJsonListWithIntermediate<Entrepreneur, JsonEntrepreneur>($"{path}/entrepreneurs.json", this.entrepreneurs);
         }
     }
 }

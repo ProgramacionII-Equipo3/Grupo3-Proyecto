@@ -29,15 +29,13 @@ namespace Grupo3_Proyecto
             //     string.Join(null,
             //         new string[]
             //         {
-            //             "/ereport",
-            //             "15/11/2021",
             //             "--STOP"
             //         }.Select(s => $"{s}\n"))));
             Library.Utils.SerializationUtils.DeserializeAllFromJSON("../../Memory");
             Console.WriteLine("----------");
             new MultipleUsersConsolePlatform("ConsoleID").Run();
             (Singleton<Searcher>.Instance as IDisposable).Dispose();
-//            Library.Utils.SerializationUtils.SerializeAllIntoJSON("../../Memory");
+            Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
         }
     }
 }

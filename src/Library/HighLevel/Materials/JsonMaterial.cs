@@ -3,9 +3,9 @@ using Library.Utils;
 namespace Library.HighLevel.Materials
 {
     /// <summary>
-    /// This struct holds the JSON information of a <see cref="Material" />.
+    /// This class holds the JSON information of a <see cref="Material" />.
     /// </summary>
-    public struct JsonMaterial : IJsonHolder<Material>
+    public class JsonMaterial : IJsonHolder<Material>
     {
         /// <summary>
         /// The material's name.

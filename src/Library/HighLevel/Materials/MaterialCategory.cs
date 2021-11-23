@@ -57,7 +57,7 @@ namespace Library.HighLevel.Materials
         public static MaterialCategory? GetByName(string name)
         {
             name = name.ToLowerInvariant();
-            return MaterialCategory.Categories.Where(c => c.Name.ToLower() == name).FirstOrDefault();
+            return MaterialCategory.Categories.Where(c => c.Name.ToLowerInvariant() == name).FirstOrDefault();
         }
     }
 }

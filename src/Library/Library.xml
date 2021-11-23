@@ -87,6 +87,12 @@
             </summary>
             <param name="path">The main directory's path.</param>
         </member>
+        <member name="M:Library.Core.Distribution.SessionManager.SaveUserSessions(System.String)">
+            <summary>
+            Saves all user sessions into JSON.
+            </summary>
+            <param name="path">The main directory's path.</param>
+        </member>
         <member name="T:Library.Core.Distribution.UserSession">
             <summary>
             This class represent a user's session, being the highest-level class which represents it.
@@ -251,6 +257,15 @@
             <param name="path">The path of the main directory.</param>
             <param name="fileName">The file name associated with the type of the invitations.</param>
             <typeparam name="T">The type of the invitations to load.</typeparam>
+            <typeparam name="U">The type of the JSON holders.</typeparam>
+        </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.SaveInvitations``2(System.String,System.String)">
+            <summary>
+            Saves the invitations into a JSON file.
+            </summary>
+            <param name="path">The path of the main directory.</param>
+            <param name="fileName">The file name associated with the type of the invitations.</param>
+            <typeparam name="T">The type of the invitations to save.</typeparam>
             <typeparam name="U">The type of the JSON holders.</typeparam>
         </member>
         <member name="T:Library.Core.Message">
@@ -620,7 +635,7 @@
         </member>
         <member name="T:Library.HighLevel.Accountability.JsonAmount">
             <summary>
-            This struct holds the JSON information of an <see cref="T:Library.HighLevel.Accountability.Amount" />.
+            This class holds the JSON information of an <see cref="T:Library.HighLevel.Accountability.Amount" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.JsonAmount.Quantity">
@@ -641,7 +656,7 @@
         </member>
         <member name="T:Library.HighLevel.Accountability.JsonBoughtMaterialLine">
             <summary>
-            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" />.
+            This class holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.CompanyName">
@@ -677,7 +692,7 @@
         </member>
         <member name="T:Library.HighLevel.Accountability.JsonMaterialSalesLine">
             <summary>
-            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" />.
+            This class holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Material">
@@ -708,7 +723,7 @@
         </member>
         <member name="T:Library.HighLevel.Accountability.JsonPrice">
             <summary>
-            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.Price" />.
+            This class holds the JSON information of a <see cref="T:Library.HighLevel.Accountability.Price" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Accountability.JsonPrice.Quantity">
@@ -1215,9 +1230,15 @@
             </summary>
             <param name="path">The main directory's path.</param>
         </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.SaveCompanies(System.String)">
+            <summary>
+            Saves all companies from a JSON file.
+            </summary>
+            <param name="path">The main directory's path.</param>
+        </member>
         <member name="T:Library.HighLevel.Companies.JsonCompany">
             <summary>
-            This struct acts as a JSON data holder for companies.
+            This class acts as a JSON data holder for companies.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.JsonCompany.Name">
@@ -1263,7 +1284,7 @@
         </member>
         <member name="T:Library.HighLevel.Companies.JsonCompanyInvitation">
             <summary>
-            This struct acts as a JSON data holder for the type <see cref="T:Library.HighLevel.Companies.CompanyInvitation" />.
+            This class acts as a JSON data holder for the type <see cref="T:Library.HighLevel.Companies.CompanyInvitation" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.JsonCompanyInvitation.Code">
@@ -1401,9 +1422,15 @@
             </summary>
             <param name="path">The main directory's file.</param>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.SaveEntrepreneurs(System.String)">
+            <summary>
+            Saves all entrepreneurs from a JSON file.
+            </summary>
+            <param name="path">The main directory's file.</param>
+        </member>
         <member name="T:Library.HighLevel.Entrepreneurs.JsonEntrepreneur">
             <summary>
-            This struct holds the JSON information of an <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur" />.
+            This class holds the JSON information of an <see cref="T:Library.HighLevel.Entrepreneurs.Entrepreneur" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Entrepreneurs.JsonEntrepreneur.Id">
@@ -1549,7 +1576,7 @@
         </member>
         <member name="T:Library.HighLevel.Materials.JsonHabilitation">
             <summary>
-            This struct holds the JSON information of an <see cref="T:Library.HighLevel.Materials.Habilitation" />.
+            This class holds the JSON information of an <see cref="T:Library.HighLevel.Materials.Habilitation" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.JsonHabilitation.DocLink">
@@ -1575,7 +1602,7 @@
         </member>
         <member name="T:Library.HighLevel.Materials.JsonMaterial">
             <summary>
-            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Materials.Material" />.
+            This class holds the JSON information of a <see cref="T:Library.HighLevel.Materials.Material" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.JsonMaterial.Name">
@@ -1601,7 +1628,7 @@
         </member>
         <member name="T:Library.HighLevel.Materials.JsonMaterialPublication">
             <summary>
-            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
+            This class holds the JSON information of a <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Material">
@@ -1642,7 +1669,7 @@
         </member>
         <member name="T:Library.HighLevel.Materials.JsonMaterialPublicationTypeData">
             <summary>
-            This struct holds the JSON information of a <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.
+            This class holds the JSON information of a <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.JsonMaterialPublicationTypeData.DateTime">
@@ -2858,6 +2885,14 @@
             <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
             <returns>The resulting value.</returns>
         </member>
+        <member name="M:Library.Utils.SerializationUtils.SerializeJson``1(System.String,``0)">
+            <summary>
+            Serializes an object and stores the resulting JSON into a file. 
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <param name="value">The object to serialize.</param>
+            <typeparam name="T">The type to serialize the object into.</typeparam>
+        </member>
         <member name="M:Library.Utils.SerializationUtils.DeserializeJsonFromIntermediate``2(System.String)">
             <summary>
             Loads a JSON file and deserializes its contents into an intermediate type,
@@ -2867,6 +2902,16 @@
             <typeparam name="T">The type to deserialize the file's contents into.</typeparam>
             <typeparam name="U">The intermediate type.</typeparam>
             <returns>The resulting value.</returns>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.SerializeJsonFromIntermediate``2(System.String,``0)">
+            <summary>
+            Serializes an object into an intermediate type,
+            which is transformed into JSON which is stored into a file.
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <param name="value">The object to serialize.</param>
+            <typeparam name="T">The type to serialize the object into.</typeparam>
+            <typeparam name="U">The intermediate type.</typeparam>
         </member>
         <member name="M:Library.Utils.SerializationUtils.DeserializeJsonListFromIntermediate``2(System.String)">
             <summary>
@@ -2879,9 +2924,26 @@
             <typeparam name="U">The intermediate type.</typeparam>
             <returns>The resulting value.</returns>
         </member>
+        <member name="M:Library.Utils.SerializationUtils.SerializeJsonListWithIntermediate``2(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Loads a JSON file which contains an array and deserializes its contents
+            into an array of an intermediate type,
+            which is transformed into an enumerable of the expected type.
+            </summary>
+            <param name="path">The path of the JSON file.</param>
+            <param name="enumerable">An enumerable of objects to serialize.</param>
+            <typeparam name="T">The type of which the array from which to serialize the objects is.</typeparam>
+            <typeparam name="U">The intermediate type.</typeparam>
+        </member>
         <member name="M:Library.Utils.SerializationUtils.DeserializeAllFromJSON(System.String)">
             <summary>
             Deserialize the bot's state from JSON from a directory.
+            </summary>
+            <param name="path">The directory's path.</param>
+        </member>
+        <member name="M:Library.Utils.SerializationUtils.SerializeAllIntoJson(System.String)">
+            <summary>
+            Serialize the bot's state into JSON in a directory.
             </summary>
             <param name="path">The directory's path.</param>
         </member>

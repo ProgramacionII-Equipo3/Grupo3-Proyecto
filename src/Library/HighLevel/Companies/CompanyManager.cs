@@ -93,7 +93,19 @@ namespace Library.HighLevel.Companies
         /// <param name="path">The main directory's path.</param>
         public void LoadCompanies(string path)
         {
-            List<Company> companies = SerializationUtils.DeserializeJsonListFromIntermediate<Company, JsonCompany>(path + "/companies.json").ToList();
+            List<Company> companies = SerializationUtils.DeserializeJsonListFromIntermediate<Company, JsonCompany>($"{path}/companies.json").ToList();
+            this.companies = companies;
+        }
+
+//        Singleton<CompanyManager>.Instance.SaveCompanies(path);
+        /// <summary>
+        /// Saves all companies from a JSON file.
+        /// </summary>
+        /// <param name="path">The main directory's path.</param>
+        public void SaveCompanies(string path)
+        {
+            Company[] companies = this.companies.ToArray();
+            SerializationUtils.SerializeJsonListWithIntermediate<Company, JsonCompany>($"{path}/companies.json", companies);
         }
     }
 }

@@ -25,8 +25,7 @@ namespace Library.Core.Distribution
             }
         }
 
-
-        private string processMessageFromUnknownUser(Message msg)
+        private static string processMessageFromUnknownUser(Message msg)
         {
             string[] args = msg.Text.Split(' ');
 

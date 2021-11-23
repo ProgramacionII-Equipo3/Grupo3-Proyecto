@@ -7,12 +7,12 @@ namespace Library.Core
     public struct ContactInfo
     {
         /// <summary>
-        /// The entity's email (null if non-existent).
+        /// Gets the entity's email (null if non-existent).
         /// </summary>
         public string? Email { get; set; }
 
         /// <summary>
-        /// The entity's phone number (null if non-existent).
+        /// Gets the entity's phone number (null if non-existent).
         /// </summary>
         public int? PhoneNumber { get; set; }
 
