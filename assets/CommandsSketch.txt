@@ -70,7 +70,7 @@
 
 
 >/ereport		--> 	Ok, vamos a obtener el reporte de todos los materiales recibidos,
-					> ¿Cuál es el período de tiempo del que quieres obtener el reporte? (Porfavor ingresar el tiempo en meses)
+					> ¿Cuál es el período de tiempo del que quieres obtener el reporte? (Por favor ingresar el tiempo en meses)
 
 > /ehelp		--> 	Ok, a continuación te muestro todos los comandos disponibles para los emprendedores:
 					> /eregister      -> Este comando se encarga de registrar un emprendedor.

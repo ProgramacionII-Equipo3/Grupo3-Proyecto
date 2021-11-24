@@ -93,7 +93,6 @@ namespace Library.States.Entrepreneurs
 
         /// <inheritdoc />
         protected override string getErrorString() =>
-            "Invalid option.";
-
+            "Opción inválida.";
     }
 }
