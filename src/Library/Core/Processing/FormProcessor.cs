@@ -2,6 +2,7 @@ namespace Library.Core.Processing
 {
     /// <summary>
     /// Represent a complex form-like set of data through which certain types of data can be received from user input easily.
+    /// We applied the OCP for this class, that's why it's open to extensions but closed to modifications.
     /// </summary>
     /// <typeparam name="T">The type of the resulting object.</typeparam>
     public abstract class FormProcessor<T> : InputProcessor<T>

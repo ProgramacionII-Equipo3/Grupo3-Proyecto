@@ -4,6 +4,8 @@ namespace Library.Core.Distribution
 {
     /// <summary>
     /// This class represent a user's session, being the highest-level class which represents it.
+    /// This class uses the Expert pattern, it is the one responsible of processing the
+    /// message and verify if the id matches.
     /// </summary>
     public class UserSession
     {

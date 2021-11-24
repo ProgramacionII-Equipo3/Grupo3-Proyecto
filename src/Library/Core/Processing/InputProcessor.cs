@@ -2,6 +2,7 @@ namespace Library.Core.Processing
 {
     /// <summary>
     /// Represents the functionality of receiving one or more input messages, and generating an object with that input.
+    /// We created this class because of DIP, it depends of an abstract class.
     /// </summary>
     /// <typeparam name="T">The type of the resulting object.</typeparam>
     public abstract class InputProcessor<T> : InputHandler

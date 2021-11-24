@@ -6,6 +6,8 @@ namespace Library.Core.Distribution
 {
     /// <summary>
     /// This class handles the creation and selection of user sessions.
+    /// This class use the Creator pattern, because it is the responsible of
+    /// creating an instance of user session.
     /// </summary>
     public class SessionManager
     {

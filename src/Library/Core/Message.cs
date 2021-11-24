@@ -2,6 +2,9 @@ namespace Library.Core
 {
     /// <summary>
     /// Represents a message received from a messaging platform.
+    /// We created this class because of SRP, this class in particular is the one that
+    /// saves the message. Also OCP, because if you want to add information it would
+    /// not affect how it works.
     /// </summary>
     public struct Message
     {

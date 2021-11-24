@@ -5,6 +5,9 @@ namespace Library.Core.Distribution
 {
     /// <summary>
     /// This class represents the highest level of encapsulation in message processing.
+    /// Created because of SRP, in that way the information is encapsulated. At the same
+    /// time it uses the OCP principle because this class is open to extensions but closed
+    /// to modifications.
     /// </summary>
     public class MessageManager
     {

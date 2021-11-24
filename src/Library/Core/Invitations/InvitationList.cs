@@ -7,6 +7,9 @@ namespace Library.Core.Invitations
 {
     /// <summary>
     /// This class represents a list of invitations of a concrete class.
+    /// We created this class (besides being created because of Low Coupling and High Cohesion)
+    /// because of Polymorphism, in that way the 3 classes invitation are separated according
+    /// to his destine.
     /// </summary>
     /// <typeparam name="T">The class of the invitations.</typeparam>
     public class InvitationList<T> where T : Invitation

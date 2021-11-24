@@ -3,6 +3,8 @@ namespace Library.Core.Processing
     /// <summary>
     /// Represents the functionality of handling one or more messages input until realizing a certain operation successfully,
     /// or until the user indicates to stop trying.
+    /// We created this class because of DIP, that way the other classes depend of abractions.
+    /// Also we applied the Expert pattern, this specific class is the one in charge of handling messages input.
     /// </summary>
     public abstract class InputHandler
     {
