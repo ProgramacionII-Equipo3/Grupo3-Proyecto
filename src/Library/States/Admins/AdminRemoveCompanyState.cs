@@ -19,8 +19,8 @@ namespace Library.States.Admins
             inputHandler: ProcessorHandler.CreateInstance<string>(
                 companyName => Singleton<CompanyManager>.Instance.RemoveCompany(companyName)
                     ? null
-                    : "There's no company with that name.",
-                new BasicStringProcessor(() => "Please insert the name of the company you want to remove.")
+                    : "No existe una compañía con ese nombre.",
+                new BasicStringProcessor(() => "Por favor ingrese el nombre de la compañía que quieres eliminar.")
             ),
             exitState: () => new AdminInitialMenuState(),
             nextState: () => new AdminInitialMenuState()

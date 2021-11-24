@@ -17,8 +17,8 @@ namespace Library.States.Admins
             inputHandler: ProcessorHandler.CreateInstance<string>(
                 userName => Singleton<SessionManager>.Instance.RemoveUserByName(userName)
                     ? null
-                    : "There's no user with that name.",
-                new BasicStringProcessor(() => "Please insert the name of the user you want to remove.")
+                    : "No existe un usuario con ese nombre.",
+                new BasicStringProcessor(() => "Por favor ingrese el nombre del usuario que quieres eliminar.")
             ),
             exitState: () => new AdminInitialMenuState(),
             nextState: () => new AdminInitialMenuState()

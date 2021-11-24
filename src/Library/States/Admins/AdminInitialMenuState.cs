@@ -18,16 +18,16 @@ namespace Library.States.Admins
         {
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                ("/invitecompany", "Create a company invitation and get its code", this.inviteCompany),
-                ("/removecompany", "Remove a company and its users",               this.removeCompany),
-                ("/removeuser",    "Remove a user",                                this.removeUser)
+                ("/invitecompany", "Crea una invitación a companía y obtiene su respectivo código.", this.inviteCompany),
+                ("/removecompany", "Elimina una compañía y sus respectivos usuarios.",               this.removeCompany),
+                ("/removeuser",    "Elimina un usuario.",                                this.removeUser)
             };
         }
 
         private (State, string?) inviteCompany()
         {
             string code = Administer.CreateCompanyInvitation();
-            return (this, $"The new invitation's code is {code}.");
+            return (this, $"El nuevo código de invitación es: {code}.");
         }
 
         private (State, string?) removeCompany()
@@ -42,10 +42,10 @@ namespace Library.States.Admins
 
         /// <inheritdoc />
         protected override string GetInitialResponse() =>
-            "What do you want to do?";
+            "Qué quieres hacer?";
 
         /// <inheritdoc />
         protected override string GetErrorString() =>
-            "Invalid option.";
+            "Opción inválida.";
     }
 }
