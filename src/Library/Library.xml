@@ -1122,7 +1122,7 @@
             Gets the list of publications, dinamically assigned to the company.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String})">
+        <member name="M:Library.HighLevel.Companies.Company.PublishMaterial(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
             <summary>
             Publishes a material.
             </summary>
@@ -1132,6 +1132,7 @@
             <param name="location">The pick-up location of the material.</param>
             <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
+            <param name="requirements">The requirements of the material.</param>
             <returns>Whether the operation was successful.</returns>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.RemovePublication(System.Int32)">
@@ -1661,6 +1662,7 @@
             The list of keywords of the publication material.
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements" -->
         <member name="M:Library.HighLevel.Materials.JsonMaterialPublication.FromValue(Library.HighLevel.Materials.MaterialPublication)">
             <inheritdoc />
         </member>
@@ -1803,6 +1805,11 @@
             The list of keywords of the publication material.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Materials.MaterialPublication.Requirements">
+            <summary>
+            The list of requirements of the material publication.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.CheckMaterialFields(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price)">
             <summary>
             Checks whether the given fields for building a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> are valid with each other.
@@ -1813,7 +1820,7 @@
             <param name="price">The price of the material.</param>
             <returns>Whether the data is valid with itself.</returns>
         </member>
-        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String})">
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.CreateInstance(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,Ucu.Poo.Locations.Client.Location,Library.HighLevel.Materials.MaterialPublicationTypeData,System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
             <summary>
             Creates an instance of <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, validating the data beforehand.
             </summary>
@@ -1823,6 +1830,7 @@
             <param name="pickupLocation">The pick-up location of the material.</param>
             <param name="type">The type of the material publication.</param>
             <param name="keywords">The keywords of the material.</param>
+            <param name="requirements">The requirements of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
         </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
