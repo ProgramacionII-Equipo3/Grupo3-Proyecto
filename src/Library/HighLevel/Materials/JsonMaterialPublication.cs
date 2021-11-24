@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json.Serialization;
 using Library.HighLevel.Accountability;
 using Ucu.Poo.Locations.Client;
 using Library.Utils;
@@ -43,6 +44,11 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public IList<string>? Keywords { get; set; }
 
+        /// <summary>
+        /// The list of requirements of the material publication.
+        [JsonInclude]
+        public IList<string>? Requirements { get; set; }
+
         /// <inheritdoc />
         public void FromValue(MaterialPublication value)
         {
@@ -56,6 +62,7 @@ namespace Library.HighLevel.Materials
             this.Type = new JsonMaterialPublicationTypeData();
             this.Type.FromValue(value.Type);
             this.Keywords = value.Keywords.ToList();
+            this.Requirements = value.Requirements.ToList();
         }
 
         /// <inheritdoc />
@@ -66,6 +73,7 @@ namespace Library.HighLevel.Materials
                 this.Price.ToValue(),
                 this.PickupLocation!,
                 this.Type.ToValue(),
-                this.Keywords!).Unwrap();
+                this.Keywords!,
+                this.Requirements!).Unwrap();
     }
 }

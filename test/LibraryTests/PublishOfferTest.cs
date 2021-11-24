@@ -36,11 +36,12 @@ namespace ProgramTests
             Price price = new Price(100, Currency.Peso, unit);
             Location location = provider.GetLocation("Luis Alberto de Herrera 776", "Minas", "Lavalleja", "Uruguay");
             IList<string> keyword = new List<string> { "Cámara" };
+            IList<string> requirements = new List<string> { };
             Material material = Material.CreateInstance("Cámara de cubierta", Measure.Length, category);
 
             ContactInfo contact = new ContactInfo("evertec@gmail.com", 095456258);
             Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location) !;
-            empresa.PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword);
+            empresa.PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword, requirements);
 
             MaterialCategory category2 = new MaterialCategory("Plástico");
             Amount amount2 = new Amount(5, unit);
@@ -65,8 +66,9 @@ namespace ProgramTests
             Price price3 = new Price(250, Currency.Peso, unit3);
             Location location3 = client.GetLocation("Av. 8 de Octubre 2738");
             IList<string> keywords = new List<string> { "metálicos", "metal", "residuos de contenedores" };
+            IList<string> requirements = new List<string> { };
             Material material3 = Material.CreateInstance("Residuos generados de reparaciones de contenedores", Measure.Weight, category3);
-            MaterialPublication.CreateInstance(material3, amount3, price3, location3, MaterialPublicationTypeData.Normal(), keywords);
+            MaterialPublication.CreateInstance(material3, amount3, price3, location3, MaterialPublicationTypeData.Normal(), keywords, requirements);
             List<MaterialPublication> expected2 = new List<MaterialPublication>();
         }
     }
