@@ -70,7 +70,7 @@ namespace UnitTests
                 other is not null && this.Code == other.Code;
 
             public override bool Equals(object? obj) =>
-                obj is CustomInvitation inv ? this.Code == inv.Code : false;
+                obj is CustomInvitation inv && this.Code == inv.Code;
             
             public override int GetHashCode() =>
                 this.Code.GetHashCode(StringComparison.InvariantCulture);

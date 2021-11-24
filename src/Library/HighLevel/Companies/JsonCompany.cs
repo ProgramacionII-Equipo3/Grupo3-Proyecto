@@ -16,7 +16,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets the company's name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the company's contact information.
@@ -26,30 +26,30 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets the company's heading.
         /// </summary>
-        public string Heading { get; set; }
+        public string Heading { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the company's location.
         /// </summary>
-        public Location Location { get; set; }
+        public Location? Location { get; set; }
 
         /// <summary>
         /// The company's representants in the platform.
         /// </summary>
         [JsonInclude]
-        public IList<string> Representants { get; set; }
+        public IList<string>? Representants { get; set; }
 
         /// <summary>
         /// Gets a private list of the publications.
         /// </summary>
         [JsonInclude]
-        public IList<JsonMaterialPublication> Publications { get; set; }
+        public IList<JsonMaterialPublication>? Publications { get; set; }
 
         /// <summary>
         /// Gets the list of material sales.
         /// </summary>
         [JsonInclude]
-        public IList<JsonMaterialSalesLine> MaterialSales { get; set; }
+        public IList<JsonMaterialSalesLine>? MaterialSales { get; set; }
 
         /// <inheritdoc />
         public void FromValue(Company value)
@@ -79,9 +79,9 @@ namespace Library.HighLevel.Companies
                 this.Name,
                 this.ContactInfo,
                 this.Heading,
-                this.Location,
-                this.Representants,
-                this.Publications.Select(json => json.ToValue()).ToList(),
-                this.MaterialSales.Select(json => json.ToValue()).ToList());
+                this.Location!,
+                this.Representants!,
+                this.Publications!.Select(json => json.ToValue()).ToList(),
+                this.MaterialSales!.Select(json => json.ToValue()).ToList());
     }
 }

@@ -49,6 +49,8 @@ namespace ProgramTests
             Location location2 = provider.GetLocation("Camino Maldonado km 11");
             IList<string> keyword2 = new List<string> { "Palet", "Plástico" };
             Material material2 = Material.CreateInstance("Palet de Plástico", Measure.Length, category2);
+
+            Singleton<CompanyManager>.Instance.RemoveCompany("Evertec");
         }
 
         /// <summary>

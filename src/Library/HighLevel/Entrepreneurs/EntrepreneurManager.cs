@@ -24,13 +24,24 @@ namespace Library.HighLevel.Entrepreneurs
         public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepreneurs.AsReadOnly();
 
         /// <summary>
-        /// Adds a new entrepreneur into the list.
+        /// Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
         /// </summary>
         /// <param name="entrepreneur">The new entrepreneur.</param>
-        public void NewEntrepreneur(Entrepreneur entrepreneur)
+        /// <returns>Whether the operation was successful.</returns>
+        public bool NewEntrepreneur(Entrepreneur entrepreneur)
         {
+            if(this.entrepreneurs.Any(e => e.Name == entrepreneur.Name)) return false;
             entrepreneurs.Add(entrepreneur);
+            return true;
         }
+
+        /// <summary>
+        /// Removes an entrepreneur with a concrete name.
+        /// </summary>
+        /// <param name="name">The entrepreneur's name.</param>
+        /// <returns>Whether there was an entrepreneur with the given name.</returns>
+        public bool RemoveEntrepreneur(string name) =>
+            this.entrepreneurs.RemoveAll(e => e.Name == name) > 0;
 
         /// <summary>
         /// Gets the entrepreneur with a concrete id.
@@ -43,8 +54,8 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur with a concrete name.
         /// </summary>
-        /// <param name="name">The entrepreneur´s name.</param>
-        /// <returns>The entrepreneur, or null if there´s no entrepreneur with the given name.</returns>
+        /// <param name="name">The entrepreneur's name.</param>
+        /// <returns>The entrepreneur, or null if there's no entrepreneur with the given name.</returns>
         public Entrepreneur? GetByName(string name) =>
             this.entrepreneurs.Where(e => e.Name == name).FirstOrDefault();
 
@@ -58,7 +69,6 @@ namespace Library.HighLevel.Entrepreneurs
             this.entrepreneurs = entrepreneurs;
         }
 
-        //            Singleton<EntrepreneurManager>.Instance.SaveEntrepreneurs(path);
         /// <summary>
         /// Saves all entrepreneurs from a JSON file.
         /// </summary>

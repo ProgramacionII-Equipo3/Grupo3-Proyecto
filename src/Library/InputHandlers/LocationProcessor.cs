@@ -5,6 +5,7 @@ using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
 using Library.HighLevel.Companies;
 using Library.Core.Processing;
+using Library.Utils;
 using Ucu.Poo.Locations.Client;
 
 namespace Library.InputHandlers
@@ -23,12 +24,11 @@ namespace Library.InputHandlers
                     if (sections.Length != 4)
                         return Result<Location, string>.Err("The given location text is incoherent, it must have address, city, department and country.");
                     
-#warning Implement code in case of status 500.
-                    Location location = Singleton<LocationApiClient>.Instance.GetLocationAsync(
+                    Location location = Singleton<LocationApiClient>.Instance.GetLocationResilient(
                         sections[0].Trim(),
                         sections[1].Trim(),
                         sections[2].Trim(),
-                        sections[3].Trim()).Result;
+                        sections[3].Trim());
 
                     if (!location.Found) return Result<Location, string>.Err("The given location is invalid.");
 

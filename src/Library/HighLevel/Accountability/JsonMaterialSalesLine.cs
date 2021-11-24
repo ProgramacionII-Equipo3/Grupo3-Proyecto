@@ -12,17 +12,17 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The sold material.
         /// </summary>
-        public JsonMaterial Material { get; set; }
+        public JsonMaterial Material { get; set; } = new JsonMaterial();
 
         /// <summary>
         /// The amount of sold material.
         /// </summary>
-        public JsonAmount Amount { get; set; }
+        public JsonAmount Amount { get; set; } = new JsonAmount();
 
         /// <summary>
         /// The price of the sold material.
         /// </summary>
-        public JsonPrice Price { get; set; }
+        public JsonPrice Price { get; set; } = new JsonPrice();
 
         /// <summary>
         /// The moment the sale happened.

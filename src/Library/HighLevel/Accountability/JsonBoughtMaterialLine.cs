@@ -14,12 +14,12 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The name of the company from whom the material was bought.
         /// </summary>
-        public string CompanyName { get; set; }
+        public string CompanyName { get; set; } = string.Empty;
 
         /// <summary>
         /// The material.
         /// </summary>
-        public JsonMaterial Material { get; set; }
+        public JsonMaterial Material { get; set; } = new JsonMaterial();
 
         /// <summary>
         /// The moment of the purchase.
@@ -29,12 +29,12 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The price of the material.
         /// </summary>
-        public JsonPrice Price { get; set; }
+        public JsonPrice Price { get; set; } = new JsonPrice();
 
         /// <summary>
         /// The amount of material.
         /// </summary>
-        public JsonAmount Amount { get; set; }
+        public JsonAmount Amount { get; set; } = new JsonAmount();
 
         /// <inheritdoc />
         public void FromValue(BoughtMaterialLine value)

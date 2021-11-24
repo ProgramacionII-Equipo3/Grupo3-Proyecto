@@ -35,14 +35,13 @@ namespace ProgramTests
 
             // Message with the code.
             Message message = new Message("1234567", id);
-            LocationApiClient provider = new LocationApiClient();
 
             // If the message with the code is equal with te code sended in an invitation,
             // the user can register the company.
             ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
-            Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
+            Location location = Singleton<LocationApiClient>.Instance.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location)!;
             company.AddUser(message.Id);
 
@@ -54,6 +53,7 @@ namespace ProgramTests
             // The company is registered.
             Assert.That(expected, Is.True);
             Assert.AreEqual(expectedCompany, company);
+            Singleton<CompanyManager>.Instance.RemoveCompany("Company.SA");
         }
 
         /// <summary>
@@ -74,8 +74,8 @@ namespace ProgramTests
             Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
-            bool expected = Singleton<EntrepreneurManager>.Instance.Entrepreneurs.Contains(entrepreneur);
-            Assert.That(expected, Is.True);
+            Assert.Contains(entrepreneur, Singleton<EntrepreneurManager>.Instance.Entrepreneurs);
+            Singleton<EntrepreneurManager>.Instance.RemoveEntrepreneur("Juan");
         }
     }
 }

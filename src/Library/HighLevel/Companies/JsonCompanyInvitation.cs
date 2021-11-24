@@ -8,7 +8,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// The invitation's code.
         /// </summary>
-        public string Code { get; set; }
+        public string Code { get; set; } = string.Empty;
 
         /// <inheritdoc />
         void IJsonHolder<CompanyInvitation>.FromValue(CompanyInvitation value)

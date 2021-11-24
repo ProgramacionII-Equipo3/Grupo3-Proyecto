@@ -8,7 +8,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// A link to a document with the necessary habilitations to manipulate a material.
         /// </summary>
-        public string DocLink { get; set; }
+        public string DocLink { get; set; } = string.Empty;
 
         /// <summary>
         /// A boolean value which evaluates if the habilitation is validated.
@@ -18,7 +18,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// A text that describes the habilitations that a entrepreneur has.
         /// </summary>
-        public string DescriptiveText { get; set; }
+        public string DescriptiveText { get; set; } = string.Empty;
 
         /// <inheritdoc />
         public void FromValue(Habilitation value)

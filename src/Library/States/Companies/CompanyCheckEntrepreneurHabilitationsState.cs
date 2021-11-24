@@ -11,7 +11,7 @@ namespace Library.States.Companies
     public class CompanyCheckEntrepreneurHabilitationsState : WrapperState
     {
         /// <summary>
-        /// Initializes an instance of <see cref="CompanyCheckEntrepreneurHabilitationState" /> class.
+        /// Initializes an instance of <see cref="CompanyCheckEntrepreneurHabilitationsState" /> class.
         /// </summary>
         /// <param name="id"></param>
         public CompanyCheckEntrepreneurHabilitationsState(string id) : base(

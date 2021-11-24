@@ -38,7 +38,7 @@ namespace Grupo3_Proyecto
             {
                 while(Console.ReadLine() != "--STOP");
             });
-            (Singleton<Searcher>.Instance as IDisposable).Dispose();
+            Singleton<Ucu.Poo.Locations.Client.LocationApiClient>.Instance.Dispose();
             Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
         }
     }

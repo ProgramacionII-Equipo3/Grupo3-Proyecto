@@ -16,7 +16,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The type of the publication.
         /// </summary>
-        public string PublicationType { get; set; }
+        public string PublicationType { get; set; } = string.Empty;
 
         /// <inheritdoc />
         public void FromValue(MaterialPublicationTypeData value)

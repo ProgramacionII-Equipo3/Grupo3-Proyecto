@@ -4,6 +4,7 @@ using System.Globalization;
 using Library;
 using Library.Core;
 using Library.Core.Invitations;
+using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Materials;
 using Library.Platforms.Telegram;
@@ -81,6 +82,7 @@ namespace ProgramTests
             Assert.AreEqual(habilitations, juan.Habilitations);
             Assert.AreEqual(specializations, juan.Specializations);
             Assert.AreEqual(nameExpected, juan.Name);
+            Singleton<EntrepreneurManager>.Instance.RemoveEntrepreneur(this.nameMessage.Text);
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace ProgramTests
         [Test]
         public void EntrepreneurRegisterFromUserInput()
         {
-            Singleton<InvitationManager>.Instance.CreateInvitation<Library.HighLevel.Companies.CompanyInvitation>("4jsk", code => new Library.HighLevel.Companies.CompanyInvitation(code));
+            Singleton<InvitationManager>.Instance.CreateInvitation<CompanyInvitation>("4jsk", code => new CompanyInvitation(code));
             UnitTests.ProgramaticPlatform platform = new UnitTests.ProgramaticPlatform(
                 "___",
                 "/start 4jsk",
@@ -112,6 +114,7 @@ namespace ProgramTests
             platform.Run();
             Console.WriteLine();
             Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
+            Singleton<CompanyManager>.Instance.RemoveCompany("Teogal");
         }
     }
 }
