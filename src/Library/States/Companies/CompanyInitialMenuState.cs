@@ -31,7 +31,7 @@ namespace Library.States.Companies
 
         private (State, string?) CheckHabilitation()
         {
-            throw new NotImplementedException();
+            return (new CompanyCheckEntrepreneurHabilitationsState(this.id), null);
         }
 
         private (State, string?) CompanyReport()
