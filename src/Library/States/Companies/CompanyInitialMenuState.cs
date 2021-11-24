@@ -11,16 +11,16 @@ namespace Library.States.Companies
         private string id;
 
         /// <summary>
-        /// Initializes an instance of <see cref="CompanyInitialMenuState" />
+        /// Initializes an instance of <see cref="CompanyInitialMenuState" />.
         /// </summary>
         public CompanyInitialMenuState(string id)
         {
             this.id = id;
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                ("/publish", "Permite realizar una publicación de un material",                                     this.PublishMaterial),
-                ("/checkhabilitation", "Permite ver las habilitaciones del emprendedor que solicito el material",   this.CheckHabilitation),
-                ("/companyreport", "Permite acceder al reporte de todos los materiales enviados por la empresa",    this.CompanyReport),
+                ("/publish",           "Realizar una publicación de un material.",                                             this.PublishMaterial),
+                ("/checkhabilitation", "Mostrar las habilitaciones de un emprendedor que solicito el material",                this.CheckHabilitation),
+                ("/companyreport",     "Acceder al reporte de los materiales enviados por la empresa a partir de un día dado", this.CompanyReport),
             };
         }
 
@@ -40,11 +40,11 @@ namespace Library.States.Companies
         }
 
         /// <inheritdoc />
-        protected override string GetInitialResponse() =>
-            "¿Que deseas hacer?";
+        protected override string getInitialResponse() =>
+            "¿Qué deseas hacer?";
 
         /// <inheritdoc />
-        protected override string GetErrorString() =>
+        protected override string getErrorString() =>
             "Lo siento, no reconocí ese comando.";
     }
 }

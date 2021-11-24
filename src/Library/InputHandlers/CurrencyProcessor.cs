@@ -18,7 +18,7 @@ namespace Library.InputHandlers
             PipeProcessor<Currency>.CreateInstance<string>(
                 c =>
                 {
-                    switch (c.Trim().ToLower())
+                    switch (c.Trim().ToLowerInvariant())
                     {
                         case "pesos":
                             return Result<Currency, string>.Ok(Currency.Peso);

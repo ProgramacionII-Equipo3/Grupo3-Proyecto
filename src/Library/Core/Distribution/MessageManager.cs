@@ -34,7 +34,7 @@ namespace Library.Core.Distribution
                 args[0] != "/start" ||
                 string.IsNullOrWhiteSpace(args[1]))
             {
-                return "Send the message /start ( <invitation-code> | -e | --entrepreneur ) to register to the platform.";
+                return "Por favor, envía el mensaje \"/start <código>\" para registrarse como empresa o \"/start -e\" o \"/start --entrepreneur\" para registrarse como emprendedor.";
             }
 
             string arg = args[1].Trim();

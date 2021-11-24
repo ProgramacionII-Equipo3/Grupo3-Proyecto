@@ -1,35 +1,38 @@
 [
-    {
-        "Id": "CompRep",
-        "UserData": {
-            "Name": "santiago",
-            "ContactInfo": {
-
-            },
-            "IsComplete": true,
-            "UserType": 2
-        }
-    },
-    {
-        "Id": "ConsoleID",
-        "UserData": {
-            "Name": "santiago",
-            "ContactInfo": {
-
-            },
-            "IsComplete": true,
-            "UserType": 1
-        }
-    },
-    {
-        "Id": "Admin1",
-        "UserData": {
-            "Name": "Admin",
-            "ContactInfo": {
-
-            },
-            "IsComplete": true,
-            "UserType": 0
-        }
+  {
+    "Id": "Telegram_1883636472",
+    "UserData": {
+      "Name": "Santiago",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": null
+      },
+      "IsComplete": true,
+      "UserType": 0
     }
+  },
+  {
+    "Id": "Telegram_2066298868",
+    "UserData": {
+      "Name": "",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": null
+      },
+      "IsComplete": true,
+      "UserType": 2
+    }
+  },
+  {
+    "Id": "Telegram_2090102457",
+    "UserData": {
+      "Name": "",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": null
+      },
+      "IsComplete": true,
+      "UserType": 1
+    }
+  }
 ]

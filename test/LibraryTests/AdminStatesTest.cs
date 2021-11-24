@@ -41,11 +41,11 @@ namespace UnitTests
             }
 
             Regex expected = new Regex(
-                "The new invitation's code is (?<invitationcode>\\w+).\\n"
-              + "What do you want to do\\?\\n"
-              + "        /invitecompany: Create a company invitation and get its code\\n"
-              + "        /removecompany: Remove a company and its users\\n"
-              + "        /removeuser: Remove a user",
+                "El nuevo código de invitación es: (?<invitationcode>\\w+).\\n"
+              + "¿Qué quieres hacer\\?\\n"
+              + "        /invitecompany: Crea una invitación a companía y obtiene su respectivo código.\\n"
+              + "        /removecompany: Elimina una compañía y sus respectivos usuarios.\\n"
+              + "        /removeuser: Elimina un usuario.",
                 RegexOptions.Compiled
             );
 

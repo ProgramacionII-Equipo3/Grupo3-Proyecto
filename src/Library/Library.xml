@@ -2527,10 +2527,10 @@
             Initializes an instance of <see cref="T:Library.States.Admins.AdminInitialMenuState" />.
             </summary>
         </member>
-        <member name="M:Library.States.Admins.AdminInitialMenuState.GetInitialResponse">
+        <member name="M:Library.States.Admins.AdminInitialMenuState.getInitialResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.Admins.AdminInitialMenuState.GetErrorString">
+        <member name="M:Library.States.Admins.AdminInitialMenuState.getErrorString">
             <inheritdoc />
         </member>
         <member name="T:Library.States.Admins.AdminRemoveCompanyState">
@@ -2560,13 +2560,13 @@
         </member>
         <member name="M:Library.States.Companies.CompanyInitialMenuState.#ctor(System.String)">
             <summary>
-            Initializes an instance of <see cref="T:Library.States.Companies.CompanyInitialMenuState" />
+            Initializes an instance of <see cref="T:Library.States.Companies.CompanyInitialMenuState" />.
             </summary>
         </member>
-        <member name="M:Library.States.Companies.CompanyInitialMenuState.GetInitialResponse">
+        <member name="M:Library.States.Companies.CompanyInitialMenuState.getInitialResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.Companies.CompanyInitialMenuState.GetErrorString">
+        <member name="M:Library.States.Companies.CompanyInitialMenuState.getErrorString">
             <inheritdoc />
         </member>
         <member name="T:Library.States.Companies.CompanyPublishMaterialState">
@@ -2650,10 +2650,10 @@
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurInitialMenuState" />.
             </summary>
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.GetInitialResponse">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.getInitialResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.GetErrorString">
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurInitialMenuState.getErrorString">
             <inheritdoc />
         </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurSearchByCategoryState">
@@ -2749,7 +2749,7 @@
             Gets the list of the commands supported by this <see cref="T:Library.States.MultipleOptionState" />.
             </summary>
         </member>
-        <member name="M:Library.States.MultipleOptionState.GetInitialResponse">
+        <member name="M:Library.States.MultipleOptionState.getInitialResponse">
             <summary>
             Returns the message the program sends before asking for an option.
             </summary>
@@ -2758,7 +2758,7 @@
         <member name="M:Library.States.MultipleOptionState.GetDefaultResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.MultipleOptionState.GetErrorString">
+        <member name="M:Library.States.MultipleOptionState.getErrorString">
             <summary>
             Gets the string to send in order to notify the user that the data is invalid.
             </summary>
