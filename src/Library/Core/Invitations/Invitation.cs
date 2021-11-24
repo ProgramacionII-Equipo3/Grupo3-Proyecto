@@ -2,6 +2,8 @@ namespace Library.Core.Invitations
 {
     /// <summary>
     /// This class represents invitations, through which admins can invite other non-registered users into the platform.
+    /// We created this class using the Low Coupling and High Cohesion pattern altogether with InvitationList and 
+    /// InvitatioManager reaching a balance between cohesion and coupling.
     /// </summary>
     public abstract class Invitation
     {

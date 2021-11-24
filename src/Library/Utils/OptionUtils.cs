@@ -6,6 +6,8 @@ namespace Library.Utils
 {
     /// <summary>
     /// This class holds methods which are related with nullable values.
+    /// We created this class because of SRP, this class in specific is the 
+    /// one used by other classes when they have to control nullable values. 
     /// </summary>
     public static class OptionUtils
     {

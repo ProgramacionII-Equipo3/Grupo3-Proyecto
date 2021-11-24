@@ -30,6 +30,9 @@
         <member name="T:Library.Core.Distribution.MessageManager">
             <summary>
             This class represents the highest level of encapsulation in message processing.
+            Created because of SRP, in that way the information is encapsulated. At the same
+            time it uses the OCP principle because this class is open to extensions but closed
+            to modifications.
             </summary>
         </member>
         <member name="M:Library.Core.Distribution.MessageManager.ProcessMessage(Library.Core.Message)">
@@ -42,6 +45,8 @@
         <member name="T:Library.Core.Distribution.SessionManager">
             <summary>
             This class handles the creation and selection of user sessions.
+            This class use the Creator pattern, because it is the responsible of
+            creating an instance of user session.
             </summary>
         </member>
         <member name="F:Library.Core.Distribution.SessionManager.sessions">
@@ -96,6 +101,8 @@
         <member name="T:Library.Core.Distribution.UserSession">
             <summary>
             This class represent a user's session, being the highest-level class which represents it.
+            This class uses the Expert pattern, it is the one responsible of processing the
+            message and verify if the id matches.
             </summary>
         </member>
         <member name="P:Library.Core.Distribution.UserSession.Id">
@@ -145,6 +152,8 @@
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
             This class represents invitations, through which admins can invite other non-registered users into the platform.
+            We created this class using the Low Coupling and High Cohesion pattern altogether with InvitationList and 
+            InvitatioManager reaching a balance between cohesion and coupling.
             </summary>
         </member>
         <member name="P:Library.Core.Invitations.Invitation.Code">
@@ -168,6 +177,8 @@
         <member name="T:Library.Core.Invitations.InvitationList`1">
             <summary>
             This class represents a list of invitations of a concrete class.
+            We created this class (besides being created because of Low Coupling and High Cohesion)
+            because of 
             </summary>
             <typeparam name="T">The class of the invitations.</typeparam>
         </member>
@@ -202,6 +213,9 @@
         <member name="T:Library.Core.Invitations.InvitationManager">
             <summary>
             This class acts as the highest level of abstraccion in invitation handling.
+            We created this class because of SRP, in that way this class has a specific 
+            function. It was also created because of Don't Talk to Strangers, in that way
+            we reduce the interaction with indirect objects.
             </summary>
         </member>
         <member name="F:Library.Core.Invitations.InvitationManager.removers">
@@ -293,6 +307,7 @@
         <member name="T:Library.Core.Messaging.IMessageReceiver`1">
             <summary>
             This interface represents a platform from which the program can receive messages.
+            
             </summary>
             <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
         </member>

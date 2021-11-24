@@ -10,6 +10,9 @@ namespace Library.Core.Invitations
 {
     /// <summary>
     /// This class acts as the highest level of abstraccion in invitation handling.
+    /// We created this class because of SRP, in that way this class has a specific 
+    /// function. It was also created because of Don't Talk to Strangers, in that way
+    /// we reduce the interaction with indirect objects.
     /// </summary>
     public class InvitationManager
     {

@@ -3,6 +3,8 @@ namespace Library.Core
     /// <summary>
     /// This struct represents contact information data associated with a user,
     /// a company, or another entity with contact information.
+    /// We created this class because of SRP, this class in particular is the one that
+    /// saves the contact info.
     /// </summary>
     public struct ContactInfo
     {

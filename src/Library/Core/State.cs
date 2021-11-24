@@ -4,6 +4,8 @@ namespace Library.Core
 {
     /// <summary>
     /// This class represents a state.
+    /// We created this class because of DIP, that way the other classes depend of abractions.
+    /// Also because of LSP, this class is used by a lot of classes without collateral damage.
     /// </summary>
     public abstract class State
     {
