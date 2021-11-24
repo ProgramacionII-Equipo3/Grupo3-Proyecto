@@ -1,4 +1,5 @@
 using Library.HighLevel.Companies;
+using Library.Utils;
 
 namespace Library.HighLevel.Materials
 {
@@ -30,10 +31,10 @@ namespace Library.HighLevel.Materials
 
         /// <inheritdoc />
         public override string ToString() =>
-            $"(De {this.Company.Name}) {this.Publication.Material},"
+            $"(De {this.Company.Name}) {this.Publication.Material.Name},"
             + $" cantidad: {this.Publication.Amount},"
             + $" precio: {this.Publication.Price},"
-            + $" ubicación: {this.Publication.PickupLocation},"
+            + $" ubicación: {BasicUtils.LocationToString(this.Publication.PickupLocation)},"
             + $" tipo: {this.Publication.Type}";
     }
 }

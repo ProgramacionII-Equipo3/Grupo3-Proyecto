@@ -19,17 +19,17 @@ namespace Library.States
         /// Returns the message the program sends before asking for an option.
         /// </summary>
         /// <returns>A string.</returns>
-        protected abstract string GetInitialResponse();
+        protected abstract string getInitialResponse();
 
         /// <inheritdoc />
         public override sealed string GetDefaultResponse() =>
-            this.GetInitialResponse() + "\n        " + string.Join("\n        ", this.commands.Select(command => $"{command.Item1}: {command.Item2}"));
+            this.getInitialResponse() + "\n        " + string.Join("\n        ", this.commands.Select(command => $"{command.Item1}: {command.Item2}"));
 
         /// <summary>
         /// Gets the string to send in order to notify the user that the data is invalid.
         /// </summary>
         /// <returns>A string.</returns>
-        protected abstract string GetErrorString();
+        protected abstract string getErrorString();
 
         /// <inheritdoc />
         public override (State, string?) ProcessMessage(string id, ref UserData data, string msg)
@@ -47,8 +47,9 @@ namespace Library.States
                     res != null
                         ? $"{res}\n{newState.GetDefaultResponse()}"
                         : newState.GetDefaultResponse());
-            } else {
-                return (this, $"{this.GetErrorString()}\n{this.GetDefaultResponse()}");
+            } else
+            {
+                return (this, $"{this.getErrorString()}\n{this.GetDefaultResponse()}");
             }
         }
     }

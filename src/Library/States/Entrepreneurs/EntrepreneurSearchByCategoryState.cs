@@ -24,7 +24,7 @@ namespace Library.States.Entrepreneurs
                 category =>
                 {
                     List<AssignedMaterialPublication> publications = Singleton<Searcher>.Instance.SearchByCategory(category);
-                    return (new EntrepreneurInitialMenuState(string.Join('\n', publications)), null);
+                    return (new EntrepreneurInitialMenuState(id, string.Join('\n', publications)), null);
                 },
                 () => (new EntrepreneurInitialMenuState(id), null)
             )

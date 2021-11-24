@@ -41,11 +41,11 @@ namespace Library.States.Admins
         }
 
         /// <inheritdoc />
-        protected override string GetInitialResponse() =>
+        protected override string getInitialResponse() =>
             "What do you want to do?";
 
         /// <inheritdoc />
-        protected override string GetErrorString() =>
+        protected override string getErrorString() =>
             "Invalid option.";
     }
 }

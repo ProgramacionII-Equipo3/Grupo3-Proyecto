@@ -25,17 +25,14 @@ namespace Library.InputHandlers.Abstractions
                         {
                             this.parent.list.Add(value);
                             return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((
-                                new InitialMenuState(this.parent), null
-                            ));
+                                new InitialMenuState(this.parent), null));
                         },
-                        e => Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((this, e))
-                    );
+                        e => Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((this, e)));
                 }
                 else
                 {
                     return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((
-                        new InitialMenuState(this.parent), null
-                    ));
+                        new InitialMenuState(this.parent), null));
                 }
             }
         }

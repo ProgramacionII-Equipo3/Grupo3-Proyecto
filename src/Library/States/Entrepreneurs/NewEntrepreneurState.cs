@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Library.Core.Distribution;
 using Library.HighLevel.Entrepreneurs;
 using Library.Utils;
 using Library.InputHandlers;
@@ -10,6 +11,7 @@ using Ucu.Poo.Locations.Client;
 
 namespace Library.States.Entrepreneurs
 {
+#warning TODO: Document this class.
     /// <summary>
     /// 
     /// </summary>
@@ -22,7 +24,11 @@ namespace Library.States.Entrepreneurs
                 new NewEntrepreneurForm(userId)
             ),
             () => null,
-            () => new EntrepreneurInitialMenuState(userId)
+            () =>
+            {
+                Singleton<SessionManager>.Instance.GetById(userId).Unwrap().UserData.IsComplete = true;
+                return new EntrepreneurInitialMenuState(userId);
+            }
         ) {}
 
         private class NewEntrepreneurForm : FormProcessor<Entrepreneur>

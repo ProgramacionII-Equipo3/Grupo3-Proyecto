@@ -13,7 +13,7 @@ namespace Library.InputHandlers
         private Func<string> initialResponseGetter;
         private bool askForDate = false;
         private MaterialPublicationTypeData? result = null;
-        private DateProcessor dateProcessor = new DateProcessor(() => "Which is the scheduled date?");
+        private DateProcessor dateProcessor = new DateProcessor(() => "¿Cuál es la fecha agendada?");
 
         /// <summary>
         /// Initializes an instance of <see cref="MaterialPublicationTypeDataProcessor" />.
@@ -51,7 +51,7 @@ namespace Library.InputHandlers
                 }
             } else
             {
-                switch(msg.Trim().ToLower())
+                switch(msg.Trim().ToLowerInvariant())
                 {
                     case "/normal":
                         this.result = MaterialPublicationTypeData.Normal();

@@ -17,7 +17,7 @@ namespace Library.InputHandlers
         /// <returns></returns>
         public UnitProcessor(Func<string> initialResponseGetter) : base(
             PipeProcessor<Unit>.CreateInstance<string>(
-                u => Unit.GetByAbbr(u.Trim().ToLower()) is Unit unit
+                u => Unit.GetByAbbr(u.Trim().ToLowerInvariant()) is Unit unit
                     ? Result<Unit, string>.Ok(unit)
                     : Result<Unit, string>.Err("Esa unidad no existe."),
                 new BasicStringProcessor(initialResponseGetter)
