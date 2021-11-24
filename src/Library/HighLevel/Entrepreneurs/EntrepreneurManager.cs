@@ -41,6 +41,14 @@ namespace Library.HighLevel.Entrepreneurs
             this.entrepreneurs.Where(e => e.Id == id).FirstOrDefault();
 
         /// <summary>
+        /// Gets the entrepreneur with a concrete name.
+        /// </summary>
+        /// <param name="name">The entrepreneur´s name.</param>
+        /// <returns>The entrepreneur, or null if there´s no entrepreneur with the given name.</returns>
+        public Entrepreneur? GetByName(string name) =>
+            this.entrepreneurs.Where(e => e.Name == name).FirstOrDefault();
+
+        /// <summary>
         /// Loads all entrepreneurs from a JSON file.
         /// </summary>
         /// <param name="path">The main directory's file.</param>

@@ -25,12 +25,12 @@ namespace Library.States.Companies
         public CompanyPublishMaterialState(string id) : base(
             exitState: () => new CompanyInitialMenuState(id),
             nextState: () => new CompanyInitialMenuState(id),
-            inputHandler: ProcessorHandler.CreateInstance<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>)>(
+            inputHandler: ProcessorHandler.CreateInstance<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>)>(
                 (result) => 
                 {
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        if (company.PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6))
+                        if (company.PublishMaterial(result.Item1, result.Item2, result.Item3, result.Item4, result.Item5, result.Item6, result.Item7))
                         {
                             return null;
                         }
@@ -52,7 +52,7 @@ namespace Library.States.Companies
             return base.ProcessMessage(id, ref data, msg);
         }
 
-        private class CollectDataProcessor : FormProcessor<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>)>
+        private class CollectDataProcessor : FormProcessor<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>)>
         {
             private Material? material;
             private Amount? amount;
@@ -60,6 +60,7 @@ namespace Library.States.Companies
             private Location? location;
             private MaterialPublicationTypeData? materialPublicationTypeData;
             private IList<string>? keywords;
+            private IList<string>? requirements;
 
             /// <summary>
             /// Initializes an instance of <see cref="CollectDataProcessor" />
@@ -106,12 +107,18 @@ namespace Library.States.Companies
                         k => this.keywords = k.ToList(),
                         new ListProcessor<string>(() => "Por favor ingrese la lista de palabras claves asociadas al material.", new BasicStringProcessor(
                             () => "Por favor ingrese una de las palabras claves."
-                        )
-                    ))
+                        ))
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<string[]>(
+                        r => this.requirements = r.ToList(),
+                        new ListProcessor<string>(() => "Por favor ingrese la lista de requerimientos para la manipulación del material.", new BasicStringProcessor(
+                            () => "Por favor ingrese uno de los requerimientos."
+                        ))
+                    )
                 };
             }
-            protected override Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>), string> getResult() =>
-                Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>), string>.Ok((this.material.Unwrap(), this.amount.Unwrap(), this.price.Unwrap(), this.location.Unwrap(), this.materialPublicationTypeData.Unwrap(), this.keywords.Unwrap()));
+            protected override Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>), string> getResult() =>
+                Result<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>), string>.Ok((this.material.Unwrap(), this.amount.Unwrap(), this.price.Unwrap(), this.location.Unwrap(), this.materialPublicationTypeData.Unwrap(), this.keywords.Unwrap(), this.requirements.Unwrap()));
         }
 
     }

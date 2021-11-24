@@ -34,10 +34,11 @@ namespace Library.HighLevel.Companies
         /// <param name="location">The pick-up location of the material.</param>
         /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
+        /// <param name="requirements">The requirements of the material.</param>
         /// <returns>Whether the operation was successful.</returns>
-        public bool PublishMaterial(Material material, Amount amount, Price price, Location location, MaterialPublicationTypeData type, IList<string> keywords)
+        public bool PublishMaterial(Material material, Amount amount, Price price, Location location, MaterialPublicationTypeData type, IList<string> keywords, IList<string> requirements)
         {
-            if (MaterialPublication.CreateInstance(material, amount, price, location, type, keywords) is MaterialPublication publication)
+            if (MaterialPublication.CreateInstance(material, amount, price, location, type, keywords, requirements) is MaterialPublication publication)
             {
                 if(this.Publications.Any(p => p.Material.Name == material.Name))
                     return false;
