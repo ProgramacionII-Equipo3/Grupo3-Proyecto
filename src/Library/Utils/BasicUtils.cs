@@ -5,6 +5,8 @@ namespace Library.Utils
 {
     /// <summary>
     /// This class stores context-generic static methods.
+    /// This class is used by other classes but without collateral 
+    /// damage because we used LSP.
     /// </summary>
     public static class BasicUtils
     {

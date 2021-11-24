@@ -5,6 +5,7 @@ namespace Library
 {
     /// <summary>
     /// This struct represents a value which could be a success (with a success value) or an error (with an error value).
+    /// We created this class because of SRP, this class in specific has the methods to evaluate a result.
     /// </summary>
     /// <typeparam name="T">The type of success value.</typeparam>
     /// <typeparam name="E">The type of error value.</typeparam>
