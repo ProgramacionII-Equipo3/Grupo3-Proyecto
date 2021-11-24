@@ -1,3 +1,4 @@
+using System;
 using Library.Core.Processing;
 using Library.HighLevel.Accountability;
 using Library.InputHandlers.Abstractions;
@@ -16,7 +17,7 @@ namespace Library.InputHandlers
         /// <summary>
         /// Initializes an instance of <see cref="AmountProcessor" />
         /// </summary>
-        public AmountProcessor()
+        public AmountProcessor(Func<Measure> measure)
         {
             this.inputHandlers = new InputHandler[]
             {
@@ -26,7 +27,7 @@ namespace Library.InputHandlers
                 ),
                 ProcessorHandler.CreateInfallibleInstance<Unit>(
                     u => this.unit = u,
-                    new UnitProcessor(() => "Por favor ingresa la abreviatura de la unidad del material. (Por ejemplo \"cm\").")
+                    new UnitProcessor(measure, () => "Por favor ingresa la abreviatura de la unidad del material. (Por ejemplo \"cm\").")
                 )
             };
         }

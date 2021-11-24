@@ -841,12 +841,17 @@
             The weight measure.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.Volume">
+            <summary>
+            The volume measure.
+            </summary>
+        </member>
         <member name="F:Library.HighLevel.Accountability.Measure.Name">
             <summary>
             Gets the measure's name.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.Measure.units">
+        <member name="F:Library.HighLevel.Accountability.Measure.Units">
             <summary>
             The measure's available units.
             </summary>
@@ -1618,6 +1623,9 @@
             </summary>
             <param name="habilitation">The habilitation to validate.</param>
         </member>
+        <member name="M:Library.HighLevel.Materials.Habilitation.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Materials.JsonHabilitation">
             <summary>
             This class holds the JSON information of an <see cref="T:Library.HighLevel.Materials.Habilitation" />.
@@ -2184,7 +2192,7 @@
             This class has the responsibility of create an instance of amount for the publication, with the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.AmountProcessor.#ctor">
+        <member name="M:Library.InputHandlers.AmountProcessor.#ctor(System.Func{Library.HighLevel.Accountability.Measure})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />
             </summary>
@@ -2348,7 +2356,7 @@
             This class has the responsibility of return the price of the publication, using the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.PriceProcessor.#ctor">
+        <member name="M:Library.InputHandlers.PriceProcessor.#ctor(System.Func{Library.HighLevel.Accountability.Measure})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.PriceProcessor" />
             </summary>
@@ -2361,12 +2369,12 @@
             This class has the responsibility of return a unit for the publication.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.UnitProcessor.#ctor(System.Func{System.String})">
+        <member name="M:Library.InputHandlers.UnitProcessor.#ctor(System.Func{Library.HighLevel.Accountability.Measure},System.Func{System.String})">
             <summary>
-            Initializes an instance of <see cref="T:Library.InputHandlers.UnitProcessor" />
+            Initializes an instance of <see cref="T:Library.InputHandlers.UnitProcessor" />.
             </summary>
-            <param name="initialResponseGetter"></param>
-            <returns></returns>
+            <param name="measure">The measure from which to look for units.</param>
+            <param name="initialResponseGetter">The function which determines the processor's default response.</param>
         </member>
         <member name="T:Library.InputHandlers.UnsignedDoubleProcessor">
             <summary>

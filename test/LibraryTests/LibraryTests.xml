@@ -74,6 +74,11 @@
             This test check GetByName method of CompanyManager class.
             </summary>
         </member>
+        <member name="M:ProgramTests.CompanyTest.CompanyRegisterFromUserInput">
+            <summary>
+            Tests the course of registering a company from user input.
+            </summary>
+        </member>
         <member name="T:ProgramTests.EntrepreneurRegisterTest">
             <summary>
             Test if an Entrepreneur can register into the platform.
@@ -89,7 +94,7 @@
             This test evaluate if the entrepreneur is registered with their correct information.
             </summary>
         </member>
-        <member name="M:ProgramTests.EntrepreneurRegisterTest.EntrepreneurRegisterFromUserInput">
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.CompanyRegisterFromUserInput">
             <summary>
             Tests the course of registering an entrepreneur from user input.
             </summary>

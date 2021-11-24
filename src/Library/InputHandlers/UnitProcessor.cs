@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Library.Core.Processing;
 using Library.HighLevel.Accountability;
 using Library.InputHandlers.Abstractions;
@@ -11,16 +12,16 @@ namespace Library.InputHandlers
     public class UnitProcessor : ProcessorWrapper<Unit>
     {
         /// <summary>
-        /// Initializes an instance of <see cref="UnitProcessor" />
+        /// Initializes an instance of <see cref="UnitProcessor" />.
         /// </summary>
-        /// <param name="initialResponseGetter"></param>
-        /// <returns></returns>
-        public UnitProcessor(Func<string> initialResponseGetter) : base(
+        /// <param name="measure">The measure from which to look for units.</param>
+        /// <param name="initialResponseGetter">The function which determines the processor's default response.</param>
+        public UnitProcessor(Func<Measure> measure, Func<string> initialResponseGetter) : base(
             PipeProcessor<Unit>.CreateInstance<string>(
                 u => Unit.GetByAbbr(u.Trim().ToLowerInvariant()) is Unit unit
                     ? Result<Unit, string>.Ok(unit)
                     : Result<Unit, string>.Err("Esa unidad no existe."),
-                new BasicStringProcessor(initialResponseGetter)
+                new BasicStringProcessor(() => $"{initialResponseGetter()}\nUnidades disponibles:{string.Join(null, measure().Units.Select(u => $"\n        {u.Abbreviation} ({u.Name})"))}")
             )
         )
         {

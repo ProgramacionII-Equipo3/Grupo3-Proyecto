@@ -89,11 +89,11 @@ namespace Library.States.Companies
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Amount>(
                         a => this.amount = a,
-                        new AmountProcessor()
+                        new AmountProcessor(() => this.material!.Measure)
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Price>(
                         p => this.price = p,
-                        new PriceProcessor()
+                        new PriceProcessor(() => this.material!.Measure)
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Location>(
                         l => this.location = l,

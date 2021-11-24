@@ -22,7 +22,8 @@ namespace Library.States.Companies
                     if (Singleton<EntrepreneurManager>.Instance.GetByName(entrepreneur) is Entrepreneur entrepreneurResult)
                     {
                         IList<Habilitation> habilitationsResult = entrepreneurResult.Habilitations;
-                        return (new CompanyInitialMenuState(string.Join("\n", habilitationsResult)), null);
+                        var newState = new CompanyInitialMenuState(id);
+                        return (newState, $"{string.Join("\n", habilitationsResult)}\n{newState.GetDefaultResponse()}");
                     }
                     else
                     {

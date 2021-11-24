@@ -1,5 +1,7 @@
+using System;
 using Library;
 using Library.Core;
+using Library.Core.Invitations;
 using Library.HighLevel.Companies;
 using Library.Utils;
 using NUnit.Framework;
@@ -86,6 +88,38 @@ namespace ProgramTests
             Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany")!;
             Assert.AreEqual(expected, company);
             Singleton<CompanyManager>.Instance.RemoveCompany("WoodCompany");
+        }
+
+        /// <summary>
+        /// Tests the course of registering a company from user input.
+        /// </summary>
+        [Test]
+        public void CompanyRegisterFromUserInput()
+        {
+            Singleton<InvitationManager>.Instance.CreateInvitation<CompanyInvitation>("4jsk", code => new CompanyInvitation(code));
+            UnitTests.ProgramaticPlatform platform = new UnitTests.ProgramaticPlatform(
+                "___",
+                "/start 4jsk",
+                "Teogal",
+                "Maderas",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "098471724",
+                "teogal@gmail.com",
+                "/publish",
+                "A",
+                "length",
+                "metales",
+                "50",
+                "cm",
+                "30",
+                "pesos",
+                "cm",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "/finish");
+            platform.Run();
+            Console.WriteLine();
+            Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
+            Singleton<CompanyManager>.Instance.RemoveCompany("Teogal");
         }
     }
 }

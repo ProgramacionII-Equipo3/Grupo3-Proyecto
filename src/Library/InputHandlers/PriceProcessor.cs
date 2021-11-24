@@ -1,3 +1,4 @@
+using System;
 using Library.Core.Processing;
 using Library.InputHandlers.Abstractions;
 using Library.HighLevel.Accountability;
@@ -17,7 +18,7 @@ namespace Library.InputHandlers
         /// <summary>
         /// Initializes an instance of <see cref="PriceProcessor" />
         /// </summary>
-        public PriceProcessor()
+        public PriceProcessor(Func<Measure> measure)
         {
             this.inputHandlers = new InputHandler[]
             {
@@ -31,7 +32,7 @@ namespace Library.InputHandlers
                 ),
                 ProcessorHandler.CreateInfallibleInstance<Unit>(
                     u => this.unit = u,
-                    new UnitProcessor(() => "Por favor ingresa la unidad del material relacionada al precio.")
+                    new UnitProcessor(measure, () => "Por favor ingresa la unidad del material relacionada al precio.")
                 )
             };
         }

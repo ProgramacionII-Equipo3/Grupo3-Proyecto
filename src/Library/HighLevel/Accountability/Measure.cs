@@ -57,7 +57,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The measure's available units.
         /// </summary>
-        private readonly Unit[] units;
+        public readonly Unit[] Units;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Measure"/> class, assigning its units in the process.
@@ -67,7 +67,7 @@ namespace Library.HighLevel.Accountability
         private Measure(string name, (string name, string abbr, double weight)[] unitsData)
         {
             this.Name = name;
-            this.units = unitsData.Select(data => new Unit(data.name, data.abbr, data.weight, this)).ToArray();
+            this.Units = unitsData.Select(data => new Unit(data.name, data.abbr, data.weight, this)).ToArray();
         }
 
         /// <summary>

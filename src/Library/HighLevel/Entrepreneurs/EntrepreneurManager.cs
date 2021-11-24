@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Library.Core.Distribution;
 using Library.Utils;
 
 namespace Library.HighLevel.Entrepreneurs
@@ -40,8 +41,16 @@ namespace Library.HighLevel.Entrepreneurs
         /// </summary>
         /// <param name="name">The entrepreneur's name.</param>
         /// <returns>Whether there was an entrepreneur with the given name.</returns>
-        public bool RemoveEntrepreneur(string name) =>
-            this.entrepreneurs.RemoveAll(e => e.Name == name) > 0;
+        public bool RemoveEntrepreneur(string name)
+        {
+            if(this.entrepreneurs.RemoveAll(e => e.Name == name) == 0)
+            {
+                return false;
+            }
+
+            Singleton<SessionManager>.Instance.RemoveUserByName(name);
+            return true;
+        }
 
         /// <summary>
         /// Gets the entrepreneur with a concrete id.

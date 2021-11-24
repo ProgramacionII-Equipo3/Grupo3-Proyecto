@@ -32,20 +32,26 @@ namespace Grupo3_Proyecto
             //             "--STOP"
             //         }.Select(s => $"{s}\n"))));
             Library.Utils.SerializationUtils.DeserializeAllFromJSON("../../Memory");
-            if(args.Length > 0 && (args[0] == "--console" || args[0] == "-c"))
+            try
             {
-                Console.WriteLine("Running via Console");
-                new MultipleUsersConsolePlatform("ConsoleID").Run();
-            } else
-            {
-                Console.WriteLine("Running via Telegram");
-                TelegramBot.Instance.ReceiveMessages(() =>
+                if (args.Length > 0 && (args[0] == "--console" || args[0] == "-c"))
                 {
-                    while(Console.ReadLine() != "--STOP");
-                });
+                    Console.WriteLine("Running via Console");
+                    new MultipleUsersConsolePlatform("ConsoleID").Run();
+                }
+                else
+                {
+                    Console.WriteLine("Running via Telegram");
+                    TelegramBot.Instance.ReceiveMessages(() =>
+                    {
+                        while (Console.ReadLine() != "--STOP") ;
+                    });
+                }
+            } finally
+            {
+                Singleton<Ucu.Poo.Locations.Client.LocationApiClient>.Instance.Dispose();
+                Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
             }
-            Singleton<Ucu.Poo.Locations.Client.LocationApiClient>.Instance.Dispose();
-            Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
         }
     }
 }

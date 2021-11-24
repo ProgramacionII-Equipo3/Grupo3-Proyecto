@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Library.Core.Processing;
 using Library.HighLevel.Materials;
 using Library.InputHandlers.Abstractions;
@@ -19,7 +20,7 @@ namespace Library.InputHandlers
                 n => MaterialCategory.GetByName(n) is MaterialCategory category
                     ? Result<MaterialCategory, string>.Ok(category)
                     : Result<MaterialCategory, string>.Err("Lo siento, no existe esa categoría."),
-                new BasicStringProcessor(initialResponseGetter)
+                new BasicStringProcessor(() => $"{initialResponseGetter()}\nCategorías disponibles:{string.Join(null, MaterialCategory.Categories.Select(c => $"\n        {c}"))}")
             )
         )
         {
