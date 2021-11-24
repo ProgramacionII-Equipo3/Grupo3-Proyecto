@@ -21,21 +21,22 @@ namespace Library.States.Entrepreneurs
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurInitialMenuState" />.
         /// </summary>
-        public EntrepreneurInitialMenuState(string id,string? initialResponse = null)
+        public EntrepreneurInitialMenuState(string id, string? initialResponse = null)
         {
             this.initialResponse=initialResponse;
             this.id = id;
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
                 
-                ("/searchFK", "Busca materiales utilizando palabras claves.", this.searchByKeyword),
-                ("/searchFC", "Busca materiales por categorías.", this.searchByCategory),
-                ("/searchFZ", "Busca materiales por zona.", this.searchByZone),
-                ("/materialgen","Muestra que materiales son constantemente generados.", this.materialsgen),
-                ("/materialSpunt","Muestra que materiales son generados puntualmente.", this.materialspunt),
-                ("/ereport","Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport),
+                ("/searchFK",      "Busca materiales utilizando palabras claves.",                  this.searchByKeyword),
+                ("/searchFC",      "Busca materiales por categorías.",                              this.searchByCategory),
+                ("/searchFZ",      "Busca materiales por zona.",                                    this.searchByZone),
+                ("/materialgen",   "Muestra que materiales son constantemente generados.",          this.materialsgen),
+                ("/materialspunt", "Muestra que materiales son generados puntualmente.",            this.materialspunt),
+                ("/ereport",       "Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
             };
         }
+
         private (State, string?) ereport()
         {
             if (Singleton<EntrepreneurManager>.Instance.GetById(this.id) is Entrepreneur entrepreneur)
@@ -82,17 +83,16 @@ namespace Library.States.Entrepreneurs
         }
         
        /// <inheritdoc />
-        protected override string GetInitialResponse()
+        protected override string getInitialResponse()
         {
-            if(initialResponse is null) return "Qué quieres hacer?";
+            if(initialResponse is null) return "¿Qué quieres hacer?";
             string response = initialResponse;
             initialResponse = null;
-            return $"{response}\nQué quieres hacer";
+            return $"{response}\n¿Qué quieres hacer?";
         }
 
         /// <inheritdoc />
-        protected override string GetErrorString() =>
+        protected override string getErrorString() =>
             "Opción inválida.";
-
     }
 }

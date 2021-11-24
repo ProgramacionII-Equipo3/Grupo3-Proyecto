@@ -1,77 +1,60 @@
 [
-    {
-        "Name": "Company1",
-        "ContactInfo": {
-            "email": "teogal@gmail.com",
-            "phoneNumber": 98162487
+  {
+    "Name": "Teogal",
+    "ContactInfo": {
+      "Email": "teogal@gmail.com",
+      "PhoneNumber": 98645213
+    },
+    "Heading": "Maderas",
+    "Location": {
+      "Found": true,
+      "AddresLine": "Avenida 8 de Octubre",
+      "CountryRegion": "Uruguay",
+      "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+      "Locality": "Montevideo",
+      "PostalCode": null,
+      "Latitude": -34.87959,
+      "Longitude": -56.14838
+    },
+    "Representants": [
+      "Telegram_2066298868"
+    ],
+    "Publications": [
+      {
+        "Material": {
+          "Name": "Bujes de cart\u00F3n",
+          "Measure": "Length",
+          "Category": "celul\u00F3sicos"
         },
-        "Heading": "Maderas",
-        "Location": {
-            "Found": true,
-            "AddresLine": "Avenida 8 de Octubre",
-            "CountryRegion": "Uruguay",
-            "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
-            "Locality": "Montevideo",
-            "PostalCode": null,
-            "Latitude": -34.87959,
-            "Longitude": -56.14838
+        "Amount": {
+          "Quantity": 10,
+          "Unit": "cm"
         },
-        "Representants": [
-            "CompRep"
-        ],
-        "Publications": [
-            {
-                "Material": {
-                    "Name": "Bujes de cart\u00F3n",
-                    "Measure": "Length",
-                    "Category": "Celul\u00F3sicos"
-                },
-                "Amount": {
-                    "Quantity": 50,
-                    "Unit": "cm"
-                },
-                "Price": {
-                    "Quantity": 30,
-                    "Currency": "peso",
-                    "Unit": "cm"
-                },
-                "PickupLocation": {
-                    "Found": true,
-                    "AddresLine": "Avenida 8 de Octubre",
-                    "CountryRegion": "Uruguay",
-                    "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
-                    "Locality": "Montevideo",
-                    "PostalCode": null,
-                    "Latitude": -34.87959,
-                    "Longitude": -56.14838
-                },
-                "Type": {
-                    "PublicationType": "NORMAL",
-                    "DateTime": null
-                },
-                "Keywords": [
-                    
-                ]
-            }
-        ],
-        "MaterialSales": [
-            {
-                "Material": {
-                    "Name": "Bujes de cart\u00F3n",
-                    "Measure": "Length",
-                    "Category": "Celul\u00F3sicos"
-                },
-                "Amount": {
-                    "Quantity": 2,
-                    "Unit": "cm"
-                },
-                "Price": {
-                    "Quantity": 30,
-                    "Currency": "peso",
-                    "Unit": "cm"
-                },
-                "DateTime": "2021-11-21T12:00:00Z"
-            }
+        "Price": {
+          "Quantity": 150,
+          "Currency": "peso",
+          "Unit": "m"
+        },
+        "PickupLocation": {
+          "Found": true,
+          "AddresLine": "Avenida 8 de Octubre",
+          "CountryRegion": "Uruguay",
+          "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+          "Locality": "Montevideo",
+          "PostalCode": null,
+          "Latitude": -34.87959,
+          "Longitude": -56.14838
+        },
+        "Type": {
+          "DateTime": "2021-11-23T00:00:00",
+          "PublicationType": "SCHEDULED"
+        },
+        "Keywords": [
+          "cart\u00F3n",
+          "bujes"
         ]
-    }
+      }
+    ],
+    "MaterialSales": []
+  }
 ]

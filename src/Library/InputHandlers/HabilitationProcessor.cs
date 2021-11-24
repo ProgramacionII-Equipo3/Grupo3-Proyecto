@@ -23,11 +23,11 @@ namespace Library.InputHandlers
             {
                 ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.docLink = s,
-                    new HTMLLinkProcessor(() => "Please insert the habilitation's link.")
+                    new HTMLLinkProcessor(() => "Por favor ingrese el link de la habilitación.")
                 ),
                 ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.description = s,
-                    new BasicStringProcessor(() => "Please insert the habilitation's description.")
+                    new BasicStringProcessor(() => "Por favor ingrese una descripción de la habilitación.")
                 )
             };
         }

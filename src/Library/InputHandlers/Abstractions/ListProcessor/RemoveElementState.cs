@@ -15,7 +15,7 @@ namespace Library.InputHandlers.Abstractions
 
             /// <inheritdoc />
             public override string GetDefaultResponse() =>
-                "Please insert the index of the element you want to remove."
+                "Por favor, ingrese el índice del elemento que quiere remover."
                 + string.Join(null, this.parent.list.Select((el, i) => $"\n        {i}: {el}"));
 
             /// <inheritdoc />
@@ -28,14 +28,14 @@ namespace Library.InputHandlers.Abstractions
                 int index;
                 if (int.TryParse(msg.Trim(), out index))
                 {
-                    if (index < 0) return "The given index is negative.";
-                    if (index >= this.parent.list.Count) return "The given index is higher than the length of the list.";
+                    if (index < 0) return "El índice es negativo.";
+                    if (index >= this.parent.list.Count) return "El índice es más grande que el máximo permitido por la lista.";
                     this.parent.list.RemoveAt(index);
                     return null;
                 }
                 else
                 {
-                    return "A number was expected.";
+                    return "Se esperaba un número.";
                 }
             }
         }

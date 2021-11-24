@@ -18,7 +18,7 @@ namespace Library.InputHandlers
             PipeProcessor<Measure>.CreateInstance<string>(
                 s =>
                 {
-                    switch (s.Trim().ToLower())
+                    switch (s.Trim().ToLowerInvariant())
                     {
                         case "length":
                             return Result<Measure, string>.Ok(Measure.Length);

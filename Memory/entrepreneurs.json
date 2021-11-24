@@ -1,44 +1,29 @@
 [
-    {
-        "Id": "ConsoleID",
-        "Name": "Santiago",
-        "Age": 20,
-        "Location": {
-            "Found": true,
-            "AddresLine": "Avenida 8 de Octubre",
-            "CountryRegion": "Uruguay",
-            "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
-            "Locality": "Montevideo",
-            "PostalCode": null,
-            "Latitude": -34.87959,
-            "Longitude": -56.14838
-        },
-        "Heading": "AAA",
-        "Habilitations": [
-
-        ],
-        "Specializations": [
-
-        ],
-        "BoughtMaterials": [
-            {
-                "CompanyName": "Company1",
-                "Material": {
-                    "Name": "Bujes de cart\u00F3n",
-                    "Measure": "Length",
-                    "Category": "Celul\u00F3sicos"
-                },
-                "DateTime": "2021-11-21T12:00:00Z",
-                "Price": {
-                    "Quantity": 30,
-                    "Currency": "peso",
-                    "Unit": "cm"
-                },
-                "Amount": {
-                    "Quantity": 2,
-                    "Unit": "cm"
-                }
-            }
-        ]
-    }
+  {
+    "Id": "Telegram_2090102457",
+    "Name": "Bianca",
+    "Age": 18,
+    "Location": {
+      "Found": true,
+      "AddresLine": "Avenida 8 de Octubre 2473",
+      "CountryRegion": "Uruguay",
+      "FormattedAddress": "Avenida 8 de Octubre 2473, Montevideo, 11600",
+      "Locality": "Montevideo",
+      "PostalCode": "11600",
+      "Latitude": -34.89308,
+      "Longitude": -56.16338
+    },
+    "Heading": "Textil",
+    "Habilitations": [
+      {
+        "DocLink": "https://docs.google.com/document/d/1OJkanwuCvqwRRO__zG1OvzuOGuPA1vF9bX3ITlhYIdk/edit?usp=sharing",
+        "IsCorrect": false,
+        "DescriptiveText": "Materiales hospitalarios"
+      }
+    ],
+    "Specializations": [
+      "Seda"
+    ],
+    "BoughtMaterials": []
+  }
 ]

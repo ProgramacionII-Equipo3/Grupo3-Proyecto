@@ -20,7 +20,7 @@ namespace Library.States.Admins
             {
                 ("/invitecompany", "Crea una invitación a companía y obtiene su respectivo código.", this.inviteCompany),
                 ("/removecompany", "Elimina una compañía y sus respectivos usuarios.",               this.removeCompany),
-                ("/removeuser",    "Elimina un usuario.",                                this.removeUser)
+                ("/removeuser",    "Elimina un usuario.",                                            this.removeUser)
             };
         }
 
@@ -41,11 +41,11 @@ namespace Library.States.Admins
         }
 
         /// <inheritdoc />
-        protected override string GetInitialResponse() =>
-            "Qué quieres hacer?";
+        protected override string getInitialResponse() =>
+            "¿Qué quieres hacer?";
 
         /// <inheritdoc />
-        protected override string GetErrorString() =>
+        protected override string getErrorString() =>
             "Opción inválida.";
     }
 }

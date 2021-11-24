@@ -14,10 +14,10 @@ namespace Library.InputHandlers.Abstractions
             /// <inheritdoc />
             public override string GetDefaultResponse() =>
                 (this.parent.initialResponseGetter)()
-                  + "\n        /add: Add an element"
-                  + "\n        /remove: Remove an element"
-                  + "\n        /finish: Finish"
-                  + "\n        /back: Go back";
+                  + "\n        /add: Añadir un elemento"
+                  + "\n        /remove: Remover un elemento"
+                  + "\n        /finish: Terminar"
+                  + "\n        /back: Ir atrás";
 
             /// <inheritdoc />
             public override Result<bool, (ListProcessor<T>.InnerProcessorState, string?)> ProcessMessage(string msg)
@@ -27,12 +27,10 @@ namespace Library.InputHandlers.Abstractions
                     case "/add":
                         this.parent.processor.Reset();
                         return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((
-                            new AddElementState(this.parent), null
-                        ));
+                            new AddElementState(this.parent), null));
                     case "/remove":
                         return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((
-                            new RemoveElementState(this.parent), null
-                        ));
+                            new RemoveElementState(this.parent), null));
                     case "/finish":
                         return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Ok(true);
                     case "/back":

@@ -33,7 +33,11 @@ namespace Grupo3_Proyecto
             //         }.Select(s => $"{s}\n"))));
             Library.Utils.SerializationUtils.DeserializeAllFromJSON("../../Memory");
             Console.WriteLine("----------");
-            new MultipleUsersConsolePlatform("ConsoleID").Run();
+//            new MultipleUsersConsolePlatform("ConsoleID").Run();
+            TelegramBot.Instance.ReceiveMessages(() =>
+            {
+                while(Console.ReadLine() != "--STOP");
+            });
             (Singleton<Searcher>.Instance as IDisposable).Dispose();
             Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
         }
