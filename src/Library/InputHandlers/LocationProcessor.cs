@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using Library;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
@@ -23,12 +24,26 @@ namespace Library.InputHandlers
                     if (sections.Length != 4)
                         return Result<Location, string>.Err("The given location text is incoherent, it must have address, city, department and country.");
                     
-#warning Implement code in case of status 500.
-                    Location location = Singleton<LocationApiClient>.Instance.GetLocationAsync(
-                        sections[0].Trim(),
-                        sections[1].Trim(),
-                        sections[2].Trim(),
-                        sections[3].Trim()).Result;
+                    Location? location = null;
+                    Exception? e = null;
+                    for(byte i = 0; i < 10; i++)
+                    {
+                        Task<Location> task = Singleton<LocationApiClient>.Instance.GetLocationAsync(
+                            sections[0].Trim(),
+                            sections[1].Trim(),
+                            sections[2].Trim(),
+                            sections[3].Trim());
+                        if(task.Exception != null)
+                        {
+                            e = task.Exception;
+                        } else if (task.IsCompletedSuccessfully)
+                        {
+                            location = task.Result;
+                            break;
+                        }
+                    }
+
+                    if (location == null) throw e!;
 
                     if (!location.Found) return Result<Location, string>.Err("The given location is invalid.");
 
