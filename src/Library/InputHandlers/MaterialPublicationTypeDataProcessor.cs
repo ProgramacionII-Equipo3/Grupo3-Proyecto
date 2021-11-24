@@ -63,7 +63,7 @@ namespace Library.InputHandlers
                         this.result = MaterialPublicationTypeData.Continuous();
                         return Result<bool, string>.Ok(true);
                     default:
-                        return Result<bool, string>.Err($"Invalid option.\n{this.GetDefaultResponse()}");
+                        return Result<bool, string>.Err($"Opción inválida.\n{this.GetDefaultResponse()}");
                 }
             }
         }

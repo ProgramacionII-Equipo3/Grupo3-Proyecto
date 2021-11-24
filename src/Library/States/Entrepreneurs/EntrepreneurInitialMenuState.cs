@@ -36,7 +36,7 @@ namespace Library.States.Entrepreneurs
                 ("/ereport",       "Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
             };
         }
-        
+
         private (State, string?) ereport()
         {
             if (Singleton<EntrepreneurManager>.Instance.GetById(this.id) is Entrepreneur entrepreneur)
@@ -93,7 +93,7 @@ namespace Library.States.Entrepreneurs
 
         /// <inheritdoc />
         protected override string getErrorString() =>
-            "Invalid option.";
+            "Opción inválida.";
 
     }
 }
