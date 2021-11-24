@@ -1406,9 +1406,17 @@
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.NewEntrepreneur(Library.HighLevel.Entrepreneurs.Entrepreneur)">
             <summary>
-            Adds a new entrepreneur into the list.
+            Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
             </summary>
             <param name="entrepreneur">The new entrepreneur.</param>
+            <returns>Whether the operation was successful.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.RemoveEntrepreneur(System.String)">
+            <summary>
+            Removes an entrepreneur with a concrete name.
+            </summary>
+            <param name="name">The entrepreneur's name.</param>
+            <returns>Whether there was an entrepreneur with the given name.</returns>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.GetById(System.String)">
             <summary>
@@ -1416,6 +1424,13 @@
             </summary>
             <param name="id">The entrepreneur's id.</param>
             <returns>The entrepreneur, or null if there's no entrepreneur with the given id.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.GetByName(System.String)">
+            <summary>
+            Gets the entrepreneur with a concrete name.
+            </summary>
+            <param name="name">The entrepreneur's name.</param>
+            <returns>The entrepreneur, or null if there's no entrepreneur with the given name.</returns>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.LoadEntrepreneurs(System.String)">
             <summary>
@@ -1480,11 +1495,6 @@
             according to a specified category, keyword or location.
             We created this class using expert, this class itself does all the possible
             filter searches). It also has a High Cohesion because of the same reason.
-            </summary>
-        </member>
-        <member name="F:Library.HighLevel.Entrepreneurs.Searcher.client">
-            <summary>
-            It creates a client to be able to use the LocationAPI.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Entrepreneurs.Searcher.SearchByCategory(Library.HighLevel.Materials.MaterialCategory)">
@@ -1662,7 +1672,11 @@
             The list of keywords of the publication material.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements" -->
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements">
+            <summary>
+            The list of requirements of the material publication.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Materials.JsonMaterialPublication.FromValue(Library.HighLevel.Materials.MaterialPublication)">
             <inheritdoc />
         </member>
@@ -1889,29 +1903,6 @@
             Creates the <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" /> for a continuous <see cref="T:Library.HighLevel.Materials.MaterialPublication" />.
             </summary>
             <returns>The <see cref="T:Library.HighLevel.Materials.MaterialPublicationTypeData" />.</returns>
-        </member>
-        <member name="T:Library.HighLevel.Materials.Requirement">
-            <summary>
-            This class represents a requirement to manipulate certain materials.
-            We used Expert to create this class, the class is the one in charge of
-            checking if the habilitation's are satisfied. We also used SRP, that's why
-            we separated requirement from habilitation.
-            </summary>
-        </member>
-        <member name="M:Library.HighLevel.Materials.Requirement.FullCheck(System.Collections.Generic.IEnumerable{Library.HighLevel.Materials.Requirement},System.Collections.Generic.IEnumerable{Library.HighLevel.Materials.Habilitation})">
-            <summary>
-            Checks if all the given requirements are satisfied by the given habilitations.
-            </summary>
-            <param name="requirements">The requirements to check.</param>
-            <param name="habilitations">The habilitations to compare with.</param>
-            <returns>Whether all the given requirements are satisfied by the given habilitations.</returns>
-        </member>
-        <member name="M:Library.HighLevel.Materials.Requirement.IsSatisfiedBy(Library.HighLevel.Materials.Habilitation)">
-            <summary>
-            Checks if the requirement is satisfied by a concrete <see cref="T:Library.HighLevel.Materials.Habilitation" />.
-            </summary>
-            <param name="habilitation">The habilitation.</param>
-            <returns>Whether the requirement is satisfied by the habilitation.</returns>
         </member>
         <member name="T:Library.IJsonHolder`1">
             <summary>
@@ -2561,6 +2552,17 @@
             Initializes an instance of <see cref="T:Library.States.Admins.AdminRemoveUserState" />.
             </summary>
         </member>
+        <member name="T:Library.States.Companies.CompanyCheckEntrepreneurHabilitationsState">
+            <summary>
+            This class has the responsibility of get the habilitations of a concrete entrepreneur.
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.CompanyCheckEntrepreneurHabilitationsState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Companies.CompanyCheckEntrepreneurHabilitationsState" /> class.
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="T:Library.States.Companies.CompanyInitialMenuState">
             <summary>
             This class has the responsibility of send to a user a message with all the commands that can be used.
@@ -2696,11 +2698,14 @@
         </member>
         <member name="T:Library.States.Entrepreneurs.NewEntrepreneurState">
             <summary>
-            
+            This class represents the state of an entrepreneur in the middle of being registered.
             </summary>
         </member>
         <member name="M:Library.States.Entrepreneurs.NewEntrepreneurState.#ctor(System.String)">
-            
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.NewEntrepreneurState" />.
+            </summary>
+            <param name="userId">The user id of the entrepreneur.</param>
         </member>
         <member name="T:Library.States.InputHandlerState">
             <summary>
@@ -2836,12 +2841,37 @@
             <param name="link">The string.</param>
             <returns>Whether it's a valid link or not.</returns>
         </member>
-        <member name="M:Library.Utils.BasicUtils.LocationToString(Ucu.Poo.Locations.Client.Location)">
+        <member name="T:Library.Utils.LocationUtils">
+            <summary>
+            This class holds functions related to the 
+            </summary>
+        </member>
+        <member name="M:Library.Utils.LocationUtils.LocationToString(Ucu.Poo.Locations.Client.Location)">
             <summary>
             Converts a location into a string equivalent.
             </summary>
             <param name="location">The location.</param>
             <returns>The string equivalent.</returns>
+        </member>
+        <member name="M:Library.Utils.LocationUtils.GetLocationResilient(Ucu.Poo.Locations.Client.LocationApiClient,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets a location. This method has higher resiliency towards failed requests via several attempts.
+            </summary>
+            <param name="client">The <see cref="T:Ucu.Poo.Locations.Client.LocationApiClient" /> which makes the operation.</param>
+            <param name="address">The location's address.</param>
+            <param name="city">The location's city.</param>
+            <param name="department">The location's department.</param>
+            <param name="country">The location's country.</param>
+            <returns>The location.</returns>
+        </member>
+        <member name="M:Library.Utils.LocationUtils.GetDistanceResilient(Ucu.Poo.Locations.Client.LocationApiClient,Ucu.Poo.Locations.Client.Location,Ucu.Poo.Locations.Client.Location)">
+            <summary>
+            Gets the distance between two locations. This method has higher resiliency towards failed requests via several attempts.
+            </summary>
+            <param name="client">The <see cref="T:Ucu.Poo.Locations.Client.LocationApiClient" /> which makes the operation.</param>
+            <param name="from">The first location.</param>
+            <param name="to">The second location.</param>
+            <returns>The distance.</returns>
         </member>
         <member name="T:Library.Utils.MoneyQuantityUtils">
             <summary>

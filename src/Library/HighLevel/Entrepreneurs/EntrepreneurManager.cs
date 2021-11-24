@@ -36,6 +36,14 @@ namespace Library.HighLevel.Entrepreneurs
         }
 
         /// <summary>
+        /// Removes an entrepreneur with a concrete name.
+        /// </summary>
+        /// <param name="name">The entrepreneur's name.</param>
+        /// <returns>Whether there was an entrepreneur with the given name.</returns>
+        public bool RemoveEntrepreneur(string name) =>
+            this.entrepreneurs.RemoveAll(e => e.Name == name) > 0;
+
+        /// <summary>
         /// Gets the entrepreneur with a concrete id.
         /// </summary>
         /// <param name="id">The entrepreneur's id.</param>

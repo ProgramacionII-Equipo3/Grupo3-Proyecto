@@ -32,7 +32,7 @@ namespace ProgramTests
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company", contactInfo, "heading", location)!;
             bool expected = Singleton<CompanyManager>.Instance.Companies.Contains(company);
             Assert.That(expected, Is.True);
-            client.Dispose();
+            Singleton<CompanyManager>.Instance.RemoveCompany("Company");
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ProgramTests
             company.AddUser(id);
             Company expected = Singleton<CompanyManager>.Instance.GetCompanyOf(id)!;
             Assert.AreEqual(expected, company);
-            client.Dispose();
+            Singleton<CompanyManager>.Instance.RemoveCompany("Blue Patna");
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace ProgramTests
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("WoodCompany", contactInfo, "Madera", location)!;
             Company expected = Singleton<CompanyManager>.Instance.GetByName("WoodCompany")!;
             Assert.AreEqual(expected, company);
-            client.Dispose();
+            Singleton<CompanyManager>.Instance.RemoveCompany("WoodCompany");
         }
     }
 }

@@ -33,14 +33,13 @@ namespace Library.Utils
             for (byte i = 0; i < 10; i++)
             {
                 Task<Location> task = client.GetLocationAsync(address, city, department, country);
-                if (task.Exception != null)
-                {
-                    e = task.Exception;
-                }
-                else if (task.IsCompletedSuccessfully)
+                try
                 {
                     location = task.Result;
                     break;
+                } catch(Exception exception)
+                {
+                    e = exception;
                 }
             }
             
@@ -62,14 +61,13 @@ namespace Library.Utils
             for (byte i = 0; i < 10; i++)
             {
                 Task<Distance> task = client.GetDistanceAsync(from, to);
-                if (task.Exception != null)
-                {
-                    e = task.Exception;
-                }
-                else if (task.IsCompletedSuccessfully)
+                try
                 {
                     distance = task.Result;
                     break;
+                } catch(Exception exception)
+                {
+                    e = exception;
                 }
             }
             
