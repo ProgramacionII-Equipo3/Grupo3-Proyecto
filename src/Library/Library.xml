@@ -2524,7 +2524,7 @@
         </member>
         <member name="M:Library.States.Admins.AdminInitialMenuState.#ctor">
             <summary>
-            Initializes an instance of <see cref="T:Library.States.Admins.AdminInitialMenuState" />
+            Initializes an instance of <see cref="T:Library.States.Admins.AdminInitialMenuState" />.
             </summary>
         </member>
         <member name="M:Library.States.Admins.AdminInitialMenuState.GetInitialResponse">

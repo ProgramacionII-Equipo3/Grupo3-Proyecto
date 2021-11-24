@@ -44,6 +44,7 @@ namespace ProgramTests
 
             this.category1 = new MaterialCategory("Residuos hospitalarios");
             IList<string> keyword1 = new List<string> { "agujas", "hospital" };
+            IList<string> requirements1 = new List<string> { };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
             this.unit1 = Unit.GetByAbbr("kg") !;
             this.amount1 = new Amount(100, this.unit1);
@@ -59,6 +60,7 @@ namespace ProgramTests
             this.price2 = new Price(800, Currency.Peso, this.unit2);
             this.pickupLocation2 = client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
+            IList<string> requirements2 = new List<string> { };
 
             Company empresa;
             if (Singleton<CompanyManager>.Instance.GetByName("Company1") is Company c)
@@ -67,8 +69,8 @@ namespace ProgramTests
             } else
             {
                 empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", this.contact, "Tecnología", this.pickupLocation1) !;
-                empresa.PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1);
-                empresa.PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2);
+                empresa.PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1,requirements1);
+                empresa.PublishMaterial(this.material2, this.amount2, this.price2, this.pickupLocation2, MaterialPublicationTypeData.Normal(), keyword2, requirements2);
             }
 
             IList<AssignedMaterialPublication> publications = empresa.AssignedPublications;

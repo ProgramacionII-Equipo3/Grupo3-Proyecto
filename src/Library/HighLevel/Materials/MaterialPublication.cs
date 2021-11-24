@@ -45,7 +45,12 @@ namespace Library.HighLevel.Materials
         /// </summary>
         public IList<string> Keywords = new List<string>();
 
-        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords)
+        /// <summary>
+        /// The list of requirements of the material publication.
+        /// </summary>
+        public IList<string> Requirements = new List<string>();
+
+        private MaterialPublication(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords, IList<string> requirements)
         {
             this.Material = material;
             this.Amount = amount;
@@ -53,6 +58,7 @@ namespace Library.HighLevel.Materials
             this.PickupLocation = pickupLocation;
             this.Type = type;
             this.Keywords = keywords;
+            this.Requirements = requirements;
         }
 
         /// <summary>
@@ -75,10 +81,11 @@ namespace Library.HighLevel.Materials
         /// <param name="pickupLocation">The pick-up location of the material.</param>
         /// <param name="type">The type of the material publication.</param>
         /// <param name="keywords">The keywords of the material.</param>
+        /// <param name="requirements">The requirements of the material.</param>
         /// <returns>A <see cref="MaterialPublication" />, or null if the data is invalid.</returns>
-        public static MaterialPublication? CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords) =>
+        public static MaterialPublication? CreateInstance(Material material, Amount amount, Price price, Location pickupLocation, MaterialPublicationTypeData type, IList<string> keywords, IList<string> requirements) =>
             CheckMaterialFields(material, amount, price)
-                ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords)
+                ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords, requirements)
                 : null;
     }
 }
