@@ -34,7 +34,7 @@ namespace Library.HighLevel.Materials
             $"(De {this.Company.Name}) {this.Publication.Material.Name},"
             + $" cantidad: {this.Publication.Amount},"
             + $" precio: {this.Publication.Price},"
-            + $" ubicación: {BasicUtils.LocationToString(this.Publication.PickupLocation)},"
+            + $" ubicación: {LocationUtils.LocationToString(this.Publication.PickupLocation)},"
             + $" tipo: {this.Publication.Type}";
     }
 }
