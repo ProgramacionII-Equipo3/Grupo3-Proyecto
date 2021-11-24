@@ -36,6 +36,20 @@ namespace Library.HighLevel.Accountability
         });
 
         /// <summary>
+        /// The volume measure.
+        /// </summary>
+        public static Measure Volume = new Measure("Volume", new (string, string, double)[]
+        {
+            ("millilitre", "ml",  0.001),
+            ("centilitre", "cl",  0.01),
+            ("decilitre",  "dl",  0.1),
+            ("litre",      "l",   1),
+            ("decalitre",  "dal", 10),
+            ("hectolitre", "hl",  100),
+            ("kilolitre",  "kl",  1000)
+        });
+
+        /// <summary>
         /// Gets the measure's name.
         /// </summary>
         public readonly string Name;
@@ -67,6 +81,7 @@ namespace Library.HighLevel.Accountability
             {
                 case "weight": return Measure.Weight;
                 case "length": return Measure.Length;
+                case "volume": return Measure.Volume;
                 default: return null;
             }
         }
