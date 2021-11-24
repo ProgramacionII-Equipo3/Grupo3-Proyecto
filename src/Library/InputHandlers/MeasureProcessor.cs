@@ -24,6 +24,8 @@ namespace Library.InputHandlers
                             return Result<Measure, string>.Ok(Measure.Length);
                         case "weight":
                             return Result<Measure, string>.Ok(Measure.Weight);
+                        case "volume":
+                            return Result<Measure, string>.Ok(Measure.Volume);
                         default:
                             return Result<Measure, string>.Err("No reconocí esa medida.");
                     }

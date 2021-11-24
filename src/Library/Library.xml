@@ -8,6 +8,8 @@
             <summary>
             This struct represents contact information data associated with a user,
             a company, or another entity with contact information.
+            We created this class because of SRP, this class in particular is the one that
+            saves the contact info.
             </summary>
         </member>
         <member name="P:Library.Core.ContactInfo.Email">
@@ -178,7 +180,8 @@
             <summary>
             This class represents a list of invitations of a concrete class.
             We created this class (besides being created because of Low Coupling and High Cohesion)
-            because of 
+            because of Polymorphism, in that way the 3 classes invitation are separated according
+            to his destine.
             </summary>
             <typeparam name="T">The class of the invitations.</typeparam>
         </member>
@@ -285,6 +288,9 @@
         <member name="T:Library.Core.Message">
             <summary>
             Represents a message received from a messaging platform.
+            We created this class because of SRP, this class in particular is the one that
+            saves the message. Also OCP, because if you want to add information it would
+            not affect how it works.
             </summary>
         </member>
         <member name="F:Library.Core.Message.Text">
@@ -307,7 +313,8 @@
         <member name="T:Library.Core.Messaging.IMessageReceiver`1">
             <summary>
             This interface represents a platform from which the program can receive messages.
-            
+            We created this interface because of ISP, that's why we separated the interfaces 
+            in IMessageReceiver and IMessageSender.
             </summary>
             <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
         </member>
@@ -328,6 +335,8 @@
         <member name="T:Library.Core.Messaging.IMessageSender`1">
             <summary>
             This interface represents a platform from which the program can send messages.
+            We created this interface because of ISP, that's why we separated the interfaces 
+            in IMessageReceiver and IMessageSender.
             </summary>
             <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
         </member>
@@ -341,6 +350,7 @@
         <member name="T:Library.Core.Messaging.MessagingPlatform`1">
             <summary>
             This class represents a platform from which the program can send and receive messages.
+            We created this class because of DIP, that way the other classes depend of abractions.
             </summary>
             <typeparam name="TId">The type of the ids the platform uses to identify its users.</typeparam>
         </member>
@@ -360,6 +370,7 @@
         <member name="T:Library.Core.Processing.FormProcessor`1">
             <summary>
             Represent a complex form-like set of data through which certain types of data can be received from user input easily.
+            We applied the OCP for this class, that's why it's open to extensions but closed to modifications.
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
@@ -381,6 +392,8 @@
             <summary>
             Represents the functionality of handling one or more messages input until realizing a certain operation successfully,
             or until the user indicates to stop trying.
+            We created this class because of DIP, that way the other classes depend of abractions.
+            Also we applied the Expert pattern, this specific class is the one in charge of handling messages input.
             </summary>
         </member>
         <member name="M:Library.Core.Processing.InputHandler.ProcessInput(System.String)">
@@ -409,6 +422,7 @@
         <member name="T:Library.Core.Processing.InputProcessor`1">
             <summary>
             Represents the functionality of receiving one or more input messages, and generating an object with that input.
+            We created this class because of DIP, it depends of an abstract class.
             </summary>
             <typeparam name="T">The type of the resulting object.</typeparam>
         </member>
@@ -442,6 +456,8 @@
         <member name="T:Library.Core.State">
             <summary>
             This class represents a state.
+            We created this class because of DIP, that way the other classes depend of abractions.
+            Also because of LSP, this class is used by a lot of classes without collateral damage.
             </summary>
         </member>
         <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
@@ -470,6 +486,8 @@
         <member name="T:Library.Core.UserData">
             <summary>
             This class represents additional data that all users must have.
+            We created this class because of SRP, this class in specific is
+            the one in charge of saving all the information of a user.
             </summary>
         </member>
         <member name="P:Library.Core.UserData.Name">
@@ -2399,6 +2417,7 @@
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
+            We created this class because it only has the information of the token.
             </summary>
         </member>
         <member name="F:Library.Platforms.Telegram.Secret.TELEGRAM_BOT_TOKEN">
@@ -2446,6 +2465,7 @@
         <member name="T:Library.Result`2">
             <summary>
             This struct represents a value which could be a success (with a success value) or an error (with an error value).
+            We created this class because of SRP, this class in specific has the methods to evaluate a result.
             </summary>
             <typeparam name="T">The type of success value.</typeparam>
             <typeparam name="E">The type of error value.</typeparam>
@@ -2815,6 +2835,8 @@
         <member name="T:Library.Utils.BasicUtils">
             <summary>
             This class stores context-generic static methods.
+            This class is used by other classes but without collateral 
+            damage because we used LSP.
             </summary>
         </member>
         <member name="M:Library.Utils.BasicUtils.GetLocation(System.String,System.String,System.String,System.String)">
@@ -2907,6 +2929,8 @@
         <member name="T:Library.Utils.OptionUtils">
             <summary>
             This class holds methods which are related with nullable values.
+            We created this class because of SRP, this class in specific is the 
+            one used by other classes when they have to control nullable values. 
             </summary>
         </member>
         <member name="M:Library.Utils.OptionUtils.Unwrap``1(``0)">
