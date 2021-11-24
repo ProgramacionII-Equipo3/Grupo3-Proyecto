@@ -49,7 +49,7 @@ namespace ProgramTests
             this.amount1 = new Amount(100, this.unit1);
             this.price1 = new Price(1000, Currency.Peso, this.unit1);
             using LocationApiClient client = new LocationApiClient();
-            this.pickupLocation1 = client.GetLocationAsync("Libertad 2500").Result;
+            this.pickupLocation1 = client.GetLocationResilient("Libertad 2500");
             this.contact = new ContactInfo("company1@gmail.com", 099421658);
             
             this.category2 = new MaterialCategory("Residuos hospitalarios");
@@ -57,7 +57,7 @@ namespace ProgramTests
             this.unit2 = Unit.GetByAbbr("kg") !;
             this.amount2 = new Amount(500, this.unit2);
             this.price2 = new Price(800, Currency.Peso, this.unit2);
-            this.pickupLocation2 = client.GetLocationAsync("Dr. Gustavo Gallinal 1720").Result;
+            this.pickupLocation2 = client.GetLocationResilient("Dr. Gustavo Gallinal 1720");
             IList<string> keyword2 = new List<string> { "hospital", "cubrebocas" };
 
             Company empresa;
@@ -152,7 +152,7 @@ namespace ProgramTests
         {
             using LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
-            locationSpecified = clientTest.GetLocationAsync("Av. Gral. San Martín 2909").Result;
+            locationSpecified = clientTest.GetLocationResilient("Av. Gral. San Martín 2909");
             double distanceSpecified = 4;
 
             IList<AssignedMaterialPublication> expected5 = new List<AssignedMaterialPublication>();
@@ -172,7 +172,7 @@ namespace ProgramTests
         {
             using LocationApiClient clientTest = new LocationApiClient();
             Location locationSpecified = new Location();
-            locationSpecified = clientTest.GetLocationAsync("12 De Diciembre 811").Result;
+            locationSpecified = clientTest.GetLocationResilient("12 De Diciembre 811");
             double distanceSpecified = 2;
 
             IList<AssignedMaterialPublication> expected6 = new List<AssignedMaterialPublication>();

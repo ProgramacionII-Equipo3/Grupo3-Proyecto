@@ -16,32 +16,32 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// Gets the publication's material.
         /// </summary>
-        public JsonMaterial Material { get; set; }
+        public JsonMaterial Material { get; set; } = new JsonMaterial();
 
         /// <summary>
         /// Gets the publication's amount of material.
         /// </summary>
-        public JsonAmount Amount { get; set; }
+        public JsonAmount Amount { get; set; } = new JsonAmount();
 
         /// <summary>
         /// Gets the publication's price of the material.
         /// </summary>
-        public JsonPrice Price { get; set; }
+        public JsonPrice Price { get; set; } = new JsonPrice();
 
         /// <summary>
         /// Gets the publication's pick-up location of material.
         /// </summary>
-        public Location PickupLocation { get; set; }
+        public Location? PickupLocation { get; set; }
 
         /// <summary>
         /// Gets the type of the material publication.
         /// </summary>
-        public JsonMaterialPublicationTypeData Type { get; set; }
+        public JsonMaterialPublicationTypeData Type { get; set; } = new JsonMaterialPublicationTypeData();
 
         /// <summary>
         /// The list of keywords of the publication material.
         /// </summary>
-        public IList<string> Keywords { get; set; }
+        public IList<string>? Keywords { get; set; }
 
         /// <inheritdoc />
         public void FromValue(MaterialPublication value)
@@ -64,8 +64,8 @@ namespace Library.HighLevel.Materials
                 this.Material.ToValue(),
                 this.Amount.ToValue(),
                 this.Price.ToValue(),
-                this.PickupLocation,
+                this.PickupLocation!,
                 this.Type.ToValue(),
-                this.Keywords).Unwrap();
+                this.Keywords!).Unwrap();
     }
 }

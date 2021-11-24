@@ -24,12 +24,15 @@ namespace Library.HighLevel.Entrepreneurs
         public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepreneurs.AsReadOnly();
 
         /// <summary>
-        /// Adds a new entrepreneur into the list.
+        /// Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
         /// </summary>
         /// <param name="entrepreneur">The new entrepreneur.</param>
-        public void NewEntrepreneur(Entrepreneur entrepreneur)
+        /// <returns>Whether the operation was successful.</returns>
+        public bool NewEntrepreneur(Entrepreneur entrepreneur)
         {
+            if(this.entrepreneurs.Any(e => e.Name == entrepreneur.Name)) return false;
             entrepreneurs.Add(entrepreneur);
+            return true;
         }
 
         /// <summary>
@@ -41,6 +44,14 @@ namespace Library.HighLevel.Entrepreneurs
             this.entrepreneurs.Where(e => e.Id == id).FirstOrDefault();
 
         /// <summary>
+        /// Gets the entrepreneur with a concrete name.
+        /// </summary>
+        /// <param name="name">The entrepreneur's name.</param>
+        /// <returns>The entrepreneur, or null if there's no entrepreneur with the given name.</returns>
+        public Entrepreneur? GetByName(string name) =>
+            this.entrepreneurs.Where(e => e.Name == name).FirstOrDefault();
+
+        /// <summary>
         /// Loads all entrepreneurs from a JSON file.
         /// </summary>
         /// <param name="path">The main directory's file.</param>
@@ -50,7 +61,6 @@ namespace Library.HighLevel.Entrepreneurs
             this.entrepreneurs = entrepreneurs;
         }
 
-        //            Singleton<EntrepreneurManager>.Instance.SaveEntrepreneurs(path);
         /// <summary>
         /// Saves all entrepreneurs from a JSON file.
         /// </summary>

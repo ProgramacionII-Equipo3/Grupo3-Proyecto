@@ -10,17 +10,17 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The material's name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// The material's measure.
         /// </summary>
-        public string Measure { get; set; }
+        public string Measure { get; set; } = string.Empty;
 
         /// <summary>
         /// The material's category.
         /// </summary>
-        public string Category { get; set; }
+        public string Category { get; set; } = string.Empty;
 
         /// <inheritdoc />
         public Material ToValue() =>

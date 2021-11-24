@@ -15,12 +15,12 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur's id.
         /// </summary>
-        public string Id { get; set; }
+        public string Id { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the entrepeneur's name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the entrepreneur's age.
@@ -30,30 +30,30 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur's location.
         /// </summary>
-        public Location Location { get; set; }
+        public Location? Location { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's heading.
         /// </summary>
-        public string Heading { get; set; }
+        public string Heading { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets the entrepreneur's habilitation needed to buy certain materials.
         /// </summary>
         [JsonInclude]
-        public IList<JsonHabilitation> Habilitations { get; set; }
+        public IList<JsonHabilitation>? Habilitations { get; set; }
 
         /// <summary>
         /// Gets the entrepreneur's specialization.
         /// </summary>
         [JsonInclude]
-        public IList<string> Specializations { get; set; }
+        public IList<string>? Specializations { get; set; }
 
         /// <summary>
         /// Gets the collection of bought materials.
         /// </summary>
         [JsonInclude]
-        public IList<JsonBoughtMaterialLine> BoughtMaterials { get; private set; }
+        public IList<JsonBoughtMaterialLine>? BoughtMaterials { get; private set; }
 
 
         void IJsonHolder<Entrepreneur>.FromValue(Entrepreneur value)
@@ -83,10 +83,10 @@ namespace Library.HighLevel.Entrepreneurs
                 this.Id,
                 this.Name,
                 this.Age,
-                this.Location,
+                this.Location!,
                 this.Heading,
-                this.Habilitations.Select(json => json.ToValue()).ToList(),
-                this.Specializations,
-                this.BoughtMaterials.Select(json => json.ToValue()).ToList());
+                this.Habilitations!.Select(json => json.ToValue()).ToList(),
+                this.Specializations!,
+                this.BoughtMaterials!.Select(json => json.ToValue()).ToList());
     }
 }

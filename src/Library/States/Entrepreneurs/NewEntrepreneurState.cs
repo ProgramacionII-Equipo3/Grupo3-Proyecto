@@ -11,16 +11,20 @@ using Ucu.Poo.Locations.Client;
 
 namespace Library.States.Entrepreneurs
 {
-#warning TODO: Document this class.
     /// <summary>
-    /// 
+    /// This class represents the state of an entrepreneur in the middle of being registered.
     /// </summary>
     public class NewEntrepreneurState : InputHandlerState
     {
-        ///
+        /// <summary>
+        /// Initializes an instance of <see cref="NewEntrepreneurState" />.
+        /// </summary>
+        /// <param name="userId">The user id of the entrepreneur.</param>
         public NewEntrepreneurState(string userId): base(
-            ProcessorHandler.CreateInfallibleInstance<Entrepreneur>(
-                e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e),
+            ProcessorHandler.CreateInstance<Entrepreneur>(
+                e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e)
+                    ? null
+                    : "Ya hay un emprendedor con ese nombre.",
                 new NewEntrepreneurForm(userId)
             ),
             () => null,
@@ -48,8 +52,17 @@ namespace Library.States.Entrepreneurs
 
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInfallibleInstance<string>(
-                        name => this.name = name,
+                    ProcessorHandler.CreateInstance<string>(
+                        name =>
+                        {
+                            if(Singleton<EntrepreneurManager>.Instance.GetByName(name) is Entrepreneur)
+                            {
+                                return "Ya hay un emprendedor con ese nombre.";
+                            }
+
+                            this.name = name;
+                            return null;
+                        },
                         new BasicStringProcessor(() => "Por favor ingrese su nombre.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<int>(
