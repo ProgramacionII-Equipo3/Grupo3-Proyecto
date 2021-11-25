@@ -1,17 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Library;
-using Library.Core;
-using Library.Core.Invitations;
-using Library.Core.Distribution;
 using Library.Platforms.Telegram;
-using Library.HighLevel.Entrepreneurs;
-using Telegram.Bot;
-using Telegram.Bot.Args;
-using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 
 namespace Grupo3_Proyecto
 {
@@ -23,14 +12,9 @@ namespace Grupo3_Proyecto
         /// <summary>
         /// Executes the program.
         /// </summary>
+        /// <param name="args">The program arguments.</param>
         public static void Main(string[] args)
         {
-            // Console.SetIn(new StringReader(
-            //     string.Join(null,
-            //         new string[]
-            //         {
-            //             "--STOP"
-            //         }.Select(s => $"{s}\n"))));
             Library.Utils.SerializationUtils.DeserializeAllFromJSON("../../Memory");
             try
             {

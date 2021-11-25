@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
+using Library.Core.Distribution;
 using Library.Core.Processing;
+using Library.InputHandlers;
 using Library.HighLevel.Companies;
 
 namespace Library.States.Companies
@@ -13,13 +15,36 @@ namespace Library.States.Companies
     public partial class IncompleteCompanyRepresentativeState : State
     {
         private InputProcessor<Company>? companyGetter = null;
+        private InputProcessor<UserData> userDataGetter = new UserDataProcessor(false, UserData.Type.COMPANY);
+        private UserData? userData = null;
         private string name = string.Empty;
 
         /// <inheritdoc />
-        public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
+        public override (State?, string?) ProcessMessage(string id, string msg)
         {
-            if (this.companyGetter == null)
+            if(userData is null)
             {
+                if (userDataGetter.GenerateFromInput(msg) is Result<UserData, string> userDataResult)
+                {
+                    return (
+                        this,
+                        userDataResult.Map(
+                            v =>
+                            {
+                                this.userData = v;
+                                return this.GetDefaultResponse();
+                            },
+                            e => e));
+                }
+                else
+                {
+                    return (null, null);
+                }
+            }
+
+            if (this.companyGetter is null)
+            {
+                if(msg == "\\") return (null, null);
                 this.name = msg.Trim();
                 var (newStep, response) = this.nextStateGivenCompanyName(this.name);
                 this.companyGetter = newStep;
@@ -37,16 +62,21 @@ namespace Library.States.Companies
                             null,
                             (data) =>
                             {
-                                data.IsComplete = true;
-                                return data;
+                                this.userData.IsComplete = true;
+                                return this.userData;
                             }
                         );
                     },
                     e => (this, e, null)
                 );
-                if (f != null) data = f(data);
+                if (f is not null)
+                {
+                    UserSession session = Singleton<SessionManager>.Instance.GetById(id) !;
+                    session.UserData = f(session.UserData);
+                }
                 return (state, s);
-            } else
+            }
+            else
             {
                 this.companyGetter = null;
                 return (this, null);
@@ -56,10 +86,15 @@ namespace Library.States.Companies
         /// <inheritdoc />
         public override string GetDefaultResponse()
         {
-            if (this.companyGetter == null)
+            if (this.userData is null)
+            {
+                return this.userDataGetter.GetDefaultResponse();
+            }
+            else if (this.companyGetter is null)
             {
                 return "Por favor ingresa el nombre de la empresa.";
-            } else
+            }
+            else
             {
                 return this.companyGetter.GetDefaultResponse();
             }
@@ -71,7 +106,8 @@ namespace Library.States.Companies
             if (Singleton<CompanyManager>.Instance.GetByName(name) is Company perfectMatch)
             {
                 getter = new AssignExistingCompanyState(perfectMatch);
-            } else
+            }
+            else
             {
                 getter = new CreateNewCompanyState(this);
             }

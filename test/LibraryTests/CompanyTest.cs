@@ -12,6 +12,7 @@ namespace ProgramTests
     /// <summary>
     /// This test check if the class Company and CompanyManager and all methods of both classes works.
     /// </summary>
+    [TestFixture]
     public class CompanyTest
     {
         /// <summary>

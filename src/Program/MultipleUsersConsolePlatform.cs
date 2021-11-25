@@ -50,7 +50,7 @@ namespace Grupo3_Proyecto
             while (true)
             {
                 string? msg = Console.ReadLine();
-                if (msg == null || msg == "--STOP") return;
+                if (msg is null || msg == "--STOP") return;
 
                 string id = currentId;
 

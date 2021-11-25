@@ -12,8 +12,32 @@ namespace UnitTests
     /// <summary>
     /// This class represents unit tests related to admin states.
     /// </summary>
+    [TestFixture]
     public class AdminStatesTest
     {
+
+        private static Regex createInvitationResponseRegex = new Regex(
+                "El nuevo código de invitación es: (?<invitationcode>\\w+).\\n"
+              + "¿Qué quieres hacer\\?\\n"
+              + "        /invitecompany: Crea una invitación para un representante de una companía y obtiene su respectivo código.\\n"
+              + "        /removecompany: Elimina una compañía y sus respectivos usuarios.\\n"
+              + "        /removeuser: Elimina un usuario.",
+                RegexOptions.Compiled);
+
+        /// <summary>
+        /// Checks whether a message is a response from creating an invitation,
+        /// returning the invitation's code.
+        /// </summary>
+        /// <param name="msg">The message.</param>
+        /// <returns>The invitation's code, if there is.</returns>
+        public static string? IsCreateInvitationResponseRegex(string msg)
+        {
+            Match match = createInvitationResponseRegex.Match(msg);
+            return match.Success
+                ? match.Groups["invitationcode"].Value
+                : null;
+        }
+
         /// <summary>
         /// Tests the class <see cref="AdminInitialMenuState" />'s /createcompany option.
         /// </summary>
@@ -40,18 +64,7 @@ namespace UnitTests
                 Console.WriteLine("\t--------");
             }
 
-            Regex expected = new Regex(
-                "El nuevo código de invitación es: (?<invitationcode>\\w+).\\n"
-              + "¿Qué quieres hacer\\?\\n"
-              + "        /invitecompany: Crea una invitación a companía y obtiene su respectivo código.\\n"
-              + "        /removecompany: Elimina una compañía y sus respectivos usuarios.\\n"
-              + "        /removeuser: Elimina un usuario.",
-                RegexOptions.Compiled
-            );
-
-            
-
-            Match match = expected.Match(platform.ReceivedMessages[0]);
+            Match match = createInvitationResponseRegex.Match(platform.ReceivedMessages[0]);
 
             Singleton<SessionManager>.Instance.RemoveUser("___");
 

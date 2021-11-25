@@ -23,7 +23,7 @@ namespace Library.States
             this.innerState.GetDefaultResponse();
 
         /// <inheritdoc />
-        public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg) =>
-            this.innerState.ProcessMessage(id, ref data, msg);
+        public override (State?, string?) ProcessMessage(string id, string msg) =>
+            this.innerState.ProcessMessage(id, msg);
     }
 }

@@ -35,7 +35,8 @@ namespace Library.States.Companies
                             return null;
                         }
                         return "Disculpa, no pude realizar la publicación, vuelve a intentarlo.";
-                    } else
+                    }
+                    else
                     {
                         return "Lo siento, no te reconozco como un representante de una empresa.";
                     }
@@ -47,9 +48,9 @@ namespace Library.States.Companies
         }
 
         /// <inheritdoc />
-        public override (State?, string?) ProcessMessage(string id, ref UserData data, string msg)
+        public override (State?, string?) ProcessMessage(string id, string msg)
         {
-            return base.ProcessMessage(id, ref data, msg);
+            return base.ProcessMessage(id, msg);
         }
 
         private class CollectDataProcessor : FormProcessor<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>)>
@@ -80,7 +81,8 @@ namespace Library.States.Companies
                                 }
                                 this.material = m;
                                 return null;
-                            } else
+                            }
+                            else
                             {
                                 return "No se puede chequear la unicidad de este material en la compañía.";
                             }

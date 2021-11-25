@@ -50,7 +50,7 @@ namespace Library
         /// <param name="errFunc">The function for the error value.</param>
         /// <typeparam name="U">The type returned by the functions.</typeparam>
         public U Map<U>(Func<T, U> successFunc, Func<E, U> errFunc) =>
-            this.Success ? successFunc(this.successValue.Unwrap()) : errFunc(this.errorValue.Unwrap());
+            this.Success ? successFunc(this.successValue!) : errFunc(this.errorValue!);
 
         /// <summary>
         /// Passes either the success value or the error value through a function, and returns the result in a new instance of <see cref="Result{U, F}" />.

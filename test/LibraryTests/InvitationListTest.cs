@@ -10,6 +10,7 @@ namespace UnitTests
     /// <summary>
     /// This class represents tests concerning the <see cref="InvitationList{T}" /> class.
     /// </summary>
+    [TestFixture]
     public class InvitationListTest
     {
         /// <summary>

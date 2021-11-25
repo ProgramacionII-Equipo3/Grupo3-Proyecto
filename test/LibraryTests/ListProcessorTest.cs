@@ -13,6 +13,7 @@ namespace UnitTests
     /// <summary>
     /// This class represents unit tests related to the class <see cref="ListProcessor{T}" /> as a subclass of <see cref="InputProcessor{T}" /> of a list of elements.
     /// </summary>
+    [TestFixture]
     public class ListProcessorTest
     {
         private static void listProcessorBaseTest<T>(T[]? expected, string initialResponse, InputProcessor<T> processor, params string[] messages)

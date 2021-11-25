@@ -28,8 +28,8 @@ namespace Library.Core.Invitations
         /// <param name="remover">The remover.</param>
         public void AddRemover(Action<string> remover)
         {
-            if (!removers.Contains(remover))
-                removers.Add(remover);
+            if (!this.removers.Contains(remover))
+                this.removers.Add(remover);
         }
 
         /// <summary>
@@ -47,17 +47,21 @@ namespace Library.Core.Invitations
         /// </summary>
         /// <param name="code">The invitation's code.</param>
         /// <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
-        public void CreateInvitation<T>(string code, Func<string, T> f) where T : Invitation
+        /// <returns>Whether the operation was successful.</returns>
+        public bool CreateInvitation<T>(string code, Func<string, T> f)
+            where T : Invitation
         {
-            if (f != null)
+            if (f is not null)
             {
                 T invitation = f(code);
-                if (!invitations.Any(inv => inv.Code == code))
+                if (!this.invitations.Any(inv => inv.Code == code))
                 {
                     invitations.Add(invitation);
                     Singleton<InvitationList<T>>.Instance.AddInvitation(invitation);
+                    return true;
                 }
             }
+            return false;
         }
 
         /// <summary>

@@ -10,6 +10,7 @@ namespace ProgramTests
     /// <summary>
     /// Test if a company can get a report of all sent materials.
     /// </summary>
+    [TestFixture]
     public class CompanyReportTest
     {
         private MaterialCategory? category;

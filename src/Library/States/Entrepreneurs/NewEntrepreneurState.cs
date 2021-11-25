@@ -3,9 +3,10 @@ using System.Linq;
 using Library.Core.Distribution;
 using Library.HighLevel.Entrepreneurs;
 using Library.Utils;
+using Library.Core;
+using Library.Core.Processing;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
-using Library.Core.Processing;
 using Library.HighLevel.Materials;
 using Ucu.Poo.Locations.Client;
 
@@ -20,11 +21,21 @@ namespace Library.States.Entrepreneurs
         /// Initializes an instance of <see cref="NewEntrepreneurState" />.
         /// </summary>
         /// <param name="userId">The user id of the entrepreneur.</param>
-        public NewEntrepreneurState(string userId): base(
-            ProcessorHandler.CreateInstance<Entrepreneur>(
-                e => Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e)
-                    ? null
-                    : "Ya hay un emprendedor con ese nombre.",
+        public NewEntrepreneurState(string userId) : base(
+            ProcessorHandler.CreateInstance<(UserData, Entrepreneur)>(
+                e =>
+                {
+                    if(Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e.Item2))
+                    {
+                        UserSession session = Singleton<SessionManager>.Instance.GetById(userId) !;
+                        session.UserData = e.Item1;
+                        return null;
+                    }
+                    else
+                    {
+                        return "Ya hay un emprendedor con ese nombre.";
+                    }
+                },
                 new NewEntrepreneurForm(userId)
             ),
             () => null,
@@ -35,11 +46,11 @@ namespace Library.States.Entrepreneurs
             }
         ) {}
 
-        private class NewEntrepreneurForm : FormProcessor<Entrepreneur>
+        private class NewEntrepreneurForm : FormProcessor<(UserData, Entrepreneur)>
         {
             private string userId;
 
-            private string? name;
+            private UserData? userData;
             private int? age;
             private Location? location;
             private string? heading;
@@ -52,50 +63,42 @@ namespace Library.States.Entrepreneurs
 
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInstance<string>(
-                        name =>
-                        {
-                            if(Singleton<EntrepreneurManager>.Instance.GetByName(name) is Entrepreneur)
-                            {
-                                return "Ya hay un emprendedor con ese nombre.";
-                            }
-
-                            this.name = name;
-                            return null;
-                        },
-                        new BasicStringProcessor(() => "Por favor ingrese su nombre.")
-                    ),
+                    ProcessorHandler.CreateInfallibleInstance<UserData>(
+                        data => this.userData = data,
+                        new UserDataProcessor(true, UserData.Type.ENTREPRENEUR)),
                     ProcessorHandler.CreateInfallibleInstance<int>(
                         age => this.age = age,
-                        new UnsignedInt32Processor(() => "Por favor ingrese su edad.")
-                    ),
+                        new UnsignedInt32Processor(() => "Por favor ingrese su edad.")),
                     ProcessorHandler.CreateInfallibleInstance<Location>(
                         location => this.location = location,
-                        new LocationProcessor(() => "Por favor ingrese su ubicación (<dirección>, <ciudad>, <departamento>, <país>).")
-                    ),
+                        new LocationProcessor(() => "Por favor ingrese su ubicación (<dirección>, <ciudad>, <departamento>, <país>).")),
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         heading => this.heading = heading,
-                        new BasicStringProcessor(() => "Por favor ingrese su rubro.")
-                    ),
+                        new BasicStringProcessor(() => "Por favor ingrese su rubro.")),
                     ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
                             () => "Por favor ingrese sus habilitaciones.",
-                            new HabilitationProcessor()
-                        )
-                    ),
+                            new HabilitationProcessor())),
                     ProcessorHandler.CreateInfallibleInstance<string[]>(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
                             () => "Por favor ingrese sus especializaciones.",
-                            new BasicStringProcessor(() => "Por favor ingrese sus especializaciones, escriba /finish para finalizar.")
-                        )
-                    )
+                            new BasicStringProcessor(() => "Por favor ingrese una especialización.")))
                 };
             }
 
-            protected override Result<Entrepreneur, string> getResult() =>
-                Result<Entrepreneur, string>.Ok(new Entrepreneur(userId, name.Unwrap(), age.Unwrap(), location.Unwrap(), heading.Unwrap(), habilitations.Unwrap(), specializations.Unwrap()));
+            protected override Result<(UserData, Entrepreneur), string> getResult() =>
+                Result<(UserData, Entrepreneur), string>.Ok((
+                    this.userData.Unwrap(),
+                    new Entrepreneur(
+                        userId,
+                        this.userData.Unwrap().Name,
+                        this.age.Unwrap(),
+                        this.location.Unwrap(),
+                        this.heading.Unwrap(),
+                        this.habilitations.Unwrap(),
+                        this.specializations.Unwrap())));
         }
     }
 }

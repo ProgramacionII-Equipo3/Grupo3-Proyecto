@@ -32,7 +32,8 @@ namespace Library.Utils
             if (JsonSerializer.DeserializeAsync<T>(fileStream, defaultOptions).Result is T result)
             {
                 return result;
-            } else
+            }
+            else
             {
                 throw new System.Runtime.Serialization.SerializationException("The given JSON represents a null value.");
             }

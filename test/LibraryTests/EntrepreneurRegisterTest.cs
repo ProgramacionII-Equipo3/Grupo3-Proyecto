@@ -17,6 +17,7 @@ namespace ProgramTests
     /// <summary>
     /// Test if an Entrepreneur can register into the platform.
     /// </summary>
+    [TestFixture]
     public class EntrepreneurRegisterTest
     {
         private string? juanId;

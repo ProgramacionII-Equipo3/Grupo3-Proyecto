@@ -17,7 +17,7 @@ namespace Library.States.Companies
 
             /// <inheritdoc />
             public override string GetDefaultResponse() =>
-                $"Ya existe una compañía llamada {this.company.Name}. ¿Es esta la empresa que desea asignar?";
+                $"Ya existe una compañía llamada {this.company.Name}. ¿Es esta la empresa a la que pertenece?";
 
             /// <inheritdoc />
             protected override Result<Company, string> getResult() => Result<Company, string>.Ok(this.company);

@@ -39,11 +39,10 @@ namespace Library.InputHandlers.Abstractions
                 {
                     var (newState, msg) = result;
                     this.state = newState;
-                    return msg == null
+                    return msg is null
                         ? this.GetDefaultResponse()
-                        : $"{msg}\n{this.GetDefaultResponse()}";
-                }
-            );
+                        : msg;
+                });
 
         /// <inheritdoc />
         protected override Result<T[], string> getResult() => Result<T[], string>.Ok(this.list.ToArray());

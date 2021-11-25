@@ -44,12 +44,14 @@ namespace Library.InputHandlers
                             return true;
                         }
                     );
-                } else
+                }
+                else
                 {
                     this.askForDate = false;
                     return Result<bool, string>.Err(this.GetDefaultResponse());
                 }
-            } else
+            }
+            else
             {
                 switch(msg.Trim().ToLowerInvariant())
                 {

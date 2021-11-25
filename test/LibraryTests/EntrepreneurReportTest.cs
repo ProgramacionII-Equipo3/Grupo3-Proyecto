@@ -10,6 +10,7 @@ namespace ProgramTests
     /// <summary>
     /// This test check if the Entrepreneur can get an received material report.
     /// </summary>
+    [TestFixture]
     public class EntrepreneurReportTest
     {
         /// <summary>

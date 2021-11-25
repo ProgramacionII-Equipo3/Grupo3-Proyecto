@@ -42,7 +42,8 @@ namespace Library.States.Entrepreneurs
             if (Singleton<EntrepreneurManager>.Instance.GetById(this.id) is Entrepreneur entrepreneur)
             {
                 return (new EntrepreneurCreateReportState(entrepreneur), null);
-            } else
+            }
+            else
             {
                 return (this, "Lo siento, no te reconozco como emprendedor.");
             }

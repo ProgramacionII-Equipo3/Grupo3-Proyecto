@@ -4,6 +4,34 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:Library.ClassWrapper`1">
+            <summary>
+            This class acts as a wrapper for a value type to act as a reference type.
+            </summary>
+        </member>
+        <member name="P:Library.ClassWrapper`1.Value">
+            <summary>
+            Gets the inner value;
+            </summary>
+        </member>
+        <member name="M:Library.ClassWrapper`1.#ctor(`0)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.ClassWrapper`1" />.
+            </summary>
+            <param name="value">The inner value.</param>
+        </member>
+        <member name="M:Library.ClassWrapper`1.op_Implicit(`0)~Library.ClassWrapper{`0}">
+            <summary>
+            Casts a value into a <see cref="T:Library.ClassWrapper`1" /> which holds it.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Library.ClassWrapper`1.op_Implicit(Library.ClassWrapper{`0})~System.Nullable{`0}">
+            <summary>
+            Casts the <see cref="T:Library.ClassWrapper`1" /> into a <see cref="T:System.Nullable`1" />.
+            </summary>
+            <param name="wrapper">The wrapper to cast.</param>
+        </member>
         <member name="T:Library.Core.ContactInfo">
             <summary>
             This struct represents contact information data associated with a user,
@@ -65,6 +93,13 @@
             <param name="id">The given id.</param>
             <returns>Its corresponding <see cref="T:Library.Core.Distribution.UserSession" />, or null if there isn't.</returns>
         </member>
+        <member name="M:Library.Core.Distribution.SessionManager.GetByName(System.String)">
+            <summary>
+            Returns the <see cref="T:Library.Core.Distribution.UserSession" /> whose name equals to the given one.
+            </summary>
+            <param name="name">The given name.</param>
+            <returns>Its corresponding <see cref="T:Library.Core.Distribution.UserSession" />, or null if there isn't.</returns>
+        </member>
         <member name="M:Library.Core.Distribution.SessionManager.NewUser(System.String,Library.Core.UserData,Library.Core.State)">
             <summary>
             Adds a new user into the platform.
@@ -72,7 +107,8 @@
             <param name="id">The user's id.</param>
             <param name="userData">The user's data.</param>
             <param name="state">The user's initial state.</param>
-            <returns>The resulting <see cref="T:Library.Core.Distribution.UserSession" />, or null if there's already one.</returns>
+            <returns>The resulting <see cref="T:Library.Core.Distribution.UserSession" />, or null if
+            there's already one with the same id or name.</returns>
         </member>
         <member name="M:Library.Core.Distribution.SessionManager.RemoveUser(System.String)">
             <summary>
@@ -149,7 +185,14 @@
             Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete user id.
             </summary>
             <param name="id">The id to compare with.</param>
-            <returns>True uf the IDs are equal and false if it not does.</returns>
+            <returns>Whether the IDs are equal.</returns>
+        </member>
+        <member name="M:Library.Core.Distribution.UserSession.MatchesName(System.String)">
+            <summary>
+            Checks whether this <see cref="T:Library.Core.Distribution.UserSession" /> has a concrete name.
+            </summary>
+            <param name="name">The name to compare with.</param>
+            <returns>Whether the names are equal, not null, and not whitespace.</returns>
         </member>
         <member name="T:Library.Core.Invitations.Invitation">
             <summary>
@@ -249,6 +292,7 @@
             </summary>
             <param name="code">The invitation's code.</param>
             <param name="f">Function that takes string like a parameter, and return an Invitation.</param>
+            <returns>Whether the operation was successful.</returns>
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.AddInvitation(Library.Core.Invitations.Invitation)">
             <summary>
@@ -460,12 +504,11 @@
             Also because of LSP, this class is used by a lot of classes without collateral damage.
             </summary>
         </member>
-        <member name="M:Library.Core.State.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.Core.State.ProcessMessage(System.String,System.String)">
             <summary>
             Processes a received message, returning the next state and the response message.
             </summary>
             <param name="id">The user's id.</param>
-            <param name="data">The user's data.</param>
             <param name="msg">The message's text.</param>
             <returns>The next state and the response message. If the response message is null, the new state's default message can be used instead.</returns>
         </member>
@@ -1072,6 +1115,7 @@
             <summary>
             This method creates an invitation for a company.
             </summary>
+            <returns>The invitation code.</returns>
         </member>
         <member name="T:Library.HighLevel.Companies.Company">
             <summary>
@@ -1823,6 +1867,9 @@
             <param name="name">The category's name.</param>
             <returns>An instance of <see cref="T:Library.HighLevel.Materials.MaterialCategory" />.</returns>
         </member>
+        <member name="M:Library.HighLevel.Materials.MaterialCategory.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublication">
             <summary>
             This class represents a publication of a material from a company.
@@ -2067,6 +2114,30 @@
         <member name="M:Library.InputHandlers.Abstractions.ListProcessor`1.RemoveElementState.ProcessMessage(System.String)">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.Abstractions.OptionalProcessor`1">
+            <summary>
+            This class represents a processor which can generate a null value.
+            </summary>
+            <typeparam name="T">The type of which an object will be generated, if it isn't null.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.OptionalProcessor`1.#ctor(Library.Core.Processing.InputProcessor{`0})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.OptionalProcessor`1" />.
+            </summary>
+            <param name="innerProcessor">The processor which generates the value.</param>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.OptionalProcessor`1.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.OptionalProcessor`1.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.OptionalProcessor`1.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.OptionalProcessor`1.getResult">
+            <inheritdoc />
+        </member>
         <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
             <summary>
             This class represents an input processor which takes the result of another one and applies a transformation to it.
@@ -2088,6 +2159,14 @@
         <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,Library.Result{`0,System.String}},Library.Core.Processing.InputProcessor{``0})">
             <summary>
             Creates a pipe processor.
+            </summary>
+            <param name="func">The transformation function.</param>
+            <param name="processor">The inner <see cref="T:Library.Core.Processing.InputProcessor`1" />.</param>
+            <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.InputProcessor`1" /> returns.</typeparam>
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInfallibleInstance``1(System.Func{``0,`0},Library.Core.Processing.InputProcessor{``0})">
+            <summary>
+            Creates a pipe processor whose piped process can't fail.
             </summary>
             <param name="func">The transformation function.</param>
             <param name="processor">The inner <see cref="T:Library.Core.Processing.InputProcessor`1" />.</param>
@@ -2422,6 +2501,21 @@
         <member name="M:Library.InputHandlers.UnsignedInt32Processor.Reset">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.UserDataProcessor">
+            <summary>
+            This class acts as a processor to get a <see cref="T:Library.Core.UserData" />.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.UserDataProcessor.#ctor(System.Boolean,Library.Core.UserData.Type)">
+            <summary>
+            Initialize an instance of <see cref="T:Library.Core.UserData" />.
+            </summary>
+            <param name="isComplete">The <see cref="P:Library.Core.UserData.IsComplete" /> attribute/property.</param>
+            <param name="userType">The <see cref="P:Library.Core.UserData.UserType" /> attribute/property.</param>
+        </member>
+        <member name="M:Library.InputHandlers.UserDataProcessor.getResult">
+            <inheritdoc />
+        </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
@@ -2634,7 +2728,7 @@
             <param name="id">User's id.</param>
             <returns></returns>
         </member>
-        <member name="M:Library.States.Companies.CompanyPublishMaterialState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.States.Companies.CompanyPublishMaterialState.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor.#ctor(System.String)">
@@ -2658,7 +2752,7 @@
             This class represents the state of a company representative who is yet to be fully logged in to the platform.
             </summary>
         </member>
-        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.Companies.IncompleteCompanyRepresentativeState.GetDefaultResponse">
@@ -2763,7 +2857,7 @@
             <param name="exitState">The function which determines the state to go when an interrupt signal is given.</param>
             <param name="nextState">The function which determines the state to go when a success signal is given.</param>
         </member>
-        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.States.InputHandlerState.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
@@ -2789,7 +2883,7 @@
             <typeparam name="T">The type of the objects generated by the processor.</typeparam>
             <returns>An <see cref="T:Library.States.InputProcessorState" />.</returns>
         </member>
-        <member name="M:Library.States.InputProcessorState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.States.InputProcessorState.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Library.States.InputProcessorState.GetDefaultResponse">
@@ -2820,7 +2914,7 @@
             </summary>
             <returns>A string.</returns>
         </member>
-        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.States.MultipleOptionState.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.States.WrapperState">
@@ -2837,7 +2931,7 @@
         <member name="M:Library.States.WrapperState.GetDefaultResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.WrapperState.ProcessMessage(System.String,Library.Core.UserData@,System.String)">
+        <member name="M:Library.States.WrapperState.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="T:Library.Utils.BasicUtils">

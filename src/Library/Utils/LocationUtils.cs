@@ -43,7 +43,7 @@ namespace Library.Utils
                 }
             }
             
-            if (location == null) throw e!;
+            if (location is null) throw e!;
             return location;
         }
 
@@ -71,7 +71,7 @@ namespace Library.Utils
                 }
             }
             
-            if (distance == null) throw e!;
+            if (distance is null) throw e!;
             return distance;
         }
     }

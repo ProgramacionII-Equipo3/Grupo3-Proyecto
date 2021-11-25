@@ -14,6 +14,7 @@ namespace UnitTests
     /// <summary>
     /// This class represents unit tests concerning the class <see cref="BaseFormProcessor{T, U}" />.
     /// </summary>
+    [TestFixture]
     public class FormProcessorTest
     {
         /// <summary>
@@ -85,7 +86,7 @@ namespace UnitTests
                 return base.GetHashCode();
             }
 
-            public override (State, string) ProcessMessage(string id, ref UserData data, string msg) =>
+            public override (State, string) ProcessMessage(string id, string msg) =>
                 (this, $"Message sent: {msg}");
         }
     }

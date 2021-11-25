@@ -14,6 +14,7 @@ namespace ProgramTests
     /// <summary>
     /// This Test is for verificates if a Company can accept an invitation to the platform.
     /// </summary>
+    [TestFixture]
     public class AcceptInvitationTest
     {
         /// <summary>
