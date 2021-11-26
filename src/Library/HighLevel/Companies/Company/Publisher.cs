@@ -14,7 +14,7 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Gets a private list of the publications.
         /// </summary>
-        public IList<MaterialPublication> Publications { get; private set; } = new List<MaterialPublication>();
+        public List<MaterialPublication> Publications { get; private set; } = new List<MaterialPublication>();
 
         /// <summary>
         /// Gets the list of publications, dinamically assigned to the company.
@@ -51,17 +51,11 @@ namespace Library.HighLevel.Companies
         /// <summary>
         /// Removes a material publication.
         /// </summary>
-        /// <param name="index">The index of the publication.</param>
+        /// <param name="name">The name of the publication.</param>
         /// <returns>Whether the removal was successful.</returns>
-        public bool RemovePublication(int index)
+        public bool RemovePublication(string name)
         {
-            if (index < 0 || index >= this.Publications.Count)
-            {
-                return false;
-            }
-
-            this.Publications.RemoveAt(index);
-            return true;
+            return this.Publications.RemoveAll(m => m.Material.Name == name) >= 1;
         }
     }
 }

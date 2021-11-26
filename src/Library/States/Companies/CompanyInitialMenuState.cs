@@ -1,5 +1,6 @@
 using System;
 using Library.Core;
+using Library.HighLevel.Companies;
 
 namespace Library.States.Companies
 {
@@ -19,7 +20,9 @@ namespace Library.States.Companies
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
                 ("/publish",           "Realizar una publicación de un material.",                                             this.PublishMaterial),
+                ("/removepublication", "Borrar una publicación",                                                               this.RemovePublication),
                 ("/checkhabilitation", "Mostrar las habilitaciones de un emprendedor que solicito el material",                this.CheckHabilitation),
+                ("checkpublications",  "Mostrar todas las publicaciones de la empresa",                                        this.CheckPublications),
                 ("/companyreport",     "Acceder al reporte de los materiales enviados por la empresa a partir de un día dado", this.CompanyReport),
             };
         }
@@ -29,9 +32,26 @@ namespace Library.States.Companies
             return (new CompanyPublishMaterialState(this.id), null);
         }
 
+        private (State, string?) RemovePublication()
+        {
+            return (new CompanyRemovePublicationState(this.id), null);
+        }
+
         private (State, string?) CheckHabilitation()
         {
             return (new CompanyCheckEntrepreneurHabilitationsState(this.id), null);
+        }
+
+        private (State, string?) CheckPublications()
+        {
+            if (Singleton<CompanyManager>.Instance.GetCompanyOf(this.id) is Company company)
+            {
+                return (this, $"{string.Join("\n", company.Publications)}");
+            }
+            else
+            {
+                return (this, null);
+            }
         }
 
         private (State, string?) CompanyReport()
