@@ -118,6 +118,7 @@ namespace Library.Utils
         /// <param name="path">The directory's path.</param>
         public static void DeserializeAllFromJSON(string path)
         {
+            Singleton<InvitationManager>.Instance.ClearInvitations();
             Singleton<InvitationManager>.Instance.LoadInvitations<Library.HighLevel.Companies.CompanyInvitation, Library.HighLevel.Companies.JsonCompanyInvitation>(path, "company_invitations.json");
             Singleton<SessionManager>.Instance.LoadUserSessions(path);
             Singleton<CompanyManager>.Instance.LoadCompanies(path);

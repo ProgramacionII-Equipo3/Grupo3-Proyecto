@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using Library;
 using Library.Core;
 using Library.Core.Distribution;
+using Library.Core.Invitations;
 using Library.States.Admins;
+using Library.HighLevel.Companies;
+using Library.HighLevel.Entrepreneurs;
 using Library.Utils;
 using NUnit.Framework;
 
@@ -21,6 +24,7 @@ namespace UnitTests
         [Test]
         public void RuntimeBasicTest()
         {
+            SerializationUtils.DeserializeAllFromJSON("../../../-Memory-test-begin");
             try
             {
                 runtimeBasicTestInner();

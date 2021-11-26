@@ -311,6 +311,11 @@
             <param name="userId">The id of the user who validated the invitation.</param>
             <returns>The response message of the validation of the invitation, or an error message if there wasn't.</returns>
         </member>
+        <member name="M:Library.Core.Invitations.InvitationManager.ClearInvitations">
+            <summary>
+            Removes all invitations.
+            </summary>
+        </member>
         <member name="M:Library.Core.Invitations.InvitationManager.LoadInvitations``2(System.String,System.String)">
             <summary>
             Loads the invitations from a JSON file.

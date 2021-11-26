@@ -89,16 +89,32 @@ namespace Library.Core.Invitations
                 is Invitation invitation)
             {
                 string r = invitation.Validate(userId);
-                invitations.Remove(invitation);
-                foreach(Action<string> f in removers)
-                {
-                    f(invitationCode);
-                }
+                this.removeInvitation(invitation);
                 return r;
             }
             else
             {
                 return null;
+            }
+        }
+
+        private void removeInvitation(Invitation invitation)
+        {
+                invitations.Remove(invitation);
+                foreach(Action<string> f in removers)
+                {
+                    f(invitation.Code);
+                }
+        }
+
+        /// <summary>
+        /// Removes all invitations.
+        /// </summary>
+        public void ClearInvitations()
+        {
+            foreach(Invitation invitation in this.invitations.ToArray())
+            {
+                this.removeInvitation(invitation);
             }
         }
 
