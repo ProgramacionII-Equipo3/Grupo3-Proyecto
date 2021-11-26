@@ -69,8 +69,8 @@ namespace ProgramTests
                 specializations.Add(specialization);
             }
 
-            Entrepreneur juan = new Entrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text, CultureInfo.InvariantCulture), this.location!, this.headingMessage.Text, habilitations, specializations);
-            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(juan);
+            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(this.juanId!, this.nameMessage.Text, int.Parse(this.ageMessage.Text, CultureInfo.InvariantCulture), this.location!, this.headingMessage.Text, habilitations, specializations);
+            Entrepreneur juan = Singleton<EntrepreneurManager>.Instance.GetById(this.juanId!).Unwrap();
 
             // The user must be in the list of entrepreneurs to be registered.
             string idExpected = this.nameMessage.Id;

@@ -22,10 +22,17 @@ namespace Library.States.Entrepreneurs
         /// </summary>
         /// <param name="userId">The user id of the entrepreneur.</param>
         public NewEntrepreneurState(string userId) : base(
-            ProcessorHandler.CreateInstance<(UserData, Entrepreneur)>(
+            ProcessorHandler.CreateInstance<(UserData, (string, string, int, Location, string, IList<Habilitation>, IList<string>))>(
                 e =>
                 {
-                    if(Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(e.Item2))
+                    if(Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(
+                        e.Item2.Item1,
+                        e.Item2.Item2,
+                        e.Item2.Item3,
+                        e.Item2.Item4,
+                        e.Item2.Item5,
+                        e.Item2.Item6,
+                        e.Item2.Item7))
                     {
                         UserSession session = Singleton<SessionManager>.Instance.GetById(userId) !;
                         session.UserData = e.Item1;
@@ -46,7 +53,7 @@ namespace Library.States.Entrepreneurs
             }
         ) {}
 
-        private class NewEntrepreneurForm : FormProcessor<(UserData, Entrepreneur)>
+        private class NewEntrepreneurForm : FormProcessor<(UserData, (string, string, int, Location, string, IList<Habilitation>, IList<string>))>
         {
             private string userId;
 
@@ -88,10 +95,10 @@ namespace Library.States.Entrepreneurs
                 };
             }
 
-            protected override Result<(UserData, Entrepreneur), string> getResult() =>
-                Result<(UserData, Entrepreneur), string>.Ok((
+            protected override Result<(UserData, (string, string, int, Location, string, IList<Habilitation>, IList<string>)), string> getResult() =>
+                Result<(UserData, (string, string, int, Location, string, IList<Habilitation>, IList<string>)), string>.Ok((
                     this.userData.Unwrap(),
-                    new Entrepreneur(
+                    (
                         userId,
                         this.userData.Unwrap().Name,
                         this.age.Unwrap(),

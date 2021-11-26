@@ -71,11 +71,11 @@ namespace ProgramTests
             string specialization = "specialization1";
             string specialization2 = "specialization2";
             IList<string> specializations = new List<string> { specialization, specialization2 };
-            LocationApiClient provider = new LocationApiClient();
+            using LocationApiClient provider = new LocationApiClient();
             Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
-            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
-            Assert.Contains(entrepreneur, Singleton<EntrepreneurManager>.Instance.Entrepreneurs);
+            Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
+            Assert.That(Singleton<EntrepreneurManager>.Instance.GetById(id), Is.Not.Null);
             Singleton<EntrepreneurManager>.Instance.RemoveUserAsEntrepreneurByName("Juan");
         }
     }

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core.Distribution;
+using Library.HighLevel.Accountability;
+using Library.HighLevel.Materials;
 using Library.Utils;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Entrepreneurs
 {
@@ -35,12 +38,18 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
         /// </summary>
-        /// <param name="entrepreneur">The new entrepreneur.</param>
+        /// <param name="id">The entrepreneur's id.</param>
+        /// <param name="name">The entrepreneur's name.</param>
+        /// <param name="age">The entrepreneur's age.</param>
+        /// <param name="location">The entrepreneur's location.</param>
+        /// <param name="heading">The entrepreneur's heading.</param>
+        /// <param name="habilitations">The entrepreneur's habilitations.</param>
+        /// <param name="specializations">The entrepreneur's specializations.</param>
         /// <returns>Whether the operation was successful.</returns>
-        public bool NewEntrepreneur(Entrepreneur entrepreneur)
+        public bool NewEntrepreneur(string id, string name, int age, Location location, string heading, IList<Habilitation> habilitations, IList<string> specializations)
         {
-            if(this.entrepreneurs.Any(e => e.Name == entrepreneur.Name)) return false;
-            entrepreneurs.Add(entrepreneur);
+            if(this.entrepreneurs.Any(e => e.Name == name)) return false;
+            entrepreneurs.Add(new Entrepreneur(id, name, age, location, heading, habilitations, specializations));
             return true;
         }
 
