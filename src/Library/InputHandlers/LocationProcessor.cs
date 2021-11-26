@@ -17,7 +17,7 @@ namespace Library.InputHandlers
     {
         ///
         public LocationProcessor(Func<string> initialResponseGetter): base(
-            PipeProcessor<Location>.CreateInstance<string>(
+            new PipeProcessor<string, Location>(
                 s =>
                 {
                     string[] sections = s.Split(", ");

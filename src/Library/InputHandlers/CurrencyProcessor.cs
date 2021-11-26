@@ -15,7 +15,7 @@ namespace Library.InputHandlers
         /// </summary>
         /// <param name="initialResponseGetter"></param>
         public CurrencyProcessor(Func<string> initialResponseGetter) : base(
-            PipeProcessor<Currency>.CreateInstance<string>(
+            new PipeProcessor<string, Currency>(
                 c =>
                 {
                     switch (c.Trim().ToLowerInvariant())

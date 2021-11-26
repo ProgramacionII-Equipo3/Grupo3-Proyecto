@@ -50,7 +50,7 @@ namespace Library.InputHandlers
                         this.phoneNumber = n?.Value;
                     },
                     new OptionalProcessor<ClassWrapper<int>>(
-                        PipeProcessor<ClassWrapper<int>>.CreateInfallibleInstance<int>(
+                        PipeProcessor<int, ClassWrapper<int>>.CreateInfallibleInstance(
                             n => (ClassWrapper<int>)n,
                             new PhoneNumberProcessor(() => "Por favor, ingrese su número de teléfono (opcional).")))),
                 ProcessorHandler.CreateInfallibleInstance<string?>(

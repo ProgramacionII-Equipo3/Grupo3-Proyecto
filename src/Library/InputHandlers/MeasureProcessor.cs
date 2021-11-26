@@ -15,7 +15,7 @@ namespace Library.InputHandlers
         /// </summary>
         /// <param name="initialResponseGetter"></param>
         public MeasureProcessor(Func<string> initialResponseGetter) : base(
-            PipeProcessor<Measure>.CreateInstance<string>(
+            new PipeProcessor<string, Measure>(
                 s =>
                 {
                     switch (s.Trim().ToLowerInvariant())

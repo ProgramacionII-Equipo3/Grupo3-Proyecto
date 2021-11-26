@@ -7,65 +7,55 @@ namespace Library.InputHandlers.Abstractions
     /// <summary>
     /// This class represents an input processor which takes the result of another one and applies a transformation to it.
     /// </summary>
-    /// <typeparam name="T">The type of the resulting object.</typeparam>
-    public class PipeProcessor<T> : InputProcessor<T>
+    /// <typeparam name="T">The type returned by the first processor.</typeparam>
+    /// <typeparam name="U">The type of the resulting object.</typeparam>
+    public class PipeProcessor<T, U> : InputProcessor<U>
     {
-        private readonly Func<string> initialResponseGetter;
-        private Func<string, Result<T, string>?> inputHandler;
-        private Action resetter;
-        private T? result = default;
+        private Func<T, Result<U, string>> func;
+        private InputProcessor<T> processor;
+        private U? result = default;
 
-        private PipeProcessor(Func<string> initialResponseGetter, Func<string, Result<T, string>?> inputHandler, Action resetter)
+        /// <summary>
+        /// Initializes an instance of <see cref="PipeProcessor{T, U}" />.
+        /// </summary>
+        /// <param name="func">The transformation function.</param>
+        /// <param name="processor">The inner <see cref="InputProcessor{T}" />.</param>
+        public PipeProcessor(Func<T, Result<U, string>> func, InputProcessor<T> processor)
         {
-            this.initialResponseGetter = initialResponseGetter;
-            this.inputHandler = inputHandler;
-            this.resetter = resetter;
+            this.func = func;
+            this.processor = processor;
         }
 
         /// <inheritdoc />
         public override Result<bool, string> ProcessInput(string msg) =>
-            (this.inputHandler)(msg) is Result<T, string> processResult
-                ? processResult.AndThen(
-                    result =>
-                    {
-                        this.result = result;
-                        return Result<bool, string>.Ok(true);
-                    })
-                : Result<bool, string>.Ok(false);
+            this.processor.GenerateFromInput(msg) is Result<T, string> middleResult
+                ? middleResult.AndThen(
+                    result => func(result).SwitchErr(
+                        e =>
+                        {
+                            this.processor.Reset();
+                            return $"{e}\n{this.processor.GetDefaultResponse()}";
+                        }
+                    ).AndThen(
+                        result =>
+                        {
+                            this.result = result;
+                            return Result<bool, string>.Ok(true);
+                        }
+                    )
+                ) : Result<bool, string>.Ok(true);
 
         /// <inheritdoc />
-        protected override Result<T, string> getResult() => Result<T, string>.Ok(this.result.Unwrap());
+        protected override Result<U, string> getResult() => Result<U, string>.Ok(this.result.Unwrap());
 
         /// <inheritdoc />
-        public override string GetDefaultResponse() => (this.initialResponseGetter)();
+        public override string GetDefaultResponse() => this.processor.GetDefaultResponse();
 
         /// <inheritdoc />
         public override void Reset()
         {
             this.result = default;
-            (this.resetter)();
-        }
-
-        /// <summary>
-        /// Creates a pipe processor.
-        /// </summary>
-        /// <param name="func">The transformation function.</param>
-        /// <param name="processor">The inner <see cref="InputProcessor{T}" />.</param>
-        /// <typeparam name="U">The type of the objects the inner <see cref="InputProcessor{T}" /> returns.</typeparam>
-        public static PipeProcessor<T> CreateInstance<U>(Func<U, Result<T, string>> func, InputProcessor<U> processor)
-        {
-            return new PipeProcessor<T>(
-                initialResponseGetter: processor.GetDefaultResponse,
-                inputHandler: s =>
-                    processor.GenerateFromInput(s)?.AndThen<T>(
-                        result => func(result).Switch(
-                            v => v,
-                            e =>
-                            {
-                                processor.Reset();
-                                return $"{e}\n{processor.GetDefaultResponse()}";
-                            })),
-                resetter: processor.Reset);
+            this.processor.Reset();
         }
 
         /// <summary>
@@ -73,10 +63,9 @@ namespace Library.InputHandlers.Abstractions
         /// </summary>
         /// <param name="func">The transformation function.</param>
         /// <param name="processor">The inner <see cref="InputProcessor{T}" />.</param>
-        /// <typeparam name="U">The type of the objects the inner <see cref="InputProcessor{T}" /> returns.</typeparam>
-        public static PipeProcessor<T> CreateInfallibleInstance<U>(Func<U, T> func, InputProcessor<U> processor) =>
-            PipeProcessor<T>.CreateInstance<U>(
-                v => Result<T, string>.Ok(func(v)),
+        public static PipeProcessor<T, U> CreateInfallibleInstance(Func<T, U> func, InputProcessor<T> processor) =>
+            new PipeProcessor<T, U>(
+                v => Result<U, string>.Ok(func(v)),
                 processor);
     }
 }
