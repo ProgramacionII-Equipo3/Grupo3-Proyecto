@@ -40,8 +40,10 @@ namespace Library.HighLevel.Companies
 
         /// <summary>
         /// The company's representants in the platform.
+        /// It's a <see cref="List{T}"/> instead of an <see cref="IList{T}"/>
+        /// so it's method <see cref="List{T}.RemoveAll(System.Predicate{T})"/> can be used.
         /// </summary>
-        public IList<string> Representants { get; private set; } = new List<string>();
+        public List<string> Representants { get; private set; } = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
@@ -69,7 +71,7 @@ namespace Library.HighLevel.Companies
         /// <param name="publications">The company's publications.</param>
         /// <param name="materialSales">The company's material sales.</param>
         [JsonConstructor]
-        public Company(string name, ContactInfo contactInfo, string heading, Location location, IList<string> representants, IList<MaterialPublication> publications, IList<MaterialSalesLine> materialSales)
+        public Company(string name, ContactInfo contactInfo, string heading, Location location, List<string> representants, IList<MaterialPublication> publications, IList<MaterialSalesLine> materialSales)
         {
             this.Name = name;
             this.ContactInfo = contactInfo;
@@ -81,7 +83,7 @@ namespace Library.HighLevel.Companies
         }
 
         /// <summary>
-        /// Returns whether a user represents this company.
+        /// Returns whether an user represents this company.
         /// </summary>
         /// <param name="id">The user's id.</param>
         /// <returns>Whether it belongs to the company.</returns>
@@ -89,18 +91,31 @@ namespace Library.HighLevel.Companies
             this.Representants.Any(repId => repId.Equals(id));
 
         /// <summary>
-        /// Adds a user into the list of representants.
+        /// Adds an user into the list of representants.
         /// </summary>
         /// <param name="id">The user's id.</param>
-        public void AddUser(string id) =>
+        /// <returns>Whether the operation is successful.</returns>
+        public bool AddUser(string id)
+        {
+            if (this.Representants.Contains(id)) return false;
             this.Representants.Add(id);
+            return true;
+        }
 
         /// <summary>
-        /// Removes all users in a company
+        /// Removes an user from the list of representants.
+        /// </summary>
+        /// <param name="id">The user's id.</param>
+        /// <returns>Whether the operation is successful.</returns>
+        public bool RemoveRepresentantFromList(string id) =>
+            this.Representants.RemoveAll(userId => userId == id) > 0;
+
+        /// <summary>
+        /// Removes all users in a company.
         /// </summary>
         public void RemoveUsers()
         {
-            foreach(string id in this.Representants)
+            foreach(string id in this.Representants.ToList())
             {
                 Singleton<SessionManager>.Instance.RemoveUser(id);
             }

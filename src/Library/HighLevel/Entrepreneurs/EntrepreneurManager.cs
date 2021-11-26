@@ -20,6 +20,14 @@ namespace Library.HighLevel.Entrepreneurs
         private List<Entrepreneur> entrepreneurs = new List<Entrepreneur>();
 
         /// <summary>
+        /// Initializes an instance of <see cref="EntrepreneurManager"/>.
+        /// </summary>
+        public EntrepreneurManager()
+        {
+            Singleton<SessionManager>.Instance.AddRemover(userId => this.RemoveUserAsEntrepreneurById(userId));
+        }
+
+        /// <summary>
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
         public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepreneurs.AsReadOnly();
@@ -37,11 +45,21 @@ namespace Library.HighLevel.Entrepreneurs
         }
 
         /// <summary>
+        /// Removes an entrepreneur with a concrete id.
+        /// </summary>
+        /// <param name="id">The entrepreneur's id.</param>
+        /// <returns>Whether there was an entrepreneur with the given id.</returns>
+        public bool RemoveUserAsEntrepreneurById(string id) =>
+            Singleton<SessionManager>.Instance.GetById(id) is UserSession session
+                ? RemoveUserAsEntrepreneurByName(session.UserData.Name)
+                : false;
+
+        /// <summary>
         /// Removes an entrepreneur with a concrete name.
         /// </summary>
         /// <param name="name">The entrepreneur's name.</param>
         /// <returns>Whether there was an entrepreneur with the given name.</returns>
-        public bool RemoveEntrepreneur(string name)
+        public bool RemoveUserAsEntrepreneurByName(string name)
         {
             if(this.entrepreneurs.RemoveAll(e => e.Name == name) == 0)
             {

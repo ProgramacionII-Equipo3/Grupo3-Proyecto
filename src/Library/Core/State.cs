@@ -25,7 +25,7 @@ namespace Library.Core
         public abstract string GetDefaultResponse();
 
         /// <summary>
-        /// Determines the <see cref="State" /> of a user after the program begins to run.
+        /// Determines the <see cref="State" /> of an user after the program begins to run.
         /// </summary>
         /// <param name="id">The user's id.</param>
         /// <param name="userData">The user's data.</param>

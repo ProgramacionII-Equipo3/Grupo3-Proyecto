@@ -76,7 +76,7 @@ namespace ProgramTests
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(entrepreneur);
             Assert.Contains(entrepreneur, Singleton<EntrepreneurManager>.Instance.Entrepreneurs);
-            Singleton<EntrepreneurManager>.Instance.RemoveEntrepreneur("Juan");
+            Singleton<EntrepreneurManager>.Instance.RemoveUserAsEntrepreneurByName("Juan");
         }
     }
 }

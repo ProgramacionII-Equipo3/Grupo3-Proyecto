@@ -5,7 +5,7 @@ namespace Library.Core
     /// <summary>
     /// This class represents additional data that all users must have.
     /// We created this class because of SRP, this class in specific is
-    /// the one in charge of saving all the information of a user.
+    /// the one in charge of saving all the information of an user.
     /// </summary>
     public class UserData
     {

@@ -9,7 +9,7 @@ namespace Library.Core.Messaging
     public interface IMessageReceiver<TId>
     {
         /// <summary>
-        /// Converts a valid id of the platform into a user id.
+        /// Converts a valid id of the platform into an user id.
         /// </summary>
         /// <param name="id">The id to convert.</param>
         /// <returns>The resulting user id.</returns>

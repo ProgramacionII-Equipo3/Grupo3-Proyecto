@@ -4,7 +4,7 @@ using Library.Core;
 namespace Library.States.Companies
 {
     /// <summary>
-    /// This class has the responsibility of send to a user a message with all the commands that can be used.
+    /// This class has the responsibility of send to an user a message with all the commands that can be used.
     /// </summary>
     public class CompanyInitialMenuState : MultipleOptionState
     {

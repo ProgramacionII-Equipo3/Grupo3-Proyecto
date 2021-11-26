@@ -6,7 +6,7 @@ using Library.InputHandlers.Abstractions;
 namespace Library.States.Admins
 {
     /// <summary>
-    /// This class represents the state of an admin who is removing a user.
+    /// This class represents the state of an admin who is removing an user.
     /// </summary>
     public class AdminRemoveUserState : InputHandlerState
     {
