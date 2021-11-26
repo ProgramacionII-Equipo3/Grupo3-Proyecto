@@ -2431,10 +2431,11 @@
             This class has the responsibility of create an material with the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.MaterialProcessor.#ctor">
+        <member name="M:Library.InputHandlers.MaterialProcessor.#ctor(System.Func{System.String,System.String})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.MaterialProcessor" />
             </summary>
+            <param name="predicate">A function which determines if a name is valid.</param>
         </member>
         <member name="M:Library.InputHandlers.MaterialProcessor.getResult">
             <inheritdoc />

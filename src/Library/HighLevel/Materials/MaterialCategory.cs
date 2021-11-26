@@ -10,6 +10,8 @@ namespace Library.HighLevel.Materials
     /// </summary>
     public class MaterialCategory
     {
+        private readonly string StringValue;
+
         /// <summary>
         /// The category's name.
         /// </summary>
@@ -21,7 +23,7 @@ namespace Library.HighLevel.Materials
         public static ReadOnlyCollection<MaterialCategory> Categories = new string[]
         {
             "Metales", "Plásticos", "Materiales técnicos", "Químicos", "Otros", "Celulósicos", "Eléctricos", "Textiles", "Metálicos ferrosos", "Metálicos", "Electrónica e Informática", "Solventes", "Vidrio", "Residuos orgánicos", "Residuos y subproductos"
-        }.Select(name => new MaterialCategory(name.ToLowerInvariant())).ToList().AsReadOnly();
+        }.Select(name => new MaterialCategory(name)).ToList().AsReadOnly();
 
         /// <summary>
         /// The list of materials which belong to this category.
@@ -41,7 +43,8 @@ namespace Library.HighLevel.Materials
         /// <param name="name">The material's category name.</param>
         public MaterialCategory(string name)
         {
-            this.Name = name;
+            this.StringValue = name;
+            this.Name = name.ToLowerInvariant();
         }
 
         internal void AddMaterial(Material material)
@@ -61,6 +64,6 @@ namespace Library.HighLevel.Materials
         }
 
         /// <inheritdoc />
-        public override string ToString() => this.Name;
+        public override string ToString() => this.StringValue;
     }
 }

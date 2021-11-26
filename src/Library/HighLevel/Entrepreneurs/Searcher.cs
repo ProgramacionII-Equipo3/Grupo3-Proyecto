@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Library.HighLevel.Materials;
 using Library.HighLevel.Companies;
 using Ucu.Poo.Locations.Client;
@@ -40,7 +41,7 @@ namespace Library.HighLevel.Entrepreneurs
            List<AssignedMaterialPublication> searchResultKeyword = new List<AssignedMaterialPublication>();
            foreach (var item in Singleton<CompanyManager>.Instance.Publications)
            {
-               if (item.Publication.Keywords.Contains(keyword))
+               if (item.Publication.Keywords.Any(k => k.ToLowerInvariant() == keyword.ToLowerInvariant()))
                {
                    searchResultKeyword.Add(item);
                }

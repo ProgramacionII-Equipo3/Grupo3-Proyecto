@@ -75,7 +75,7 @@ namespace Library.States.Companies
                         {
                             if(Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                             {
-                                if(company.AssignedPublications.Any(ap => ap.Publication.Material.Name == m.Name))
+                                if(company.Publications.Any(ap => ap.Material == m))
                                 {
                                     return "Ya hay un material con este nombre.";
                                 }
@@ -87,7 +87,12 @@ namespace Library.States.Companies
                                 return "No se puede chequear la unicidad de este material en la compañía.";
                             }
                         },
-                        new MaterialProcessor()
+                        new MaterialProcessor(materialName =>
+                            Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company
+                                ? company.Publications.Any(ap => ap.Material.Name == materialName)
+                                    ? "Ya hay un material con este nombre."
+                                    : null
+                                : "No se puede chequear la unicidad de este material en la compañía.")
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Amount>(
                         a => this.amount = a,
