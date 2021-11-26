@@ -71,7 +71,7 @@ namespace Library.HighLevel.Companies
         /// <param name="publications">The company's publications.</param>
         /// <param name="materialSales">The company's material sales.</param>
         [JsonConstructor]
-        public Company(string name, ContactInfo contactInfo, string heading, Location location, List<string> representants, IList<MaterialPublication> publications, IList<MaterialSalesLine> materialSales)
+        public Company(string name, ContactInfo contactInfo, string heading, Location location, List<string> representants, List<MaterialPublication> publications, IList<MaterialSalesLine> materialSales)
         {
             this.Name = name;
             this.ContactInfo = contactInfo;

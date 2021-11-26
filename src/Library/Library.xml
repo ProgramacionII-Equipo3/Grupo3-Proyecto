@@ -1183,7 +1183,7 @@
             <param name="heading">The company's heading.</param>
             <param name="location">The company's location.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String},System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.Collections.Generic.IList{Library.HighLevel.Accountability.MaterialSalesLine})">
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String},System.Collections.Generic.List{Library.HighLevel.Materials.MaterialPublication},System.Collections.Generic.IList{Library.HighLevel.Accountability.MaterialSalesLine})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class from JSON data.
             </summary>
@@ -1244,11 +1244,11 @@
             <param name="requirements">The requirements of the material.</param>
             <returns>Whether the operation was successful.</returns>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.RemovePublication(System.Int32)">
+        <member name="M:Library.HighLevel.Companies.Company.RemovePublication(System.String)">
             <summary>
             Removes a material publication.
             </summary>
-            <param name="index">The index of the publication.</param>
+            <param name="name">The name of the publication.</param>
             <returns>Whether the removal was successful.</returns>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.MaterialSales">
@@ -2793,6 +2793,17 @@
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyPublishMaterialState.CollectDataProcessor" />
             </summary>
+        </member>
+        <member name="T:Library.States.Companies.CompanyRemovePublicationState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.CompanyRemovePublicationState.#ctor(System.String)">
+            <summary>
+            This state has the responsibility of remove a company publication given its name.
+            </summary>
+            <param name="id">The user´s id.</param>
         </member>
         <member name="T:Library.States.Companies.CompanySentReportState">
             <summary>
