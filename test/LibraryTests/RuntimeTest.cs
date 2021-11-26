@@ -33,6 +33,7 @@ namespace UnitTests
             {
                 SerializationUtils.SerializeAllIntoJson("../../Memory-test");
             }
+            SerializationUtils.DeserializeAllFromJSON("../../../-Memory-test-begin");
         }
 
         private void runtimeBasicTestInner()
