@@ -67,5 +67,16 @@ namespace Library.InputHandlers.Abstractions
                             })),
                 resetter: processor.Reset);
         }
+
+        /// <summary>
+        /// Creates a pipe processor whose piped process can't fail.
+        /// </summary>
+        /// <param name="func">The transformation function.</param>
+        /// <param name="processor">The inner <see cref="InputProcessor{T}" />.</param>
+        /// <typeparam name="U">The type of the objects the inner <see cref="InputProcessor{T}" /> returns.</typeparam>
+        public static PipeProcessor<T> CreateInfallibleInstance<U>(Func<U, T> func, InputProcessor<U> processor) =>
+            PipeProcessor<T>.CreateInstance<U>(
+                v => Result<T, string>.Ok(func(v)),
+                processor);
     }
 }

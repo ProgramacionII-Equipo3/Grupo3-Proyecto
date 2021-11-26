@@ -18,9 +18,9 @@ namespace Library.States.Admins
         {
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                ("/invitecompany", "Crea una invitación a companía y obtiene su respectivo código.", this.inviteCompany),
-                ("/removecompany", "Elimina una compañía y sus respectivos usuarios.",               this.removeCompany),
-                ("/removeuser",    "Elimina un usuario.",                                            this.removeUser)
+                ("/invitecompany", "Crea una invitación para un representante de una companía y obtiene su respectivo código.", this.inviteCompany),
+                ("/removecompany", "Elimina una compañía y sus respectivos usuarios.",                                          this.removeCompany),
+                ("/removeuser",    "Elimina un usuario.",                                                                       this.removeUser)
             };
         }
 

@@ -38,9 +38,7 @@ namespace Library.InputHandlers.Abstractions
             this.inputHandlers = inputHandlers.Select(handlerGetter =>
                 ProcessorHandler.CreateInfallibleInstance<U>(
                     newState => this.state = newState,
-                    handlerGetter(() => this.state)
-                )
-            ).ToArray();
+                    handlerGetter(() => this.state))).ToArray();
         }
 
         /// <inheritdoc />

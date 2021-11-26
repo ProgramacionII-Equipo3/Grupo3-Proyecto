@@ -32,7 +32,8 @@ namespace Library.Utils
             if (JsonSerializer.DeserializeAsync<T>(fileStream, defaultOptions).Result is T result)
             {
                 return result;
-            } else
+            }
+            else
             {
                 throw new System.Runtime.Serialization.SerializationException("The given JSON represents a null value.");
             }
@@ -117,6 +118,7 @@ namespace Library.Utils
         /// <param name="path">The directory's path.</param>
         public static void DeserializeAllFromJSON(string path)
         {
+            Singleton<InvitationManager>.Instance.ClearInvitations();
             Singleton<InvitationManager>.Instance.LoadInvitations<Library.HighLevel.Companies.CompanyInvitation, Library.HighLevel.Companies.JsonCompanyInvitation>(path, "company_invitations.json");
             Singleton<SessionManager>.Instance.LoadUserSessions(path);
             Singleton<CompanyManager>.Instance.LoadCompanies(path);

@@ -59,5 +59,8 @@ namespace Library.HighLevel.Materials
             name = name.ToLowerInvariant();
             return MaterialCategory.Categories.Where(c => c.Name.ToLowerInvariant() == name).FirstOrDefault();
         }
+
+        /// <inheritdoc />
+        public override string ToString() => this.Name;
     }
 }

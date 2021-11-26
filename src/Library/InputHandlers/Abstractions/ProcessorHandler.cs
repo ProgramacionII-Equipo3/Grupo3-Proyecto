@@ -34,7 +34,7 @@ namespace Library.InputHandlers.Abstractions
                         v =>
                         {
                             string? res = f(v);
-                            if (res == null) return Result<bool, string>.Ok(true);
+                            if (res is null) return Result<bool, string>.Ok(true);
                             processor.Reset();
                             return Result<bool, string>.Err($"{res}\n{processor.GetDefaultResponse()}");
                         }

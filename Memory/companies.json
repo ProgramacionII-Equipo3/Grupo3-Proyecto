@@ -53,8 +53,43 @@
           "cart\u00F3n",
           "bujes"
         ],
+        "Requirements": []
+      },
+      {
+        "Material": {
+          "Name": "Anilinas",
+          "Measure": "Weight",
+          "Category": "qu\u00EDmicos"
+        },
+        "Amount": {
+          "Quantity": 10,
+          "Unit": "g"
+        },
+        "Price": {
+          "Quantity": 150,
+          "Currency": "peso",
+          "Unit": "g"
+        },
+        "PickupLocation": {
+          "Found": true,
+          "AddresLine": "Ruta 12",
+          "CountryRegion": "Uruguay",
+          "FormattedAddress": "Ruta 12, Lavalleja, Lavalleja, 30000",
+          "Locality": "Lavalleja",
+          "PostalCode": "30000",
+          "Latitude": -34.43865,
+          "Longitude": -55.2056
+        },
+        "Type": {
+          "DateTime": "2021-11-24T00:00:00",
+          "PublicationType": "SCHEDULED"
+        },
+        "Keywords": [
+          "anilinas",
+          "quimicos"
+        ],
         "Requirements": [
-            
+          "Habilitaci\u00F3n para la manipulaci\u00F3n de Qu\u00EDmicos"
         ]
       }
     ],

@@ -57,7 +57,7 @@ namespace Library.States.Companies
                     },
                     heading: this.heading.Unwrap(),
                     location: this.location.Unwrap());
-                if (result == null) 
+                if (result is null) 
                 {
                     return Result<Company, string>.Err("Ya existe una compañía con ese nombre.");
                 }

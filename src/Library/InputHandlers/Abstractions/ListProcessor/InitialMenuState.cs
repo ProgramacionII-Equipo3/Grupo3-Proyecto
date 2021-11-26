@@ -17,7 +17,7 @@ namespace Library.InputHandlers.Abstractions
                   + "\n        /add: Añadir un elemento"
                   + "\n        /remove: Remover un elemento"
                   + "\n        /finish: Terminar"
-                  + "\n        /back: Ir atrás";
+                  + "\n        /esc: Salir sin ingresar lista";
 
             /// <inheritdoc />
             public override Result<bool, (ListProcessor<T>.InnerProcessorState, string?)> ProcessMessage(string msg)
@@ -33,7 +33,7 @@ namespace Library.InputHandlers.Abstractions
                             new RemoveElementState(this.parent), null));
                     case "/finish":
                         return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Ok(true);
-                    case "/back":
+                    case "/esc":
                         return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Ok(false);
                     default:
                         return Result<bool, (ListProcessor<T>.InnerProcessorState, string?)>.Err((this, null));

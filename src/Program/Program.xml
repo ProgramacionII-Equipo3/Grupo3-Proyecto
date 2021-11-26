@@ -35,6 +35,7 @@
             <summary>
             Executes the program.
             </summary>
+            <param name="args">The program arguments.</param>
         </member>
     </members>
 </doc>

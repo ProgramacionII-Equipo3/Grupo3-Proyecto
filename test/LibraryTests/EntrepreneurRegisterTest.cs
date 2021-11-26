@@ -17,6 +17,7 @@ namespace ProgramTests
     /// <summary>
     /// Test if an Entrepreneur can register into the platform.
     /// </summary>
+    [TestFixture]
     public class EntrepreneurRegisterTest
     {
         private string? juanId;
@@ -91,30 +92,22 @@ namespace ProgramTests
         [Test]
         public void EntrepreneurRegisterFromUserInput()
         {
-            Singleton<InvitationManager>.Instance.CreateInvitation<CompanyInvitation>("4jsk", code => new CompanyInvitation(code));
             UnitTests.ProgramaticPlatform platform = new UnitTests.ProgramaticPlatform(
                 "___",
-                "/start 4jsk",
-                "Teogal",
+                "/start -e",
+                "Santiago",
+                "18",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
                 "Maderas",
-                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                "098471724",
-                "teogal@gmail.com",
-                "/publish",
-                "A",
-                "length",
-                "metales",
-                "50",
-                "cm",
-                "30",
-                "pesos",
-                "cm",
-                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "/add",
+                "https://web.telegram.org/k/",
+                "Description1",
+                "/finish",
                 "/finish");
             platform.Run();
             Console.WriteLine();
             Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
-            Singleton<CompanyManager>.Instance.RemoveCompany("Teogal");
+            Singleton<EntrepreneurManager>.Instance.RemoveEntrepreneur("Santiago");
         }
     }
 }

@@ -27,13 +27,12 @@ namespace Library.InputHandlers
                 ),
                 ProcessorHandler.CreateInfallibleInstance<string>(
                     s => this.description = s,
-                    new BasicStringProcessor(() => "Por favor ingrese una descripción de la habilitación.")
-                )
+                    new BasicStringProcessor(() => "Por favor ingrese una descripción de la habilitación."))
             };
         }
 
         /// <inheritdoc />
         protected override Result<Habilitation, string> getResult() =>
-            Result<Habilitation, string>.Ok(new Habilitation(docLink.Unwrap(), description.Unwrap()));
+            Result<Habilitation, string>.Ok(new Habilitation(this.docLink.Unwrap(), this.description.Unwrap()));
     }
 }

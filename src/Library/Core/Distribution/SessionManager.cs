@@ -27,15 +27,24 @@ namespace Library.Core.Distribution
             this.sessions.Where(session => session.MatchesId(id)).FirstOrDefault();
 
         /// <summary>
+        /// Returns the <see cref="UserSession" /> whose name equals to the given one.
+        /// </summary>
+        /// <param name="name">The given name.</param>
+        /// <returns>Its corresponding <see cref="UserSession" />, or null if there isn't.</returns>
+        public UserSession? GetByName(string name) => 
+            this.sessions.Where(session => session.MatchesName(name)).FirstOrDefault();
+
+        /// <summary>
         /// Adds a new user into the platform.
         /// </summary>
         /// <param name="id">The user's id.</param>
         /// <param name="userData">The user's data.</param>
         /// <param name="state">The user's initial state.</param>
-        /// <returns>The resulting <see cref="UserSession" />, or null if there's already one.</returns>
+        /// <returns>The resulting <see cref="UserSession" />, or null if
+        /// there's already one with the same id or name.</returns>
         public UserSession? NewUser(string id, UserData userData, State state)
         {
-            if (this.GetById(id) != null)
+            if (this.GetById(id) is not null || this.GetByName(userData.Name) is not null)
             {
                 return null;
             }

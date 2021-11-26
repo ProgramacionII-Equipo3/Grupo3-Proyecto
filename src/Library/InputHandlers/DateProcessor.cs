@@ -19,7 +19,8 @@ namespace Library.InputHandlers
                     if (DateTime.TryParseExact(s, "dd/MM/yyyy", NumberFormatInfo.InvariantInfo, DateTimeStyles.None, out dateTime))
                     {
                         return Result<DateTime, string>.Ok(dateTime);
-                    } else
+                    }
+                    else
                     {
                         return Result<DateTime, String>.Err("La fecha es incorrecta.");
                     }

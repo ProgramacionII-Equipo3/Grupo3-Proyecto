@@ -17,7 +17,7 @@ namespace Library.Core.Distribution
         /// <summary>
         /// Gets the data associated with the user.
         /// </summary>
-        public UserData UserData { get; private set; }
+        public UserData UserData { get; set; }
 
         /// <summary>
         /// The current state of the user's session.
@@ -60,15 +60,13 @@ namespace Library.Core.Distribution
                 return this.state.GetDefaultResponse();
             }
 
-            UserData userData = this.UserData;
-            var (newState, res) = this.state.ProcessMessage(this.Id, ref userData, msg);
-            if (newState == null)
+            var (newState, res) = this.state.ProcessMessage(this.Id, msg);
+            if (newState is null)
             {
                 Singleton<SessionManager>.Instance.RemoveUser(this.Id);
                 return "User eliminated.";
             }
             
-            this.UserData = userData;
             this.state = newState;
             return res ?? newState.GetDefaultResponse();
         }
@@ -77,7 +75,14 @@ namespace Library.Core.Distribution
         /// Checks whether this <see cref="UserSession" /> has a concrete user id.
         /// </summary>
         /// <param name="id">The id to compare with.</param>
-        /// <returns>True uf the IDs are equal and false if it not does.</returns>
+        /// <returns>Whether the IDs are equal.</returns>
         public bool MatchesId(string id) => this.Id.Equals(id);
+
+        /// <summary>
+        /// Checks whether this <see cref="UserSession" /> has a concrete name.
+        /// </summary>
+        /// <param name="name">The name to compare with.</param>
+        /// <returns>Whether the names are equal, not null, and not whitespace.</returns>
+        public bool MatchesName(string name) => !string.IsNullOrWhiteSpace(name) && this.UserData.Name.Equals(name);
     }
 }

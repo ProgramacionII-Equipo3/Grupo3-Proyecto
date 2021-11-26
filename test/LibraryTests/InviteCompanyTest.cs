@@ -8,6 +8,7 @@ namespace ProgramTests
     /// <summary>
     /// Test if a Company can be invited to the platform.
     /// </summary>
+    [TestFixture]
     public class InviteCompanyTest
     {
         /// <summary>

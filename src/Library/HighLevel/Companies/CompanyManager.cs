@@ -57,7 +57,7 @@ namespace Library.HighLevel.Companies
         {
             name = name.Trim();
             heading = heading.Trim();
-            if (GetByName(name) != null)
+            if (GetByName(name) is not null)
             {
                 return null;
             }
@@ -82,7 +82,7 @@ namespace Library.HighLevel.Companies
         {
             name = name.Trim();
             Company? company = this.companies.Where(company => company.Name == name).FirstOrDefault();
-            if (company == null) return false;
+            if (company is null) return false;
             company.RemoveUsers();
             return true;
         }

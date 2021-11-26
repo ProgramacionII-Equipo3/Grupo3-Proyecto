@@ -13,6 +13,7 @@ namespace ProgramTests
     /// <summary>
     /// Tests if a company can publish an offer for entrepreneurs.
     /// </summary>
+    [TestFixture]
     public class PublishOfferTest
     {
         /// <summary>

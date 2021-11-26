@@ -56,5 +56,12 @@ namespace Library.HighLevel.Materials
         {
             habilitation.IsCorrect = true;
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            string miniText = this.IsCorrect ? "validado" : "no validado";
+            return $"{this.DocLink}\n    {this.DescriptiveText} ({miniText})";
+        }
     }
 }

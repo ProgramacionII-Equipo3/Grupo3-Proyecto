@@ -74,6 +74,11 @@
             This test check GetByName method of CompanyManager class.
             </summary>
         </member>
+        <member name="M:ProgramTests.CompanyTest.CompanyRegisterFromUserInput">
+            <summary>
+            Tests the course of registering a company from user input.
+            </summary>
+        </member>
         <member name="T:ProgramTests.EntrepreneurRegisterTest">
             <summary>
             Test if an Entrepreneur can register into the platform.
@@ -202,6 +207,14 @@
             This class represents unit tests related to admin states.
             </summary>
         </member>
+        <member name="M:UnitTests.AdminStatesTest.IsCreateInvitationResponseRegex(System.String)">
+            <summary>
+            Checks whether a message is a response from creating an invitation,
+            returning the invitation's code.
+            </summary>
+            <param name="msg">The message.</param>
+            <returns>The invitation's code, if there is.</returns>
+        </member>
         <member name="M:UnitTests.AdminStatesTest.TestAdminCreateInvitation">
             <summary>
             Tests the class <see cref="T:Library.States.Admins.AdminInitialMenuState" />'s /createcompany option.
@@ -256,6 +269,29 @@
             Tests the functionality of giving an interrupt signal.
             </summary>
         </member>
+        <member name="T:UnitTests.ProgramaticMultipleUserPlatform">
+            <summary>
+            Acts as a messaging platform in which the messages it sends are determined in advance.
+            </summary>
+        </member>
+        <member name="P:UnitTests.ProgramaticMultipleUserPlatform.ReceivedMessages">
+            <summary>
+            The received messages.
+            </summary>
+        </member>
+        <member name="M:UnitTests.ProgramaticMultipleUserPlatform.GetUserId(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ProgramaticMultipleUserPlatform.SendMessage(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitTests.ProgramaticMultipleUserPlatform.ReceiveMessages(System.String,System.String[])">
+            <summary>
+            Receives an array of messages from the same user.
+            </summary>
+            <param name="id">The messages' id.</param>
+            <param name="messages">The messages' contents.</param>
+        </member>
         <member name="T:UnitTests.ProgramaticPlatform">
             <summary>
             Acts as a messaging platform in which the messages it sends are determined in advance.
@@ -282,6 +318,16 @@
         <member name="M:UnitTests.ProgramaticPlatform.Run">
             <summary>
             Receives messages from the console as if it was a messaging platform.
+            </summary>
+        </member>
+        <member name="T:UnitTests.RuntimeTest">
+            <summary>
+            This class holds a single test which executes a long runtime code into a ConsolePlatform-like platform.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.RuntimeBasicTest">
+            <summary>
+            Realizes a test from the point of view of the users.
             </summary>
         </member>
         <member name="T:UnitTests.Utils.BasicUtils">

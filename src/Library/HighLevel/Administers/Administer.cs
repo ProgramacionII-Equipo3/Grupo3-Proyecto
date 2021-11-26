@@ -43,10 +43,18 @@ namespace Library.HighLevel.Administers
         /// <summary>
         /// This method creates an invitation for a company.
         /// </summary>
+        /// <returns>The invitation code.</returns>
         public static string CreateCompanyInvitation()
         {
-            string generatedCode = Administer.GenerateInvitationCode();
-            Singleton<InvitationManager>.Instance.CreateInvitation(generatedCode, code => new CompanyInvitation(code));
+            string? generatedCode = null;
+            while(generatedCode is null)
+            {
+                generatedCode = Administer.GenerateInvitationCode();
+                if (!Singleton<InvitationManager>.Instance.CreateInvitation(generatedCode, code => new CompanyInvitation(code)))
+                {
+                    generatedCode = null;
+                }
+            }
             return generatedCode;
         }
     }

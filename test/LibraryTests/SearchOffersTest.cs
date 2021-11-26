@@ -16,6 +16,7 @@ namespace ProgramTests
     /// This test proves that a entrepreneur can search material
     /// publication's using a keyword, category or zone.
     /// </summary>
+    [TestFixture]
     public class SearchOffersTest
     {
         private MaterialCategory? category1;
@@ -66,7 +67,8 @@ namespace ProgramTests
             if (Singleton<CompanyManager>.Instance.GetByName("Company1") is Company c)
             {
                 empresa = c;
-            } else
+            }
+            else
             {
                 empresa = Singleton<CompanyManager>.Instance.CreateCompany("Company1", this.contact, "Tecnología", this.pickupLocation1) !;
                 empresa.PublishMaterial(this.material1, this.amount1, this.price1, this.pickupLocation1, MaterialPublicationTypeData.Normal(), keyword1,requirements1);
