@@ -37,7 +37,7 @@ namespace Library.HighLevel.Companies
         /// The company's representants in the platform.
         /// </summary>
         [JsonInclude]
-        public IList<string>? Representants { get; set; }
+        public List<string>? Representants { get; set; }
 
         /// <summary>
         /// Gets a private list of the publications.

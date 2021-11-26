@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
+using Library.Core.Distribution;
 using Library.HighLevel.Materials;
-using Ucu.Poo.Locations.Client;
 using Library.Utils;
+using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {
@@ -23,6 +23,14 @@ namespace Library.HighLevel.Companies
         /// because the method <see cref="List{T}.AsReadOnly()" /> is necessary for the property <see cref="CompanyManager.Companies" />.
         /// </summary>
         private List<Company> companies = new List<Company>();
+
+        /// <summary>
+        /// Initializes an instance of <see cref="CompanyManager"/>.
+        /// </summary>
+        public CompanyManager()
+        {
+            Singleton<SessionManager>.Instance.AddRemover(userId => this.RemoveRepresentative(userId));
+        }
 
         /// <summary>
         /// Gets a public read-only list of the companies.
@@ -44,6 +52,14 @@ namespace Library.HighLevel.Companies
         /// <returns>A company, or null if there is no company with that name.</returns>
         public Company? GetByName(string name) =>
             companies.Where(company => company.Name == name).FirstOrDefault();
+
+        /// <summary>
+        /// Removes an user with a certain id from the list of representants of their respective company.
+        /// </summary>
+        /// <param name="id">The user's id.</param>
+        /// <returns>Whether the operation was successful.</returns>
+        public bool RemoveRepresentative(string id) =>
+            this.companies.Any(company => company.RemoveRepresentantFromList(id));
 
         /// <summary>
         /// Creates an instance of <see cref="Company" />, adding it to the list.

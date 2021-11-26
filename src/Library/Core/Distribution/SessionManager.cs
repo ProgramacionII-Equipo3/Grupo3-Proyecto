@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Utils;
@@ -11,6 +12,22 @@ namespace Library.Core.Distribution
     /// </summary>
     public class SessionManager
     {
+        /// <summary>
+        /// Gets a set of functions to remove users
+        /// from their correspondent storages.
+        /// </summary>
+        private IList<Action<string>> removers = new List<Action<string>>();
+
+        /// <summary>
+        /// Adds a remover into the set.
+        /// </summary>
+        /// <param name="remover">The remover.</param>
+        public void AddRemover(Action<string> remover)
+        {
+            if (!this.removers.Contains(remover))
+                this.removers.Add(remover);
+        }
+
         /// <summary>
         /// The list of current sessions.
         /// The class <see cref="List{T}" /> is used instead of the interface <see cref="IList{T}" />
@@ -58,17 +75,25 @@ namespace Library.Core.Distribution
         /// Removes the user with a concrete id.
         /// </summary>
         /// <param name="id">The user's id.</param>
-        /// <returns>Whether there was a user with the given id.</returns>
-        public bool RemoveUser(string id) =>
-            this.sessions.RemoveAll(session => session.Id == id) > 0;
+        /// <returns>Whether there was an user with the given id.</returns>
+        public bool RemoveUser(string id)
+        {
+            foreach (Action<string> remover in this.removers.ToList())
+            {
+                remover(id);
+            }
+            return this.sessions.RemoveAll(session => session.Id == id) > 0;
+        }
 
         /// <summary>
         /// Removes the user with a concrete name.
         /// </summary>
         /// <param name="name">The user's name.</param>
-        /// <returns>Whether there was a user with the given name.</returns>
+        /// <returns>Whether there was an user with the given name.</returns>
         public bool RemoveUserByName(string name) =>
-            this.sessions.RemoveAll(session => session.UserData.Name == name) > 0;
+            this.GetByName(name) is UserSession session
+                ? this.RemoveUser(session.Id)
+                : false;
 
         /// <summary>
         /// Loads all user sessions from JSON.

@@ -77,7 +77,7 @@ namespace Library.Core.Invitations
         }
 
         /// <summary>
-        /// Validates an invitation with a user id, returning the response message of the validation.
+        /// Validates an invitation with an user id, returning the response message of the validation.
         /// </summary>
         /// <param name="invitationCode">The invitation's code.</param>
         /// <param name="userId">The id of the user who validated the invitation.</param>
@@ -101,7 +101,7 @@ namespace Library.Core.Invitations
         private void removeInvitation(Invitation invitation)
         {
                 invitations.Remove(invitation);
-                foreach(Action<string> f in removers)
+                foreach(Action<string> f in this.removers.ToList())
                 {
                     f(invitation.Code);
                 }

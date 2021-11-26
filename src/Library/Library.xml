@@ -34,7 +34,7 @@
         </member>
         <member name="T:Library.Core.ContactInfo">
             <summary>
-            This struct represents contact information data associated with a user,
+            This struct represents contact information data associated with an user,
             a company, or another entity with contact information.
             We created this class because of SRP, this class in particular is the one that
             saves the contact info.
@@ -79,6 +79,18 @@
             creating an instance of user session.
             </summary>
         </member>
+        <member name="F:Library.Core.Distribution.SessionManager.removers">
+            <summary>
+            Gets a set of functions to remove users
+            from their correspondent storages.
+            </summary>
+        </member>
+        <member name="M:Library.Core.Distribution.SessionManager.AddRemover(System.Action{System.String})">
+            <summary>
+            Adds a remover into the set.
+            </summary>
+            <param name="remover">The remover.</param>
+        </member>
         <member name="F:Library.Core.Distribution.SessionManager.sessions">
             <summary>
             The list of current sessions.
@@ -115,14 +127,14 @@
             Removes the user with a concrete id.
             </summary>
             <param name="id">The user's id.</param>
-            <returns>Whether there was a user with the given id.</returns>
+            <returns>Whether there was an user with the given id.</returns>
         </member>
         <member name="M:Library.Core.Distribution.SessionManager.RemoveUserByName(System.String)">
             <summary>
             Removes the user with a concrete name.
             </summary>
             <param name="name">The user's name.</param>
-            <returns>Whether there was a user with the given name.</returns>
+            <returns>Whether there was an user with the given name.</returns>
         </member>
         <member name="M:Library.Core.Distribution.SessionManager.LoadUserSessions(System.String)">
             <summary>
@@ -138,7 +150,7 @@
         </member>
         <member name="T:Library.Core.Distribution.UserSession">
             <summary>
-            This class represent a user's session, being the highest-level class which represents it.
+            This class represent an user's session, being the highest-level class which represents it.
             This class uses the Expert pattern, it is the one responsible of processing the
             message and verify if the id matches.
             </summary>
@@ -305,7 +317,7 @@
         </member>
         <member name="M:Library.Core.Invitations.InvitationManager.ValidateInvitation(System.String,System.String)">
             <summary>
-            Validates an invitation with a user id, returning the response message of the validation.
+            Validates an invitation with an user id, returning the response message of the validation.
             </summary>
             <param name="invitationCode">The invitation's code.</param>
             <param name="userId">The id of the user who validated the invitation.</param>
@@ -369,7 +381,7 @@
         </member>
         <member name="M:Library.Core.Messaging.IMessageReceiver`1.GetUserId(`0)">
             <summary>
-            Converts a valid id of the platform into a user id.
+            Converts a valid id of the platform into an user id.
             </summary>
             <param name="id">The id to convert.</param>
             <returns>The resulting user id.</returns>
@@ -525,7 +537,7 @@
         </member>
         <member name="M:Library.Core.State.FromUserData(System.String,Library.Core.UserData)">
             <summary>
-            Determines the <see cref="T:Library.Core.State" /> of a user after the program begins to run.
+            Determines the <see cref="T:Library.Core.State" /> of an user after the program begins to run.
             </summary>
             <param name="id">The user's id.</param>
             <param name="userData">The user's data.</param>
@@ -535,7 +547,7 @@
             <summary>
             This class represents additional data that all users must have.
             We created this class because of SRP, this class in specific is
-            the one in charge of saving all the information of a user.
+            the one in charge of saving all the information of an user.
             </summary>
         </member>
         <member name="P:Library.Core.UserData.Name">
@@ -1158,6 +1170,8 @@
         <member name="P:Library.HighLevel.Companies.Company.Representants">
             <summary>
             The company's representants in the platform.
+            It's a <see cref="T:System.Collections.Generic.List`1"/> instead of an <see cref="T:System.Collections.Generic.IList`1"/>
+            so it's method <see cref="M:System.Collections.Generic.List`1.RemoveAll(System.Predicate{`0})"/> can be used.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
@@ -1169,7 +1183,7 @@
             <param name="heading">The company's heading.</param>
             <param name="location">The company's location.</param>
         </member>
-        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.Collections.Generic.IList{Library.HighLevel.Accountability.MaterialSalesLine})">
+        <member name="M:Library.HighLevel.Companies.Company.#ctor(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location,System.Collections.Generic.List{System.String},System.Collections.Generic.IList{Library.HighLevel.Materials.MaterialPublication},System.Collections.Generic.IList{Library.HighLevel.Accountability.MaterialSalesLine})">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Companies.Company"/> class from JSON data.
             </summary>
@@ -1183,20 +1197,28 @@
         </member>
         <member name="M:Library.HighLevel.Companies.Company.HasUser(System.String)">
             <summary>
-            Returns whether a user represents this company.
+            Returns whether an user represents this company.
             </summary>
             <param name="id">The user's id.</param>
             <returns>Whether it belongs to the company.</returns>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.AddUser(System.String)">
             <summary>
-            Adds a user into the list of representants.
+            Adds an user into the list of representants.
             </summary>
             <param name="id">The user's id.</param>
+            <returns>Whether the operation is successful.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Companies.Company.RemoveRepresentantFromList(System.String)">
+            <summary>
+            Removes an user from the list of representants.
+            </summary>
+            <param name="id">The user's id.</param>
+            <returns>Whether the operation is successful.</returns>
         </member>
         <member name="M:Library.HighLevel.Companies.Company.RemoveUsers">
             <summary>
-            Removes all users in a company
+            Removes all users in a company.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Companies.Company.Publications">
@@ -1271,6 +1293,11 @@
             because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Companies.CompanyManager.Companies" />.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.HighLevel.Companies.CompanyManager"/>.
+            </summary>
+        </member>
         <member name="P:Library.HighLevel.Companies.CompanyManager.Companies">
             <summary>
             Gets a public read-only list of the companies.
@@ -1289,6 +1316,13 @@
             </summary>
             <param name="name">The company's name.</param>
             <returns>A company, or null if there is no company with that name.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.RemoveRepresentative(System.String)">
+            <summary>
+            Removes an user with a certain id from the list of representants of their respective company.
+            </summary>
+            <param name="id">The user's id.</param>
+            <returns>Whether the operation was successful.</returns>
         </member>
         <member name="M:Library.HighLevel.Companies.CompanyManager.CreateCompany(System.String,Library.Core.ContactInfo,System.String,Ucu.Poo.Locations.Client.Location)">
             <summary>
@@ -1486,6 +1520,11 @@
             because the method <see cref="M:System.Collections.Generic.List`1.AsReadOnly" /> is necessary for the property <see cref="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs" />.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager"/>.
+            </summary>
+        </member>
         <member name="P:Library.HighLevel.Entrepreneurs.EntrepreneurManager.Entrepreneurs">
             <summary>
             Gets the entrepreneur's users in the platform.
@@ -1498,7 +1537,14 @@
             <param name="entrepreneur">The new entrepreneur.</param>
             <returns>Whether the operation was successful.</returns>
         </member>
-        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.RemoveEntrepreneur(System.String)">
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.RemoveUserAsEntrepreneurById(System.String)">
+            <summary>
+            Removes an entrepreneur with a concrete id.
+            </summary>
+            <param name="id">The entrepreneur's id.</param>
+            <returns>Whether there was an entrepreneur with the given id.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.RemoveUserAsEntrepreneurByName(System.String)">
             <summary>
             Removes an entrepreneur with a concrete name.
             </summary>
@@ -2385,10 +2431,11 @@
             This class has the responsibility of create an material with the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.MaterialProcessor.#ctor">
+        <member name="M:Library.InputHandlers.MaterialProcessor.#ctor(System.Func{System.String,System.String})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.MaterialProcessor" />
             </summary>
+            <param name="predicate">A function which determines if a name is valid.</param>
         </member>
         <member name="M:Library.InputHandlers.MaterialProcessor.getResult">
             <inheritdoc />
@@ -2686,7 +2733,7 @@
         </member>
         <member name="T:Library.States.Admins.AdminRemoveUserState">
             <summary>
-            This class represents the state of an admin who is removing a user.
+            This class represents the state of an admin who is removing an user.
             </summary>
         </member>
         <member name="M:Library.States.Admins.AdminRemoveUserState.#ctor">
@@ -2707,7 +2754,7 @@
         </member>
         <member name="T:Library.States.Companies.CompanyInitialMenuState">
             <summary>
-            This class has the responsibility of send to a user a message with all the commands that can be used.
+            This class has the responsibility of send to an user a message with all the commands that can be used.
             </summary>
         </member>
         <member name="M:Library.States.Companies.CompanyInitialMenuState.#ctor(System.String)">

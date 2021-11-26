@@ -83,7 +83,7 @@ namespace ProgramTests
             Assert.AreEqual(habilitations, juan.Habilitations);
             Assert.AreEqual(specializations, juan.Specializations);
             Assert.AreEqual(nameExpected, juan.Name);
-            Singleton<EntrepreneurManager>.Instance.RemoveEntrepreneur(this.nameMessage.Text);
+            Singleton<EntrepreneurManager>.Instance.RemoveUserAsEntrepreneurByName(this.nameMessage.Text);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace ProgramTests
             platform.Run();
             Console.WriteLine();
             Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
-            Singleton<EntrepreneurManager>.Instance.RemoveEntrepreneur("Santiago");
+            Singleton<EntrepreneurManager>.Instance.RemoveUserAsEntrepreneurByName("Santiago");
         }
     }
 }

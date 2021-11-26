@@ -1,3 +1,4 @@
+using System;
 using Library.Core.Processing;
 using Library.HighLevel.Accountability;
 using Library.InputHandlers.Abstractions;
@@ -18,12 +19,18 @@ namespace Library.InputHandlers
         /// <summary>
         /// Initializes an instance of <see cref="MaterialProcessor" />
         /// </summary>
-        public MaterialProcessor()
+        /// <param name="predicate">A function which determines if a name is valid.</param>
+        public MaterialProcessor(Func<string, string?> predicate)
         {
             this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInfallibleInstance<string>(
-                    n => this.name = n,
+                ProcessorHandler.CreateInstance<string>(
+                    n =>
+                    {
+                        if(predicate(n) is string error) return error;
+                        this.name = n;
+                        return null;
+                    },
                     new BasicStringProcessor(() => "Por favor ingresa el nombre del material.")
                 ),
                 ProcessorHandler.CreateInfallibleInstance<Measure>(
