@@ -85,6 +85,11 @@ namespace UnitTests
                 "Admin1",
                 new UserData("Martín", true, UserData.Type.ADMIN, null, null),
                 new AdminInitialMenuState());
+            
+            Singleton<SessionManager>.Instance.NewUser(
+                "Admin2",
+                new UserData("Bianca", true, UserData.Type.ADMIN, null, null),
+                new AdminInitialMenuState());
 
             // Sign up an user of id "Entrepreneur1" as entrepreneur
             platform.ReceiveMessages(
@@ -230,6 +235,108 @@ namespace UnitTests
 
                 Assert.AreEqual(expected, actual);
 
+            }
+
+            // Search for a material by category as Entrepreneur1
+            {
+                List<(string, string)> responses = platform.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFC",
+                    "Celulósicos");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+                  + "cantidad: (?<materialquantity>.+?), "
+                  + "precio: (?<materialprice>.+?), "
+                  + "ubicación: (?<materiallocation>.+), "
+                  + "tipo: (?<materialtype>.+)",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+
+            }
+
+            // Search for a material by zone as Entrepreneur1
+            {
+                List<(string, string)> responses = platform.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFZ",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "100");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+                  + "cantidad: (?<materialquantity>.+?), "
+                  + "precio: (?<materialprice>.+?), "
+                  + "ubicación: (?<materiallocation>.+), "
+                  + "tipo: (?<materialtype>.+)",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+
+            }
+
+            // Remove Admin2 as Admin1.
+            {
+                List<(string, string)> responses = platform.ReceiveMessages(
+                    "Admin1",
+                    "/removeuser",
+                    "Bianca");
+                
+                string finalMessage = responses[responses.Count - 1].Item2;
+
+                string expected = "No se puede eliminar un administrador.";
+                string actual = finalMessage.Split('\n')[0];  
+
+                Assert.AreEqual(expected, actual);
             }
 
 #warning TODO: add a material purchase after establishing command to buy materials as an entrepreneur.
