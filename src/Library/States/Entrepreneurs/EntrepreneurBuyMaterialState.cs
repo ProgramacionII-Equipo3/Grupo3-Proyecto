@@ -22,7 +22,7 @@ namespace Library.States.Entrepreneurs
         /// <param name="id">The user´s id.</param>
         public EntrepreneurBuyMaterialState(string id) : base(
             exitState: () => new EntrepreneurInitialMenuState(id, null),
-            nextState: () => new EntrepreneurInitialMenuState(id, null),
+            nextState: () => new EntrepreneurInitialMenuState(id, "La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}"),
             inputHandler: ProcessorHandler.CreateInstance<(AssignedMaterialPublication, Amount)>(
                 result =>
                 {
@@ -36,7 +36,7 @@ namespace Library.States.Entrepreneurs
                         MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item1.Publication.Amount, result.Item1.Publication.Price, time);
                         result.Item1.Company.MaterialSales.Add(sale);
 
-                        return $"La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}";
+                        return $"";
                     }
                     return "Las cantidades del material y la compra, son inválidas entre sí.";
                 },
@@ -77,8 +77,7 @@ namespace Library.States.Entrepreneurs
                     ProcessorHandler.CreateInfallibleInstance<Amount>(
                         a => this.amount = a,
                         new AmountProcessor(
-                            () => "Por favor ingresa el valor numérico de la cantidad de material que desea adquirir.",
-                            () => "Por favor ingresa la unidad de la cantidad de material que desea adquirir.",
+                            () => "Por favor ingresa el valor numérico de la cantidad de material que desea adquirir y su unidad. (por ejemplo: 7, kg)",
                             () => this.publication!.Material.Measure
                         )
                     )

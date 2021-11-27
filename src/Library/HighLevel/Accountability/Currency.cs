@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
@@ -17,6 +19,15 @@ namespace Library.HighLevel.Accountability
         /// The american dollar.
         /// </summary>
         public static Currency Dollar = new Currency("dollar", "US$");
+
+        /// <summary>
+        /// Gets the list of available currencies.
+        /// </summary>
+        public static Currency[] Currencies = new Currency[]
+        {
+            Currency.Peso,
+            Currency.Dollar
+        };
 
         /// <summary>
         /// The currency's name.
@@ -42,14 +53,16 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="name">The currency's name.</param>
         /// <returns>The currency, if there is.</returns>
-        public static Currency? GetFromName(string name)
-        {
-            switch(name.ToLowerInvariant())
-            {
-                case "peso": return Currency.Peso;
-                case "dollar": return Currency.Dollar;
-                default: return null;
-            }
-        }
+        public static Currency? GetFromName(string name) =>
+            Currencies.Where(c => c.Name.ToLowerInvariant() == name.Trim().ToLowerInvariant()).FirstOrDefault();
+
+        /// <summary>
+        /// Gets the currency given its symbol.
+        /// </summary>
+        /// <param name="symbol">The currency's symbol.</param>
+        /// <returns>The currency, if there is.</returns>
+        public static Currency? GetFromSymbol(string symbol) =>
+            Currencies.Where(c => c.Symbol.ToLowerInvariant() == symbol.Trim().ToLowerInvariant()).FirstOrDefault();
+
     }
 }

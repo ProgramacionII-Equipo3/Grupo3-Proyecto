@@ -713,6 +713,11 @@
             The american dollar.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Accountability.Currency.Currencies">
+            <summary>
+            Gets the list of available currencies.
+            </summary>
+        </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Name">
             <summary>
             The currency's name.
@@ -731,6 +736,13 @@
             Gets the currency given its name.
             </summary>
             <param name="name">The currency's name.</param>
+            <returns>The currency, if there is.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Currency.GetFromSymbol(System.String)">
+            <summary>
+            Gets the currency given its symbol.
+            </summary>
+            <param name="symbol">The currency's symbol.</param>
             <returns>The currency, if there is.</returns>
         </member>
         <member name="T:Library.HighLevel.Accountability.JsonAmount">
@@ -2347,13 +2359,10 @@
             This class has the responsibility of create an instance of amount for the publication, with the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.AmountProcessor.#ctor(System.Func{System.String},System.Func{System.String},System.Func{Library.HighLevel.Accountability.Measure})">
+        <member name="M:Library.InputHandlers.AmountProcessor.#ctor(System.Func{System.String},System.Func{Library.HighLevel.Accountability.Measure})">
             <summary>
-            Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />
+            Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />.
             </summary>
-        </member>
-        <member name="M:Library.InputHandlers.AmountProcessor.getResult">
-            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
@@ -2512,13 +2521,10 @@
             This class has the responsibility of return the price of the publication, using the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.PriceProcessor.#ctor(System.Func{Library.HighLevel.Accountability.Measure})">
+        <member name="M:Library.InputHandlers.PriceProcessor.#ctor(System.Func{System.String},System.Func{Library.HighLevel.Accountability.Measure})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.PriceProcessor" />
             </summary>
-        </member>
-        <member name="M:Library.InputHandlers.PriceProcessor.getResult">
-            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.UnitProcessor">
             <summary>
