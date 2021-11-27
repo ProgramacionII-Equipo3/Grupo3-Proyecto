@@ -49,7 +49,7 @@ namespace UnitTests
             public FormProcessorTestState(Action<int> f) : base(
                 exitState: () => new BasicState(),
                 nextState: () => new BasicState(),
-                inputHandler: ProcessorHandler.CreateInstance<int>(
+                inputHandler: new ProcessorHandler<int>(
                     (result) =>
                     {
                         f(result);

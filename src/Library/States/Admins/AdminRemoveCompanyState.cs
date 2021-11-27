@@ -16,7 +16,7 @@ namespace Library.States.Admins
         /// Initializes an instance of <see cref="AdminRemoveCompanyState" />.
         /// </summary>
         public AdminRemoveCompanyState(): base(
-            inputHandler: ProcessorHandler.CreateInstance<string>(
+            inputHandler: new ProcessorHandler<string>(
                 companyName => Singleton<CompanyManager>.Instance.RemoveCompany(companyName)
                     ? null
                     : "No existe una compañía con ese nombre.",

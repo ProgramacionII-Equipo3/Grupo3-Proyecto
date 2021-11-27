@@ -27,19 +27,19 @@ namespace Library.States.Companies
                 this.parent = parent;
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInfallibleInstance<string>(
+                    ProcessorHandler<string>.CreateInfallibleInstance(
                         s => this.heading = s,
                         new BasicStringProcessor(() => "Por favor ingresa el rubro de la compañía.")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<Location>(
+                    ProcessorHandler<Location>.CreateInfallibleInstance(
                         l => this.location = l,
                         new LocationProcessor(() => "Por favor ingresa la ubicación de la compañía.")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<int>(
+                    ProcessorHandler<int>.CreateInfallibleInstance(
                         n => this.phoneNumber = n,
                         new UnsignedInt32Processor(() => "Por favor ingresa el teléfono de la compañía.")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<string>(
+                    ProcessorHandler<string>.CreateInfallibleInstance(
                         s => this.email = s,
                         new EmailProcessor(() => "Por favor ingresa el email de la compañía.")
                     )

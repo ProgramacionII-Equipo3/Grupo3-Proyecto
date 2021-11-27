@@ -36,7 +36,7 @@ namespace Library.InputHandlers.Abstractions
             this.state = initialStateGetter();
             this.conversionFunction = conversionFunction;
             this.inputHandlers = inputHandlers.Select(handlerGetter =>
-                ProcessorHandler.CreateInfallibleInstance<U>(
+                ProcessorHandler<U>.CreateInfallibleInstance(
                     newState => this.state = newState,
                     handlerGetter(() => this.state))).ToArray();
         }

@@ -30,7 +30,7 @@ namespace Library.InputHandlers
 
             this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInstance<string>(
+                new ProcessorHandler<string>(
                     s =>
                     {
                         if(Singleton<SessionManager>.Instance.GetByName(s) is not null)
@@ -44,7 +44,7 @@ namespace Library.InputHandlers
                         }
                     },
                     new BasicStringProcessor(() => "Por favor, inserte su nombre.")),
-                ProcessorHandler.CreateInfallibleInstance<ClassWrapper<int>?>(
+                ProcessorHandler<ClassWrapper<int>?>.CreateInfallibleInstance(
                     n =>
                     {
                         this.phoneNumber = n?.Value;
@@ -53,7 +53,7 @@ namespace Library.InputHandlers
                         PipeProcessor<ClassWrapper<int>>.CreateInfallibleInstance<int>(
                             n => (ClassWrapper<int>)n,
                             new PhoneNumberProcessor(() => "Por favor, ingrese su número de teléfono (opcional).")))),
-                ProcessorHandler.CreateInfallibleInstance<string?>(
+                ProcessorHandler<string?>.CreateInfallibleInstance(
                     s => this.email = s,
                     new OptionalProcessor<string>(
                         new EmailProcessor(() => "Por favor, ingrese su email (opcional).")))

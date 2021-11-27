@@ -21,7 +21,7 @@ namespace UnitTests
             Console.WriteLine();
             T[]? list = null;
             BasicUtils.CreateUser(new InputHandlerState(
-                ProcessorHandler.CreateInfallibleInstance<T[]>(
+                ProcessorHandler<T[]>.CreateInfallibleInstance(
                     l => list = l,
                     new ListProcessor<T>(() => initialResponse, processor)),
                 () => null,

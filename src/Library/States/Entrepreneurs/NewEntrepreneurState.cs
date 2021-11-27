@@ -22,7 +22,7 @@ namespace Library.States.Entrepreneurs
         /// </summary>
         /// <param name="userId">The user id of the entrepreneur.</param>
         public NewEntrepreneurState(string userId) : base(
-            ProcessorHandler.CreateInstance<(UserData, (string, string, int, Location, string, IList<Habilitation>, IList<string>))>(
+            new ProcessorHandler<(UserData, (string, string, int, Location, string, IList<Habilitation>, IList<string>))>(
                 e =>
                 {
                     if(Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(
@@ -70,24 +70,24 @@ namespace Library.States.Entrepreneurs
 
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInfallibleInstance<UserData>(
+                    ProcessorHandler<UserData>.CreateInfallibleInstance(
                         data => this.userData = data,
                         new UserDataProcessor(true, UserData.Type.ENTREPRENEUR)),
-                    ProcessorHandler.CreateInfallibleInstance<int>(
+                    ProcessorHandler<int>.CreateInfallibleInstance(
                         age => this.age = age,
                         new UnsignedInt32Processor(() => "Por favor ingrese su edad.")),
-                    ProcessorHandler.CreateInfallibleInstance<Location>(
+                    ProcessorHandler<Location>.CreateInfallibleInstance(
                         location => this.location = location,
                         new LocationProcessor(() => "Por favor ingrese su ubicación (<dirección>, <ciudad>, <departamento>, <país>).")),
-                    ProcessorHandler.CreateInfallibleInstance<string>(
+                    ProcessorHandler<string>.CreateInfallibleInstance(
                         heading => this.heading = heading,
                         new BasicStringProcessor(() => "Por favor ingrese su rubro.")),
-                    ProcessorHandler.CreateInfallibleInstance<Habilitation[]>(
+                    ProcessorHandler<Habilitation[]>.CreateInfallibleInstance(
                         habs => this.habilitations = habs.ToList(),
                         new ListProcessor<Habilitation>(
                             () => "Por favor ingrese sus habilitaciones.",
                             new HabilitationProcessor())),
-                    ProcessorHandler.CreateInfallibleInstance<string[]>(
+                    ProcessorHandler<string[]>.CreateInfallibleInstance(
                         specializations => this.specializations = specializations.ToList(),
                         new ListProcessor<string>(
                             () => "Por favor ingrese sus especializaciones.",

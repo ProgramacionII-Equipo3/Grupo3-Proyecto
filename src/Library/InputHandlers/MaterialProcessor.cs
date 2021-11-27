@@ -24,7 +24,7 @@ namespace Library.InputHandlers
         {
             this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInstance<string>(
+                new ProcessorHandler<string>(
                     n =>
                     {
                         if(predicate(n) is string error) return error;
@@ -33,11 +33,11 @@ namespace Library.InputHandlers
                     },
                     new BasicStringProcessor(() => "Por favor ingresa el nombre del material.")
                 ),
-                ProcessorHandler.CreateInfallibleInstance<Measure>(
+                ProcessorHandler<Measure>.CreateInfallibleInstance(
                     m => this.measure = m,
                     new MeasureProcessor(() => "Por favor ingresa la medida del material:\n        \"weight\": peso\n        \"length\": longitud")
                 ),
-                ProcessorHandler.CreateInfallibleInstance<MaterialCategory>(
+                ProcessorHandler<MaterialCategory>.CreateInfallibleInstance(
                     c => this.category = c,
                     new MaterialCategoryProcessor(() => "Por favor ingresa la categoría del material."))
             };

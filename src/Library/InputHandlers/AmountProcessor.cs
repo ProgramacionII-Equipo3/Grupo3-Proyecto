@@ -21,11 +21,11 @@ namespace Library.InputHandlers
         {
             this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInfallibleInstance<string>(
+                ProcessorHandler<string>.CreateInfallibleInstance(
                     q => this.quantity = float.Parse(q),
                     new BasicStringProcessor(() => "Por favor ingresa la cantidad de unidades del material que deseas publicar.")
                 ),
-                ProcessorHandler.CreateInfallibleInstance<Unit>(
+                ProcessorHandler<Unit>.CreateInfallibleInstance(
                     u => this.unit = u,
                     new UnitProcessor(measure, () => "Por favor ingresa la abreviatura de la unidad del material. (Por ejemplo \"cm\").")
                 )
