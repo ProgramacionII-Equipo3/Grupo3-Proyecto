@@ -41,6 +41,11 @@ namespace Library.HighLevel.Materials
         public MaterialPublicationTypeData Type { get; private set; }
 
         /// <summary>
+        /// Gets or sets if the publication is sold.
+        /// </summary>
+        public bool sold { get; set; }
+
+        /// <summary>
         /// The list of keywords of the publication material.
         /// </summary>
         public IList<string> Keywords = new List<string>();
@@ -59,6 +64,8 @@ namespace Library.HighLevel.Materials
             this.Type = type;
             this.Keywords = keywords;
             this.Requirements = requirements;
+
+            this.sold = false;
         }
 
         /// <summary>

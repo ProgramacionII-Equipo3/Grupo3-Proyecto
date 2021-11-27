@@ -27,7 +27,7 @@ namespace Library.States.Entrepreneurs
             this.id = id;
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                
+                ("/buy",           "Le permite al emprendedor comprar un material",                 this.buyMaterial),
                 ("/searchFK",      "Busca materiales utilizando palabras claves.",                  this.searchByKeyword),
                 ("/searchFC",      "Busca materiales por categorías.",                              this.searchByCategory),
                 ("/searchFZ",      "Busca materiales por zona.",                                    this.searchByZone),
@@ -37,6 +37,10 @@ namespace Library.States.Entrepreneurs
             };
         }
 
+        private (State, string?) buyMaterial()
+        {
+            throw new NotImplementedException();
+        }
         private (State, string?) ereport()
         {
             if (Singleton<EntrepreneurManager>.Instance.GetById(this.id) is Entrepreneur entrepreneur)
