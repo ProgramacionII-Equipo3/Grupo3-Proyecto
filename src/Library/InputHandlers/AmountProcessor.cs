@@ -17,17 +17,17 @@ namespace Library.InputHandlers
         /// <summary>
         /// Initializes an instance of <see cref="AmountProcessor" />
         /// </summary>
-        public AmountProcessor(Func<Measure> measure)
+        public AmountProcessor(Func<string> quantityResponseGetter, Func<string> unitResponseGetter, Func<Measure> measure)
         {
             this.inputHandlers = new InputHandler[]
             {
                 ProcessorHandler.CreateInfallibleInstance<string>(
                     q => this.quantity = float.Parse(q),
-                    new BasicStringProcessor(() => "Por favor ingresa la cantidad de unidades del material que deseas publicar.")
+                    new BasicStringProcessor(quantityResponseGetter)
                 ),
                 ProcessorHandler.CreateInfallibleInstance<Unit>(
                     u => this.unit = u,
-                    new UnitProcessor(measure, () => "Por favor ingresa la abreviatura de la unidad del material. (Por ejemplo \"cm\").")
+                    new UnitProcessor(measure, unitResponseGetter)
                 )
             };
         }

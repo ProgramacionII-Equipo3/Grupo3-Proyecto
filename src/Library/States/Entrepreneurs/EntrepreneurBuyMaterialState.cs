@@ -11,38 +11,44 @@ using Library.HighLevel.Materials;
 
 namespace Library.States.Entrepreneurs
 {
+    /// <summary>
+    /// This class has the responsibility of allow an entrepreneur user buy a material.
+    /// </summary>
     public class EntrepreneurBuyMaterialState : InputHandlerState
     {
+        /// <summary>
+        /// Initializes an instance of <see cref="EntrepreneurBuyMaterialState" /> class.
+        /// </summary>
+        /// <param name="id">The user´s id.</param>
         public EntrepreneurBuyMaterialState(string id) : base(
             exitState: () => new EntrepreneurInitialMenuState(id, null),
             nextState: () => new EntrepreneurInitialMenuState(id, null),
-            inputHandler: ProcessorHandler.CreateInstance<(Company, MaterialPublication)>(
+            inputHandler: ProcessorHandler.CreateInstance<(AssignedMaterialPublication, Amount)>(
                 result =>
                 {
-                    if (result.Item1 is not null && result.Item2 is not null)
+                    if (result.Item1.Publication.Amount.Substract(result.Item2))
                     {
-                        MaterialSalesLine sale = new MaterialSalesLine(result.Item2.Material, result.Item2.Amount, result.Item2.Price, new DateTime());
-                        result.Item1.MaterialSales.Add(sale);
-
+                        DateTime time = DateTime.Today;
+                        BoughtMaterialLine purchase = new BoughtMaterialLine(result.Item1.Company.Name, result.Item1.Publication.Material, time, result.Item1.Publication.Price, result.Item1.Publication.Amount);
                         Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
-                        BoughtMaterialLine buy = new BoughtMaterialLine(result.Item1.Name, result.Item2.Material, new DateTime(), result.Item2.Price, result.Item2.Amount);
-                        entrepreneur?.BoughtMaterials.Add(buy);
-                        return "";
+                        entrepreneur!.BoughtMaterials.Add(purchase);
+
+                        MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item1.Publication.Amount, result.Item1.Publication.Price, time);
+                        result.Item1.Company.MaterialSales.Add(sale);
+
+                        return null;
                     }
-                    else
-                    {
-                        return "Lo siento, no pude concluir la compra.";
-                    }
-                    
+                    return "Las cantidades del material y la compra, son inválidas entre sí.";
                 },
                 new CollectDataProcessor(id)
             )
         ) {}
 
-        private class CollectDataProcessor : FormProcessor<(Company, MaterialPublication)>
+        private class CollectDataProcessor : FormProcessor<(AssignedMaterialPublication, Amount)>
         {
             private Company? company;
             private MaterialPublication? publication;
+            private Amount? amount;
 
             public CollectDataProcessor(string id)
             {
@@ -61,18 +67,26 @@ namespace Library.States.Entrepreneurs
                     ProcessorHandler.CreateInfallibleInstance<string>(
                         pName =>
                         {
-                            if (this.company.Publications.Any(p => p.Material.Name == pName))
+                            if (this.company!.Publications.Any(p => p.Material.Name == pName))
                             {
                                 this.publication = this.company.Publications.Where(p => p.Material.Name == pName).FirstOrDefault();
                             }
                         },
                         new BasicStringProcessor(() => "Por favor ingresa el nombre del material de la publicación.")
+                    ),
+                    ProcessorHandler.CreateInfallibleInstance<Amount>(
+                        a => this.amount = a,
+                        new AmountProcessor(
+                            () => "Por favor ingresa el valor numérico de la cantidad de material que desea adquirir.",
+                            () => "Por favor ingresa la unidad de la cantidad de material que desea adquirir.",
+                            () => this.publication!.Material.Measure
+                        )
                     )
                 };
             }
 
-            protected override Result<(Company, MaterialPublication), string> getResult() =>
-                Result<(Company, MaterialPublication), string>.Ok((this.company.Unwrap(), this.publication.Unwrap()));
+            protected override Result<(AssignedMaterialPublication, Amount), string> getResult() =>
+                Result<(AssignedMaterialPublication, Amount), string>.Ok((new AssignedMaterialPublication(this.publication.Unwrap(), this.company.Unwrap()), this.amount.Unwrap()));
         }
     }
 }

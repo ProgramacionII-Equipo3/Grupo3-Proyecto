@@ -5,8 +5,6 @@ using System.Linq;
 using Library.HighLevel.Materials;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
-using Library.Utils;
-using System.Text;
 
 namespace Library.States.Entrepreneurs
 {
@@ -39,8 +37,9 @@ namespace Library.States.Entrepreneurs
 
         private (State, string?) buyMaterial()
         {
-            throw new NotImplementedException();
+            return (new EntrepreneurBuyMaterialState(this.id), null);
         }
+
         private (State, string?) ereport()
         {
             if (Singleton<EntrepreneurManager>.Instance.GetById(this.id) is Entrepreneur entrepreneur)

@@ -96,7 +96,10 @@ namespace Library.States.Companies
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Amount>(
                         a => this.amount = a,
-                        new AmountProcessor(() => this.material!.Measure)
+                        new AmountProcessor(
+                            () => "Por favor ingresa la cantidad de unidades del material que deseas publicar.",
+                            () => "Por favor ingresa la abreviatura de la unidad del material (por ejemplo \"cm\").",
+                            () => this.material!.Measure)
                     ),
                     ProcessorHandler.CreateInfallibleInstance<Price>(
                         p => this.price = p,

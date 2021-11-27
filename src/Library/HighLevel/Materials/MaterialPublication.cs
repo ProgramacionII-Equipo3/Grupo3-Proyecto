@@ -41,9 +41,9 @@ namespace Library.HighLevel.Materials
         public MaterialPublicationTypeData Type { get; private set; }
 
         /// <summary>
-        /// Gets or sets if the publication is sold.
+        /// Gets if the publication is sold.
         /// </summary>
-        public bool sold { get; set; }
+        public bool Sold => this.Amount.Quantity > 0;
 
         /// <summary>
         /// The list of keywords of the publication material.
@@ -64,8 +64,6 @@ namespace Library.HighLevel.Materials
             this.Type = type;
             this.Keywords = keywords;
             this.Requirements = requirements;
-
-            this.sold = false;
         }
 
         /// <summary>
@@ -94,5 +92,15 @@ namespace Library.HighLevel.Materials
             CheckMaterialFields(material, amount, price)
                 ? new MaterialPublication(material, amount, price, pickupLocation, type, keywords, requirements)
                 : null;
+
+        /// <summary>
+        /// Substracts two amounts, storing the result in the first one.
+        /// </summary>
+        /// <param name="otherAmount">The amount to substract. </param>
+        /// <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
+        public bool ReduceQuantity(Amount otherAmount)
+        {
+            return this.Amount.Substract(otherAmount);
+        }
     }
 }
