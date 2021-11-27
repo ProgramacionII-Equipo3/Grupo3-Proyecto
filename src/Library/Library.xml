@@ -2228,38 +2228,34 @@
             <param name="func">The transformation function.</param>
             <param name="processor">The inner <see cref="T:Library.Core.Processing.InputProcessor`1" />.</param>
         </member>
-        <member name="T:Library.InputHandlers.Abstractions.ProcessorHandler">
+        <member name="T:Library.InputHandlers.Abstractions.ProcessorHandler`1">
             <summary>
             Represents an <see cref="T:Library.Core.Processing.InputHandler" /> which uses an input processor, and a function to be given its result.
             </summary>
+            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.#ctor(System.Func{System.String,Library.Result{System.Boolean,System.String}},System.Func{System.String},System.Action)">
-            
-        </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInstance``1(System.Func{``0,System.String},Library.Core.Processing.InputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler`1.#ctor(System.Func{`0,System.String},Library.Core.Processing.InputProcessor{`0})">
             <summary>
-            Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler" />.
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler`1" />.
             </summary>
             <param name="f">The operation to do with the resulting input, and returns a not-null string if there was an error.</param>
             <param name="processor">The input processor.</param>
-            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.CreateInfallibleInstance``1(System.Action{``0},Library.Core.Processing.InputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler`1.CreateInfallibleInstance(System.Action{`0},Library.Core.Processing.InputProcessor{`0})">
             <summary>
-            Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler" /> which can't send an error
+            Creates an instance of <see cref="T:Library.InputHandlers.Abstractions.ProcessorHandler`1" /> which can't send an error
             in the function which gets the generated value.
             </summary>
             <param name="action">The operation to do with the resulting input.</param>
             <param name="processor">The input processor.</param>
-            <typeparam name="T">The type of the object the input processor returns, which is used by the "action" operation.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.GetDefaultResponse">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler`1.GetDefaultResponse">
             <inheritdoc />
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.ProcessInput(System.String)">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler`1.ProcessInput(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler.Reset">
+        <member name="M:Library.InputHandlers.Abstractions.ProcessorHandler`1.Reset">
             <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorModifier`1">

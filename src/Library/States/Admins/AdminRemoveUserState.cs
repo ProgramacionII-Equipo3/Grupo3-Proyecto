@@ -14,7 +14,7 @@ namespace Library.States.Admins
         /// Initializes an instance of <see cref="AdminRemoveUserState" />.
         /// </summary>
         public AdminRemoveUserState() : base(
-            inputHandler: ProcessorHandler.CreateInstance<string>(
+            inputHandler: new ProcessorHandler<string>(
                 userName =>
                 {
                     if (Singleton<SessionManager>.Instance.GetByName(userName) is UserSession session)

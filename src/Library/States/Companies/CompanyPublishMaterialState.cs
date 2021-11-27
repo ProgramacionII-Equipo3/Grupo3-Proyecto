@@ -25,7 +25,7 @@ namespace Library.States.Companies
         public CompanyPublishMaterialState(string id) : base(
             exitState: () => new CompanyInitialMenuState(id),
             nextState: () => new CompanyInitialMenuState(id),
-            inputHandler: ProcessorHandler.CreateInstance<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>)>(
+            inputHandler: new ProcessorHandler<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>)>(
                 (result) => 
                 {
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
@@ -70,7 +70,7 @@ namespace Library.States.Companies
             {
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler.CreateInstance<Material>(
+                    new ProcessorHandler<Material>(
                         m =>
                         {
                             if(Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
@@ -94,29 +94,29 @@ namespace Library.States.Companies
                                     : null
                                 : "No se puede chequear la unicidad de este material en la compañía.")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<Amount>(
+                    ProcessorHandler<Amount>.CreateInfallibleInstance(
                         a => this.amount = a,
                         new AmountProcessor(() => this.material!.Measure)
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<Price>(
+                    ProcessorHandler<Price>.CreateInfallibleInstance(
                         p => this.price = p,
                         new PriceProcessor(() => this.material!.Measure)
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<Location>(
+                    ProcessorHandler<Location>.CreateInfallibleInstance(
                         l => this.location = l,
                         new LocationProcessor(() => "Por favor ingresa la ubicación de donde se encuentra el material.")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<MaterialPublicationTypeData>(
+                    ProcessorHandler<MaterialPublicationTypeData>.CreateInfallibleInstance(
                         t => this.materialPublicationTypeData = t,
                         new MaterialPublicationTypeDataProcessor(() => "Por favor, indica el tipo de la publicación:\n        /normal: Publicación normal\n        /scheduled: Publicación con una fecha concreta\n        /continuous: Publicación constante")
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<string[]>(
+                    ProcessorHandler<string[]>.CreateInfallibleInstance(
                         k => this.keywords = k.ToList(),
                         new ListProcessor<string>(() => "Por favor ingrese la lista de palabras claves asociadas al material.", new BasicStringProcessor(
                             () => "Por favor ingrese una de las palabras claves."
                         ))
                     ),
-                    ProcessorHandler.CreateInfallibleInstance<string[]>(
+                    ProcessorHandler<string[]>.CreateInfallibleInstance(
                         r => this.requirements = r.ToList(),
                         new ListProcessor<string>(() => "Por favor ingrese la lista de requerimientos para la manipulación del material.", new BasicStringProcessor(
                             () => "Por favor ingrese uno de los requerimientos."

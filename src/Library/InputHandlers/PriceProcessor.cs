@@ -22,15 +22,15 @@ namespace Library.InputHandlers
         {
             this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInfallibleInstance<string>(
+                ProcessorHandler<string>.CreateInfallibleInstance(
                     q => this.quantity = float.Parse(q),
                     new BasicStringProcessor(() => "Por favor ingresa el precio del material.")
                 ),
-                ProcessorHandler.CreateInfallibleInstance<Currency>(
+                ProcessorHandler<Currency>.CreateInfallibleInstance(
                     c => this.currency = c,
                     new CurrencyProcessor(() => "Por favor ingresa la moneda del precio del material:\n        \"pesos\": Pesos Uruguayos\n        \"dollars\": dólares")
                 ),
-                ProcessorHandler.CreateInfallibleInstance<Unit>(
+                ProcessorHandler<Unit>.CreateInfallibleInstance(
                     u => this.unit = u,
                     new UnitProcessor(measure, () => "Por favor ingresa la unidad del material relacionada al precio.")
                 )
