@@ -36,7 +36,7 @@ namespace Library.States.Entrepreneurs
                         MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item1.Publication.Amount, result.Item1.Publication.Price, time);
                         result.Item1.Company.MaterialSales.Add(sale);
 
-                        return null;
+                        return $"La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}";
                     }
                     return "Las cantidades del material y la compra, son inválidas entre sí.";
                 },
