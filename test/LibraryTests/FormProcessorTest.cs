@@ -65,10 +65,10 @@ namespace UnitTests
                         },
                         inputHandlers: new Func<Func<(int, int)>, InputProcessor<(int, int)>>[]
                         {
-                            ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
+                            ProcessorModifier<(int, int), int>.CreateInfallibleInstanceGetter(
                                 (state, v) => (v, default),
                                 new UnsignedInt32Processor(() => "Item1: ")),
-                            ProcessorModifier<(int, int)>.CreateInfallibleInstanceGetter<int>(
+                            ProcessorModifier<(int, int), int>.CreateInfallibleInstanceGetter(
                                 (state, v) => (state.Item1, v),
                                 new UnsignedInt32Processor(() => "Item2: "))
                         }))) {}
