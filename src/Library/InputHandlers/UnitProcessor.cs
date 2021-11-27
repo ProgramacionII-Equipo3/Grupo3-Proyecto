@@ -17,7 +17,7 @@ namespace Library.InputHandlers
         /// <param name="measure">The measure from which to look for units.</param>
         /// <param name="initialResponseGetter">The function which determines the processor's default response.</param>
         public UnitProcessor(Func<Measure> measure, Func<string> initialResponseGetter) : base(
-            PipeProcessor<Unit>.CreateInstance<string>(
+            new PipeProcessor<string, Unit>(
                 u => Unit.GetByAbbr(u.Trim().ToLowerInvariant()) is Unit unit
                     ? Result<Unit, string>.Ok(unit)
                     : Result<Unit, string>.Err("Esa unidad no existe."),

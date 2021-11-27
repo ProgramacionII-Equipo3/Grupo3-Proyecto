@@ -2195,39 +2195,38 @@
         <member name="M:Library.InputHandlers.Abstractions.OptionalProcessor`1.getResult">
             <inheritdoc />
         </member>
-        <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`1">
+        <member name="T:Library.InputHandlers.Abstractions.PipeProcessor`2">
             <summary>
             This class represents an input processor which takes the result of another one and applies a transformation to it.
             </summary>
-            <typeparam name="T">The type of the resulting object.</typeparam>
+            <typeparam name="T">The type returned by the first processor.</typeparam>
+            <typeparam name="U">The type of the resulting object.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.ProcessInput(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.getResult">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.GetDefaultResponse">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.Reset">
-            <inheritdoc />
-        </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInstance``1(System.Func{``0,Library.Result{`0,System.String}},Library.Core.Processing.InputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`2.#ctor(System.Func{`0,Library.Result{`1,System.String}},Library.Core.Processing.InputProcessor{`0})">
             <summary>
-            Creates a pipe processor.
+            Initializes an instance of <see cref="T:Library.InputHandlers.Abstractions.PipeProcessor`2" />.
             </summary>
             <param name="func">The transformation function.</param>
             <param name="processor">The inner <see cref="T:Library.Core.Processing.InputProcessor`1" />.</param>
-            <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.InputProcessor`1" /> returns.</typeparam>
         </member>
-        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`1.CreateInfallibleInstance``1(System.Func{``0,`0},Library.Core.Processing.InputProcessor{``0})">
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`2.ProcessInput(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`2.getResult">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`2.GetDefaultResponse">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`2.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Library.InputHandlers.Abstractions.PipeProcessor`2.CreateInfallibleInstance(System.Func{`0,`1},Library.Core.Processing.InputProcessor{`0})">
             <summary>
             Creates a pipe processor whose piped process can't fail.
             </summary>
             <param name="func">The transformation function.</param>
             <param name="processor">The inner <see cref="T:Library.Core.Processing.InputProcessor`1" />.</param>
-            <typeparam name="U">The type of the objects the inner <see cref="T:Library.Core.Processing.InputProcessor`1" /> returns.</typeparam>
         </member>
         <member name="T:Library.InputHandlers.Abstractions.ProcessorHandler">
             <summary>

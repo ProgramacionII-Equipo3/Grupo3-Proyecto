@@ -16,7 +16,7 @@ namespace Library.InputHandlers
         /// </summary>
         /// <param name="initialResponseGetter">A function which determines the processor's default response.</param>
         public MaterialCategoryProcessor(Func<string> initialResponseGetter) : base(
-            PipeProcessor<MaterialCategory>.CreateInstance<string>(
+            new PipeProcessor<string, MaterialCategory>(
                 n => MaterialCategory.GetByName(n) is MaterialCategory category
                     ? Result<MaterialCategory, string>.Ok(category)
                     : Result<MaterialCategory, string>.Err("Lo siento, no existe esa categoría."),

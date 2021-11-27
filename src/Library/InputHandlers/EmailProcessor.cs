@@ -15,7 +15,7 @@ namespace Library.InputHandlers
         /// </summary>
         /// <param name="initialResponseGetter">The function which determines the default response of the processor.</param>
         public EmailProcessor(Func<string> initialResponseGetter) : base(
-            PipeProcessor<string>.CreateInstance<string> (
+            new PipeProcessor<string, string>(
                 func: s => BasicUtils.IsValidEmail(s)
                     ? Result<string, string>.Ok(s)
                     : Result<string, string>.Err("The given input is not a valid email."),

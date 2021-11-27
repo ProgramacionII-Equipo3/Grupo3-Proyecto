@@ -12,7 +12,7 @@ namespace Library.InputHandlers
     {
         /// <inheritdoc />
         public DateProcessor(Func<string> initialResponseGetter) : base(
-            PipeProcessor<DateTime>.CreateInstance<string>(
+            new PipeProcessor<string, DateTime>(
                 s =>
                 {
                     DateTime dateTime;
