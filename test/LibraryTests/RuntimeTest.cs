@@ -16,7 +16,6 @@ using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 using UnitTests.Utils;
 
-#warning TODO: Add test of purchasing a material.
 #warning TODO: Add test of purchasing a material which doesn't exist.
 #warning TODO: Add test of purchasing a material with lower stock than asked.
 #warning TODO: Add test of creating a company report after selling materials.
@@ -490,6 +489,56 @@ namespace UnitTests
                         },
                         new List<string>()).Unwrap(),
                     publication2);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of purchasing a material.
+        /// </summary>
+        [Test]
+        public void PurchaseMaterialTest()
+        {
+            BasicRuntimeTest("purchase-material", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teogal",
+                    "Bujes de cartón",
+                    "2 cm",
+                    "Sí");
+                
+                {
+                    BoughtMaterialLine[] purchases = Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.ToArray();
+                    Assert.AreEqual(1, purchases.Length);
+                    BoughtMaterialLine purchase = purchases[0];
+                    CheckUtils.CheckBoughtMaterialLineEquality(
+                        new BoughtMaterialLine(
+                            "Teogal",
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            DateTime.Today,
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Amount(2, Unit.GetByAbbr("cm").Unwrap())),
+                        purchase);
+                }
+                {
+                    MaterialSalesLine[] sales = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.MaterialSales.ToArray();
+                    Assert.AreEqual(1, sales.Length);
+                    MaterialSalesLine sale = sales[0];
+                    CheckUtils.CheckMaterialSalesLineEquality(
+                        new MaterialSalesLine(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(2, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            DateTime.Today),
+                        sale);
+                }
             });
         }
     }

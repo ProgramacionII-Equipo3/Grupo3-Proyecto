@@ -26,18 +26,13 @@ namespace Library.States.Entrepreneurs
             nextState: result =>
                 {
                     var newState = new EntrepreneurInitialMenuState(id, null);
-                    switch (result.Item1.Publication.Amount.Substract(result.Item2))
+                    var remainingAmount = new Amount(
+                        result.Item1.Publication.Amount.Quantity,
+                        result.Item1.Publication.Amount.Unit);
+                    switch (remainingAmount.Substract(result.Item2))
                     {
                         case 0:
-                            DateTime time = DateTime.Today;
-                            BoughtMaterialLine purchase = new BoughtMaterialLine(result.Item1.Company.Name, result.Item1.Publication.Material, time, result.Item1.Publication.Price, result.Item2);
-                            Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
-                            entrepreneur!.BoughtMaterials.Add(purchase);
-
-                            MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item2, result.Item1.Publication.Price, time);
-                            result.Item1.Company.MaterialSales.Add(sale);
-
-                            return (newState, $"La compra se ha concretado, para coordinar el envío o el retiro del material, te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}\n{newState.GetDefaultResponse()}");
+                            return (new EntrepreneurConfirmPurchaseState(id, result.Item1, result.Item2, remainingAmount), null);
                         case 1:
                             return (newState, $"Las cantidades del material y la compra son inválidas entre sí.\n{newState.GetDefaultResponse()}");
                         case 2:
@@ -60,30 +55,36 @@ namespace Library.States.Entrepreneurs
             {
                 this.inputHandlers = new InputHandler[]
                 {
-                    ProcessorHandler<string>.CreateInfallibleInstance(
+                    new ProcessorHandler<string>(
                         cName =>
                         {
                             if (Singleton<CompanyManager>.Instance.GetByName(cName) is Company rCompany)
                             {
                                 this.company = rCompany;
+                                return null;
                             }
+
+                            return "Esta compañía no existe.";
                         },
                         new BasicStringProcessor(() => "Por favor ingresa el nombre de la compañía que tiene publicado el material.")
                     ),
-                    ProcessorHandler<string>.CreateInfallibleInstance(
+                    new ProcessorHandler<string>(
                         pName =>
                         {
-                            if (this.company!.Publications.Any(p => p.Material.Name == pName))
+                            if (this.company!.Publications.Where(p => p.Material.Name == pName).FirstOrDefault() is MaterialPublication publication)
                             {
-                                this.publication = this.company.Publications.Where(p => p.Material.Name == pName).FirstOrDefault();
+                                this.publication = publication;
+                                return null;
                             }
+
+                            return "Este material no existe dentro de la compañía.";
                         },
                         new BasicStringProcessor(() => "Por favor ingresa el nombre del material de la publicación.")
                     ),
                     ProcessorHandler<Amount>.CreateInfallibleInstance(
                         a => this.amount = a,
                         new AmountProcessor(
-                            () => "Por favor ingresa el valor numérico de la cantidad de material que desea adquirir y su unidad. (por ejemplo: 7, kg)",
+                            () => "Por favor ingresa la cantidad de material que desea comprar. (por ejemplo: 7 kg)",
                             () => this.publication!.Material.Measure
                         )
                     )

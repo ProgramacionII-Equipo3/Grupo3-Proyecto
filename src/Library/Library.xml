@@ -2934,6 +2934,20 @@
             <param name="id">The entrepreneur's id.</param>
             <param name="publication">The publication.</param>
         </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurConfirmPurchaseState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurConfirmPurchaseState.#ctor(System.String,Library.HighLevel.Materials.AssignedMaterialPublication,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState" />.
+            </summary>
+            <param name="id">The entrepreneur's id.</param>
+            <param name="publication">The publication.</param>
+            <param name="purchasedAmount">The amount of material to purchase.</param>
+            <param name="remainingAmount">The amount of material that remains in stock after the purchase.</param>
+        </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurCreateReportState">
             <summary>
             This class represents a <see cref="T:Library.Core.State" /> for an entrepreneur who is creating a report.

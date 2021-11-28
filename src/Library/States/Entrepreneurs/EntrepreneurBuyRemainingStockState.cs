@@ -25,19 +25,19 @@ namespace Library.States.Entrepreneurs
             {
                 if (b)
                 {
-                    DateTime time = DateTime.Today;
-                    BoughtMaterialLine purchase = new BoughtMaterialLine(
-                        publication.Company.Name,
-                        publication.Publication.Material,
-                        time,
-                        publication.Publication.Price,
-                        publication.Publication.Amount);
-                    Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
-                    entrepreneur!.BoughtMaterials.Add(purchase);
-                    publication.Publication.ClearStock();
+                    return (new EntrepreneurConfirmPurchaseState(
+                        id,
+                        publication,
+                        publication.Publication.Amount,
+                        new Amount(0, publication.Publication.Amount.Unit)),
+                        null);
+                }
+                else
+                {
+                    return (new EntrepreneurInitialMenuState(id), null);
                 }
 
-                return (new EntrepreneurInitialMenuState(id), null);
+                
             },
             exitState: () => (new EntrepreneurInitialMenuState(id), null)
         )

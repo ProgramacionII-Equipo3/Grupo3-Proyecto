@@ -23,7 +23,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// Gets the publication's amount of material.
         /// </summary>
-        public Amount Amount { get; private set; }
+        public Amount Amount { get; set; }
 
         /// <summary>
         /// Gets the publication's price of the material.
