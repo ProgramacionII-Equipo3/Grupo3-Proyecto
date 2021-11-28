@@ -33,7 +33,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the entrepreneur's users in the platform.
         /// </summary>
-        public ReadOnlyCollection<Entrepreneur> Entrepreneurs => entrepreneurs.AsReadOnly();
+        public ReadOnlyCollection<Entrepreneur> Entrepreneurs => this.entrepreneurs.AsReadOnly();
 
         /// <summary>
         /// Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
