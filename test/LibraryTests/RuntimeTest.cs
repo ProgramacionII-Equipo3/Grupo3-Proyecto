@@ -109,6 +109,22 @@ namespace UnitTests
 
             checkUser("Entrepreneur1", "Santiago");
 
+            // Create a report as Entrepreneur1
+            platform.ReceiveMessages(
+                "Company1",
+                "/ereport",
+                "27/11/2021");
+
+            //Remove Entrepreneur1
+            platform.ReceiveMessages(
+                "Admin1",
+                "/removeuser",
+                "Entrepreneur1"
+            );
+            bool actual= Singleton<SessionManager>.Instance.RemoveUserByName("Santiago");
+            Assert.That(actual, Is.False);
+
+
             {
                 // Create a message invitation for "Company1"
                 string? invitationCode;
@@ -266,7 +282,7 @@ namespace UnitTests
                         "Avenida 8 de Octubre, Montevideo, Uruguay",
                         "normal"
                     }
-                }, actual = regex.Matches(finalMessage)
+                }, actual1 = regex.Matches(finalMessage)
                     .Select(m => new string[]
                     {
                         m.Groups["company"].Value,
@@ -277,7 +293,7 @@ namespace UnitTests
                         m.Groups["materialtype"].Value
                     }).ToArray();
 
-                Assert.AreEqual(expected, actual);
+                Assert.AreEqual(expected, actual1);
 
             }
 
@@ -386,6 +402,16 @@ namespace UnitTests
                         new List<string>()).Unwrap(),
                     publication2);
                 }
+            }
+            {
+                //Remove Company2
+                platform.ReceiveMessages(
+                    "Admin1",
+                    "/removecompany",
+                    "Company2"
+                );
+                bool actual2= Singleton<CompanyManager>.Instance.RemoveCompany("Company2");
+                Assert.That(actual2, Is.False);
             }
         }
     }
