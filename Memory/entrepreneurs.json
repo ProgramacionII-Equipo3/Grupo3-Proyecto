@@ -24,6 +24,25 @@
     "Specializations": [
       "Seda"
     ],
-    "BoughtMaterials": []
+    "BoughtMaterials": [
+      {
+        "CompanyName": "Compa\u00F1\u00EDa de Metaler\u00EDa",
+        "Material": {
+          "Name": "Microondas",
+          "Measure": "Weight",
+          "Category": "metales"
+        },
+        "DateTime": "2021-11-28T00:00:00-03:00",
+        "Price": {
+          "Quantity": 100,
+          "Currency": "dollar",
+          "Unit": "g"
+        },
+        "Amount": {
+          "Quantity": 1,
+          "Unit": "kg"
+        }
+      }
+    ]
   }
 ]
