@@ -119,7 +119,7 @@ namespace UnitTests
             platform.ReceiveMessages(
                 "Admin1",
                 "/removeuser",
-                "Entrepreneur1"
+                "Santiago"
             );
             bool actual= Singleton<SessionManager>.Instance.RemoveUserByName("Santiago");
             Assert.That(actual, Is.False);

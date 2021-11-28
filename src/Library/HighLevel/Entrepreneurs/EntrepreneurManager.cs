@@ -75,7 +75,6 @@ namespace Library.HighLevel.Entrepreneurs
                 return false;
             }
 
-            Singleton<SessionManager>.Instance.RemoveUserByName(name);
             return true;
         }
 
