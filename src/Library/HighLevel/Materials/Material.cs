@@ -24,7 +24,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// The category the material belongs to.
         /// </summary>
-        public MaterialCategory Category { get; private set; }
+        public Library.HighLevel.Materials.MaterialCategory Category { get; private set; }
 
         private Material(string name, Measure measure, MaterialCategory category)
         {

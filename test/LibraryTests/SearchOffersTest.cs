@@ -25,14 +25,14 @@ namespace ProgramTests
         private Amount amount1;
         private Price price1;
         private Location? pickupLocation1;
-        private AssignedMaterialPublication? publication1;
+        private AssignedMaterialPublication publication1;
         private MaterialCategory? category2;
         private Material? material2;
         private Unit? unit2;
         private Amount amount2;
         private Price price2;
         private Location? pickupLocation2;
-        private AssignedMaterialPublication? publication2;
+        private AssignedMaterialPublication publication2;
         private ContactInfo contact;
 
 
@@ -77,8 +77,8 @@ namespace ProgramTests
 
             IList<AssignedMaterialPublication> publications = empresa.AssignedPublications;
 
-            this.publication1 = publications.Where(p => p.Publication.Keywords.Any(k => k == "hospital")).FirstOrDefault();
-            this.publication2 = publications.Where(p => p.Publication.Keywords.Any(k => k == "cubrebocas")).FirstOrDefault();
+            this.publication1 = publications.Where(p => p.Publication.Keywords.Any(k => k == "agujas")).FirstOrDefault().Unwrap();
+            this.publication2 = publications.Where(p => p.Publication.Keywords.Any(k => k == "cubrebocas")).FirstOrDefault().Unwrap();
 
             client.Dispose();
         }
@@ -90,7 +90,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryFound()
         {
-            MaterialCategory categoryToSearch = new MaterialCategory("Residuos hospitalarios");
+            MaterialCategory categoryToSearch = MaterialCategory.GetByName("Residuos hospitalarios").Unwrap();
 
             IList<AssignedMaterialPublication> expected1 = new List<AssignedMaterialPublication>();
             expected1.Add(this.publication1.Unwrap());
@@ -122,8 +122,7 @@ namespace ProgramTests
         public void SearchOffersbyKeywordsFound()
         {
             List<AssignedMaterialPublication> expected3 = new List<AssignedMaterialPublication>();
-            System.Console.WriteLine("---" + (this.publication2 is null));
-            expected3.Add(this.publication2.Unwrap());
+            expected3.Add(this.publication2);
 
             List<AssignedMaterialPublication> result = Singleton<Searcher>.Instance.SearchByKeyword("cubrebocas");
 

@@ -24,7 +24,7 @@ namespace Library.HighLevel.Entrepreneurs
            List<AssignedMaterialPublication> searchResultCategory = new List<AssignedMaterialPublication>();
            foreach (var item in Singleton<CompanyManager>.Instance.Publications)
            {
-               if (item.Publication.Material.Category.Name == category.Name)
+               if (item.Publication.Material.Category.Name == category.Name && !item.Publication.Sold)
                {
                    searchResultCategory.Add(item);
                }
@@ -41,7 +41,7 @@ namespace Library.HighLevel.Entrepreneurs
            List<AssignedMaterialPublication> searchResultKeyword = new List<AssignedMaterialPublication>();
            foreach (var item in Singleton<CompanyManager>.Instance.Publications)
            {
-               if (item.Publication.Keywords.Any(k => k.ToLowerInvariant() == keyword.ToLowerInvariant()))
+               if (item.Publication.Keywords.Any(k => k.ToLowerInvariant() == keyword.ToLowerInvariant()) && !item.Publication.Sold)
                {
                    searchResultKeyword.Add(item);
                }
@@ -61,7 +61,7 @@ namespace Library.HighLevel.Entrepreneurs
            {
                Distance distance;
                distance = Singleton<LocationApiClient>.Instance.GetDistanceAsync(locationSpecified, item.Publication.PickupLocation).Result;
-               if (distance.TravelDistance <= distanceSpecified)
+               if (distance.TravelDistance <= distanceSpecified && !item.Publication.Sold)
                {
                    searchResultLocation.Add(item);
                }

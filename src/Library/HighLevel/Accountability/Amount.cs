@@ -34,5 +34,31 @@ namespace Library.HighLevel.Accountability
         /// <inheritdoc />
         public override string? ToString() =>
             $"{this.Quantity} {this.Unit}";
+
+        /// <summary>
+        /// Substracts two amounts, storing the result in the first one.
+        /// </summary>
+        /// <param name="other">The amount to substract.</param>
+        /// <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
+        public bool Substract(Amount other)
+        {
+            if(Unit.GetConversionFactor(this.Unit, other.Unit) is double factor)
+            {
+                if(factor < 1)
+                {
+                    factor = Unit.GetConversionFactor(other.Unit, this.Unit).Unwrap();
+                    this.Quantity -= (float)(other.Quantity * factor);
+                    return true;
+                }
+
+                this.Quantity = (float)(this.Quantity * factor);
+                this.Unit = other.Unit;
+
+                this.Quantity -= other.Quantity;
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -637,6 +637,13 @@
         <member name="M:Library.HighLevel.Accountability.Amount.ToString">
             <inheritdoc />
         </member>
+        <member name="M:Library.HighLevel.Accountability.Amount.Substract(Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Substracts two amounts, storing the result in the first one.
+            </summary>
+            <param name="other">The amount to substract.</param>
+            <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
+        </member>
         <member name="T:Library.HighLevel.Accountability.BoughtMaterialLine">
             <summary>
             This class represents a material bought by the entrepreneur
@@ -706,6 +713,11 @@
             The american dollar.
             </summary>
         </member>
+        <member name="F:Library.HighLevel.Accountability.Currency.Currencies">
+            <summary>
+            Gets the list of available currencies.
+            </summary>
+        </member>
         <member name="F:Library.HighLevel.Accountability.Currency.Name">
             <summary>
             The currency's name.
@@ -724,6 +736,13 @@
             Gets the currency given its name.
             </summary>
             <param name="name">The currency's name.</param>
+            <returns>The currency, if there is.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Currency.GetFromSymbol(System.String)">
+            <summary>
+            Gets the currency given its symbol.
+            </summary>
+            <param name="symbol">The currency's symbol.</param>
             <returns>The currency, if there is.</returns>
         </member>
         <member name="T:Library.HighLevel.Accountability.JsonAmount">
@@ -1959,6 +1978,11 @@
             Gets the type of the material publication.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Materials.MaterialPublication.Sold">
+            <summary>
+            Gets if the publication is sold.
+            </summary>
+        </member>
         <member name="F:Library.HighLevel.Materials.MaterialPublication.Keywords">
             <summary>
             The list of keywords of the publication material.
@@ -1991,6 +2015,13 @@
             <param name="keywords">The keywords of the material.</param>
             <param name="requirements">The requirements of the material.</param>
             <returns>A <see cref="T:Library.HighLevel.Materials.MaterialPublication" />, or null if the data is invalid.</returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.ReduceQuantity(Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Substracts two amounts, storing the result in the first one.
+            </summary>
+            <param name="otherAmount">The amount to substract. </param>
+            <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
         </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
@@ -2331,13 +2362,10 @@
             This class has the responsibility of create an instance of amount for the publication, with the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.AmountProcessor.#ctor(System.Func{Library.HighLevel.Accountability.Measure})">
+        <member name="M:Library.InputHandlers.AmountProcessor.#ctor(System.Func{System.String},System.Func{Library.HighLevel.Accountability.Measure})">
             <summary>
-            Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />
+            Initializes an instance of <see cref="T:Library.InputHandlers.AmountProcessor" />.
             </summary>
-        </member>
-        <member name="M:Library.InputHandlers.AmountProcessor.getResult">
-            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.BasicStringProcessor">
             <summary>
@@ -2496,13 +2524,10 @@
             This class has the responsibility of return the price of the publication, using the input data of the user.
             </summary>
         </member>
-        <member name="M:Library.InputHandlers.PriceProcessor.#ctor(System.Func{Library.HighLevel.Accountability.Measure})">
+        <member name="M:Library.InputHandlers.PriceProcessor.#ctor(System.Func{System.String},System.Func{Library.HighLevel.Accountability.Measure})">
             <summary>
             Initializes an instance of <see cref="T:Library.InputHandlers.PriceProcessor" />
             </summary>
-        </member>
-        <member name="M:Library.InputHandlers.PriceProcessor.getResult">
-            <inheritdoc />
         </member>
         <member name="T:Library.InputHandlers.UnitProcessor">
             <summary>
@@ -2847,6 +2872,17 @@
             Initializes an instance of <see cref="T:Library.States.Companies.IncompleteCompanyRepresentativeState.CreateNewCompanyState" />.
             </summary>
             <param name="parent">Its parent, from which it gets the company's name.</param>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurBuyMaterialState">
+            <summary>
+            This class has the responsibility of allow an entrepreneur user buy a material.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurBuyMaterialState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurBuyMaterialState" /> class.
+            </summary>
+            <param name="id">The user´s id.</param>
         </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurCreateReportState">
             <summary>

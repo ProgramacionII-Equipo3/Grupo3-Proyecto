@@ -5,8 +5,6 @@ using System.Linq;
 using Library.HighLevel.Materials;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
-using Library.Utils;
-using System.Text;
 
 namespace Library.States.Entrepreneurs
 {
@@ -27,7 +25,7 @@ namespace Library.States.Entrepreneurs
             this.id = id;
             this.commands = new (string, string, Func<(State, string?)>)[]
             {
-                
+                ("/buy",           "Le permite al emprendedor comprar un material",                 this.buyMaterial),
                 ("/searchFK",      "Busca materiales utilizando palabras claves.",                  this.searchByKeyword),
                 ("/searchFC",      "Busca materiales por categorías.",                              this.searchByCategory),
                 ("/searchFZ",      "Busca materiales por zona.",                                    this.searchByZone),
@@ -35,6 +33,11 @@ namespace Library.States.Entrepreneurs
                 ("/materialspunt", "Muestra que materiales son generados puntualmente.",            this.materialspunt),
                 ("/ereport",       "Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
             };
+        }
+
+        private (State, string?) buyMaterial()
+        {
+            return (new EntrepreneurBuyMaterialState(this.id), null);
         }
 
         private (State, string?) ereport()
