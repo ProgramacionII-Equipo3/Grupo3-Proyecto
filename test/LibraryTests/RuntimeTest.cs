@@ -339,7 +339,7 @@ namespace UnitTests
                     {
                         "Teogal",
                         "Bujes de cartón",
-                        "30.00 cm",
+                        "30,00 cm",
                         "15 U$/cm",
                         "Avenida 8 de Octubre, Montevideo, Uruguay",
                         "normal"
