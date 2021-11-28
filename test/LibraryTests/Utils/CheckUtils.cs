@@ -114,6 +114,33 @@ namespace UnitTests.Utils
             CheckMaterialEquality(expected.Material, actual.Material);
             CheckAmountEquality(expected.Amount, actual.Amount);
             CheckPriceEquality(expected.Price, actual.Price);
-        }        
+        }
+
+        /// <summary>
+        /// Asserts in a field-wise way the equality of two instances of <see cref="BoughtMaterialLine"/>.
+        /// </summary>
+        /// <param name="expected">The expected instance.</param>
+        /// <param name="actual">The actual instance.</param>
+        public static void CheckBoughtMaterialLineEquality(BoughtMaterialLine expected, BoughtMaterialLine actual)
+        {
+            Assert.AreEqual(expected.CompanyName, actual.CompanyName);
+            Assert.AreEqual(expected.DateTime, actual.DateTime);
+            CheckAmountEquality(expected.Amount, actual.Amount);
+            CheckMaterialEquality(expected.Material, actual.Material);
+            CheckPriceEquality(expected.Price, actual.Price);
+        }
+
+        /// <summary>
+        /// Asserts in a field-wise way the equality of two instances of <see cref="MaterialSalesLine"/>.
+        /// </summary>
+        /// <param name="expected">The expected instance.</param>
+        /// <param name="actual">The actual instance.</param>
+        public static void CheckMaterialSalesLineEquality(MaterialSalesLine expected, MaterialSalesLine actual)
+        {
+            Assert.AreEqual(expected.DateTime, actual.DateTime);
+            CheckMaterialEquality(expected.Material, actual.Material);
+            CheckPriceEquality(expected.Price, actual.Price);
+            CheckAmountEquality(expected.Amount, actual.Amount);
+        }
     }
 }

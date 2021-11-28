@@ -388,6 +388,11 @@
             Tests the user story of publishing a scheduled material.
             </summary>
         </member>
+        <member name="M:UnitTests.RuntimeTest.PurchaseMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material.
+            </summary>
+        </member>
         <member name="T:UnitTests.Utils.BasicUtils">
             <summary>
             This class contains functions which perform common actions in the unit tests.
@@ -464,6 +469,20 @@
         <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialPublicationEquality(Library.HighLevel.Materials.MaterialPublication,Library.HighLevel.Materials.MaterialPublication)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Materials.MaterialPublication"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckBoughtMaterialLineEquality(Library.HighLevel.Accountability.BoughtMaterialLine,Library.HighLevel.Accountability.BoughtMaterialLine)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialSalesLineEquality(Library.HighLevel.Accountability.MaterialSalesLine,Library.HighLevel.Accountability.MaterialSalesLine)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>

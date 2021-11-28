@@ -29,8 +29,8 @@ namespace Library.States.Entrepreneurs
                 ("/searchFK",      "Busca materiales utilizando palabras claves.",                  this.searchByKeyword),
                 ("/searchFC",      "Busca materiales por categorías.",                              this.searchByCategory),
                 ("/searchFZ",      "Busca materiales por zona.",                                    this.searchByZone),
-                ("/materialgen",   "Muestra que materiales son constantemente generados.",          this.materialsgen),
-                ("/materialspunt", "Muestra que materiales son generados puntualmente.",            this.materialspunt),
+                ("/materialgen",   "Muestra qué materiales son constantemente generados.",          this.materialsgen),
+                ("/materialspunt", "Muestra qué materiales son generados puntualmente.",            this.materialspunt),
                 ("/ereport",       "Muestra los reportes de materiales recibidos en cierta fecha.", this.ereport)
             };
         }
