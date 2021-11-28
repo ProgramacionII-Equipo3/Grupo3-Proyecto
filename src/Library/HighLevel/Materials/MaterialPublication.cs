@@ -96,7 +96,8 @@ namespace Library.HighLevel.Materials
                 : null;
 
         /// <summary>
-        /// Substracts two amounts, storing the result in the first one.
+        /// Substracts a given amount to the one in the publication,
+        /// as if a purchase was made.
         /// </summary>
         /// <param name="otherAmount">The amount to substract. </param>
         /// <returns>
@@ -107,6 +108,15 @@ namespace Library.HighLevel.Materials
         public byte ReduceQuantity(Amount otherAmount)
         {
             return this.Amount.Substract(otherAmount);
+        }
+
+        /// <summary>
+        /// Sets the stock amount to zero,
+        /// as if someone purchased the remaining amount.
+        /// </summary>
+        public void ClearStock()
+        {
+            this.Amount.SetToZero();
         }
     }
 }

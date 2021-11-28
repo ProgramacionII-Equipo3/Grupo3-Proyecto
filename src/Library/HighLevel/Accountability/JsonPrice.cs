@@ -11,7 +11,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The price's quantity.
         /// </summary>
-        public float Quantity { get; set; }
+        public uint Quantity { get; set; }
 
         /// <summary>
         /// The price's currency.

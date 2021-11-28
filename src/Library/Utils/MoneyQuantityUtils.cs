@@ -19,7 +19,7 @@ namespace Library.Utils
         public static MoneyQuantity? Calculate(Amount amount, Price price) =>
             Unit.GetConversionFactor(amount.Unit, price.Unit) is double unitConversionFactor
             ? new MoneyQuantity(
-                (float)(amount.Quantity * price.Quantity * unitConversionFactor),
+                (amount.Quantity * price.Quantity * unitConversionFactor),
                 price.Currency)
             : null;
     }

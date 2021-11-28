@@ -13,7 +13,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The numeric value.
         /// </summary>
-        public readonly float Quantity;
+        public readonly double Quantity;
 
         /// <summary>
         /// The currency.
@@ -25,7 +25,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="quantity">The numeric value.</param>
         /// <param name="currency">The currency.</param>
-        public MoneyQuantity(float quantity, Currency currency)
+        public MoneyQuantity(double quantity, Currency currency)
         {
             this.Quantity = quantity;
             this.Currency = currency;

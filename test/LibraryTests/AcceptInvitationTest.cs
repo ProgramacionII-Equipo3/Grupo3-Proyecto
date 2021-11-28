@@ -42,7 +42,7 @@ namespace ProgramTests
             ContactInfo contactInfo = new ContactInfo();
             contactInfo.Email = "companysa@gmail.com";
             contactInfo.PhoneNumber = 098765432;
-            Location location = Singleton<LocationApiClient>.Instance.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
+            Location location = Singleton<LocationApiClient>.Instance.GetLocationResilient("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Company company = Singleton<CompanyManager>.Instance.CreateCompany("Company.SA", contactInfo, "Arroz", location)!;
             company.AddUser(message.Id);
 
@@ -72,7 +72,7 @@ namespace ProgramTests
             string specialization2 = "specialization2";
             IList<string> specializations = new List<string> { specialization, specialization2 };
             using LocationApiClient provider = new LocationApiClient();
-            Location location = provider.GetLocation("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
+            Location location = provider.GetLocationResilient("Av. 8 de Octubre 2738", "Montevideo", "Montevideo", "Uruguay");
             Entrepreneur entrepreneur = new Entrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
             Singleton<EntrepreneurManager>.Instance.NewEntrepreneur(id, "Juan", 22, location, "Carpintero", habilitations, specializations);
             Assert.That(Singleton<EntrepreneurManager>.Instance.GetById(id), Is.Not.Null);

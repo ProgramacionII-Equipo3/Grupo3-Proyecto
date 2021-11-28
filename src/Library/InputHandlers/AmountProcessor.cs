@@ -32,8 +32,8 @@ namespace Library.InputHandlers
                         return Result<Amount, string>.Err("El texto ingresado no sigue el formato requerido.");
                     }
 
-                    float quantity;
-                    if (!float.TryParse(match.Groups["quantity"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out quantity))
+                    double quantity;
+                    if (!double.TryParse(match.Groups["quantity"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out quantity))
                     {
                         return Result<Amount, string>.Err("El texto ingresado en la posición de la cantidad no es un número.");
                     }
