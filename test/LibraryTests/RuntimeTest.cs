@@ -498,11 +498,11 @@ namespace UnitTests
                     "/buy",
                     "Teogal",
                     "Bujes de cartón",
-                    "20, cm");
+                    "30 cm");
 
                 string finalMessage = responses[responses.Count - 1].Item2;
                 Regex regex = new Regex(
-                    "La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\n"
+                    "La compra se ha concretado, para coordinar el envío o el retiro del material, te envío la información de contacto de la empresa:\n"
                   + "Número Telefónico: (?<phonenumber>.+?)\n"
                   + "Correo Electrónico: (?<email>.+?)",
                     RegexOptions.Compiled
@@ -512,7 +512,7 @@ namespace UnitTests
                 {
                     new string[]
                     {
-                        "098140124",
+                        "98140124",
                         "teogal@gmail.com"
                     }
                 }, actual = regex.Matches(finalMessage)
