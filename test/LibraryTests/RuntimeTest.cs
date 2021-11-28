@@ -325,7 +325,7 @@ namespace UnitTests
         [Test]
         public void SearchByKeywordTest()
         {
-            BasicRuntimeTest("search-material-by-keywords", () =>
+            BasicRuntimeTest("search-material", () =>
             {
                 List<(string, string)> responses = this.platform!.ReceiveMessages(
                     "Entrepreneur1",
@@ -359,6 +359,176 @@ namespace UnitTests
                 Assert.AreEqual(expected, actual);
             });
         }
+
+
+        /// <summary>
+        /// Tests the user story of searching materials by category.
+        /// </summary>
+        [Test]
+        public void SearchByCategoryTest()
+        {
+            BasicRuntimeTest("search-material", () =>
+            {
+                List<(string, string)> responses = platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFC",
+                    "Celulósicos");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+                  + "cantidad: (?<materialquantity>.+?), "
+                  + "precio: (?<materialprice>.+?), "
+                  + "ubicación: (?<materiallocation>.+), "
+                  + "tipo: (?<materialtype>.+)",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30.00 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of searching materials by zone.
+        /// </summary>
+        [Test]
+        public void SearchByZoneTest()
+        {
+            BasicRuntimeTest("search-material", () =>
+            {
+                List<(string, string)> responses = platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFZ",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "100");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+                  + "cantidad: (?<materialquantity>.+?), "
+                  + "precio: (?<materialprice>.+?), "
+                  + "ubicación: (?<materiallocation>.+), "
+                  + "tipo: (?<materialtype>.+)",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30.00 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of removing an admin as admin.
+        /// </summary>
+        [Test]
+        public void RemoveAdminAsAdminTest()
+        {
+            Singleton<SessionManager>.Instance.NewUser(
+                "Admin2",
+                new UserData("Bianca", true, UserData.Type.ADMIN, null, null),
+                new AdminInitialMenuState()); 
+
+            BasicRuntimeTest("remove-admin-as-admin", () =>
+            {
+                List<(string, string)> responses = platform!.ReceiveMessages(
+                    "Admin1",
+                    "/removeuser",
+                    "Bianca");
+                
+                string finalMessage = responses[responses.Count - 1].Item2;
+
+                string expected = "No se puede eliminar un administrador.";
+                string actual = finalMessage.Split('\n')[0];  
+
+                Assert.AreEqual(expected, actual);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of buying a material publication.
+        /// </summary>
+        [Test]
+        public void BuyMaterialPublicationTest()
+        {
+            BasicRuntimeTest("buy-material-publication", () =>
+            {
+                List<(string, string)> responses = platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teogal",
+                    "Bujes de cartón",
+                    "30 cm",
+                    "Sí");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "La compra se ha concretado, para coordinar el envío o el retiro del material, te envío la información de contacto de la empresa:\n"
+                  + "Número Telefónico: (?<phonenumber>.+?)\n"
+                  + "Correo Electrónico: (?<email>.+?)\n",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "098140124",
+                        "teogal@gmail.com"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["phonenumber"].Value,
+                        m.Groups["email"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+            });
+        }
+
 
         /// <summary>
         /// Tests the user story of creating a company report.
@@ -676,6 +846,8 @@ namespace UnitTests
                 }
             });
         }
+
+
 
         /// <summary>
         /// Tests the user story of making a company report after selling materials.

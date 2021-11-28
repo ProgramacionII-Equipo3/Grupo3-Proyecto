@@ -1,0 +1,30 @@
+[
+    {
+      "Id": "Entrepreneur1",
+      "Name": "Santiago",
+      "Age": 19,
+      "Location": {
+        "Found": true,
+        "AddresLine": "Avenida 8 de Octubre",
+        "CountryRegion": "Uruguay",
+        "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+        "Locality": "Montevideo",
+        "PostalCode": null,
+        "Latitude": -34.87959,
+        "Longitude": -56.14838
+      },
+      "Heading": "Maderas",
+      "Habilitations": [
+        {
+          "DocLink": "https://www.wikipedia.org",
+          "IsCorrect": false,
+          "DescriptiveText": "Description1"
+        }
+      ],
+      "Specializations": [
+        "E1",
+        "E2"
+      ],
+      "BoughtMaterials": []
+    }
+]
