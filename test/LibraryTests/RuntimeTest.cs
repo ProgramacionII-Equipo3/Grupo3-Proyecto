@@ -498,7 +498,8 @@ namespace UnitTests
                     "/buy",
                     "Teogal",
                     "Bujes de cartón",
-                    "30 cm");
+                    "30 cm",
+                    "Sí");
 
                 string finalMessage = responses[responses.Count - 1].Item2;
                 Regex regex = new Regex(
