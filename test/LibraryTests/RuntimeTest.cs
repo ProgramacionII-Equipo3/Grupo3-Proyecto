@@ -504,7 +504,7 @@ namespace UnitTests
                 Regex regex = new Regex(
                     "La compra se ha concretado, para coordinar el envío o el retiro del material, te envío la información de contacto de la empresa:\n"
                   + "Número Telefónico: (?<phonenumber>.+?)\n"
-                  + "Correo Electrónico: (?<email>.+?)",
+                  + "Correo Electrónico: (?<email>.+?)\n",
                     RegexOptions.Compiled
                 );
 
