@@ -373,6 +373,26 @@
             Tests the user story of searching materials by keyword.
             </summary>
         </member>
+        <member name="M:UnitTests.RuntimeTest.SearchByCategoryTest">
+            <summary>
+            Tests the user story of searching materials by category.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.SearchByZoneTest">
+            <summary>
+            Tests the user story of searching materials by zone.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.RemoveAdminAsAdminTest">
+            <summary>
+            Tests the user story of removing an admin as admin.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.BuyMaterialPublicationTest">
+            <summary>
+            Tests the user story of buying a material publication.
+            </summary>
+        </member>
         <member name="M:UnitTests.RuntimeTest.CreateCompanyReportTest">
             <summary>
             Tests the user story of creating a company report.

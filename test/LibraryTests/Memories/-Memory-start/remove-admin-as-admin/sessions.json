@@ -1,0 +1,26 @@
+[
+    {
+      "Id": "Admin1",
+      "UserData": {
+        "Name": "Mart\u00EDn",
+        "ContactInfo": {
+          "Email": null,
+          "PhoneNumber": null
+        },
+        "IsComplete": true,
+        "UserType": 0
+      }
+    },
+    {
+      "Id": "Admin2",
+      "UserData": {
+        "Name": "Bianca",
+        "ContactInfo": {
+          "Email": null,
+          "PhoneNumber": null
+        },
+        "IsComplete": true,
+        "UserType": 0
+      }
+    }
+]
