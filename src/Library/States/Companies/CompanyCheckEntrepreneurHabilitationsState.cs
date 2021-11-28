@@ -15,7 +15,7 @@ namespace Library.States.Companies
         /// </summary>
         /// <param name="id"></param>
         public CompanyCheckEntrepreneurHabilitationsState(string id) : base(
-            InputProcessorState.CreateInstance<string>(
+            new InputProcessorState<string>(
                 new BasicStringProcessor(() => "Inserte el nombre del emprendedor que desea chequear."),
                 entrepreneur =>
                 {

@@ -45,11 +45,11 @@ namespace Library.States.Entrepreneurs
                 },
                 new NewEntrepreneurForm(userId)
             ),
-            () => null,
+            () => (null, null),
             () =>
             {
                 Singleton<SessionManager>.Instance.GetById(userId).Unwrap().UserData.IsComplete = true;
-                return new EntrepreneurInitialMenuState(userId);
+                return (new EntrepreneurInitialMenuState(userId), null);
             }
         ) {}
 

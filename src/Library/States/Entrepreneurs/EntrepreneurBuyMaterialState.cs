@@ -11,22 +11,22 @@ using Library.HighLevel.Materials;
 
 namespace Library.States.Entrepreneurs
 {
+#warning TODO: make sure the entrepreneur has the chance to buy the remaining stock if the asked amount is higher than the stock
     /// <summary>
     /// This class has the responsibility of allow an entrepreneur user buy a material.
     /// </summary>
-    public class EntrepreneurBuyMaterialState : InputHandlerState
+    public class EntrepreneurBuyMaterialState : InputProcessorState<(AssignedMaterialPublication, Amount)>
     {
         /// <summary>
         /// Initializes an instance of <see cref="EntrepreneurBuyMaterialState" /> class.
         /// </summary>
         /// <param name="id">The user´s id.</param>
         public EntrepreneurBuyMaterialState(string id) : base(
-            exitState: () => new EntrepreneurInitialMenuState(id, null),
-            nextState: () => new EntrepreneurInitialMenuState(id, "La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}"),
-            inputHandler: new ProcessorHandler<(AssignedMaterialPublication, Amount)>(
-                result =>
+            exitState: () => (new EntrepreneurInitialMenuState(id, null), null),
+            nextState: result =>
                 {
-                    if (result.Item1.Publication.Amount.Substract(result.Item2))
+                    var newState = new EntrepreneurInitialMenuState(id, null);
+                    if (result.Item1.Publication.Amount.Substract(result.Item2) == 0)
                     {
                         DateTime time = DateTime.Today;
                         BoughtMaterialLine purchase = new BoughtMaterialLine(result.Item1.Company.Name, result.Item1.Publication.Material, time, result.Item1.Publication.Price, result.Item1.Publication.Amount);
@@ -36,13 +36,13 @@ namespace Library.States.Entrepreneurs
                         MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item1.Publication.Amount, result.Item1.Publication.Price, time);
                         result.Item1.Company.MaterialSales.Add(sale);
 
-                        return $"";
+                        return (newState, $"La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}\n{newState.GetDefaultResponse()}");
                     }
-                    return "Las cantidades del material y la compra, son inválidas entre sí.";
+                    return (newState, $"Las cantidades del material y la compra, son inválidas entre sí.\n{newState.GetDefaultResponse()}");
                 },
-                new CollectDataProcessor(id)
-            )
-        ) {}
+            processor: new CollectDataProcessor(id)
+        )
+        { }
 
         private class CollectDataProcessor : FormProcessor<(AssignedMaterialPublication, Amount)>
         {
@@ -52,7 +52,7 @@ namespace Library.States.Entrepreneurs
 
             public CollectDataProcessor(string id)
             {
-                this.inputHandlers =  new InputHandler[]
+                this.inputHandlers = new InputHandler[]
                 {
                     ProcessorHandler<string>.CreateInfallibleInstance(
                         cName =>

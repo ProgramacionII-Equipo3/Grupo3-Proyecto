@@ -23,8 +23,8 @@ namespace Library.States.Companies
         /// <param name="id">User's id.</param>
         /// <returns></returns>
         public CompanyPublishMaterialState(string id) : base(
-            exitState: () => new CompanyInitialMenuState(id),
-            nextState: () => new CompanyInitialMenuState(id),
+            exitState: () => (new CompanyInitialMenuState(id), null),
+            nextState: () => (new CompanyInitialMenuState(id), null),
             inputHandler: new ProcessorHandler<(Material, Amount, Price, Location, MaterialPublicationTypeData, IList<string>, IList<string>)>(
                 (result) => 
                 {

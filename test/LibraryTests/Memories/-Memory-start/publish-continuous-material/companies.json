@@ -1,0 +1,25 @@
+[
+  {
+    "Name": "La Metaler\u00EDa",
+    "ContactInfo": {
+      "Email": "metaleria_comp@gmail.com",
+      "PhoneNumber": 92130294
+    },
+    "Heading": "Met\u00E1licos",
+    "Location": {
+      "Found": true,
+      "AddresLine": "Avenida 8 de Octubre",
+      "CountryRegion": "Uruguay",
+      "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+      "Locality": "Montevideo",
+      "PostalCode": null,
+      "Latitude": -34.87959,
+      "Longitude": -56.14838
+    },
+    "Representants": [
+      "Company3"
+    ],
+    "Publications": [],
+    "MaterialSales": []
+  }
+]

@@ -24,8 +24,8 @@ namespace UnitTests
                 ProcessorHandler<T[]>.CreateInfallibleInstance(
                     l => list = l,
                     new ListProcessor<T>(() => initialResponse, processor)),
-                () => null,
-                () => null));
+                () => (null, null),
+                () => (null, null)));
             ProgramaticPlatform platform = new ProgramaticPlatform("___", messages);
             platform.Run();
 

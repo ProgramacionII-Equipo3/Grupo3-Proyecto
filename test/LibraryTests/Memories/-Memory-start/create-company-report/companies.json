@@ -1,0 +1,61 @@
+[
+  {
+    "Name": "Teogal",
+    "ContactInfo": {
+      "Email": "teogal@gmail.com",
+      "PhoneNumber": 98140124
+    },
+    "Heading": "Maderas",
+    "Location": {
+      "Found": true,
+      "AddresLine": "Avenida 8 de Octubre",
+      "CountryRegion": "Uruguay",
+      "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+      "Locality": "Montevideo",
+      "PostalCode": null,
+      "Latitude": -34.87959,
+      "Longitude": -56.14838
+    },
+    "Representants": [
+      "Company1"
+    ],
+    "Publications": [
+      {
+        "Material": {
+          "Name": "Bujes de cart\u00F3n",
+          "Measure": "Length",
+          "Category": "celul\u00F3sicos"
+        },
+        "Amount": {
+          "Quantity": 30,
+          "Unit": "cm"
+        },
+        "Price": {
+          "Quantity": 15,
+          "Currency": "peso",
+          "Unit": "cm"
+        },
+        "PickupLocation": {
+          "Found": true,
+          "AddresLine": "Avenida 8 de Octubre",
+          "CountryRegion": "Uruguay",
+          "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+          "Locality": "Montevideo",
+          "PostalCode": null,
+          "Latitude": -34.87959,
+          "Longitude": -56.14838
+        },
+        "Type": {
+          "DateTime": null,
+          "PublicationType": "NORMAL"
+        },
+        "Keywords": [
+          "Bujes",
+          "Cart\u00F3n"
+        ],
+        "Requirements": []
+      }
+    ],
+    "MaterialSales": []
+  }
+]
