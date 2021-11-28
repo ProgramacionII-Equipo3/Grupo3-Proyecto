@@ -116,10 +116,32 @@ namespace UnitTests
                     List<(string, string)> responses = platform.ReceiveMessages(
                         "Admin1",
                         "/invitecompany");
-                    invitationCode = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2); ;
+                    invitationCode = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
                     Assert.That(invitationCode, Is.Not.Null);
                 }
                 Assert.AreEqual(1, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
+
+                // Create a message invitation for "Company2"
+                string? invitationCode2;
+                {
+                    List<(string, string)> responses = platform.ReceiveMessages(
+                        "Admin1",
+                        "/invitecompany");
+                    invitationCode2 = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
+                    Assert.That(invitationCode2, Is.Not.Null);
+                }
+                Assert.AreEqual(2, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
+
+                // Create a message invitation for "Company3"
+                string? invitationCode3;
+                {
+                    List<(string, string)> responses = platform.ReceiveMessages(
+                        "Admin1",
+                        "/invitecompany");
+                    invitationCode3 = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
+                    Assert.That(invitationCode3, Is.Not.Null);
+                }
+                Assert.AreEqual(3, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
 
                 // Sign up an user of id "Company1" as company representative
                 platform.ReceiveMessages(
@@ -135,6 +157,36 @@ namespace UnitTests
                     "teogal@gmail.com");
                 checkUser("Company1", "Roberto");
                 Assert.That(Singleton<CompanyManager>.Instance.GetByName("Teogal"), Is.Not.Null);
+
+                // Sign up an user of id "Company2" as company representative
+                platform.ReceiveMessages(
+                    "Company2",
+                    $"/start {invitationCode2}",
+                    "Ernesto",
+                    "/esc",
+                    "/esc",
+                    "Compañía de vidrios",
+                    "Vidrios",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "091695341",
+                    "vi.drios@gmail.com");
+                checkUser("Company2", "Ernesto");
+                Assert.That(Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios"), Is.Not.Null);
+
+                // Sign up an user of id "Company2" as company representative
+                platform.ReceiveMessages(
+                    "Company3",
+                    $"/start {invitationCode3}",
+                    "Carlos",
+                    "/esc",
+                    "/esc",
+                    "La Metalería",
+                    "Metálicos",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "092130294",
+                    "metaleria_comp@gmail.com");
+                checkUser("Company3", "Carlos");
+                Assert.That(Singleton<CompanyManager>.Instance.GetByName("La Metalería"), Is.Not.Null);
             }
 
             // Publish a material as Company1
@@ -238,6 +290,112 @@ namespace UnitTests
                 "Company1",
                 "/companyreport",
                 "23/11/2021");
+
+            // Publish a continuos material as Company3
+            platform.ReceiveMessages(
+                "Company3",
+                "/publish",
+                "Envase de vidrio",
+                "weight",
+                "Vidrios",
+                "500",
+                "g",
+                "10",
+                "pesos",
+                "g",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "/continuous",
+                "/add",
+                "Envase",
+                "/add",
+                "Vidrio",
+                "/finish",
+                "/finish");
+
+            // Publish a scheduled material as Company2
+            platform.ReceiveMessages(
+                "Company2",
+                "/publish",
+                "Garrafas",
+                "weight",
+                "Metálicos",
+                "5",
+                "kg",
+                "15",
+                "pesos",
+                "kg",
+                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                "/scheduled",
+                "12/11/2021",
+                "/add",
+                "Metales",
+                "/add",
+                "Metálicos",
+                "/finish",
+                "/finish");
+            {
+                IList<MaterialPublication> publications1 = Singleton<CompanyManager>.Instance.GetByName("La Metalería")!.Publications;
+                Assert.AreEqual(1, publications1.Count);
+                MaterialPublication publication1 = publications1[0];
+                DateTime dateTime = new DateTime(2021,11,30);
+                checkMaterialPublicationEquality(
+                    MaterialPublication.CreateInstance(
+                        Material.CreateInstance(
+                            "Garrafas",
+                            Measure.Weight,
+                            MaterialCategory.GetByName("Metálicos").Unwrap()),
+                        new Amount(5, Unit.GetByAbbr("kg").Unwrap()),
+                        new Price(50, Currency.Peso, Unit.GetByAbbr("kg").Unwrap()),
+                        new Location()
+                        {
+                            Found = true,
+                            AddresLine = "Avenida 8 de Octubre",
+                            CountryRegion = "Uruguay",
+                            FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                            Locality = "Montevideo",
+                            PostalCode = null,
+                            Latitude = -34.87959,
+                            Longitude = -56.14838
+                        },
+                        MaterialPublicationTypeData.Scheduled(dateTime),
+                        new List<string>()
+                        {
+                            "Metales", "Metálicos"
+                        },
+                        new List<string>()).Unwrap(),
+                    publication1);
+            {
+                IList<MaterialPublication> publications2 = Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios")!.Publications;
+                Assert.AreEqual(0, publications2.Count);
+                MaterialPublication publication2 = publications2[0];
+                checkMaterialPublicationEquality(
+                    MaterialPublication.CreateInstance(
+                        Material.CreateInstance(
+                            "Envase de vidrio",
+                            Measure.Length,
+                            MaterialCategory.GetByName("Vidrios").Unwrap()),
+                        new Amount(30, Unit.GetByAbbr("g").Unwrap()),
+                        new Price(15, Currency.Peso, Unit.GetByAbbr("g").Unwrap()),
+                        new Location()
+                        {
+                            Found = true,
+                            AddresLine = "Avenida 8 de Octubre",
+                            CountryRegion = "Uruguay",
+                            FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                            Locality = "Montevideo",
+                            PostalCode = null,
+                            Latitude = -34.87959,
+                            Longitude = -56.14838
+                        },
+                        MaterialPublicationTypeData.Continuous(),
+                        new List<string>()
+                        {
+                            "Envase", "Vidrio"
+                        },
+                        new List<string>()).Unwrap(),
+                    publication2);
+                }
+            }
         }
     }
 }

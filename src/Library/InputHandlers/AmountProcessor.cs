@@ -1,8 +1,10 @@
 using System;
+using System.Globalization;
 using Library.Core.Processing;
 using Library.HighLevel.Accountability;
 using Library.InputHandlers.Abstractions;
 using Library.Utils;
+
 
 namespace Library.InputHandlers
 {
@@ -21,8 +23,17 @@ namespace Library.InputHandlers
         {
             this.inputHandlers = new InputHandler[]
             {
-                ProcessorHandler.CreateInfallibleInstance<string>(
-                    q => this.quantity = float.Parse(q),
+                ProcessorHandler.CreateInstance<string>(
+                    q => 
+                    {
+                        float quantity;
+                        if (float.TryParse(q, NumberStyles.Float, CultureInfo.InvariantCulture, out quantity))
+                        {
+                            this.quantity = quantity;
+                            return null;
+                        }
+                        return "El texto ingresado no es un número válido.";
+                    },
                     new BasicStringProcessor(() => "Por favor ingresa la cantidad de unidades del material que deseas publicar.")
                 ),
                 ProcessorHandler.CreateInfallibleInstance<Unit>(
