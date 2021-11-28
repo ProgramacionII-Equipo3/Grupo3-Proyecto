@@ -38,6 +38,16 @@ namespace Library.HighLevel.Accountability
         public readonly string Buyer;
 
         /// <summary>
+        /// Gets the ID for the sale.
+        /// </summary>
+        public static int StaticID = 0;
+
+        /// <summary>
+        /// The sale´s ID.
+        /// </summary>
+        public readonly int SaleID;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MaterialSalesLine"/> class.
         /// </summary>
         /// <param name="material">The sold material.</param>
@@ -52,6 +62,9 @@ namespace Library.HighLevel.Accountability
             this.Price = price;
             this.DateTime = dateTime;
             this.Buyer = buyer;
+            this.SaleID = MaterialSalesLine.StaticID;
+
+            MaterialSalesLine.StaticID += 1;
         }
 
         /// <summary>

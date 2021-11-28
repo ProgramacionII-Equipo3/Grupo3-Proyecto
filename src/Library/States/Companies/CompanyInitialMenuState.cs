@@ -22,11 +22,9 @@ namespace Library.States.Companies
                 ("/publish",           "Realizar una publicación de un material.",                                             this.PublishMaterial),
                 ("/removepublication", "Borrar una publicación",                                                               this.RemovePublication),
                 ("/checkhabilitation", "Mostrar las habilitaciones de un emprendedor que solicito el material",                this.CheckHabilitation),
-                ("/checkpublications",  "Mostrar todas las publicaciones de la empresa",                                        this.CheckPublications),
+                ("/checkpublications",  "Mostrar todas las publicaciones de la empresa",                                       this.CheckPublications),
                 ("/companyreport",     "Acceder al reporte de los materiales enviados por la empresa a partir de un día dado", this.CompanyReport),
-
-                #warning TODO: make states for invalidating a sale made by an entrepreneur
-                ("/removesale",        "Invalidate a sale made by an entrepreneur",                                            null)
+                ("/removesale",        "Invalidate a sale made by an entrepreneur",                                            this.RemoveSale)
             };
         }
 
@@ -60,6 +58,11 @@ namespace Library.States.Companies
         private (State, string?) CompanyReport()
         {
             return(new CompanySentReportState(this.id), null);
+        }
+
+        private (State, string?) RemoveSale()
+        {
+            return (new CompanyRevertSaleState(this.id), null);
         }
 
         /// <inheritdoc />
