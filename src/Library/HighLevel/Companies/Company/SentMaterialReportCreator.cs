@@ -22,6 +22,6 @@ namespace Library.HighLevel.Companies
         /// <param name="dateTime">The lower limit of the moment the sales happened.</param>
         /// <returns>The <see cref="SentMaterialReport" />.</returns>
         public SentMaterialReport GetMaterialReport(DateTime dateTime) =>
-            new SentMaterialReport(this.MaterialSales.Where(line => line.DateTime < dateTime).ToList().AsReadOnly());
+            new SentMaterialReport(this.MaterialSales.Where(line => line.DateTime >= dateTime).ToList().AsReadOnly());
     }
 }

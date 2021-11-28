@@ -43,7 +43,7 @@ namespace Library.InputHandlers
                             return null;
                         }
                     },
-                    new BasicStringProcessor(() => "Por favor, inserte su nombre.")),
+                    new BasicStringProcessor(() => "Por favor, inserte su nombre completo.")),
                 ProcessorHandler<ClassWrapper<int>?>.CreateInfallibleInstance(
                     n =>
                     {

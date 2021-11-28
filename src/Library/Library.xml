@@ -836,6 +836,11 @@
             The moment the sale happened.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Buyer">
+            <summary>
+            The name of the entrepreneur who made the purchase.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Accountability.JsonMaterialSalesLine.FromValue(Library.HighLevel.Accountability.MaterialSalesLine)">
             <inheritdoc />
         </member>
@@ -895,7 +900,12 @@
             The moment the sale happened.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime)">
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Buyer">
+            <summary>
+            The name of the entrepreneur who made the purchase.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/> class.
             </summary>
@@ -903,6 +913,7 @@
             <param name="amount">The amount of sold material.</param>
             <param name="price">The price of the sold material.</param>
             <param name="dateTime">The moment the sale happened.</param>
+            <param name="buyer">The name of the entrepreneur who made the purchase.</param>
         </member>
         <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
             <summary>

@@ -138,6 +138,7 @@ namespace UnitTests.Utils
         public static void CheckMaterialSalesLineEquality(MaterialSalesLine expected, MaterialSalesLine actual)
         {
             Assert.AreEqual(expected.DateTime, actual.DateTime);
+            Assert.AreEqual(expected.Buyer, actual.Buyer);
             CheckMaterialEquality(expected.Material, actual.Material);
             CheckPriceEquality(expected.Price, actual.Price);
             CheckAmountEquality(expected.Amount, actual.Amount);

@@ -27,7 +27,7 @@
           "Category": "celul\u00F3sicos"
         },
         "Amount": {
-          "Quantity": 10,
+          "Quantity": 0,
           "Unit": "cm"
         },
         "Price": {
@@ -56,6 +56,25 @@
         "Requirements": []
       }
     ],
-    "MaterialSales": []
+    "MaterialSales": [
+      {
+        "Material": {
+          "Name": "Bujes de cart\u00F3n",
+          "Measure": "Length",
+          "Category": "celul\u00F3sicos"
+        },
+        "Amount": {
+          "Quantity": 10,
+          "Unit": "cm"
+        },
+        "Price": {
+          "Quantity": 15,
+          "Currency": "peso",
+          "Unit": "cm"
+        },
+        "DateTime": "2021-11-28T00:00:00-03:00",
+        "Buyer": "Santiago"
+      }
+    ]
   }
 ]
