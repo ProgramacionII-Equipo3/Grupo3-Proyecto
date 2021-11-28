@@ -910,7 +910,7 @@
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
             This class represents a measure through which a certain amount of material can be measured.
-            We used the pattern Creator, we assigned the method Length and Weigth to Measure because
+            We used the pattern Creator, we assigned the static attributes Length, Weight and Volume to Measure because
             it's the class that knows about it.
             </summary>
         </member>
@@ -927,6 +927,11 @@
         <member name="F:Library.HighLevel.Accountability.Measure.Volume">
             <summary>
             The volume measure.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.Measures">
+            <summary>
+            Gets the list of available measures.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Measure.Name">
@@ -1556,6 +1561,7 @@
         <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.NewEntrepreneur(System.String,System.String,System.Int32,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
             <summary>
             Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
+            Due to the Creator pattern, This methods receives the individual pieces of data to initialize an entrepreneur.
             </summary>
             <param name="id">The entrepreneur's id.</param>
             <param name="name">The entrepreneur's name.</param>
