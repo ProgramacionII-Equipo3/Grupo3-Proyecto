@@ -57,7 +57,7 @@ namespace Library.Utils
         public static Distance GetDistanceResilient(this LocationApiClient client, Location from, Location to)
         {
             Distance? distance = null;
-            Exception? e = null;
+            AggregateException? e = null;
             for (byte i = 0; i < 10; i++)
             {
                 Task<Distance> task = client.GetDistanceAsync(from, to);
@@ -65,7 +65,7 @@ namespace Library.Utils
                 {
                     distance = task.Result;
                     break;
-                } catch(Exception exception)
+                } catch(AggregateException exception)
                 {
                     e = exception;
                 }
