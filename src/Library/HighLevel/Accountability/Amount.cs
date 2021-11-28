@@ -59,6 +59,22 @@ namespace Library.HighLevel.Accountability
         }
 
         /// <summary>
+        /// Adds two amounts, storing the result in the first one.
+        /// </summary>
+        /// <param name="other">The amount to add.</param>
+        /// <returns>True if the process is success and false if it not does. </returns>
+        public bool Add(Amount other)
+        {
+            if (Unit.GetConversionFactor(this.Unit, other.Unit) is double factor)
+            {
+                double newQuantity = this.Quantity + other.Quantity / factor;
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Sets itself to zero.
         /// </summary>
         public void SetToZero()
