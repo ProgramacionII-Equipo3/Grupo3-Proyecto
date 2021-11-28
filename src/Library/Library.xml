@@ -648,6 +648,13 @@
             2 if the second amount is bigger than the first one.
             </returns>
         </member>
+        <member name="M:Library.HighLevel.Accountability.Amount.Add(Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Adds two amounts, storing the result in the first one.
+            </summary>
+            <param name="other">The amount to add.</param>
+            <returns>True if the process is success and false if it not does. </returns>
+        </member>
         <member name="M:Library.HighLevel.Accountability.Amount.SetToZero">
             <summary>
             Sets itself to zero.
@@ -903,6 +910,16 @@
         <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Buyer">
             <summary>
             The name of the entrepreneur who made the purchase.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.StaticID">
+            <summary>
+            Gets the ID for the sale.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.SaleID">
+            <summary>
+            The sale´s ID.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime,System.String)">
@@ -2878,6 +2895,17 @@
         <member name="M:Library.States.Companies.CompanyRemovePublicationState.#ctor(System.String)">
             <summary>
             This state has the responsibility of remove a company publication given its name.
+            </summary>
+            <param name="id">The user´s id.</param>
+        </member>
+        <member name="T:Library.States.Companies.CompanyRevertSaleState">
+            <summary>
+            When an company wants to revert a sale, this command has the responsibility of do it.
+            </summary>
+        </member>
+        <member name="M:Library.States.Companies.CompanyRevertSaleState.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Companies.CompanyRevertSaleState" /> class.
             </summary>
             <param name="id">The user´s id.</param>
         </member>

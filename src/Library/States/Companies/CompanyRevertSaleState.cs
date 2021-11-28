@@ -4,9 +4,7 @@ using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
-using Library.HighLevel.Materials;
 using Library.HighLevel.Accountability;
-using System;
 using Library.Core;
 using Library.Utils;
 
@@ -47,7 +45,7 @@ namespace Library.States.Companies
                         return (newState, $"No pude encontrar la venta, chequea si ingresaste los datos correctamente.\n{newState.GetDefaultResponse()}");
                     }
 
-                    return (newState, "No te reconozco como un representante de una empresa.");
+                    return (newState, "Lo siento, no te reconozco como un representante de una empresa.");
                 },
             processor: new SaleDataProcessor(id)
         )
