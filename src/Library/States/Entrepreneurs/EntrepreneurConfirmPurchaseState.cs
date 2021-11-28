@@ -37,14 +37,18 @@ namespace Library.States.Entrepreneurs
                         publication.Publication.Material,
                         purchasedAmount,
                         publication.Publication.Price,
-                        time);
+                        time,
+                        Singleton<EntrepreneurManager>.Instance.GetById(id).Unwrap().Name);
                     Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
                     Company company = publication.Company;
                     entrepreneur!.BoughtMaterials.Add(purchase);
                     company.MaterialSales.Add(sale);
                     publication.Publication.Amount = remainingAmount;
                 }
-                return (new EntrepreneurInitialMenuState(id), null);
+                var newState = new EntrepreneurInitialMenuState(id);
+                return (
+                    newState,
+                    $"La compra se ha concretado, para coordinar el envío o el retiro del material, te envío la información de contacto de la empresa:\nNúmero Telefónico: {string.Format("{0:D9}", publication.Company.ContactInfo.PhoneNumber)}\nCorreo Electrónico: {publication.Company.ContactInfo.Email}\n{newState.GetDefaultResponse()}");
             },
             exitState: () => (new EntrepreneurInitialMenuState(id), null)
         )

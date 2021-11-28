@@ -16,9 +16,6 @@ using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 using UnitTests.Utils;
 
-#warning TODO: Add test of purchasing a material which doesn't exist.
-#warning TODO: Add test of purchasing a material with lower stock than asked.
-#warning TODO: Add test of creating a company report after selling materials.
 #warning TODO: Add test of creating an entrepreneur report before buying materials.
 #warning TODO: Add test of creating an entrepreneur report after buying materials.
 #warning TODO: Add test of removing company.
@@ -34,6 +31,19 @@ namespace UnitTests
     public class RuntimeTest
     {
         private ProgramaticMultipleUserPlatform? platform;
+
+        private static Regex entrepreneurReportRegex = new Regex(
+                "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+              + "cantidad: (?<materialquantity>.+?), "
+              + "precio: (?<materialprice>.+?), "
+              + "ubicación: (?<materiallocation>.+), "
+              + "tipo: (?<materialtype>.+)",
+                RegexOptions.Compiled
+            );
+
+        private static Regex companyReportRegex = new Regex(
+            "(?<amount>\\d+(?:\\.\\d+)? \\w+) de (?<material>[\\w ]+) vendido(s) al emprendedor (?<entrepreneur>[\\w ]+) a un precio de (?<price>.+?) el día (?<date>.+)",
+            RegexOptions.Compiled);
 
         /// <summary>
         /// Performs a setup.
@@ -323,14 +333,6 @@ namespace UnitTests
                     "Bujes");
 
                 string finalMessage = responses[responses.Count - 1].Item2;
-                Regex regex = new Regex(
-                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
-                  + "cantidad: (?<materialquantity>.+?), "
-                  + "precio: (?<materialprice>.+?), "
-                  + "ubicación: (?<materiallocation>.+), "
-                  + "tipo: (?<materialtype>.+)",
-                    RegexOptions.Compiled
-                );
 
                 string[][] expected = new string[][]
                 {
@@ -343,7 +345,7 @@ namespace UnitTests
                         "Avenida 8 de Octubre, Montevideo, Uruguay",
                         "normal"
                     }
-                }, actual = regex.Matches(finalMessage)
+                }, actual = entrepreneurReportRegex.Matches(finalMessage)
                     .Select(m => new string[]
                     {
                         m.Groups["company"].Value,
@@ -507,7 +509,35 @@ namespace UnitTests
                     "Bujes de cartón",
                     "2 cm",
                     "Sí");
-                
+
+                {
+                    List<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.Publications;
+                    Assert.AreEqual(1, publications.Count);
+                    MaterialPublication publication = publications[0];
+                    CheckUtils.CheckMaterialPublicationEquality(
+                        MaterialPublication.CreateInstance(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(8, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Location
+                            {
+                                Found = true,
+                                AddresLine = "Avenida 8 de Octubre",
+                                CountryRegion = "Uruguay",
+                                FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                                Locality = "Montevideo",
+                                PostalCode = null,
+                                Latitude = -34.87959,
+                                Longitude = -56.14838
+                            },
+                            MaterialPublicationTypeData.Normal(),
+                            new List<string>() { "Bujes", "Cartón" },
+                            new List<string>()).Unwrap(),
+                        publication);
+                }
                 {
                     BoughtMaterialLine[] purchases = Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.ToArray();
                     Assert.AreEqual(1, purchases.Length);
@@ -536,9 +566,133 @@ namespace UnitTests
                                 MaterialCategory.GetByName("Celulósicos").Unwrap()),
                             new Amount(2, Unit.GetByAbbr("cm").Unwrap()),
                             new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
-                            DateTime.Today),
+                            DateTime.Today,
+                            "Santiago"),
                         sale);
                 }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of purchasing a material which doesn't exist.
+        /// </summary>
+        [Test]
+        public void PurchaseNonExistentMaterialTest()
+        {
+            BasicRuntimeTest("purchase-non-existent-material", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teog",
+                    "Teo",
+                    "Teogal",
+                    "A1",
+                    "C2",
+                    "\\");
+
+                Assert.AreEqual(0, Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.Count);
+                Assert.AreEqual(0, Singleton<CompanyManager>.Instance.GetByName("Teogal")!.MaterialSales.Count);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of purchasing a material with lower stock than asked.
+        /// </summary>
+        [Test]
+        public void PurchaseUnderstockedMaterialTest()
+        {
+            BasicRuntimeTest("purchase-understocked-material", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teogal",
+                    "Bujes de cartón",
+                    "12 cm",
+                    "Sí",
+                    "Sí");
+
+                {
+                    List<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.Publications;
+                    Assert.AreEqual(1, publications.Count);
+                    MaterialPublication publication = publications[0];
+                    CheckUtils.CheckMaterialPublicationEquality(
+                        MaterialPublication.CreateInstance(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(0, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Location
+                            {
+                                Found = true,
+                                AddresLine = "Avenida 8 de Octubre",
+                                CountryRegion = "Uruguay",
+                                FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                                Locality = "Montevideo",
+                                PostalCode = null,
+                                Latitude = -34.87959,
+                                Longitude = -56.14838
+                            },
+                            MaterialPublicationTypeData.Normal(),
+                            new List<string>() { "Bujes", "Cartón" },
+                            new List<string>()).Unwrap(),
+                        publication);
+                        Assert.That(publication.Sold, Is.True);
+                }
+                {
+                    BoughtMaterialLine[] purchases = Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.ToArray();
+                    Assert.AreEqual(1, purchases.Length);
+                    BoughtMaterialLine purchase = purchases[0];
+                    CheckUtils.CheckBoughtMaterialLineEquality(
+                        new BoughtMaterialLine(
+                            "Teogal",
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            DateTime.Today,
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Amount(10, Unit.GetByAbbr("cm").Unwrap())),
+                        purchase);
+                }
+                {
+                    MaterialSalesLine[] sales = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.MaterialSales.ToArray();
+                    Assert.AreEqual(1, sales.Length);
+                    MaterialSalesLine sale = sales[0];
+                    CheckUtils.CheckMaterialSalesLineEquality(
+                        new MaterialSalesLine(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(10, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            DateTime.Today,
+                            "Santiago"),
+                        sale);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of making a company report after selling materials.
+        /// </summary>
+        [Test]
+        public void CreateCompanyReportTest2()
+        {
+            BasicRuntimeTest("create-company-report-2", () =>
+            {
+                List<(string, string)> messages = this.platform!.ReceiveMessages(
+                    "Company1",
+                    "/companyreport",
+                    "23/11/2021");
+
+                Assert.AreEqual(
+                    "10.00 cm de Bujes de cartón vendido(s) al emprendedor Santiago a precio de 15 U$/cm el día 28/11/2021",
+                    messages[messages.Count - 1].Item2.Split('\n')[0]);
             });
         }
     }

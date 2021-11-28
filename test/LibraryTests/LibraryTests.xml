@@ -393,6 +393,21 @@
             Tests the user story of purchasing a material.
             </summary>
         </member>
+        <member name="M:UnitTests.RuntimeTest.PurchaseNonExistentMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material which doesn't exist.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PurchaseUnderstockedMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material with lower stock than asked.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateCompanyReportTest2">
+            <summary>
+            Tests the user story of making a company report after selling materials.
+            </summary>
+        </member>
         <member name="T:UnitTests.Utils.BasicUtils">
             <summary>
             This class contains functions which perform common actions in the unit tests.
