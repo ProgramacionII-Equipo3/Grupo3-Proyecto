@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text.Json.Serialization;
 using Library.HighLevel.Materials;
 using Library.Utils;
@@ -63,6 +64,6 @@ namespace Library.HighLevel.Accountability
 
         /// <inheritdoc />
         public override string? ToString() =>
-            $"{this.Amount} de {this.Material.Name} el día {this.DateTime.ToShortDateString()} a precio de {this.Price} ({this.Spent})";
+            $"{this.Amount} de {this.Material.Name} el día {this.DateTime.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)} a precio de {this.Price} ({this.Spent})";
     }
 }
