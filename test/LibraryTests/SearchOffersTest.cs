@@ -43,7 +43,7 @@ namespace ProgramTests
         public void Setup()
         {
 
-            this.category1 = new MaterialCategory("Residuos hospitalarios");
+            this.category1 = MaterialCategory.GetByName("Residuos y subproductos").Unwrap();
             IList<string> keyword1 = new List<string> { "agujas", "hospital" };
             IList<string> requirements1 = new List<string> { };
             this.material1 = Material.CreateInstance("Agujas Quirúrgicas", Measure.Weight, this.category1);
@@ -54,7 +54,7 @@ namespace ProgramTests
             this.pickupLocation1 = client.GetLocationResilient("Libertad 2500");
             this.contact = new ContactInfo("company1@gmail.com", 099421658);
             
-            this.category2 = new MaterialCategory("Residuos hospitalarios");
+            this.category2 = MaterialCategory.GetByName("Residuos y subproductos").Unwrap();
             this.material2 = Material.CreateInstance("Tapabocas Descartable", Measure.Weight, this.category2);
             this.unit2 = Unit.GetByAbbr("kg") !;
             this.amount2 = new Amount(500, this.unit2);
@@ -90,7 +90,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryFound()
         {
-            MaterialCategory categoryToSearch = MaterialCategory.GetByName("Residuos hospitalarios").Unwrap();
+            MaterialCategory categoryToSearch = MaterialCategory.GetByName("Residuos y subproductos").Unwrap();
 
             IList<AssignedMaterialPublication> expected1 = new List<AssignedMaterialPublication>();
             expected1.Add(this.publication1.Unwrap());
@@ -107,7 +107,7 @@ namespace ProgramTests
         [Test]
         public void SearchOffersbyCategoryNotFound()
         {
-            MaterialCategory categoryToSearch = new MaterialCategory("Materia Prima");
+            MaterialCategory categoryToSearch = MaterialCategory.GetByName("Residuos orgánicos").Unwrap();
 
             IList<AssignedMaterialPublication> expected2 = new List<AssignedMaterialPublication>();
 

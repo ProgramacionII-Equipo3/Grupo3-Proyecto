@@ -32,13 +32,13 @@ namespace ProgramTests
         [SetUp]
         public void Setup()
         {
-            this.category = new MaterialCategory("Plásticos");
+            this.category = MaterialCategory.GetByName("Plásticos").Unwrap();
             this.unit = Unit.GetByAbbr("cm")!;
             this.price = new Price(300, Currency.Peso, this.unit);
             this.amount = new Amount(3, this.unit);
             this.soldMaterial = Material.CreateInstance("Palet Plástico", Measure.Length, this.category);
             this.sold = new DateTime(2021, 10, 3, 15, 30, 16);
-            this.category2 = new MaterialCategory("Cartón");
+            this.category2 = MaterialCategory.GetByName("Celulósicos").Unwrap();
             this.unit2 = Unit.GetByAbbr("cm")!;
             this.price2 = new Price(10, Currency.Dollar, this.unit2);
             this.amount2 = new Amount(40, this.unit2);
@@ -65,13 +65,13 @@ namespace ProgramTests
         [Test]
         public void CompanyReportOutOfTime()
         {
-            MaterialCategory category3 = new MaterialCategory("Plásticos");
+            MaterialCategory category3 = MaterialCategory.GetByName("Plásticos").Unwrap();
             Unit unit3 = Unit.GetByAbbr("cm")!;
             Price price3 = new Price(300, Currency.Peso, unit3);
             Amount amount3 = new Amount(3, unit3);
             Material soldMaterial3 = Material.CreateInstance("Palet Plástico", Measure.Length, category3);
             DateTime sold3 = new DateTime(2021, 3, 10, 13, 45, 12);
-            MaterialCategory category4 = new MaterialCategory("Cartón");
+            MaterialCategory category4 = MaterialCategory.GetByName("Celulósicos").Unwrap();
             Unit unit4 = Unit.GetByAbbr("g")!;
             Price price4 = new Price(10, Currency.Dollar, unit4);
             Amount amount4 = new Amount(40, unit4);

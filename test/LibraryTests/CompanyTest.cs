@@ -110,11 +110,8 @@ namespace ProgramTests
                 "A",
                 "length",
                 "metales",
-                "50",
-                "cm",
-                "30",
-                "pesos",
-                "cm",
+                "50cm",
+                "30 U$/cm",
                 "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
                 "/finish");
             platform.Run();

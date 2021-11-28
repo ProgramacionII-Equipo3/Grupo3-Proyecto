@@ -41,7 +41,7 @@ namespace Library.HighLevel.Materials
         /// Initializes an instance of <see cref="MaterialCategory" /> class.
         /// </summary>
         /// <param name="name">The material's category name.</param>
-        public MaterialCategory(string name)
+        private MaterialCategory(string name)
         {
             this.StringValue = name;
             this.Name = name.ToLowerInvariant();

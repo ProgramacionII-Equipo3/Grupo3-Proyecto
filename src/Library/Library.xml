@@ -1833,11 +1833,7 @@
             The list of keywords of the publication material.
             </summary>
         </member>
-        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements">
-            <summary>
-            The list of requirements of the material publication.
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements" -->
         <member name="M:Library.HighLevel.Materials.JsonMaterialPublication.FromValue(Library.HighLevel.Materials.MaterialPublication)">
             <inheritdoc />
         </member>
