@@ -46,6 +46,8 @@ namespace Library.HighLevel.Accountability
 
         /// <inheritdoc />
         public override string? ToString() =>
-            string.Join('\n', this.Lines);
+            this.Lines.Count > 0
+                ? string.Join('\n', this.Lines)
+                : "Reporte vacío.";
     }
 }

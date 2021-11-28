@@ -1,0 +1,25 @@
+[
+  {
+    "Name": "Teogal",
+    "ContactInfo": {
+      "Email": "teogal@gmail.com",
+      "PhoneNumber": 98140124
+    },
+    "Heading": "Maderas",
+    "Location": {
+      "Found": true,
+      "AddresLine": "Avenida 8 de Octubre",
+      "CountryRegion": "Uruguay",
+      "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+      "Locality": "Montevideo",
+      "PostalCode": null,
+      "Latitude": -34.87959,
+      "Longitude": -56.14838
+    },
+    "Representants": [
+      "Company1"
+    ],
+    "Publications": [],
+    "MaterialSales": []
+  }
+]

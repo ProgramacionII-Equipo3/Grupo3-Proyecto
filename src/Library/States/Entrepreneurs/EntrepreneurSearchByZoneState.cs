@@ -21,7 +21,7 @@ namespace Library.States.Entrepreneurs
         /// Initializes an instance of <see cref="EntrepreneurSearchByZoneState" />.
         /// </summary>
         public EntrepreneurSearchByZoneState(string id): base(
-            InputProcessorState.CreateInstance<(Location, double)>(
+            new InputProcessorState<(Location, double)>(
                 new SearchDataProcessor(),
                 result =>
                 {

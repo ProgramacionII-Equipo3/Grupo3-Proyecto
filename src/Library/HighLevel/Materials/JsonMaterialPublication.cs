@@ -47,6 +47,7 @@ namespace Library.HighLevel.Materials
 
         /// <summary>
         /// The list of requirements of the material publication.
+        /// </summary>
         [JsonInclude]
         public IList<string>? Requirements { get; set; }
 

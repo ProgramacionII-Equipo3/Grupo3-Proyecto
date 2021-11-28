@@ -15,7 +15,7 @@ namespace Library.States.Companies
         /// </summary>
         /// <param name="id">The user´s id.</param>
         public CompanyRemovePublicationState(string id) : base(
-            InputProcessorState.CreateInstance<string>(
+            new InputProcessorState<string>(
                 new BasicStringProcessor(() => "Ingrese el nombre del material o residuo que desea borrar."),
                 name =>
                 {
