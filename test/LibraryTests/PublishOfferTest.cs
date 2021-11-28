@@ -31,7 +31,7 @@ namespace ProgramTests
         public void PublishOffer()
         {
             using LocationApiClient provider = new LocationApiClient();
-            MaterialCategory category = new MaterialCategory("Impermeable");
+            MaterialCategory category = MaterialCategory.GetByName("Otros").Unwrap();
             Unit unit = Unit.GetByAbbr("cm") !;
             Amount amount = new Amount(10, unit);
             Price price = new Price(100, Currency.Peso, unit);
@@ -44,7 +44,7 @@ namespace ProgramTests
             Company empresa = Singleton<CompanyManager>.Instance.CreateCompany("Evertec", contact, "Tecnología", location) !;
             empresa.PublishMaterial(material, amount, price, location, MaterialPublicationTypeData.Normal(), keyword, requirements);
 
-            MaterialCategory category2 = new MaterialCategory("Plástico");
+            MaterialCategory category2 = MaterialCategory.GetByName("Plásticos").Unwrap();
             Amount amount2 = new Amount(5, unit);
             Price price2 = new Price(600, Currency.Peso, unit);
             Location location2 = provider.GetLocation("Camino Maldonado km 11");
@@ -61,7 +61,7 @@ namespace ProgramTests
         public void NotPublishOffer()
         {
             using LocationApiClient client = new LocationApiClient();
-            MaterialCategory category3 = new MaterialCategory("Metálicos");
+            MaterialCategory category3 = MaterialCategory.GetByName("Metales").Unwrap();
 
             Unit unit3 = Unit.GetByAbbr("kg") !;
 

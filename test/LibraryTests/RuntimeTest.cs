@@ -297,7 +297,7 @@ namespace UnitTests
                 "/publish",
                 "Envase de vidrio",
                 "weight",
-                "Vidrios",
+                "Vidrio",
                 "500",
                 "g",
                 "10",
@@ -318,7 +318,7 @@ namespace UnitTests
                 "/publish",
                 "Garrafas",
                 "weight",
-                "Metálicos",
+                "Metales",
                 "5",
                 "kg",
                 "15",
@@ -341,41 +341,11 @@ namespace UnitTests
                 checkMaterialPublicationEquality(
                     MaterialPublication.CreateInstance(
                         Material.CreateInstance(
-                            "Garrafas",
-                            Measure.Weight,
-                            MaterialCategory.GetByName("Metálicos").Unwrap()),
-                        new Amount(5, Unit.GetByAbbr("kg").Unwrap()),
-                        new Price(50, Currency.Peso, Unit.GetByAbbr("kg").Unwrap()),
-                        new Location()
-                        {
-                            Found = true,
-                            AddresLine = "Avenida 8 de Octubre",
-                            CountryRegion = "Uruguay",
-                            FormattedAddress = "Avenida 8 de Octubre, Montevideo",
-                            Locality = "Montevideo",
-                            PostalCode = null,
-                            Latitude = -34.87959,
-                            Longitude = -56.14838
-                        },
-                        MaterialPublicationTypeData.Scheduled(dateTime),
-                        new List<string>()
-                        {
-                            "Metales", "Metálicos"
-                        },
-                        new List<string>()).Unwrap(),
-                    publication1);
-            {
-                IList<MaterialPublication> publications2 = Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios")!.Publications;
-                Assert.AreEqual(0, publications2.Count);
-                MaterialPublication publication2 = publications2[0];
-                checkMaterialPublicationEquality(
-                    MaterialPublication.CreateInstance(
-                        Material.CreateInstance(
                             "Envase de vidrio",
-                            Measure.Length,
-                            MaterialCategory.GetByName("Vidrios").Unwrap()),
-                        new Amount(30, Unit.GetByAbbr("g").Unwrap()),
-                        new Price(15, Currency.Peso, Unit.GetByAbbr("g").Unwrap()),
+                            Measure.Weight,
+                            MaterialCategory.GetByName("Vidrio").Unwrap()),
+                        new Amount(500, Unit.GetByAbbr("g").Unwrap()),
+                        new Price(10, Currency.Peso, Unit.GetByAbbr("g").Unwrap()),
                         new Location()
                         {
                             Found = true,
@@ -391,6 +361,36 @@ namespace UnitTests
                         new List<string>()
                         {
                             "Envase", "Vidrio"
+                        },
+                        new List<string>()).Unwrap(),
+                    publication1);
+            {
+                IList<MaterialPublication> publications2 = Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios")!.Publications;
+                Assert.AreEqual(1, publications2.Count);
+                MaterialPublication publication2 = publications2[0];
+                checkMaterialPublicationEquality(
+                    MaterialPublication.CreateInstance(
+                        Material.CreateInstance(
+                            "Garrafas",
+                            Measure.Weight,
+                            MaterialCategory.GetByName("Metales").Unwrap()),
+                        new Amount(5, Unit.GetByAbbr("kg").Unwrap()),
+                        new Price(15, Currency.Peso, Unit.GetByAbbr("kg").Unwrap()),
+                        new Location()
+                        {
+                            Found = true,
+                            AddresLine = "Avenida 8 de Octubre",
+                            CountryRegion = "Uruguay",
+                            FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                            Locality = "Montevideo",
+                            PostalCode = null,
+                            Latitude = -34.87959,
+                            Longitude = -56.14838
+                        },
+                        MaterialPublicationTypeData.Scheduled(dateTime),
+                        new List<string>()
+                        {
+                            "Metales", "Metálicos"
                         },
                         new List<string>()).Unwrap(),
                     publication2);
