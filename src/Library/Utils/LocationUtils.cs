@@ -29,7 +29,7 @@ namespace Library.Utils
         public static Location GetLocationResilient(this LocationApiClient client, string address, string city = "Montevideo", string department = "Montevideo", string country = "Uruguay")
         {
             Location? location = null;
-            Exception? e = null;
+            AggregateException? e = null;
             for (byte i = 0; i < 10; i++)
             {
                 Task<Location> task = client.GetLocationAsync(address, city, department, country);
@@ -37,7 +37,7 @@ namespace Library.Utils
                 {
                     location = task.Result;
                     break;
-                } catch(Exception exception)
+                } catch(AggregateException exception)
                 {
                     e = exception;
                 }

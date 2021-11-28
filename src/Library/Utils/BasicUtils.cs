@@ -22,7 +22,7 @@ namespace Library.Utils
         /// <returns>The site's coordinates.</returns>
         public static Location GetLocation(string address, string city, string department, string country)
         {
-            return locationClient.GetLocationAsync(address, city, department, country).Result;
+            return locationClient.GetLocationResilient(address, city, department, country);
         }
 
         /// <summary>
