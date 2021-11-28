@@ -13,7 +13,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The numeric value in the amount.
         /// </summary>
-        public float Quantity { get; private set; }
+        public double Quantity { get; private set; }
 
         /// <summary>
         /// The unit used in the amount.
@@ -25,7 +25,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="quantity">The numeric value.</param>
         /// <param name="unit">The unit.</param>
-        public Amount(float quantity, Unit unit)
+        public Amount(double quantity, Unit unit)
         {
             this.Quantity = quantity;
             this.Unit = unit;
@@ -33,7 +33,7 @@ namespace Library.HighLevel.Accountability
 
         /// <inheritdoc />
         public override string? ToString() =>
-            $"{this.Quantity} {this.Unit}";
+            $"{this.Quantity.ToString("0.00")} {this.Unit}";
 
         /// <summary>
         /// Substracts two amounts, storing the result in the first one.
@@ -48,25 +48,21 @@ namespace Library.HighLevel.Accountability
         {
             if(Unit.GetConversionFactor(this.Unit, other.Unit) is double factor)
             {
-                if(factor < 1)
-                {
-                    factor = Unit.GetConversionFactor(other.Unit, this.Unit).Unwrap();
-                    float newQuantity = this.Quantity - (float)(other.Quantity * factor);
-                    if(newQuantity < 0) return 2;
-                    this.Quantity = newQuantity;
-                    return 0;
-                }
-
-                this.Quantity = (float)(this.Quantity * factor);
-                this.Unit = other.Unit;
-
-                float newQuantity2 = this.Quantity - other.Quantity;
-                if(newQuantity2 < 0) return 2;
-                this.Quantity -= other.Quantity;
+                double newQuantity = this.Quantity - other.Quantity / factor;
+                if(newQuantity < 0) return 2;
+                this.Quantity = newQuantity;
                 return 0;
             }
 
             return 1;
+        }
+
+        /// <summary>
+        /// Sets itself to zero.
+        /// </summary>
+        public void SetToZero()
+        {
+            this.Quantity = 0;
         }
     }
 }

@@ -16,7 +16,12 @@ using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 using UnitTests.Utils;
 
-#warning TODO: Add test of purchasing material.
+#warning TODO: Add test of purchasing a material.
+#warning TODO: Add test of purchasing a material which doesn't exist.
+#warning TODO: Add test of purchasing a material with lower stock than asked.
+#warning TODO: Add test of creating a company report after selling materials.
+#warning TODO: Add test of creating an entrepreneur report before buying materials.
+#warning TODO: Add test of creating an entrepreneur report after buying materials.
 #warning TODO: Add test of removing company.
 #warning TODO: Add test of removing normal user.
 #warning TODO: Add test of removing admin.
@@ -334,7 +339,7 @@ namespace UnitTests
                     {
                         "Teogal",
                         "Bujes de cartón",
-                        "30 cm",
+                        "30.00 cm",
                         "15 U$/cm",
                         "Avenida 8 de Octubre, Montevideo, Uruguay",
                         "normal"

@@ -1,8 +1,9 @@
 using System;
+using Library.Core;
+using Library.Core.Processing;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Entrepreneurs;
 using Library.HighLevel.Companies;
-using Library.Core.Processing;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
 using Library.Utils;
@@ -11,7 +12,6 @@ using Library.HighLevel.Materials;
 
 namespace Library.States.Entrepreneurs
 {
-#warning TODO: make sure the entrepreneur has the chance to buy the remaining stock if the asked amount is higher than the stock
     /// <summary>
     /// This class has the responsibility of allow an entrepreneur user buy a material.
     /// </summary>
@@ -26,19 +26,25 @@ namespace Library.States.Entrepreneurs
             nextState: result =>
                 {
                     var newState = new EntrepreneurInitialMenuState(id, null);
-                    if (result.Item1.Publication.Amount.Substract(result.Item2) == 0)
+                    switch (result.Item1.Publication.Amount.Substract(result.Item2))
                     {
-                        DateTime time = DateTime.Today;
-                        BoughtMaterialLine purchase = new BoughtMaterialLine(result.Item1.Company.Name, result.Item1.Publication.Material, time, result.Item1.Publication.Price, result.Item1.Publication.Amount);
-                        Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
-                        entrepreneur!.BoughtMaterials.Add(purchase);
+                        case 0:
+                            DateTime time = DateTime.Today;
+                            BoughtMaterialLine purchase = new BoughtMaterialLine(result.Item1.Company.Name, result.Item1.Publication.Material, time, result.Item1.Publication.Price, result.Item2);
+                            Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
+                            entrepreneur!.BoughtMaterials.Add(purchase);
 
-                        MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item1.Publication.Amount, result.Item1.Publication.Price, time);
-                        result.Item1.Company.MaterialSales.Add(sale);
+                            MaterialSalesLine sale = new MaterialSalesLine(result.Item1.Publication.Material, result.Item2, result.Item1.Publication.Price, time);
+                            result.Item1.Company.MaterialSales.Add(sale);
 
-                        return (newState, $"La compra se ha concretado, para coordinar el envío o el retiro del material te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}\n{newState.GetDefaultResponse()}");
+                            return (newState, $"La compra se ha concretado, para coordinar el envío o el retiro del material, te envío la información de contacto de la empresa:\nNúmero Telefónico: {result.Item1.Company.ContactInfo.PhoneNumber}\nCorreo Electrónico: {result.Item1.Company.ContactInfo.Email}\n{newState.GetDefaultResponse()}");
+                        case 1:
+                            return (newState, $"Las cantidades del material y la compra son inválidas entre sí.\n{newState.GetDefaultResponse()}");
+                        case 2:
+                            return (new EntrepreneurBuyRemainingStockState(id, result.Item1), null);
+                        default:
+                            throw new Exception();
                     }
-                    return (newState, $"Las cantidades del material y la compra, son inválidas entre sí.\n{newState.GetDefaultResponse()}");
                 },
             processor: new CollectDataProcessor(id)
         )

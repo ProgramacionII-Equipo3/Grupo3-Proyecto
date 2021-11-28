@@ -627,7 +627,7 @@
             The unit used in the amount.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Single,Library.HighLevel.Accountability.Unit)">
+        <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Double,Library.HighLevel.Accountability.Unit)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Amount"/> struct.
             </summary>
@@ -647,6 +647,11 @@
             1 if the two amounts' units are incompatible with each other, <br />
             2 if the second amount is bigger than the first one.
             </returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Amount.SetToZero">
+            <summary>
+            Sets itself to zero.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Accountability.BoughtMaterialLine">
             <summary>
@@ -978,7 +983,7 @@
             The currency.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.#ctor(System.Single,Library.HighLevel.Accountability.Currency)">
+        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.#ctor(System.Double,Library.HighLevel.Accountability.Currency)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity"/> struct.
             </summary>
@@ -1010,7 +1015,7 @@
             Gets the unit of material measurement with which the price is determined.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
+        <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.UInt32,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Price"/> struct.
             </summary>
@@ -2028,7 +2033,8 @@
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.ReduceQuantity(Library.HighLevel.Accountability.Amount)">
             <summary>
-            Substracts two amounts, storing the result in the first one.
+            Substracts a given amount to the one in the publication,
+            as if a purchase was made.
             </summary>
             <param name="otherAmount">The amount to substract. </param>
             <returns>
@@ -2036,6 +2042,12 @@
             1 if the two amounts' units are incompatible with each other, <br />
             2 if the second amount is bigger than the first one.
             </returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.ClearStock">
+            <summary>
+            Sets the stock amount to zero,
+            as if someone purchased the remaining amount.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
@@ -2616,6 +2628,17 @@
         <member name="M:Library.InputHandlers.UserDataProcessor.getResult">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.YesNoProcessor">
+            <summary>
+            This class represents an <see cref="T:Library.Core.Processing.InputProcessor`1" /> which processes the response to a yes/no question.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.YesNoProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.YesNoProcessor" />.
+            </summary>
+            <param name="initialResponseGetter">The function to get the default response.</param>
+        </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
@@ -2798,7 +2821,7 @@
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyCheckEntrepreneurHabilitationsState" /> class.
             </summary>
-            <param name="id"></param>
+            <param name="id">The company representative's id.</param>
         </member>
         <member name="T:Library.States.Companies.CompanyInitialMenuState">
             <summary>
@@ -2897,6 +2920,19 @@
             Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurBuyMaterialState" /> class.
             </summary>
             <param name="id">The user´s id.</param>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState">
+            <summary>
+            This class represents the state of an entrepreneur who can choose to buy the remaining stock of a material publication
+            after being confirmed that the amount they want is not satisfied by the current stock.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState.#ctor(System.String,Library.HighLevel.Materials.AssignedMaterialPublication)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState" />.
+            </summary>
+            <param name="id">The entrepreneur's id.</param>
+            <param name="publication">The publication.</param>
         </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurCreateReportState">
             <summary>
