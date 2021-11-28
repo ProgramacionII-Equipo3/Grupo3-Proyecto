@@ -357,7 +357,7 @@ namespace UnitTests
                     }).ToArray();
 
                 Assert.AreEqual(expected, actual);
-            });
+            }, "search-material-by-keyword");
         }
 
 
@@ -407,7 +407,7 @@ namespace UnitTests
                     }).ToArray();
 
                 Assert.AreEqual(expected, actual);
-            });
+            }, "search-material-by-category");
         }
 
         /// <summary>
@@ -457,7 +457,7 @@ namespace UnitTests
                     }).ToArray();
 
                 Assert.AreEqual(expected, actual);
-            });
+            }, "search-material-by-location");
         }
 
         /// <summary>
