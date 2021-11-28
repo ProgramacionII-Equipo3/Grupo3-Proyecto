@@ -15,7 +15,7 @@ namespace Library.InputHandlers
     public class PriceProcessor : ProcessorWrapper<Price>
     {
         private static Regex parsingRegex = new Regex(
-            "\\s*(?<quantity>\\d+(?:\\.\\d+)?) *(?<currency>.+?) */ *(?<unit>[A-Za-z]+)\\s*",
+            "\\s*(?<quantity>\\d+) *(?<currency>.+?) */ *(?<unit>[A-Za-z]+)\\s*",
             RegexOptions.Compiled);
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace Library.InputHandlers
                         return Result<Price, string>.Err("El texto ingresado no sigue el formato requerido.");
                     }
 
-                    float quantity;
-                    if(!float.TryParse(match.Groups["quantity"].Value, NumberStyles.Float, CultureInfo.InvariantCulture, out quantity))
+                    uint quantity;
+                    if(!uint.TryParse(match.Groups["quantity"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out quantity))
                     {
                         return Result<Price, string>.Err("El texto ingresado en la posición de la cantidad no es un número.");
                     }

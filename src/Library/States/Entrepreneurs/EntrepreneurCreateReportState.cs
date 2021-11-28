@@ -18,7 +18,7 @@ namespace Library.States.Entrepreneurs
         /// </summary>
         /// <param name="entrepreneur">The data of the entrepreneur.</param>
         public EntrepreneurCreateReportState(Entrepreneur entrepreneur) : base(
-            InputProcessorState.CreateInstance<DateTime>(
+            new InputProcessorState<DateTime>(
                 new DateProcessor(() => "Ingresa la fecha para ver el reporte correspondiente."),
                 dateTime =>
                 {

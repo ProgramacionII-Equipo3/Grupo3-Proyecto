@@ -23,7 +23,7 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// Gets the publication's amount of material.
         /// </summary>
-        public Amount Amount { get; private set; }
+        public Amount Amount { get; set; }
 
         /// <summary>
         /// Gets the publication's price of the material.
@@ -43,7 +43,9 @@ namespace Library.HighLevel.Materials
         /// <summary>
         /// Gets if the publication is sold.
         /// </summary>
-        public bool Sold => this.Amount.Quantity <= 0;
+        public bool Sold =>
+            this.Type.PublicationType != MaterialPublicationTypeData.MaterialPublicationType.CONTINUOUS &&
+            this.Amount.Quantity <= 0;
 
         /// <summary>
         /// The list of keywords of the publication material.
@@ -94,13 +96,27 @@ namespace Library.HighLevel.Materials
                 : null;
 
         /// <summary>
-        /// Substracts two amounts, storing the result in the first one.
+        /// Substracts a given amount to the one in the publication,
+        /// as if a purchase was made.
         /// </summary>
         /// <param name="otherAmount">The amount to substract. </param>
-        /// <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
-        public bool ReduceQuantity(Amount otherAmount)
+        /// <returns>
+        /// 0 if the two amounts can be substracted, <br />
+        /// 1 if the two amounts' units are incompatible with each other, <br />
+        /// 2 if the second amount is bigger than the first one.
+        /// </returns>
+        public byte ReduceQuantity(Amount otherAmount)
         {
             return this.Amount.Substract(otherAmount);
+        }
+
+        /// <summary>
+        /// Sets the stock amount to zero,
+        /// as if someone purchased the remaining amount.
+        /// </summary>
+        public void ClearStock()
+        {
+            this.Amount.SetToZero();
         }
     }
 }

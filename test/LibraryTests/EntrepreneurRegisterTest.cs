@@ -42,7 +42,7 @@ namespace ProgramTests
             this.habilitationsMessage = new Message("/command link1 link2", this.juanId);
             this.specializationsMessage = new Message("/command specialization1, specialization2", this.juanId);
             this.provider = new LocationApiClient();
-            this.location = this.provider.GetLocation("Av. 8 de Octubre 2738");
+            this.location = this.provider.GetLocationResilient("Av. 8 de Octubre 2738");
         }
 
         /// <summary>

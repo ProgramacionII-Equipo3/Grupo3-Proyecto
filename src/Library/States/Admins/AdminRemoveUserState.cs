@@ -32,8 +32,8 @@ namespace Library.States.Admins
                 },
                 new BasicStringProcessor(() => "Por favor ingrese el nombre del usuario que quieres eliminar.")
             ),
-            exitState: () => new AdminInitialMenuState(),
-            nextState: () => new AdminInitialMenuState()
+            exitState: () => (new AdminInitialMenuState(), null),
+            nextState: () => (new AdminInitialMenuState(), null)
         )
         { }
     }

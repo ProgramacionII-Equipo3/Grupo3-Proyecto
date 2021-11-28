@@ -47,8 +47,8 @@ namespace UnitTests
         private class FormProcessorTestState : InputHandlerState
         {
             public FormProcessorTestState(Action<int> f) : base(
-                exitState: () => new BasicState(),
-                nextState: () => new BasicState(),
+                exitState: () => (new BasicState(), null),
+                nextState: () => (new BasicState(), null),
                 inputHandler: new ProcessorHandler<int>(
                     (result) =>
                     {

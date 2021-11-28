@@ -322,12 +322,105 @@
         </member>
         <member name="T:UnitTests.RuntimeTest">
             <summary>
-            This class holds a single test which executes a long runtime code into a ConsolePlatform-like platform.
+            This class holds a single test which executes a long runtime code into a ConsolePlatform-like this.platform!.
             </summary>
         </member>
-        <member name="M:UnitTests.RuntimeTest.RuntimeBasicTest">
+        <member name="M:UnitTests.RuntimeTest.SetUp">
             <summary>
-            Realizes a test from the point of view of the users.
+            Performs a setup.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.BasicRuntimeTest(System.String,System.Action,System.String)">
+            <summary>
+            Performs a generic runtime test.
+            </summary>
+            <param name="startFolderName">The name of the folder which holds the memory to deserialize.</param>
+            <param name="action">The function to run.</param>
+            <param name="endFolderName">The name of the folder which will hold the serialized memory.</param>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateAdminTest">
+            <summary>
+            Tests whether an admin can be successfully created from code.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateEntrepreneurTest">
+            <summary>
+            Tests the user story of signing up as an entrepreneur.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateInvitationTest">
+            <summary>
+            Tests the user story of creating invitations (admin).
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateCompanyTest">
+            <summary>
+            Tests the user story of creating a company from an invitation.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.AddCompanyRepresentativeTest">
+            <summary>
+            Tests the user story of adding a company representative to an already existing company.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PublishNormalMaterialTest">
+            <summary>
+            Tests the user story of publishing a normal material.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.SearchByKeywordTest">
+            <summary>
+            Tests the user story of searching materials by keyword.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateCompanyReportTest">
+            <summary>
+            Tests the user story of creating a company report.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PublishContinuousMaterialTest">
+            <summary>
+            Tests the user story of publishing a continuous material.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PublishScheduledMaterialTest">
+            <summary>
+            Tests the user story of publishing a scheduled material.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PurchaseMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PurchaseNonExistentMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material which doesn't exist.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.PurchaseUnderstockedMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material with lower stock than asked.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.CreateCompanyReportTest2">
+            <summary>
+            Tests the user story of making a company report after selling materials.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.RemoveCopanyTest">
+            <summary>
+            Tests the user story of remove a company by an admin.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.RemoveEntrepreneurTest">
+            <summary>
+            Tests the user story of remove a entrepreneur by an admin.
+            </summary>
+        </member>
+        <member name="M:UnitTests.RuntimeTest.ReportEntrepreneurTest">
+            <summary>
+            Tests the user story of obtain a entrepreneur report
             </summary>
         </member>
         <member name="T:UnitTests.Utils.BasicUtils">
@@ -346,6 +439,83 @@
             Creates an empty user data for mock users.
             </summary>
             <returns>A <see cref="T:Library.Core.UserData" />.</returns>
+        </member>
+        <member name="T:UnitTests.Utils.CheckUtils">
+            <summary>
+            This class contains methods for checking the state
+            of several types of objects related to the bot.
+            </summary>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckUser(System.String,System.String)">
+            <summary>
+            Checks whether the user with a concrete id and a concrete name exists.
+            </summary>
+            <param name="id">The user's id.</param>
+            <param name="name">The user's name.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckContactInfoEquality(Library.Core.ContactInfo,Library.Core.ContactInfo)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.Core.ContactInfo"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckUserDataEquality(Library.Core.UserData,Library.Core.UserData)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.Core.UserData"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckUserAndEquality(Library.Core.UserData,System.String)">
+            <summary>
+            Checks the existence of a <see cref="T:Library.Core.Distribution.UserSession" /> with a concrete id,
+            and then compares it with a <see cref="T:Library.Core.UserData" />.
+            </summary>
+            <param name="expected">The expected user.</param>
+            <param name="id">The actual user's id.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialEquality(Library.HighLevel.Materials.Material,Library.HighLevel.Materials.Material)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Materials.Material"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckAmountEquality(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.Amount"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckPriceEquality(Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Price)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.Price"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialPublicationEquality(Library.HighLevel.Materials.MaterialPublication,Library.HighLevel.Materials.MaterialPublication)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Materials.MaterialPublication"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckBoughtMaterialLineEquality(Library.HighLevel.Accountability.BoughtMaterialLine,Library.HighLevel.Accountability.BoughtMaterialLine)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
+        </member>
+        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialSalesLineEquality(Library.HighLevel.Accountability.MaterialSalesLine,Library.HighLevel.Accountability.MaterialSalesLine)">
+            <summary>
+            Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/>.
+            </summary>
+            <param name="expected">The expected instance.</param>
+            <param name="actual">The actual instance.</param>
         </member>
     </members>
 </doc>

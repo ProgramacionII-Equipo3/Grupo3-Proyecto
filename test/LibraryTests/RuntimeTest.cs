@@ -14,122 +14,127 @@ using Library.HighLevel.Materials;
 using Library.Utils;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
+using UnitTests.Utils;
+
+#warning TODO: Add test of creating an entrepreneur report before buying materials.
+#warning TODO: Add test of creating an entrepreneur report after buying materials.
+#warning TODO: Add test of removing company.
+#warning TODO: Add test of removing normal user.
+#warning TODO: Add test of removing admin.
 
 namespace UnitTests
 {
     /// <summary>
-    /// This class holds a single test which executes a long runtime code into a ConsolePlatform-like platform.
+    /// This class holds a single test which executes a long runtime code into a ConsolePlatform-like this.platform!.
     /// </summary>
     [TestFixture]
     public class RuntimeTest
     {
+        private ProgramaticMultipleUserPlatform? platform;
+
+        private static Regex entrepreneurReportRegex = new Regex(
+                "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+              + "cantidad: (?<materialquantity>.+?), "
+              + "precio: (?<materialprice>.+?), "
+              + "ubicación: (?<materiallocation>.+), "
+              + "tipo: (?<materialtype>.+)",
+                RegexOptions.Compiled
+            );
+
+        private static Regex companyReportRegex = new Regex(
+            "(?<amount>\\d+(?:\\.\\d+)? \\w+) de (?<material>[\\w ]+) vendido(s) al emprendedor (?<entrepreneur>[\\w ]+) a un precio de (?<price>.+?) el día (?<date>.+)",
+            RegexOptions.Compiled);
+
         /// <summary>
-        /// Realizes a test from the point of view of the users.
+        /// Performs a setup.
         /// </summary>
-        [Test]
-        public void RuntimeBasicTest()
+        [SetUp]
+        public void SetUp()
         {
-            SerializationUtils.DeserializeAllFromJSON("../../../-Memory-test-begin");
+            this.platform = new ProgramaticMultipleUserPlatform();
+        }
+
+        /// <summary>
+        /// Performs a generic runtime test.
+        /// </summary>
+        /// <param name="startFolderName">The name of the folder which holds the memory to deserialize.</param>
+        /// <param name="action">The function to run.</param>
+        /// <param name="endFolderName">The name of the folder which will hold the serialized memory.</param>
+        public void BasicRuntimeTest(string startFolderName, Action action, string? endFolderName = null)
+        {
+            endFolderName ??= startFolderName;
+            SerializationUtils.DeserializeAllFromJSON($"../../../Memories/-Memory-start/{startFolderName}");
             try
             {
-                runtimeBasicTestInner();
+                action();
             }
             finally
             {
-                SerializationUtils.SerializeAllIntoJson("../../Memory-test");
+                SerializationUtils.SerializeAllIntoJson($"../../../Memories/Memory-end/{endFolderName}");
+                SerializationUtils.DeserializeAllFromJSON("../../../Memories/-Memory-void");
             }
-            SerializationUtils.DeserializeAllFromJSON("../../../-Memory-test-begin");
         }
 
-        private static void checkUser(string id, string name)
+        /// <summary>
+        /// Tests whether an admin can be successfully created from code.
+        /// </summary>
+        [Test]
+        public void CreateAdminTest()
         {
-            Assert.That(Singleton<SessionManager>.Instance.GetById(id), Is.Not.Null);
-            Assert.That(Singleton<SessionManager>.Instance.GetByName(name), Is.Not.Null);
-            Assert.AreEqual(
-                Singleton<SessionManager>.Instance.GetById(id),
-                Singleton<SessionManager>.Instance.GetByName(name));
+            BasicRuntimeTest("create-admin", () =>
+            {
+                Singleton<SessionManager>.Instance.NewUser(
+                    "Admin1",
+                    new UserData("Martín", true, UserData.Type.ADMIN, null, null),
+                    new AdminInitialMenuState());
+                CheckUtils.CheckUserAndEquality(new UserData("Martín", true, UserData.Type.ADMIN, null, null), "Admin1");
+            });
         }
 
-        private static void checkMaterialEquality(Material expected, Material actual)
+        /// <summary>
+        /// Tests the user story of signing up as an entrepreneur.
+        /// </summary>
+        [Test]
+        public void CreateEntrepreneurTest()
         {
-            Assert.AreEqual(expected.Name, actual.Name);
-            Assert.AreEqual(expected.Measure, actual.Measure);
-            Assert.AreEqual(expected.Category, actual.Category);
+            BasicRuntimeTest("create-entrepreneur", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/help",
+                    "/start -e",
+                    "Santiago",
+                    "/esc",
+                    "/esc",
+                    "19",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "Maderas",
+                    "/add",
+                    "https://www.wikipedia.org",
+                    "Description1",
+                    "/finish",
+                    "/add",
+                    "E1",
+                    "/add",
+                    "E2",
+                    "/finish");
+
+                CheckUtils.CheckUserAndEquality(new UserData("Santiago", true, UserData.Type.ENTREPRENEUR, null, null), "Entrepreneur1");
+            });
         }
 
-        private static void checkAmountEquality(Amount expected, Amount actual)
+        /// <summary>
+        /// Tests the user story of creating invitations (admin).
+        /// </summary>
+        [Test]
+        public void CreateInvitationTest()
         {
-            Assert.AreEqual(expected.Quantity, actual.Quantity);
-            Assert.AreEqual(expected.Unit, actual.Unit);
-        }
-
-        private static void checkPriceEquality(Price expected, Price actual)
-        {
-            Assert.AreEqual(expected.Quantity, actual.Quantity);
-            Assert.AreEqual(expected.Currency, actual.Currency);
-            Assert.AreEqual(expected.Unit, actual.Unit);
-        }
-
-        private static void checkMaterialPublicationEquality(MaterialPublication expected, MaterialPublication actual)
-        {
-            checkMaterialEquality(expected.Material, actual.Material);
-            checkAmountEquality(expected.Amount, actual.Amount);
-            checkPriceEquality(expected.Price, actual.Price);
-        }
-
-        private static void runtimeBasicTestInner()
-        {
-            ProgramaticMultipleUserPlatform platform = new ProgramaticMultipleUserPlatform();
-
-            Singleton<SessionManager>.Instance.NewUser(
-                "Admin1",
-                new UserData("Martín", true, UserData.Type.ADMIN, null, null),
-                new AdminInitialMenuState());
-
-            // Sign up an user of id "Entrepreneur1" as entrepreneur
-            platform.ReceiveMessages(
-                "Entrepreneur1",
-                "/help",
-                "/start -e",
-                "Santiago",
-                "/esc",
-                "/esc",
-                "19",
-                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                "Maderas",
-                "/add",
-                "https://www.wikipedia.org",
-                "Description1",
-                "/finish",
-                "/add",
-                "E1",
-                "/add",
-                "E2",
-                "/finish");
-
-            checkUser("Entrepreneur1", "Santiago");
-
-            // Create a report as Entrepreneur1
-            platform.ReceiveMessages(
-                "Company1",
-                "/ereport",
-                "27/11/2021");
-
-            //Remove Entrepreneur1
-            platform.ReceiveMessages(
-                "Admin1",
-                "/removeuser",
-                "Santiago"
-            );
-            bool actual= Singleton<SessionManager>.Instance.RemoveUserByName("Santiago");
-            Assert.That(actual, Is.False);
-
-
+            BasicRuntimeTest("create-invitations", () =>
             {
                 // Create a message invitation for "Company1"
                 string? invitationCode;
                 {
-                    List<(string, string)> responses = platform.ReceiveMessages(
+                    List<(string, string)> responses = this.platform!.ReceiveMessages(
                         "Admin1",
                         "/invitecompany");
                     invitationCode = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
@@ -140,7 +145,7 @@ namespace UnitTests
                 // Create a message invitation for "Company2"
                 string? invitationCode2;
                 {
-                    List<(string, string)> responses = platform.ReceiveMessages(
+                    List<(string, string)> responses = this.platform!.ReceiveMessages(
                         "Admin1",
                         "/invitecompany");
                     invitationCode2 = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
@@ -151,125 +156,183 @@ namespace UnitTests
                 // Create a message invitation for "Company3"
                 string? invitationCode3;
                 {
-                    List<(string, string)> responses = platform.ReceiveMessages(
+                    List<(string, string)> responses = this.platform!.ReceiveMessages(
                         "Admin1",
                         "/invitecompany");
                     invitationCode3 = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
                     Assert.That(invitationCode3, Is.Not.Null);
                 }
                 Assert.AreEqual(3, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
+            });
+        }
 
+        /// <summary>
+        /// Tests the user story of creating a company from an invitation.
+        /// </summary>
+        [Test]
+        public void CreateCompanyTest()
+        {
+            BasicRuntimeTest("create-company", () =>
+            {
+                {
+                    // Sign up an user of id "Company1" as company representative
+                    this.platform!.ReceiveMessages(
+                        "Company1",
+                        $"/start n1AIPqHy",
+                        "Roberto",
+                        "/esc",
+                        "/esc",
+                        "Teogal",
+                        "Maderas",
+                        "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                        "098140124",
+                        "teogal@gmail.com");
+                    CheckUtils.CheckUserAndEquality(new UserData("Roberto", true, UserData.Type.COMPANY, null, null), "Company1");
+                    Company? company = Singleton<CompanyManager>.Instance.GetByName("Teogal");
+                    Assert.That(company, Is.Not.Null);
+                    Assert.Contains("Company1", company!.Representants);
+                }
+
+                {
+                    // Sign up an user of id "Company2" as company representative
+                    this.platform!.ReceiveMessages(
+                        "Company2",
+                        $"/start pYzsMjCB",
+                        "Ernesto",
+                        "/esc",
+                        "/esc",
+                        "Compañía de vidrios",
+                        "Vidrios",
+                        "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                        "091695341",
+                        "vi.drios@gmail.com");
+                    CheckUtils.CheckUserAndEquality(new UserData("Ernesto", true, UserData.Type.COMPANY, null, null), "Company2");
+                    Company? company = Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios");
+                    Assert.That(company, Is.Not.Null);
+                    Assert.Contains("Company2", company!.Representants);
+                }
+
+                {
+                    // Sign up an user of id "Company2" as company representative
+                    this.platform!.ReceiveMessages(
+                        "Company3",
+                        $"/start hVvI3DGe",
+                        "Carlos",
+                        "/esc",
+                        "/esc",
+                        "La Metalería",
+                        "Metálicos",
+                        "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                        "092130294",
+                        "metaleria_comp@gmail.com");
+                    CheckUtils.CheckUserAndEquality(new UserData("Carlos", true, UserData.Type.COMPANY, null, null), "Company3");
+                    Company? company = Singleton<CompanyManager>.Instance.GetByName("La Metalería");
+                    Assert.That(company, Is.Not.Null);
+                    Assert.Contains("Company3", company!.Representants);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of adding a company representative to an already existing company.
+        /// </summary>
+        [Test]
+        public void AddCompanyRepresentativeTest()
+        {
+            BasicRuntimeTest("add-representative-to-company", () =>
+            {
                 // Sign up an user of id "Company1" as company representative
-                platform.ReceiveMessages(
-                    "Company1",
-                    $"/start {invitationCode}",
-                    "Roberto",
-                    "/esc",
-                    "/esc",
-                    "Teogal",
-                    "Maderas",
-                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                    "098140124",
-                    "teogal@gmail.com");
-                checkUser("Company1", "Roberto");
-                Assert.That(Singleton<CompanyManager>.Instance.GetByName("Teogal"), Is.Not.Null);
-
-                // Sign up an user of id "Company2" as company representative
-                platform.ReceiveMessages(
+                this.platform!.ReceiveMessages(
                     "Company2",
-                    $"/start {invitationCode2}",
-                    "Ernesto",
+                    $"/start 01010101",
+                    "José",
                     "/esc",
-                    "/esc",
-                    "Compañía de vidrios",
-                    "Vidrios",
-                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                    "091695341",
-                    "vi.drios@gmail.com");
-                checkUser("Company2", "Ernesto");
-                Assert.That(Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios"), Is.Not.Null);
+                    "jose@gmail.com",
+                    "Teogal",
+                    "Sí");
+                CheckUtils.CheckUserAndEquality(new UserData("José", true, UserData.Type.COMPANY, "jose@gmail.com", null), "Company2");
+                Company? company = Singleton<CompanyManager>.Instance.GetByName("Teogal");
+                Assert.That(company, Is.Not.Null);
+                Assert.AreEqual(new List<string>()
+                {
+                    "Company1", "Company2"
+                }, company!.Representants);
+            });
+        }
 
-                // Sign up an user of id "Company2" as company representative
-                platform.ReceiveMessages(
-                    "Company3",
-                    $"/start {invitationCode3}",
-                    "Carlos",
-                    "/esc",
-                    "/esc",
-                    "La Metalería",
-                    "Metálicos",
-                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                    "092130294",
-                    "metaleria_comp@gmail.com");
-                checkUser("Company3", "Carlos");
-                Assert.That(Singleton<CompanyManager>.Instance.GetByName("La Metalería"), Is.Not.Null);
-            }
-
-            // Publish a material as Company1
-            platform.ReceiveMessages(
-                "Company1",
-                "/publish",
-                "Bujes de cartón",
-                "length",
-                "Celulósicos",
-                "30cm",
-                "15 U$/cm",
-                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                "/normal",
-                "/add",
-                "Bujes",
-                "/add",
-                "Cartón",
-                "/finish",
-                "/finish");
+        /// <summary>
+        /// Tests the user story of publishing a normal material.
+        /// </summary>
+        [Test]
+        public void PublishNormalMaterialTest()
+        {
+            BasicRuntimeTest("publish-normal-material", () =>
             {
-                IList<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.Publications;
-                Assert.AreEqual(1, publications.Count);
-                MaterialPublication publication = publications[0];
-                checkMaterialPublicationEquality(
-                    MaterialPublication.CreateInstance(
-                        Material.CreateInstance(
-                            "Bujes de cartón",
-                            Measure.Length,
-                            MaterialCategory.GetByName("Celulósicos").Unwrap()),
-                        new Amount(30, Unit.GetByAbbr("cm").Unwrap()),
-                        new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
-                        new Location()
-                        {
-                            Found = true,
-                            AddresLine = "Avenida 8 de Octubre",
-                            CountryRegion = "Uruguay",
-                            FormattedAddress = "Avenida 8 de Octubre, Montevideo",
-                            Locality = "Montevideo",
-                            PostalCode = null,
-                            Latitude = -34.87959,
-                            Longitude = -56.14838
-                        },
-                        MaterialPublicationTypeData.Normal(),
-                        new List<string>()
-                        {
+                // Publish a material as Company1
+                this.platform!.ReceiveMessages(
+                    "Company1",
+                    "/publish",
+                    "Bujes de cartón",
+                    "length",
+                    "Celulósicos",
+                    "30cm",
+                    "15 U$/cm",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "/normal",
+                    "/add",
+                    "Bujes",
+                    "/add",
+                    "Cartón",
+                    "/finish",
+                    "/finish");
+                {
+                    IList<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.Publications;
+                    Assert.AreEqual(1, publications.Count);
+                    MaterialPublication publication = publications[0];
+                    CheckUtils.CheckMaterialPublicationEquality(
+                        MaterialPublication.CreateInstance(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(30, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Location()
+                            {
+                                Found = true,
+                                AddresLine = "Avenida 8 de Octubre",
+                                CountryRegion = "Uruguay",
+                                FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                                Locality = "Montevideo",
+                                PostalCode = null,
+                                Latitude = -34.87959,
+                                Longitude = -56.14838
+                            },
+                            MaterialPublicationTypeData.Normal(),
+                            new List<string>()
+                            {
                             "Bujes", "Cartón"
-                        },
-                        new List<string>()).Unwrap(),
-                    publication);
-            }
+                            },
+                            new List<string>()).Unwrap(),
+                        publication);
+                }
+            });
+        }
 
-            // Search for a material as Entrepreneur1
+        /// <summary>
+        /// Tests the user story of searching materials by keyword.
+        /// </summary>
+        [Test]
+        public void SearchByKeywordTest()
+        {
+            BasicRuntimeTest("search-material-by-keywords", () =>
             {
-                List<(string, string)> responses = platform.ReceiveMessages(
+                List<(string, string)> responses = this.platform!.ReceiveMessages(
                     "Entrepreneur1",
                     "/searchFK",
                     "Bujes");
 
                 string finalMessage = responses[responses.Count - 1].Item2;
-                Regex regex = new Regex(
-                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
-                  + "cantidad: (?<materialquantity>.+?), "
-                  + "precio: (?<materialprice>.+?), "
-                  + "ubicación: (?<materiallocation>.+), "
-                  + "tipo: (?<materialtype>.+)",
-                    RegexOptions.Compiled
-                );
 
                 string[][] expected = new string[][]
                 {
@@ -277,12 +340,12 @@ namespace UnitTests
                     {
                         "Teogal",
                         "Bujes de cartón",
-                        "30 cm",
+                        "30.00 cm",
                         "15 U$/cm",
                         "Avenida 8 de Octubre, Montevideo, Uruguay",
                         "normal"
                     }
-                }, actual1 = regex.Matches(finalMessage)
+                }, actual = entrepreneurReportRegex.Matches(finalMessage)
                     .Select(m => new string[]
                     {
                         m.Groups["company"].Value,
@@ -293,59 +356,57 @@ namespace UnitTests
                         m.Groups["materialtype"].Value
                     }).ToArray();
 
-                Assert.AreEqual(expected, actual1);
+                Assert.AreEqual(expected, actual);
+            });
+        }
 
-            }
-
-#warning TODO: add a material purchase after establishing command to buy materials as an entrepreneur.
-            // Create a report as Company1
-            platform.ReceiveMessages(
-                "Company1",
-                "/companyreport",
-                "23/11/2021");
-
-            // Publish a continuos material as Company3
-            platform.ReceiveMessages(
-                "Company3",
-                "/publish",
-                "Envase de vidrio",
-                "weight",
-                "Vidrio",
-                "500g",
-                "10 U$/g",
-                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                "/continuous",
-                "/add",
-                "Envase",
-                "/add",
-                "Vidrio",
-                "/finish",
-                "/finish");
-
-            // Publish a scheduled material as Company2
-            platform.ReceiveMessages(
-                "Company2",
-                "/publish",
-                "Garrafas",
-                "weight",
-                "Metales",
-                "5kg",
-                "15 U$/kg",
-                "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
-                "/scheduled",
-                "12/11/2021",
-                "/add",
-                "Metales",
-                "/add",
-                "Metálicos",
-                "/finish",
-                "/finish");
+        /// <summary>
+        /// Tests the user story of creating a company report.
+        /// </summary>
+        [Test]
+        public void CreateCompanyReportTest()
+        {
+            BasicRuntimeTest("create-company-report", () =>
             {
-                IList<MaterialPublication> publications1 = Singleton<CompanyManager>.Instance.GetByName("La Metalería")!.Publications;
-                Assert.AreEqual(1, publications1.Count);
-                MaterialPublication publication1 = publications1[0];
-                DateTime dateTime = new DateTime(2021,11,30);
-                checkMaterialPublicationEquality(
+                List<(string, string)> messages = this.platform!.ReceiveMessages(
+                    "Company1",
+                    "/companyreport",
+                    "23/11/2021");
+
+                Assert.AreEqual("Reporte vacío.", messages[messages.Count - 1].Item2.Split('\n')[0]);
+            });
+
+        }
+
+        /// <summary>
+        /// Tests the user story of publishing a continuous material.
+        /// </summary>
+        [Test]
+        public void PublishContinuousMaterialTest()
+        {
+            BasicRuntimeTest("publish-continuous-material", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Company3",
+                    "/publish",
+                    "Envase de vidrio",
+                    "weight",
+                    "Vidrio",
+                    "500g",
+                    "10 U$/g",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "/continuous",
+                    "/add",
+                    "Envase",
+                    "/add",
+                    "Vidrio",
+                    "/finish",
+                    "/finish");
+
+                IList<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("La Metalería")!.Publications;
+                Assert.AreEqual(1, publications.Count);
+                MaterialPublication publication = publications[0];
+                CheckUtils.CheckMaterialPublicationEquality(
                     MaterialPublication.CreateInstance(
                         Material.CreateInstance(
                             "Envase de vidrio",
@@ -370,12 +431,41 @@ namespace UnitTests
                             "Envase", "Vidrio"
                         },
                         new List<string>()).Unwrap(),
-                    publication1);
+                    publication);
+            });
+
+        }
+
+        /// <summary>
+        /// Tests the user story of publishing a scheduled material.
+        /// </summary>
+        [Test]
+        public void PublishScheduledMaterialTest()
+        {
+            BasicRuntimeTest("publish-scheduled-material", () =>
             {
+                this.platform!.ReceiveMessages(
+                    "Company2",
+                    "/publish",
+                    "Garrafas",
+                    "weight",
+                    "Metales",
+                    "5kg",
+                    "15 U$/kg",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "/scheduled",
+                    "12/11/2021",
+                    "/add",
+                    "Metales",
+                    "/add",
+                    "Metálicos",
+                    "/finish",
+                    "/finish");
+
                 IList<MaterialPublication> publications2 = Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios")!.Publications;
                 Assert.AreEqual(1, publications2.Count);
                 MaterialPublication publication2 = publications2[0];
-                checkMaterialPublicationEquality(
+                CheckUtils.CheckMaterialPublicationEquality(
                     MaterialPublication.CreateInstance(
                         Material.CreateInstance(
                             "Garrafas",
@@ -394,25 +484,273 @@ namespace UnitTests
                             Latitude = -34.87959,
                             Longitude = -56.14838
                         },
-                        MaterialPublicationTypeData.Scheduled(dateTime),
+                        MaterialPublicationTypeData.Scheduled(new DateTime(2021, 11, 30)),
                         new List<string>()
                         {
                             "Metales", "Metálicos"
                         },
                         new List<string>()).Unwrap(),
                     publication2);
-                }
-            }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of purchasing a material.
+        /// </summary>
+        [Test]
+        public void PurchaseMaterialTest()
+        {
+            BasicRuntimeTest("purchase-material", () =>
             {
-                //Remove Company2
-                platform.ReceiveMessages(
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teogal",
+                    "Bujes de cartón",
+                    "2 cm",
+                    "Sí");
+
+                {
+                    List<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.Publications;
+                    Assert.AreEqual(1, publications.Count);
+                    MaterialPublication publication = publications[0];
+                    CheckUtils.CheckMaterialPublicationEquality(
+                        MaterialPublication.CreateInstance(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(8, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Location
+                            {
+                                Found = true,
+                                AddresLine = "Avenida 8 de Octubre",
+                                CountryRegion = "Uruguay",
+                                FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                                Locality = "Montevideo",
+                                PostalCode = null,
+                                Latitude = -34.87959,
+                                Longitude = -56.14838
+                            },
+                            MaterialPublicationTypeData.Normal(),
+                            new List<string>() { "Bujes", "Cartón" },
+                            new List<string>()).Unwrap(),
+                        publication);
+                }
+                {
+                    BoughtMaterialLine[] purchases = Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.ToArray();
+                    Assert.AreEqual(1, purchases.Length);
+                    BoughtMaterialLine purchase = purchases[0];
+                    CheckUtils.CheckBoughtMaterialLineEquality(
+                        new BoughtMaterialLine(
+                            "Teogal",
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            DateTime.Today,
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Amount(2, Unit.GetByAbbr("cm").Unwrap())),
+                        purchase);
+                }
+                {
+                    MaterialSalesLine[] sales = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.MaterialSales.ToArray();
+                    Assert.AreEqual(1, sales.Length);
+                    MaterialSalesLine sale = sales[0];
+                    CheckUtils.CheckMaterialSalesLineEquality(
+                        new MaterialSalesLine(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(2, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            DateTime.Today,
+                            "Santiago"),
+                        sale);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of purchasing a material which doesn't exist.
+        /// </summary>
+        [Test]
+        public void PurchaseNonExistentMaterialTest()
+        {
+            BasicRuntimeTest("purchase-non-existent-material", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teog",
+                    "Teo",
+                    "Teogal",
+                    "A1",
+                    "C2",
+                    "\\");
+
+                Assert.AreEqual(0, Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.Count);
+                Assert.AreEqual(0, Singleton<CompanyManager>.Instance.GetByName("Teogal")!.MaterialSales.Count);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of purchasing a material with lower stock than asked.
+        /// </summary>
+        [Test]
+        public void PurchaseUnderstockedMaterialTest()
+        {
+            BasicRuntimeTest("purchase-understocked-material", () =>
+            {
+                this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/buy",
+                    "Teogal",
+                    "Bujes de cartón",
+                    "12 cm",
+                    "Sí",
+                    "Sí");
+
+                {
+                    List<MaterialPublication> publications = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.Publications;
+                    Assert.AreEqual(1, publications.Count);
+                    MaterialPublication publication = publications[0];
+                    CheckUtils.CheckMaterialPublicationEquality(
+                        MaterialPublication.CreateInstance(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(0, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Location
+                            {
+                                Found = true,
+                                AddresLine = "Avenida 8 de Octubre",
+                                CountryRegion = "Uruguay",
+                                FormattedAddress = "Avenida 8 de Octubre, Montevideo",
+                                Locality = "Montevideo",
+                                PostalCode = null,
+                                Latitude = -34.87959,
+                                Longitude = -56.14838
+                            },
+                            MaterialPublicationTypeData.Normal(),
+                            new List<string>() { "Bujes", "Cartón" },
+                            new List<string>()).Unwrap(),
+                        publication);
+                        Assert.That(publication.Sold, Is.True);
+                }
+                {
+                    BoughtMaterialLine[] purchases = Singleton<EntrepreneurManager>.Instance.GetById("Entrepreneur1")!.BoughtMaterials.ToArray();
+                    Assert.AreEqual(1, purchases.Length);
+                    BoughtMaterialLine purchase = purchases[0];
+                    CheckUtils.CheckBoughtMaterialLineEquality(
+                        new BoughtMaterialLine(
+                            "Teogal",
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            DateTime.Today,
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            new Amount(10, Unit.GetByAbbr("cm").Unwrap())),
+                        purchase);
+                }
+                {
+                    MaterialSalesLine[] sales = Singleton<CompanyManager>.Instance.GetByName("Teogal")!.MaterialSales.ToArray();
+                    Assert.AreEqual(1, sales.Length);
+                    MaterialSalesLine sale = sales[0];
+                    CheckUtils.CheckMaterialSalesLineEquality(
+                        new MaterialSalesLine(
+                            Material.CreateInstance(
+                                "Bujes de cartón",
+                                Measure.Length,
+                                MaterialCategory.GetByName("Celulósicos").Unwrap()),
+                            new Amount(10, Unit.GetByAbbr("cm").Unwrap()),
+                            new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
+                            DateTime.Today,
+                            "Santiago"),
+                        sale);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of making a company report after selling materials.
+        /// </summary>
+        [Test]
+        public void CreateCompanyReportTest2()
+        {
+            BasicRuntimeTest("create-company-report-2", () =>
+            {
+                List<(string, string)> messages = this.platform!.ReceiveMessages(
+                    "Company1",
+                    "/companyreport",
+                    "23/11/2021");
+
+                Assert.AreEqual(
+                    "10.00 cm de Bujes de cartón vendido(s) al emprendedor Santiago a precio de 15 U$/cm el día 28/11/2021",
+                    messages[messages.Count - 1].Item2.Split('\n')[0]);
+            });
+        }
+        /// <summary>
+        /// Tests the user story of remove a company by an admin.
+        /// </summary>
+        [Test]
+
+        public void RemoveCopanyTest()
+        {
+            BasicRuntimeTest("remove-company", () =>
+            {
+                platform!.ReceiveMessages(
                     "Admin1",
                     "/removecompany",
                     "Company2"
                 );
                 bool actual2= Singleton<CompanyManager>.Instance.RemoveCompany("Company2");
                 Assert.That(actual2, Is.False);
-            }
+            });
         }
+        
+        /// <summary>
+        /// Tests the user story of remove a entrepreneur by an admin.
+        /// </summary>
+        [Test]
+        public void RemoveEntrepreneurTest()
+        {
+            BasicRuntimeTest("remove-entrepreneur", () =>
+            {
+                platform!.ReceiveMessages(
+                "Admin1",
+                "/removeuser",
+                "Santiago"
+            );
+            bool actual= Singleton<SessionManager>.Instance.RemoveUserByName("Santiago");
+            Assert.That(actual, Is.False);
+            });
+        }
+        /// <summary>
+        /// Tests the user story of obtain a entrepreneur report
+        /// </summary>
+        [Test]
+        public void ReportEntrepreneurTest()
+        {
+            BasicRuntimeTest("report-entrepreneur",() =>
+            {
+                List<(string, string)> messages = this.platform!.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/ereport",
+                    "23/11/2021"
+                );
+
+                Assert.AreEqual(
+                    "10.00 cm de Bujes de cartón el día 28/11/2021 a precio de 15 U$/cm (U$ 150)",
+                    messages[messages.Count - 1].Item2.Split('\n')[0]);
+            });
+        }
+
+
     }
 }

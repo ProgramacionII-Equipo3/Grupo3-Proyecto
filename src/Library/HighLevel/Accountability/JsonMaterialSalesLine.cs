@@ -29,6 +29,11 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         public DateTime DateTime { get; set; }
 
+        /// <summary>
+        /// The name of the entrepreneur who made the purchase.
+        /// </summary>
+        public string Buyer { get; set; } = string.Empty;
+
         /// <inheritdoc />
         public void FromValue(MaterialSalesLine value)
         {
@@ -39,6 +44,7 @@ namespace Library.HighLevel.Accountability
             this.Price = new JsonPrice();
             this.Price.FromValue(value.Price);
             this.DateTime = value.DateTime;
+            this.Buyer = value.Buyer;
         }
 
         /// <inheritdoc />
@@ -47,6 +53,7 @@ namespace Library.HighLevel.Accountability
                 this.Material.ToValue(),
                 this.Amount.ToValue(),
                 this.Price.ToValue(),
-                this.DateTime);
+                this.DateTime,
+                this.Buyer);
     }
 }

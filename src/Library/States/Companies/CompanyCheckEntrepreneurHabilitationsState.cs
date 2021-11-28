@@ -13,9 +13,9 @@ namespace Library.States.Companies
         /// <summary>
         /// Initializes an instance of <see cref="CompanyCheckEntrepreneurHabilitationsState" /> class.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The company representative's id.</param>
         public CompanyCheckEntrepreneurHabilitationsState(string id) : base(
-            InputProcessorState.CreateInstance<string>(
+            new InputProcessorState<string>(
                 new BasicStringProcessor(() => "Inserte el nombre del emprendedor que desea chequear."),
                 entrepreneur =>
                 {

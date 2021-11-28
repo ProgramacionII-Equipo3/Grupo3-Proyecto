@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json.Serialization;
 using Library.Utils;
 
@@ -13,7 +14,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The numeric value in the amount.
         /// </summary>
-        public float Quantity { get; private set; }
+        public double Quantity { get; private set; }
 
         /// <summary>
         /// The unit used in the amount.
@@ -25,7 +26,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="quantity">The numeric value.</param>
         /// <param name="unit">The unit.</param>
-        public Amount(float quantity, Unit unit)
+        public Amount(double quantity, Unit unit)
         {
             this.Quantity = quantity;
             this.Unit = unit;
@@ -33,32 +34,36 @@ namespace Library.HighLevel.Accountability
 
         /// <inheritdoc />
         public override string? ToString() =>
-            $"{this.Quantity} {this.Unit}";
+            $"{string.Format(CultureInfo.InvariantCulture, "{0:F2}", this.Quantity)} {this.Unit}";
 
         /// <summary>
         /// Substracts two amounts, storing the result in the first one.
         /// </summary>
         /// <param name="other">The amount to substract.</param>
-        /// <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
-        public bool Substract(Amount other)
+        /// <returns>
+        /// 0 if the two amounts can be substracted, <br />
+        /// 1 if the two amounts' units are incompatible with each other, <br />
+        /// 2 if the second amount is bigger than the first one.
+        /// </returns>
+        public byte Substract(Amount other)
         {
             if(Unit.GetConversionFactor(this.Unit, other.Unit) is double factor)
             {
-                if(factor < 1)
-                {
-                    factor = Unit.GetConversionFactor(other.Unit, this.Unit).Unwrap();
-                    this.Quantity -= (float)(other.Quantity * factor);
-                    return true;
-                }
-
-                this.Quantity = (float)(this.Quantity * factor);
-                this.Unit = other.Unit;
-
-                this.Quantity -= other.Quantity;
-                return true;
+                double newQuantity = this.Quantity - other.Quantity / factor;
+                if(newQuantity < 0) return 2;
+                this.Quantity = newQuantity;
+                return 0;
             }
 
-            return false;
+            return 1;
+        }
+
+        /// <summary>
+        /// Sets itself to zero.
+        /// </summary>
+        public void SetToZero()
+        {
+            this.Quantity = 0;
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Library.HighLevel.Accountability
 {
     /// <summary>
     /// This class represents a measure through which a certain amount of material can be measured.
-    /// We used the pattern Creator, we assigned the method Length and Weigth to Measure because
+    /// We used the pattern Creator, we assigned the static attributes Length, Weight and Volume to Measure because
     /// it's the class that knows about it.
     /// </summary>
     public class Measure
@@ -50,6 +50,14 @@ namespace Library.HighLevel.Accountability
         });
 
         /// <summary>
+        /// Gets the list of available measures.
+        /// </summary>
+        public static readonly Measure[] Measures = new Measure[]
+        {
+            Measure.Length, Measure.Weight, Measure.Volume
+        };
+
+        /// <summary>
         /// Gets the measure's name.
         /// </summary>
         public readonly string Name;
@@ -75,15 +83,7 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         /// <param name="name">The measure's name.</param>
         /// <returns>A measure.</returns>
-        public static Measure? GetByName(string name)
-        {
-            switch(name.ToLower(System.Globalization.CultureInfo.InvariantCulture))
-            {
-                case "weight": return Measure.Weight;
-                case "length": return Measure.Length;
-                case "volume": return Measure.Volume;
-                default: return null;
-            }
-        }
+        public static Measure? GetByName(string name) =>
+            Measures.Where(measure => measure.Name.ToLowerInvariant() == name.ToLowerInvariant()).FirstOrDefault();
     }
 }

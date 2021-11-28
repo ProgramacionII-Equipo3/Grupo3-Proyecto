@@ -19,7 +19,7 @@ namespace Library.States.Entrepreneurs
         /// Initializes an instance of <see cref="EntrepreneurSearchByKeywordState" />.
         /// </summary>
         public EntrepreneurSearchByCategoryState(string id): base(
-            InputProcessorState.CreateInstance<MaterialCategory>(
+            new InputProcessorState<MaterialCategory>(
                 new MaterialCategoryProcessor(() => "Inserte la categoría del material que quieres buscar."),
                 category =>
                 {

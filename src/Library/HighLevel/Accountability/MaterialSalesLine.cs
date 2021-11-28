@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Library.HighLevel.Materials;
 using Library.Utils;
 
@@ -32,18 +33,25 @@ namespace Library.HighLevel.Accountability
         public readonly DateTime DateTime;
 
         /// <summary>
+        /// The name of the entrepreneur who made the purchase.
+        /// </summary>
+        public readonly string Buyer;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MaterialSalesLine"/> class.
         /// </summary>
         /// <param name="material">The sold material.</param>
         /// <param name="amount">The amount of sold material.</param>
         /// <param name="price">The price of the sold material.</param>
         /// <param name="dateTime">The moment the sale happened.</param>
-        public MaterialSalesLine(Material material, Amount amount, Price price, DateTime dateTime)
+        /// <param name="buyer">The name of the entrepreneur who made the purchase.</param>
+        public MaterialSalesLine(Material material, Amount amount, Price price, DateTime dateTime, string buyer)
         {
             this.Material = material;
             this.Amount = amount;
             this.Price = price;
             this.DateTime = dateTime;
+            this.Buyer = buyer;
         }
 
         /// <summary>
@@ -53,6 +61,6 @@ namespace Library.HighLevel.Accountability
 
         /// <inheritdoc />
         public override string? ToString() =>
-            $"{this.Amount} de {this.Material.Name} vendido(s) a {this.Price} el día {this.DateTime.ToShortDateString()}";
+            $"{this.Amount} de {this.Material.Name} vendido(s) al emprendedor {this.Buyer} a precio de {this.Price} el día {this.DateTime.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)}";
     }
 }

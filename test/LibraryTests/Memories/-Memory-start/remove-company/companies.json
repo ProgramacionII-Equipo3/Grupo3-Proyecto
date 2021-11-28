@@ -1,0 +1,25 @@
+[
+    {
+        "Name": "Compa\u00F1\u00EDa de vidrios",
+        "ContactInfo": {
+          "Email": "vi.drios@gmail.com",
+          "PhoneNumber": 91695341
+        },
+        "Heading": "Vidrios",
+        "Location": {
+          "Found": true,
+          "AddresLine": "Avenida 8 de Octubre",
+          "CountryRegion": "Uruguay",
+          "FormattedAddress": "Avenida 8 de Octubre, Montevideo",
+          "Locality": "Montevideo",
+          "PostalCode": null,
+          "Latitude": -34.87959,
+          "Longitude": -56.14838
+        },
+        "Representants": [
+          "Company2"
+        ],
+        "Publications": [],
+        "MaterialSales": []
+      }
+]

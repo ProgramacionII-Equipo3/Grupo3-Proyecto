@@ -22,8 +22,8 @@ namespace Library.States.Admins
                     : "No existe una compañía con ese nombre.",
                 new BasicStringProcessor(() => "Por favor ingrese el nombre de la compañía que quieres eliminar.")
             ),
-            exitState: () => new AdminInitialMenuState(),
-            nextState: () => new AdminInitialMenuState()
+            exitState: () => (new AdminInitialMenuState(), null),
+            nextState: () => (new AdminInitialMenuState(), null)
         ) {}
     }
 }

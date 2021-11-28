@@ -627,7 +627,7 @@
             The unit used in the amount.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Single,Library.HighLevel.Accountability.Unit)">
+        <member name="M:Library.HighLevel.Accountability.Amount.#ctor(System.Double,Library.HighLevel.Accountability.Unit)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Amount"/> struct.
             </summary>
@@ -642,7 +642,16 @@
             Substracts two amounts, storing the result in the first one.
             </summary>
             <param name="other">The amount to substract.</param>
-            <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
+            <returns>
+            0 if the two amounts can be substracted, <br />
+            1 if the two amounts' units are incompatible with each other, <br />
+            2 if the second amount is bigger than the first one.
+            </returns>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.Amount.SetToZero">
+            <summary>
+            Sets itself to zero.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Accountability.BoughtMaterialLine">
             <summary>
@@ -827,6 +836,11 @@
             The moment the sale happened.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Buyer">
+            <summary>
+            The name of the entrepreneur who made the purchase.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Accountability.JsonMaterialSalesLine.FromValue(Library.HighLevel.Accountability.MaterialSalesLine)">
             <inheritdoc />
         </member>
@@ -886,7 +900,12 @@
             The moment the sale happened.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime)">
+        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.Buyer">
+            <summary>
+            The name of the entrepreneur who made the purchase.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/> class.
             </summary>
@@ -894,6 +913,7 @@
             <param name="amount">The amount of sold material.</param>
             <param name="price">The price of the sold material.</param>
             <param name="dateTime">The moment the sale happened.</param>
+            <param name="buyer">The name of the entrepreneur who made the purchase.</param>
         </member>
         <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
             <summary>
@@ -906,7 +926,7 @@
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
             This class represents a measure through which a certain amount of material can be measured.
-            We used the pattern Creator, we assigned the method Length and Weigth to Measure because
+            We used the pattern Creator, we assigned the static attributes Length, Weight and Volume to Measure because
             it's the class that knows about it.
             </summary>
         </member>
@@ -923,6 +943,11 @@
         <member name="F:Library.HighLevel.Accountability.Measure.Volume">
             <summary>
             The volume measure.
+            </summary>
+        </member>
+        <member name="F:Library.HighLevel.Accountability.Measure.Measures">
+            <summary>
+            Gets the list of available measures.
             </summary>
         </member>
         <member name="F:Library.HighLevel.Accountability.Measure.Name">
@@ -969,7 +994,7 @@
             The currency.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.#ctor(System.Single,Library.HighLevel.Accountability.Currency)">
+        <member name="M:Library.HighLevel.Accountability.MoneyQuantity.#ctor(System.Double,Library.HighLevel.Accountability.Currency)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MoneyQuantity"/> struct.
             </summary>
@@ -1001,7 +1026,7 @@
             Gets the unit of material measurement with which the price is determined.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.Single,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
+        <member name="M:Library.HighLevel.Accountability.Price.#ctor(System.UInt32,Library.HighLevel.Accountability.Currency,Library.HighLevel.Accountability.Unit)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.Price"/> struct.
             </summary>
@@ -1552,6 +1577,7 @@
         <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.NewEntrepreneur(System.String,System.String,System.Int32,Ucu.Poo.Locations.Client.Location,System.String,System.Collections.Generic.IList{Library.HighLevel.Materials.Habilitation},System.Collections.Generic.IList{System.String})">
             <summary>
             Adds a new entrepreneur into the list, if there isn't already an entrepreneur with the same name.
+            Due to the Creator pattern, This methods receives the individual pieces of data to initialize an entrepreneur.
             </summary>
             <param name="id">The entrepreneur's id.</param>
             <param name="name">The entrepreneur's name.</param>
@@ -1833,7 +1859,11 @@
             The list of keywords of the publication material.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements" -->
+        <member name="P:Library.HighLevel.Materials.JsonMaterialPublication.Requirements">
+            <summary>
+            The list of requirements of the material publication.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Materials.JsonMaterialPublication.FromValue(Library.HighLevel.Materials.MaterialPublication)">
             <inheritdoc />
         </member>
@@ -2014,10 +2044,21 @@
         </member>
         <member name="M:Library.HighLevel.Materials.MaterialPublication.ReduceQuantity(Library.HighLevel.Accountability.Amount)">
             <summary>
-            Substracts two amounts, storing the result in the first one.
+            Substracts a given amount to the one in the publication,
+            as if a purchase was made.
             </summary>
             <param name="otherAmount">The amount to substract. </param>
-            <returns>True if the two amounts' units are compatible with each other. False otherwise.</returns>
+            <returns>
+            0 if the two amounts can be substracted, <br />
+            1 if the two amounts' units are incompatible with each other, <br />
+            2 if the second amount is bigger than the first one.
+            </returns>
+        </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.ClearStock">
+            <summary>
+            Sets the stock amount to zero,
+            as if someone purchased the remaining amount.
+            </summary>
         </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
@@ -2598,6 +2639,17 @@
         <member name="M:Library.InputHandlers.UserDataProcessor.getResult">
             <inheritdoc />
         </member>
+        <member name="T:Library.InputHandlers.YesNoProcessor">
+            <summary>
+            This class represents an <see cref="T:Library.Core.Processing.InputProcessor`1" /> which processes the response to a yes/no question.
+            </summary>
+        </member>
+        <member name="M:Library.InputHandlers.YesNoProcessor.#ctor(System.Func{System.String})">
+            <summary>
+            Initializes an instance of <see cref="T:Library.InputHandlers.YesNoProcessor" />.
+            </summary>
+            <param name="initialResponseGetter">The function to get the default response.</param>
+        </member>
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
@@ -2780,7 +2832,7 @@
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyCheckEntrepreneurHabilitationsState" /> class.
             </summary>
-            <param name="id"></param>
+            <param name="id">The company representative's id.</param>
         </member>
         <member name="T:Library.States.Companies.CompanyInitialMenuState">
             <summary>
@@ -2880,6 +2932,33 @@
             </summary>
             <param name="id">The user´s id.</param>
         </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState">
+            <summary>
+            This class represents the state of an entrepreneur who can choose to buy the remaining stock of a material publication
+            after being confirmed that the amount they want is not satisfied by the current stock.
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState.#ctor(System.String,Library.HighLevel.Materials.AssignedMaterialPublication)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState" />.
+            </summary>
+            <param name="id">The entrepreneur's id.</param>
+            <param name="publication">The publication.</param>
+        </member>
+        <member name="T:Library.States.Entrepreneurs.EntrepreneurConfirmPurchaseState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.States.Entrepreneurs.EntrepreneurConfirmPurchaseState.#ctor(System.String,Library.HighLevel.Materials.AssignedMaterialPublication,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Amount)">
+            <summary>
+            Initializes an instance of <see cref="T:Library.States.Entrepreneurs.EntrepreneurBuyRemainingStockState" />.
+            </summary>
+            <param name="id">The entrepreneur's id.</param>
+            <param name="publication">The publication.</param>
+            <param name="purchasedAmount">The amount of material to purchase.</param>
+            <param name="remainingAmount">The amount of material that remains in stock after the purchase.</param>
+        </member>
         <member name="T:Library.States.Entrepreneurs.EntrepreneurCreateReportState">
             <summary>
             This class represents a <see cref="T:Library.Core.State" /> for an entrepreneur who is creating a report.
@@ -2953,7 +3032,7 @@
             This class represents a State which basically works with an <see cref="T:Library.Core.Processing.InputHandler" />.
             </summary>
         </member>
-        <member name="M:Library.States.InputHandlerState.#ctor(Library.Core.Processing.InputHandler,System.Func{Library.Core.State},System.Func{Library.Core.State})">
+        <member name="M:Library.States.InputHandlerState.#ctor(Library.Core.Processing.InputHandler,System.Func{System.ValueTuple{Library.Core.State,System.String}},System.Func{System.ValueTuple{Library.Core.State,System.String}})">
             <summary>
             Initializes an instance of <see cref="T:Library.States.InputHandlerState" />.
             </summary>
@@ -2967,30 +3046,24 @@
         <member name="M:Library.States.InputHandlerState.GetDefaultResponse">
             <inheritdoc />
         </member>
-        <member name="T:Library.States.InputProcessorState">
+        <member name="T:Library.States.InputProcessorState`1">
             <summary>
             This class represents a State which basically works with an <see cref="T:Library.Core.Processing.InputProcessor`1" />.
             </summary>
+            <typeparam name="T">The type of the objects generated by the processor.</typeparam>
         </member>
-        <member name="M:Library.States.InputProcessorState.#ctor">
+        <member name="M:Library.States.InputProcessorState`1.#ctor(Library.Core.Processing.InputProcessor{`0},System.Func{`0,System.ValueTuple{Library.Core.State,System.String}},System.Func{System.ValueTuple{Library.Core.State,System.String}})">
             <summary>
-            Initializes an instance of <see cref="T:Library.States.InputProcessorState" />.
+            Initializes an instance of <see cref="T:Library.States.InputProcessorState`1" />.
             </summary>
-        </member>
-        <member name="M:Library.States.InputProcessorState.CreateInstance``1(Library.Core.Processing.InputProcessor{``0},System.Func{``0,System.ValueTuple{Library.Core.State,System.String}},System.Func{System.ValueTuple{Library.Core.State,System.String}})">
-            <summary>
-            Creates a valid instance of <see cref="T:Library.States.InputProcessorState" />.
-            </summary>
-            <param name="processor">The inner processor on which the <see cref="T:Library.States.InputProcessorState" /> depends.</param>
+            <param name="processor">The inner processor on which the <see cref="T:Library.States.InputProcessorState`1" /> depends.</param>
             <param name="nextState">The function which determines the next state, given the resulting object from the processor.</param>
             <param name="exitState">The function which determines the next state, given that the processor returned an interrupt signal.</param>
-            <typeparam name="T">The type of the objects generated by the processor.</typeparam>
-            <returns>An <see cref="T:Library.States.InputProcessorState" />.</returns>
         </member>
-        <member name="M:Library.States.InputProcessorState.ProcessMessage(System.String,System.String)">
+        <member name="M:Library.States.InputProcessorState`1.ProcessMessage(System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Library.States.InputProcessorState.GetDefaultResponse">
+        <member name="M:Library.States.InputProcessorState`1.GetDefaultResponse">
             <inheritdoc />
         </member>
         <member name="T:Library.States.MultipleOptionState">

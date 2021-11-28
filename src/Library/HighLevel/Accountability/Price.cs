@@ -13,7 +13,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// Gets the numeric value.
         /// </summary>
-        public float Quantity { get; private set; }
+        public uint Quantity { get; private set; }
 
         /// <summary>
         /// Gets the currency with which the price is determined.
@@ -32,7 +32,7 @@ namespace Library.HighLevel.Accountability
         /// <param name="currency">Material's publication currency.</param>
         /// <param name="unit">Material's unit.</param>
 
-        public Price(float quantity, Currency currency, Unit unit)
+        public Price(uint quantity, Currency currency, Unit unit)
         {
             this.Quantity = quantity;
             this.Currency = currency;

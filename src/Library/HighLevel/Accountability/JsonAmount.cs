@@ -11,7 +11,7 @@ namespace Library.HighLevel.Accountability
         /// <summary>
         /// The quantity.
         /// </summary>
-        public float Quantity { get; set; }
+        public double Quantity { get; set; }
 
         /// <summary>
         /// The unit.
