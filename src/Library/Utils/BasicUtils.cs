@@ -110,7 +110,7 @@ namespace Library.Utils
         /// <returns>True if the number is valid and false if it not does.</returns>
         public static bool IsValidPhoneNumber(int number)
         {
-            string numberString = number.ToString();
+            string numberString = string.Format("{0:D9}", number);
             if (numberString.Length == 9)
             {
                 if (numberString[0] == '0' && numberString[1] == '9')

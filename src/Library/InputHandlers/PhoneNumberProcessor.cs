@@ -14,7 +14,7 @@ namespace Library.InputHandlers
             new PipeProcessor<int, int>(
                 func: n => BasicUtils.IsValidPhoneNumber(n)
                     ? Result<int, string>.Ok(n)
-                    : Result<int, string>.Err("The given input is not a valid phone number."),
+                    : Result<int, string>.Err("El dato ingresado no es un número de teléfono válido."),
                 processor: new UnsignedInt32Processor(initialResponseGetter)
             )
         ) {}

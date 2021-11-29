@@ -34,5 +34,17 @@
       "IsComplete": true,
       "UserType": 1
     }
+  },
+  {
+    "Id": "Telegram_2012232708",
+    "UserData": {
+      "Name": "Juan Nocetti",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": 91685942
+      },
+      "IsComplete": true,
+      "UserType": 2
+    }
   }
 ]

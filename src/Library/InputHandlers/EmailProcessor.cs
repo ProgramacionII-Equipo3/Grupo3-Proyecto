@@ -18,7 +18,7 @@ namespace Library.InputHandlers
             new PipeProcessor<string, string>(
                 func: s => BasicUtils.IsValidEmail(s)
                     ? Result<string, string>.Ok(s)
-                    : Result<string, string>.Err("The given input is not a valid email."),
+                    : Result<string, string>.Err("El dato ingresado no es un email válido."),
                 processor: new BasicStringProcessor(initialResponseGetter)
             )) {}
     }
