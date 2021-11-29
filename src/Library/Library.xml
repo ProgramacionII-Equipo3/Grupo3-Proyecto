@@ -707,6 +707,7 @@
             <param name="dateTime">The date of when the purchase was made.</param>
             <param name="price">The cost of the material.</param>
             <param name="amount">The amount of the purchased material.</param>
+            <param name="id">The purchase's id.</param>
         </member>
         <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Spent">
             <summary>
@@ -1320,6 +1321,12 @@
             Removes all users in a company.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Companies.Company.RemoveMaterialSalesLine(System.Int32)">
+            <summary>
+            Removes a <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" /> with a concrete id from the company.
+            </summary>
+            <param name="saleId">The line's id.</param>
+        </member>
         <member name="P:Library.HighLevel.Companies.Company.Publications">
             <summary>
             Gets a private list of the publications.
@@ -1456,6 +1463,12 @@
             Saves all companies from a JSON file.
             </summary>
             <param name="path">The main directory's path.</param>
+        </member>
+        <member name="M:Library.HighLevel.Companies.CompanyManager.RemoveMaterialSalesLine(System.Int32)">
+            <summary>
+            Removes a <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine" /> with a concrete id from the platform.
+            </summary>
+            <param name="saleId">The line's id.</param>
         </member>
         <member name="T:Library.HighLevel.Companies.JsonCompany">
             <summary>
@@ -1595,6 +1608,12 @@
             <param name="specializations">Entrepreneur's specializations.</param>
             <param name="boughtMaterials">Entrepreneur's bought material lines.</param>
         </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.Entrepreneur.RemoveBoughtMaterialLine(System.Int32)">
+            <summary>
+            Removes a <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" /> with a concrete id from the entrepreneur's list.
+            </summary>
+            <param name="saleId">The line's id.</param>
+        </member>
         <member name="P:Library.HighLevel.Entrepreneurs.Entrepreneur.BoughtMaterials">
             <summary>
             Gets the collection of bought materials.
@@ -1682,6 +1701,12 @@
             Saves all entrepreneurs from a JSON file.
             </summary>
             <param name="path">The main directory's file.</param>
+        </member>
+        <member name="M:Library.HighLevel.Entrepreneurs.EntrepreneurManager.RemoveBoughtMaterialLine(System.Int32)">
+            <summary>
+            Removes the <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine" /> with a concrete id from the platform.
+            </summary>
+            <param name="saleId">The line's id.</param>
         </member>
         <member name="T:Library.HighLevel.Entrepreneurs.JsonEntrepreneur">
             <summary>

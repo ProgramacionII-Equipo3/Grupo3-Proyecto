@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.Core.Messaging;
 
-namespace UnitTests
+namespace ProgramTests
 {
     /// <summary>
     /// Acts as a messaging platform in which the messages it sends are determined in advance.

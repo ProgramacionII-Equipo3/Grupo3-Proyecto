@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Library;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using Library.Utils;
@@ -19,8 +20,8 @@ namespace ProgramTests
         private Unit? unit2;
         private Price price;
         private Price price2;
-        private Amount amount;
-        private Amount amount2;
+        private Amount? amount;
+        private Amount? amount2;
         private Material? soldMaterial;
         private Material? soldMaterial2;
         private DateTime sold;
@@ -52,8 +53,8 @@ namespace ProgramTests
         [Test]
         public void CompanyReport()
         {
-            MaterialSalesLine materialSale = new MaterialSalesLine(this.soldMaterial!, this.amount, this.price, this.sold, string.Empty);
-            MaterialSalesLine materialSale2 = new MaterialSalesLine(this.soldMaterial2!, this.amount2, this.price2, this.sold2, string.Empty);
+            MaterialSalesLine materialSale = new MaterialSalesLine(this.soldMaterial!, this.amount!, this.price, this.sold, string.Empty);
+            MaterialSalesLine materialSale2 = new MaterialSalesLine(this.soldMaterial2!, this.amount2!, this.price2, this.sold2, string.Empty);
             IList<MaterialSalesLine> sales = new List<MaterialSalesLine> { materialSale, materialSale2 };
             IList<MaterialSalesLine> expected = SentMaterialReport.GetSentReport(sales, 3);
             Assert.AreEqual(expected, sales);
@@ -85,6 +86,42 @@ namespace ProgramTests
             IList<MaterialSalesLine> expected = new List<MaterialSalesLine>();
 
             Assert.AreEqual(expected, report);
+        }
+
+        /// <summary>
+        /// Tests the user story of creating a company report.
+        /// </summary>
+        [Test]
+        public void CreateCompanyReportTest()
+        {
+            RuntimeTest.BasicRuntimeTest("create-company-report", () =>
+            {
+                List<(string, string)> messages = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Company1",
+                    "/companyreport",
+                    "23/11/2021");
+
+                Assert.AreEqual("Reporte vacío.", messages[messages.Count - 1].Item2.Split('\n')[0]);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of making a company report after selling materials.
+        /// </summary>
+        [Test]
+        public void CreateCompanyReportTest2()
+        {
+            RuntimeTest.BasicRuntimeTest("create-company-report-2", () =>
+            {
+                List<(string, string)> messages = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Company1",
+                    "/companyreport",
+                    "23/11/2021");
+
+                Assert.AreEqual(
+                    "(0) 10.00 cm de Bujes de cartón vendido(s) al emprendedor Santiago a precio de 15 U$/cm el día 28/11/2021",
+                    messages[messages.Count - 1].Item2.Split('\n')[0]);
+            });
         }
     }
 }

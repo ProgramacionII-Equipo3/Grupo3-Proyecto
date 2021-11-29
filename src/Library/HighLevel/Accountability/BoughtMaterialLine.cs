@@ -52,6 +52,7 @@ namespace Library.HighLevel.Accountability
         /// <param name="dateTime">The date of when the purchase was made.</param>
         /// <param name="price">The cost of the material.</param>
         /// <param name="amount">The amount of the purchased material.</param>
+        /// <param name="id">The purchase's id.</param>
         [JsonConstructor]
         public BoughtMaterialLine(string companyName, Material material, DateTime dateTime, Price price, Amount amount, int id)
         {

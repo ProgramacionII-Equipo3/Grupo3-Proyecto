@@ -28,9 +28,9 @@ namespace ProgramTests
         [Test]
         public void InviteCompany()
         {
-            Administer.CreateCompanyInvitation();
             int invitationsLength = Singleton<InvitationManager>.Instance.InvitationCount;
-            Assert.AreEqual(2, invitationsLength);
+            Administer.CreateCompanyInvitation();
+            Assert.AreEqual(invitationsLength + 1, Singleton<InvitationManager>.Instance.InvitationCount);
         }
     }
 }

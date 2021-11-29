@@ -6,9 +6,9 @@ using Library.Core.Processing;
 using Library.States;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
-using UnitTests.Utils;
+using ProgramTests.Utils;
 
-namespace UnitTests
+namespace ProgramTests
 {
     /// <summary>
     /// This class represents unit tests related to the class <see cref="ListProcessor{T}" /> as a subclass of <see cref="InputProcessor{T}" /> of a list of elements.
