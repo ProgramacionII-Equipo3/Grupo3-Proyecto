@@ -2,7 +2,7 @@ using Library;
 using Library.Core;
 using Library.Core.Distribution;
 
-namespace UnitTests.Utils
+namespace ProgramTests.Utils
 {
     /// <summary>
     /// This class contains functions which perform common actions in the unit tests.

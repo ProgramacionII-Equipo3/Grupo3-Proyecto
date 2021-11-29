@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Library;
 using Library.Core;
+using Library.Core.Distribution;
 using Library.Core.Invitations;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
@@ -10,12 +11,13 @@ using Library.HighLevel.Materials;
 using Library.Platforms.Telegram;
 using Library.Utils;
 using NUnit.Framework;
+using ProgramTests.Utils;
 using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
 {
     /// <summary>
-    /// Test if an Entrepreneur can register into the platform.
+    /// This class holds tests about entrepreneurs.
     /// </summary>
     [TestFixture]
     public class EntrepreneurRegisterTest
@@ -92,7 +94,7 @@ namespace ProgramTests
         [Test]
         public void EntrepreneurRegisterFromUserInput()
         {
-            UnitTests.ProgramaticPlatform platform = new UnitTests.ProgramaticPlatform(
+            ProgramTests.ProgramaticPlatform platform = new ProgramTests.ProgramaticPlatform(
                 "___",
                 "/start -e",
                 "Santiago",
@@ -108,6 +110,56 @@ namespace ProgramTests
             Console.WriteLine();
             Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
             Singleton<EntrepreneurManager>.Instance.RemoveUserAsEntrepreneurByName("Santiago");
+        }
+
+                /// <summary>
+        /// Tests the user story of signing up as an entrepreneur.
+        /// </summary>
+        [Test]
+        public void CreateEntrepreneurTest()
+        {
+            RuntimeTest.BasicRuntimeTest("create-entrepreneur", () =>
+            {
+                Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/help",
+                    "/start -e",
+                    "Santiago",
+                    "/esc",
+                    "/esc",
+                    "19",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "Maderas",
+                    "/add",
+                    "https://www.wikipedia.org",
+                    "Description1",
+                    "/finish",
+                    "/add",
+                    "E1",
+                    "/add",
+                    "E2",
+                    "/finish");
+
+                CheckUtils.CheckUserAndEquality(new UserData("Santiago", true, UserData.Type.ENTREPRENEUR, null, null), "Entrepreneur1");
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of remove a entrepreneur by an admin.
+        /// </summary>
+        [Test]
+        public void RemoveEntrepreneurTest()
+        {
+            RuntimeTest.BasicRuntimeTest("remove-entrepreneur", () =>
+            {
+                Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                "Admin1",
+                "/removeuser",
+                "Santiago"
+            );
+            bool actual= Singleton<SessionManager>.Instance.RemoveUserByName("Santiago");
+            Assert.That(actual, Is.False);
+            });
         }
     }
 }

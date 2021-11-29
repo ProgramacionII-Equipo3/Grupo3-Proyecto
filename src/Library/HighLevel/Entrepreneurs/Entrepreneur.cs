@@ -94,6 +94,10 @@ namespace Library.HighLevel.Entrepreneurs
             this.BoughtMaterials = boughtMaterials.ToList();
         }
 
+        /// <summary>
+        /// Removes a <see cref="BoughtMaterialLine" /> with a concrete id from the entrepreneur's list.
+        /// </summary>
+        /// <param name="saleId">The line's id.</param>
         public void RemoveBoughtMaterialLine(int saleId)
         {
             this.BoughtMaterials.RemoveAll(line => line.Id == saleId);

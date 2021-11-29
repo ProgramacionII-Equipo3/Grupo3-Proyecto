@@ -1,16 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
 using Library;
 using Library.Core;
 using Library.Core.Distribution;
 using Library.States.Admins;
-using UnitTests.Utils;
+using ProgramTests.Utils;
 
-namespace UnitTests
+namespace ProgramTests
 {
     /// <summary>
-    /// This class represents unit tests related to admin states.
+    /// This class represents unit tests related to administers.
     /// </summary>
     [TestFixture]
     public class AdminStatesTest
@@ -73,5 +74,48 @@ namespace UnitTests
             string invitationCode = match.Groups["invitationcode"].Value;
             Console.WriteLine($"Invitation code: {invitationCode}");
        }
+
+       /// <summary>
+        /// Tests whether an admin can be successfully created from code.
+        /// </summary>
+        [Test]
+        public void CreateAdminTest()
+        {
+            RuntimeTest.BasicRuntimeTest("create-admin", () =>
+            {
+                Singleton<SessionManager>.Instance.NewUser(
+                    "Admin1",
+                    new UserData("Martín", true, UserData.Type.ADMIN, null, null),
+                    new AdminInitialMenuState());
+                CheckUtils.CheckUserAndEquality(new UserData("Martín", true, UserData.Type.ADMIN, null, null), "Admin1");
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of removing an admin as admin.
+        /// </summary>
+        [Test]
+        public void RemoveAdminAsAdminTest()
+        {
+            Singleton<SessionManager>.Instance.NewUser(
+                "Admin2",
+                new UserData("Bianca", true, UserData.Type.ADMIN, null, null),
+                new AdminInitialMenuState()); 
+
+            RuntimeTest.BasicRuntimeTest("remove-admin-as-admin", () =>
+            {
+                List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Admin1",
+                    "/removeuser",
+                    "Bianca");
+                
+                string finalMessage = responses[responses.Count - 1].Item2;
+
+                string expected = "No se puede eliminar un administrador.";
+                string actual = finalMessage.Split('\n')[0];  
+
+                Assert.AreEqual(expected, actual);
+            });
+        }
     }
 }

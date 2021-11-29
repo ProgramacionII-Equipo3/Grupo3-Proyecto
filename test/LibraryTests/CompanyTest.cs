@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Library;
 using Library.Core;
 using Library.Core.Invitations;
 using Library.HighLevel.Companies;
 using Library.Utils;
 using NUnit.Framework;
+using ProgramTests.Utils;
 using Ucu.Poo.Locations.Client;
 
 namespace ProgramTests
@@ -98,7 +100,7 @@ namespace ProgramTests
         public void CompanyRegisterFromUserInput()
         {
             Singleton<InvitationManager>.Instance.CreateInvitation<CompanyInvitation>("4jsk", code => new CompanyInvitation(code));
-            UnitTests.ProgramaticPlatform platform = new UnitTests.ProgramaticPlatform(
+            ProgramTests.ProgramaticPlatform platform = new ProgramTests.ProgramaticPlatform(
                 "___",
                 "/start 4jsk",
                 "Teogal",
@@ -118,6 +120,118 @@ namespace ProgramTests
             Console.WriteLine();
             Console.WriteLine(String.Join("\n\t--------\n", platform.ReceivedMessages));
             Singleton<CompanyManager>.Instance.RemoveCompany("Teogal");
+        }
+
+        /// <summary>
+        /// Tests the user story of creating a company from an invitation.
+        /// </summary>
+        [Test]
+        public void CreateCompanyStoryTest()
+        {
+            RuntimeTest.BasicRuntimeTest("create-company", () =>
+            {
+                {
+                    // Sign up an user of id "Company1" as company representative
+                    Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                        "Company1",
+                        $"/start n1AIPqHy",
+                        "Roberto",
+                        "/esc",
+                        "/esc",
+                        "Teogal",
+                        "Maderas",
+                        "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                        "098140124",
+                        "teogal@gmail.com");
+                    CheckUtils.CheckUserAndEquality(new UserData("Roberto", true, UserData.Type.COMPANY, null, null), "Company1");
+                    Company? company = Singleton<CompanyManager>.Instance.GetByName("Teogal");
+                    Assert.That(company, Is.Not.Null);
+                    Assert.Contains("Company1", company!.Representants);
+                }
+
+                {
+                    // Sign up an user of id "Company2" as company representative
+                    Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                        "Company2",
+                        $"/start pYzsMjCB",
+                        "Ernesto",
+                        "/esc",
+                        "/esc",
+                        "Compañía de vidrios",
+                        "Vidrios",
+                        "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                        "091695341",
+                        "vi.drios@gmail.com");
+                    CheckUtils.CheckUserAndEquality(new UserData("Ernesto", true, UserData.Type.COMPANY, null, null), "Company2");
+                    Company? company = Singleton<CompanyManager>.Instance.GetByName("Compañía de vidrios");
+                    Assert.That(company, Is.Not.Null);
+                    Assert.Contains("Company2", company!.Representants);
+                }
+
+                {
+                    // Sign up an user of id "Company2" as company representative
+                    Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                        "Company3",
+                        $"/start hVvI3DGe",
+                        "Carlos",
+                        "/esc",
+                        "/esc",
+                        "La Metalería",
+                        "Metálicos",
+                        "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                        "092130294",
+                        "metaleria_comp@gmail.com");
+                    CheckUtils.CheckUserAndEquality(new UserData("Carlos", true, UserData.Type.COMPANY, null, null), "Company3");
+                    Company? company = Singleton<CompanyManager>.Instance.GetByName("La Metalería");
+                    Assert.That(company, Is.Not.Null);
+                    Assert.Contains("Company3", company!.Representants);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of adding a company representative to an already existing company.
+        /// </summary>
+        [Test]
+        public void AddCompanyRepresentativeTest()
+        {
+            RuntimeTest.BasicRuntimeTest("add-representative-to-company", () =>
+            {
+                // Sign up an user of id "Company1" as company representative
+                Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Company2",
+                    $"/start 01010101",
+                    "José",
+                    "/esc",
+                    "jose@gmail.com",
+                    "Teogal",
+                    "Sí");
+                CheckUtils.CheckUserAndEquality(new UserData("José", true, UserData.Type.COMPANY, "jose@gmail.com", null), "Company2");
+                Company? company = Singleton<CompanyManager>.Instance.GetByName("Teogal");
+                Assert.That(company, Is.Not.Null);
+                Assert.AreEqual(new List<string>()
+                {
+                    "Company1", "Company2"
+                }, company!.Representants);
+            });
+        }
+
+        /// <summary>
+        /// Tests the user story of remove a company by an admin.
+        /// </summary>
+        [Test]
+        public void RemoveCopanyTest()
+        {
+            RuntimeTest.BasicRuntimeTest("remove-company", () =>
+            {
+                Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Admin1",
+                    "/removecompany",
+                    "Company2"
+                );
+                bool actual2= Singleton<CompanyManager>.Instance.RemoveCompany("Company2");
+                Assert.That(actual2, Is.False);
+            });
         }
     }
 }

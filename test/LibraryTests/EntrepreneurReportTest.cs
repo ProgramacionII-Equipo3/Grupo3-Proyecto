@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Library;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using Library.Utils;
 using NUnit.Framework;
+using ProgramTests.Utils;
 
 namespace ProgramTests
 {
@@ -55,6 +57,26 @@ namespace ProgramTests
             list.Add(materialbought2);
             BoughtMaterialLine expected2 = list[1];
             Assert.AreEqual(expected2, materialbought2);
+        }
+
+        /// <summary>
+        /// Tests the user story of obtain a entrepreneur report
+        /// </summary>
+        [Test]
+        public void CreateEntrepreneurReportTest()
+        {
+            RuntimeTest.BasicRuntimeTest("report-entrepreneur",() =>
+            {
+                List<(string, string)> messages = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/ereport",
+                    "23/11/2021"
+                );
+
+                Assert.AreEqual(
+                    "10.00 cm de Bujes de cartón el día 28/11/2021 a precio de 15 U$/cm (U$ 150)",
+                    messages[messages.Count - 1].Item2.Split('\n')[0]);
+            });
         }
     }
 }

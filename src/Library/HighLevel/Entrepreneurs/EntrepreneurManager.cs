@@ -114,6 +114,10 @@ namespace Library.HighLevel.Entrepreneurs
             SerializationUtils.SerializeJsonListWithIntermediate<Entrepreneur, JsonEntrepreneur>($"{path}/entrepreneurs.json", this.entrepreneurs);
         }
 
+        /// <summary>
+        /// Removes the <see cref="BoughtMaterialLine" /> with a concrete id from the platform.
+        /// </summary>
+        /// <param name="saleId">The line's id.</param>
         public void RemoveBoughtMaterialLine(int saleId)
         {
             foreach (Entrepreneur entrepreneur in this.entrepreneurs)

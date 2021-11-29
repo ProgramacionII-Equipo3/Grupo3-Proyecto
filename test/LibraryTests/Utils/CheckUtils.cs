@@ -5,7 +5,7 @@ using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using NUnit.Framework;
 
-namespace UnitTests.Utils
+namespace ProgramTests.Utils
 {
     /// <summary>
     /// This class contains methods for checking the state

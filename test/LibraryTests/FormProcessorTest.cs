@@ -6,10 +6,10 @@ using Library.Core.Processing;
 using Library.States;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
-using UnitTests.Utils;
+using ProgramTests.Utils;
 using NUnit.Framework;
 
-namespace UnitTests
+namespace ProgramTests
 {
     /// <summary>
     /// This class represents unit tests concerning the class <see cref="BaseFormProcessor{T, U}" />.
@@ -23,6 +23,7 @@ namespace UnitTests
         [Test]
         public void FormProcessorBasicTest()
         {
+            Singleton<SessionManager>.Instance.RemoveUser("___");
             Console.WriteLine();
             int value = default;
             BasicUtils.CreateUser(new FormProcessorTestState(v => value = v));

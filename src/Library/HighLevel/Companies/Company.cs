@@ -121,6 +121,10 @@ namespace Library.HighLevel.Companies
             }
         }
 
+        /// <summary>
+        /// Removes a <see cref="MaterialSalesLine" /> with a concrete id from the company.
+        /// </summary>
+        /// <param name="saleId">The line's id.</param>
         public void RemoveMaterialSalesLine(int saleId)
         {
             this.MaterialSales.RemoveAll(sale => sale.SaleID == saleId);

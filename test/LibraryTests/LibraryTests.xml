@@ -24,6 +24,34 @@
             If the user don't have a code, its user is an Entrepreneur.
             </summary>
         </member>
+        <member name="T:ProgramTests.AdminStatesTest">
+            <summary>
+            This class represents unit tests related to administers.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.AdminStatesTest.IsCreateInvitationResponseRegex(System.String)">
+            <summary>
+            Checks whether a message is a response from creating an invitation,
+            returning the invitation's code.
+            </summary>
+            <param name="msg">The message.</param>
+            <returns>The invitation's code, if there is.</returns>
+        </member>
+        <member name="M:ProgramTests.AdminStatesTest.TestAdminCreateInvitation">
+            <summary>
+            Tests the class <see cref="T:Library.States.Admins.AdminInitialMenuState" />'s /createcompany option.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.AdminStatesTest.CreateAdminTest">
+            <summary>
+            Tests whether an admin can be successfully created from code.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.AdminStatesTest.RemoveAdminAsAdminTest">
+            <summary>
+            Tests the user story of removing an admin as admin.
+            </summary>
+        </member>
         <member name="T:ProgramTests.CompanyReportTest">
             <summary>
             Test if a company can get a report of all sent materials.
@@ -42,6 +70,16 @@
         <member name="M:ProgramTests.CompanyReportTest.CompanyReportOutOfTime">
             <summary>
             Test if the materials sold are out of time.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyReportTest.CreateCompanyReportTest">
+            <summary>
+            Tests the user story of creating a company report.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyReportTest.CreateCompanyReportTest2">
+            <summary>
+            Tests the user story of making a company report after selling materials.
             </summary>
         </member>
         <member name="T:ProgramTests.CompanyTest">
@@ -79,9 +117,44 @@
             Tests the course of registering a company from user input.
             </summary>
         </member>
+        <member name="M:ProgramTests.CompanyTest.CreateCompanyStoryTest">
+            <summary>
+            Tests the user story of creating a company from an invitation.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.AddCompanyRepresentativeTest">
+            <summary>
+            Tests the user story of adding a company representative to an already existing company.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.CompanyTest.RemoveCopanyTest">
+            <summary>
+            Tests the user story of remove a company by an admin.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.EntrepreneurReportTest">
+            <summary>
+            This test check if the Entrepreneur can get an received material report.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurReportTest.Setup">
+            <summary>
+            Test Setup.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
+            <summary>
+            This test evaluate if the material was added in the report of purchased materials.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.EntrepreneurReportTest.CreateEntrepreneurReportTest">
+            <summary>
+            Tests the user story of obtain a entrepreneur report
+            </summary>
+        </member>
         <member name="T:ProgramTests.EntrepreneurRegisterTest">
             <summary>
-            Test if an Entrepreneur can register into the platform.
+            This class holds tests about entrepreneurs.
             </summary>
         </member>
         <member name="M:ProgramTests.EntrepreneurRegisterTest.Setup">
@@ -99,19 +172,48 @@
             Tests the course of registering an entrepreneur from user input.
             </summary>
         </member>
-        <member name="T:ProgramTests.EntrepreneurReportTest">
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.CreateEntrepreneurTest">
             <summary>
-            This test check if the Entrepreneur can get an received material report.
+            Tests the user story of signing up as an entrepreneur.
             </summary>
         </member>
-        <member name="M:ProgramTests.EntrepreneurReportTest.Setup">
+        <member name="M:ProgramTests.EntrepreneurRegisterTest.RemoveEntrepreneurTest">
             <summary>
-            Test Setup.
+            Tests the user story of remove a entrepreneur by an admin.
             </summary>
         </member>
-        <member name="M:ProgramTests.EntrepreneurReportTest.EntrepreneurReport">
+        <member name="T:ProgramTests.FormProcessorTest">
             <summary>
-            This test evaluate if the material was added in the report of purchased materials.
+            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.FormProcessorTest.FormProcessorBasicTest">
+            <summary>
+            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.InvitationListTest">
+            <summary>
+            This class represents tests concerning invitations.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.InvitationListTest.SetUp">
+            <summary>
+            Setup function.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.InvitationListTest.TestInvitationList">
+            <summary>
+            Tests whether adding invitations via the <see cref="T:Library.Core.Invitations.InvitationManager" /> adds them in the <see cref="T:Library.Core.Invitations.InvitationList`1" />,<br />
+            and whether validating them removes them.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.InvitationListTest.CustomInvitation.Validate(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProgramTests.InvitationListTest.CreateInvitationTest">
+            <summary>
+            Tests the user story of creating invitations (admin).
             </summary>
         </member>
         <member name="T:ProgramTests.InviteCompanyTest">
@@ -130,6 +232,77 @@
             As we can't expect a certain invitation code because it's
             generated randomly, we check if the list of invitations has
             the same number of invitations as expected.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.ListProcessorTest">
+            <summary>
+            This class represents unit tests related to the class <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1" /> as a subclass of <see cref="T:Library.Core.Processing.InputProcessor`1" /> of a list of elements.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.ListProcessorTest.ListProcessorBasicTest">
+            <summary>
+            Tests the basic workings of the list processor: adding elements and submitting them.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.ListProcessorTest.ListProcessorRemoveElementsTest">
+            <summary>
+            Tests the functionality of removing elements.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.ListProcessorTest.ListProcessorGoBackTest">
+            <summary>
+            Tests the functionality of giving an interrupt signal.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.ProgramaticMultipleUserPlatform">
+            <summary>
+            Acts as a messaging platform in which the messages it sends are determined in advance.
+            </summary>
+        </member>
+        <member name="P:ProgramTests.ProgramaticMultipleUserPlatform.ReceivedMessages">
+            <summary>
+            The received messages.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.ProgramaticMultipleUserPlatform.GetUserId(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProgramTests.ProgramaticMultipleUserPlatform.SendMessage(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProgramTests.ProgramaticMultipleUserPlatform.ReceiveMessages(System.String,System.String[])">
+            <summary>
+            Receives an array of messages from the same user.
+            </summary>
+            <param name="id">The messages' id.</param>
+            <param name="messages">The messages' contents.</param>
+        </member>
+        <member name="T:ProgramTests.ProgramaticPlatform">
+            <summary>
+            Acts as a messaging platform in which the messages it sends are determined in advance.
+            </summary>
+        </member>
+        <member name="P:ProgramTests.ProgramaticPlatform.ReceivedMessages">
+            <summary>
+            The received messages.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.ProgramaticPlatform.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes an instance of <see cref="T:ProgramTests.ProgramaticPlatform" />
+            </summary>
+            <param name="id">The platform's id.</param>
+            <param name="messages">The messages to send.</param>
+        </member>
+        <member name="M:ProgramTests.ProgramaticPlatform.GetUserId(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProgramTests.ProgramaticPlatform.SendMessage(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:ProgramTests.ProgramaticPlatform.Run">
+            <summary>
+            Receives messages from the console as if it was a messaging platform.
             </summary>
         </member>
         <member name="T:ProgramTests.PublishOfferTest">
@@ -151,6 +324,64 @@
             <summary>
             Test when a company not publish other offer.
             </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.PublishNormalMaterialTest">
+            <summary>
+            Tests the user story of publishing a normal material.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.PublishContinuousMaterialTest">
+            <summary>
+            Tests the user story of publishing a continuous material.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PublishOfferTest.PublishScheduledMaterialTest">
+            <summary>
+            Tests the user story of publishing a scheduled material.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.PurchaseTest">
+            <summary>
+            This class holds tests about purchasing materials.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PurchaseTest.BuyMaterialPublicationTest">
+            <summary>
+            Tests the user story of buying a material publication.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PurchaseTest.PurchaseMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PurchaseTest.PurchaseNonExistentMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material which doesn't exist.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PurchaseTest.PurchaseUnderstockedMaterialTest">
+            <summary>
+            Tests the user story of purchasing a material with lower stock than asked.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.PurchaseTest.RemoveSaleTest">
+            <summary>
+            Tests the user story of removing a sale from the platform.
+            </summary>
+        </member>
+        <member name="T:ProgramTests.RuntimeTest">
+            <summary>
+            This class holds a single test which executes a long runtime code into a ConsolePlatform-like platform.
+            </summary>
+        </member>
+        <member name="M:ProgramTests.RuntimeTest.BasicRuntimeTest(System.String,System.Action,System.String)">
+            <summary>
+            Performs a generic runtime test.
+            </summary>
+            <param name="startFolderName">The name of the folder which holds the memory to deserialize.</param>
+            <param name="action">The function to run.</param>
+            <param name="endFolderName">The name of the folder which will hold the serialized memory.</param>
         </member>
         <member name="T:ProgramTests.SearchOffersTest">
             <summary>
@@ -202,292 +433,66 @@
             far away form the distance specified, it returns a list with 0 elements.
             </summary>
         </member>
-        <member name="T:UnitTests.AdminStatesTest">
-            <summary>
-            This class represents unit tests related to admin states.
-            </summary>
-        </member>
-        <member name="M:UnitTests.AdminStatesTest.IsCreateInvitationResponseRegex(System.String)">
-            <summary>
-            Checks whether a message is a response from creating an invitation,
-            returning the invitation's code.
-            </summary>
-            <param name="msg">The message.</param>
-            <returns>The invitation's code, if there is.</returns>
-        </member>
-        <member name="M:UnitTests.AdminStatesTest.TestAdminCreateInvitation">
-            <summary>
-            Tests the class <see cref="T:Library.States.Admins.AdminInitialMenuState" />'s /createcompany option.
-            </summary>
-        </member>
-        <member name="T:UnitTests.FormProcessorTest">
-            <summary>
-            This class represents unit tests concerning the class <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
-            </summary>
-        </member>
-        <member name="M:UnitTests.FormProcessorTest.FormProcessorBasicTest">
-            <summary>
-            Tests the functionality itself of the <see cref="T:Library.InputHandlers.Abstractions.BaseFormProcessor`2" />.
-            </summary>
-        </member>
-        <member name="T:UnitTests.InvitationListTest">
-            <summary>
-            This class represents tests concerning the <see cref="T:Library.Core.Invitations.InvitationList`1" /> class.
-            </summary>
-        </member>
-        <member name="M:UnitTests.InvitationListTest.SetUp">
-            <summary>
-            Setup function.
-            </summary>
-        </member>
-        <member name="M:UnitTests.InvitationListTest.TestInvitationList">
-            <summary>
-            Tests whether adding invitations via the <see cref="T:Library.Core.Invitations.InvitationManager" /> adds them in the <see cref="T:Library.Core.Invitations.InvitationList`1" />,<br />
-            and whether validating them removes them.
-            </summary>
-        </member>
-        <member name="M:UnitTests.InvitationListTest.CustomInvitation.Validate(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="T:UnitTests.ListProcessorTest">
-            <summary>
-            This class represents unit tests related to the class <see cref="T:Library.InputHandlers.Abstractions.ListProcessor`1" /> as a subclass of <see cref="T:Library.Core.Processing.InputProcessor`1" /> of a list of elements.
-            </summary>
-        </member>
-        <member name="M:UnitTests.ListProcessorTest.ListProcessorBasicTest">
-            <summary>
-            Tests the basic workings of the list processor: adding elements and submitting them.
-            </summary>
-        </member>
-        <member name="M:UnitTests.ListProcessorTest.ListProcessorRemoveElementsTest">
-            <summary>
-            Tests the functionality of removing elements.
-            </summary>
-        </member>
-        <member name="M:UnitTests.ListProcessorTest.ListProcessorGoBackTest">
-            <summary>
-            Tests the functionality of giving an interrupt signal.
-            </summary>
-        </member>
-        <member name="T:UnitTests.ProgramaticMultipleUserPlatform">
-            <summary>
-            Acts as a messaging platform in which the messages it sends are determined in advance.
-            </summary>
-        </member>
-        <member name="P:UnitTests.ProgramaticMultipleUserPlatform.ReceivedMessages">
-            <summary>
-            The received messages.
-            </summary>
-        </member>
-        <member name="M:UnitTests.ProgramaticMultipleUserPlatform.GetUserId(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:UnitTests.ProgramaticMultipleUserPlatform.SendMessage(System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:UnitTests.ProgramaticMultipleUserPlatform.ReceiveMessages(System.String,System.String[])">
-            <summary>
-            Receives an array of messages from the same user.
-            </summary>
-            <param name="id">The messages' id.</param>
-            <param name="messages">The messages' contents.</param>
-        </member>
-        <member name="T:UnitTests.ProgramaticPlatform">
-            <summary>
-            Acts as a messaging platform in which the messages it sends are determined in advance.
-            </summary>
-        </member>
-        <member name="P:UnitTests.ProgramaticPlatform.ReceivedMessages">
-            <summary>
-            The received messages.
-            </summary>
-        </member>
-        <member name="M:UnitTests.ProgramaticPlatform.#ctor(System.String,System.String[])">
-            <summary>
-            Initializes an instance of <see cref="T:UnitTests.ProgramaticPlatform" />
-            </summary>
-            <param name="id">The platform's id.</param>
-            <param name="messages">The messages to send.</param>
-        </member>
-        <member name="M:UnitTests.ProgramaticPlatform.GetUserId(System.Boolean)">
-            <inheritdoc />
-        </member>
-        <member name="M:UnitTests.ProgramaticPlatform.SendMessage(System.String,System.Boolean)">
-            <inheritdoc />
-        </member>
-        <member name="M:UnitTests.ProgramaticPlatform.Run">
-            <summary>
-            Receives messages from the console as if it was a messaging platform.
-            </summary>
-        </member>
-        <member name="T:UnitTests.RuntimeTest">
-            <summary>
-            This class holds a single test which executes a long runtime code into a ConsolePlatform-like this.platform!.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.SetUp">
-            <summary>
-            Performs a setup.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.BasicRuntimeTest(System.String,System.Action,System.String)">
-            <summary>
-            Performs a generic runtime test.
-            </summary>
-            <param name="startFolderName">The name of the folder which holds the memory to deserialize.</param>
-            <param name="action">The function to run.</param>
-            <param name="endFolderName">The name of the folder which will hold the serialized memory.</param>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.CreateAdminTest">
-            <summary>
-            Tests whether an admin can be successfully created from code.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.CreateEntrepreneurTest">
-            <summary>
-            Tests the user story of signing up as an entrepreneur.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.CreateInvitationTest">
-            <summary>
-            Tests the user story of creating invitations (admin).
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.CreateCompanyTest">
-            <summary>
-            Tests the user story of creating a company from an invitation.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.AddCompanyRepresentativeTest">
-            <summary>
-            Tests the user story of adding a company representative to an already existing company.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.PublishNormalMaterialTest">
-            <summary>
-            Tests the user story of publishing a normal material.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.SearchByKeywordTest">
+        <member name="M:ProgramTests.SearchOffersTest.SearchByKeywordTest">
             <summary>
             Tests the user story of searching materials by keyword.
             </summary>
         </member>
-        <member name="M:UnitTests.RuntimeTest.SearchByCategoryTest">
+        <member name="M:ProgramTests.SearchOffersTest.SearchByCategoryTest">
             <summary>
             Tests the user story of searching materials by category.
             </summary>
         </member>
-        <member name="M:UnitTests.RuntimeTest.SearchByZoneTest">
+        <member name="M:ProgramTests.SearchOffersTest.SearchByZoneTest">
             <summary>
             Tests the user story of searching materials by zone.
             </summary>
         </member>
-        <member name="M:UnitTests.RuntimeTest.RemoveAdminAsAdminTest">
-            <summary>
-            Tests the user story of removing an admin as admin.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.BuyMaterialPublicationTest">
-            <summary>
-            Tests the user story of buying a material publication.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.CreateCompanyReportTest">
-            <summary>
-            Tests the user story of creating a company report.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.PublishContinuousMaterialTest">
-            <summary>
-            Tests the user story of publishing a continuous material.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.PublishScheduledMaterialTest">
-            <summary>
-            Tests the user story of publishing a scheduled material.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.PurchaseMaterialTest">
-            <summary>
-            Tests the user story of purchasing a material.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.PurchaseNonExistentMaterialTest">
-            <summary>
-            Tests the user story of purchasing a material which doesn't exist.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.PurchaseUnderstockedMaterialTest">
-            <summary>
-            Tests the user story of purchasing a material with lower stock than asked.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.CreateCompanyReportTest2">
-            <summary>
-            Tests the user story of making a company report after selling materials.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.RemoveCopanyTest">
-            <summary>
-            Tests the user story of remove a company by an admin.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.RemoveEntrepreneurTest">
-            <summary>
-            Tests the user story of remove a entrepreneur by an admin.
-            </summary>
-        </member>
-        <member name="M:UnitTests.RuntimeTest.ReportEntrepreneurTest">
-            <summary>
-            Tests the user story of obtain a entrepreneur report
-            </summary>
-        </member>
-        <member name="T:UnitTests.Utils.BasicUtils">
+        <member name="T:ProgramTests.Utils.BasicUtils">
             <summary>
             This class contains functions which perform common actions in the unit tests.
             </summary>
         </member>
-        <member name="M:UnitTests.Utils.BasicUtils.CreateUser(Library.Core.State)">
+        <member name="M:ProgramTests.Utils.BasicUtils.CreateUser(Library.Core.State)">
             <summary>
             Creates a new user with the id "___".
             </summary>
             <param name="state">The state of the user.</param>
         </member>
-        <member name="M:UnitTests.Utils.BasicUtils.EmptyUserData">
+        <member name="M:ProgramTests.Utils.BasicUtils.EmptyUserData">
             <summary>
             Creates an empty user data for mock users.
             </summary>
             <returns>A <see cref="T:Library.Core.UserData" />.</returns>
         </member>
-        <member name="T:UnitTests.Utils.CheckUtils">
+        <member name="T:ProgramTests.Utils.CheckUtils">
             <summary>
             This class contains methods for checking the state
             of several types of objects related to the bot.
             </summary>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckUser(System.String,System.String)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckUser(System.String,System.String)">
             <summary>
             Checks whether the user with a concrete id and a concrete name exists.
             </summary>
             <param name="id">The user's id.</param>
             <param name="name">The user's name.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckContactInfoEquality(Library.Core.ContactInfo,Library.Core.ContactInfo)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckContactInfoEquality(Library.Core.ContactInfo,Library.Core.ContactInfo)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.Core.ContactInfo"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckUserDataEquality(Library.Core.UserData,Library.Core.UserData)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckUserDataEquality(Library.Core.UserData,Library.Core.UserData)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.Core.UserData"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckUserAndEquality(Library.Core.UserData,System.String)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckUserAndEquality(Library.Core.UserData,System.String)">
             <summary>
             Checks the existence of a <see cref="T:Library.Core.Distribution.UserSession" /> with a concrete id,
             and then compares it with a <see cref="T:Library.Core.UserData" />.
@@ -495,42 +500,42 @@
             <param name="expected">The expected user.</param>
             <param name="id">The actual user's id.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialEquality(Library.HighLevel.Materials.Material,Library.HighLevel.Materials.Material)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckMaterialEquality(Library.HighLevel.Materials.Material,Library.HighLevel.Materials.Material)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Materials.Material"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckAmountEquality(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Amount)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckAmountEquality(Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Amount)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.Amount"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckPriceEquality(Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Price)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckPriceEquality(Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Price)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.Price"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialPublicationEquality(Library.HighLevel.Materials.MaterialPublication,Library.HighLevel.Materials.MaterialPublication)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckMaterialPublicationEquality(Library.HighLevel.Materials.MaterialPublication,Library.HighLevel.Materials.MaterialPublication)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Materials.MaterialPublication"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckBoughtMaterialLineEquality(Library.HighLevel.Accountability.BoughtMaterialLine,Library.HighLevel.Accountability.BoughtMaterialLine)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckBoughtMaterialLineEquality(Library.HighLevel.Accountability.BoughtMaterialLine,Library.HighLevel.Accountability.BoughtMaterialLine)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine"/>.
             </summary>
             <param name="expected">The expected instance.</param>
             <param name="actual">The actual instance.</param>
         </member>
-        <member name="M:UnitTests.Utils.CheckUtils.CheckMaterialSalesLineEquality(Library.HighLevel.Accountability.MaterialSalesLine,Library.HighLevel.Accountability.MaterialSalesLine)">
+        <member name="M:ProgramTests.Utils.CheckUtils.CheckMaterialSalesLineEquality(Library.HighLevel.Accountability.MaterialSalesLine,Library.HighLevel.Accountability.MaterialSalesLine)">
             <summary>
             Asserts in a field-wise way the equality of two instances of <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/>.
             </summary>
