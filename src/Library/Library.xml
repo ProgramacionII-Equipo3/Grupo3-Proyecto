@@ -612,7 +612,7 @@
         </member>
         <member name="T:Library.HighLevel.Accountability.Amount">
             <summary>
-            This struct represents an amount of material.
+            This class represents an amount of material.
             We used the OCP principle to create this class, we used "readonly"
             to prevent modifications, but it's still open to extension.
             </summary>
@@ -693,7 +693,12 @@
             The amount of the purchased material.
             </summary>
         </member>
-        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(System.String,Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount)">
+        <member name="P:Library.HighLevel.Accountability.BoughtMaterialLine.Id">
+            <summary>
+            The purchase's id.
+            </summary>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.BoughtMaterialLine.#ctor(System.String,Library.HighLevel.Materials.Material,System.DateTime,Library.HighLevel.Accountability.Price,Library.HighLevel.Accountability.Amount,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.BoughtMaterialLine"/> class.
             </summary>
@@ -812,6 +817,11 @@
             The amount of material.
             </summary>
         </member>
+        <member name="P:Library.HighLevel.Accountability.JsonBoughtMaterialLine.Id">
+            <summary>
+            The purchase's id.
+            </summary>
+        </member>
         <member name="M:Library.HighLevel.Accountability.JsonBoughtMaterialLine.FromValue(Library.HighLevel.Accountability.BoughtMaterialLine)">
             <inheritdoc />
         </member>
@@ -846,6 +856,11 @@
         <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Buyer">
             <summary>
             The name of the entrepreneur who made the purchase.
+            </summary>
+        </member>
+        <member name="P:Library.HighLevel.Accountability.JsonMaterialSalesLine.Id">
+            <summary>
+            The purchase's id.
             </summary>
         </member>
         <member name="M:Library.HighLevel.Accountability.JsonMaterialSalesLine.FromValue(Library.HighLevel.Accountability.MaterialSalesLine)">
@@ -912,7 +927,7 @@
             The name of the entrepreneur who made the purchase.
             </summary>
         </member>
-        <member name="F:Library.HighLevel.Accountability.MaterialSalesLine.StaticID">
+        <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.StaticID">
             <summary>
             Gets the ID for the sale.
             </summary>
@@ -932,6 +947,17 @@
             <param name="dateTime">The moment the sale happened.</param>
             <param name="buyer">The name of the entrepreneur who made the purchase.</param>
         </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.#ctor(Library.HighLevel.Materials.Material,Library.HighLevel.Accountability.Amount,Library.HighLevel.Accountability.Price,System.DateTime,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Library.HighLevel.Accountability.MaterialSalesLine"/> class from JSON data.
+            </summary>
+            <param name="material">The sold material.</param>
+            <param name="amount">The amount of sold material.</param>
+            <param name="price">The price of the sold material.</param>
+            <param name="dateTime">The moment the sale happened.</param>
+            <param name="buyer">The name of the entrepreneur who made the purchase.</param>
+            <param name="id">The purchase's id.</param>
+        </member>
         <member name="P:Library.HighLevel.Accountability.MaterialSalesLine.Income">
             <summary>
             Gets the amount of money made from this sale.
@@ -939,6 +965,18 @@
         </member>
         <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.ToString">
             <inheritdoc />
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.SaveStaticID(System.String)">
+            <summary>
+            Saves the class field <see cref="P:Library.HighLevel.Accountability.MaterialSalesLine.StaticID" /> into a file.
+            </summary>
+            <param name="path">The main directory's path.</param>
+        </member>
+        <member name="M:Library.HighLevel.Accountability.MaterialSalesLine.LoadStaticID(System.String)">
+            <summary>
+            Loads the class field <see cref="P:Library.HighLevel.Accountability.MaterialSalesLine.StaticID" /> from a file.
+            </summary>
+            <param name="path">The main directory's path.</param>
         </member>
         <member name="T:Library.HighLevel.Accountability.Measure">
             <summary>
@@ -2077,6 +2115,9 @@
             as if someone purchased the remaining amount.
             </summary>
         </member>
+        <member name="M:Library.HighLevel.Materials.MaterialPublication.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
             This struct represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
@@ -2907,7 +2948,7 @@
             <summary>
             Initializes an instance of <see cref="T:Library.States.Companies.CompanyRevertSaleState" /> class.
             </summary>
-            <param name="id">The user´s id.</param>
+            <param name="id">The user's id.</param>
         </member>
         <member name="T:Library.States.Companies.CompanySentReportState">
             <summary>

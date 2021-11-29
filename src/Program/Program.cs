@@ -34,7 +34,7 @@ namespace Grupo3_Proyecto
             } finally
             {
                 Singleton<Ucu.Poo.Locations.Client.LocationApiClient>.Instance.Dispose();
-                Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory-end");
+                Library.Utils.SerializationUtils.SerializeAllIntoJson("../../Memory");
             }
         }
     }

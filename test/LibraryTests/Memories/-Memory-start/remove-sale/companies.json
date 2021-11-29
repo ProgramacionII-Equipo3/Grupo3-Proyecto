@@ -208,65 +208,6 @@
         "Requirements": []
       }
     ],
-    "MaterialSales": []
-  },
-  {
-    "Name": "Compa\u00F1\u00EDa de Metaler\u00EDa",
-    "ContactInfo": {
-      "Email": "comp_metaler\u00EDa@gmail.com",
-      "PhoneNumber": 91685942
-    },
-    "Heading": "Metales",
-    "Location": {
-      "Found": true,
-      "AddresLine": "Avenida 8 de Octubre 2738",
-      "CountryRegion": "Uruguay",
-      "FormattedAddress": "Avenida 8 de Octubre 2738, Montevideo, 11600",
-      "Locality": "Montevideo",
-      "PostalCode": "11600",
-      "Latitude": -34.88845,
-      "Longitude": -56.15922
-    },
-    "Representants": [
-      "Telegram_2012232708"
-    ],
-    "Publications": [
-      {
-        "Material": {
-          "Name": "Microondas",
-          "Measure": "Weight",
-          "Category": "metales"
-        },
-        "Amount": {
-          "Quantity": 4,
-          "Unit": "kg"
-        },
-        "Price": {
-          "Quantity": 100,
-          "Currency": "dollar",
-          "Unit": "g"
-        },
-        "PickupLocation": {
-          "Found": true,
-          "AddresLine": "Avenida 8 de Octubre 2738",
-          "CountryRegion": "Uruguay",
-          "FormattedAddress": "Avenida 8 de Octubre 2738, Montevideo, 11600",
-          "Locality": "Montevideo",
-          "PostalCode": "11600",
-          "Latitude": -34.88845,
-          "Longitude": -56.15922
-        },
-        "Type": {
-          "DateTime": null,
-          "PublicationType": "NORMAL"
-        },
-        "Keywords": [
-          "Met\u00E1licos",
-          "Microondas"
-        ],
-        "Requirements": []
-      }
-    ],
     "MaterialSales": [
       {
         "Material": {
@@ -286,7 +227,6 @@
         "DateTime": "2021-11-28T00:00:00-03:00",
         "Buyer": "Bianca",
         "Id": 0
-        "Buyer": "Bianca"
       }
     ]
   }

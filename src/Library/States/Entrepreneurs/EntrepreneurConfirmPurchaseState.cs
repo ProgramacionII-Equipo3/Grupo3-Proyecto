@@ -27,18 +27,19 @@ namespace Library.States.Entrepreneurs
                 if (b)
                 {
                     DateTime time = DateTime.Today;
-                    BoughtMaterialLine purchase = new BoughtMaterialLine(
-                        publication.Company.Name,
-                        publication.Publication.Material,
-                        time,
-                        publication.Publication.Price,
-                        purchasedAmount);
                     MaterialSalesLine sale = new MaterialSalesLine(
                         publication.Publication.Material,
                         purchasedAmount,
                         publication.Publication.Price,
                         time,
                         Singleton<EntrepreneurManager>.Instance.GetById(id).Unwrap().Name);
+                    BoughtMaterialLine purchase = new BoughtMaterialLine(
+                        publication.Company.Name,
+                        publication.Publication.Material,
+                        time,
+                        publication.Publication.Price,
+                        purchasedAmount,
+                        sale.SaleID);
                     Entrepreneur? entrepreneur = Singleton<EntrepreneurManager>.Instance.GetById(id);
                     Company company = publication.Company;
                     entrepreneur!.BoughtMaterials.Add(purchase);

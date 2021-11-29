@@ -123,5 +123,13 @@ namespace Library.HighLevel.Companies
             Company[] companies = this.companies.ToArray();
             SerializationUtils.SerializeJsonListWithIntermediate<Company, JsonCompany>($"{path}/companies.json", companies);
         }
+
+        public void RemoveMaterialSalesLine(int saleId)
+        {
+            foreach(Company company in this.companies)
+            {
+                company.RemoveMaterialSalesLine(saleId);
+            }
+        }
     }
 }

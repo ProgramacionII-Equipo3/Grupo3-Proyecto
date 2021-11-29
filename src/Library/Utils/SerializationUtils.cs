@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using Library.Core.Distribution;
 using Library.Core.Invitations;
+using Library.HighLevel.Accountability;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
 
@@ -123,6 +124,7 @@ namespace Library.Utils
             Singleton<SessionManager>.Instance.LoadUserSessions(path);
             Singleton<CompanyManager>.Instance.LoadCompanies(path);
             Singleton<EntrepreneurManager>.Instance.LoadEntrepreneurs(path);
+            MaterialSalesLine.LoadStaticID(path);
         }
 
         /// <summary>
@@ -136,6 +138,7 @@ namespace Library.Utils
             Singleton<SessionManager>.Instance.SaveUserSessions(path);
             Singleton<CompanyManager>.Instance.SaveCompanies(path);
             Singleton<EntrepreneurManager>.Instance.SaveEntrepreneurs(path);
+            MaterialSalesLine.SaveStaticID(path);
         }
     }
 }

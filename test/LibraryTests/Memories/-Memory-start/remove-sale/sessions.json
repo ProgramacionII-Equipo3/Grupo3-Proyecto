@@ -1,0 +1,50 @@
+[
+  {
+    "Id": "Telegram_1883636472",
+    "UserData": {
+      "Name": "Santiago",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": null
+      },
+      "IsComplete": true,
+      "UserType": 0
+    }
+  },
+  {
+    "Id": "Telegram_2066298868",
+    "UserData": {
+      "Name": "",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": null
+      },
+      "IsComplete": true,
+      "UserType": 2
+    }
+  },
+  {
+    "Id": "Telegram_2090102457",
+    "UserData": {
+      "Name": "",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": null
+      },
+      "IsComplete": true,
+      "UserType": 1
+    }
+  },
+  {
+    "Id": "Telegram_2012232708",
+    "UserData": {
+      "Name": "Juan Nocetti",
+      "ContactInfo": {
+        "Email": null,
+        "PhoneNumber": 91685942
+      },
+      "IsComplete": true,
+      "UserType": 2
+    }
+  }
+]

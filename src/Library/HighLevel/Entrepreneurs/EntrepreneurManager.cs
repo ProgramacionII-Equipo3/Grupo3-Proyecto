@@ -113,5 +113,13 @@ namespace Library.HighLevel.Entrepreneurs
         {
             SerializationUtils.SerializeJsonListWithIntermediate<Entrepreneur, JsonEntrepreneur>($"{path}/entrepreneurs.json", this.entrepreneurs);
         }
+
+        public void RemoveBoughtMaterialLine(int saleId)
+        {
+            foreach (Entrepreneur entrepreneur in this.entrepreneurs)
+            {
+                entrepreneur.RemoveBoughtMaterialLine(saleId);
+            }
+        }
     }
 }

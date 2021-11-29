@@ -34,6 +34,11 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         public string Buyer { get; set; } = string.Empty;
 
+        /// <summary>
+        /// The purchase's id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <inheritdoc />
         public void FromValue(MaterialSalesLine value)
         {
@@ -45,6 +50,7 @@ namespace Library.HighLevel.Accountability
             this.Price.FromValue(value.Price);
             this.DateTime = value.DateTime;
             this.Buyer = value.Buyer;
+            this.Id = value.SaleID;
         }
 
         /// <inheritdoc />
@@ -54,6 +60,7 @@ namespace Library.HighLevel.Accountability
                 this.Amount.ToValue(),
                 this.Price.ToValue(),
                 this.DateTime,
-                this.Buyer);
+                this.Buyer,
+                this.Id);
     }
 }

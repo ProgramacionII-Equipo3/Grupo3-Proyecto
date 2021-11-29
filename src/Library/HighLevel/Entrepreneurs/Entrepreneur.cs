@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Library.Core;
 using Library.HighLevel.Accountability;
@@ -90,7 +91,12 @@ namespace Library.HighLevel.Entrepreneurs
             this.Heading = heading;
             this.Habilitations = habilitations;
             this.Specializations = specializations;
-            this.BoughtMaterials = boughtMaterials;
+            this.BoughtMaterials = boughtMaterials.ToList();
+        }
+
+        public void RemoveBoughtMaterialLine(int saleId)
+        {
+            this.BoughtMaterials.RemoveAll(line => line.Id == saleId);
         }
     }
 }

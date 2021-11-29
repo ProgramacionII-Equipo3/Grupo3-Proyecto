@@ -14,7 +14,7 @@ namespace Library.HighLevel.Entrepreneurs
         /// <summary>
         /// Gets the collection of bought materials.
         /// </summary>
-        public IList<BoughtMaterialLine> BoughtMaterials { get; private set; }
+        public List<BoughtMaterialLine> BoughtMaterials { get; private set; }
 
         /// <summary>
         /// Gets a reports of the purchase made by the entrepreneur.

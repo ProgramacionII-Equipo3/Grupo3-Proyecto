@@ -2,9 +2,10 @@ using System.Linq;
 using Library.Core.Processing;
 using Library.InputHandlers;
 using Library.InputHandlers.Abstractions;
+using Library.HighLevel.Accountability;
 using Library.HighLevel.Companies;
 using Library.HighLevel.Entrepreneurs;
-using Library.HighLevel.Accountability;
+using Library.HighLevel.Materials;
 using Library.Core;
 using Library.Utils;
 
@@ -18,7 +19,7 @@ namespace Library.States.Companies
         /// <summary>
         /// Initializes an instance of <see cref="CompanyRevertSaleState" /> class.
         /// </summary>
-        /// <param name="id">The user´s id.</param>
+        /// <param name="id">The user's id.</param>
         public CompanyRevertSaleState(string id) : base(
             exitState: () => (new CompanyInitialMenuState(id), null),
             nextState: result =>
@@ -26,12 +27,15 @@ namespace Library.States.Companies
                     State newState = new CompanyInitialMenuState(id);
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        if (company.MaterialSales.Where(s => s.SaleID == result.Item1.SaleID).FirstOrDefault() is MaterialSalesLine sale)
+                        if (company.MaterialSales.Where(s => s.SaleID == result.Item1.SaleID).FirstOrDefault() is MaterialSalesLine sale
+                         && company.Publications.Where(p => p.Material.Name == sale.Material.Name).FirstOrDefault() is MaterialPublication publication)
                         {
-                           switch (sale.Amount.Add(result.Item1.Amount))
+                           switch (publication.Amount.Add(result.Item1.Amount))
                            {
                                case true:
                                {
+                                   Singleton<CompanyManager>.Instance.RemoveMaterialSalesLine(sale.SaleID);
+                                   Singleton<EntrepreneurManager>.Instance.RemoveBoughtMaterialLine(sale.SaleID);
                                    return (newState, $"La venta ha sido revertida con éxito.\n{newState.GetDefaultResponse()}");
                                }
                                case false:
@@ -61,11 +65,11 @@ namespace Library.States.Companies
                 this.inputHandlers = new InputHandler[]
                 {                
                     new ProcessorHandler<string>(
-                        id =>
+                        saleId =>
                         {
                             if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                             {
-                                if (company.MaterialSales.Where(s => s.SaleID.ToString() == id).FirstOrDefault() is MaterialSalesLine rSale)
+                                if (company.MaterialSales.Where(s => s.SaleID.ToString() == saleId).FirstOrDefault() is MaterialSalesLine rSale)
                                 {
                                     this.sale = rSale;
                                     return null;

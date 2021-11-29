@@ -5,11 +5,11 @@ using Library.Utils;
 namespace Library.HighLevel.Accountability
 {
     /// <summary>
-    /// This struct represents an amount of material.
+    /// This class represents an amount of material.
     /// We used the OCP principle to create this class, we used "readonly"
     /// to prevent modifications, but it's still open to extension.
     /// </summary>
-    public struct Amount
+    public class Amount
     {
         /// <summary>
         /// The numeric value in the amount.
@@ -68,6 +68,7 @@ namespace Library.HighLevel.Accountability
             if (Unit.GetConversionFactor(this.Unit, other.Unit) is double factor)
             {
                 double newQuantity = this.Quantity + other.Quantity / factor;
+                this.Quantity = newQuantity;
                 return true;
             }
 

@@ -36,6 +36,11 @@ namespace Library.HighLevel.Accountability
         /// </summary>
         public JsonAmount Amount { get; set; } = new JsonAmount();
 
+        /// <summary>
+        /// The purchase's id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <inheritdoc />
         public void FromValue(BoughtMaterialLine value)
         {
@@ -47,6 +52,7 @@ namespace Library.HighLevel.Accountability
             this.Price.FromValue(value.Price);
             this.Amount = new JsonAmount();
             this.Amount.FromValue(value.Amount);
+            this.Id = value.Id;
         }
 
         /// <inheritdoc />
@@ -58,7 +64,8 @@ namespace Library.HighLevel.Accountability
                 this.Material.ToValue(),
                 this.DateTime,
                 this.Price.ToValue(),
-                this.Amount.ToValue());
+                this.Amount.ToValue(),
+                this.Id);
         }
     }
 }

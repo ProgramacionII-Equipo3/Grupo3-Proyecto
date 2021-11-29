@@ -40,6 +40,11 @@ namespace Library.HighLevel.Accountability
         public Amount Amount { get; }
 
         /// <summary>
+        /// The purchase's id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BoughtMaterialLine"/> class.
         /// </summary>
         /// <param name="companyName">The company who owned the material.</param>
@@ -48,13 +53,14 @@ namespace Library.HighLevel.Accountability
         /// <param name="price">The cost of the material.</param>
         /// <param name="amount">The amount of the purchased material.</param>
         [JsonConstructor]
-        public BoughtMaterialLine(string companyName, Material material, DateTime dateTime, Price price, Amount amount)
+        public BoughtMaterialLine(string companyName, Material material, DateTime dateTime, Price price, Amount amount, int id)
         {
             this.CompanyName = companyName;
             this.Material = material;
             this.DateTime = dateTime;
             this.Price = price;
             this.Amount = amount;
+            this.Id = id;
         }
 
         /// <summary>
