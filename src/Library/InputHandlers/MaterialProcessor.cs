@@ -35,7 +35,7 @@ namespace Library.InputHandlers
                 ),
                 ProcessorHandler<Measure>.CreateInfallibleInstance(
                     m => this.measure = m,
-                    new MeasureProcessor(() => "Por favor ingresa la medida del material:\n        \"weight\": peso\n        \"length\": longitud")
+                    new MeasureProcessor(() => "Por favor ingresa la medida del material:\n        \"weight\": peso\n        \"length\": longitud\n        \"volume\": volumen")
                 ),
                 ProcessorHandler<MaterialCategory>.CreateInfallibleInstance(
                     c => this.category = c,
