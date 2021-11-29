@@ -221,7 +221,7 @@ namespace UnitTests
                         "/esc",
                         "/esc",
                         "La Metalería",
-                        "Metálicos",
+                        "Metales",
                         "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
                         "092130294",
                         "metaleria_comp@gmail.com");

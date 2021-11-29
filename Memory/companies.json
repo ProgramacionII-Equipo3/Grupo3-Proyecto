@@ -174,7 +174,7 @@
     "Publications": [
       {
         "Material": {
-          "Name": "Microondas",
+          "Name": "Chapas de acero",
           "Measure": "Weight",
           "Category": "metales"
         },
@@ -183,9 +183,9 @@
           "Unit": "kg"
         },
         "Price": {
-          "Quantity": 100,
-          "Currency": "dollar",
-          "Unit": "g"
+          "Quantity": 30,
+          "Currency": "peso",
+          "Unit": "kg"
         },
         "PickupLocation": {
           "Found": true,
@@ -203,7 +203,7 @@
         },
         "Keywords": [
           "Met\u00E1licos",
-          "Microondas"
+          "Chapas de acero"
         ],
         "Requirements": []
       }

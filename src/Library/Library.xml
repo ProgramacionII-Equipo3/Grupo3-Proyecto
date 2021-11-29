@@ -1242,6 +1242,9 @@
             company has a representant and add users.
             </summary>
             <summary>
+            
+            </summary>
+            <summary>
             This interface represents the responsibility of creating material reports.
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
@@ -1610,6 +1613,7 @@
         <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
             <summary>
             This class represents the highest level of encapsulation in handling entrepreneurs.
+            Created because of SRP, that way this class have methods according to the atribute that it contains. 
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.EntrepreneurManager.entrepreneurs">
@@ -2711,7 +2715,7 @@
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
-            We created this class because it only has the information of the token.
+            We created this class because of SRP, it only has the information of the token.
             </summary>
         </member>
         <member name="F:Library.Platforms.Telegram.Secret.TELEGRAM_BOT_TOKEN">
@@ -3228,7 +3232,7 @@
         </member>
         <member name="T:Library.Utils.LocationUtils">
             <summary>
-            This class holds functions related to the 
+            This class holds functions related to the location.
             </summary>
         </member>
         <member name="M:Library.Utils.LocationUtils.LocationToString(Ucu.Poo.Locations.Client.Location)">

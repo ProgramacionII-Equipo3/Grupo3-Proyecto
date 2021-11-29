@@ -17,7 +17,7 @@ namespace Library.States.Companies
         /// <param name="id">User's id.</param>
         public CompanySentReportState(string id) : base(
             new InputProcessorState<DateTime>(
-                new DateProcessor(() => "Ingresa la fecha para realizar el reporte."),
+                new DateProcessor(() => "Ingresa la fecha para realizar el reporte (formato: dd/mm/aaaa)."),
                 nextState: time =>
                 {
                     State newState = new CompanyInitialMenuState(id);

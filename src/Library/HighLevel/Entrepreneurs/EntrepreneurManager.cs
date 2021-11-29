@@ -12,6 +12,7 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class represents the highest level of encapsulation in handling entrepreneurs.
+    /// Created because of SRP, that way this class have methods according to the atribute that it contains. 
     /// </summary>
     public class EntrepreneurManager
     {

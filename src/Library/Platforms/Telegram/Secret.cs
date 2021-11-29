@@ -4,7 +4,7 @@ namespace Library.Platforms.Telegram
 {
     /// <summary>
     /// This class stores secret data whose access has to be carefully managed.
-    /// We created this class because it only has the information of the token.
+    /// We created this class because of SRP, it only has the information of the token.
     /// </summary>
     public static class Secret
     {
