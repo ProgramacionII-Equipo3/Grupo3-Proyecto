@@ -118,5 +118,13 @@ namespace Library.HighLevel.Materials
         {
             this.Amount.SetToZero();
         }
+
+        /// <inheritdoc />
+        public override string? ToString() =>
+                $"{this.Material.Name},"
+              + $" cantidad: {this.Amount},"
+              + $" precio: {this.Price},"
+              + $" ubicación: {LocationUtils.LocationToString(this.PickupLocation)},"
+              + $" tipo: {this.Type}";
     }
 }

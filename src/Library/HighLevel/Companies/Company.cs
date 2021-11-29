@@ -79,7 +79,7 @@ namespace Library.HighLevel.Companies
             this.Location = location;
             this.Representants = representants;
             this.Publications = publications;
-            this.MaterialSales = materialSales;
+            this.MaterialSales = materialSales.ToList();
         }
 
         /// <summary>
@@ -119,6 +119,11 @@ namespace Library.HighLevel.Companies
             {
                 Singleton<SessionManager>.Instance.RemoveUser(id);
             }
+        }
+
+        public void RemoveMaterialSalesLine(int saleId)
+        {
+            this.MaterialSales.RemoveAll(sale => sale.SaleID == saleId);
         }
     }
 }

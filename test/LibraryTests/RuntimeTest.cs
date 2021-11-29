@@ -16,11 +16,11 @@ using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 using UnitTests.Utils;
 
-#warning TODO: Add test of creating an entrepreneur report before buying materials.
-#warning TODO: Add test of creating an entrepreneur report after buying materials.
-#warning TODO: Add test of removing company.
-#warning TODO: Add test of removing normal user.
-#warning TODO: Add test of removing admin.
+// #warning TODO: Add test of creating an entrepreneur report before buying materials.
+// #warning TODO: Add test of creating an entrepreneur report after buying materials.
+// #warning TODO: Add test of removing company.
+// #warning TODO: Add test of removing normal user.
+// #warning TODO: Add test of removing admin.
 
 namespace UnitTests
 {
@@ -721,7 +721,8 @@ namespace UnitTests
                                 MaterialCategory.GetByName("Celulósicos").Unwrap()),
                             DateTime.Today,
                             new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
-                            new Amount(2, Unit.GetByAbbr("cm").Unwrap())),
+                            new Amount(2, Unit.GetByAbbr("cm").Unwrap()),
+                            0),
                         purchase);
                 }
                 {
@@ -825,7 +826,8 @@ namespace UnitTests
                                 MaterialCategory.GetByName("Celulósicos").Unwrap()),
                             DateTime.Today,
                             new Price(15, Currency.Peso, Unit.GetByAbbr("cm").Unwrap()),
-                            new Amount(10, Unit.GetByAbbr("cm").Unwrap())),
+                            new Amount(10, Unit.GetByAbbr("cm").Unwrap()),
+                            0),
                         purchase);
                 }
                 {
@@ -863,7 +865,7 @@ namespace UnitTests
                     "23/11/2021");
 
                 Assert.AreEqual(
-                    "10.00 cm de Bujes de cartón vendido(s) al emprendedor Santiago a precio de 15 U$/cm el día 28/11/2021",
+                    "(0) 10.00 cm de Bujes de cartón vendido(s) al emprendedor Santiago a precio de 15 U$/cm el día 28/11/2021",
                     messages[messages.Count - 1].Item2.Split('\n')[0]);
             });
         }
@@ -923,6 +925,25 @@ namespace UnitTests
             });
         }
 
+        [Test]
+        public void RemoveSaleTest()
+        {
+            BasicRuntimeTest("remove-sale", () =>
+            {
+                MaterialPublication publication = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap().Publications.Where(p => p.Material.Name == "Picado para relleno").FirstOrDefault().Unwrap();
+                MaterialSalesLine line = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap().MaterialSales.Where(sale => sale.SaleID == 1).FirstOrDefault().Unwrap();
+                Assert.AreEqual(50, publication.Amount.Quantity);
+                Assert.AreEqual(100, line.Amount.Quantity);
 
+                platform!.ReceiveMessages(
+                    "Telegram_2066298868",
+                    "/removesale",
+                    "1",
+                    "Bianca");
+                    
+                publication = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap().Publications.Where(p => p.Material.Name == "Picado para relleno").FirstOrDefault().Unwrap();
+                Assert.AreEqual(150, publication.Amount.Quantity);
+            });
+        }
     }
 }

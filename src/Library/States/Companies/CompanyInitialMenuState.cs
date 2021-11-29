@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Library.Core;
 using Library.HighLevel.Companies;
 
