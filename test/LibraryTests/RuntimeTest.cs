@@ -930,8 +930,9 @@ namespace UnitTests
         {
             BasicRuntimeTest("remove-sale", () =>
             {
-                MaterialPublication publication = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap().Publications.Where(p => p.Material.Name == "Picado para relleno").FirstOrDefault().Unwrap();
-                MaterialSalesLine line = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap().MaterialSales.Where(sale => sale.SaleID == 1).FirstOrDefault().Unwrap();
+                Company teogal = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap();
+                MaterialPublication publication = teogal.Publications.Where(p => p.Material.Name == "Picado para relleno").FirstOrDefault().Unwrap();
+                MaterialSalesLine line = teogal.MaterialSales.Where(sale => sale.SaleID == 1).FirstOrDefault().Unwrap();
                 Assert.AreEqual(50, publication.Amount.Quantity);
                 Assert.AreEqual(100, line.Amount.Quantity);
 
@@ -940,8 +941,8 @@ namespace UnitTests
                     "/removesale",
                     "1",
                     "Bianca");
-                    
-                publication = Singleton<CompanyManager>.Instance.GetByName("Teogal").Unwrap().Publications.Where(p => p.Material.Name == "Picado para relleno").FirstOrDefault().Unwrap();
+
+                Assert.AreEqual(0, teogal.MaterialSales.Count);
                 Assert.AreEqual(150, publication.Amount.Quantity);
             });
         }
