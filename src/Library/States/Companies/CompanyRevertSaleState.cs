@@ -27,23 +27,27 @@ namespace Library.States.Companies
                     State newState = new CompanyInitialMenuState(id);
                     if (Singleton<CompanyManager>.Instance.GetCompanyOf(id) is Company company)
                     {
-                        if (company.MaterialSales.Where(s => s.SaleID == result.Item1.SaleID).FirstOrDefault() is MaterialSalesLine sale
-                         && company.Publications.Where(p => p.Material.Name == sale.Material.Name).FirstOrDefault() is MaterialPublication publication)
+                        if (company.MaterialSales.Where(s => s.SaleID == result.Item1.SaleID).FirstOrDefault() is MaterialSalesLine sale)
                         {
-                           switch (publication.Amount.Add(result.Item1.Amount))
-                           {
-                               case true:
-                               {
-                                   Singleton<CompanyManager>.Instance.RemoveMaterialSalesLine(sale.SaleID);
-                                   Singleton<EntrepreneurManager>.Instance.RemoveBoughtMaterialLine(sale.SaleID);
-                                   return (newState, $"La venta ha sido revertida con éxito.\n{newState.GetDefaultResponse()}");
-                               }
-                               case false:
-                               {
-                                   return (newState, $"No pude revertir la venta, chequea si ingresaste los datos correctamente.\n{newState.GetDefaultResponse()}");
-                               }
-                           }
-                           
+                            bool done = true;
+                            if(company.Publications.Where(p => p.Material.Name == sale.Material.Name).FirstOrDefault() is MaterialPublication publication)
+                            {
+                                done = publication.Amount.Add(result.Item1.Amount);
+                            }
+                            switch (done)
+                            {
+                                case true:
+                                    {
+                                        Singleton<CompanyManager>.Instance.RemoveMaterialSalesLine(sale.SaleID);
+                                        Singleton<EntrepreneurManager>.Instance.RemoveBoughtMaterialLine(sale.SaleID);
+                                        return (newState, $"La venta ha sido revertida con éxito.\n{newState.GetDefaultResponse()}");
+                                    }
+                                case false:
+                                    {
+                                        return (newState, $"No pude revertir la venta, chequea si ingresaste los datos correctamente.\n{newState.GetDefaultResponse()}");
+                                    }
+                            }
+
                         }
 
                         return (newState, $"No pude encontrar la venta, chequea si ingresaste los datos correctamente.\n{newState.GetDefaultResponse()}");
@@ -63,7 +67,7 @@ namespace Library.States.Companies
             public SaleDataProcessor(string id)
             {
                 this.inputHandlers = new InputHandler[]
-                {                
+                {
                     new ProcessorHandler<string>(
                         saleId =>
                         {
@@ -92,7 +96,7 @@ namespace Library.States.Companies
                                     this.entrepreneur = entrepreneurBuyer;
                                     return null;
                                 }
-                                
+
                                 return "No reconozco al nombre del emprendedor ingresado como el comprador del material.";
                             }
 
@@ -106,5 +110,5 @@ namespace Library.States.Companies
             protected override Result<(MaterialSalesLine, Entrepreneur), string> getResult() =>
                 Result<(MaterialSalesLine, Entrepreneur), string>.Ok((this.sale.Unwrap(), this.entrepreneur.Unwrap()));
         }
-    } 
+    }
 }

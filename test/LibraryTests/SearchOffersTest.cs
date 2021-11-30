@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Library;
 using Library.HighLevel.Accountability;
 using Library.HighLevel.Entrepreneurs;
@@ -22,14 +23,14 @@ namespace ProgramTests
         private MaterialCategory? category1;
         private Material? material1;
         private Unit? unit1;
-        private Amount amount1;
+        private Amount? amount1;
         private Price price1;
         private Location? pickupLocation1;
         private AssignedMaterialPublication publication1;
         private MaterialCategory? category2;
         private Material? material2;
         private Unit? unit2;
-        private Amount amount2;
+        private Amount? amount2;
         private Price price2;
         private Location? pickupLocation2;
         private AssignedMaterialPublication publication2;
@@ -182,6 +183,155 @@ namespace ProgramTests
 
             Assert.AreEqual(expected6, Singleton<Searcher>.Instance.SearchByLocation(locationSpecified, distanceSpecified));
             clientTest.Dispose();
+        }
+
+        private static Regex entrepreneurReportRegex = new Regex(
+                "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+              + "cantidad: (?<materialquantity>.+?), "
+              + "precio: (?<materialprice>.+?), "
+              + "ubicación: (?<materiallocation>.+), "
+              + "tipo: (?<materialtype>.+)",
+                RegexOptions.Compiled
+            );
+        
+        /// <summary>
+        /// Tests the user story of searching materials by keyword.
+        /// </summary>
+        [Test]
+        public void SearchByKeywordTest()
+        {
+            RuntimeTest.BasicRuntimeTest("search-material", () =>
+            {
+                List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFK",
+                    "Bujes");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30.00 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = entrepreneurReportRegex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+            }, "search-material-by-keyword");
+        }
+
+        /// <summary>
+        /// Tests the user story of searching materials by category.
+        /// </summary>
+        [Test]
+        public void SearchByCategoryTest()
+        {
+            RuntimeTest.BasicRuntimeTest("search-material", () =>
+            {
+                List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFC",
+                    "Celulósicos");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+                  + "cantidad: (?<materialquantity>.+?), "
+                  + "precio: (?<materialprice>.+?), "
+                  + "ubicación: (?<materiallocation>.+), "
+                  + "tipo: (?<materialtype>.+)",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30.00 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+            }, "search-material-by-category");
+        }
+
+        /// <summary>
+        /// Tests the user story of searching materials by zone.
+        /// </summary>
+        [Test]
+        public void SearchByZoneTest()
+        {
+            RuntimeTest.BasicRuntimeTest("search-material", () =>
+            {
+                List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                    "Entrepreneur1",
+                    "/searchFZ",
+                    "Av. 8 de Octubre, Montevideo, Montevideo, Uruguay",
+                    "100");
+
+                string finalMessage = responses[responses.Count - 1].Item2;
+                Regex regex = new Regex(
+                    "\\(De (?<company>.+)\\) (?<materialname>.+?), "
+                  + "cantidad: (?<materialquantity>.+?), "
+                  + "precio: (?<materialprice>.+?), "
+                  + "ubicación: (?<materiallocation>.+), "
+                  + "tipo: (?<materialtype>.+)",
+                    RegexOptions.Compiled
+                );
+
+                string[][] expected = new string[][]
+                {
+                    new string[]
+                    {
+                        "Teogal",
+                        "Bujes de cartón",
+                        "30.00 cm",
+                        "15 U$/cm",
+                        "Avenida 8 de Octubre, Montevideo, Uruguay",
+                        "normal"
+                    }
+                }, actual = regex.Matches(finalMessage)
+                    .Select(m => new string[]
+                    {
+                        m.Groups["company"].Value,
+                        m.Groups["materialname"].Value,
+                        m.Groups["materialquantity"].Value,
+                        m.Groups["materialprice"].Value,
+                        m.Groups["materiallocation"].Value,
+                        m.Groups["materialtype"].Value
+                    }).ToArray();
+
+                Assert.AreEqual(expected, actual);
+            }, "search-material-by-location");
         }
     }
 }

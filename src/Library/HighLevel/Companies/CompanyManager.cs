@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Library.Core;
 using Library.Core.Distribution;
+using Library.HighLevel.Accountability;
 using Library.HighLevel.Materials;
 using Library.Utils;
 using Ucu.Poo.Locations.Client;
@@ -124,6 +125,10 @@ namespace Library.HighLevel.Companies
             SerializationUtils.SerializeJsonListWithIntermediate<Company, JsonCompany>($"{path}/companies.json", companies);
         }
 
+        /// <summary>
+        /// Removes a <see cref="MaterialSalesLine" /> with a concrete id from the platform.
+        /// </summary>
+        /// <param name="saleId">The line's id.</param>
         public void RemoveMaterialSalesLine(int saleId)
         {
             foreach(Company company in this.companies)

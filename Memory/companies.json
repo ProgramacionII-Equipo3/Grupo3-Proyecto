@@ -91,42 +91,6 @@
         "Requirements": [
           "Habilitaci\u00F3n para la manipulaci\u00F3n de Qu\u00EDmicos"
         ]
-      },
-      {
-        "Material": {
-          "Name": "Picado para relleno",
-          "Measure": "Weight",
-          "Category": "textiles"
-        },
-        "Amount": {
-          "Quantity": 50,
-          "Unit": "kg"
-        },
-        "Price": {
-          "Quantity": 100,
-          "Currency": "peso",
-          "Unit": "kg"
-        },
-        "PickupLocation": {
-          "Found": true,
-          "AddresLine": "Avenida 8 de Octubre 2738",
-          "CountryRegion": "Uruguay",
-          "FormattedAddress": "Avenida 8 de Octubre 2738, Montevideo, 11600",
-          "Locality": "Montevideo",
-          "PostalCode": "11600",
-          "Latitude": -34.88845,
-          "Longitude": -56.15922
-        },
-        "Type": {
-          "DateTime": null,
-          "PublicationType": "CONTINUOUS"
-        },
-        "Keywords": [
-          "picado",
-          "relleno",
-          "textiles"
-        ],
-        "Requirements": []
       }
     ],
     "MaterialSales": [

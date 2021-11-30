@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using Library;
 using Library.Core.Invitations;
 
-namespace UnitTests
+namespace ProgramTests
 {
     /// <summary>
-    /// This class represents tests concerning the <see cref="InvitationList{T}" /> class.
+    /// This class represents tests concerning invitations.
     /// </summary>
     [TestFixture]
     public class InvitationListTest
@@ -81,6 +81,49 @@ namespace UnitTests
 
             public static bool operator !=(CustomInvitation a, CustomInvitation b) =>
                 a.Code != b.Code;
+        }
+
+        /// <summary>
+        /// Tests the user story of creating invitations (admin).
+        /// </summary>
+        [Test]
+        public void CreateInvitationTest()
+        {
+            RuntimeTest.BasicRuntimeTest("create-invitations", () =>
+            {
+                // Create a message invitation for "Company1"
+                string? invitationCode;
+                {
+                    List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                        "Admin1",
+                        "/invitecompany");
+                    invitationCode = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
+                    Assert.That(invitationCode, Is.Not.Null);
+                }
+                Assert.AreEqual(1, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
+
+                // Create a message invitation for "Company2"
+                string? invitationCode2;
+                {
+                    List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                        "Admin1",
+                        "/invitecompany");
+                    invitationCode2 = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
+                    Assert.That(invitationCode2, Is.Not.Null);
+                }
+                Assert.AreEqual(2, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
+
+                // Create a message invitation for "Company3"
+                string? invitationCode3;
+                {
+                    List<(string, string)> responses = Singleton<ProgramaticMultipleUserPlatform>.Instance.ReceiveMessages(
+                        "Admin1",
+                        "/invitecompany");
+                    invitationCode3 = AdminStatesTest.IsCreateInvitationResponseRegex(responses[0].Item2);
+                    Assert.That(invitationCode3, Is.Not.Null);
+                }
+                Assert.AreEqual(3, Singleton<Library.Core.Invitations.InvitationManager>.Instance.InvitationCount);
+            });
         }
     }
 }
