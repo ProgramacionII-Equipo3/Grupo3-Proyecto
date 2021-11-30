@@ -1242,6 +1242,7 @@
             company has a representant and add users.
             </summary>
             <summary>
+            This partial class represents a part of the class Company.
             
             </summary>
             <summary>
@@ -1760,8 +1761,9 @@
             <param name="distanceSpecified"></param>
         </member>
         <member name="T:Library.HighLevel.Materials.AssignedMaterialPublication">
-            <summary>
-            This struct represents a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> which is detached from its <see cref="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company" />.
+             <summary>
+             This struct represents a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> which is detached from its <see cref="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company" />.
+            This struct uses pattern Expert because it is the one in charge of assign a material publication to a company.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.AssignedMaterialPublication.Publication">
@@ -2125,6 +2127,7 @@
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
             This struct represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
+            This class uses the pattern expert because it is the one in charge of manage the type data of a material publication.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublicationTypeData.DateTime">

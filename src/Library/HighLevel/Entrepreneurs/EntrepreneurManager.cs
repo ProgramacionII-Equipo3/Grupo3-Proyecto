@@ -114,7 +114,11 @@ namespace Library.HighLevel.Entrepreneurs
         {
             SerializationUtils.SerializeJsonListWithIntermediate<Entrepreneur, JsonEntrepreneur>($"{path}/entrepreneurs.json", this.entrepreneurs);
         }
-
+        
+        /// <summary>
+        /// Remove the entrepreneurs purchase given the sale id.  
+        /// </summary>
+        /// <param name="saleId">Id of the sale.</param>
         public void RemoveBoughtMaterialLine(int saleId)
         {
             foreach (Entrepreneur entrepreneur in this.entrepreneurs)
