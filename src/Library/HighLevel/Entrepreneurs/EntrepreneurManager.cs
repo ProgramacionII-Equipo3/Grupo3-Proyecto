@@ -12,6 +12,7 @@ namespace Library.HighLevel.Entrepreneurs
 {
     /// <summary>
     /// This class represents the highest level of encapsulation in handling entrepreneurs.
+    /// Created because of SRP, that way this class have methods according to the atribute that it contains. 
     /// </summary>
     public class EntrepreneurManager
     {
@@ -113,11 +114,11 @@ namespace Library.HighLevel.Entrepreneurs
         {
             SerializationUtils.SerializeJsonListWithIntermediate<Entrepreneur, JsonEntrepreneur>($"{path}/entrepreneurs.json", this.entrepreneurs);
         }
-
+        
         /// <summary>
-        /// Removes the <see cref="BoughtMaterialLine" /> with a concrete id from the platform.
+        /// Remove the entrepreneurs purchase given the sale id.  
         /// </summary>
-        /// <param name="saleId">The line's id.</param>
+        /// <param name="saleId">Id of the sale.</param>
         public void RemoveBoughtMaterialLine(int saleId)
         {
             foreach (Entrepreneur entrepreneur in this.entrepreneurs)

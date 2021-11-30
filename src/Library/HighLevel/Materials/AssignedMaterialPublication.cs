@@ -5,7 +5,8 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This struct represents a <see cref="MaterialPublication" /> which is detached from its <see cref="Company" />.
-    /// </summary>
+    ///This struct uses pattern Expert because it is the one in charge of assign a material publication to a company.
+    ///</summary>
     public readonly struct AssignedMaterialPublication
     {
         /// <summary>

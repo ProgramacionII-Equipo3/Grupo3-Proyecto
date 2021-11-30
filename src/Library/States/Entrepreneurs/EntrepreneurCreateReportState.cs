@@ -19,7 +19,7 @@ namespace Library.States.Entrepreneurs
         /// <param name="entrepreneur">The data of the entrepreneur.</param>
         public EntrepreneurCreateReportState(Entrepreneur entrepreneur) : base(
             new InputProcessorState<DateTime>(
-                new DateProcessor(() => "Ingresa la fecha para ver el reporte correspondiente."),
+                new DateProcessor(() => "Ingresa la fecha para ver el reporte correspondiente (formato: dd/mm/aaaa)."),
                 dateTime =>
                 {
                     ReceivedMaterialReport report = entrepreneur.GetMaterialReport(dateTime);

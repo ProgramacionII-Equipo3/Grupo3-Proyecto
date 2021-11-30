@@ -12,9 +12,7 @@ namespace Library.HighLevel.Companies
     /// <summary>
     /// This class represents a company which can sell materials to entrepreneurs.
     /// We used the ISP principle, this class does not depend of types it doesn't
-    /// use. We also implemented Creator, this class is the one that creates the
-    /// list of representants. And Expert, the method of checking if the
-    /// company has a representant and add users.
+    /// use. Expert, the method of checking if the company has a representant and add users.
     /// </summary>
     public partial class Company
     {

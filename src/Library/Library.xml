@@ -1243,6 +1243,10 @@
             company has a representant and add users.
             </summary>
             <summary>
+            This partial class represents a part of the class Company.
+            
+            </summary>
+            <summary>
             This interface represents the responsibility of creating material reports.
             We created this interface because of DIP, that way the classes depend of an abstraction.
             </summary>
@@ -1629,6 +1633,7 @@
         <member name="T:Library.HighLevel.Entrepreneurs.EntrepreneurManager">
             <summary>
             This class represents the highest level of encapsulation in handling entrepreneurs.
+            Created because of SRP, that way this class have methods according to the atribute that it contains. 
             </summary>
         </member>
         <member name="F:Library.HighLevel.Entrepreneurs.EntrepreneurManager.entrepreneurs">
@@ -1781,8 +1786,9 @@
             <param name="distanceSpecified"></param>
         </member>
         <member name="T:Library.HighLevel.Materials.AssignedMaterialPublication">
-            <summary>
-            This struct represents a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> which is detached from its <see cref="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company" />.
+             <summary>
+             This struct represents a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> which is detached from its <see cref="P:Library.HighLevel.Materials.AssignedMaterialPublication.Company" />.
+            This struct uses pattern Expert because it is the one in charge of assign a material publication to a company.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.AssignedMaterialPublication.Publication">
@@ -2146,6 +2152,7 @@
         <member name="T:Library.HighLevel.Materials.MaterialPublicationTypeData">
             <summary>
             This struct represents the three possible states in which a <see cref="T:Library.HighLevel.Materials.MaterialPublication" /> can be.
+            This class uses the pattern expert because it is the one in charge of manage the type data of a material publication.
             </summary>
         </member>
         <member name="P:Library.HighLevel.Materials.MaterialPublicationTypeData.DateTime">
@@ -2736,7 +2743,7 @@
         <member name="T:Library.Platforms.Telegram.Secret">
             <summary>
             This class stores secret data whose access has to be carefully managed.
-            We created this class because it only has the information of the token.
+            We created this class because of SRP, it only has the information of the token.
             </summary>
         </member>
         <member name="F:Library.Platforms.Telegram.Secret.TELEGRAM_BOT_TOKEN">
@@ -3253,7 +3260,7 @@
         </member>
         <member name="T:Library.Utils.LocationUtils">
             <summary>
-            This class holds functions related to the 
+            This class holds functions related to the location.
             </summary>
         </member>
         <member name="M:Library.Utils.LocationUtils.LocationToString(Ucu.Poo.Locations.Client.Location)">

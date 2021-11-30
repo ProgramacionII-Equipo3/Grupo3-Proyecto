@@ -4,6 +4,7 @@ namespace Library.HighLevel.Materials
 {
     /// <summary>
     /// This struct represents the three possible states in which a <see cref="MaterialPublication" /> can be.
+    /// This class uses the pattern expert because it is the one in charge of manage the type data of a material publication.
     /// </summary>
     public readonly struct MaterialPublicationTypeData
     {

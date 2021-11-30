@@ -5,7 +5,7 @@ using Ucu.Poo.Locations.Client;
 namespace Library.Utils
 {
     /// <summary>
-    /// This class holds functions related to the 
+    /// This class holds functions related to the location.
     /// </summary>
     public static class LocationUtils
     {

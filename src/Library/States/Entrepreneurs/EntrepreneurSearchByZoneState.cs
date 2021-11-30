@@ -43,11 +43,11 @@ namespace Library.States.Entrepreneurs
                 {
                     ProcessorHandler<Location>.CreateInfallibleInstance(
                         location => this.location = location,
-                        new LocationProcessor(() => "Ingrese una dirección para buscar en sus alrededores.")
+                        new LocationProcessor(() => "Ingrese una dirección para buscar en sus alrededores (formato: Dirección, Ciudad, Departamento, País).")
                     ),
                     ProcessorHandler<double>.CreateInfallibleInstance(
                         distance => this.distance = distance,
-                        new UnsignedDoubleProcessor(() => "Ingrese el radio de búsqueda.")
+                        new UnsignedDoubleProcessor(() => "Ingrese el radio de búsqueda (en metros).")
                     )
                 };
             }

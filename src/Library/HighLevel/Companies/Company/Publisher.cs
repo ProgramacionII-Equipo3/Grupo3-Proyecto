@@ -9,6 +9,9 @@ using Ucu.Poo.Locations.Client;
 
 namespace Library.HighLevel.Companies
 {
+    /// <summary>
+    /// This partial class represents a part of the class Company.
+    /// </summary>
     public partial class Company
     {
         /// <summary>
